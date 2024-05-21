@@ -1,0 +1,9 @@
+# GetDevicesByClicksResponse
+
+
+## Fields
+
+| Field                                                                                                    | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                               | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                       | :heavy_check_mark:                                                                                       | N/A                                                                                                      |
+| `ResponseBodies`                                                                                         | [][operations.GetDevicesByClicksResponseBody](../../models/operations/getdevicesbyclicksresponsebody.md) | :heavy_minus_sign:                                                                                       | The top devices by number of clicks                                                                      |

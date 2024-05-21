@@ -1,0 +1,27 @@
+speakeasyVersion: 1.272.0
+sources:
+    dub:
+        sourceNamespace: dub
+        sourceRevisionDigest: sha256:9b33df43ddf03d6c6b6cf5ae310b432eaf1900637e2260f1e28c034230299331
+        sourceBlobDigest: sha256:e6b3be2559cac0d520ab80ea4fb211aa5b656ac12bc41570de1787e19e32a78f
+        tags:
+            - latest
+targets:
+    my-first-target:
+        source: dub
+        sourceNamespace: dub
+        sourceRevisionDigest: sha256:9b33df43ddf03d6c6b6cf5ae310b432eaf1900637e2260f1e28c034230299331
+        sourceBlobDigest: sha256:e6b3be2559cac0d520ab80ea4fb211aa5b656ac12bc41570de1787e19e32a78f
+        outLocation: /Users/kiran/Desktop/dub-go
+workflow:
+    workflowVersion: 1.0.0
+    sources:
+        dub:
+            inputs:
+                - location: https://api.dub.co
+            publish:
+                location: registry.speakeasyapi.dev/dub/dub/dub
+    targets:
+        my-first-target:
+            target: go
+            source: dub

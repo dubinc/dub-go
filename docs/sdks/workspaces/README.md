@@ -1,0 +1,185 @@
+# Workspaces
+(*Workspaces*)
+
+### Available Operations
+
+* [List](#list) - Retrieve a list of workspaces
+* [Create](#create) - Create a workspace
+* [Get](#get) - Retrieve a workspace
+
+## List
+
+Retrieve a list of workspaces for the authenticated user.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/dubinc/dub-go/models/components"
+	dubgo "github.com/dubinc/dub-go"
+	"context"
+	"log"
+)
+
+func main() {
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+        dubgo.WithWorkspaceID("<value>"),
+    )
+
+    ctx := context.Background()
+    res, err := s.Workspaces.List(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WorkspaceSchemas != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+
+
+### Response
+
+**[*operations.GetWorkspacesResponse](../../models/operations/getworkspacesresponse.md), error**
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
+## Create
+
+Create a new workspace for the authenticated user.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/dubinc/dub-go/models/components"
+	dubgo "github.com/dubinc/dub-go"
+	"context"
+	"github.com/dubinc/dub-go/models/operations"
+	"log"
+)
+
+func main() {
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+        dubgo.WithWorkspaceID("<value>"),
+    )
+
+    ctx := context.Background()
+    res, err := s.Workspaces.Create(ctx, &operations.CreateWorkspaceRequestBody{
+        Name: "<value>",
+        Slug: "<value>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WorkspaceSchema != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.CreateWorkspaceRequestBody](../../models/operations/createworkspacerequestbody.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+
+
+### Response
+
+**[*operations.CreateWorkspaceResponse](../../models/operations/createworkspaceresponse.md), error**
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
+## Get
+
+Retrieve a workspace for the authenticated user.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/dubinc/dub-go/models/components"
+	dubgo "github.com/dubinc/dub-go"
+	"context"
+	"log"
+)
+
+func main() {
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+        dubgo.WithWorkspaceID("<value>"),
+    )
+
+
+    var idOrSlug string = "<value>"
+
+    ctx := context.Background()
+    res, err := s.Workspaces.Get(ctx, idOrSlug)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WorkspaceSchema != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `idOrSlug`                                            | *string*                                              | :heavy_check_mark:                                    | The ID or slug of the workspace.                      |
+
+
+### Response
+
+**[*operations.GetWorkspaceResponse](../../models/operations/getworkspaceresponse.md), error**
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
