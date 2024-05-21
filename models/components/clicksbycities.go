@@ -266,7 +266,6 @@ const (
 func (e ClicksByCitiesCountry) ToPointer() *ClicksByCitiesCountry {
 	return &e
 }
-
 func (e *ClicksByCitiesCountry) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

@@ -4,6 +4,7 @@ package operations
 
 import (
 	"errors"
+	"fmt"
 	"github.com/dubinc/dub-go/internal/utils"
 	"github.com/dubinc/dub-go/models/components"
 )
@@ -32,13 +33,13 @@ type BulkCreateLinksTagIdsType string
 
 const (
 	BulkCreateLinksTagIdsTypeStr        BulkCreateLinksTagIdsType = "str"
-	BulkCreateLinksTagIdsTypeArrayOfstr BulkCreateLinksTagIdsType = "arrayOfstr"
+	BulkCreateLinksTagIdsTypeArrayOfStr BulkCreateLinksTagIdsType = "arrayOfStr"
 )
 
 // BulkCreateLinksTagIds - The unique IDs of the tags assigned to the short link.
 type BulkCreateLinksTagIds struct {
 	Str        *string
-	ArrayOfstr []string
+	ArrayOfStr []string
 
 	Type BulkCreateLinksTagIdsType
 }
@@ -52,32 +53,32 @@ func CreateBulkCreateLinksTagIdsStr(str string) BulkCreateLinksTagIds {
 	}
 }
 
-func CreateBulkCreateLinksTagIdsArrayOfstr(arrayOfstr []string) BulkCreateLinksTagIds {
-	typ := BulkCreateLinksTagIdsTypeArrayOfstr
+func CreateBulkCreateLinksTagIdsArrayOfStr(arrayOfStr []string) BulkCreateLinksTagIds {
+	typ := BulkCreateLinksTagIdsTypeArrayOfStr
 
 	return BulkCreateLinksTagIds{
-		ArrayOfstr: arrayOfstr,
+		ArrayOfStr: arrayOfStr,
 		Type:       typ,
 	}
 }
 
 func (u *BulkCreateLinksTagIds) UnmarshalJSON(data []byte) error {
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = BulkCreateLinksTagIdsTypeStr
 		return nil
 	}
 
-	arrayOfstr := []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfstr, "", true, true); err == nil {
-		u.ArrayOfstr = arrayOfstr
-		u.Type = BulkCreateLinksTagIdsTypeArrayOfstr
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = BulkCreateLinksTagIdsTypeArrayOfStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for BulkCreateLinksTagIds", string(data))
 }
 
 func (u BulkCreateLinksTagIds) MarshalJSON() ([]byte, error) {
@@ -85,24 +86,24 @@ func (u BulkCreateLinksTagIds) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.ArrayOfstr != nil {
-		return utils.MarshalJSON(u.ArrayOfstr, "", true)
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type BulkCreateLinksTagIds: all fields are null")
 }
 
 type BulkCreateLinksTagNamesType string
 
 const (
 	BulkCreateLinksTagNamesTypeStr        BulkCreateLinksTagNamesType = "str"
-	BulkCreateLinksTagNamesTypeArrayOfstr BulkCreateLinksTagNamesType = "arrayOfstr"
+	BulkCreateLinksTagNamesTypeArrayOfStr BulkCreateLinksTagNamesType = "arrayOfStr"
 )
 
 // BulkCreateLinksTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type BulkCreateLinksTagNames struct {
 	Str        *string
-	ArrayOfstr []string
+	ArrayOfStr []string
 
 	Type BulkCreateLinksTagNamesType
 }
@@ -116,32 +117,32 @@ func CreateBulkCreateLinksTagNamesStr(str string) BulkCreateLinksTagNames {
 	}
 }
 
-func CreateBulkCreateLinksTagNamesArrayOfstr(arrayOfstr []string) BulkCreateLinksTagNames {
-	typ := BulkCreateLinksTagNamesTypeArrayOfstr
+func CreateBulkCreateLinksTagNamesArrayOfStr(arrayOfStr []string) BulkCreateLinksTagNames {
+	typ := BulkCreateLinksTagNamesTypeArrayOfStr
 
 	return BulkCreateLinksTagNames{
-		ArrayOfstr: arrayOfstr,
+		ArrayOfStr: arrayOfStr,
 		Type:       typ,
 	}
 }
 
 func (u *BulkCreateLinksTagNames) UnmarshalJSON(data []byte) error {
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = BulkCreateLinksTagNamesTypeStr
 		return nil
 	}
 
-	arrayOfstr := []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfstr, "", true, true); err == nil {
-		u.ArrayOfstr = arrayOfstr
-		u.Type = BulkCreateLinksTagNamesTypeArrayOfstr
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = BulkCreateLinksTagNamesTypeArrayOfStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for BulkCreateLinksTagNames", string(data))
 }
 
 func (u BulkCreateLinksTagNames) MarshalJSON() ([]byte, error) {
@@ -149,11 +150,11 @@ func (u BulkCreateLinksTagNames) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.ArrayOfstr != nil {
-		return utils.MarshalJSON(u.ArrayOfstr, "", true)
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type BulkCreateLinksTagNames: all fields are null")
 }
 
 type RequestBody struct {

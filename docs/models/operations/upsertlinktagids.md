@@ -14,6 +14,6 @@ upsertLinkTagIds := operations.CreateUpsertLinkTagIdsStr(string{/* values here *
 ### 
 
 ```go
-upsertLinkTagIds := operations.CreateUpsertLinkTagIdsArrayOfstr([]string{/* values here */})
+upsertLinkTagIds := operations.CreateUpsertLinkTagIdsArrayOfStr([]string{/* values here */})
 ```
 

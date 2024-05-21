@@ -14,6 +14,6 @@ queryParamTagNames := operations.CreateQueryParamTagNamesStr(string{/* values he
 ### 
 
 ```go
-queryParamTagNames := operations.CreateQueryParamTagNamesArrayOfstr([]string{/* values here */})
+queryParamTagNames := operations.CreateQueryParamTagNamesArrayOfStr([]string{/* values here */})
 ```
 

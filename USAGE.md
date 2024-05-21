@@ -5,7 +5,6 @@ package main
 import (
 	"context"
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/components"
 	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
@@ -16,16 +15,18 @@ func main() {
 		dubgo.WithWorkspaceID("<value>"),
 	)
 
-	ctx := context.Background()
-	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
+	var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
 		URL:        "https://google/com",
 		ExternalID: dubgo.String("123456"),
-		TagIds: operations.CreateTagIdsArrayOfstr(
+		TagIds: operations.CreateTagIdsArrayOfStr(
 			[]string{
 				"clux0rgak00011...",
 			},
 		),
-	})
+	}
+
+	ctx := context.Background()
+	res, err := s.Links.Create(ctx, request)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -42,7 +43,6 @@ package main
 import (
 	"context"
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/components"
 	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
@@ -53,16 +53,18 @@ func main() {
 		dubgo.WithWorkspaceID("<value>"),
 	)
 
-	ctx := context.Background()
-	res, err := s.Links.Upsert(ctx, &operations.UpsertLinkRequestBody{
+	var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
 		URL:        "https://google/com",
 		ExternalID: dubgo.String("123456"),
-		TagIds: operations.CreateUpsertLinkTagIdsArrayOfstr(
+		TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(
 			[]string{
 				"clux0rgak00011...",
 			},
 		),
-	})
+	}
+
+	ctx := context.Background()
+	res, err := s.Links.Upsert(ctx, request)
 	if err != nil {
 		log.Fatal(err)
 	}

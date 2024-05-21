@@ -266,7 +266,6 @@ const (
 func (e CountryCode) ToPointer() *CountryCode {
 	return &e
 }
-
 func (e *CountryCode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

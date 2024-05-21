@@ -14,6 +14,6 @@ updateLinkTagIds := operations.CreateUpdateLinkTagIdsStr(string{/* values here *
 ### 
 
 ```go
-updateLinkTagIds := operations.CreateUpdateLinkTagIdsArrayOfstr([]string{/* values here */})
+updateLinkTagIds := operations.CreateUpdateLinkTagIdsArrayOfStr([]string{/* values here */})
 ```
 

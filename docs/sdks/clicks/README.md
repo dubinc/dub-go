@@ -25,10 +25,9 @@ Retrieve the total number of clicks for a link, a domain, or the authenticated w
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -38,8 +37,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+    request := operations.GetClicksCountRequest{}
+    
     ctx := context.Background()
-    res, err := s.Analytics.Clicks.Count(ctx, operations.GetClicksCountRequest{})
+    res, err := s.Analytics.Clicks.Count(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -83,10 +84,9 @@ Retrieve timeseries click analytics for a link, a domain, or the authenticated w
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -96,8 +96,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+    request := operations.GetTimeseriesByClicksRequest{}
+    
     ctx := context.Background()
-    res, err := s.Analytics.Clicks.Timeseries(ctx, operations.GetTimeseriesByClicksRequest{})
+    res, err := s.Analytics.Clicks.Timeseries(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -141,10 +143,9 @@ Retrieve the top countries by number of clicks for a link, a domain, or the auth
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -154,8 +155,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+    request := operations.GetCountriesByClicksRequest{}
+    
     ctx := context.Background()
-    res, err := s.Analytics.Clicks.Countries(ctx, operations.GetCountriesByClicksRequest{})
+    res, err := s.Analytics.Clicks.Countries(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -199,10 +202,9 @@ Retrieve the top countries by number of clicks for a link, a domain, or the auth
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -212,8 +214,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+    request := operations.GetCitiesByClicksRequest{}
+    
     ctx := context.Background()
-    res, err := s.Analytics.Clicks.Cities(ctx, operations.GetCitiesByClicksRequest{})
+    res, err := s.Analytics.Clicks.Cities(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -257,10 +261,9 @@ Retrieve the top devices by number of clicks for a link, a domain, or the authen
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -270,8 +273,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+    request := operations.GetDevicesByClicksRequest{}
+    
     ctx := context.Background()
-    res, err := s.Analytics.Clicks.Devices(ctx, operations.GetDevicesByClicksRequest{})
+    res, err := s.Analytics.Clicks.Devices(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -315,10 +320,9 @@ Retrieve the top browsers by number of clicks for a link, a domain, or the authe
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -328,8 +332,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+    request := operations.GetBrowsersByClicksRequest{}
+    
     ctx := context.Background()
-    res, err := s.Analytics.Clicks.Browsers(ctx, operations.GetBrowsersByClicksRequest{})
+    res, err := s.Analytics.Clicks.Browsers(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -373,10 +379,9 @@ Retrieve the top OS by number of clicks for a link, a domain, or the authenticat
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -386,8 +391,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+    request := operations.GetOSByClicksRequest{}
+    
     ctx := context.Background()
-    res, err := s.Analytics.Clicks.Os(ctx, operations.GetOSByClicksRequest{})
+    res, err := s.Analytics.Clicks.Os(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -431,10 +438,9 @@ Retrieve the top referers by number of clicks for a link, a domain, or the authe
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -444,8 +450,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+    request := operations.GetReferersByClicksRequest{}
+    
     ctx := context.Background()
-    res, err := s.Analytics.Clicks.Referers(ctx, operations.GetReferersByClicksRequest{})
+    res, err := s.Analytics.Clicks.Referers(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -489,10 +497,9 @@ Retrieve the top links by number of clicks for a domain or the authenticated wor
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -502,8 +509,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+    request := operations.GetTopLinksByClicksRequest{}
+    
     ctx := context.Background()
-    res, err := s.Analytics.Clicks.TopLinks(ctx, operations.GetTopLinksByClicksRequest{})
+    res, err := s.Analytics.Clicks.TopLinks(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -547,10 +556,9 @@ Retrieve the top URLs by number of clicks for a given short link.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -560,8 +568,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+    request := operations.GetTopURLsByClicksRequest{}
+    
     ctx := context.Background()
-    res, err := s.Analytics.Clicks.TopUrls(ctx, operations.GetTopURLsByClicksRequest{})
+    res, err := s.Analytics.Clicks.TopUrls(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -607,10 +617,9 @@ Retrieve the total number of clicks for a link, a domain, or the authenticated w
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -620,8 +629,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+    request := operations.GetClicksCountDeprecatedRequest{}
+    
     ctx := context.Background()
-    res, err := s.Analytics.Clicks.GetClicksCountDeprecated(ctx, operations.GetClicksCountDeprecatedRequest{})
+    res, err := s.Analytics.Clicks.GetClicksCountDeprecated(ctx, request)
     if err != nil {
         log.Fatal(err)
     }

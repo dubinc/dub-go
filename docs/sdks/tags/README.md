@@ -16,7 +16,6 @@ Retrieve a list of tags for the authenticated workspace.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
 	"context"
 	"log"
@@ -28,6 +27,8 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Tags.List(ctx)
     if err != nil {
@@ -72,7 +73,6 @@ Create a new tag for the authenticated workspace.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
 	"context"
@@ -85,11 +85,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-
     var tag string = "<value>"
 
     var color *operations.Color = operations.ColorBlue.ToPointer()
-
+    
     ctx := context.Background()
     res, err := s.Tags.Create(ctx, tag, color)
     if err != nil {

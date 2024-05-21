@@ -24,7 +24,6 @@ const (
 func (e Plan) ToPointer() *Plan {
 	return &e
 }
-
 func (e *Plan) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -62,7 +61,6 @@ const (
 func (e Role) ToPointer() *Role {
 	return &e
 }
-
 func (e *Role) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

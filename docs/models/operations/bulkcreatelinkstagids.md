@@ -14,6 +14,6 @@ bulkCreateLinksTagIds := operations.CreateBulkCreateLinksTagIdsStr(string{/* val
 ### 
 
 ```go
-bulkCreateLinksTagIds := operations.CreateBulkCreateLinksTagIdsArrayOfstr([]string{/* values here */})
+bulkCreateLinksTagIds := operations.CreateBulkCreateLinksTagIdsArrayOfStr([]string{/* values here */})
 ```
 

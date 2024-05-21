@@ -46,7 +46,6 @@ const (
 func (e GetOSByClicksQueryParamInterval) ToPointer() *GetOSByClicksQueryParamInterval {
 	return &e
 }
-
 func (e *GetOSByClicksQueryParamInterval) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

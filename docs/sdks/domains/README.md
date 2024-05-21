@@ -20,7 +20,6 @@ Retrieve a list of domains associated with the authenticated workspace.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
 	"context"
 	"log"
@@ -32,6 +31,8 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Domains.List(ctx)
     if err != nil {
@@ -76,10 +77,9 @@ Add a domain to the authenticated workspace.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -89,15 +89,17 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-    ctx := context.Background()
-    res, err := s.Domains.Add(ctx, &operations.AddDomainRequestBody{
+    var request *operations.AddDomainRequestBody = &operations.AddDomainRequestBody{
         Slug: "acme.com",
         Type: operations.TypeRedirect.ToPointer(),
         Target: dubgo.String("https://acme.com/landing"),
         ExpiredURL: dubgo.String("https://acme.com/expired"),
         Archived: dubgo.Bool(false),
         Placeholder: dubgo.String("https://dub.co/help/article/what-is-dub"),
-    })
+    }
+    
+    ctx := context.Background()
+    res, err := s.Domains.Add(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -141,7 +143,6 @@ Delete a domain from a workspace. It cannot be undone. This will also delete all
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
 	"context"
 	"log"
@@ -153,9 +154,8 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-
     var slug string = "acme.com"
-
+    
     ctx := context.Background()
     res, err := s.Domains.Delete(ctx, slug)
     if err != nil {
@@ -201,7 +201,6 @@ Update a domain for the authenticated workspace.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
 	"context"
@@ -214,10 +213,9 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-
     var slug string = "acme.com"
 
-    requestBody := &operations.UpdateDomainRequestBody{
+    var requestBody *operations.UpdateDomainRequestBody = &operations.UpdateDomainRequestBody{
         Slug: dubgo.String("acme.com"),
         Type: operations.UpdateDomainTypeRedirect.ToPointer(),
         Target: dubgo.String("https://acme.com/landing"),
@@ -225,7 +223,7 @@ func main() {
         Archived: dubgo.Bool(false),
         Placeholder: dubgo.String("https://dub.co/help/article/what-is-dub"),
     }
-
+    
     ctx := context.Background()
     res, err := s.Domains.Update(ctx, slug, requestBody)
     if err != nil {
@@ -272,7 +270,6 @@ Set a domain as primary for the authenticated workspace.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
 	"context"
 	"log"
@@ -284,9 +281,8 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-
     var slug string = "acme.com"
-
+    
     ctx := context.Background()
     res, err := s.Domains.SetPrimary(ctx, slug)
     if err != nil {
@@ -332,7 +328,6 @@ Transfer a domain to another workspace within the authenticated account.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
 	"context"
@@ -345,13 +340,12 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-
     var slug string = "acme.com"
 
-    requestBody := &operations.TransferDomainRequestBody{
+    var requestBody *operations.TransferDomainRequestBody = &operations.TransferDomainRequestBody{
         NewWorkspaceID: "<value>",
     }
-
+    
     ctx := context.Background()
     res, err := s.Domains.Transfer(ctx, slug, requestBody)
     if err != nil {

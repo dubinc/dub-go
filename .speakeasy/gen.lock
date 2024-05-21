@@ -3,24 +3,32 @@ id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
   docChecksum: 4f30b36ccc0d6c4b8d2e3cfc7acb8456
   docVersion: 0.0.1
-  speakeasyVersion: 1.272.0
-  generationVersion: 2.312.1
-  releaseVersion: 0.0.1
-  configChecksum: a4b3d5471b8af1945f67363518bdcd92
+  speakeasyVersion: 1.294.0
+  generationVersion: 2.333.3
+  releaseVersion: 0.1.0
+  configChecksum: 03969e14a14a67465ac6b79e671bcf16
+  repoURL: https://github.com/dubinc/dub-go.git
+  installationURL: https://github.com/dubinc/dub-go
 features:
   go:
+    additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.4.6
+    core: 3.4.8
     deprecations: 2.81.1
     examples: 2.81.3
     flattening: 2.81.1
     globalSecurity: 2.82.9
+    globalSecurityCallbacks: 0.1.0
+    globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.2
     globals: 2.82.2
     hiddenGlobals: 0.1.0
+    intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
-    responseFormat: 0.1.0
-    unions: 2.85.4
+    nullables: 0.1.0
+    responseFormat: 0.1.1
+    sdkHooks: 0.1.0
+    unions: 2.85.8
 generatedFiles:
   - links.go
   - qrcodes.go
@@ -342,6 +350,5 @@ generatedFiles:
   - docs/sdks/domains/README.md
   - docs/sdks/metatags/README.md
   - USAGE.md
-  - models/operations/options.go
   - .gitattributes
   - internal/hooks/hooks.go

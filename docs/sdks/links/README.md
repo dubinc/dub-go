@@ -22,10 +22,9 @@ Retrieve a list of links for the authenticated workspace. The list will be pagin
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -35,8 +34,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+    request := operations.GetLinksRequest{}
+    
     ctx := context.Background()
-    res, err := s.Links.List(ctx, operations.GetLinksRequest{})
+    res, err := s.Links.List(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -80,10 +81,9 @@ Create a new link for the authenticated workspace.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -93,16 +93,18 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-    ctx := context.Background()
-    res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
+    var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
         URL: "https://google/com",
         ExternalID: dubgo.String("123456"),
-        TagIds: operations.CreateTagIdsArrayOfstr(
+        TagIds: operations.CreateTagIdsArrayOfStr(
                 []string{
                     "clux0rgak00011...",
                 },
         ),
-    })
+    }
+    
+    ctx := context.Background()
+    res, err := s.Links.Create(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -146,10 +148,9 @@ Retrieve the number of links for the authenticated workspace. The provided query
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -159,8 +160,10 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+    request := operations.GetLinksCountRequest{}
+    
     ctx := context.Background()
-    res, err := s.Links.Count(ctx, operations.GetLinksCountRequest{})
+    res, err := s.Links.Count(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -204,7 +207,6 @@ Retrieve the info for a link.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
 	"context"
 	"log"
@@ -216,7 +218,6 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-
     var domain *string = dubgo.String("<value>")
 
     var key *string = dubgo.String("<value>")
@@ -224,7 +225,7 @@ func main() {
     var linkID *string = dubgo.String("clux0rgak00011...")
 
     var externalID *string = dubgo.String("ext_123456")
-
+    
     ctx := context.Background()
     res, err := s.Links.Get(ctx, domain, key, linkID, externalID)
     if err != nil {
@@ -273,7 +274,6 @@ Delete a link for the authenticated workspace.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
 	"context"
 	"log"
@@ -285,9 +285,8 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-
     var linkID string = "<value>"
-
+    
     ctx := context.Background()
     res, err := s.Links.Delete(ctx, linkID)
     if err != nil {
@@ -333,7 +332,6 @@ Update a link for the authenticated workspace. If there's no change, returns it 
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
 	"context"
@@ -346,19 +344,18 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-
     var linkID string = "<value>"
 
-    requestBody := &operations.UpdateLinkRequestBody{
+    var requestBody *operations.UpdateLinkRequestBody = &operations.UpdateLinkRequestBody{
         URL: "https://google/com",
         ExternalID: dubgo.String("123456"),
-        TagIds: operations.CreateUpdateLinkTagIdsArrayOfstr(
+        TagIds: operations.CreateUpdateLinkTagIdsArrayOfStr(
                 []string{
                     "clux0rgak00011...",
                 },
         ),
     }
-
+    
     ctx := context.Background()
     res, err := s.Links.Update(ctx, linkID, requestBody)
     if err != nil {
@@ -405,10 +402,9 @@ Bulk create up to 100 links for the authenticated workspace.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -418,18 +414,20 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-    ctx := context.Background()
-    res, err := s.Links.CreateMany(ctx, []operations.RequestBody{
+    var request []operations.RequestBody = []operations.RequestBody{
         operations.RequestBody{
             URL: "https://google/com",
             ExternalID: dubgo.String("123456"),
-            TagIds: operations.CreateBulkCreateLinksTagIdsArrayOfstr(
+            TagIds: operations.CreateBulkCreateLinksTagIdsArrayOfStr(
                     []string{
                         "clux0rgak00011...",
                     },
             ),
         },
-    })
+    }
+    
+    ctx := context.Background()
+    res, err := s.Links.CreateMany(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -473,10 +471,9 @@ Upsert a link for the authenticated workspace by its URL. If a link with the sam
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -486,16 +483,18 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-    ctx := context.Background()
-    res, err := s.Links.Upsert(ctx, &operations.UpsertLinkRequestBody{
+    var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
         URL: "https://google/com",
         ExternalID: dubgo.String("123456"),
-        TagIds: operations.CreateUpsertLinkTagIdsArrayOfstr(
+        TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(
                 []string{
                     "clux0rgak00011...",
                 },
         ),
-    })
+    }
+    
+    ctx := context.Background()
+    res, err := s.Links.Upsert(ctx, request)
     if err != nil {
         log.Fatal(err)
     }

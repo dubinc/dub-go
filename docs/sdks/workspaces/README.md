@@ -17,7 +17,6 @@ Retrieve a list of workspaces for the authenticated user.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
 	"context"
 	"log"
@@ -29,6 +28,8 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
+
+    
     ctx := context.Background()
     res, err := s.Workspaces.List(ctx)
     if err != nil {
@@ -73,10 +74,9 @@ Create a new workspace for the authenticated user.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -86,11 +86,13 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-    ctx := context.Background()
-    res, err := s.Workspaces.Create(ctx, &operations.CreateWorkspaceRequestBody{
+    var request *operations.CreateWorkspaceRequestBody = &operations.CreateWorkspaceRequestBody{
         Name: "<value>",
         Slug: "<value>",
-    })
+    }
+    
+    ctx := context.Background()
+    res, err := s.Workspaces.Create(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -134,7 +136,6 @@ Retrieve a workspace for the authenticated user.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
 	"context"
 	"log"
@@ -146,9 +147,8 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-
     var idOrSlug string = "<value>"
-
+    
     ctx := context.Background()
     res, err := s.Workspaces.Get(ctx, idOrSlug)
     if err != nil {

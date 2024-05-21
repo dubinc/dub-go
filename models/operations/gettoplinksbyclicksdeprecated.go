@@ -46,7 +46,6 @@ const (
 func (e GetTopLinksByClicksDeprecatedQueryParamInterval) ToPointer() *GetTopLinksByClicksDeprecatedQueryParamInterval {
 	return &e
 }
-
 func (e *GetTopLinksByClicksDeprecatedQueryParamInterval) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
