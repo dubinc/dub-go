@@ -150,6 +150,8 @@ type WorkspaceSchema struct {
 	StripeID *string `json:"stripeId"`
 	// The date and time when the billing cycle starts for the workspace.
 	BillingCycleStart float64 `json:"billingCycleStart"`
+	// [BETA]: The Stripe Connect ID of the workspace.
+	StripeConnectID *string `json:"stripeConnectId"`
 	// The date and time when the workspace was created.
 	CreatedAt string `json:"createdAt"`
 	// The role of the authenticated user in the workspace.
@@ -158,6 +160,8 @@ type WorkspaceSchema struct {
 	Domains []Domains `json:"domains"`
 	// The invite code of the workspace.
 	InviteCode *string `json:"inviteCode"`
+	// Whether the workspace is enrolled in the beta testing program.
+	BetaTester *bool `json:"betaTester,omitempty"`
 }
 
 func (w WorkspaceSchema) MarshalJSON() ([]byte, error) {
@@ -269,6 +273,13 @@ func (o *WorkspaceSchema) GetBillingCycleStart() float64 {
 	return o.BillingCycleStart
 }
 
+func (o *WorkspaceSchema) GetStripeConnectID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StripeConnectID
+}
+
 func (o *WorkspaceSchema) GetCreatedAt() string {
 	if o == nil {
 		return ""
@@ -295,4 +306,11 @@ func (o *WorkspaceSchema) GetInviteCode() *string {
 		return nil
 	}
 	return o.InviteCode
+}
+
+func (o *WorkspaceSchema) GetBetaTester() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.BetaTester
 }

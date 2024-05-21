@@ -172,6 +172,12 @@ func main() {
 * [SetPrimary](docs/sdks/domains/README.md#setprimary) - Set a domain as primary
 * [Transfer](docs/sdks/domains/README.md#transfer) - Transfer a domain
 
+### [Track](docs/sdks/track/README.md)
+
+* [Lead](docs/sdks/track/README.md#lead) - Track a lead
+* [Sale](docs/sdks/track/README.md#sale) - Track a sale
+* [Customer](docs/sdks/track/README.md#customer) - Track a customer
+
 ### [Metatags](docs/sdks/metatags/README.md)
 
 * [Get](docs/sdks/metatags/README.md#get) - Retrieve the metatags for a URL
