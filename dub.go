@@ -73,6 +73,7 @@ type Dub struct {
 	Workspaces *Workspaces
 	Tags       *Tags
 	Domains    *Domains
+	Track      *Track
 	Metatags   *Metatags
 
 	sdkConfiguration sdkConfiguration
@@ -165,9 +166,9 @@ func New(opts ...SDKOption) *Dub {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "0.1.0",
+			SDKVersion:        "0.1.1",
 			GenVersion:        "2.333.3",
-			UserAgent:         "speakeasy-sdk/go 0.1.0 2.333.3 0.0.1 github.com/dubinc/dub-go",
+			UserAgent:         "speakeasy-sdk/go 0.1.1 2.333.3 0.0.1 github.com/dubinc/dub-go",
 			Globals:           globals.Globals{},
 			Hooks:             hooks.New(),
 		},
@@ -199,6 +200,8 @@ func New(opts ...SDKOption) *Dub {
 	sdk.Tags = newTags(sdk.sdkConfiguration)
 
 	sdk.Domains = newDomains(sdk.sdkConfiguration)
+
+	sdk.Track = newTrack(sdk.sdkConfiguration)
 
 	sdk.Metatags = newMetatags(sdk.sdkConfiguration)
 

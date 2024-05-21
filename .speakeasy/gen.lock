@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 4f30b36ccc0d6c4b8d2e3cfc7acb8456
+  docChecksum: 325f4eff71e08b965879b29076b63bb6
   docVersion: 0.0.1
   speakeasyVersion: 1.294.0
   generationVersion: 2.333.3
-  releaseVersion: 0.1.0
-  configChecksum: 03969e14a14a67465ac6b79e671bcf16
+  releaseVersion: 0.1.1
+  configChecksum: ea548cc8d7af0fbd62b57c6f248c0a8c
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -37,6 +37,7 @@ generatedFiles:
   - workspaces.go
   - tags.go
   - domains.go
+  - track.go
   - metatags.go
   - dub.go
   - go.mod
@@ -97,6 +98,9 @@ generatedFiles:
   - /models/operations/updatedomain.go
   - /models/operations/setprimarydomain.go
   - /models/operations/transferdomain.go
+  - /models/operations/tracklead.go
+  - /models/operations/tracksale.go
+  - /models/operations/trackcustomer.go
   - /models/operations/getmetatags.go
   - /models/components/linkschema.go
   - /models/components/tagschema.go
@@ -291,6 +295,16 @@ generatedFiles:
   - docs/models/operations/transferdomainrequestbody.md
   - docs/models/operations/transferdomainrequest.md
   - docs/models/operations/transferdomainresponse.md
+  - docs/models/operations/trackleadrequestbody.md
+  - docs/models/operations/trackleadresponsebody.md
+  - docs/models/operations/trackleadresponse.md
+  - docs/models/operations/paymentprocessor.md
+  - docs/models/operations/tracksalerequestbody.md
+  - docs/models/operations/tracksaleresponsebody.md
+  - docs/models/operations/tracksaleresponse.md
+  - docs/models/operations/trackcustomerrequestbody.md
+  - docs/models/operations/trackcustomerresponsebody.md
+  - docs/models/operations/trackcustomerresponse.md
   - docs/models/operations/getmetatagsrequest.md
   - docs/models/operations/getmetatagsresponsebody.md
   - docs/models/operations/getmetatagsresponse.md
@@ -348,6 +362,7 @@ generatedFiles:
   - docs/sdks/workspaces/README.md
   - docs/sdks/tags/README.md
   - docs/sdks/domains/README.md
+  - docs/sdks/track/README.md
   - docs/sdks/metatags/README.md
   - USAGE.md
   - .gitattributes

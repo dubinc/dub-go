@@ -168,6 +168,8 @@ type CreateLinkRequestBody struct {
 	ExternalID *string `json:"externalId,omitempty"`
 	// The prefix of the short link slug for randomly-generated keys (e.g. if prefix is `/c/`, generated keys will be in the `/c/:key` format). Will be ignored if `key` is provided.
 	Prefix *string `json:"prefix,omitempty"`
+	// Whether to track conversions for the short link.
+	TrackConversion *bool `default:"false" json:"trackConversion"`
 	// Whether the short link is archived.
 	Archived *bool `default:"false" json:"archived"`
 	// Whether the short link's stats are publicly accessible.
@@ -250,6 +252,13 @@ func (o *CreateLinkRequestBody) GetPrefix() *string {
 		return nil
 	}
 	return o.Prefix
+}
+
+func (o *CreateLinkRequestBody) GetTrackConversion() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.TrackConversion
 }
 
 func (o *CreateLinkRequestBody) GetArchived() *bool {
