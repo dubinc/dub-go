@@ -17,7 +17,6 @@ const (
 func (e ConflictCode) ToPointer() *ConflictCode {
 	return &e
 }
-
 func (e *ConflictCode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

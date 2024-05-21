@@ -28,7 +28,7 @@ func newQRCodes(sdkConfig sdkConfiguration) *QRCodes {
 
 // Get - Retrieve a QR code
 // Retrieve a QR code for a link.
-func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest, opts ...operations.Option) (*operations.GetQRCodeResponse, error) {
+func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest) (*operations.GetQRCodeResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getQRCode",
@@ -36,16 +36,6 @@ func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest, 
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	o := operations.Options{}
-	supportedOptions := []string{
-		operations.SupportedOptionAcceptHeaderOverride,
-	}
-
-	for _, opt := range opts {
-		if err := opt(&o, supportedOptions...); err != nil {
-			return nil, fmt.Errorf("error applying option: %w", err)
-		}
-	}
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	opURL, err := url.JoinPath(baseURL, "/qr")
 	if err != nil {
@@ -56,12 +46,7 @@ func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest, 
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	if o.AcceptHeaderOverride != nil {
-		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
-	} else {
-		req.Header.Set("Accept", "application/json;q=1, image/png;q=0")
-	}
-
+	req.Header.Set("Accept", "image/png")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {

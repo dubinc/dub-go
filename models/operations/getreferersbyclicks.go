@@ -46,7 +46,6 @@ const (
 func (e GetReferersByClicksQueryParamInterval) ToPointer() *GetReferersByClicksQueryParamInterval {
 	return &e
 }
-
 func (e *GetReferersByClicksQueryParamInterval) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

@@ -46,7 +46,6 @@ const (
 func (e GetTimeseriesByClicksDeprecatedQueryParamInterval) ToPointer() *GetTimeseriesByClicksDeprecatedQueryParamInterval {
 	return &e
 }
-
 func (e *GetTimeseriesByClicksDeprecatedQueryParamInterval) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

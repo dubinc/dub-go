@@ -14,6 +14,6 @@ getLinksCountQueryParamTagNames := operations.CreateGetLinksCountQueryParamTagNa
 ### 
 
 ```go
-getLinksCountQueryParamTagNames := operations.CreateGetLinksCountQueryParamTagNamesArrayOfstr([]string{/* values here */})
+getLinksCountQueryParamTagNames := operations.CreateGetLinksCountQueryParamTagNamesArrayOfStr([]string{/* values here */})
 ```
 

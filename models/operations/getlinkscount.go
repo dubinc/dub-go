@@ -34,13 +34,13 @@ type GetLinksCountQueryParamTagIdsType string
 
 const (
 	GetLinksCountQueryParamTagIdsTypeStr        GetLinksCountQueryParamTagIdsType = "str"
-	GetLinksCountQueryParamTagIdsTypeArrayOfstr GetLinksCountQueryParamTagIdsType = "arrayOfstr"
+	GetLinksCountQueryParamTagIdsTypeArrayOfStr GetLinksCountQueryParamTagIdsType = "arrayOfStr"
 )
 
 // GetLinksCountQueryParamTagIds - The tag IDs to filter the links by.
 type GetLinksCountQueryParamTagIds struct {
 	Str        *string
-	ArrayOfstr []string
+	ArrayOfStr []string
 
 	Type GetLinksCountQueryParamTagIdsType
 }
@@ -54,32 +54,32 @@ func CreateGetLinksCountQueryParamTagIdsStr(str string) GetLinksCountQueryParamT
 	}
 }
 
-func CreateGetLinksCountQueryParamTagIdsArrayOfstr(arrayOfstr []string) GetLinksCountQueryParamTagIds {
-	typ := GetLinksCountQueryParamTagIdsTypeArrayOfstr
+func CreateGetLinksCountQueryParamTagIdsArrayOfStr(arrayOfStr []string) GetLinksCountQueryParamTagIds {
+	typ := GetLinksCountQueryParamTagIdsTypeArrayOfStr
 
 	return GetLinksCountQueryParamTagIds{
-		ArrayOfstr: arrayOfstr,
+		ArrayOfStr: arrayOfStr,
 		Type:       typ,
 	}
 }
 
 func (u *GetLinksCountQueryParamTagIds) UnmarshalJSON(data []byte) error {
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = GetLinksCountQueryParamTagIdsTypeStr
 		return nil
 	}
 
-	arrayOfstr := []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfstr, "", true, true); err == nil {
-		u.ArrayOfstr = arrayOfstr
-		u.Type = GetLinksCountQueryParamTagIdsTypeArrayOfstr
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = GetLinksCountQueryParamTagIdsTypeArrayOfStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for GetLinksCountQueryParamTagIds", string(data))
 }
 
 func (u GetLinksCountQueryParamTagIds) MarshalJSON() ([]byte, error) {
@@ -87,24 +87,24 @@ func (u GetLinksCountQueryParamTagIds) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.ArrayOfstr != nil {
-		return utils.MarshalJSON(u.ArrayOfstr, "", true)
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type GetLinksCountQueryParamTagIds: all fields are null")
 }
 
 type GetLinksCountQueryParamTagNamesType string
 
 const (
 	GetLinksCountQueryParamTagNamesTypeStr        GetLinksCountQueryParamTagNamesType = "str"
-	GetLinksCountQueryParamTagNamesTypeArrayOfstr GetLinksCountQueryParamTagNamesType = "arrayOfstr"
+	GetLinksCountQueryParamTagNamesTypeArrayOfStr GetLinksCountQueryParamTagNamesType = "arrayOfStr"
 )
 
 // GetLinksCountQueryParamTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type GetLinksCountQueryParamTagNames struct {
 	Str        *string
-	ArrayOfstr []string
+	ArrayOfStr []string
 
 	Type GetLinksCountQueryParamTagNamesType
 }
@@ -118,32 +118,32 @@ func CreateGetLinksCountQueryParamTagNamesStr(str string) GetLinksCountQueryPara
 	}
 }
 
-func CreateGetLinksCountQueryParamTagNamesArrayOfstr(arrayOfstr []string) GetLinksCountQueryParamTagNames {
-	typ := GetLinksCountQueryParamTagNamesTypeArrayOfstr
+func CreateGetLinksCountQueryParamTagNamesArrayOfStr(arrayOfStr []string) GetLinksCountQueryParamTagNames {
+	typ := GetLinksCountQueryParamTagNamesTypeArrayOfStr
 
 	return GetLinksCountQueryParamTagNames{
-		ArrayOfstr: arrayOfstr,
+		ArrayOfStr: arrayOfStr,
 		Type:       typ,
 	}
 }
 
 func (u *GetLinksCountQueryParamTagNames) UnmarshalJSON(data []byte) error {
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = GetLinksCountQueryParamTagNamesTypeStr
 		return nil
 	}
 
-	arrayOfstr := []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfstr, "", true, true); err == nil {
-		u.ArrayOfstr = arrayOfstr
-		u.Type = GetLinksCountQueryParamTagNamesTypeArrayOfstr
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = GetLinksCountQueryParamTagNamesTypeArrayOfStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for GetLinksCountQueryParamTagNames", string(data))
 }
 
 func (u GetLinksCountQueryParamTagNames) MarshalJSON() ([]byte, error) {
@@ -151,11 +151,11 @@ func (u GetLinksCountQueryParamTagNames) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.ArrayOfstr != nil {
-		return utils.MarshalJSON(u.ArrayOfstr, "", true)
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type GetLinksCountQueryParamTagNames: all fields are null")
 }
 
 type Two string
@@ -167,7 +167,6 @@ const (
 func (e Two) ToPointer() *Two {
 	return &e
 }
-
 func (e *Two) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -191,7 +190,6 @@ const (
 func (e One) ToPointer() *One {
 	return &e
 }
-
 func (e *One) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -241,21 +239,21 @@ func CreateGroupByTwo(two Two) GroupBy {
 
 func (u *GroupBy) UnmarshalJSON(data []byte) error {
 
-	one := One("")
+	var one One = One("")
 	if err := utils.UnmarshalJSON(data, &one, "", true, true); err == nil {
 		u.One = &one
 		u.Type = GroupByTypeOne
 		return nil
 	}
 
-	two := Two("")
+	var two Two = Two("")
 	if err := utils.UnmarshalJSON(data, &two, "", true, true); err == nil {
 		u.Two = &two
 		u.Type = GroupByTypeTwo
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for GroupBy", string(data))
 }
 
 func (u GroupBy) MarshalJSON() ([]byte, error) {
@@ -267,7 +265,7 @@ func (u GroupBy) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Two, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type GroupBy: all fields are null")
 }
 
 type GetLinksCountRequest struct {

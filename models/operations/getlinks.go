@@ -34,13 +34,13 @@ type QueryParamTagIdsType string
 
 const (
 	QueryParamTagIdsTypeStr        QueryParamTagIdsType = "str"
-	QueryParamTagIdsTypeArrayOfstr QueryParamTagIdsType = "arrayOfstr"
+	QueryParamTagIdsTypeArrayOfStr QueryParamTagIdsType = "arrayOfStr"
 )
 
 // QueryParamTagIds - The tag IDs to filter the links by.
 type QueryParamTagIds struct {
 	Str        *string
-	ArrayOfstr []string
+	ArrayOfStr []string
 
 	Type QueryParamTagIdsType
 }
@@ -54,32 +54,32 @@ func CreateQueryParamTagIdsStr(str string) QueryParamTagIds {
 	}
 }
 
-func CreateQueryParamTagIdsArrayOfstr(arrayOfstr []string) QueryParamTagIds {
-	typ := QueryParamTagIdsTypeArrayOfstr
+func CreateQueryParamTagIdsArrayOfStr(arrayOfStr []string) QueryParamTagIds {
+	typ := QueryParamTagIdsTypeArrayOfStr
 
 	return QueryParamTagIds{
-		ArrayOfstr: arrayOfstr,
+		ArrayOfStr: arrayOfStr,
 		Type:       typ,
 	}
 }
 
 func (u *QueryParamTagIds) UnmarshalJSON(data []byte) error {
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = QueryParamTagIdsTypeStr
 		return nil
 	}
 
-	arrayOfstr := []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfstr, "", true, true); err == nil {
-		u.ArrayOfstr = arrayOfstr
-		u.Type = QueryParamTagIdsTypeArrayOfstr
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = QueryParamTagIdsTypeArrayOfStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for QueryParamTagIds", string(data))
 }
 
 func (u QueryParamTagIds) MarshalJSON() ([]byte, error) {
@@ -87,24 +87,24 @@ func (u QueryParamTagIds) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.ArrayOfstr != nil {
-		return utils.MarshalJSON(u.ArrayOfstr, "", true)
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type QueryParamTagIds: all fields are null")
 }
 
 type QueryParamTagNamesType string
 
 const (
 	QueryParamTagNamesTypeStr        QueryParamTagNamesType = "str"
-	QueryParamTagNamesTypeArrayOfstr QueryParamTagNamesType = "arrayOfstr"
+	QueryParamTagNamesTypeArrayOfStr QueryParamTagNamesType = "arrayOfStr"
 )
 
 // QueryParamTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type QueryParamTagNames struct {
 	Str        *string
-	ArrayOfstr []string
+	ArrayOfStr []string
 
 	Type QueryParamTagNamesType
 }
@@ -118,32 +118,32 @@ func CreateQueryParamTagNamesStr(str string) QueryParamTagNames {
 	}
 }
 
-func CreateQueryParamTagNamesArrayOfstr(arrayOfstr []string) QueryParamTagNames {
-	typ := QueryParamTagNamesTypeArrayOfstr
+func CreateQueryParamTagNamesArrayOfStr(arrayOfStr []string) QueryParamTagNames {
+	typ := QueryParamTagNamesTypeArrayOfStr
 
 	return QueryParamTagNames{
-		ArrayOfstr: arrayOfstr,
+		ArrayOfStr: arrayOfStr,
 		Type:       typ,
 	}
 }
 
 func (u *QueryParamTagNames) UnmarshalJSON(data []byte) error {
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = QueryParamTagNamesTypeStr
 		return nil
 	}
 
-	arrayOfstr := []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfstr, "", true, true); err == nil {
-		u.ArrayOfstr = arrayOfstr
-		u.Type = QueryParamTagNamesTypeArrayOfstr
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = QueryParamTagNamesTypeArrayOfStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for QueryParamTagNames", string(data))
 }
 
 func (u QueryParamTagNames) MarshalJSON() ([]byte, error) {
@@ -151,11 +151,11 @@ func (u QueryParamTagNames) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.ArrayOfstr != nil {
-		return utils.MarshalJSON(u.ArrayOfstr, "", true)
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type QueryParamTagNames: all fields are null")
 }
 
 // Sort - The field to sort the links by. The default is `createdAt`, and sort order is always descending.
@@ -170,7 +170,6 @@ const (
 func (e Sort) ToPointer() *Sort {
 	return &e
 }
-
 func (e *Sort) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

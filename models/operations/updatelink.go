@@ -4,6 +4,7 @@ package operations
 
 import (
 	"errors"
+	"fmt"
 	"github.com/dubinc/dub-go/internal/utils"
 	"github.com/dubinc/dub-go/models/components"
 )
@@ -32,13 +33,13 @@ type UpdateLinkTagIdsType string
 
 const (
 	UpdateLinkTagIdsTypeStr        UpdateLinkTagIdsType = "str"
-	UpdateLinkTagIdsTypeArrayOfstr UpdateLinkTagIdsType = "arrayOfstr"
+	UpdateLinkTagIdsTypeArrayOfStr UpdateLinkTagIdsType = "arrayOfStr"
 )
 
 // UpdateLinkTagIds - The unique IDs of the tags assigned to the short link.
 type UpdateLinkTagIds struct {
 	Str        *string
-	ArrayOfstr []string
+	ArrayOfStr []string
 
 	Type UpdateLinkTagIdsType
 }
@@ -52,32 +53,32 @@ func CreateUpdateLinkTagIdsStr(str string) UpdateLinkTagIds {
 	}
 }
 
-func CreateUpdateLinkTagIdsArrayOfstr(arrayOfstr []string) UpdateLinkTagIds {
-	typ := UpdateLinkTagIdsTypeArrayOfstr
+func CreateUpdateLinkTagIdsArrayOfStr(arrayOfStr []string) UpdateLinkTagIds {
+	typ := UpdateLinkTagIdsTypeArrayOfStr
 
 	return UpdateLinkTagIds{
-		ArrayOfstr: arrayOfstr,
+		ArrayOfStr: arrayOfStr,
 		Type:       typ,
 	}
 }
 
 func (u *UpdateLinkTagIds) UnmarshalJSON(data []byte) error {
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = UpdateLinkTagIdsTypeStr
 		return nil
 	}
 
-	arrayOfstr := []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfstr, "", true, true); err == nil {
-		u.ArrayOfstr = arrayOfstr
-		u.Type = UpdateLinkTagIdsTypeArrayOfstr
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = UpdateLinkTagIdsTypeArrayOfStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for UpdateLinkTagIds", string(data))
 }
 
 func (u UpdateLinkTagIds) MarshalJSON() ([]byte, error) {
@@ -85,24 +86,24 @@ func (u UpdateLinkTagIds) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.ArrayOfstr != nil {
-		return utils.MarshalJSON(u.ArrayOfstr, "", true)
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type UpdateLinkTagIds: all fields are null")
 }
 
 type UpdateLinkTagNamesType string
 
 const (
 	UpdateLinkTagNamesTypeStr        UpdateLinkTagNamesType = "str"
-	UpdateLinkTagNamesTypeArrayOfstr UpdateLinkTagNamesType = "arrayOfstr"
+	UpdateLinkTagNamesTypeArrayOfStr UpdateLinkTagNamesType = "arrayOfStr"
 )
 
 // UpdateLinkTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type UpdateLinkTagNames struct {
 	Str        *string
-	ArrayOfstr []string
+	ArrayOfStr []string
 
 	Type UpdateLinkTagNamesType
 }
@@ -116,32 +117,32 @@ func CreateUpdateLinkTagNamesStr(str string) UpdateLinkTagNames {
 	}
 }
 
-func CreateUpdateLinkTagNamesArrayOfstr(arrayOfstr []string) UpdateLinkTagNames {
-	typ := UpdateLinkTagNamesTypeArrayOfstr
+func CreateUpdateLinkTagNamesArrayOfStr(arrayOfStr []string) UpdateLinkTagNames {
+	typ := UpdateLinkTagNamesTypeArrayOfStr
 
 	return UpdateLinkTagNames{
-		ArrayOfstr: arrayOfstr,
+		ArrayOfStr: arrayOfStr,
 		Type:       typ,
 	}
 }
 
 func (u *UpdateLinkTagNames) UnmarshalJSON(data []byte) error {
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = UpdateLinkTagNamesTypeStr
 		return nil
 	}
 
-	arrayOfstr := []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfstr, "", true, true); err == nil {
-		u.ArrayOfstr = arrayOfstr
-		u.Type = UpdateLinkTagNamesTypeArrayOfstr
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = UpdateLinkTagNamesTypeArrayOfStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for UpdateLinkTagNames", string(data))
 }
 
 func (u UpdateLinkTagNames) MarshalJSON() ([]byte, error) {
@@ -149,11 +150,11 @@ func (u UpdateLinkTagNames) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.ArrayOfstr != nil {
-		return utils.MarshalJSON(u.ArrayOfstr, "", true)
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type UpdateLinkTagNames: all fields are null")
 }
 
 type UpdateLinkRequestBody struct {

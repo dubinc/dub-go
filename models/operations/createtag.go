@@ -44,7 +44,6 @@ const (
 func (e Color) ToPointer() *Color {
 	return &e
 }
-
 func (e *Color) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

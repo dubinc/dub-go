@@ -14,6 +14,6 @@ tagNames := operations.CreateTagNamesStr(string{/* values here */})
 ### 
 
 ```go
-tagNames := operations.CreateTagNamesArrayOfstr([]string{/* values here */})
+tagNames := operations.CreateTagNamesArrayOfStr([]string{/* values here */})
 ```
 

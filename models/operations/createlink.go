@@ -4,6 +4,7 @@ package operations
 
 import (
 	"errors"
+	"fmt"
 	"github.com/dubinc/dub-go/internal/utils"
 	"github.com/dubinc/dub-go/models/components"
 )
@@ -32,13 +33,13 @@ type TagIdsType string
 
 const (
 	TagIdsTypeStr        TagIdsType = "str"
-	TagIdsTypeArrayOfstr TagIdsType = "arrayOfstr"
+	TagIdsTypeArrayOfStr TagIdsType = "arrayOfStr"
 )
 
 // TagIds - The unique IDs of the tags assigned to the short link.
 type TagIds struct {
 	Str        *string
-	ArrayOfstr []string
+	ArrayOfStr []string
 
 	Type TagIdsType
 }
@@ -52,32 +53,32 @@ func CreateTagIdsStr(str string) TagIds {
 	}
 }
 
-func CreateTagIdsArrayOfstr(arrayOfstr []string) TagIds {
-	typ := TagIdsTypeArrayOfstr
+func CreateTagIdsArrayOfStr(arrayOfStr []string) TagIds {
+	typ := TagIdsTypeArrayOfStr
 
 	return TagIds{
-		ArrayOfstr: arrayOfstr,
+		ArrayOfStr: arrayOfStr,
 		Type:       typ,
 	}
 }
 
 func (u *TagIds) UnmarshalJSON(data []byte) error {
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = TagIdsTypeStr
 		return nil
 	}
 
-	arrayOfstr := []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfstr, "", true, true); err == nil {
-		u.ArrayOfstr = arrayOfstr
-		u.Type = TagIdsTypeArrayOfstr
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = TagIdsTypeArrayOfStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for TagIds", string(data))
 }
 
 func (u TagIds) MarshalJSON() ([]byte, error) {
@@ -85,24 +86,24 @@ func (u TagIds) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.ArrayOfstr != nil {
-		return utils.MarshalJSON(u.ArrayOfstr, "", true)
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type TagIds: all fields are null")
 }
 
 type TagNamesType string
 
 const (
 	TagNamesTypeStr        TagNamesType = "str"
-	TagNamesTypeArrayOfstr TagNamesType = "arrayOfstr"
+	TagNamesTypeArrayOfStr TagNamesType = "arrayOfStr"
 )
 
 // TagNames - The unique name of the tags assigned to the short link (case insensitive).
 type TagNames struct {
 	Str        *string
-	ArrayOfstr []string
+	ArrayOfStr []string
 
 	Type TagNamesType
 }
@@ -116,32 +117,32 @@ func CreateTagNamesStr(str string) TagNames {
 	}
 }
 
-func CreateTagNamesArrayOfstr(arrayOfstr []string) TagNames {
-	typ := TagNamesTypeArrayOfstr
+func CreateTagNamesArrayOfStr(arrayOfStr []string) TagNames {
+	typ := TagNamesTypeArrayOfStr
 
 	return TagNames{
-		ArrayOfstr: arrayOfstr,
+		ArrayOfStr: arrayOfStr,
 		Type:       typ,
 	}
 }
 
 func (u *TagNames) UnmarshalJSON(data []byte) error {
 
-	str := ""
+	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
 		u.Str = &str
 		u.Type = TagNamesTypeStr
 		return nil
 	}
 
-	arrayOfstr := []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfstr, "", true, true); err == nil {
-		u.ArrayOfstr = arrayOfstr
-		u.Type = TagNamesTypeArrayOfstr
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = TagNamesTypeArrayOfStr
 		return nil
 	}
 
-	return errors.New("could not unmarshal into supported union types")
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for TagNames", string(data))
 }
 
 func (u TagNames) MarshalJSON() ([]byte, error) {
@@ -149,11 +150,11 @@ func (u TagNames) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.ArrayOfstr != nil {
-		return utils.MarshalJSON(u.ArrayOfstr, "", true)
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type: all fields are null")
+	return nil, errors.New("could not marshal union type TagNames: all fields are null")
 }
 
 type CreateLinkRequestBody struct {

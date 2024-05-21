@@ -14,6 +14,6 @@ updateLinkTagNames := operations.CreateUpdateLinkTagNamesStr(string{/* values he
 ### 
 
 ```go
-updateLinkTagNames := operations.CreateUpdateLinkTagNamesArrayOfstr([]string{/* values here */})
+updateLinkTagNames := operations.CreateUpdateLinkTagNamesArrayOfStr([]string{/* values here */})
 ```
 

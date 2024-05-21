@@ -14,6 +14,6 @@ tagIds := operations.CreateTagIdsStr(string{/* values here */})
 ### 
 
 ```go
-tagIds := operations.CreateTagIdsArrayOfstr([]string{/* values here */})
+tagIds := operations.CreateTagIdsArrayOfStr([]string{/* values here */})
 ```
 

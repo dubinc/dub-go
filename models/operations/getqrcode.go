@@ -22,7 +22,6 @@ const (
 func (e Level) ToPointer() *Level {
 	return &e
 }
-
 func (e *Level) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

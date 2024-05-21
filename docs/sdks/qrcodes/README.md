@@ -15,10 +15,9 @@ Retrieve a QR code for a link.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -28,10 +27,12 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-    ctx := context.Background()
-    res, err := s.QRCodes.Get(ctx, operations.GetQRCodeRequest{
+    request := operations.GetQRCodeRequest{
         URL: "https://brief-micronutrient.org",
-    })
+    }
+    
+    ctx := context.Background()
+    res, err := s.QRCodes.Get(ctx, request)
     if err != nil {
         log.Fatal(err)
     }

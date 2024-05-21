@@ -17,7 +17,6 @@ const (
 func (e RateLimitExceededCode) ToPointer() *RateLimitExceededCode {
 	return &e
 }
-
 func (e *RateLimitExceededCode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

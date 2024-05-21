@@ -15,7 +15,6 @@ Retrieve the metatags for a URL.
 package main
 
 import(
-	"github.com/dubinc/dub-go/models/components"
 	dubgo "github.com/dubinc/dub-go"
 	"context"
 	"log"
@@ -27,9 +26,8 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-
     var url_ string = "https://dub.co"
-
+    
     ctx := context.Background()
     res, err := s.Metatags.Get(ctx, url_)
     if err != nil {
