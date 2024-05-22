@@ -293,7 +293,7 @@ func (o *GetLinksRequest) GetPage() *float64 {
 }
 
 type GetLinksResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A list of links
 	LinkSchemas []components.LinkSchema
 }

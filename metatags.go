@@ -126,4 +126,5 @@ func (s *Metatags) Get(ctx context.Context, url_ string) (*operations.GetMetatag
 	}
 
 	return res, nil
+
 }

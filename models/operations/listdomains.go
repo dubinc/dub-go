@@ -30,7 +30,7 @@ type ListDomainsRequest struct {
 }
 
 type ListDomainsResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The domains were retrieved.
 	DomainSchemas []components.DomainSchema
 }

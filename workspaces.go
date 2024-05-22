@@ -226,6 +226,7 @@ func (s *Workspaces) List(ctx context.Context) (*operations.GetWorkspacesRespons
 	}
 
 	return res, nil
+
 }
 
 // Create a workspace
@@ -434,6 +435,7 @@ func (s *Workspaces) Create(ctx context.Context, request *operations.CreateWorks
 	}
 
 	return res, nil
+
 }
 
 // Get - Retrieve a workspace
@@ -640,4 +642,5 @@ func (s *Workspaces) Get(ctx context.Context, idOrSlug string) (*operations.GetW
 	}
 
 	return res, nil
+
 }

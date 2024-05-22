@@ -50,7 +50,7 @@ func (o *GetMetatagsResponseBody) GetImage() *string {
 }
 
 type GetMetatagsResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The retrieved metatags
 	Object *GetMetatagsResponseBody
 }

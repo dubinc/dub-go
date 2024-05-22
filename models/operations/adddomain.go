@@ -134,7 +134,7 @@ func (o *AddDomainRequestBody) GetPlaceholder() *string {
 }
 
 type AddDomainResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The domain was added.
 	DomainSchema *components.DomainSchema
 }

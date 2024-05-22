@@ -28,13 +28,11 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var request *operations.TrackLeadRequestBody = &operations.TrackLeadRequestBody{
         ClickID: "<value>",
         EventName: "Signup",
         CustomerID: "<value>",
     }
-    
     ctx := context.Background()
     res, err := s.Track.Lead(ctx, request)
     if err != nil {
@@ -91,13 +89,11 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var request *operations.TrackSaleRequestBody = &operations.TrackSaleRequestBody{
         CustomerID: "<value>",
         Amount: 996500,
         PaymentProcessor: operations.PaymentProcessorShopify,
     }
-    
     ctx := context.Background()
     res, err := s.Track.Sale(ctx, request)
     if err != nil {
@@ -154,11 +150,9 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var request *operations.TrackCustomerRequestBody = &operations.TrackCustomerRequestBody{
         CustomerID: "<value>",
     }
-    
     ctx := context.Background()
     res, err := s.Track.Customer(ctx, request)
     if err != nil {

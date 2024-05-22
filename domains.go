@@ -238,6 +238,7 @@ func (s *Domains) List(ctx context.Context) (*operations.ListDomainsResponse, er
 	}
 
 	return res, nil
+
 }
 
 // Add a domain
@@ -457,6 +458,7 @@ func (s *Domains) Add(ctx context.Context, request *operations.AddDomainRequestB
 	}
 
 	return res, nil
+
 }
 
 // Delete a domain
@@ -674,6 +676,7 @@ func (s *Domains) Delete(ctx context.Context, slug string) (*operations.DeleteDo
 	}
 
 	return res, nil
+
 }
 
 // Update a domain
@@ -898,6 +901,7 @@ func (s *Domains) Update(ctx context.Context, slug string, requestBody *operatio
 	}
 
 	return res, nil
+
 }
 
 // SetPrimary - Set a domain as primary
@@ -1115,6 +1119,7 @@ func (s *Domains) SetPrimary(ctx context.Context, slug string) (*operations.SetP
 	}
 
 	return res, nil
+
 }
 
 // Transfer a domain
@@ -1339,4 +1344,5 @@ func (s *Domains) Transfer(ctx context.Context, slug string, requestBody *operat
 	}
 
 	return res, nil
+
 }

@@ -236,6 +236,7 @@ func (s *Clicks) Count(ctx context.Context, request operations.GetClicksCountReq
 	}
 
 	return res, nil
+
 }
 
 // Timeseries - Retrieve timeseries click analytics
@@ -449,6 +450,7 @@ func (s *Clicks) Timeseries(ctx context.Context, request operations.GetTimeserie
 	}
 
 	return res, nil
+
 }
 
 // Countries - Retrieve top countries by clicks
@@ -662,6 +664,7 @@ func (s *Clicks) Countries(ctx context.Context, request operations.GetCountriesB
 	}
 
 	return res, nil
+
 }
 
 // Cities - Retrieve top cities by clicks
@@ -875,6 +878,7 @@ func (s *Clicks) Cities(ctx context.Context, request operations.GetCitiesByClick
 	}
 
 	return res, nil
+
 }
 
 // Devices - Retrieve top devices by clicks
@@ -1088,6 +1092,7 @@ func (s *Clicks) Devices(ctx context.Context, request operations.GetDevicesByCli
 	}
 
 	return res, nil
+
 }
 
 // Browsers - Retrieve top browsers by clicks
@@ -1301,6 +1306,7 @@ func (s *Clicks) Browsers(ctx context.Context, request operations.GetBrowsersByC
 	}
 
 	return res, nil
+
 }
 
 // Os - Retrieve top OS by clicks
@@ -1514,6 +1520,7 @@ func (s *Clicks) Os(ctx context.Context, request operations.GetOSByClicksRequest
 	}
 
 	return res, nil
+
 }
 
 // Referers - Retrieve top referers by clicks
@@ -1727,6 +1734,7 @@ func (s *Clicks) Referers(ctx context.Context, request operations.GetReferersByC
 	}
 
 	return res, nil
+
 }
 
 // TopLinks - Retrieve top links by clicks
@@ -1940,6 +1948,7 @@ func (s *Clicks) TopLinks(ctx context.Context, request operations.GetTopLinksByC
 	}
 
 	return res, nil
+
 }
 
 // TopUrls - Retrieve top URLs by clicks
@@ -2153,6 +2162,7 @@ func (s *Clicks) TopUrls(ctx context.Context, request operations.GetTopURLsByCli
 	}
 
 	return res, nil
+
 }
 
 // GetClicksCountDeprecated - Retrieve the total clicks count
@@ -2368,4 +2378,5 @@ func (s *Clicks) GetClicksCountDeprecated(ctx context.Context, request operation
 	}
 
 	return res, nil
+
 }

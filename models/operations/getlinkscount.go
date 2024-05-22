@@ -364,7 +364,7 @@ func (o *GetLinksCountRequest) GetGroupBy() *GroupBy {
 }
 
 type GetLinksCountResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A list of links
 	Number *float64
 }

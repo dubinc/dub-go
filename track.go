@@ -232,6 +232,7 @@ func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBo
 	}
 
 	return res, nil
+
 }
 
 // Sale - Track a sale
@@ -440,6 +441,7 @@ func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBo
 	}
 
 	return res, nil
+
 }
 
 // Customer - Track a customer
@@ -648,4 +650,5 @@ func (s *Track) Customer(ctx context.Context, request *operations.TrackCustomerR
 	}
 
 	return res, nil
+
 }

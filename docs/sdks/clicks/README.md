@@ -36,9 +36,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetClicksCountRequest{}
-    
     ctx := context.Background()
     res, err := s.Analytics.Clicks.Count(ctx, request)
     if err != nil {
@@ -95,9 +93,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetTimeseriesByClicksRequest{}
-    
     ctx := context.Background()
     res, err := s.Analytics.Clicks.Timeseries(ctx, request)
     if err != nil {
@@ -154,9 +150,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetCountriesByClicksRequest{}
-    
     ctx := context.Background()
     res, err := s.Analytics.Clicks.Countries(ctx, request)
     if err != nil {
@@ -213,9 +207,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetCitiesByClicksRequest{}
-    
     ctx := context.Background()
     res, err := s.Analytics.Clicks.Cities(ctx, request)
     if err != nil {
@@ -272,9 +264,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetDevicesByClicksRequest{}
-    
     ctx := context.Background()
     res, err := s.Analytics.Clicks.Devices(ctx, request)
     if err != nil {
@@ -331,9 +321,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetBrowsersByClicksRequest{}
-    
     ctx := context.Background()
     res, err := s.Analytics.Clicks.Browsers(ctx, request)
     if err != nil {
@@ -390,9 +378,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetOSByClicksRequest{}
-    
     ctx := context.Background()
     res, err := s.Analytics.Clicks.Os(ctx, request)
     if err != nil {
@@ -449,9 +435,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetReferersByClicksRequest{}
-    
     ctx := context.Background()
     res, err := s.Analytics.Clicks.Referers(ctx, request)
     if err != nil {
@@ -508,9 +492,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetTopLinksByClicksRequest{}
-    
     ctx := context.Background()
     res, err := s.Analytics.Clicks.TopLinks(ctx, request)
     if err != nil {
@@ -567,9 +549,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetTopURLsByClicksRequest{}
-    
     ctx := context.Background()
     res, err := s.Analytics.Clicks.TopUrls(ctx, request)
     if err != nil {
@@ -628,9 +608,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetClicksCountDeprecatedRequest{}
-    
     ctx := context.Background()
     res, err := s.Analytics.Clicks.GetClicksCountDeprecated(ctx, request)
     if err != nil {

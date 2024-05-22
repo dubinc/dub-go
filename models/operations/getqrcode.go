@@ -111,7 +111,7 @@ func (o *GetQRCodeRequest) GetIncludeMargin() *bool {
 }
 
 type GetQRCodeResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The QR code
 	Res *string
 }

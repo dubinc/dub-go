@@ -31,8 +31,6 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Domains.List(ctx)
     if err != nil {
@@ -88,7 +86,6 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var request *operations.AddDomainRequestBody = &operations.AddDomainRequestBody{
         Slug: "acme.com",
         Type: operations.TypeRedirect.ToPointer(),
@@ -97,7 +94,6 @@ func main() {
         Archived: dubgo.Bool(false),
         Placeholder: dubgo.String("https://dub.co/help/article/what-is-dub"),
     }
-    
     ctx := context.Background()
     res, err := s.Domains.Add(ctx, request)
     if err != nil {
@@ -153,9 +149,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var slug string = "acme.com"
-    
     ctx := context.Background()
     res, err := s.Domains.Delete(ctx, slug)
     if err != nil {
@@ -212,7 +206,6 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var slug string = "acme.com"
 
     var requestBody *operations.UpdateDomainRequestBody = &operations.UpdateDomainRequestBody{
@@ -223,7 +216,6 @@ func main() {
         Archived: dubgo.Bool(false),
         Placeholder: dubgo.String("https://dub.co/help/article/what-is-dub"),
     }
-    
     ctx := context.Background()
     res, err := s.Domains.Update(ctx, slug, requestBody)
     if err != nil {
@@ -280,9 +272,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var slug string = "acme.com"
-    
     ctx := context.Background()
     res, err := s.Domains.SetPrimary(ctx, slug)
     if err != nil {
@@ -339,13 +329,11 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var slug string = "acme.com"
 
     var requestBody *operations.TransferDomainRequestBody = &operations.TransferDomainRequestBody{
         NewWorkspaceID: "<value>",
     }
-    
     ctx := context.Background()
     res, err := s.Domains.Transfer(ctx, slug, requestBody)
     if err != nil {

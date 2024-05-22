@@ -381,7 +381,7 @@ func (o *RequestBody) GetGeo() *components.LinkGeoTargeting {
 }
 
 type BulkCreateLinksResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The created links
 	LinkSchemas []components.LinkSchema
 }

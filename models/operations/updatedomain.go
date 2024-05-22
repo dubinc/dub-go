@@ -154,7 +154,7 @@ func (o *UpdateDomainRequest) GetRequestBody() *UpdateDomainRequestBody {
 }
 
 type UpdateDomainResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The domain was updated.
 	DomainSchema *components.DomainSchema
 }

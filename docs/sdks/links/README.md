@@ -33,9 +33,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetLinksRequest{}
-    
     ctx := context.Background()
     res, err := s.Links.List(ctx, request)
     if err != nil {
@@ -92,7 +90,6 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
         URL: "https://google/com",
         ExternalID: dubgo.String("123456"),
@@ -102,7 +99,6 @@ func main() {
                 },
         ),
     }
-    
     ctx := context.Background()
     res, err := s.Links.Create(ctx, request)
     if err != nil {
@@ -159,9 +155,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetLinksCountRequest{}
-    
     ctx := context.Background()
     res, err := s.Links.Count(ctx, request)
     if err != nil {
@@ -217,7 +211,6 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var domain *string = dubgo.String("<value>")
 
     var key *string = dubgo.String("<value>")
@@ -225,7 +218,6 @@ func main() {
     var linkID *string = dubgo.String("clux0rgak00011...")
 
     var externalID *string = dubgo.String("ext_123456")
-    
     ctx := context.Background()
     res, err := s.Links.Get(ctx, domain, key, linkID, externalID)
     if err != nil {
@@ -284,9 +276,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var linkID string = "<value>"
-    
     ctx := context.Background()
     res, err := s.Links.Delete(ctx, linkID)
     if err != nil {
@@ -343,7 +333,6 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var linkID string = "<value>"
 
     var requestBody *operations.UpdateLinkRequestBody = &operations.UpdateLinkRequestBody{
@@ -355,7 +344,6 @@ func main() {
                 },
         ),
     }
-    
     ctx := context.Background()
     res, err := s.Links.Update(ctx, linkID, requestBody)
     if err != nil {
@@ -413,7 +401,6 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var request []operations.RequestBody = []operations.RequestBody{
         operations.RequestBody{
             URL: "https://google/com",
@@ -425,7 +412,6 @@ func main() {
             ),
         },
     }
-    
     ctx := context.Background()
     res, err := s.Links.CreateMany(ctx, request)
     if err != nil {
@@ -482,7 +468,6 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
         URL: "https://google/com",
         ExternalID: dubgo.String("123456"),
@@ -492,7 +477,6 @@ func main() {
                 },
         ),
     }
-    
     ctx := context.Background()
     res, err := s.Links.Upsert(ctx, request)
     if err != nil {

@@ -227,4 +227,5 @@ func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest) 
 	}
 
 	return res, nil
+
 }

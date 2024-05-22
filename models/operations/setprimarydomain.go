@@ -39,7 +39,7 @@ func (o *SetPrimaryDomainRequest) GetSlug() string {
 }
 
 type SetPrimaryDomainResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The domain was set as primary
 	DomainSchema *components.DomainSchema
 }
