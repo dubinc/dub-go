@@ -52,7 +52,7 @@ func (o *DeleteDomainResponseBody) GetSlug() string {
 }
 
 type DeleteDomainResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The domain was deleted.
 	Object *DeleteDomainResponseBody
 }

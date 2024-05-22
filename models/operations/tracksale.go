@@ -160,7 +160,7 @@ func (o *TrackSaleResponseBody) GetMetadata() map[string]any {
 }
 
 type TrackSaleResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A sale was tracked.
 	Object *TrackSaleResponseBody
 }

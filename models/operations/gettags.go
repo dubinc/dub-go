@@ -30,7 +30,7 @@ type GetTagsRequest struct {
 }
 
 type GetTagsResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A list of tags
 	TagSchemas []components.TagSchema
 }

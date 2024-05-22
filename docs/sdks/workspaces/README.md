@@ -28,8 +28,6 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Workspaces.List(ctx)
     if err != nil {
@@ -85,12 +83,10 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var request *operations.CreateWorkspaceRequestBody = &operations.CreateWorkspaceRequestBody{
         Name: "<value>",
         Slug: "<value>",
     }
-    
     ctx := context.Background()
     res, err := s.Workspaces.Create(ctx, request)
     if err != nil {
@@ -146,9 +142,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var idOrSlug string = "<value>"
-    
     ctx := context.Background()
     res, err := s.Workspaces.Get(ctx, idOrSlug)
     if err != nil {

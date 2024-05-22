@@ -145,7 +145,7 @@ func (o *TrackLeadResponseBody) GetMetadata() map[string]any {
 }
 
 type TrackLeadResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A lead was tracked.
 	Object *TrackLeadResponseBody
 }

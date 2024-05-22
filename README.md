@@ -44,7 +44,6 @@ func main() {
 		dubgo.WithSecurity("DUB_API_KEY"),
 		dubgo.WithWorkspaceID("<value>"),
 	)
-
 	var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
 		URL:        "https://google/com",
 		ExternalID: dubgo.String("123456"),
@@ -54,7 +53,6 @@ func main() {
 			},
 		),
 	}
-
 	ctx := context.Background()
 	res, err := s.Links.Create(ctx, request)
 	if err != nil {
@@ -84,7 +82,6 @@ func main() {
 		dubgo.WithSecurity("DUB_API_KEY"),
 		dubgo.WithWorkspaceID("<value>"),
 	)
-
 	var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
 		URL:        "https://google/com",
 		ExternalID: dubgo.String("123456"),
@@ -94,7 +91,6 @@ func main() {
 			},
 		),
 	}
-
 	ctx := context.Background()
 	res, err := s.Links.Upsert(ctx, request)
 	if err != nil {
@@ -220,9 +216,7 @@ func main() {
 		dubgo.WithSecurity("DUB_API_KEY"),
 		dubgo.WithWorkspaceID("<value>"),
 	)
-
 	request := operations.GetLinksRequest{}
-
 	ctx := context.Background()
 	res, err := s.Links.List(ctx, request)
 	if err != nil {
@@ -321,9 +315,7 @@ func main() {
 		dubgo.WithSecurity("DUB_API_KEY"),
 		dubgo.WithWorkspaceID("<value>"),
 	)
-
 	request := operations.GetLinksRequest{}
-
 	ctx := context.Background()
 	res, err := s.Links.List(ctx, request)
 	if err != nil {
@@ -356,9 +348,7 @@ func main() {
 		dubgo.WithSecurity("DUB_API_KEY"),
 		dubgo.WithWorkspaceID("<value>"),
 	)
-
 	request := operations.GetLinksRequest{}
-
 	ctx := context.Background()
 	res, err := s.Links.List(ctx, request)
 	if err != nil {
@@ -428,9 +418,7 @@ func main() {
 		dubgo.WithSecurity("DUB_API_KEY"),
 		dubgo.WithWorkspaceID("<value>"),
 	)
-
 	request := operations.GetLinksRequest{}
-
 	ctx := context.Background()
 	res, err := s.Links.List(ctx, request)
 	if err != nil {

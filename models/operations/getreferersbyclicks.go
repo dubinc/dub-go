@@ -5,7 +5,6 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/dubinc/dub-go/internal/utils"
 	"github.com/dubinc/dub-go/models/components"
 )
 
@@ -84,7 +83,7 @@ type GetReferersByClicksRequest struct {
 	// This is the ID of the link in the your database. Must be prefixed with 'ext_' when passed as a query parameter.
 	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
 	// The interval to retrieve analytics for. Takes precedence over start and end. If undefined, defaults to 24h.
-	Interval *GetReferersByClicksQueryParamInterval `default:"24h" queryParam:"style=form,explode=true,name=interval"`
+	Interval *GetReferersByClicksQueryParamInterval `queryParam:"style=form,explode=true,name=interval"`
 	// The start date and time when to retrieve analytics from.
 	Start *string `queryParam:"style=form,explode=true,name=start"`
 	// The end date and time when to retrieve analytics from. If not provided, defaults to the current date.
@@ -109,17 +108,6 @@ type GetReferersByClicksRequest struct {
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
 	Root *bool `queryParam:"style=form,explode=true,name=root"`
-}
-
-func (g GetReferersByClicksRequest) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(g, "", false)
-}
-
-func (g *GetReferersByClicksRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *GetReferersByClicksRequest) GetDomain() *string {
@@ -263,7 +251,7 @@ func (o *GetReferersByClicksResponseBody) GetClicks() float64 {
 }
 
 type GetReferersByClicksResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The top referers by number of clicks
 	ResponseBodies []GetReferersByClicksResponseBody
 }

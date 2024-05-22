@@ -238,6 +238,7 @@ func (s *Tags) List(ctx context.Context) (*operations.GetTagsResponse, error) {
 	}
 
 	return res, nil
+
 }
 
 // Create a new tag
@@ -462,4 +463,5 @@ func (s *Tags) Create(ctx context.Context, tag string, color *operations.Color) 
 	}
 
 	return res, nil
+
 }

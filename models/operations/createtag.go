@@ -92,7 +92,7 @@ func (o *CreateTagRequestBody) GetColor() *Color {
 }
 
 type CreateTagResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The created tag
 	TagSchema *components.TagSchema
 }

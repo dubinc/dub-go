@@ -7,7 +7,7 @@ import (
 )
 
 type GetWorkspacesResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A list of workspaces
 	WorkspaceSchemas []components.WorkspaceSchema
 }

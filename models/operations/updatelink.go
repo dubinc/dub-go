@@ -401,7 +401,7 @@ func (o *UpdateLinkRequest) GetRequestBody() *UpdateLinkRequestBody {
 }
 
 type UpdateLinkResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The updated link
 	LinkSchema *components.LinkSchema
 }

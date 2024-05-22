@@ -117,17 +117,11 @@ func WithClient(client HTTPClient) SDKOption {
 	}
 }
 
-func withSecurity(security interface{}) func(context.Context) (interface{}, error) {
-	return func(context.Context) (interface{}, error) {
-		return security, nil
-	}
-}
-
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(token string) SDKOption {
 	return func(sdk *Dub) {
 		security := components.Security{Token: &token}
-		sdk.sdkConfiguration.Security = withSecurity(&security)
+		sdk.sdkConfiguration.Security = utils.AsSecuritySource(&security)
 	}
 }
 
@@ -166,9 +160,9 @@ func New(opts ...SDKOption) *Dub {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "0.1.1",
-			GenVersion:        "2.333.3",
-			UserAgent:         "speakeasy-sdk/go 0.1.1 2.333.3 0.0.1 github.com/dubinc/dub-go",
+			SDKVersion:        "0.1.2",
+			GenVersion:        "2.335.5",
+			UserAgent:         "speakeasy-sdk/go 0.1.2 2.335.5 0.0.1 github.com/dubinc/dub-go",
 			Globals:           globals.Globals{},
 			Hooks:             hooks.New(),
 		},

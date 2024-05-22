@@ -59,7 +59,7 @@ func (o *TransferDomainRequest) GetRequestBody() *TransferDomainRequestBody {
 }
 
 type TransferDomainResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The domain transfer initiated
 	DomainSchema *components.DomainSchema
 }

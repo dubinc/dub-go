@@ -34,7 +34,7 @@ func (o *CreateWorkspaceRequestBody) GetDomain() *string {
 }
 
 type CreateWorkspaceResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The created workspace
 	WorkspaceSchema *components.WorkspaceSchema
 }

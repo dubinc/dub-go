@@ -381,7 +381,7 @@ func (o *UpsertLinkRequestBody) GetGeo() *components.LinkGeoTargeting {
 }
 
 type UpsertLinkResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The upserted link
 	LinkSchema *components.LinkSchema
 }

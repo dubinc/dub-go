@@ -381,7 +381,7 @@ func (o *CreateLinkRequestBody) GetGeo() *components.LinkGeoTargeting {
 }
 
 type CreateLinkResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The created link
 	LinkSchema *components.LinkSchema
 }

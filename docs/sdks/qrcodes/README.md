@@ -26,11 +26,9 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     request := operations.GetQRCodeRequest{
         URL: "https://brief-micronutrient.org",
     }
-    
     ctx := context.Background()
     res, err := s.QRCodes.Get(ctx, request)
     if err != nil {

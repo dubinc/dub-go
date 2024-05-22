@@ -241,6 +241,7 @@ func (s *Analytics) Timeseries(ctx context.Context, request operations.GetTimese
 	}
 
 	return res, nil
+
 }
 
 // Country - Retrieve top countries by clicks
@@ -456,6 +457,7 @@ func (s *Analytics) Country(ctx context.Context, request operations.GetCountries
 	}
 
 	return res, nil
+
 }
 
 // City - Retrieve top cities by clicks
@@ -671,6 +673,7 @@ func (s *Analytics) City(ctx context.Context, request operations.GetCitiesByClic
 	}
 
 	return res, nil
+
 }
 
 // Device - Retrieve top devices by clicks
@@ -886,6 +889,7 @@ func (s *Analytics) Device(ctx context.Context, request operations.GetDevicesByC
 	}
 
 	return res, nil
+
 }
 
 // Browser - Retrieve top browsers by clicks
@@ -1101,6 +1105,7 @@ func (s *Analytics) Browser(ctx context.Context, request operations.GetBrowsersB
 	}
 
 	return res, nil
+
 }
 
 // Os - Retrieve top OS by clicks
@@ -1316,6 +1321,7 @@ func (s *Analytics) Os(ctx context.Context, request operations.GetOSByClicksDepr
 	}
 
 	return res, nil
+
 }
 
 // Referer - Retrieve top referers by clicks
@@ -1531,6 +1537,7 @@ func (s *Analytics) Referer(ctx context.Context, request operations.GetReferersB
 	}
 
 	return res, nil
+
 }
 
 // TopLinks - Retrieve top links by clicks
@@ -1746,6 +1753,7 @@ func (s *Analytics) TopLinks(ctx context.Context, request operations.GetTopLinks
 	}
 
 	return res, nil
+
 }
 
 // TopUrls - Retrieve top URLs by clicks
@@ -1961,4 +1969,5 @@ func (s *Analytics) TopUrls(ctx context.Context, request operations.GetTopURLsBy
 	}
 
 	return res, nil
+
 }

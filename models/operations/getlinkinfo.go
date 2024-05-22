@@ -65,7 +65,7 @@ func (o *GetLinkInfoRequest) GetExternalID() *string {
 }
 
 type GetLinkInfoResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The retrieved link
 	LinkSchema *components.LinkSchema
 }

@@ -27,8 +27,6 @@ func main() {
         dubgo.WithWorkspaceID("<value>"),
     )
 
-
-    
     ctx := context.Background()
     res, err := s.Tags.List(ctx)
     if err != nil {
@@ -84,11 +82,9 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
         dubgo.WithWorkspaceID("<value>"),
     )
-
     var tag string = "<value>"
 
     var color *operations.Color = operations.ColorBlue.ToPointer()
-    
     ctx := context.Background()
     res, err := s.Tags.Create(ctx, tag, color)
     if err != nil {

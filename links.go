@@ -236,6 +236,7 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest) (*
 	}
 
 	return res, nil
+
 }
 
 // Create a new link
@@ -455,6 +456,7 @@ func (s *Links) Create(ctx context.Context, request *operations.CreateLinkReques
 	}
 
 	return res, nil
+
 }
 
 // Count - Retrieve the number of links
@@ -668,6 +670,7 @@ func (s *Links) Count(ctx context.Context, request operations.GetLinksCountReque
 	}
 
 	return res, nil
+
 }
 
 // Get - Retrieve a link
@@ -888,6 +891,7 @@ func (s *Links) Get(ctx context.Context, domain *string, key *string, linkID *st
 	}
 
 	return res, nil
+
 }
 
 // Delete a link
@@ -1105,6 +1109,7 @@ func (s *Links) Delete(ctx context.Context, linkID string) (*operations.DeleteLi
 	}
 
 	return res, nil
+
 }
 
 // Update a link
@@ -1329,6 +1334,7 @@ func (s *Links) Update(ctx context.Context, linkID string, requestBody *operatio
 	}
 
 	return res, nil
+
 }
 
 // CreateMany - Bulk create links
@@ -1548,6 +1554,7 @@ func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody
 	}
 
 	return res, nil
+
 }
 
 // Upsert a link
@@ -1767,4 +1774,5 @@ func (s *Links) Upsert(ctx context.Context, request *operations.UpsertLinkReques
 	}
 
 	return res, nil
+
 }

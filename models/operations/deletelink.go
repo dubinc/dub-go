@@ -52,7 +52,7 @@ func (o *DeleteLinkResponseBody) GetID() string {
 }
 
 type DeleteLinkResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The deleted link
 	Object *DeleteLinkResponseBody
 }

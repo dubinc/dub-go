@@ -19,7 +19,7 @@ func (o *GetWorkspaceRequest) GetIDOrSlug() string {
 }
 
 type GetWorkspaceResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// The retrieved workspace
 	WorkspaceSchema *components.WorkspaceSchema
 }

@@ -94,7 +94,7 @@ func (o *TrackCustomerResponseBody) GetCustomerAvatar() *string {
 }
 
 type TrackCustomerResponse struct {
-	HTTPMeta components.HTTPMetadata
+	HTTPMeta components.HTTPMetadata `json:"-"`
 	// A customer was tracked.
 	Object *TrackCustomerResponseBody
 }
