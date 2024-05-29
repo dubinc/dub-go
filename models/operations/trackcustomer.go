@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"github.com/dubinc/dub-go/internal/utils"
 	"github.com/dubinc/dub-go/models/components"
 )
 
@@ -11,22 +10,11 @@ type TrackCustomerRequestBody struct {
 	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
 	CustomerID string `json:"customerId"`
 	// Name of the customer in the client's app.
-	CustomerName *string `default:"null" json:"customerName"`
+	CustomerName *string `json:"customerName,omitempty"`
 	// Email of the customer in the client's app.
-	CustomerEmail *string `default:"null" json:"customerEmail"`
+	CustomerEmail *string `json:"customerEmail,omitempty"`
 	// Avatar of the customer in the client's app.
-	CustomerAvatar *string `default:"null" json:"customerAvatar"`
-}
-
-func (t TrackCustomerRequestBody) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(t, "", false)
-}
-
-func (t *TrackCustomerRequestBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
-		return err
-	}
-	return nil
+	CustomerAvatar *string `json:"customerAvatar,omitempty"`
 }
 
 func (o *TrackCustomerRequestBody) GetCustomerID() string {
