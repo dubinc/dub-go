@@ -1,0 +1,9 @@
+# RetrieveAnalyticsResponse
+
+
+## Fields
+
+| Field                                                                                                 | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                            | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                    | :heavy_check_mark:                                                                                    | N/A                                                                                                   |
+| `OneOf`                                                                                               | [*operations.RetrieveAnalyticsResponseBody](../../models/operations/retrieveanalyticsresponsebody.md) | :heavy_minus_sign:                                                                                    | Analytics data                                                                                        |

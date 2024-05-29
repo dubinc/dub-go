@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"github.com/dubinc/dub-go/internal/utils"
 	"github.com/dubinc/dub-go/models/components"
 )
 
@@ -15,24 +14,13 @@ type TrackLeadRequestBody struct {
 	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
 	CustomerID string `json:"customerId"`
 	// Name of the customer in the client's app.
-	CustomerName *string `default:"null" json:"customerName"`
+	CustomerName *string `json:"customerName,omitempty"`
 	// Email of the customer in the client's app.
-	CustomerEmail *string `default:"null" json:"customerEmail"`
+	CustomerEmail *string `json:"customerEmail,omitempty"`
 	// Avatar of the customer in the client's app.
-	CustomerAvatar *string `default:"null" json:"customerAvatar"`
+	CustomerAvatar *string `json:"customerAvatar,omitempty"`
 	// Additional metadata to be stored with the lead event
 	Metadata map[string]any `json:"metadata,omitempty"`
-}
-
-func (t TrackLeadRequestBody) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(t, "", false)
-}
-
-func (t *TrackLeadRequestBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *TrackLeadRequestBody) GetClickID() string {
@@ -92,7 +80,7 @@ type TrackLeadResponseBody struct {
 	CustomerName   *string        `json:"customerName"`
 	CustomerEmail  *string        `json:"customerEmail"`
 	CustomerAvatar *string        `json:"customerAvatar"`
-	Metadata       map[string]any `json:"metadata"`
+	Metadata       map[string]any `json:"metadata,omitempty"`
 }
 
 func (o *TrackLeadResponseBody) GetClickID() string {

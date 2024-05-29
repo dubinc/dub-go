@@ -124,29 +124,7 @@ func main() {
 
 ### [Analytics](docs/sdks/analytics/README.md)
 
-* [~~Timeseries~~](docs/sdks/analytics/README.md#timeseries) - Retrieve timeseries click analytics :warning: **Deprecated** Use `Timeseries` instead.
-* [~~Country~~](docs/sdks/analytics/README.md#country) - Retrieve top countries by clicks :warning: **Deprecated** Use `Countries` instead.
-* [~~City~~](docs/sdks/analytics/README.md#city) - Retrieve top cities by clicks :warning: **Deprecated** Use `Cities` instead.
-* [~~Device~~](docs/sdks/analytics/README.md#device) - Retrieve top devices by clicks :warning: **Deprecated** Use `Devices` instead.
-* [~~Browser~~](docs/sdks/analytics/README.md#browser) - Retrieve top browsers by clicks :warning: **Deprecated** Use `Browsers` instead.
-* [~~Os~~](docs/sdks/analytics/README.md#os) - Retrieve top OS by clicks :warning: **Deprecated** Use `Os` instead.
-* [~~Referer~~](docs/sdks/analytics/README.md#referer) - Retrieve top referers by clicks :warning: **Deprecated** Use `Referers` instead.
-* [~~TopLinks~~](docs/sdks/analytics/README.md#toplinks) - Retrieve top links by clicks :warning: **Deprecated** Use `TopLinks` instead.
-* [~~TopUrls~~](docs/sdks/analytics/README.md#topurls) - Retrieve top URLs by clicks :warning: **Deprecated** Use `TopUrls` instead.
-
-### [Analytics.Clicks](docs/sdks/clicks/README.md)
-
-* [Count](docs/sdks/clicks/README.md#count) - Retrieve the total clicks count
-* [Timeseries](docs/sdks/clicks/README.md#timeseries) - Retrieve timeseries click analytics
-* [Countries](docs/sdks/clicks/README.md#countries) - Retrieve top countries by clicks
-* [Cities](docs/sdks/clicks/README.md#cities) - Retrieve top cities by clicks
-* [Devices](docs/sdks/clicks/README.md#devices) - Retrieve top devices by clicks
-* [Browsers](docs/sdks/clicks/README.md#browsers) - Retrieve top browsers by clicks
-* [Os](docs/sdks/clicks/README.md#os) - Retrieve top OS by clicks
-* [Referers](docs/sdks/clicks/README.md#referers) - Retrieve top referers by clicks
-* [TopLinks](docs/sdks/clicks/README.md#toplinks) - Retrieve top links by clicks
-* [TopUrls](docs/sdks/clicks/README.md#topurls) - Retrieve top URLs by clicks
-* [~~GetClicksCountDeprecated~~](docs/sdks/clicks/README.md#getclickscountdeprecated) - Retrieve the total clicks count :warning: **Deprecated** Use `Count` instead.
+* [Retrieve](docs/sdks/analytics/README.md#retrieve) - Retrieve analytics for a link, a domain, or the authenticated workspace.
 
 ### [Workspaces](docs/sdks/workspaces/README.md)
 

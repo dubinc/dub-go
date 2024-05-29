@@ -2079,6 +2079,10 @@ type LinkSchema struct {
 	Clicks *float64 `default:"0" json:"clicks"`
 	// The date and time when the short link was last clicked.
 	LastClicked *string `json:"lastClicked"`
+	// [BETA]: The number of leads the short links has generated.
+	Leads *float64 `default:"0" json:"leads"`
+	// [BETA]: The number of sales the short links has generated.
+	Sales *float64 `default:"0" json:"sales"`
 	// The date and time when the short link was created.
 	CreatedAt string `json:"createdAt"`
 	// The date and time when the short link was last updated.
@@ -2329,6 +2333,20 @@ func (o *LinkSchema) GetLastClicked() *string {
 		return nil
 	}
 	return o.LastClicked
+}
+
+func (o *LinkSchema) GetLeads() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Leads
+}
+
+func (o *LinkSchema) GetSales() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Sales
 }
 
 func (o *LinkSchema) GetCreatedAt() string {
