@@ -13,7 +13,6 @@ import (
 	"github.com/dubinc/dub-go/models/sdkerrors"
 	"io"
 	"net/http"
-	"net/url"
 )
 
 type Track struct {
@@ -36,8 +35,13 @@ func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBo
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
+	globals := operations.TrackLeadGlobals{
+		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
+		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := url.JoinPath(baseURL, "/track/lead")
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/track/lead", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -54,6 +58,12 @@ func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBo
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -245,8 +255,13 @@ func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBo
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
+	globals := operations.TrackSaleGlobals{
+		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
+		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := url.JoinPath(baseURL, "/track/sale")
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/track/sale", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -263,6 +278,12 @@ func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBo
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -446,7 +467,7 @@ func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBo
 
 // Customer - Track a customer
 // Track a customer for an authenticated workspace.
-func (s *Track) Customer(ctx context.Context, request *operations.TrackCustomerRequestBody) (*operations.TrackCustomerResponse, error) {
+func (s *Track) Customer(ctx context.Context, customerID string, customerName *string, customerEmail *string, customerAvatar *string) (*operations.TrackCustomerResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "trackCustomer",
@@ -454,8 +475,20 @@ func (s *Track) Customer(ctx context.Context, request *operations.TrackCustomerR
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
+	request := operations.TrackCustomerRequestBody{
+		CustomerID:     customerID,
+		CustomerName:   customerName,
+		CustomerEmail:  customerEmail,
+		CustomerAvatar: customerAvatar,
+	}
+
+	globals := operations.TrackCustomerGlobals{
+		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
+		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
+	}
+
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := url.JoinPath(baseURL, "/track/customer")
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/track/customer", request, globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -472,6 +505,12 @@ func (s *Track) Customer(ctx context.Context, request *operations.TrackCustomerR
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
+
+	utils.PopulateHeaders(ctx, req, request, globals)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

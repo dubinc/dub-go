@@ -6,6 +6,26 @@ import (
 	"github.com/dubinc/dub-go/models/components"
 )
 
+type TrackLeadGlobals struct {
+	WorkspaceID string `queryParam:"style=form,explode=true,name=workspaceId"`
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	ProjectSlug *string `queryParam:"style=form,explode=true,name=projectSlug"`
+}
+
+func (o *TrackLeadGlobals) GetWorkspaceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.WorkspaceID
+}
+
+func (o *TrackLeadGlobals) GetProjectSlug() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProjectSlug
+}
+
 type TrackLeadRequestBody struct {
 	// The ID of the click in th Dub. You can read this value from `dclid` cookie.
 	ClickID string `json:"clickId"`

@@ -9,6 +9,26 @@ import (
 	"github.com/dubinc/dub-go/models/components"
 )
 
+type TrackSaleGlobals struct {
+	WorkspaceID string `queryParam:"style=form,explode=true,name=workspaceId"`
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	ProjectSlug *string `queryParam:"style=form,explode=true,name=projectSlug"`
+}
+
+func (o *TrackSaleGlobals) GetWorkspaceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.WorkspaceID
+}
+
+func (o *TrackSaleGlobals) GetProjectSlug() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProjectSlug
+}
+
 // PaymentProcessor - The payment processor via which the sale was made.
 type PaymentProcessor string
 
