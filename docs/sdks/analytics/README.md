@@ -28,6 +28,11 @@ func main() {
     )
     request := operations.RetrieveAnalyticsRequest{
         Timezone: dubgo.String("America/New_York"),
+        City: dubgo.String("New York"),
+        Device: dubgo.String("Desktop"),
+        Browser: dubgo.String("Chrome"),
+        Os: dubgo.String("Windows"),
+        Referer: dubgo.String("google.com"),
     }
     ctx := context.Background()
     res, err := s.Analytics.Retrieve(ctx, request)
