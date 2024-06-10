@@ -30,7 +30,7 @@ func main() {
     )
     var request *operations.TrackLeadRequestBody = &operations.TrackLeadRequestBody{
         ClickID: "<value>",
-        EventName: "Signup",
+        EventName: "Sign up",
         CustomerID: "<value>",
     }
     ctx := context.Background()
@@ -93,6 +93,7 @@ func main() {
         CustomerID: "<value>",
         Amount: 996500,
         PaymentProcessor: operations.PaymentProcessorShopify,
+        EventName: dubgo.String("Purchase"),
     }
     ctx := context.Background()
     res, err := s.Track.Sale(ctx, request)

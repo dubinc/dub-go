@@ -66,6 +66,8 @@ type TrackSaleRequestBody struct {
 	Amount int64 `json:"amount"`
 	// The payment processor via which the sale was made.
 	PaymentProcessor PaymentProcessor `json:"paymentProcessor"`
+	// The name of the sale event. It can be used to track different types of event for example 'Purchase', 'Upgrade', 'Payment', etc.
+	EventName *string `default:"Purchase" json:"eventName"`
 	// The invoice ID of the sale.
 	InvoiceID *string `default:"null" json:"invoiceId"`
 	// The currency of the sale. Accepts ISO 4217 currency codes.
@@ -106,6 +108,13 @@ func (o *TrackSaleRequestBody) GetPaymentProcessor() PaymentProcessor {
 	return o.PaymentProcessor
 }
 
+func (o *TrackSaleRequestBody) GetEventName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.EventName
+}
+
 func (o *TrackSaleRequestBody) GetInvoiceID() *string {
 	if o == nil {
 		return nil
@@ -129,12 +138,20 @@ func (o *TrackSaleRequestBody) GetMetadata() map[string]any {
 
 // TrackSaleResponseBody - A sale was tracked.
 type TrackSaleResponseBody struct {
+	EventName        string         `json:"eventName"`
 	CustomerID       string         `json:"customerId"`
 	Amount           float64        `json:"amount"`
 	PaymentProcessor string         `json:"paymentProcessor"`
 	InvoiceID        *string        `json:"invoiceId"`
 	Currency         string         `json:"currency"`
 	Metadata         map[string]any `json:"metadata"`
+}
+
+func (o *TrackSaleResponseBody) GetEventName() string {
+	if o == nil {
+		return ""
+	}
+	return o.EventName
 }
 
 func (o *TrackSaleResponseBody) GetCustomerID() string {
