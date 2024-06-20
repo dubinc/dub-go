@@ -12,7 +12,6 @@ import (
 func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
-		dubgo.WithWorkspaceID("<value>"),
 	)
 	var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
 		URL:        "https://google/com",
@@ -48,7 +47,6 @@ import (
 func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
-		dubgo.WithWorkspaceID("<value>"),
 	)
 	var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
 		URL:        "https://google/com",

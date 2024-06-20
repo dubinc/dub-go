@@ -24,7 +24,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     request := operations.RetrieveAnalyticsRequest{
         Timezone: dubgo.String("America/New_York"),

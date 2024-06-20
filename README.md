@@ -42,7 +42,6 @@ import (
 func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
-		dubgo.WithWorkspaceID("<value>"),
 	)
 	var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
 		URL:        "https://google/com",
@@ -80,7 +79,6 @@ import (
 func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
-		dubgo.WithWorkspaceID("<value>"),
 	)
 	var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
 		URL:        "https://google/com",
@@ -140,7 +138,7 @@ func main() {
 ### [Domains](docs/sdks/domains/README.md)
 
 * [List](docs/sdks/domains/README.md#list) - Retrieve a list of domains
-* [Add](docs/sdks/domains/README.md#add) - Add a domain
+* [Create](docs/sdks/domains/README.md#create) - Create a domain
 * [Delete](docs/sdks/domains/README.md#delete) - Delete a domain
 * [Update](docs/sdks/domains/README.md#update) - Update a domain
 * [SetPrimary](docs/sdks/domains/README.md#setprimary) - Set a domain as primary
@@ -192,7 +190,6 @@ import (
 func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
-		dubgo.WithWorkspaceID("<value>"),
 	)
 	request := operations.GetLinksRequest{}
 	ctx := context.Background()
@@ -291,7 +288,6 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithServerIndex(0),
 		dubgo.WithSecurity("DUB_API_KEY"),
-		dubgo.WithWorkspaceID("<value>"),
 	)
 	request := operations.GetLinksRequest{}
 	ctx := context.Background()
@@ -324,7 +320,6 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithServerURL("https://api.dub.co"),
 		dubgo.WithSecurity("DUB_API_KEY"),
-		dubgo.WithWorkspaceID("<value>"),
 	)
 	request := operations.GetLinksRequest{}
 	ctx := context.Background()
@@ -394,7 +389,6 @@ import (
 func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
-		dubgo.WithWorkspaceID("<value>"),
 	)
 	request := operations.GetLinksRequest{}
 	ctx := context.Background()

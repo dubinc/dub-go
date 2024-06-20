@@ -4,7 +4,7 @@
 ### Available Operations
 
 * [List](#list) - Retrieve a list of domains
-* [Add](#add) - Add a domain
+* [Create](#create) - Create a domain
 * [Delete](#delete) - Delete a domain
 * [Update](#update) - Update a domain
 * [SetPrimary](#setprimary) - Set a domain as primary
@@ -28,7 +28,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
 
     ctx := context.Background()
@@ -65,9 +64,9 @@ func main() {
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
 
-## Add
+## Create
 
-Add a domain to the authenticated workspace.
+Create a domain for the authenticated workspace.
 
 ### Example Usage
 
@@ -84,9 +83,8 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
-    var request *operations.AddDomainRequestBody = &operations.AddDomainRequestBody{
+    var request *operations.CreateDomainRequestBody = &operations.CreateDomainRequestBody{
         Slug: "acme.com",
         Type: operations.TypeRedirect.ToPointer(),
         Target: dubgo.String("https://acme.com/landing"),
@@ -95,7 +93,7 @@ func main() {
         Placeholder: dubgo.String("https://dub.co/help/article/what-is-dub"),
     }
     ctx := context.Background()
-    res, err := s.Domains.Add(ctx, request)
+    res, err := s.Domains.Create(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
@@ -107,15 +105,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.AddDomainRequestBody](../../models/operations/adddomainrequestbody.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.CreateDomainRequestBody](../../models/operations/createdomainrequestbody.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 
 
 ### Response
 
-**[*operations.AddDomainResponse](../../models/operations/adddomainresponse.md), error**
+**[*operations.CreateDomainResponse](../../models/operations/createdomainresponse.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -147,7 +145,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var slug string = "acme.com"
     ctx := context.Background()
@@ -204,7 +201,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var slug string = "acme.com"
 
@@ -270,7 +266,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var slug string = "acme.com"
     ctx := context.Background()
@@ -327,7 +322,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var slug string = "acme.com"
 
