@@ -137,7 +137,7 @@ func WithSecuritySource(security func(context.Context) (components.Security, err
 // WithWorkspaceID allows setting the WorkspaceID parameter for all supported operations
 func WithWorkspaceID(workspaceID string) SDKOption {
 	return func(sdk *Dub) {
-		sdk.sdkConfiguration.Globals.WorkspaceID = workspaceID
+		sdk.sdkConfiguration.Globals.WorkspaceID = &workspaceID
 	}
 }
 
@@ -160,9 +160,9 @@ func New(opts ...SDKOption) *Dub {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "0.1.7",
-			GenVersion:        "2.339.1",
-			UserAgent:         "speakeasy-sdk/go 0.1.7 2.339.1 0.0.1 github.com/dubinc/dub-go",
+			SDKVersion:        "0.1.8",
+			GenVersion:        "2.347.4",
+			UserAgent:         "speakeasy-sdk/go 0.1.8 2.347.4 0.0.1 github.com/dubinc/dub-go",
 			Globals:           globals.Globals{},
 			Hooks:             hooks.New(),
 		},

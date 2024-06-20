@@ -7,14 +7,14 @@ import (
 )
 
 type DeleteLinkGlobals struct {
-	WorkspaceID string `queryParam:"style=form,explode=true,name=workspaceId"`
+	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	ProjectSlug *string `queryParam:"style=form,explode=true,name=projectSlug"`
 }
 
-func (o *DeleteLinkGlobals) GetWorkspaceID() string {
+func (o *DeleteLinkGlobals) GetWorkspaceID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.WorkspaceID
 }

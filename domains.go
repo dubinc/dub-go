@@ -241,17 +241,17 @@ func (s *Domains) List(ctx context.Context) (*operations.ListDomainsResponse, er
 
 }
 
-// Add a domain
-// Add a domain to the authenticated workspace.
-func (s *Domains) Add(ctx context.Context, request *operations.AddDomainRequestBody) (*operations.AddDomainResponse, error) {
+// Create a domain
+// Create a domain for the authenticated workspace.
+func (s *Domains) Create(ctx context.Context, request *operations.CreateDomainRequestBody) (*operations.CreateDomainResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
-		OperationID:    "addDomain",
+		OperationID:    "createDomain",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	globals := operations.AddDomainGlobals{
+	globals := operations.CreateDomainGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
 		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
@@ -314,7 +314,7 @@ func (s *Domains) Add(ctx context.Context, request *operations.AddDomainRequestB
 		}
 	}
 
-	res := &operations.AddDomainResponse{
+	res := &operations.CreateDomainResponse{
 		HTTPMeta: components.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,

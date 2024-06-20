@@ -23,7 +23,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var url_ string = "https://dub.co"
     ctx := context.Background()

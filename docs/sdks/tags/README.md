@@ -24,7 +24,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
 
     ctx := context.Background()
@@ -80,7 +79,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var tag string = "<value>"
 

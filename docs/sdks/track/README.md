@@ -26,7 +26,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var request *operations.TrackLeadRequestBody = &operations.TrackLeadRequestBody{
         ClickID: "<value>",
@@ -87,7 +86,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var request *operations.TrackSaleRequestBody = &operations.TrackSaleRequestBody{
         CustomerID: "<value>",
@@ -148,7 +146,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var customerID string = "<value>"
 

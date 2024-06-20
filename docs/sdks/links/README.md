@@ -31,7 +31,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     request := operations.GetLinksRequest{}
     ctx := context.Background()
@@ -88,7 +87,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
         URL: "https://google/com",
@@ -153,7 +151,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     request := operations.GetLinksCountRequest{}
     ctx := context.Background()
@@ -209,7 +206,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var domain *string = dubgo.String("<value>")
 
@@ -274,7 +270,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var linkID string = "<value>"
     ctx := context.Background()
@@ -331,7 +326,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var linkID string = "<value>"
 
@@ -399,7 +393,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var request []operations.RequestBody = []operations.RequestBody{
         operations.RequestBody{
@@ -466,7 +459,6 @@ import(
 func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
-        dubgo.WithWorkspaceID("<value>"),
     )
     var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
         URL: "https://google/com",
