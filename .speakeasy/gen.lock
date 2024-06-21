@@ -3,17 +3,17 @@ id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
   docChecksum: 4e9799bd93fdf4959c9efd6004900847
   docVersion: 0.0.1
-  speakeasyVersion: 1.310.0
-  generationVersion: 2.347.4
-  releaseVersion: 0.1.8
-  configChecksum: e88f3239ef943401129f780eb66a8813
+  speakeasyVersion: 1.313.0
+  generationVersion: 2.347.8
+  releaseVersion: 0.1.9
+  configChecksum: 4c16d003ec118cc561b38a74d492921c
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.4.12
+    core: 3.4.13
     deprecations: 2.81.1
     examples: 2.81.3
     flattening: 2.81.1
