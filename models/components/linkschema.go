@@ -2041,6 +2041,8 @@ type LinkSchema struct {
 	Image *string `json:"image"`
 	// Whether the short link uses link cloaking.
 	Rewrite *bool `default:"false" json:"rewrite"`
+	// Whether to allow search engines to index the short link.
+	DoIndex *bool `default:"false" json:"doIndex"`
 	// The iOS destination URL for the short link for iOS device targeting.
 	Ios *string `json:"ios"`
 	// The Android destination URL for the short link for Android device targeting.
@@ -2207,6 +2209,13 @@ func (o *LinkSchema) GetRewrite() *bool {
 		return nil
 	}
 	return o.Rewrite
+}
+
+func (o *LinkSchema) GetDoIndex() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.DoIndex
 }
 
 func (o *LinkSchema) GetIos() *string {

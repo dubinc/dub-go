@@ -243,12 +243,19 @@ func (s *Domains) List(ctx context.Context) (*operations.ListDomainsResponse, er
 
 // Create a domain
 // Create a domain for the authenticated workspace.
-func (s *Domains) Create(ctx context.Context, request *operations.CreateDomainRequestBody) (*operations.CreateDomainResponse, error) {
+func (s *Domains) Create(ctx context.Context, slug string, expiredURL *string, archived *bool, placeholder *string) (*operations.CreateDomainResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "createDomain",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
+	}
+
+	request := operations.CreateDomainRequestBody{
+		Slug:        slug,
+		ExpiredURL:  expiredURL,
+		Archived:    archived,
+		Placeholder: placeholder,
 	}
 
 	globals := operations.CreateDomainGlobals{
