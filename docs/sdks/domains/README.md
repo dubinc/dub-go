@@ -75,7 +75,6 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
 	"log"
 )
@@ -84,16 +83,15 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var request *operations.CreateDomainRequestBody = &operations.CreateDomainRequestBody{
-        Slug: "acme.com",
-        Type: operations.TypeRedirect.ToPointer(),
-        Target: dubgo.String("https://acme.com/landing"),
-        ExpiredURL: dubgo.String("https://acme.com/expired"),
-        Archived: dubgo.Bool(false),
-        Placeholder: dubgo.String("https://dub.co/help/article/what-is-dub"),
-    }
+    var slug string = "acme.com"
+
+    var expiredURL *string = dubgo.String("https://acme.com/expired")
+
+    var archived *bool = dubgo.Bool(false)
+
+    var placeholder *string = dubgo.String("https://dub.co/help/article/what-is-dub")
     ctx := context.Background()
-    res, err := s.Domains.Create(ctx, request)
+    res, err := s.Domains.Create(ctx, slug, expiredURL, archived, placeholder)
     if err != nil {
         log.Fatal(err)
     }
@@ -105,10 +103,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.CreateDomainRequestBody](../../models/operations/createdomainrequestbody.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        | Example                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |                                                                                                                    |
+| `slug`                                                                                                             | *string*                                                                                                           | :heavy_check_mark:                                                                                                 | Name of the domain.                                                                                                | acme.com                                                                                                           |
+| `expiredURL`                                                                                                       | **string*                                                                                                          | :heavy_minus_sign:                                                                                                 | Redirect users to a specific URL when any link under this domain has expired.                                      | https://acme.com/expired                                                                                           |
+| `archived`                                                                                                         | **bool*                                                                                                            | :heavy_minus_sign:                                                                                                 | Whether to archive this domain. `false` will unarchive a previously archived domain.                               | false                                                                                                              |
+| `placeholder`                                                                                                      | **string*                                                                                                          | :heavy_minus_sign:                                                                                                 | Provide context to your teammates in the link creation modal by showing them an example of a link to be shortened. | https://dub.co/help/article/what-is-dub                                                                            |
 
 
 ### Response
@@ -206,8 +207,6 @@ func main() {
 
     var requestBody *operations.UpdateDomainRequestBody = &operations.UpdateDomainRequestBody{
         Slug: dubgo.String("acme.com"),
-        Type: operations.UpdateDomainTypeRedirect.ToPointer(),
-        Target: dubgo.String("https://acme.com/landing"),
         ExpiredURL: dubgo.String("https://acme.com/expired"),
         Archived: dubgo.Bool(false),
         Placeholder: dubgo.String("https://dub.co/help/article/what-is-dub"),

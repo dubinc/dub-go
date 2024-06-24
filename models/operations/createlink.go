@@ -206,6 +206,8 @@ type CreateLinkRequestBody struct {
 	Android *string `json:"android,omitempty"`
 	// Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`.
 	Geo *components.LinkGeoTargeting `json:"geo,omitempty"`
+	// Allow search engines to index your short link. Defaults to `false` if not provided. Learn more: https://d.to/noindex
+	DoIndex *bool `default:"false" json:"doIndex"`
 }
 
 func (c CreateLinkRequestBody) MarshalJSON() ([]byte, error) {
@@ -378,6 +380,13 @@ func (o *CreateLinkRequestBody) GetGeo() *components.LinkGeoTargeting {
 		return nil
 	}
 	return o.Geo
+}
+
+func (o *CreateLinkRequestBody) GetDoIndex() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.DoIndex
 }
 
 type CreateLinkResponse struct {

@@ -3,37 +3,8 @@
 package components
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/dubinc/dub-go/internal/utils"
 )
-
-// Type - The type of redirect to use for this domain.
-type Type string
-
-const (
-	TypeRedirect Type = "redirect"
-	TypeRewrite  Type = "rewrite"
-)
-
-func (e Type) ToPointer() *Type {
-	return &e
-}
-func (e *Type) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "redirect":
-		fallthrough
-	case "rewrite":
-		*e = Type(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Type: %v", v)
-	}
-}
 
 type DomainSchema struct {
 	// The unique identifier of the domain.
@@ -46,18 +17,14 @@ type DomainSchema struct {
 	Primary *bool `default:"false" json:"primary"`
 	// Whether the domain is archived.
 	Archived *bool `default:"false" json:"archived"`
-	// Prevent search engines from indexing the domain.
-	Noindex *bool `default:"false" json:"noindex"`
 	// Provide context to your teammates in the link creation modal by showing them an example of a link to be shortened.
 	Placeholder *string `default:"https://dub.co/help/article/what-is-dub" json:"placeholder"`
 	// The URL to redirect to when a link under this domain has expired.
 	ExpiredURL *string `json:"expiredUrl"`
-	// The page your users will get redirected to when they visit your domain.
-	Target *string `json:"target"`
-	// The type of redirect to use for this domain.
-	Type Type `json:"type"`
-	// The number of clicks on the domain.
-	Clicks *float64 `default:"0" json:"clicks"`
+	// The date the domain was created.
+	CreatedAt string `json:"createdAt"`
+	// The date the domain was last updated.
+	UpdatedAt string `json:"updatedAt"`
 }
 
 func (d DomainSchema) MarshalJSON() ([]byte, error) {
@@ -106,13 +73,6 @@ func (o *DomainSchema) GetArchived() *bool {
 	return o.Archived
 }
 
-func (o *DomainSchema) GetNoindex() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Noindex
-}
-
 func (o *DomainSchema) GetPlaceholder() *string {
 	if o == nil {
 		return nil
@@ -127,23 +87,16 @@ func (o *DomainSchema) GetExpiredURL() *string {
 	return o.ExpiredURL
 }
 
-func (o *DomainSchema) GetTarget() *string {
+func (o *DomainSchema) GetCreatedAt() string {
 	if o == nil {
-		return nil
+		return ""
 	}
-	return o.Target
+	return o.CreatedAt
 }
 
-func (o *DomainSchema) GetType() Type {
+func (o *DomainSchema) GetUpdatedAt() string {
 	if o == nil {
-		return Type("")
+		return ""
 	}
-	return o.Type
-}
-
-func (o *DomainSchema) GetClicks() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.Clicks
+	return o.UpdatedAt
 }

@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 4e9799bd93fdf4959c9efd6004900847
+  docChecksum: f8b1be2fa34844de98cc6c19757c0e81
   docVersion: 0.0.1
-  speakeasyVersion: 1.313.0
-  generationVersion: 2.347.8
-  releaseVersion: 0.1.9
-  configChecksum: 4c16d003ec118cc561b38a74d492921c
+  speakeasyVersion: 1.314.2
+  generationVersion: 2.349.6
+  releaseVersion: 0.1.10
+  configChecksum: fcb11a6d8a3938eb6a5822614b5fd92c
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.4.13
+    core: 3.4.14
     deprecations: 2.81.1
     examples: 2.81.3
     flattening: 2.81.1
@@ -197,7 +197,6 @@ generatedFiles:
   - docs/models/operations/listdomainsrequest.md
   - docs/models/operations/listdomainsresponse.md
   - docs/models/operations/createdomainglobals.md
-  - docs/models/operations/type.md
   - docs/models/operations/createdomainrequestbody.md
   - docs/models/operations/createdomainresponse.md
   - docs/models/operations/deletedomainglobals.md
@@ -205,7 +204,6 @@ generatedFiles:
   - docs/models/operations/deletedomainresponsebody.md
   - docs/models/operations/deletedomainresponse.md
   - docs/models/operations/updatedomainglobals.md
-  - docs/models/operations/updatedomaintype.md
   - docs/models/operations/updatedomainrequestbody.md
   - docs/models/operations/updatedomainrequest.md
   - docs/models/operations/updatedomainresponse.md
@@ -280,7 +278,6 @@ generatedFiles:
   - docs/models/components/users.md
   - docs/models/components/domains.md
   - docs/models/components/workspaceschema.md
-  - docs/models/components/type.md
   - docs/models/components/domainschema.md
   - docs/models/components/security.md
   - docs/models/sdkerrors/code.md
