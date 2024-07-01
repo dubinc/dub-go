@@ -26,8 +26,8 @@ go:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
-  maxMethodParams: 4
+  maxMethodParams: 0
   methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: github.com/dubinc/dub-go
-  responseFormat: envelope-http
+  responseFormat: flat
