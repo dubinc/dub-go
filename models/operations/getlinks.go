@@ -11,6 +11,7 @@ import (
 )
 
 type GetLinksGlobals struct {
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	ProjectSlug *string `queryParam:"style=form,explode=true,name=projectSlug"`
@@ -208,7 +209,7 @@ type GetLinksRequest struct {
 	// The field to sort the links by. The default is `createdAt`, and sort order is always descending.
 	Sort *Sort `default:"createdAt" queryParam:"style=form,explode=true,name=sort"`
 	// The page number for pagination (each page contains 100 links).
-	Page *float64 `queryParam:"style=form,explode=true,name=page"`
+	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 }
 
 func (g GetLinksRequest) MarshalJSON() ([]byte, error) {
@@ -285,7 +286,7 @@ func (o *GetLinksRequest) GetSort() *Sort {
 	return o.Sort
 }
 
-func (o *GetLinksRequest) GetPage() *float64 {
+func (o *GetLinksRequest) GetPage() *int64 {
 	if o == nil {
 		return nil
 	}

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: f8b1be2fa34844de98cc6c19757c0e81
+  docChecksum: 5419a35a3e662a9a0df7547a5a8ffdc3
   docVersion: 0.0.1
-  speakeasyVersion: 1.314.2
-  generationVersion: 2.349.6
-  releaseVersion: 0.1.10
-  configChecksum: fcb11a6d8a3938eb6a5822614b5fd92c
+  speakeasyVersion: 1.322.3
+  generationVersion: 2.354.2
+  releaseVersion: 0.1.11
+  configChecksum: cf3836093d39e1e5c49c0bbb095d8f75
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -67,8 +67,6 @@ generatedFiles:
   - /models/operations/upsertlink.go
   - /models/operations/getqrcode.go
   - /models/operations/retrieveanalytics.go
-  - /models/operations/getworkspaces.go
-  - /models/operations/createworkspace.go
   - /models/operations/getworkspace.go
   - /models/operations/gettags.go
   - /models/operations/createtag.go
@@ -181,9 +179,6 @@ generatedFiles:
   - docs/models/operations/retrieveanalyticsrequest.md
   - docs/models/operations/retrieveanalyticsresponsebody.md
   - docs/models/operations/retrieveanalyticsresponse.md
-  - docs/models/operations/getworkspacesresponse.md
-  - docs/models/operations/createworkspacerequestbody.md
-  - docs/models/operations/createworkspaceresponse.md
   - docs/models/operations/getworkspacerequest.md
   - docs/models/operations/getworkspaceresponse.md
   - docs/models/operations/gettagsglobals.md
