@@ -8,6 +8,7 @@ import (
 )
 
 type UpdateDomainGlobals struct {
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	ProjectSlug *string `queryParam:"style=form,explode=true,name=projectSlug"`

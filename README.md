@@ -126,8 +126,6 @@ func main() {
 
 ### [Workspaces](docs/sdks/workspaces/README.md)
 
-* [List](docs/sdks/workspaces/README.md#list) - Retrieve a list of workspaces
-* [Create](docs/sdks/workspaces/README.md#create) - Create a workspace
 * [Get](docs/sdks/workspaces/README.md#get) - Retrieve a workspace
 
 ### [Tags](docs/sdks/tags/README.md)
