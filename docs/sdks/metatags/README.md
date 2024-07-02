@@ -16,6 +16,7 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
 	"context"
 	"log"
 )
@@ -24,13 +25,15 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var url_ string = "https://dub.co"
+    request := operations.GetMetatagsRequest{
+        URL: "https://dub.co",
+    }
     ctx := context.Background()
-    res, err := s.Metatags.Get(ctx, url_)
+    res, err := s.Metatags.Get(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -38,15 +41,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           | Example                                               |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |                                                       |
-| `url_`                                                | *string*                                              | :heavy_check_mark:                                    | The URL to retrieve metatags for.                     | https://dub.co                                        |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.GetMetatagsRequest](../../models/operations/getmetatagsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 
 ### Response
 
-**[*operations.GetMetatagsResponse](../../models/operations/getmetatagsresponse.md), error**
+**[*operations.GetMetatagsResponseBody](../../models/operations/getmetatagsresponsebody.md), error**
 | Error Object       | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
 | sdkerrors.SDKError | 4xx-5xx            | */*                |

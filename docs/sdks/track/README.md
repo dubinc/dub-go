@@ -37,7 +37,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -53,7 +53,7 @@ func main() {
 
 ### Response
 
-**[*operations.TrackLeadResponse](../../models/operations/trackleadresponse.md), error**
+**[*operations.TrackLeadResponseBody](../../models/operations/trackleadresponsebody.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -98,7 +98,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -114,7 +114,7 @@ func main() {
 
 ### Response
 
-**[*operations.TrackSaleResponse](../../models/operations/tracksaleresponse.md), error**
+**[*operations.TrackSaleResponseBody](../../models/operations/tracksaleresponsebody.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -139,6 +139,7 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
 	"context"
 	"log"
 )
@@ -147,19 +148,15 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var customerID string = "<value>"
-
-    var customerName *string = dubgo.String("<value>")
-
-    var customerEmail *string = dubgo.String("Wilson.Smith@gmail.com")
-
-    var customerAvatar *string = dubgo.String("<value>")
+    var request *operations.TrackCustomerRequestBody = &operations.TrackCustomerRequestBody{
+        CustomerID: "<value>",
+    }
     ctx := context.Background()
-    res, err := s.Track.Customer(ctx, customerID, customerName, customerEmail, customerAvatar)
+    res, err := s.Track.Customer(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -167,18 +164,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                         | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                             | [context.Context](https://pkg.go.dev/context#Context)                                                             | :heavy_check_mark:                                                                                                | The context to use for the request.                                                                               |
-| `customerID`                                                                                                      | *string*                                                                                                          | :heavy_check_mark:                                                                                                | This is the unique identifier for the customer in the client's app. This is used to track the customer's journey. |
-| `customerName`                                                                                                    | **string*                                                                                                         | :heavy_minus_sign:                                                                                                | Name of the customer in the client's app.                                                                         |
-| `customerEmail`                                                                                                   | **string*                                                                                                         | :heavy_minus_sign:                                                                                                | Email of the customer in the client's app.                                                                        |
-| `customerAvatar`                                                                                                  | **string*                                                                                                         | :heavy_minus_sign:                                                                                                | Avatar of the customer in the client's app.                                                                       |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [operations.TrackCustomerRequestBody](../../models/operations/trackcustomerrequestbody.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
 
 ### Response
 
-**[*operations.TrackCustomerResponse](../../models/operations/trackcustomerresponse.md), error**
+**[*operations.TrackCustomerResponseBody](../../models/operations/trackcustomerresponsebody.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |

@@ -7,7 +7,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/dubinc/dub-go/internal/utils"
-	"github.com/dubinc/dub-go/models/components"
 )
 
 type GetLinksCountGlobals struct {
@@ -362,24 +361,4 @@ func (o *GetLinksCountRequest) GetGroupBy() *GroupBy {
 		return nil
 	}
 	return o.GroupBy
-}
-
-type GetLinksCountResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// A list of links
-	Number *float64
-}
-
-func (o *GetLinksCountResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *GetLinksCountResponse) GetNumber() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.Number
 }

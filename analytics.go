@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"github.com/dubinc/dub-go/internal/hooks"
 	"github.com/dubinc/dub-go/internal/utils"
-	"github.com/dubinc/dub-go/models/components"
 	"github.com/dubinc/dub-go/models/operations"
 	"github.com/dubinc/dub-go/models/sdkerrors"
 	"io"
@@ -27,7 +26,7 @@ func newAnalytics(sdkConfig sdkConfiguration) *Analytics {
 
 // Retrieve analytics for a link, a domain, or the authenticated workspace.
 // Retrieve analytics for a link, a domain, or the authenticated workspace. The response type depends on the `event` and `type` query parameters.
-func (s *Analytics) Retrieve(ctx context.Context, request operations.RetrieveAnalyticsRequest) (*operations.RetrieveAnalyticsResponse, error) {
+func (s *Analytics) Retrieve(ctx context.Context, request operations.RetrieveAnalyticsRequest) (*operations.RetrieveAnalyticsResponseBody, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "retrieveAnalytics",
@@ -92,13 +91,6 @@ func (s *Analytics) Retrieve(ctx context.Context, request operations.RetrieveAna
 		}
 	}
 
-	res := &operations.RetrieveAnalyticsResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -115,7 +107,7 @@ func (s *Analytics) Retrieve(ctx context.Context, request operations.RetrieveAna
 				return nil, err
 			}
 
-			res.OneOf = &out
+			return &out, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -235,6 +227,6 @@ func (s *Analytics) Retrieve(ctx context.Context, request operations.RetrieveAna
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }

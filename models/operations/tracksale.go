@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/dubinc/dub-go/internal/utils"
-	"github.com/dubinc/dub-go/models/components"
 )
 
 type TrackSaleGlobals struct {
@@ -195,24 +194,4 @@ func (o *TrackSaleResponseBody) GetMetadata() map[string]any {
 		return nil
 	}
 	return o.Metadata
-}
-
-type TrackSaleResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// A sale was tracked.
-	Object *TrackSaleResponseBody
-}
-
-func (o *TrackSaleResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *TrackSaleResponse) GetObject() *TrackSaleResponseBody {
-	if o == nil {
-		return nil
-	}
-	return o.Object
 }

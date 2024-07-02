@@ -409,23 +409,3 @@ func (o *UpdateLinkRequest) GetRequestBody() *UpdateLinkRequestBody {
 	}
 	return o.RequestBody
 }
-
-type UpdateLinkResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The updated link
-	LinkSchema *components.LinkSchema
-}
-
-func (o *UpdateLinkResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *UpdateLinkResponse) GetLinkSchema() *components.LinkSchema {
-	if o == nil {
-		return nil
-	}
-	return o.LinkSchema
-}

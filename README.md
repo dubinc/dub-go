@@ -48,7 +48,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.LinkSchema != nil {
+	if res != nil {
 		// handle response
 	}
 }
@@ -85,7 +85,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.LinkSchema != nil {
+	if res != nil {
 		// handle response
 	}
 }
@@ -118,11 +118,13 @@ func main() {
 ### [Workspaces](docs/sdks/workspaces/README.md)
 
 * [Get](docs/sdks/workspaces/README.md#get) - Retrieve a workspace
+* [Update](docs/sdks/workspaces/README.md#update) - Update a workspace
 
 ### [Tags](docs/sdks/tags/README.md)
 
 * [List](docs/sdks/tags/README.md#list) - Retrieve a list of tags
 * [Create](docs/sdks/tags/README.md#create) - Create a new tag
+* [Update](docs/sdks/tags/README.md#update) - Update a tag
 
 ### [Domains](docs/sdks/domains/README.md)
 
@@ -130,8 +132,6 @@ func main() {
 * [Create](docs/sdks/domains/README.md#create) - Create a domain
 * [Delete](docs/sdks/domains/README.md#delete) - Delete a domain
 * [Update](docs/sdks/domains/README.md#update) - Update a domain
-* [SetPrimary](docs/sdks/domains/README.md#setprimary) - Set a domain as primary
-* [Transfer](docs/sdks/domains/README.md#transfer) - Transfer a domain
 
 ### [Track](docs/sdks/track/README.md)
 
@@ -284,7 +284,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.LinkSchemas != nil {
+	if res != nil {
 		// handle response
 	}
 }
@@ -316,7 +316,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.LinkSchemas != nil {
+	if res != nil {
 		// handle response
 	}
 }
@@ -385,7 +385,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.LinkSchemas != nil {
+	if res != nil {
 		// handle response
 	}
 }

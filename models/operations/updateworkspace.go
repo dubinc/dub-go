@@ -2,12 +2,12 @@
 
 package operations
 
-type GetWorkspaceRequest struct {
+type UpdateWorkspaceRequest struct {
 	// The ID or slug of the workspace.
 	IDOrSlug string `pathParam:"style=simple,explode=false,name=idOrSlug"`
 }
 
-func (o *GetWorkspaceRequest) GetIDOrSlug() string {
+func (o *UpdateWorkspaceRequest) GetIDOrSlug() string {
 	if o == nil {
 		return ""
 	}

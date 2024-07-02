@@ -2,10 +2,6 @@
 
 package operations
 
-import (
-	"github.com/dubinc/dub-go/models/components"
-)
-
 type DeleteDomainGlobals struct {
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
@@ -50,24 +46,4 @@ func (o *DeleteDomainResponseBody) GetSlug() string {
 		return ""
 	}
 	return o.Slug
-}
-
-type DeleteDomainResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The domain was deleted.
-	Object *DeleteDomainResponseBody
-}
-
-func (o *DeleteDomainResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *DeleteDomainResponse) GetObject() *DeleteDomainResponseBody {
-	if o == nil {
-		return nil
-	}
-	return o.Object
 }

@@ -2,10 +2,6 @@
 
 package operations
 
-import (
-	"github.com/dubinc/dub-go/models/components"
-)
-
 type ListDomainsGlobals struct {
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
@@ -28,24 +24,4 @@ func (o *ListDomainsGlobals) GetProjectSlug() *string {
 }
 
 type ListDomainsRequest struct {
-}
-
-type ListDomainsResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The domains were retrieved.
-	DomainSchemas []components.DomainSchema
-}
-
-func (o *ListDomainsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *ListDomainsResponse) GetDomainSchemas() []components.DomainSchema {
-	if o == nil {
-		return nil
-	}
-	return o.DomainSchemas
 }

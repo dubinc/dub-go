@@ -389,23 +389,3 @@ func (o *RequestBody) GetDoIndex() *bool {
 	}
 	return o.DoIndex
 }
-
-type BulkCreateLinksResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The created links
-	LinkSchemas []components.LinkSchema
-}
-
-func (o *BulkCreateLinksResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *BulkCreateLinksResponse) GetLinkSchemas() []components.LinkSchema {
-	if o == nil {
-		return nil
-	}
-	return o.LinkSchemas
-}

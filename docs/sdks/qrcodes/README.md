@@ -33,7 +33,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Res != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -49,7 +49,7 @@ func main() {
 
 ### Response
 
-**[*operations.GetQRCodeResponse](../../models/operations/getqrcoderesponse.md), error**
+**[*string](../../.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |

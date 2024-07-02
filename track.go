@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"github.com/dubinc/dub-go/internal/hooks"
 	"github.com/dubinc/dub-go/internal/utils"
-	"github.com/dubinc/dub-go/models/components"
 	"github.com/dubinc/dub-go/models/operations"
 	"github.com/dubinc/dub-go/models/sdkerrors"
 	"io"
@@ -27,7 +26,7 @@ func newTrack(sdkConfig sdkConfiguration) *Track {
 
 // Lead - Track a lead
 // Track a lead for a short link.
-func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBody) (*operations.TrackLeadResponse, error) {
+func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBody) (*operations.TrackLeadResponseBody, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "trackLead",
@@ -98,13 +97,6 @@ func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBo
 		}
 	}
 
-	res := &operations.TrackLeadResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -121,7 +113,7 @@ func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBo
 				return nil, err
 			}
 
-			res.Object = &out
+			return &out, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -241,13 +233,13 @@ func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBo
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }
 
 // Sale - Track a sale
 // Track a sale for a short link.
-func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBody) (*operations.TrackSaleResponse, error) {
+func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBody) (*operations.TrackSaleResponseBody, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "trackSale",
@@ -318,13 +310,6 @@ func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBo
 		}
 	}
 
-	res := &operations.TrackSaleResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -341,7 +326,7 @@ func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBo
 				return nil, err
 			}
 
-			res.Object = &out
+			return &out, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -461,25 +446,18 @@ func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBo
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }
 
 // Customer - Track a customer
 // Track a customer for an authenticated workspace.
-func (s *Track) Customer(ctx context.Context, customerID string, customerName *string, customerEmail *string, customerAvatar *string) (*operations.TrackCustomerResponse, error) {
+func (s *Track) Customer(ctx context.Context, request *operations.TrackCustomerRequestBody) (*operations.TrackCustomerResponseBody, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "trackCustomer",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
-	}
-
-	request := operations.TrackCustomerRequestBody{
-		CustomerID:     customerID,
-		CustomerName:   customerName,
-		CustomerEmail:  customerEmail,
-		CustomerAvatar: customerAvatar,
 	}
 
 	globals := operations.TrackCustomerGlobals{
@@ -545,13 +523,6 @@ func (s *Track) Customer(ctx context.Context, customerID string, customerName *s
 		}
 	}
 
-	res := &operations.TrackCustomerResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -568,7 +539,7 @@ func (s *Track) Customer(ctx context.Context, customerID string, customerName *s
 				return nil, err
 			}
 
-			res.Object = &out
+			return &out, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -688,6 +659,6 @@ func (s *Track) Customer(ctx context.Context, customerID string, customerName *s
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }

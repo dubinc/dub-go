@@ -4,7 +4,6 @@ package operations
 
 import (
 	"github.com/dubinc/dub-go/internal/utils"
-	"github.com/dubinc/dub-go/models/components"
 )
 
 type UpdateDomainGlobals struct {
@@ -96,24 +95,4 @@ func (o *UpdateDomainRequest) GetRequestBody() *UpdateDomainRequestBody {
 		return nil
 	}
 	return o.RequestBody
-}
-
-type UpdateDomainResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The domain was updated.
-	DomainSchema *components.DomainSchema
-}
-
-func (o *UpdateDomainResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *UpdateDomainResponse) GetDomainSchema() *components.DomainSchema {
-	if o == nil {
-		return nil
-	}
-	return o.DomainSchema
 }

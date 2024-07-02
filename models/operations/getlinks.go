@@ -7,7 +7,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/dubinc/dub-go/internal/utils"
-	"github.com/dubinc/dub-go/models/components"
 )
 
 type GetLinksGlobals struct {
@@ -291,24 +290,4 @@ func (o *GetLinksRequest) GetPage() *int64 {
 		return nil
 	}
 	return o.Page
-}
-
-type GetLinksResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// A list of links
-	LinkSchemas []components.LinkSchema
-}
-
-func (o *GetLinksResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *GetLinksResponse) GetLinkSchemas() []components.LinkSchema {
-	if o == nil {
-		return nil
-	}
-	return o.LinkSchemas
 }
