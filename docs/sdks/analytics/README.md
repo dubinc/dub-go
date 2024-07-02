@@ -38,7 +38,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.OneOf != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -54,7 +54,7 @@ func main() {
 
 ### Response
 
-**[*operations.RetrieveAnalyticsResponse](../../models/operations/retrieveanalyticsresponse.md), error**
+**[*operations.RetrieveAnalyticsResponseBody](../../models/operations/retrieveanalyticsresponsebody.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |

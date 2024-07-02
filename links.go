@@ -27,7 +27,7 @@ func newLinks(sdkConfig sdkConfiguration) *Links {
 
 // List - Retrieve a list of links
 // Retrieve a list of links for the authenticated workspace. The list will be paginated and the provided query parameters allow filtering the returned links.
-func (s *Links) List(ctx context.Context, request operations.GetLinksRequest) (*operations.GetLinksResponse, error) {
+func (s *Links) List(ctx context.Context, request operations.GetLinksRequest) ([]components.LinkSchema, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getLinks",
@@ -92,13 +92,6 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest) (*
 		}
 	}
 
-	res := &operations.GetLinksResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -115,7 +108,7 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest) (*
 				return nil, err
 			}
 
-			res.LinkSchemas = out
+			return out, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -235,13 +228,13 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest) (*
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }
 
 // Create a new link
 // Create a new link for the authenticated workspace.
-func (s *Links) Create(ctx context.Context, request *operations.CreateLinkRequestBody) (*operations.CreateLinkResponse, error) {
+func (s *Links) Create(ctx context.Context, request *operations.CreateLinkRequestBody) (*components.LinkSchema, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "createLink",
@@ -312,13 +305,6 @@ func (s *Links) Create(ctx context.Context, request *operations.CreateLinkReques
 		}
 	}
 
-	res := &operations.CreateLinkResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -335,7 +321,7 @@ func (s *Links) Create(ctx context.Context, request *operations.CreateLinkReques
 				return nil, err
 			}
 
-			res.LinkSchema = &out
+			return &out, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -455,13 +441,13 @@ func (s *Links) Create(ctx context.Context, request *operations.CreateLinkReques
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }
 
 // Count - Retrieve the number of links
 // Retrieve the number of links for the authenticated workspace. The provided query parameters allow filtering the returned links.
-func (s *Links) Count(ctx context.Context, request operations.GetLinksCountRequest) (*operations.GetLinksCountResponse, error) {
+func (s *Links) Count(ctx context.Context, request operations.GetLinksCountRequest) (*float64, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getLinksCount",
@@ -526,13 +512,6 @@ func (s *Links) Count(ctx context.Context, request operations.GetLinksCountReque
 		}
 	}
 
-	res := &operations.GetLinksCountResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -549,7 +528,7 @@ func (s *Links) Count(ctx context.Context, request operations.GetLinksCountReque
 				return nil, err
 			}
 
-			res.Number = &out
+			return &out, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -669,25 +648,18 @@ func (s *Links) Count(ctx context.Context, request operations.GetLinksCountReque
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }
 
 // Get - Retrieve a link
 // Retrieve the info for a link.
-func (s *Links) Get(ctx context.Context, domain *string, key *string, linkID *string, externalID *string) (*operations.GetLinkInfoResponse, error) {
+func (s *Links) Get(ctx context.Context, request operations.GetLinkInfoRequest) (*components.LinkSchema, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getLinkInfo",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
-	}
-
-	request := operations.GetLinkInfoRequest{
-		Domain:     domain,
-		Key:        key,
-		LinkID:     linkID,
-		ExternalID: externalID,
 	}
 
 	globals := operations.GetLinkInfoGlobals{
@@ -747,13 +719,6 @@ func (s *Links) Get(ctx context.Context, domain *string, key *string, linkID *st
 		}
 	}
 
-	res := &operations.GetLinkInfoResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -770,7 +735,7 @@ func (s *Links) Get(ctx context.Context, domain *string, key *string, linkID *st
 				return nil, err
 			}
 
-			res.LinkSchema = &out
+			return &out, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -890,13 +855,13 @@ func (s *Links) Get(ctx context.Context, domain *string, key *string, linkID *st
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }
 
 // Delete a link
 // Delete a link for the authenticated workspace.
-func (s *Links) Delete(ctx context.Context, linkID string) (*operations.DeleteLinkResponse, error) {
+func (s *Links) Delete(ctx context.Context, linkID string) (*operations.DeleteLinkResponseBody, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "deleteLink",
@@ -965,13 +930,6 @@ func (s *Links) Delete(ctx context.Context, linkID string) (*operations.DeleteLi
 		}
 	}
 
-	res := &operations.DeleteLinkResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -988,7 +946,7 @@ func (s *Links) Delete(ctx context.Context, linkID string) (*operations.DeleteLi
 				return nil, err
 			}
 
-			res.Object = &out
+			return &out, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1108,13 +1066,13 @@ func (s *Links) Delete(ctx context.Context, linkID string) (*operations.DeleteLi
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }
 
 // Update a link
 // Update a link for the authenticated workspace. If there's no change, returns it as it is.
-func (s *Links) Update(ctx context.Context, linkID string, requestBody *operations.UpdateLinkRequestBody) (*operations.UpdateLinkResponse, error) {
+func (s *Links) Update(ctx context.Context, linkID string, requestBody *operations.UpdateLinkRequestBody) (*components.LinkSchema, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "updateLink",
@@ -1190,13 +1148,6 @@ func (s *Links) Update(ctx context.Context, linkID string, requestBody *operatio
 		}
 	}
 
-	res := &operations.UpdateLinkResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -1213,7 +1164,7 @@ func (s *Links) Update(ctx context.Context, linkID string, requestBody *operatio
 				return nil, err
 			}
 
-			res.LinkSchema = &out
+			return &out, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1333,13 +1284,13 @@ func (s *Links) Update(ctx context.Context, linkID string, requestBody *operatio
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }
 
 // CreateMany - Bulk create links
 // Bulk create up to 100 links for the authenticated workspace.
-func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody) (*operations.BulkCreateLinksResponse, error) {
+func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody) ([]components.LinkSchema, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "bulkCreateLinks",
@@ -1410,13 +1361,6 @@ func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody
 		}
 	}
 
-	res := &operations.BulkCreateLinksResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -1433,7 +1377,7 @@ func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody
 				return nil, err
 			}
 
-			res.LinkSchemas = out
+			return out, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1553,13 +1497,13 @@ func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }
 
 // Upsert a link
 // Upsert a link for the authenticated workspace by its URL. If a link with the same URL already exists, return it (or update it if there are any changes). Otherwise, a new link will be created.
-func (s *Links) Upsert(ctx context.Context, request *operations.UpsertLinkRequestBody) (*operations.UpsertLinkResponse, error) {
+func (s *Links) Upsert(ctx context.Context, request *operations.UpsertLinkRequestBody) (*components.LinkSchema, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "upsertLink",
@@ -1630,13 +1574,6 @@ func (s *Links) Upsert(ctx context.Context, request *operations.UpsertLinkReques
 		}
 	}
 
-	res := &operations.UpsertLinkResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -1653,7 +1590,7 @@ func (s *Links) Upsert(ctx context.Context, request *operations.UpsertLinkReques
 				return nil, err
 			}
 
-			res.LinkSchema = &out
+			return &out, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -1773,6 +1710,6 @@ func (s *Links) Upsert(ctx context.Context, request *operations.UpsertLinkReques
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }

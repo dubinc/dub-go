@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"github.com/dubinc/dub-go/internal/hooks"
 	"github.com/dubinc/dub-go/internal/utils"
-	"github.com/dubinc/dub-go/models/components"
 	"github.com/dubinc/dub-go/models/operations"
 	"github.com/dubinc/dub-go/models/sdkerrors"
 	"io"
@@ -28,7 +27,7 @@ func newQRCodes(sdkConfig sdkConfiguration) *QRCodes {
 
 // Get - Retrieve a QR code
 // Retrieve a QR code for a link.
-func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest) (*operations.GetQRCodeResponse, error) {
+func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest) (*string, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getQRCode",
@@ -86,13 +85,6 @@ func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest) 
 		}
 	}
 
-	res := &operations.GetQRCodeResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -105,8 +97,8 @@ func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest) 
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `image/png`):
 
-			out := string(rawBody)
-			res.Res = &out
+			res := string(rawBody)
+			return &res, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -226,6 +218,6 @@ func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest) 
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }

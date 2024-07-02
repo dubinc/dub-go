@@ -1036,23 +1036,3 @@ func (u RetrieveAnalyticsResponseBody) MarshalJSON() ([]byte, error) {
 
 	return nil, errors.New("could not marshal union type RetrieveAnalyticsResponseBody: all fields are null")
 }
-
-type RetrieveAnalyticsResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// Analytics data
-	OneOf *RetrieveAnalyticsResponseBody
-}
-
-func (o *RetrieveAnalyticsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *RetrieveAnalyticsResponse) GetOneOf() *RetrieveAnalyticsResponseBody {
-	if o == nil {
-		return nil
-	}
-	return o.OneOf
-}

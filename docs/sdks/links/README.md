@@ -38,7 +38,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.LinkSchemas != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -54,7 +54,7 @@ func main() {
 
 ### Response
 
-**[*operations.GetLinksResponse](../../models/operations/getlinksresponse.md), error**
+**[[]components.LinkSchema](../../.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -102,7 +102,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.LinkSchema != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -118,7 +118,7 @@ func main() {
 
 ### Response
 
-**[*operations.CreateLinkResponse](../../models/operations/createlinkresponse.md), error**
+**[*components.LinkSchema](../../models/components/linkschema.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -158,7 +158,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Number != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -174,7 +174,7 @@ func main() {
 
 ### Response
 
-**[*operations.GetLinksCountResponse](../../models/operations/getlinkscountresponse.md), error**
+**[*float64](../../.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -199,6 +199,7 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
 	"context"
 	"log"
 )
@@ -207,19 +208,16 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var domain *string = dubgo.String("<value>")
-
-    var key *string = dubgo.String("<value>")
-
-    var linkID *string = dubgo.String("clux0rgak00011...")
-
-    var externalID *string = dubgo.String("ext_123456")
+    request := operations.GetLinkInfoRequest{
+        LinkID: dubgo.String("clux0rgak00011..."),
+        ExternalID: dubgo.String("ext_123456"),
+    }
     ctx := context.Background()
-    res, err := s.Links.Get(ctx, domain, key, linkID, externalID)
+    res, err := s.Links.Get(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
-    if res.LinkSchema != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -227,18 +225,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     | Example                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                           | [context.Context](https://pkg.go.dev/context#Context)                                                           | :heavy_check_mark:                                                                                              | The context to use for the request.                                                                             |                                                                                                                 |
-| `domain`                                                                                                        | **string*                                                                                                       | :heavy_minus_sign:                                                                                              | N/A                                                                                                             |                                                                                                                 |
-| `key`                                                                                                           | **string*                                                                                                       | :heavy_minus_sign:                                                                                              | The key of the link to retrieve. E.g. for `d.to/github`, the key is `github`.                                   |                                                                                                                 |
-| `linkID`                                                                                                        | **string*                                                                                                       | :heavy_minus_sign:                                                                                              | The unique ID of the short link.                                                                                | clux0rgak00011...                                                                                               |
-| `externalID`                                                                                                    | **string*                                                                                                       | :heavy_minus_sign:                                                                                              | This is the ID of the link in the your database. Must be prefixed with `ext_` when passed as a query parameter. | ext_123456                                                                                                      |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.GetLinkInfoRequest](../../models/operations/getlinkinforequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 
 
 ### Response
 
-**[*operations.GetLinkInfoResponse](../../models/operations/getlinkinforesponse.md), error**
+**[*components.LinkSchema](../../models/components/linkschema.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -277,7 +272,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Object != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -293,7 +288,7 @@ func main() {
 
 ### Response
 
-**[*operations.DeleteLinkResponse](../../models/operations/deletelinkresponse.md), error**
+**[*operations.DeleteLinkResponseBody](../../models/operations/deletelinkresponsebody.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -343,7 +338,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.LinkSchema != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -360,7 +355,7 @@ func main() {
 
 ### Response
 
-**[*operations.UpdateLinkResponse](../../models/operations/updatelinkresponse.md), error**
+**[*components.LinkSchema](../../models/components/linkschema.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -410,7 +405,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.LinkSchemas != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -426,7 +421,7 @@ func main() {
 
 ### Response
 
-**[*operations.BulkCreateLinksResponse](../../models/operations/bulkcreatelinksresponse.md), error**
+**[[]components.LinkSchema](../../.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -474,7 +469,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.LinkSchema != nil {
+    if res != nil {
         // handle response
     }
 }
@@ -490,7 +485,7 @@ func main() {
 
 ### Response
 
-**[*operations.UpsertLinkResponse](../../models/operations/upsertlinkresponse.md), error**
+**[*components.LinkSchema](../../models/components/linkschema.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |

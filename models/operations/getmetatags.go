@@ -2,10 +2,6 @@
 
 package operations
 
-import (
-	"github.com/dubinc/dub-go/models/components"
-)
-
 type GetMetatagsRequest struct {
 	// The URL to retrieve metatags for.
 	URL string `queryParam:"style=form,explode=true,name=url"`
@@ -47,24 +43,4 @@ func (o *GetMetatagsResponseBody) GetImage() *string {
 		return nil
 	}
 	return o.Image
-}
-
-type GetMetatagsResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The retrieved metatags
-	Object *GetMetatagsResponseBody
-}
-
-func (o *GetMetatagsResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *GetMetatagsResponse) GetObject() *GetMetatagsResponseBody {
-	if o == nil {
-		return nil
-	}
-	return o.Object
 }

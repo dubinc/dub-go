@@ -2,10 +2,6 @@
 
 package operations
 
-import (
-	"github.com/dubinc/dub-go/models/components"
-)
-
 type TrackCustomerGlobals struct {
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
@@ -100,24 +96,4 @@ func (o *TrackCustomerResponseBody) GetCustomerAvatar() *string {
 		return nil
 	}
 	return o.CustomerAvatar
-}
-
-type TrackCustomerResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// A customer was tracked.
-	Object *TrackCustomerResponseBody
-}
-
-func (o *TrackCustomerResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *TrackCustomerResponse) GetObject() *TrackCustomerResponseBody {
-	if o == nil {
-		return nil
-	}
-	return o.Object
 }

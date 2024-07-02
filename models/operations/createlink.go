@@ -389,23 +389,3 @@ func (o *CreateLinkRequestBody) GetDoIndex() *bool {
 	}
 	return o.DoIndex
 }
-
-type CreateLinkResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The created link
-	LinkSchema *components.LinkSchema
-}
-
-func (o *CreateLinkResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *CreateLinkResponse) GetLinkSchema() *components.LinkSchema {
-	if o == nil {
-		return nil
-	}
-	return o.LinkSchema
-}

@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"github.com/dubinc/dub-go/internal/hooks"
 	"github.com/dubinc/dub-go/internal/utils"
-	"github.com/dubinc/dub-go/models/components"
 	"github.com/dubinc/dub-go/models/operations"
 	"github.com/dubinc/dub-go/models/sdkerrors"
 	"io"
@@ -28,16 +27,12 @@ func newMetatags(sdkConfig sdkConfiguration) *Metatags {
 
 // Get - Retrieve the metatags for a URL
 // Retrieve the metatags for a URL.
-func (s *Metatags) Get(ctx context.Context, url_ string) (*operations.GetMetatagsResponse, error) {
+func (s *Metatags) Get(ctx context.Context, request operations.GetMetatagsRequest) (*operations.GetMetatagsResponseBody, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getMetatags",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
-	}
-
-	request := operations.GetMetatagsRequest{
-		URL: url_,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -90,13 +85,6 @@ func (s *Metatags) Get(ctx context.Context, url_ string) (*operations.GetMetatag
 		}
 	}
 
-	res := &operations.GetMetatagsResponse{
-		HTTPMeta: components.HTTPMetadata{
-			Request:  req,
-			Response: httpRes,
-		},
-	}
-
 	rawBody, err := io.ReadAll(httpRes.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
@@ -113,7 +101,7 @@ func (s *Metatags) Get(ctx context.Context, url_ string) (*operations.GetMetatag
 				return nil, err
 			}
 
-			res.Object = &out
+			return &out, nil
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -125,6 +113,6 @@ func (s *Metatags) Get(ctx context.Context, url_ string) (*operations.GetMetatag
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }

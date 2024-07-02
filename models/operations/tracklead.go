@@ -2,10 +2,6 @@
 
 package operations
 
-import (
-	"github.com/dubinc/dub-go/models/components"
-)
-
 type TrackLeadGlobals struct {
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
@@ -151,24 +147,4 @@ func (o *TrackLeadResponseBody) GetMetadata() map[string]any {
 		return nil
 	}
 	return o.Metadata
-}
-
-type TrackLeadResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// A lead was tracked.
-	Object *TrackLeadResponseBody
-}
-
-func (o *TrackLeadResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *TrackLeadResponse) GetObject() *TrackLeadResponseBody {
-	if o == nil {
-		return nil
-	}
-	return o.Object
 }

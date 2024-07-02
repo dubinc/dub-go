@@ -6,7 +6,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/dubinc/dub-go/internal/utils"
-	"github.com/dubinc/dub-go/models/components"
 )
 
 // Level - The level of error correction to use for the QR code. Defaults to `L` if not provided.
@@ -108,24 +107,4 @@ func (o *GetQRCodeRequest) GetIncludeMargin() *bool {
 		return nil
 	}
 	return o.IncludeMargin
-}
-
-type GetQRCodeResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The QR code
-	Res *string
-}
-
-func (o *GetQRCodeResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *GetQRCodeResponse) GetRes() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Res
 }

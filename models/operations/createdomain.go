@@ -4,7 +4,6 @@ package operations
 
 import (
 	"github.com/dubinc/dub-go/internal/utils"
-	"github.com/dubinc/dub-go/models/components"
 )
 
 type CreateDomainGlobals struct {
@@ -76,24 +75,4 @@ func (o *CreateDomainRequestBody) GetPlaceholder() *string {
 		return nil
 	}
 	return o.Placeholder
-}
-
-type CreateDomainResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The domain was created.
-	DomainSchema *components.DomainSchema
-}
-
-func (o *CreateDomainResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *CreateDomainResponse) GetDomainSchema() *components.DomainSchema {
-	if o == nil {
-		return nil
-	}
-	return o.DomainSchema
 }

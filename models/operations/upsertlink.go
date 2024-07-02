@@ -389,23 +389,3 @@ func (o *UpsertLinkRequestBody) GetDoIndex() *bool {
 	}
 	return o.DoIndex
 }
-
-type UpsertLinkResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The upserted link
-	LinkSchema *components.LinkSchema
-}
-
-func (o *UpsertLinkResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *UpsertLinkResponse) GetLinkSchema() *components.LinkSchema {
-	if o == nil {
-		return nil
-	}
-	return o.LinkSchema
-}

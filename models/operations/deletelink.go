@@ -2,10 +2,6 @@
 
 package operations
 
-import (
-	"github.com/dubinc/dub-go/models/components"
-)
-
 type DeleteLinkGlobals struct {
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
@@ -50,24 +46,4 @@ func (o *DeleteLinkResponseBody) GetID() string {
 		return ""
 	}
 	return o.ID
-}
-
-type DeleteLinkResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The deleted link
-	Object *DeleteLinkResponseBody
-}
-
-func (o *DeleteLinkResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *DeleteLinkResponse) GetObject() *DeleteLinkResponseBody {
-	if o == nil {
-		return nil
-	}
-	return o.Object
 }

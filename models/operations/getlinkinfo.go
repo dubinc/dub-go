@@ -2,10 +2,6 @@
 
 package operations
 
-import (
-	"github.com/dubinc/dub-go/models/components"
-)
-
 type GetLinkInfoGlobals struct {
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
@@ -63,24 +59,4 @@ func (o *GetLinkInfoRequest) GetExternalID() *string {
 		return nil
 	}
 	return o.ExternalID
-}
-
-type GetLinkInfoResponse struct {
-	HTTPMeta components.HTTPMetadata `json:"-"`
-	// The retrieved link
-	LinkSchema *components.LinkSchema
-}
-
-func (o *GetLinkInfoResponse) GetHTTPMeta() components.HTTPMetadata {
-	if o == nil {
-		return components.HTTPMetadata{}
-	}
-	return o.HTTPMeta
-}
-
-func (o *GetLinkInfoResponse) GetLinkSchema() *components.LinkSchema {
-	if o == nil {
-		return nil
-	}
-	return o.LinkSchema
 }

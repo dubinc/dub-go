@@ -27,7 +27,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.LinkSchema != nil {
+	if res != nil {
 		// handle response
 	}
 }
@@ -62,7 +62,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.LinkSchema != nil {
+	if res != nil {
 		// handle response
 	}
 }
