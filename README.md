@@ -105,6 +105,7 @@ func main() {
 * [Delete](docs/sdks/links/README.md#delete) - Delete a link
 * [Update](docs/sdks/links/README.md#update) - Update a link
 * [CreateMany](docs/sdks/links/README.md#createmany) - Bulk create links
+* [UpdateMany](docs/sdks/links/README.md#updatemany) - Bulk update links
 * [Upsert](docs/sdks/links/README.md#upsert) - Upsert a link
 
 ### [QRCodes](docs/sdks/qrcodes/README.md)

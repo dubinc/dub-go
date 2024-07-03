@@ -9,6 +9,7 @@ import (
 	"github.com/dubinc/dub-go/internal/hooks"
 	"github.com/dubinc/dub-go/internal/utils"
 	"github.com/dubinc/dub-go/models/components"
+	"github.com/dubinc/dub-go/retry"
 	"net/http"
 	"time"
 )
@@ -53,7 +54,7 @@ type sdkConfiguration struct {
 	GenVersion        string
 	UserAgent         string
 	Globals           globals.Globals
-	RetryConfig       *utils.RetryConfig
+	RetryConfig       *retry.Config
 	Hooks             *hooks.Hooks
 }
 
@@ -148,7 +149,7 @@ func WithProjectSlug(projectSlug string) SDKOption {
 	}
 }
 
-func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+func WithRetryConfig(retryConfig retry.Config) SDKOption {
 	return func(sdk *Dub) {
 		sdk.sdkConfiguration.RetryConfig = &retryConfig
 	}
@@ -160,9 +161,9 @@ func New(opts ...SDKOption) *Dub {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "0.1.12",
-			GenVersion:        "2.356.0",
-			UserAgent:         "speakeasy-sdk/go 0.1.12 2.356.0 0.0.1 github.com/dubinc/dub-go",
+			SDKVersion:        "0.1.13",
+			GenVersion:        "2.359.0",
+			UserAgent:         "speakeasy-sdk/go 0.1.13 2.359.0 0.0.1 github.com/dubinc/dub-go",
 			Globals:           globals.Globals{},
 			Hooks:             hooks.New(),
 		},
