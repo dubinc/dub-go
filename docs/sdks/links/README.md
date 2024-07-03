@@ -10,6 +10,7 @@
 * [Delete](#delete) - Delete a link
 * [Update](#update) - Update a link
 * [CreateMany](#createmany) - Bulk create links
+* [UpdateMany](#updatemany) - Bulk update links
 * [Upsert](#upsert) - Upsert a link
 
 ## List
@@ -417,6 +418,74 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `request`                                             | [[]operations.RequestBody](../../.md)                 | :heavy_check_mark:                                    | The request object to use for the request.            |
+
+
+### Response
+
+**[[]components.LinkSchema](../../.md), error**
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
+## UpdateMany
+
+Bulk update up to 100 links with the same data for the authenticated workspace.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
+	"context"
+	"log"
+)
+
+func main() {
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+    var request *operations.BulkUpdateLinksRequestBody = &operations.BulkUpdateLinksRequestBody{
+        LinkIds: []string{
+            "<value>",
+        },
+        Data: operations.Data{
+            URL: dubgo.String("https://google/com"),
+            TagIds: operations.CreateBulkUpdateLinksTagIdsArrayOfStr(
+                    []string{
+                        "clux0rgak00011...",
+                    },
+            ),
+        },
+    }
+    ctx := context.Background()
+    res, err := s.Links.UpdateMany(ctx, request)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.BulkUpdateLinksRequestBody](../../models/operations/bulkupdatelinksrequestbody.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 
 
 ### Response
