@@ -37,7 +37,6 @@ func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest) ([]c
 
 	globals := operations.GetTagsGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -244,7 +243,6 @@ func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestB
 
 	globals := operations.CreateTagGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -457,7 +455,6 @@ func (s *Tags) Update(ctx context.Context, request operations.UpdateTagRequest) 
 
 	globals := operations.UpdateTagGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())

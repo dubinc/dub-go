@@ -100,7 +100,7 @@ func main() {
 
 * [List](docs/sdks/links/README.md#list) - Retrieve a list of links
 * [Create](docs/sdks/links/README.md#create) - Create a new link
-* [Count](docs/sdks/links/README.md#count) - Retrieve the number of links
+* [Count](docs/sdks/links/README.md#count) - Retrieve links count
 * [Get](docs/sdks/links/README.md#get) - Retrieve a link
 * [Delete](docs/sdks/links/README.md#delete) - Delete a link
 * [Update](docs/sdks/links/README.md#update) - Update a link

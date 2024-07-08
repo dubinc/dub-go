@@ -10,8 +10,6 @@ import (
 type UpdateTagGlobals struct {
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	ProjectSlug *string `queryParam:"style=form,explode=true,name=projectSlug"`
 }
 
 func (o *UpdateTagGlobals) GetWorkspaceID() *string {
@@ -19,13 +17,6 @@ func (o *UpdateTagGlobals) GetWorkspaceID() *string {
 		return nil
 	}
 	return o.WorkspaceID
-}
-
-func (o *UpdateTagGlobals) GetProjectSlug() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ProjectSlug
 }
 
 // UpdateTagColor - The color of the tag. If not provided, a random color will be used from the list: red, yellow, green, blue, purple, pink, brown.
