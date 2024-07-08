@@ -10,3 +10,7 @@ targets:
     my-first-target:
         target: go
         source: dub
+        codeSamples:
+            output: codeSamples.yaml
+            registry:
+                location: registry.speakeasyapi.dev/dub/dub/code-samples-go-my-first-target
