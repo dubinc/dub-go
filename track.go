@@ -36,7 +36,6 @@ func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBo
 
 	globals := operations.TrackLeadGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -249,7 +248,6 @@ func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBo
 
 	globals := operations.TrackSaleGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -462,7 +460,6 @@ func (s *Track) Customer(ctx context.Context, request *operations.TrackCustomerR
 
 	globals := operations.TrackCustomerGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())

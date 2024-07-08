@@ -36,7 +36,6 @@ func (s *Analytics) Retrieve(ctx context.Context, request operations.RetrieveAna
 
 	globals := operations.RetrieveAnalyticsGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())

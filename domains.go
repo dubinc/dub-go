@@ -37,7 +37,6 @@ func (s *Domains) List(ctx context.Context, request operations.ListDomainsReques
 
 	globals := operations.ListDomainsGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -244,7 +243,6 @@ func (s *Domains) Create(ctx context.Context, request *operations.CreateDomainRe
 
 	globals := operations.CreateDomainGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -461,7 +459,6 @@ func (s *Domains) Delete(ctx context.Context, slug string) (*operations.DeleteDo
 
 	globals := operations.DeleteDomainGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -673,7 +670,6 @@ func (s *Domains) Update(ctx context.Context, slug string, requestBody *operatio
 
 	globals := operations.UpdateDomainGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())

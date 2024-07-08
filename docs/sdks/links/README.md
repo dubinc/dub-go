@@ -5,7 +5,7 @@
 
 * [List](#list) - Retrieve a list of links
 * [Create](#create) - Create a new link
-* [Count](#count) - Retrieve the number of links
+* [Count](#count) - Retrieve links count
 * [Get](#get) - Retrieve a link
 * [Delete](#delete) - Delete a link
 * [Update](#update) - Update a link
@@ -15,7 +15,7 @@
 
 ## List
 
-Retrieve a list of links for the authenticated workspace. The list will be paginated and the provided query parameters allow filtering the returned links.
+Retrieve a paginated list of links for the authenticated workspace.
 
 ### Example Usage
 
@@ -135,7 +135,7 @@ func main() {
 
 ## Count
 
-Retrieve the number of links for the authenticated workspace. The provided query parameters allow filtering the returned links.
+Retrieve the number of links for the authenticated workspace.
 
 ### Example Usage
 

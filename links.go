@@ -27,7 +27,7 @@ func newLinks(sdkConfig sdkConfiguration) *Links {
 }
 
 // List - Retrieve a list of links
-// Retrieve a list of links for the authenticated workspace. The list will be paginated and the provided query parameters allow filtering the returned links.
+// Retrieve a paginated list of links for the authenticated workspace.
 func (s *Links) List(ctx context.Context, request operations.GetLinksRequest) ([]components.LinkSchema, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -38,7 +38,6 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest) ([
 
 	globals := operations.GetLinksGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -245,7 +244,6 @@ func (s *Links) Create(ctx context.Context, request *operations.CreateLinkReques
 
 	globals := operations.CreateLinkGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -446,8 +444,8 @@ func (s *Links) Create(ctx context.Context, request *operations.CreateLinkReques
 
 }
 
-// Count - Retrieve the number of links
-// Retrieve the number of links for the authenticated workspace. The provided query parameters allow filtering the returned links.
+// Count - Retrieve links count
+// Retrieve the number of links for the authenticated workspace.
 func (s *Links) Count(ctx context.Context, request operations.GetLinksCountRequest) (*float64, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -458,7 +456,6 @@ func (s *Links) Count(ctx context.Context, request operations.GetLinksCountReque
 
 	globals := operations.GetLinksCountGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -665,7 +662,6 @@ func (s *Links) Get(ctx context.Context, request operations.GetLinkInfoRequest) 
 
 	globals := operations.GetLinkInfoGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -876,7 +872,6 @@ func (s *Links) Delete(ctx context.Context, linkID string) (*operations.DeleteLi
 
 	globals := operations.DeleteLinkGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -1088,7 +1083,6 @@ func (s *Links) Update(ctx context.Context, linkID string, requestBody *operatio
 
 	globals := operations.UpdateLinkGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -1301,7 +1295,6 @@ func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody
 
 	globals := operations.BulkCreateLinksGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -1716,7 +1709,6 @@ func (s *Links) Upsert(ctx context.Context, request *operations.UpsertLinkReques
 
 	globals := operations.UpsertLinkGlobals{
 		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-		ProjectSlug: s.sdkConfiguration.Globals.ProjectSlug,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
