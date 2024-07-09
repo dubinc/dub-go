@@ -13,6 +13,7 @@ import (
 	"github.com/dubinc/dub-go/models/sdkerrors"
 	"io"
 	"net/http"
+	"net/url"
 )
 
 type Domains struct {
@@ -27,7 +28,7 @@ func newDomains(sdkConfig sdkConfiguration) *Domains {
 
 // List - Retrieve a list of domains
 // Retrieve a list of domains associated with the authenticated workspace.
-func (s *Domains) List(ctx context.Context, request operations.ListDomainsRequest) ([]components.DomainSchema, error) {
+func (s *Domains) List(ctx context.Context) ([]components.DomainSchema, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "listDomains",
@@ -35,12 +36,8 @@ func (s *Domains) List(ctx context.Context, request operations.ListDomainsReques
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	globals := operations.ListDomainsGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/domains", request, globals)
+	opURL, err := url.JoinPath(baseURL, "/domains")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -51,12 +48,6 @@ func (s *Domains) List(ctx context.Context, request operations.ListDomainsReques
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -241,12 +232,8 @@ func (s *Domains) Create(ctx context.Context, request *operations.CreateDomainRe
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	globals := operations.CreateDomainGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/domains", request, globals)
+	opURL, err := url.JoinPath(baseURL, "/domains")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -263,12 +250,6 @@ func (s *Domains) Create(ctx context.Context, request *operations.CreateDomainRe
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
-
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -457,12 +438,8 @@ func (s *Domains) Delete(ctx context.Context, slug string) (*operations.DeleteDo
 		Slug: slug,
 	}
 
-	globals := operations.DeleteDomainGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/domains/{slug}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/domains/{slug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -473,12 +450,6 @@ func (s *Domains) Delete(ctx context.Context, slug string) (*operations.DeleteDo
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -668,12 +639,8 @@ func (s *Domains) Update(ctx context.Context, slug string, requestBody *operatio
 		RequestBody: requestBody,
 	}
 
-	globals := operations.UpdateDomainGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/domains/{slug}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/domains/{slug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -690,12 +657,6 @@ func (s *Domains) Update(ctx context.Context, slug string, requestBody *operatio
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
-
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

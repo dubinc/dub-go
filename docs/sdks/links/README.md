@@ -90,7 +90,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
     var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
-        URL: "https://google/com",
+        URL: "https://google.com",
         ExternalID: dubgo.String("123456"),
         TagIds: operations.CreateTagIdsArrayOfStr(
                 []string{
@@ -326,7 +326,7 @@ func main() {
     var linkID string = "<value>"
 
     var requestBody *operations.UpdateLinkRequestBody = &operations.UpdateLinkRequestBody{
-        URL: "https://google/com",
+        URL: dubgo.String("https://google.com"),
         ExternalID: dubgo.String("123456"),
         TagIds: operations.CreateUpdateLinkTagIdsArrayOfStr(
                 []string{
@@ -392,7 +392,7 @@ func main() {
     )
     var request []operations.RequestBody = []operations.RequestBody{
         operations.RequestBody{
-            URL: "https://google/com",
+            URL: "https://google.com",
             ExternalID: dubgo.String("123456"),
             TagIds: operations.CreateBulkCreateLinksTagIdsArrayOfStr(
                     []string{
@@ -461,7 +461,7 @@ func main() {
             "<value>",
         },
         Data: operations.Data{
-            URL: dubgo.String("https://google/com"),
+            URL: dubgo.String("https://google.com"),
             TagIds: operations.CreateBulkUpdateLinksTagIdsArrayOfStr(
                     []string{
                         "clux0rgak00011...",
@@ -525,7 +525,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
     var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
-        URL: "https://google/com",
+        URL: "https://google.com",
         ExternalID: dubgo.String("123456"),
         TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(
                 []string{

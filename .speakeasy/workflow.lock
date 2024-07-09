@@ -1,9 +1,9 @@
-speakeasyVersion: 1.327.0
+speakeasyVersion: 1.330.0
 sources:
     dub:
         sourceNamespace: dub
-        sourceRevisionDigest: sha256:a1f25efcd60ffd527a8a8bfa736f31857afe27e649ff60ab27ca884f4082aa7a
-        sourceBlobDigest: sha256:1e9328999a295d7b4a8ca497ddcae476f1c7477a26baca807b56dc98fbf3eefa
+        sourceRevisionDigest: sha256:c669f56483cb7280a1bf163fb3e3933d2e12aac038992cae465343e3aac9ed9e
+        sourceBlobDigest: sha256:949d9b8c580edf1d004b7303501264e41151c8e82389c347c57c7895784139ad
         tags:
             - latest
             - main
@@ -11,8 +11,10 @@ targets:
     my-first-target:
         source: dub
         sourceNamespace: dub
-        sourceRevisionDigest: sha256:a1f25efcd60ffd527a8a8bfa736f31857afe27e649ff60ab27ca884f4082aa7a
-        sourceBlobDigest: sha256:1e9328999a295d7b4a8ca497ddcae476f1c7477a26baca807b56dc98fbf3eefa
+        sourceRevisionDigest: sha256:c669f56483cb7280a1bf163fb3e3933d2e12aac038992cae465343e3aac9ed9e
+        sourceBlobDigest: sha256:949d9b8c580edf1d004b7303501264e41151c8e82389c347c57c7895784139ad
+        codeSamplesNamespace: code-samples-go-my-first-target
+        codeSamplesRevisionDigest: sha256:04b67a6373a87b5faa92595798bc9fc3c33feb5b2e54333f46e150d0a404470b
         outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
@@ -27,3 +29,7 @@ workflow:
         my-first-target:
             target: go
             source: dub
+            codeSamples:
+                output: codeSamples.yaml
+                registry:
+                    location: registry.speakeasyapi.dev/dub/dub/code-samples-go-my-first-target

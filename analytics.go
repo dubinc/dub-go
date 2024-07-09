@@ -12,6 +12,7 @@ import (
 	"github.com/dubinc/dub-go/models/sdkerrors"
 	"io"
 	"net/http"
+	"net/url"
 )
 
 type Analytics struct {
@@ -34,12 +35,8 @@ func (s *Analytics) Retrieve(ctx context.Context, request operations.RetrieveAna
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	globals := operations.RetrieveAnalyticsGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/analytics", request, globals)
+	opURL, err := url.JoinPath(baseURL, "/analytics")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -51,9 +48,7 @@ func (s *Analytics) Retrieve(ctx context.Context, request operations.RetrieveAna
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

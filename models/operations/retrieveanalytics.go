@@ -10,18 +10,6 @@ import (
 	"github.com/dubinc/dub-go/models/components"
 )
 
-type RetrieveAnalyticsGlobals struct {
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
-}
-
-func (o *RetrieveAnalyticsGlobals) GetWorkspaceID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.WorkspaceID
-}
-
 // Event - The type of event to retrieve analytics for. Defaults to 'clicks'.
 type Event string
 

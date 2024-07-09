@@ -6,18 +6,6 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
-type UpdateDomainGlobals struct {
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
-}
-
-func (o *UpdateDomainGlobals) GetWorkspaceID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.WorkspaceID
-}
-
 type UpdateDomainRequestBody struct {
 	// Name of the domain.
 	Slug *string `json:"slug,omitempty"`

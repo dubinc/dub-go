@@ -7,18 +7,6 @@ import (
 	"fmt"
 )
 
-type UpdateTagGlobals struct {
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
-}
-
-func (o *UpdateTagGlobals) GetWorkspaceID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.WorkspaceID
-}
-
 // UpdateTagColor - The color of the tag. If not provided, a random color will be used from the list: red, yellow, green, blue, purple, pink, brown.
 type UpdateTagColor string
 
@@ -94,7 +82,7 @@ func (o *UpdateTagRequestBody) GetTag() *string {
 }
 
 type UpdateTagRequest struct {
-	// The ID of the tag
+	// The ID of the tag to update.
 	ID          string                `pathParam:"style=simple,explode=false,name=id"`
 	RequestBody *UpdateTagRequestBody `request:"mediaType=application/json"`
 }
