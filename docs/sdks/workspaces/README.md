@@ -84,11 +84,11 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    request := operations.UpdateWorkspaceRequest{
-        IDOrSlug: "<value>",
-    }
+    var idOrSlug string = "<value>"
+
+    var requestBody *operations.UpdateWorkspaceRequestBody = &operations.UpdateWorkspaceRequestBody{}
     ctx := context.Background()
-    res, err := s.Workspaces.Update(ctx, request)
+    res, err := s.Workspaces.Update(ctx, idOrSlug, requestBody)
     if err != nil {
         log.Fatal(err)
     }
@@ -100,10 +100,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [operations.UpdateWorkspaceRequest](../../models/operations/updateworkspacerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                           | [context.Context](https://pkg.go.dev/context#Context)                                           | :heavy_check_mark:                                                                              | The context to use for the request.                                                             |
+| `idOrSlug`                                                                                      | *string*                                                                                        | :heavy_check_mark:                                                                              | The ID or slug of the workspace to update.                                                      |
+| `requestBody`                                                                                   | [*operations.UpdateWorkspaceRequestBody](../../models/operations/updateworkspacerequestbody.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |
 
 
 ### Response

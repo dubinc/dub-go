@@ -36,12 +36,8 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest) ([
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	globals := operations.GetLinksGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/links", request, globals)
+	opURL, err := url.JoinPath(baseURL, "/links")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -53,9 +49,7 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest) ([
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -242,12 +236,8 @@ func (s *Links) Create(ctx context.Context, request *operations.CreateLinkReques
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	globals := operations.CreateLinkGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/links", request, globals)
+	opURL, err := url.JoinPath(baseURL, "/links")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -264,12 +254,6 @@ func (s *Links) Create(ctx context.Context, request *operations.CreateLinkReques
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
-
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -454,12 +438,8 @@ func (s *Links) Count(ctx context.Context, request operations.GetLinksCountReque
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	globals := operations.GetLinksCountGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/links/count", request, globals)
+	opURL, err := url.JoinPath(baseURL, "/links/count")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -471,9 +451,7 @@ func (s *Links) Count(ctx context.Context, request operations.GetLinksCountReque
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -660,12 +638,8 @@ func (s *Links) Get(ctx context.Context, request operations.GetLinkInfoRequest) 
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	globals := operations.GetLinkInfoGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/links/info", request, globals)
+	opURL, err := url.JoinPath(baseURL, "/links/info")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -677,9 +651,7 @@ func (s *Links) Get(ctx context.Context, request operations.GetLinkInfoRequest) 
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -870,12 +842,8 @@ func (s *Links) Delete(ctx context.Context, linkID string) (*operations.DeleteLi
 		LinkID: linkID,
 	}
 
-	globals := operations.DeleteLinkGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/links/{linkId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/links/{linkId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -886,12 +854,6 @@ func (s *Links) Delete(ctx context.Context, linkID string) (*operations.DeleteLi
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1081,12 +1043,8 @@ func (s *Links) Update(ctx context.Context, linkID string, requestBody *operatio
 		RequestBody: requestBody,
 	}
 
-	globals := operations.UpdateLinkGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/links/{linkId}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/links/{linkId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1103,12 +1061,6 @@ func (s *Links) Update(ctx context.Context, linkID string, requestBody *operatio
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
-
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1293,12 +1245,8 @@ func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	globals := operations.BulkCreateLinksGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/links/bulk", request, globals)
+	opURL, err := url.JoinPath(baseURL, "/links/bulk")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1315,12 +1263,6 @@ func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
-
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1707,12 +1649,8 @@ func (s *Links) Upsert(ctx context.Context, request *operations.UpsertLinkReques
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	globals := operations.UpsertLinkGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/links/upsert", request, globals)
+	opURL, err := url.JoinPath(baseURL, "/links/upsert")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1729,12 +1667,6 @@ func (s *Links) Upsert(ctx context.Context, request *operations.UpsertLinkReques
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
-
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

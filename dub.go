@@ -5,7 +5,6 @@ package dubgo
 import (
 	"context"
 	"fmt"
-	"github.com/dubinc/dub-go/internal/globals"
 	"github.com/dubinc/dub-go/internal/hooks"
 	"github.com/dubinc/dub-go/internal/utils"
 	"github.com/dubinc/dub-go/models/components"
@@ -53,7 +52,6 @@ type sdkConfiguration struct {
 	SDKVersion        string
 	GenVersion        string
 	UserAgent         string
-	Globals           globals.Globals
 	RetryConfig       *retry.Config
 	Hooks             *hooks.Hooks
 }
@@ -135,20 +133,6 @@ func WithSecuritySource(security func(context.Context) (components.Security, err
 	}
 }
 
-// WithWorkspaceID allows setting the WorkspaceID parameter for all supported operations
-func WithWorkspaceID(workspaceID string) SDKOption {
-	return func(sdk *Dub) {
-		sdk.sdkConfiguration.Globals.WorkspaceID = &workspaceID
-	}
-}
-
-// WithProjectSlug allows setting the ProjectSlug parameter for all supported operations
-func WithProjectSlug(projectSlug string) SDKOption {
-	return func(sdk *Dub) {
-		sdk.sdkConfiguration.Globals.ProjectSlug = &projectSlug
-	}
-}
-
 func WithRetryConfig(retryConfig retry.Config) SDKOption {
 	return func(sdk *Dub) {
 		sdk.sdkConfiguration.RetryConfig = &retryConfig
@@ -161,10 +145,9 @@ func New(opts ...SDKOption) *Dub {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "0.1.14",
-			GenVersion:        "2.359.6",
-			UserAgent:         "speakeasy-sdk/go 0.1.14 2.359.6 0.0.1 github.com/dubinc/dub-go",
-			Globals:           globals.Globals{},
+			SDKVersion:        "0.2.0",
+			GenVersion:        "2.361.10",
+			UserAgent:         "speakeasy-sdk/go 0.2.0 2.361.10 0.0.1 github.com/dubinc/dub-go",
 			Hooks:             hooks.New(),
 		},
 	}

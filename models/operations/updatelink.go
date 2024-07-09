@@ -9,18 +9,6 @@ import (
 	"github.com/dubinc/dub-go/models/components"
 )
 
-type UpdateLinkGlobals struct {
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
-}
-
-func (o *UpdateLinkGlobals) GetWorkspaceID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.WorkspaceID
-}
-
 type UpdateLinkTagIdsType string
 
 const (
@@ -151,7 +139,7 @@ func (u UpdateLinkTagNames) MarshalJSON() ([]byte, error) {
 
 type UpdateLinkRequestBody struct {
 	// The destination URL of the short link.
-	URL string `json:"url"`
+	URL *string `json:"url,omitempty"`
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
 	Domain *string `json:"domain,omitempty"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
@@ -195,9 +183,8 @@ type UpdateLinkRequestBody struct {
 	// The iOS destination URL for the short link for iOS device targeting.
 	Ios *string `json:"ios,omitempty"`
 	// The Android destination URL for the short link for Android device targeting.
-	Android *string `json:"android,omitempty"`
-	// Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`.
-	Geo *components.LinkGeoTargeting `json:"geo,omitempty"`
+	Android *string                      `json:"android,omitempty"`
+	Geo     *components.LinkGeoTargeting `json:"geo,omitempty"`
 	// Allow search engines to index your short link. Defaults to `false` if not provided. Learn more: https://d.to/noindex
 	DoIndex *bool `default:"false" json:"doIndex"`
 }
@@ -213,9 +200,9 @@ func (u *UpdateLinkRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *UpdateLinkRequestBody) GetURL() string {
+func (o *UpdateLinkRequestBody) GetURL() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.URL
 }

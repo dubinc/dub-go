@@ -2,18 +2,6 @@
 
 package operations
 
-type DeleteLinkGlobals struct {
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
-}
-
-func (o *DeleteLinkGlobals) GetWorkspaceID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.WorkspaceID
-}
-
 type DeleteLinkRequest struct {
 	// The id of the link to delete. You may use either `linkId` (obtained via `/links/info` endpoint) or `externalId` prefixed with `ext_`.
 	LinkID string `pathParam:"style=simple,explode=false,name=linkId"`

@@ -223,12 +223,17 @@ func (s *Workspaces) Get(ctx context.Context, request operations.GetWorkspaceReq
 
 // Update a workspace
 // Update a workspace by ID or slug.
-func (s *Workspaces) Update(ctx context.Context, request operations.UpdateWorkspaceRequest) (*components.WorkspaceSchema, error) {
+func (s *Workspaces) Update(ctx context.Context, idOrSlug string, requestBody *operations.UpdateWorkspaceRequestBody) (*components.WorkspaceSchema, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "updateWorkspace",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
+	}
+
+	request := operations.UpdateWorkspaceRequest{
+		IDOrSlug:    idOrSlug,
+		RequestBody: requestBody,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -237,12 +242,18 @@ func (s *Workspaces) Update(ctx context.Context, request operations.UpdateWorksp
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PATCH", opURL, nil)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "PATCH", opURL, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+	req.Header.Set("Content-Type", reqContentType)
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

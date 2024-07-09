@@ -13,6 +13,7 @@ import (
 	"github.com/dubinc/dub-go/models/sdkerrors"
 	"io"
 	"net/http"
+	"net/url"
 )
 
 type Tags struct {
@@ -27,7 +28,7 @@ func newTags(sdkConfig sdkConfiguration) *Tags {
 
 // List - Retrieve a list of tags
 // Retrieve a list of tags for the authenticated workspace.
-func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest) ([]components.TagSchema, error) {
+func (s *Tags) List(ctx context.Context) ([]components.TagSchema, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getTags",
@@ -35,12 +36,8 @@ func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest) ([]c
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	globals := operations.GetTagsGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/tags", request, globals)
+	opURL, err := url.JoinPath(baseURL, "/tags")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -51,12 +48,6 @@ func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest) ([]c
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -241,12 +232,8 @@ func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestB
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	globals := operations.CreateTagGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
-	}
-
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/tags", request, globals)
+	opURL, err := url.JoinPath(baseURL, "/tags")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -263,12 +250,6 @@ func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestB
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
-
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -445,7 +426,7 @@ func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestB
 
 // Update a tag
 // Update a tag in the workspace.
-func (s *Tags) Update(ctx context.Context, request operations.UpdateTagRequest) (*components.TagSchema, error) {
+func (s *Tags) Update(ctx context.Context, id string, requestBody *operations.UpdateTagRequestBody) (*components.TagSchema, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "updateTag",
@@ -453,12 +434,13 @@ func (s *Tags) Update(ctx context.Context, request operations.UpdateTagRequest) 
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
-	globals := operations.UpdateTagGlobals{
-		WorkspaceID: s.sdkConfiguration.Globals.WorkspaceID,
+	request := operations.UpdateTagRequest{
+		ID:          id,
+		RequestBody: requestBody,
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/tags/{id}", request, globals)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/tags/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -475,12 +457,6 @@ func (s *Tags) Update(ctx context.Context, request operations.UpdateTagRequest) 
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
-
-	utils.PopulateHeaders(ctx, req, request, globals)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, globals); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

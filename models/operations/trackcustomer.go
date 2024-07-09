@@ -2,18 +2,6 @@
 
 package operations
 
-type TrackCustomerGlobals struct {
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	WorkspaceID *string `queryParam:"style=form,explode=true,name=workspaceId"`
-}
-
-func (o *TrackCustomerGlobals) GetWorkspaceID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.WorkspaceID
-}
-
 type TrackCustomerRequestBody struct {
 	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
 	CustomerID string `json:"customerId"`

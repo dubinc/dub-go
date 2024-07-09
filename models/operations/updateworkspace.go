@@ -2,9 +2,29 @@
 
 package operations
 
+type UpdateWorkspaceRequestBody struct {
+	Name *string `json:"name,omitempty"`
+	Slug *string `json:"slug,omitempty"`
+}
+
+func (o *UpdateWorkspaceRequestBody) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *UpdateWorkspaceRequestBody) GetSlug() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Slug
+}
+
 type UpdateWorkspaceRequest struct {
-	// The ID or slug of the workspace.
-	IDOrSlug string `pathParam:"style=simple,explode=false,name=idOrSlug"`
+	// The ID or slug of the workspace to update.
+	IDOrSlug    string                      `pathParam:"style=simple,explode=false,name=idOrSlug"`
+	RequestBody *UpdateWorkspaceRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *UpdateWorkspaceRequest) GetIDOrSlug() string {
@@ -12,4 +32,11 @@ func (o *UpdateWorkspaceRequest) GetIDOrSlug() string {
 		return ""
 	}
 	return o.IDOrSlug
+}
+
+func (o *UpdateWorkspaceRequest) GetRequestBody() *UpdateWorkspaceRequestBody {
+	if o == nil {
+		return nil
+	}
+	return o.RequestBody
 }

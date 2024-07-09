@@ -3,6 +3,7 @@
 
 ## Fields
 
-| Field                            | Type                             | Required                         | Description                      |
-| -------------------------------- | -------------------------------- | -------------------------------- | -------------------------------- |
-| `IDOrSlug`                       | *string*                         | :heavy_check_mark:               | The ID or slug of the workspace. |
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `IDOrSlug`                                                                                      | *string*                                                                                        | :heavy_check_mark:                                                                              | The ID or slug of the workspace to update.                                                      |
+| `RequestBody`                                                                                   | [*operations.UpdateWorkspaceRequestBody](../../models/operations/updateworkspacerequestbody.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |
