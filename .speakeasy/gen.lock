@@ -3,17 +3,18 @@ id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
   docChecksum: d074e83422312242c953b9123b5c20aa
   docVersion: 0.0.1
-  speakeasyVersion: 1.330.0
-  generationVersion: 2.361.10
-  releaseVersion: 0.3.0
-  configChecksum: 9e76a310714fd8ff92b97c1df6333893
+  speakeasyVersion: 1.331.0
+  generationVersion: 2.365.0
+  releaseVersion: 0.4.0
+  configChecksum: 7af8270beb40a19b6c14c2924dd838e9
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.4.14
+    core: 3.4.15
+    defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
     errors: 2.81.9
     examples: 2.81.3
@@ -26,6 +27,7 @@ features:
     nameOverrides: 2.81.2
     nullables: 0.1.0
     responseFormat: 0.1.2
+    retries: 2.83.0
     sdkHooks: 0.1.0
     unions: 2.85.8
 generatedFiles:
@@ -260,6 +262,7 @@ generatedFiles:
   - docs/models/operations/getmetatagsrequest.md
   - docs/models/operations/getmetatagsresponsebody.md
   - docs/sdks/dub/README.md
+  - docs/models/operations/option.md
   - docs/sdks/links/README.md
   - docs/sdks/qrcodes/README.md
   - docs/sdks/analytics/README.md
@@ -269,5 +272,6 @@ generatedFiles:
   - docs/sdks/track/README.md
   - docs/sdks/metatags/README.md
   - USAGE.md
+  - models/operations/options.go
   - .gitattributes
   - internal/hooks/hooks.go
