@@ -3,11 +3,117 @@ info:
   title: CodeSamples overlay for go target
   version: 0.0.0
 actions:
-  - target: $["paths"]["/domains/{slug}"]["delete"]
+  - target: $["paths"]["/links"]["post"]
     update:
       "x-codeSamples":
         - "lang": "go"
-          "label": "deleteDomain"
+          "label": "createLink"
+          "source": |-
+            package main
+
+            import(
+            	dubgo "github.com/dubinc/dub-go"
+            	"github.com/dubinc/dub-go/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := dubgo.New(
+                    dubgo.WithSecurity("DUB_API_KEY"),
+                )
+                var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
+                    URL: "https://google.com",
+                    ExternalID: dubgo.String("123456"),
+                    TagIds: operations.CreateTagIdsArrayOfStr(
+                            []string{
+                                "clux0rgak00011...",
+                            },
+                    ),
+                }
+                ctx := context.Background()
+                res, err := s.Links.Create(ctx, request)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/links/upsert"]["put"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "upsertLink"
+          "source": |-
+            package main
+
+            import(
+            	dubgo "github.com/dubinc/dub-go"
+            	"github.com/dubinc/dub-go/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := dubgo.New(
+                    dubgo.WithSecurity("DUB_API_KEY"),
+                )
+                var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
+                    URL: "https://google.com",
+                    ExternalID: dubgo.String("123456"),
+                    TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(
+                            []string{
+                                "clux0rgak00011...",
+                            },
+                    ),
+                }
+                ctx := context.Background()
+                res, err := s.Links.Upsert(ctx, request)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/links/info"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "getLinkInfo"
+          "source": |-
+            package main
+
+            import(
+            	dubgo "github.com/dubinc/dub-go"
+            	"github.com/dubinc/dub-go/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := dubgo.New(
+                    dubgo.WithSecurity("DUB_API_KEY"),
+                )
+                request := operations.GetLinkInfoRequest{
+                    LinkID: dubgo.String("clux0rgak00011..."),
+                    ExternalID: dubgo.String("ext_123456"),
+                }
+                ctx := context.Background()
+                res, err := s.Links.Get(ctx, request)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/links/{linkId}"]["delete"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "deleteLink"
           "source": |-
             package main
 
@@ -21,9 +127,302 @@ actions:
                 s := dubgo.New(
                     dubgo.WithSecurity("DUB_API_KEY"),
                 )
-                var slug string = "acme.com"
+                var linkID string = "<value>"
                 ctx := context.Background()
-                res, err := s.Domains.Delete(ctx, slug)
+                res, err := s.Links.Delete(ctx, linkID)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/links/{linkId}"]["patch"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "updateLink"
+          "source": |-
+            package main
+
+            import(
+            	dubgo "github.com/dubinc/dub-go"
+            	"github.com/dubinc/dub-go/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := dubgo.New(
+                    dubgo.WithSecurity("DUB_API_KEY"),
+                )
+                var linkID string = "<value>"
+
+                var requestBody *operations.UpdateLinkRequestBody = &operations.UpdateLinkRequestBody{
+                    URL: dubgo.String("https://google.com"),
+                    ExternalID: dubgo.String("123456"),
+                    TagIds: operations.CreateUpdateLinkTagIdsArrayOfStr(
+                            []string{
+                                "clux0rgak00011...",
+                            },
+                    ),
+                }
+                ctx := context.Background()
+                res, err := s.Links.Update(ctx, linkID, requestBody)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/tags"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "createTag"
+          "source": |-
+            package main
+
+            import(
+            	dubgo "github.com/dubinc/dub-go"
+            	"github.com/dubinc/dub-go/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := dubgo.New(
+                    dubgo.WithSecurity("DUB_API_KEY"),
+                )
+                var request *operations.CreateTagRequestBody = &operations.CreateTagRequestBody{}
+                ctx := context.Background()
+                res, err := s.Tags.Create(ctx, request)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/tags/{id}"]["patch"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "updateTag"
+          "source": |-
+            package main
+
+            import(
+            	dubgo "github.com/dubinc/dub-go"
+            	"github.com/dubinc/dub-go/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := dubgo.New(
+                    dubgo.WithSecurity("DUB_API_KEY"),
+                )
+                var id string = "<value>"
+
+                var requestBody *operations.UpdateTagRequestBody = &operations.UpdateTagRequestBody{}
+                ctx := context.Background()
+                res, err := s.Tags.Update(ctx, id, requestBody)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/links/count"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "getLinksCount"
+          "source": |-
+            package main
+
+            import(
+            	dubgo "github.com/dubinc/dub-go"
+            	"github.com/dubinc/dub-go/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := dubgo.New(
+                    dubgo.WithSecurity("DUB_API_KEY"),
+                )
+                request := operations.GetLinksCountRequest{}
+                ctx := context.Background()
+                res, err := s.Links.Count(ctx, request)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/links/bulk"]["patch"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "bulkUpdateLinks"
+          "source": |-
+            package main
+
+            import(
+            	dubgo "github.com/dubinc/dub-go"
+            	"github.com/dubinc/dub-go/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := dubgo.New(
+                    dubgo.WithSecurity("DUB_API_KEY"),
+                )
+                var request *operations.BulkUpdateLinksRequestBody = &operations.BulkUpdateLinksRequestBody{
+                    LinkIds: []string{
+                        "<value>",
+                    },
+                    Data: operations.Data{
+                        URL: dubgo.String("https://google.com"),
+                        TagIds: operations.CreateBulkUpdateLinksTagIdsArrayOfStr(
+                                []string{
+                                    "clux0rgak00011...",
+                                },
+                        ),
+                    },
+                }
+                ctx := context.Background()
+                res, err := s.Links.UpdateMany(ctx, request)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/workspaces/{idOrSlug}"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "getWorkspace"
+          "source": |-
+            package main
+
+            import(
+            	dubgo "github.com/dubinc/dub-go"
+            	"github.com/dubinc/dub-go/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := dubgo.New(
+                    dubgo.WithSecurity("DUB_API_KEY"),
+                )
+                request := operations.GetWorkspaceRequest{
+                    IDOrSlug: "<value>",
+                }
+                ctx := context.Background()
+                res, err := s.Workspaces.Get(ctx, request)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/track/sale"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "trackSale"
+          "source": |-
+            package main
+
+            import(
+            	dubgo "github.com/dubinc/dub-go"
+            	"github.com/dubinc/dub-go/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := dubgo.New(
+                    dubgo.WithSecurity("DUB_API_KEY"),
+                )
+                var request *operations.TrackSaleRequestBody = &operations.TrackSaleRequestBody{
+                    CustomerID: "<value>",
+                    Amount: 996500,
+                    PaymentProcessor: operations.PaymentProcessorShopify,
+                    EventName: dubgo.String("Purchase"),
+                }
+                ctx := context.Background()
+                res, err := s.Track.Sale(ctx, request)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/qr"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "getQRCode"
+          "source": |-
+            package main
+
+            import(
+            	dubgo "github.com/dubinc/dub-go"
+            	"github.com/dubinc/dub-go/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := dubgo.New(
+                    dubgo.WithSecurity("DUB_API_KEY"),
+                )
+                request := operations.GetQRCodeRequest{
+                    URL: "https://brief-micronutrient.org",
+                }
+                ctx := context.Background()
+                res, err := s.QRCodes.Get(ctx, request)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/tags"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "getTags"
+          "source": |-
+            package main
+
+            import(
+            	dubgo "github.com/dubinc/dub-go"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := dubgo.New(
+                    dubgo.WithSecurity("DUB_API_KEY"),
+                )
+
+                ctx := context.Background()
+                res, err := s.Tags.List(ctx)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -67,6 +466,37 @@ actions:
                     // handle response
                 }
             }
+  - target: $["paths"]["/metatags"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "getMetatags"
+          "source": |-
+            package main
+
+            import(
+            	dubgo "github.com/dubinc/dub-go"
+            	"github.com/dubinc/dub-go/models/operations"
+            	"context"
+            	"log"
+            )
+
+            func main() {
+                s := dubgo.New(
+                    dubgo.WithSecurity("DUB_API_KEY"),
+                )
+                request := operations.GetMetatagsRequest{
+                    URL: "https://dub.co",
+                }
+                ctx := context.Background()
+                res, err := s.Metatags.Get(ctx, request)
+                if err != nil {
+                    log.Fatal(err)
+                }
+                if res != nil {
+                    // handle response
+                }
+            }
   - target: $["paths"]["/track/lead"]["post"]
     update:
       "x-codeSamples":
@@ -100,11 +530,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/links/upsert"]["put"]
+  - target: $["paths"]["/links"]["get"]
     update:
       "x-codeSamples":
         - "lang": "go"
-          "label": "upsertLink"
+          "label": "getLinks"
           "source": |-
             package main
 
@@ -119,17 +549,9 @@ actions:
                 s := dubgo.New(
                     dubgo.WithSecurity("DUB_API_KEY"),
                 )
-                var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
-                    URL: "https://google.com",
-                    ExternalID: dubgo.String("123456"),
-                    TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(
-                            []string{
-                                "clux0rgak00011...",
-                            },
-                    ),
-                }
+                request := operations.GetLinksRequest{}
                 ctx := context.Background()
-                res, err := s.Links.Upsert(ctx, request)
+                res, err := s.Links.List(ctx, request)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -176,11 +598,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/workspaces/{idOrSlug}"]["get"]
+  - target: $["paths"]["/analytics"]["get"]
     update:
       "x-codeSamples":
         - "lang": "go"
-          "label": "getWorkspace"
+          "label": "retrieveAnalytics"
           "source": |-
             package main
 
@@ -195,11 +617,16 @@ actions:
                 s := dubgo.New(
                     dubgo.WithSecurity("DUB_API_KEY"),
                 )
-                request := operations.GetWorkspaceRequest{
-                    IDOrSlug: "<value>",
+                request := operations.RetrieveAnalyticsRequest{
+                    Timezone: dubgo.String("America/New_York"),
+                    City: dubgo.String("New York"),
+                    Device: dubgo.String("Desktop"),
+                    Browser: dubgo.String("Chrome"),
+                    Os: dubgo.String("Windows"),
+                    Referer: dubgo.String("google.com"),
                 }
                 ctx := context.Background()
-                res, err := s.Workspaces.Get(ctx, request)
+                res, err := s.Analytics.Retrieve(ctx, request)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -207,11 +634,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/tags/{id}"]["patch"]
+  - target: $["paths"]["/workspaces/{idOrSlug}"]["patch"]
     update:
       "x-codeSamples":
         - "lang": "go"
-          "label": "updateTag"
+          "label": "updateWorkspace"
           "source": |-
             package main
 
@@ -226,11 +653,11 @@ actions:
                 s := dubgo.New(
                     dubgo.WithSecurity("DUB_API_KEY"),
                 )
-                var id string = "<value>"
+                var idOrSlug string = "<value>"
 
-                var requestBody *operations.UpdateTagRequestBody = &operations.UpdateTagRequestBody{}
+                var requestBody *operations.UpdateWorkspaceRequestBody = &operations.UpdateWorkspaceRequestBody{}
                 ctx := context.Background()
-                res, err := s.Tags.Update(ctx, id, requestBody)
+                res, err := s.Workspaces.Update(ctx, idOrSlug, requestBody)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -300,229 +727,11 @@ actions:
                     // handle response
                 }
             }
-  - target: $["paths"]["/links"]["get"]
+  - target: $["paths"]["/domains/{slug}"]["delete"]
     update:
       "x-codeSamples":
         - "lang": "go"
-          "label": "getLinks"
-          "source": |-
-            package main
-
-            import(
-            	dubgo "github.com/dubinc/dub-go"
-            	"github.com/dubinc/dub-go/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := dubgo.New(
-                    dubgo.WithSecurity("DUB_API_KEY"),
-                )
-                request := operations.GetLinksRequest{}
-                ctx := context.Background()
-                res, err := s.Links.List(ctx, request)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/links/info"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "getLinkInfo"
-          "source": |-
-            package main
-
-            import(
-            	dubgo "github.com/dubinc/dub-go"
-            	"github.com/dubinc/dub-go/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := dubgo.New(
-                    dubgo.WithSecurity("DUB_API_KEY"),
-                )
-                request := operations.GetLinkInfoRequest{
-                    LinkID: dubgo.String("clux0rgak00011..."),
-                    ExternalID: dubgo.String("ext_123456"),
-                }
-                ctx := context.Background()
-                res, err := s.Links.Get(ctx, request)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/workspaces/{idOrSlug}"]["patch"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "updateWorkspace"
-          "source": |-
-            package main
-
-            import(
-            	dubgo "github.com/dubinc/dub-go"
-            	"github.com/dubinc/dub-go/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := dubgo.New(
-                    dubgo.WithSecurity("DUB_API_KEY"),
-                )
-                var idOrSlug string = "<value>"
-
-                var requestBody *operations.UpdateWorkspaceRequestBody = &operations.UpdateWorkspaceRequestBody{}
-                ctx := context.Background()
-                res, err := s.Workspaces.Update(ctx, idOrSlug, requestBody)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/tags"]["post"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "createTag"
-          "source": |-
-            package main
-
-            import(
-            	dubgo "github.com/dubinc/dub-go"
-            	"github.com/dubinc/dub-go/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := dubgo.New(
-                    dubgo.WithSecurity("DUB_API_KEY"),
-                )
-                var request *operations.CreateTagRequestBody = &operations.CreateTagRequestBody{}
-                ctx := context.Background()
-                res, err := s.Tags.Create(ctx, request)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/metatags"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "getMetatags"
-          "source": |-
-            package main
-
-            import(
-            	dubgo "github.com/dubinc/dub-go"
-            	"github.com/dubinc/dub-go/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := dubgo.New(
-                    dubgo.WithSecurity("DUB_API_KEY"),
-                )
-                request := operations.GetMetatagsRequest{
-                    URL: "https://dub.co",
-                }
-                ctx := context.Background()
-                res, err := s.Metatags.Get(ctx, request)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/links"]["post"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "createLink"
-          "source": |-
-            package main
-
-            import(
-            	dubgo "github.com/dubinc/dub-go"
-            	"github.com/dubinc/dub-go/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := dubgo.New(
-                    dubgo.WithSecurity("DUB_API_KEY"),
-                )
-                var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
-                    URL: "https://google.com",
-                    ExternalID: dubgo.String("123456"),
-                    TagIds: operations.CreateTagIdsArrayOfStr(
-                            []string{
-                                "clux0rgak00011...",
-                            },
-                    ),
-                }
-                ctx := context.Background()
-                res, err := s.Links.Create(ctx, request)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/links/count"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "getLinksCount"
-          "source": |-
-            package main
-
-            import(
-            	dubgo "github.com/dubinc/dub-go"
-            	"github.com/dubinc/dub-go/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := dubgo.New(
-                    dubgo.WithSecurity("DUB_API_KEY"),
-                )
-                request := operations.GetLinksCountRequest{}
-                ctx := context.Background()
-                res, err := s.Links.Count(ctx, request)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/links/{linkId}"]["delete"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "deleteLink"
+          "label": "deleteDomain"
           "source": |-
             package main
 
@@ -536,71 +745,9 @@ actions:
                 s := dubgo.New(
                     dubgo.WithSecurity("DUB_API_KEY"),
                 )
-                var linkID string = "<value>"
+                var slug string = "acme.com"
                 ctx := context.Background()
-                res, err := s.Links.Delete(ctx, linkID)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/tags"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "getTags"
-          "source": |-
-            package main
-
-            import(
-            	dubgo "github.com/dubinc/dub-go"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := dubgo.New(
-                    dubgo.WithSecurity("DUB_API_KEY"),
-                )
-
-                ctx := context.Background()
-                res, err := s.Tags.List(ctx)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/track/sale"]["post"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "trackSale"
-          "source": |-
-            package main
-
-            import(
-            	dubgo "github.com/dubinc/dub-go"
-            	"github.com/dubinc/dub-go/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := dubgo.New(
-                    dubgo.WithSecurity("DUB_API_KEY"),
-                )
-                var request *operations.TrackSaleRequestBody = &operations.TrackSaleRequestBody{
-                    CustomerID: "<value>",
-                    Amount: 996500,
-                    PaymentProcessor: operations.PaymentProcessorShopify,
-                    EventName: dubgo.String("Purchase"),
-                }
-                ctx := context.Background()
-                res, err := s.Track.Sale(ctx, request)
+                res, err := s.Domains.Delete(ctx, slug)
                 if err != nil {
                     log.Fatal(err)
                 }
@@ -632,153 +779,6 @@ actions:
                 }
                 ctx := context.Background()
                 res, err := s.Track.Customer(ctx, request)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/links/{linkId}"]["patch"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "updateLink"
-          "source": |-
-            package main
-
-            import(
-            	dubgo "github.com/dubinc/dub-go"
-            	"github.com/dubinc/dub-go/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := dubgo.New(
-                    dubgo.WithSecurity("DUB_API_KEY"),
-                )
-                var linkID string = "<value>"
-
-                var requestBody *operations.UpdateLinkRequestBody = &operations.UpdateLinkRequestBody{
-                    URL: dubgo.String("https://google.com"),
-                    ExternalID: dubgo.String("123456"),
-                    TagIds: operations.CreateUpdateLinkTagIdsArrayOfStr(
-                            []string{
-                                "clux0rgak00011...",
-                            },
-                    ),
-                }
-                ctx := context.Background()
-                res, err := s.Links.Update(ctx, linkID, requestBody)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/links/bulk"]["patch"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "bulkUpdateLinks"
-          "source": |-
-            package main
-
-            import(
-            	dubgo "github.com/dubinc/dub-go"
-            	"github.com/dubinc/dub-go/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := dubgo.New(
-                    dubgo.WithSecurity("DUB_API_KEY"),
-                )
-                var request *operations.BulkUpdateLinksRequestBody = &operations.BulkUpdateLinksRequestBody{
-                    LinkIds: []string{
-                        "<value>",
-                    },
-                    Data: operations.Data{
-                        URL: dubgo.String("https://google.com"),
-                        TagIds: operations.CreateBulkUpdateLinksTagIdsArrayOfStr(
-                                []string{
-                                    "clux0rgak00011...",
-                                },
-                        ),
-                    },
-                }
-                ctx := context.Background()
-                res, err := s.Links.UpdateMany(ctx, request)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/qr"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "getQRCode"
-          "source": |-
-            package main
-
-            import(
-            	dubgo "github.com/dubinc/dub-go"
-            	"github.com/dubinc/dub-go/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := dubgo.New(
-                    dubgo.WithSecurity("DUB_API_KEY"),
-                )
-                request := operations.GetQRCodeRequest{
-                    URL: "https://brief-micronutrient.org",
-                }
-                ctx := context.Background()
-                res, err := s.QRCodes.Get(ctx, request)
-                if err != nil {
-                    log.Fatal(err)
-                }
-                if res != nil {
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/analytics"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "retrieveAnalytics"
-          "source": |-
-            package main
-
-            import(
-            	dubgo "github.com/dubinc/dub-go"
-            	"github.com/dubinc/dub-go/models/operations"
-            	"context"
-            	"log"
-            )
-
-            func main() {
-                s := dubgo.New(
-                    dubgo.WithSecurity("DUB_API_KEY"),
-                )
-                request := operations.RetrieveAnalyticsRequest{
-                    Timezone: dubgo.String("America/New_York"),
-                    City: dubgo.String("New York"),
-                    Device: dubgo.String("Desktop"),
-                    Browser: dubgo.String("Chrome"),
-                    Os: dubgo.String("Windows"),
-                    Referer: dubgo.String("google.com"),
-                }
-                ctx := context.Background()
-                res, err := s.Analytics.Retrieve(ctx, request)
                 if err != nil {
                     log.Fatal(err)
                 }
