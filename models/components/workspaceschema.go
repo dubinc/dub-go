@@ -94,6 +94,8 @@ type Domains struct {
 	Slug string `json:"slug"`
 	// Whether the domain is the primary domain for the workspace.
 	Primary *bool `default:"false" json:"primary"`
+	// Whether the domain is verified.
+	Verified *bool `default:"false" json:"verified"`
 }
 
 func (d Domains) MarshalJSON() ([]byte, error) {
@@ -119,6 +121,13 @@ func (o *Domains) GetPrimary() *bool {
 		return nil
 	}
 	return o.Primary
+}
+
+func (o *Domains) GetVerified() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Verified
 }
 
 type WorkspaceSchema struct {
