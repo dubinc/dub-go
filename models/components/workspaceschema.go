@@ -169,8 +169,8 @@ type WorkspaceSchema struct {
 	Domains []Domains `json:"domains"`
 	// The invite code of the workspace.
 	InviteCode *string `json:"inviteCode"`
-	// Whether the workspace is enrolled in the beta testing program.
-	BetaTester *bool `json:"betaTester,omitempty"`
+	// The feature flags of the workspace, indicating which features are enabled.
+	Flags map[string]bool `json:"flags,omitempty"`
 }
 
 func (w WorkspaceSchema) MarshalJSON() ([]byte, error) {
@@ -317,9 +317,9 @@ func (o *WorkspaceSchema) GetInviteCode() *string {
 	return o.InviteCode
 }
 
-func (o *WorkspaceSchema) GetBetaTester() *bool {
+func (o *WorkspaceSchema) GetFlags() map[string]bool {
 	if o == nil {
 		return nil
 	}
-	return o.BetaTester
+	return o.Flags
 }
