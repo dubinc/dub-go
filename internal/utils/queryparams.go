@@ -18,6 +18,11 @@ import (
 )
 
 func PopulateQueryParams(_ context.Context, req *http.Request, queryParams interface{}, globals interface{}) error {
+	// Query parameters may already be present from overriding URL
+	if req.URL.RawQuery != "" {
+		return nil
+	}
+
 	values := url.Values{}
 
 	globalsAlreadyPopulated, err := populateQueryParams(queryParams, globals, values, []string{})

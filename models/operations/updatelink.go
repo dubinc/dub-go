@@ -172,12 +172,14 @@ type UpdateLinkRequestBody struct {
 	Password *string `json:"password,omitempty"`
 	// Whether the short link uses Custom Social Media Cards feature.
 	Proxy *bool `default:"false" json:"proxy"`
-	// The title of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The custom link preview title (og:title). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Title *string `json:"title,omitempty"`
-	// The description of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The custom link preview description (og:description). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Description *string `json:"description,omitempty"`
-	// The image of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The custom link preview image (og:image). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Image *string `json:"image,omitempty"`
+	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
+	Video *string `json:"video,omitempty"`
 	// Whether the short link uses link cloaking.
 	Rewrite *bool `default:"false" json:"rewrite"`
 	// The iOS destination URL for the short link for iOS device targeting.
@@ -331,6 +333,13 @@ func (o *UpdateLinkRequestBody) GetImage() *string {
 		return nil
 	}
 	return o.Image
+}
+
+func (o *UpdateLinkRequestBody) GetVideo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Video
 }
 
 func (o *UpdateLinkRequestBody) GetRewrite() *bool {
