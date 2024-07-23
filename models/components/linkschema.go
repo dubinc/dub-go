@@ -2039,6 +2039,8 @@ type LinkSchema struct {
 	Description *string `json:"description"`
 	// The image of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
 	Image *string `json:"image"`
+	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
+	Video *string `json:"video"`
 	// Whether the short link uses link cloaking.
 	Rewrite *bool `default:"false" json:"rewrite"`
 	// Whether to allow search engines to index the short link.
@@ -2202,6 +2204,13 @@ func (o *LinkSchema) GetImage() *string {
 		return nil
 	}
 	return o.Image
+}
+
+func (o *LinkSchema) GetVideo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Video
 }
 
 func (o *LinkSchema) GetRewrite() *bool {
