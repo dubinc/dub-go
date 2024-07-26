@@ -17,3 +17,9 @@ groupBy := operations.CreateGroupByOne(operations.One{/* values here */})
 groupBy := operations.CreateGroupByTwo(operations.Two{/* values here */})
 ```
 
+### Three
+
+```go
+groupBy := operations.CreateGroupByThree(operations.Three{/* values here */})
+```
+
