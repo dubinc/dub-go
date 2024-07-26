@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: ff99d725530dd92bf929c57a1840df75
+  docChecksum: abaf709df8818e2099256e8478ab3dc0
   docVersion: 0.0.1
-  speakeasyVersion: 1.345.1
-  generationVersion: 2.378.1
-  releaseVersion: 0.6.0
-  configChecksum: c061d57e659dc9af6059fd898a004acb
+  speakeasyVersion: 1.346.0
+  generationVersion: 2.379.3
+  releaseVersion: 0.6.1
+  configChecksum: 8c9937396b7f4628072c2258ed3f36f8
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.5.0
+    core: 3.5.2
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
     envVarSecurityUsage: 0.2.0
@@ -212,6 +212,7 @@ generatedFiles:
   - docs/models/operations/createlinkrequestbody.md
   - docs/models/operations/getlinkscountqueryparamtagids.md
   - docs/models/operations/getlinkscountqueryparamtagnames.md
+  - docs/models/operations/three.md
   - docs/models/operations/two.md
   - docs/models/operations/one.md
   - docs/models/operations/groupby.md
