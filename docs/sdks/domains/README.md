@@ -19,6 +19,7 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
 	"context"
 	"log"
 )
@@ -27,29 +28,46 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-
+    request := operations.ListDomainsRequest{
+        Page: dubgo.Float64(1),
+        PageSize: dubgo.Float64(50),
+    }
     ctx := context.Background()
-    res, err := s.Domains.List(ctx)
+    res, err := s.Domains.List(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
     if res != nil {
-        // handle response
+                for {
+            // handle items
+        
+            res, err = res.Next()
+        
+            if err != nil {
+                // handle error
+            }
+        
+            if res == nil {
+                break
+            }
+        }
+        
     }
 }
 ```
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [operations.ListDomainsRequest](../../models/operations/listdomainsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 
 ### Response
 
-**[[]components.DomainSchema](../../.md), error**
+**[*operations.ListDomainsResponse](../../models/operations/listdomainsresponse.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |

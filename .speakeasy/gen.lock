@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: abaf709df8818e2099256e8478ab3dc0
+  docChecksum: e0d1746d131c608a54c04b32762b2faa
   docVersion: 0.0.1
-  speakeasyVersion: 1.346.0
-  generationVersion: 2.379.3
-  releaseVersion: 0.6.1
-  configChecksum: 8c9937396b7f4628072c2258ed3f36f8
+  speakeasyVersion: 1.348.1
+  generationVersion: 2.380.1
+  releaseVersion: 0.7.0
+  configChecksum: 2ebc25b55ca06ca4e0c208eb44749928
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -16,7 +16,7 @@ features:
     core: 3.5.2
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
-    envVarSecurityUsage: 0.2.0
+    envVarSecurityUsage: 0.2.1
     errors: 2.81.9
     examples: 2.81.3
     flattening: 2.81.1
@@ -27,6 +27,7 @@ features:
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
     nullables: 0.1.0
+    pagination: 2.82.1
     responseFormat: 0.1.2
     retries: 2.83.0
     sdkHooks: 0.1.0
@@ -59,6 +60,29 @@ generatedFiles:
   - internal/utils/retries.go
   - internal/utils/security.go
   - internal/utils/utils.go
+  - /models/operations/getlinks.go
+  - /models/operations/createlink.go
+  - /models/operations/getlinkscount.go
+  - /models/operations/getlinkinfo.go
+  - /models/operations/deletelink.go
+  - /models/operations/updatelink.go
+  - /models/operations/bulkcreatelinks.go
+  - /models/operations/bulkupdatelinks.go
+  - /models/operations/upsertlink.go
+  - /models/operations/getqrcode.go
+  - /models/operations/retrieveanalytics.go
+  - /models/operations/getworkspace.go
+  - /models/operations/updateworkspace.go
+  - /models/operations/createtag.go
+  - /models/operations/updatetag.go
+  - /models/operations/listdomains.go
+  - /models/operations/createdomain.go
+  - /models/operations/deletedomain.go
+  - /models/operations/updatedomain.go
+  - /models/operations/tracklead.go
+  - /models/operations/tracksale.go
+  - /models/operations/trackcustomer.go
+  - /models/operations/getmetatags.go
   - /models/components/linkschema.go
   - /models/components/tagschema.go
   - /models/components/linkgeotargeting.go
@@ -93,6 +117,7 @@ generatedFiles:
   - /models/components/salestoplinks.go
   - /models/components/salestopurls.go
   - /models/components/countrycode.go
+  - /models/components/continentcode.go
   - /models/components/workspaceschema.go
   - /models/components/domainschema.go
   - /models/components/security.go
@@ -105,108 +130,11 @@ generatedFiles:
   - /models/sdkerrors/unprocessableentity.go
   - /models/sdkerrors/ratelimitexceeded.go
   - /models/sdkerrors/internalservererror.go
-  - /models/operations/getlinks.go
-  - /models/operations/createlink.go
-  - /models/operations/getlinkscount.go
-  - /models/operations/getlinkinfo.go
-  - /models/operations/deletelink.go
-  - /models/operations/updatelink.go
-  - /models/operations/bulkcreatelinks.go
-  - /models/operations/bulkupdatelinks.go
-  - /models/operations/upsertlink.go
-  - /models/operations/getqrcode.go
-  - /models/operations/retrieveanalytics.go
-  - /models/operations/getworkspace.go
-  - /models/operations/updateworkspace.go
-  - /models/operations/createtag.go
-  - /models/operations/updatetag.go
-  - /models/operations/createdomain.go
-  - /models/operations/deletedomain.go
-  - /models/operations/updatedomain.go
-  - /models/operations/tracklead.go
-  - /models/operations/tracksale.go
-  - /models/operations/trackcustomer.go
-  - /models/operations/getmetatags.go
-  - docs/models/components/geo.md
-  - docs/models/components/linkschema.md
-  - docs/models/components/color.md
-  - docs/models/components/tagschema.md
-  - docs/models/components/linkgeotargeting.md
-  - docs/models/components/clickscount.md
-  - docs/models/components/clickstimeseries.md
-  - docs/models/components/country.md
-  - docs/models/components/clickscountries.md
-  - docs/models/components/clickscitiescountry.md
-  - docs/models/components/clickscities.md
-  - docs/models/components/clicksdevices.md
-  - docs/models/components/clicksbrowsers.md
-  - docs/models/components/clicksos.md
-  - docs/models/components/clicksreferers.md
-  - docs/models/components/clickstoplinks.md
-  - docs/models/components/clickstopurls.md
-  - docs/models/components/leadscount.md
-  - docs/models/components/leadstimeseries.md
-  - docs/models/components/leadscountriescountry.md
-  - docs/models/components/leadscountries.md
-  - docs/models/components/leadscitiescountry.md
-  - docs/models/components/leadscities.md
-  - docs/models/components/leadsdevices.md
-  - docs/models/components/leadsbrowsers.md
-  - docs/models/components/leadsos.md
-  - docs/models/components/leadsreferers.md
-  - docs/models/components/leadstoplinks.md
-  - docs/models/components/leadstopurls.md
-  - docs/models/components/salescount.md
-  - docs/models/components/salestimeseries.md
-  - docs/models/components/salescountriescountry.md
-  - docs/models/components/salescountries.md
-  - docs/models/components/salescitiescountry.md
-  - docs/models/components/salescities.md
-  - docs/models/components/salesdevices.md
-  - docs/models/components/salesbrowsers.md
-  - docs/models/components/salesos.md
-  - docs/models/components/salesreferers.md
-  - docs/models/components/salestoplinks.md
-  - docs/models/components/salestopurls.md
-  - docs/models/components/countrycode.md
-  - docs/models/components/plan.md
-  - docs/models/components/role.md
-  - docs/models/components/users.md
-  - docs/models/components/domains.md
-  - docs/models/components/workspaceschema.md
-  - docs/models/components/domainschema.md
-  - docs/models/components/security.md
-  - docs/models/sdkerrors/code.md
-  - docs/models/sdkerrors/error.md
-  - docs/models/sdkerrors/badrequest.md
-  - docs/models/sdkerrors/unauthorizedcode.md
-  - docs/models/sdkerrors/unauthorizederror.md
-  - docs/models/sdkerrors/unauthorized.md
-  - docs/models/sdkerrors/forbiddencode.md
-  - docs/models/sdkerrors/forbiddenerror.md
-  - docs/models/sdkerrors/forbidden.md
-  - docs/models/sdkerrors/notfoundcode.md
-  - docs/models/sdkerrors/notfounderror.md
-  - docs/models/sdkerrors/notfound.md
-  - docs/models/sdkerrors/conflictcode.md
-  - docs/models/sdkerrors/conflicterror.md
-  - docs/models/sdkerrors/conflict.md
-  - docs/models/sdkerrors/inviteexpiredcode.md
-  - docs/models/sdkerrors/inviteexpirederror.md
-  - docs/models/sdkerrors/inviteexpired.md
-  - docs/models/sdkerrors/unprocessableentitycode.md
-  - docs/models/sdkerrors/unprocessableentityerror.md
-  - docs/models/sdkerrors/unprocessableentity.md
-  - docs/models/sdkerrors/ratelimitexceededcode.md
-  - docs/models/sdkerrors/ratelimitexceedederror.md
-  - docs/models/sdkerrors/ratelimitexceeded.md
-  - docs/models/sdkerrors/internalservererrorcode.md
-  - docs/models/sdkerrors/internalservererrorerror.md
-  - docs/models/sdkerrors/internalservererror.md
   - docs/models/operations/queryparamtagids.md
   - docs/models/operations/queryparamtagnames.md
   - docs/models/operations/sort.md
   - docs/models/operations/getlinksrequest.md
+  - docs/models/operations/getlinksresponse.md
   - docs/models/operations/tagids.md
   - docs/models/operations/tagnames.md
   - docs/models/operations/createlinkrequestbody.md
@@ -249,6 +177,8 @@ generatedFiles:
   - docs/models/operations/updatetagcolor.md
   - docs/models/operations/updatetagrequestbody.md
   - docs/models/operations/updatetagrequest.md
+  - docs/models/operations/listdomainsrequest.md
+  - docs/models/operations/listdomainsresponse.md
   - docs/models/operations/createdomainrequestbody.md
   - docs/models/operations/deletedomainrequest.md
   - docs/models/operations/deletedomainresponsebody.md
@@ -263,6 +193,83 @@ generatedFiles:
   - docs/models/operations/trackcustomerresponsebody.md
   - docs/models/operations/getmetatagsrequest.md
   - docs/models/operations/getmetatagsresponsebody.md
+  - docs/models/components/geo.md
+  - docs/models/components/linkschema.md
+  - docs/models/components/color.md
+  - docs/models/components/tagschema.md
+  - docs/models/components/linkgeotargeting.md
+  - docs/models/components/clickscount.md
+  - docs/models/components/clickstimeseries.md
+  - docs/models/components/country.md
+  - docs/models/components/clickscountries.md
+  - docs/models/components/clickscitiescountry.md
+  - docs/models/components/clickscities.md
+  - docs/models/components/clicksdevices.md
+  - docs/models/components/clicksbrowsers.md
+  - docs/models/components/clicksos.md
+  - docs/models/components/clicksreferers.md
+  - docs/models/components/clickstoplinks.md
+  - docs/models/components/clickstopurls.md
+  - docs/models/components/leadscount.md
+  - docs/models/components/leadstimeseries.md
+  - docs/models/components/leadscountriescountry.md
+  - docs/models/components/leadscountries.md
+  - docs/models/components/leadscitiescountry.md
+  - docs/models/components/leadscities.md
+  - docs/models/components/leadsdevices.md
+  - docs/models/components/leadsbrowsers.md
+  - docs/models/components/leadsos.md
+  - docs/models/components/leadsreferers.md
+  - docs/models/components/leadstoplinks.md
+  - docs/models/components/leadstopurls.md
+  - docs/models/components/salescount.md
+  - docs/models/components/salestimeseries.md
+  - docs/models/components/salescountriescountry.md
+  - docs/models/components/salescountries.md
+  - docs/models/components/salescitiescountry.md
+  - docs/models/components/salescities.md
+  - docs/models/components/salesdevices.md
+  - docs/models/components/salesbrowsers.md
+  - docs/models/components/salesos.md
+  - docs/models/components/salesreferers.md
+  - docs/models/components/salestoplinks.md
+  - docs/models/components/salestopurls.md
+  - docs/models/components/countrycode.md
+  - docs/models/components/continentcode.md
+  - docs/models/components/plan.md
+  - docs/models/components/role.md
+  - docs/models/components/users.md
+  - docs/models/components/domains.md
+  - docs/models/components/workspaceschema.md
+  - docs/models/components/domainschema.md
+  - docs/models/components/security.md
+  - docs/models/sdkerrors/code.md
+  - docs/models/sdkerrors/error.md
+  - docs/models/sdkerrors/badrequest.md
+  - docs/models/sdkerrors/unauthorizedcode.md
+  - docs/models/sdkerrors/unauthorizederror.md
+  - docs/models/sdkerrors/unauthorized.md
+  - docs/models/sdkerrors/forbiddencode.md
+  - docs/models/sdkerrors/forbiddenerror.md
+  - docs/models/sdkerrors/forbidden.md
+  - docs/models/sdkerrors/notfoundcode.md
+  - docs/models/sdkerrors/notfounderror.md
+  - docs/models/sdkerrors/notfound.md
+  - docs/models/sdkerrors/conflictcode.md
+  - docs/models/sdkerrors/conflicterror.md
+  - docs/models/sdkerrors/conflict.md
+  - docs/models/sdkerrors/inviteexpiredcode.md
+  - docs/models/sdkerrors/inviteexpirederror.md
+  - docs/models/sdkerrors/inviteexpired.md
+  - docs/models/sdkerrors/unprocessableentitycode.md
+  - docs/models/sdkerrors/unprocessableentityerror.md
+  - docs/models/sdkerrors/unprocessableentity.md
+  - docs/models/sdkerrors/ratelimitexceededcode.md
+  - docs/models/sdkerrors/ratelimitexceedederror.md
+  - docs/models/sdkerrors/ratelimitexceeded.md
+  - docs/models/sdkerrors/internalservererrorcode.md
+  - docs/models/sdkerrors/internalservererrorerror.md
+  - docs/models/sdkerrors/internalservererror.md
   - docs/sdks/dub/README.md
   - docs/models/operations/option.md
   - docs/sdks/links/README.md
