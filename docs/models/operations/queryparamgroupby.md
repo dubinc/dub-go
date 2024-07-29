@@ -9,6 +9,7 @@ The parameter to group the analytics data points by. Defaults to 'count' if unde
 | ----------------------------- | ----------------------------- |
 | `QueryParamGroupByCount`      | count                         |
 | `QueryParamGroupByTimeseries` | timeseries                    |
+| `QueryParamGroupByContinents` | continents                    |
 | `QueryParamGroupByCountries`  | countries                     |
 | `QueryParamGroupByCities`     | cities                        |
 | `QueryParamGroupByDevices`    | devices                       |

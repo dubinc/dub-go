@@ -181,7 +181,10 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{}
+	request := operations.GetLinksRequest{
+		Page:     dubgo.Float64(1),
+		PageSize: dubgo.Float64(50),
+	}
 	ctx := context.Background()
 	res, err := s.Links.List(ctx, request)
 	if err != nil {
@@ -279,14 +282,30 @@ func main() {
 		dubgo.WithServerIndex(0),
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{}
+	request := operations.GetLinksRequest{
+		Page:     dubgo.Float64(1),
+		PageSize: dubgo.Float64(50),
+	}
 	ctx := context.Background()
 	res, err := s.Links.List(ctx, request)
 	if err != nil {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+
 	}
 }
 
@@ -311,14 +330,30 @@ func main() {
 		dubgo.WithServerURL("https://api.dub.co"),
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{}
+	request := operations.GetLinksRequest{
+		Page:     dubgo.Float64(1),
+		PageSize: dubgo.Float64(50),
+	}
 	ctx := context.Background()
 	res, err := s.Links.List(ctx, request)
 	if err != nil {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+
 	}
 }
 
@@ -380,14 +415,30 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{}
+	request := operations.GetLinksRequest{
+		Page:     dubgo.Float64(1),
+		PageSize: dubgo.Float64(50),
+	}
 	ctx := context.Background()
 	res, err := s.Links.List(ctx, request)
 	if err != nil {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+
 	}
 }
 
@@ -422,7 +473,10 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{}
+	request := operations.GetLinksRequest{
+		Page:     dubgo.Float64(1),
+		PageSize: dubgo.Float64(50),
+	}
 	ctx := context.Background()
 	res, err := s.Links.List(ctx, request, operations.WithRetries(
 		retry.Config{
@@ -439,7 +493,20 @@ func main() {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+
 	}
 }
 
@@ -472,19 +539,87 @@ func main() {
 			}),
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	request := operations.GetLinksRequest{}
+	request := operations.GetLinksRequest{
+		Page:     dubgo.Float64(1),
+		PageSize: dubgo.Float64(50),
+	}
 	ctx := context.Background()
 	res, err := s.Links.List(ctx, request)
 	if err != nil {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+
 	}
 }
 
 ```
 <!-- End Retries [retries] -->
+
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `Next` method that can be called to pull down the next group of results. If the
+return value of `Next` is `nil`, then there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+```go
+package main
+
+import (
+	"context"
+	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
+	"log"
+)
+
+func main() {
+	s := dubgo.New(
+		dubgo.WithSecurity("DUB_API_KEY"),
+	)
+	request := operations.GetLinksRequest{
+		Page:     dubgo.Float64(1),
+		PageSize: dubgo.Float64(50),
+	}
+	ctx := context.Background()
+	res, err := s.Links.List(ctx, request)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res != nil {
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
+
+	}
+}
+
+```
+<!-- End Pagination [pagination] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

@@ -33,14 +33,30 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    request := operations.GetLinksRequest{}
+    request := operations.GetLinksRequest{
+        Page: dubgo.Float64(1),
+        PageSize: dubgo.Float64(50),
+    }
     ctx := context.Background()
     res, err := s.Links.List(ctx, request)
     if err != nil {
         log.Fatal(err)
     }
     if res != nil {
-        // handle response
+                for {
+            // handle items
+        
+            res, err = res.Next()
+        
+            if err != nil {
+                // handle error
+            }
+        
+            if res == nil {
+                break
+            }
+        }
+        
     }
 }
 ```
@@ -56,7 +72,7 @@ func main() {
 
 ### Response
 
-**[[]components.LinkSchema](../../.md), error**
+**[*operations.GetLinksResponse](../../models/operations/getlinksresponse.md), error**
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
