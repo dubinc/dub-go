@@ -16,10 +16,8 @@ func main() {
 	var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
-		TagIds: operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
+		TagIds: operations.CreateTagIdsStr(
+			"[\"clux0rgak00011...\"]",
 		),
 	}
 	ctx := context.Background()

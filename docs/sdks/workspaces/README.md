@@ -40,6 +40,8 @@ func main() {
 }
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
@@ -86,10 +88,8 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
     var idOrSlug string = "<value>"
-
-    var requestBody *operations.UpdateWorkspaceRequestBody = &operations.UpdateWorkspaceRequestBody{}
     ctx := context.Background()
-    res, err := s.Workspaces.Update(ctx, idOrSlug, requestBody)
+    res, err := s.Workspaces.Update(ctx, idOrSlug, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -98,6 +98,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 

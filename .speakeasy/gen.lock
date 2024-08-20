@@ -1,26 +1,26 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: e0d1746d131c608a54c04b32762b2faa
+  docChecksum: f10061c7787170c0db643f22823c9aa9
   docVersion: 0.0.1
-  speakeasyVersion: 1.348.1
-  generationVersion: 2.380.1
-  releaseVersion: 0.7.0
-  configChecksum: 2ebc25b55ca06ca4e0c208eb44749928
+  speakeasyVersion: 1.376.0
+  generationVersion: 2.402.5
+  releaseVersion: 0.8.0
+  configChecksum: 685bc2b3449f40ac60c0153da018437f
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
   go:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.4
-    core: 3.5.2
+    constsAndDefaults: 0.1.6
+    core: 3.5.5
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
-    envVarSecurityUsage: 0.2.1
+    envVarSecurityUsage: 0.3.0
     errors: 2.81.9
     examples: 2.81.3
     flattening: 2.81.1
-    globalSecurity: 2.82.9
+    globalSecurity: 2.82.10
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.2
@@ -31,11 +31,12 @@ features:
     responseFormat: 0.1.2
     retries: 2.83.0
     sdkHooks: 0.1.0
-    unions: 2.85.8
+    unions: 2.85.9
 generatedFiles:
   - links.go
   - qrcodes.go
   - analytics.go
+  - events.go
   - workspaces.go
   - tags.go
   - domains.go
@@ -71,6 +72,7 @@ generatedFiles:
   - /models/operations/upsertlink.go
   - /models/operations/getqrcode.go
   - /models/operations/retrieveanalytics.go
+  - /models/operations/listevents.go
   - /models/operations/getworkspace.go
   - /models/operations/updateworkspace.go
   - /models/operations/createtag.go
@@ -118,6 +120,7 @@ generatedFiles:
   - /models/components/salestopurls.go
   - /models/components/countrycode.go
   - /models/components/continentcode.go
+  - /models/components/clickevents.go
   - /models/components/workspaceschema.go
   - /models/components/domainschema.go
   - /models/components/security.go
@@ -169,6 +172,11 @@ generatedFiles:
   - docs/models/operations/interval.md
   - docs/models/operations/retrieveanalyticsrequest.md
   - docs/models/operations/retrieveanalyticsresponsebody.md
+  - docs/models/operations/queryparamevent.md
+  - docs/models/operations/queryparaminterval.md
+  - docs/models/operations/order.md
+  - docs/models/operations/sortby.md
+  - docs/models/operations/listeventsrequest.md
   - docs/models/operations/getworkspacerequest.md
   - docs/models/operations/updateworkspacerequestbody.md
   - docs/models/operations/updateworkspacerequest.md
@@ -236,6 +244,7 @@ generatedFiles:
   - docs/models/components/salestopurls.md
   - docs/models/components/countrycode.md
   - docs/models/components/continentcode.md
+  - docs/models/components/clickevents.md
   - docs/models/components/plan.md
   - docs/models/components/role.md
   - docs/models/components/users.md
@@ -275,6 +284,7 @@ generatedFiles:
   - docs/sdks/links/README.md
   - docs/sdks/qrcodes/README.md
   - docs/sdks/analytics/README.md
+  - docs/sdks/events/README.md
   - docs/sdks/workspaces/README.md
   - docs/sdks/tags/README.md
   - docs/sdks/domains/README.md

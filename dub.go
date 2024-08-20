@@ -70,6 +70,7 @@ type Dub struct {
 	Links      *Links
 	QRCodes    *QRCodes
 	Analytics  *Analytics
+	Events     *Events
 	Workspaces *Workspaces
 	Tags       *Tags
 	Domains    *Domains
@@ -120,7 +121,7 @@ func WithClient(client HTTPClient) SDKOption {
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(token string) SDKOption {
 	return func(sdk *Dub) {
-		security := components.Security{Token: &token}
+		security := components.Security{Token: token}
 		sdk.sdkConfiguration.Security = utils.AsSecuritySource(&security)
 	}
 }
@@ -153,9 +154,9 @@ func New(opts ...SDKOption) *Dub {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "0.7.0",
-			GenVersion:        "2.380.1",
-			UserAgent:         "speakeasy-sdk/go 0.7.0 2.380.1 0.0.1 github.com/dubinc/dub-go",
+			SDKVersion:        "0.8.0",
+			GenVersion:        "2.402.5",
+			UserAgent:         "speakeasy-sdk/go 0.8.0 2.402.5 0.0.1 github.com/dubinc/dub-go",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -180,6 +181,8 @@ func New(opts ...SDKOption) *Dub {
 	sdk.QRCodes = newQRCodes(sdk.sdkConfiguration)
 
 	sdk.Analytics = newAnalytics(sdk.sdkConfiguration)
+
+	sdk.Events = newEvents(sdk.sdkConfiguration)
 
 	sdk.Workspaces = newWorkspaces(sdk.sdkConfiguration)
 
