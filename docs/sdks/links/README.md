@@ -61,6 +61,8 @@ func main() {
 }
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
@@ -109,10 +111,8 @@ func main() {
     var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
         URL: "https://google.com",
         ExternalID: dubgo.String("123456"),
-        TagIds: operations.CreateTagIdsArrayOfStr(
-                []string{
-                    "clux0rgak00011...",
-                },
+        TagIds: operations.CreateTagIdsStr(
+        "[\"clux0rgak00011...\"]",
         ),
     }
     ctx := context.Background()
@@ -125,6 +125,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -182,6 +184,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -243,6 +247,8 @@ func main() {
 }
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
@@ -298,6 +304,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -365,6 +373,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -434,6 +444,8 @@ func main() {
 }
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
@@ -485,10 +497,8 @@ func main() {
         },
         Data: operations.Data{
             URL: dubgo.String("https://google.com"),
-            TagIds: operations.CreateBulkUpdateLinksTagIdsArrayOfStr(
-                    []string{
-                        "clux0rgak00011...",
-                    },
+            TagIds: operations.CreateBulkUpdateLinksTagIdsStr(
+            "[\"clux0rgak00011...\"]",
             ),
         },
     }
@@ -502,6 +512,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -567,6 +579,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 

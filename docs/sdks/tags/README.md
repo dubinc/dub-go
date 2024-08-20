@@ -38,6 +38,8 @@ func main() {
 }
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
@@ -82,9 +84,9 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var request *operations.CreateTagRequestBody = &operations.CreateTagRequestBody{}
+
     ctx := context.Background()
-    res, err := s.Tags.Create(ctx, request)
+    res, err := s.Tags.Create(ctx, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -93,6 +95,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 
@@ -140,10 +144,8 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
     var id string = "<value>"
-
-    var requestBody *operations.UpdateTagRequestBody = &operations.UpdateTagRequestBody{}
     ctx := context.Background()
-    res, err := s.Tags.Update(ctx, id, requestBody)
+    res, err := s.Tags.Update(ctx, id, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -152,6 +154,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 

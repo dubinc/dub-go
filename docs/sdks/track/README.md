@@ -43,6 +43,8 @@ func main() {
 }
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
@@ -105,6 +107,8 @@ func main() {
 }
 ```
 
+
+
 ### Parameters
 
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
@@ -150,11 +154,9 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var request *operations.TrackCustomerRequestBody = &operations.TrackCustomerRequestBody{
-        CustomerID: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Track.Customer(ctx, request)
+    res, err := s.Track.Customer(ctx, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -163,6 +165,8 @@ func main() {
     }
 }
 ```
+
+
 
 ### Parameters
 

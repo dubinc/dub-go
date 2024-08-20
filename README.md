@@ -37,10 +37,8 @@ func main() {
 	var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
-		TagIds: operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
+		TagIds: operations.CreateTagIdsStr(
+			"[\"clux0rgak00011...\"]",
 		),
 	}
 	ctx := context.Background()
@@ -115,6 +113,10 @@ func main() {
 ### [Analytics](docs/sdks/analytics/README.md)
 
 * [Retrieve](docs/sdks/analytics/README.md#retrieve) - Retrieve analytics for a link, a domain, or the authenticated workspace.
+
+### [Events](docs/sdks/events/README.md)
+
+* [List](docs/sdks/events/README.md#list) - Retrieve a list of events
 
 ### [Workspaces](docs/sdks/workspaces/README.md)
 
