@@ -1,6 +1,8 @@
 # Track
 (*Track*)
 
+## Overview
+
 ### Available Operations
 
 * [Lead](#lead) - Track a lead
@@ -43,8 +45,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
@@ -53,10 +53,12 @@ func main() {
 | `request`                                                                          | [operations.TrackLeadRequestBody](../../models/operations/trackleadrequestbody.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*operations.TrackLeadResponseBody](../../models/operations/trackleadresponsebody.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -69,6 +71,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## Sale
 
@@ -107,8 +110,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
@@ -117,10 +118,12 @@ func main() {
 | `request`                                                                          | [operations.TrackSaleRequestBody](../../models/operations/tracksalerequestbody.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*operations.TrackSaleResponseBody](../../models/operations/tracksaleresponsebody.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -133,6 +136,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## Customer
 
@@ -166,8 +170,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
@@ -176,10 +178,12 @@ func main() {
 | `request`                                                                                  | [operations.TrackCustomerRequestBody](../../models/operations/trackcustomerrequestbody.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.TrackCustomerResponseBody](../../models/operations/trackcustomerresponsebody.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |

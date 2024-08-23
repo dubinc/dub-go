@@ -2087,6 +2087,8 @@ type LinkSchema struct {
 	Leads *float64 `default:"0" json:"leads"`
 	// [BETA]: The number of sales the short links has generated.
 	Sales *float64 `default:"0" json:"sales"`
+	// [BETA]: The total dollar amount of sales the short links has generated (in cents).
+	SaleAmount *float64 `default:"0" json:"saleAmount"`
 	// The date and time when the short link was created.
 	CreatedAt string `json:"createdAt"`
 	// The date and time when the short link was last updated.
@@ -2365,6 +2367,13 @@ func (o *LinkSchema) GetSales() *float64 {
 		return nil
 	}
 	return o.Sales
+}
+
+func (o *LinkSchema) GetSaleAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SaleAmount
 }
 
 func (o *LinkSchema) GetCreatedAt() string {

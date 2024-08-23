@@ -1,6 +1,8 @@
 # Workspaces
 (*Workspaces*)
 
+## Overview
+
 ### Available Operations
 
 * [Get](#get) - Retrieve a workspace
@@ -40,8 +42,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
@@ -50,10 +50,12 @@ func main() {
 | `request`                                                                        | [operations.GetWorkspaceRequest](../../models/operations/getworkspacerequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
-
 ### Response
 
 **[*components.WorkspaceSchema](../../models/components/workspaceschema.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -66,6 +68,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## Update
 
@@ -99,8 +102,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
@@ -110,10 +111,12 @@ func main() {
 | `requestBody`                                                                                   | [*operations.UpdateWorkspaceRequestBody](../../models/operations/updateworkspacerequestbody.md) | :heavy_minus_sign:                                                                              | N/A                                                                                             |
 | `opts`                                                                                          | [][operations.Option](../../models/operations/option.md)                                        | :heavy_minus_sign:                                                                              | The options for this request.                                                                   |
 
-
 ### Response
 
 **[*components.WorkspaceSchema](../../models/components/workspaceschema.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |

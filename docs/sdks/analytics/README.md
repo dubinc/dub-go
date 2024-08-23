@@ -1,6 +1,8 @@
 # Analytics
 (*Analytics*)
 
+## Overview
+
 ### Available Operations
 
 * [Retrieve](#retrieve) - Retrieve analytics for a link, a domain, or the authenticated workspace.
@@ -44,8 +46,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
@@ -54,10 +54,12 @@ func main() {
 | `request`                                                                                  | [operations.RetrieveAnalyticsRequest](../../models/operations/retrieveanalyticsrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.RetrieveAnalyticsResponseBody](../../models/operations/retrieveanalyticsresponsebody.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |

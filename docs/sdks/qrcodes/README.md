@@ -1,6 +1,8 @@
 # QRCodes
 (*QRCodes*)
 
+## Overview
+
 ### Available Operations
 
 * [Get](#get) - Retrieve a QR code
@@ -39,8 +41,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
@@ -49,10 +49,12 @@ func main() {
 | `request`                                                                  | [operations.GetQRCodeRequest](../../models/operations/getqrcoderequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `opts`                                                                     | [][operations.Option](../../models/operations/option.md)                   | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
-
 ### Response
 
 **[*string](../../.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |

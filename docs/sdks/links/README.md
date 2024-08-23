@@ -1,6 +1,8 @@
 # Links
 (*Links*)
 
+## Overview
+
 ### Available Operations
 
 * [List](#list) - Retrieve a list of links
@@ -61,8 +63,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
@@ -71,10 +71,12 @@ func main() {
 | `request`                                                                | [operations.GetLinksRequest](../../models/operations/getlinksrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
 | `opts`                                                                   | [][operations.Option](../../models/operations/option.md)                 | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
-
 ### Response
 
 **[*operations.GetLinksResponse](../../models/operations/getlinksresponse.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -87,6 +89,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## Create
 
@@ -126,8 +129,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
@@ -136,10 +137,12 @@ func main() {
 | `request`                                                                            | [operations.CreateLinkRequestBody](../../models/operations/createlinkrequestbody.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
-
 ### Response
 
 **[*components.LinkSchema](../../models/components/linkschema.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -152,6 +155,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## Count
 
@@ -185,8 +189,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
@@ -195,10 +197,12 @@ func main() {
 | `request`                                                                          | [operations.GetLinksCountRequest](../../models/operations/getlinkscountrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*float64](../../.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -211,6 +215,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## Get
 
@@ -247,8 +252,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
@@ -257,10 +260,12 @@ func main() {
 | `request`                                                                      | [operations.GetLinkInfoRequest](../../models/operations/getlinkinforequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
-
 ### Response
 
 **[*components.LinkSchema](../../models/components/linkschema.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -273,6 +278,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## Delete
 
@@ -305,8 +311,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                                                             | Type                                                                                                                                  | Required                                                                                                                              | Description                                                                                                                           |
@@ -315,10 +319,12 @@ func main() {
 | `linkID`                                                                                                                              | *string*                                                                                                                              | :heavy_check_mark:                                                                                                                    | The id of the link to delete. You may use either `linkId` (obtained via `/links/info` endpoint) or `externalId` prefixed with `ext_`. |
 | `opts`                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                              | :heavy_minus_sign:                                                                                                                    | The options for this request.                                                                                                         |
 
-
 ### Response
 
 **[*operations.DeleteLinkResponseBody](../../models/operations/deletelinkresponsebody.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -331,6 +337,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## Update
 
@@ -374,8 +381,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                                                             | Type                                                                                                                                  | Required                                                                                                                              | Description                                                                                                                           |
@@ -385,10 +390,12 @@ func main() {
 | `requestBody`                                                                                                                         | [*operations.UpdateLinkRequestBody](../../models/operations/updatelinkrequestbody.md)                                                 | :heavy_minus_sign:                                                                                                                    | N/A                                                                                                                                   |
 | `opts`                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                              | :heavy_minus_sign:                                                                                                                    | The options for this request.                                                                                                         |
 
-
 ### Response
 
 **[*components.LinkSchema](../../models/components/linkschema.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -401,6 +408,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## CreateMany
 
@@ -444,8 +452,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
@@ -454,10 +460,12 @@ func main() {
 | `request`                                                | [[]operations.RequestBody](../../.md)                    | :heavy_check_mark:                                       | The request object to use for the request.               |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
-
 ### Response
 
 **[[]components.LinkSchema](../../.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -470,6 +478,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## UpdateMany
 
@@ -513,8 +522,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
@@ -523,10 +530,12 @@ func main() {
 | `request`                                                                                      | [operations.BulkUpdateLinksRequestBody](../../models/operations/bulkupdatelinksrequestbody.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 | `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
-
 ### Response
 
 **[[]components.LinkSchema](../../.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -539,6 +548,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## Upsert
 
@@ -580,8 +590,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
@@ -590,10 +598,12 @@ func main() {
 | `request`                                                                            | [operations.UpsertLinkRequestBody](../../models/operations/upsertlinkrequestbody.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
-
 ### Response
 
 **[*components.LinkSchema](../../models/components/linkschema.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
