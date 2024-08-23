@@ -1,6 +1,8 @@
 # Domains
 (*Domains*)
 
+## Overview
+
 ### Available Operations
 
 * [List](#list) - Retrieve a list of domains
@@ -56,8 +58,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
@@ -66,10 +66,12 @@ func main() {
 | `request`                                                                      | [operations.ListDomainsRequest](../../models/operations/listdomainsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
-
 ### Response
 
 **[*operations.ListDomainsResponse](../../models/operations/listdomainsresponse.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -82,6 +84,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## Create
 
@@ -120,8 +123,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
@@ -130,10 +131,12 @@ func main() {
 | `request`                                                                                | [operations.CreateDomainRequestBody](../../models/operations/createdomainrequestbody.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
-
 ### Response
 
 **[*components.DomainSchema](../../models/components/domainschema.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -146,6 +149,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## Delete
 
@@ -178,8 +182,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              | Example                                                  |
@@ -188,10 +190,12 @@ func main() {
 | `slug`                                                   | *string*                                                 | :heavy_check_mark:                                       | The domain name.                                         | acme.com                                                 |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |                                                          |
 
-
 ### Response
 
 **[*operations.DeleteDomainResponseBody](../../models/operations/deletedomainresponsebody.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
@@ -204,6 +208,7 @@ func main() {
 | sdkerrors.RateLimitExceeded   | 429                           | application/json              |
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
 
 ## Update
 
@@ -244,8 +249,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
@@ -255,10 +258,12 @@ func main() {
 | `requestBody`                                                                             | [*operations.UpdateDomainRequestBody](../../models/operations/updatedomainrequestbody.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |                                                                                           |
 | `opts`                                                                                    | [][operations.Option](../../models/operations/option.md)                                  | :heavy_minus_sign:                                                                        | The options for this request.                                                             |                                                                                           |
 
-
 ### Response
 
 **[*components.DomainSchema](../../models/components/domainschema.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |

@@ -147,6 +147,10 @@ type WorkspaceSchema struct {
 	LinksUsage float64 `json:"linksUsage"`
 	// The links limit of the workspace.
 	LinksLimit float64 `json:"linksLimit"`
+	// The dollar amount of tracked revenue in the current billing cycle (in cents).
+	SalesUsage float64 `json:"salesUsage"`
+	// The limit of tracked revenue in the current billing cycle (in cents).
+	SalesLimit float64 `json:"salesLimit"`
 	// The domains limit of the workspace.
 	DomainsLimit float64 `json:"domainsLimit"`
 	// The tags limit of the workspace.
@@ -169,6 +173,8 @@ type WorkspaceSchema struct {
 	Domains []Domains `json:"domains"`
 	// The invite code of the workspace.
 	InviteCode *string `json:"inviteCode"`
+	// Whether the workspace has conversion tracking enabled (d.to/conversions).
+	ConversionEnabled bool `json:"conversionEnabled"`
 	// The feature flags of the workspace, indicating which features are enabled.
 	Flags map[string]bool `json:"flags,omitempty"`
 }
@@ -238,6 +244,20 @@ func (o *WorkspaceSchema) GetLinksLimit() float64 {
 		return 0.0
 	}
 	return o.LinksLimit
+}
+
+func (o *WorkspaceSchema) GetSalesUsage() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.SalesUsage
+}
+
+func (o *WorkspaceSchema) GetSalesLimit() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.SalesLimit
 }
 
 func (o *WorkspaceSchema) GetDomainsLimit() float64 {
@@ -315,6 +335,13 @@ func (o *WorkspaceSchema) GetInviteCode() *string {
 		return nil
 	}
 	return o.InviteCode
+}
+
+func (o *WorkspaceSchema) GetConversionEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.ConversionEnabled
 }
 
 func (o *WorkspaceSchema) GetFlags() map[string]bool {

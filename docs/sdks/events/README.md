@@ -1,6 +1,8 @@
 # Events
 (*Events*)
 
+## Overview
+
 ### Available Operations
 
 * [List](#list) - Retrieve a list of events
@@ -44,8 +46,6 @@ func main() {
 }
 ```
 
-
-
 ### Parameters
 
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
@@ -54,10 +54,12 @@ func main() {
 | `request`                                                                    | [operations.ListEventsRequest](../../models/operations/listeventsrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 | `opts`                                                                       | [][operations.Option](../../models/operations/option.md)                     | :heavy_minus_sign:                                                           | The options for this request.                                                |
 
-
 ### Response
 
 **[[]components.ClickEvents](../../.md), error**
+
+### Errors
+
 | Error Object                  | Status Code                   | Content Type                  |
 | ----------------------------- | ----------------------------- | ----------------------------- |
 | sdkerrors.BadRequest          | 400                           | application/json              |
