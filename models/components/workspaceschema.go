@@ -139,6 +139,16 @@ type WorkspaceSchema struct {
 	Slug string `json:"slug"`
 	// The logo of the workspace.
 	Logo *string `default:"null" json:"logo"`
+	// The plan of the workspace.
+	Plan Plan `json:"plan"`
+	// The Stripe ID of the workspace.
+	StripeID *string `json:"stripeId"`
+	// The date and time when the billing cycle starts for the workspace.
+	BillingCycleStart float64 `json:"billingCycleStart"`
+	// [BETA]: The Stripe Connect ID of the workspace.
+	StripeConnectID *string `json:"stripeConnectId"`
+	// The invite code of the workspace.
+	InviteCode *string `json:"inviteCode"`
 	// The usage of the workspace.
 	Usage float64 `json:"usage"`
 	// The usage limit of the workspace.
@@ -157,24 +167,22 @@ type WorkspaceSchema struct {
 	TagsLimit float64 `json:"tagsLimit"`
 	// The users limit of the workspace.
 	UsersLimit float64 `json:"usersLimit"`
-	// The plan of the workspace.
-	Plan Plan `json:"plan"`
-	// The Stripe ID of the workspace.
-	StripeID *string `json:"stripeId"`
-	// The date and time when the billing cycle starts for the workspace.
-	BillingCycleStart float64 `json:"billingCycleStart"`
-	// [BETA]: The Stripe Connect ID of the workspace.
-	StripeConnectID *string `json:"stripeConnectId"`
+	// The AI usage of the workspace.
+	AiUsage float64 `json:"aiUsage"`
+	// The AI limit of the workspace.
+	AiLimit float64 `json:"aiLimit"`
+	// The ID of the referral link of the workspace.
+	ReferralLinkID *string `json:"referralLinkId"`
+	// The number of signups referred by the workspace.
+	ReferredSignups float64 `json:"referredSignups"`
+	// Whether the workspace has conversion tracking enabled (d.to/conversions).
+	ConversionEnabled bool `json:"conversionEnabled"`
 	// The date and time when the workspace was created.
 	CreatedAt string `json:"createdAt"`
 	// The role of the authenticated user in the workspace.
 	Users []Users `json:"users"`
 	// The domains of the workspace.
 	Domains []Domains `json:"domains"`
-	// The invite code of the workspace.
-	InviteCode *string `json:"inviteCode"`
-	// Whether the workspace has conversion tracking enabled (d.to/conversions).
-	ConversionEnabled bool `json:"conversionEnabled"`
 	// The feature flags of the workspace, indicating which features are enabled.
 	Flags map[string]bool `json:"flags,omitempty"`
 }
@@ -216,6 +224,41 @@ func (o *WorkspaceSchema) GetLogo() *string {
 		return nil
 	}
 	return o.Logo
+}
+
+func (o *WorkspaceSchema) GetPlan() Plan {
+	if o == nil {
+		return Plan("")
+	}
+	return o.Plan
+}
+
+func (o *WorkspaceSchema) GetStripeID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StripeID
+}
+
+func (o *WorkspaceSchema) GetBillingCycleStart() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.BillingCycleStart
+}
+
+func (o *WorkspaceSchema) GetStripeConnectID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StripeConnectID
+}
+
+func (o *WorkspaceSchema) GetInviteCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InviteCode
 }
 
 func (o *WorkspaceSchema) GetUsage() float64 {
@@ -281,32 +324,39 @@ func (o *WorkspaceSchema) GetUsersLimit() float64 {
 	return o.UsersLimit
 }
 
-func (o *WorkspaceSchema) GetPlan() Plan {
-	if o == nil {
-		return Plan("")
-	}
-	return o.Plan
-}
-
-func (o *WorkspaceSchema) GetStripeID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.StripeID
-}
-
-func (o *WorkspaceSchema) GetBillingCycleStart() float64 {
+func (o *WorkspaceSchema) GetAiUsage() float64 {
 	if o == nil {
 		return 0.0
 	}
-	return o.BillingCycleStart
+	return o.AiUsage
 }
 
-func (o *WorkspaceSchema) GetStripeConnectID() *string {
+func (o *WorkspaceSchema) GetAiLimit() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.AiLimit
+}
+
+func (o *WorkspaceSchema) GetReferralLinkID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.StripeConnectID
+	return o.ReferralLinkID
+}
+
+func (o *WorkspaceSchema) GetReferredSignups() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.ReferredSignups
+}
+
+func (o *WorkspaceSchema) GetConversionEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.ConversionEnabled
 }
 
 func (o *WorkspaceSchema) GetCreatedAt() string {
@@ -328,20 +378,6 @@ func (o *WorkspaceSchema) GetDomains() []Domains {
 		return []Domains{}
 	}
 	return o.Domains
-}
-
-func (o *WorkspaceSchema) GetInviteCode() *string {
-	if o == nil {
-		return nil
-	}
-	return o.InviteCode
-}
-
-func (o *WorkspaceSchema) GetConversionEnabled() bool {
-	if o == nil {
-		return false
-	}
-	return o.ConversionEnabled
 }
 
 func (o *WorkspaceSchema) GetFlags() map[string]bool {
