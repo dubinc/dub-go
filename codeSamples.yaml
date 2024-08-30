@@ -3,54 +3,48 @@ info:
   title: CodeSamples overlay for go target
   version: 0.0.0
 actions:
-  - target: $["paths"]["/links/{linkId}"]["delete"]
+  - target: $["paths"]["/links/{linkId}"]["patch"]
     update:
       "x-codeSamples":
         - "lang": "go"
-          "label": "deleteLink"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var linkID string = \"<value>\"\n    ctx := context.Background()\n    res, err := s.Links.Delete(ctx, linkID)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/links/bulk"]["post"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "bulkCreateLinks"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var request []operations.RequestBody = []operations.RequestBody{\n        operations.RequestBody{\n            URL: \"https://google.com\",\n            ExternalID: dubgo.String(\"123456\"),\n            TagIds: operations.CreateBulkCreateLinksTagIdsArrayOfStr(\n                    []string{\n                        \"clux0rgak00011...\",\n                    },\n            ),\n        },\n    }\n    ctx := context.Background()\n    res, err := s.Links.CreateMany(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/links/bulk"]["patch"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "bulkUpdateLinks"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var request *operations.BulkUpdateLinksRequestBody = &operations.BulkUpdateLinksRequestBody{\n        LinkIds: []string{\n            \"<value>\",\n        },\n        Data: operations.Data{\n            URL: dubgo.String(\"https://google.com\"),\n            TagIds: operations.CreateBulkUpdateLinksTagIdsStr(\n            \"[\\\"clux0rgak00011...\\\"]\",\n            ),\n        },\n    }\n    ctx := context.Background()\n    res, err := s.Links.UpdateMany(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/tags"]["post"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "createTag"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    ctx := context.Background()\n    res, err := s.Tags.Create(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/track/customer"]["post"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "trackCustomer"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    ctx := context.Background()\n    res, err := s.Track.Customer(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/links/info"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "getLinkInfo"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    request := operations.GetLinkInfoRequest{\n        LinkID: dubgo.String(\"clux0rgak00011...\"),\n        ExternalID: dubgo.String(\"ext_123456\"),\n    }\n    ctx := context.Background()\n    res, err := s.Links.Get(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/links/count"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "getLinksCount"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    request := operations.GetLinksCountRequest{}\n    ctx := context.Background()\n    res, err := s.Links.Count(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "label": "updateLink"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var linkID string = \"<value>\"\n\n    var requestBody *operations.UpdateLinkRequestBody = &operations.UpdateLinkRequestBody{\n        URL: dubgo.String(\"https://google.com\"),\n        ExternalID: dubgo.String(\"123456\"),\n        TagIds: operations.CreateUpdateLinkTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n        ),\n    }\n    ctx := context.Background()\n    res, err := s.Links.Update(ctx, linkID, requestBody)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/qr"]["get"]
     update:
       "x-codeSamples":
         - "lang": "go"
           "label": "getQRCode"
           "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    request := operations.GetQRCodeRequest{\n        URL: \"https://brief-micronutrient.org\",\n    }\n    ctx := context.Background()\n    res, err := s.QRCodes.Get(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/tags"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "createTag"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    ctx := context.Background()\n    res, err := s.Tags.Create(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/track/sale"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "trackSale"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var request *operations.TrackSaleRequestBody = &operations.TrackSaleRequestBody{\n        CustomerID: \"<value>\",\n        Amount: 996500,\n        PaymentProcessor: operations.PaymentProcessorShopify,\n        EventName: dubgo.String(\"Purchase\"),\n    }\n    ctx := context.Background()\n    res, err := s.Track.Sale(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/track/customer"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "trackCustomer"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    ctx := context.Background()\n    res, err := s.Track.Customer(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/metatags"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "getMetatags"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    request := operations.GetMetatagsRequest{\n        URL: \"https://dub.co\",\n    }\n    ctx := context.Background()\n    res, err := s.Metatags.Get(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/links/info"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "getLinkInfo"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    request := operations.GetLinkInfoRequest{\n        LinkID: dubgo.String(\"clux0rgak00011...\"),\n        ExternalID: dubgo.String(\"ext_123456\"),\n    }\n    ctx := context.Background()\n    res, err := s.Links.Get(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/workspaces/{idOrSlug}"]["get"]
     update:
       "x-codeSamples":
@@ -63,36 +57,6 @@ actions:
         - "lang": "go"
           "label": "getTags"
           "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    ctx := context.Background()\n    res, err := s.Tags.List(ctx)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/domains/{slug}"]["patch"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "updateDomain"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var slug string = \"acme.com\"\n\n    var requestBody *operations.UpdateDomainRequestBody = &operations.UpdateDomainRequestBody{\n        Slug: dubgo.String(\"acme.com\"),\n        ExpiredURL: dubgo.String(\"https://acme.com/expired\"),\n        Archived: dubgo.Bool(false),\n        Placeholder: dubgo.String(\"https://dub.co/help/article/what-is-dub\"),\n    }\n    ctx := context.Background()\n    res, err := s.Domains.Update(ctx, slug, requestBody)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/track/sale"]["post"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "trackSale"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var request *operations.TrackSaleRequestBody = &operations.TrackSaleRequestBody{\n        CustomerID: \"<value>\",\n        Amount: 996500,\n        PaymentProcessor: operations.PaymentProcessorShopify,\n        EventName: dubgo.String(\"Purchase\"),\n    }\n    ctx := context.Background()\n    res, err := s.Track.Sale(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/metatags"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "getMetatags"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    request := operations.GetMetatagsRequest{\n        URL: \"https://dub.co\",\n    }\n    ctx := context.Background()\n    res, err := s.Metatags.Get(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/links/upsert"]["put"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "upsertLink"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{\n        URL: \"https://google.com\",\n        ExternalID: dubgo.String(\"123456\"),\n        TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n        ),\n    }\n    ctx := context.Background()\n    res, err := s.Links.Upsert(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/events"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "listEvents"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    request := operations.ListEventsRequest{\n        Timezone: dubgo.String(\"America/New_York\"),\n        City: dubgo.String(\"New York\"),\n        Device: dubgo.String(\"Desktop\"),\n        Browser: dubgo.String(\"Chrome\"),\n        Os: dubgo.String(\"Windows\"),\n        Referer: dubgo.String(\"google.com\"),\n    }\n    ctx := context.Background()\n    res, err := s.Events.List(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/tags/{id}"]["patch"]
     update:
       "x-codeSamples":
@@ -111,18 +75,36 @@ actions:
         - "lang": "go"
           "label": "createDomain"
           "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var request *operations.CreateDomainRequestBody = &operations.CreateDomainRequestBody{\n        Slug: \"acme.com\",\n        ExpiredURL: dubgo.String(\"https://acme.com/expired\"),\n        Archived: dubgo.Bool(false),\n        Placeholder: dubgo.String(\"https://dub.co/help/article/what-is-dub\"),\n    }\n    ctx := context.Background()\n    res, err := s.Domains.Create(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/links"]["post"]
+  - target: $["paths"]["/links/upsert"]["put"]
     update:
       "x-codeSamples":
         - "lang": "go"
-          "label": "createLink"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{\n        URL: \"https://google.com\",\n        ExternalID: dubgo.String(\"123456\"),\n        TagIds: operations.CreateTagIdsStr(\n        \"[\\\"clux0rgak00011...\\\"]\",\n        ),\n    }\n    ctx := context.Background()\n    res, err := s.Links.Create(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/links/{linkId}"]["patch"]
+          "label": "upsertLink"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{\n        URL: \"https://google.com\",\n        ExternalID: dubgo.String(\"123456\"),\n        TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n        ),\n    }\n    ctx := context.Background()\n    res, err := s.Links.Upsert(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/links/count"]["get"]
     update:
       "x-codeSamples":
         - "lang": "go"
-          "label": "updateLink"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var linkID string = \"<value>\"\n\n    var requestBody *operations.UpdateLinkRequestBody = &operations.UpdateLinkRequestBody{\n        URL: dubgo.String(\"https://google.com\"),\n        ExternalID: dubgo.String(\"123456\"),\n        TagIds: operations.CreateUpdateLinkTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n        ),\n    }\n    ctx := context.Background()\n    res, err := s.Links.Update(ctx, linkID, requestBody)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "label": "getLinksCount"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    request := operations.GetLinksCountRequest{}\n    ctx := context.Background()\n    res, err := s.Links.Count(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/links/{linkId}"]["delete"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "deleteLink"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var linkID string = \"<value>\"\n    ctx := context.Background()\n    res, err := s.Links.Delete(ctx, linkID)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/links/bulk"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "bulkCreateLinks"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var request []operations.RequestBody = []operations.RequestBody{\n        operations.RequestBody{\n            URL: \"https://google.com\",\n            ExternalID: dubgo.String(\"123456\"),\n            TagIds: operations.CreateBulkCreateLinksTagIdsArrayOfStr(\n                    []string{\n                        \"clux0rgak00011...\",\n                    },\n            ),\n        },\n    }\n    ctx := context.Background()\n    res, err := s.Links.CreateMany(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/links/bulk"]["patch"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "bulkUpdateLinks"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var request *operations.BulkUpdateLinksRequestBody = &operations.BulkUpdateLinksRequestBody{\n        LinkIds: []string{\n            \"<value>\",\n        },\n        Data: operations.Data{\n            URL: dubgo.String(\"https://google.com\"),\n            TagIds: operations.CreateBulkUpdateLinksTagIdsStr(\n            \"[\\\"clux0rgak00011...\\\"]\",\n            ),\n        },\n    }\n    ctx := context.Background()\n    res, err := s.Links.UpdateMany(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/analytics"]["get"]
     update:
       "x-codeSamples":
@@ -141,15 +123,33 @@ actions:
         - "lang": "go"
           "label": "deleteDomain"
           "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var slug string = \"acme.com\"\n    ctx := context.Background()\n    res, err := s.Domains.Delete(ctx, slug)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/track/lead"]["post"]
+  - target: $["paths"]["/links"]["post"]
     update:
       "x-codeSamples":
         - "lang": "go"
-          "label": "trackLead"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var request *operations.TrackLeadRequestBody = &operations.TrackLeadRequestBody{\n        ClickID: \"<value>\",\n        EventName: \"Sign up\",\n        CustomerID: \"<value>\",\n    }\n    ctx := context.Background()\n    res, err := s.Track.Lead(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "label": "createLink"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{\n        URL: \"https://google.com\",\n        ExternalID: dubgo.String(\"123456\"),\n        TagIds: operations.CreateTagIdsStr(\n        \"[\\\"clux0rgak00011...\\\"]\",\n        ),\n    }\n    ctx := context.Background()\n    res, err := s.Links.Create(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/links"]["get"]
     update:
       "x-codeSamples":
         - "lang": "go"
           "label": "getLinks"
           "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    request := operations.GetLinksRequest{\n        Page: dubgo.Float64(1),\n        PageSize: dubgo.Float64(50),\n    }\n    ctx := context.Background()\n    res, err := s.Links.List(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n                for {\n            // handle items\n        \n            res, err = res.Next()\n        \n            if err != nil {\n                // handle error\n            }\n        \n            if res == nil {\n                break\n            }\n        }\n        \n    }\n}"
+  - target: $["paths"]["/events"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "listEvents"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    request := operations.ListEventsRequest{\n        Timezone: dubgo.String(\"America/New_York\"),\n        City: dubgo.String(\"New York\"),\n        Device: dubgo.String(\"Desktop\"),\n        Browser: dubgo.String(\"Chrome\"),\n        Os: dubgo.String(\"Windows\"),\n        Referer: dubgo.String(\"google.com\"),\n    }\n    ctx := context.Background()\n    res, err := s.Events.List(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/domains/{slug}"]["patch"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "updateDomain"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var slug string = \"acme.com\"\n\n    var requestBody *operations.UpdateDomainRequestBody = &operations.UpdateDomainRequestBody{\n        Slug: dubgo.String(\"acme.com\"),\n        ExpiredURL: dubgo.String(\"https://acme.com/expired\"),\n        Archived: dubgo.Bool(false),\n        Placeholder: dubgo.String(\"https://dub.co/help/article/what-is-dub\"),\n    }\n    ctx := context.Background()\n    res, err := s.Domains.Update(ctx, slug, requestBody)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/track/lead"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "trackLead"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n    var request *operations.TrackLeadRequestBody = &operations.TrackLeadRequestBody{\n        ClickID: \"<value>\",\n        EventName: \"Sign up\",\n        CustomerID: \"<value>\",\n    }\n    ctx := context.Background()\n    res, err := s.Track.Lead(ctx, request)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"

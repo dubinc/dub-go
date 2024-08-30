@@ -115,15 +115,2550 @@ func (o *TrackSaleRequestBody) GetMetadata() map[string]any {
 	return o.Metadata
 }
 
+type TrackSaleCustomer struct {
+	ID     string  `json:"id"`
+	Name   *string `json:"name"`
+	Email  *string `json:"email"`
+	Avatar *string `json:"avatar"`
+}
+
+func (o *TrackSaleCustomer) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *TrackSaleCustomer) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *TrackSaleCustomer) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *TrackSaleCustomer) GetAvatar() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Avatar
+}
+
+type Sale struct {
+	Amount           float64 `json:"amount"`
+	PaymentProcessor string  `json:"paymentProcessor"`
+	InvoiceID        *string `json:"invoiceId"`
+	Currency         string  `json:"currency"`
+}
+
+func (o *Sale) GetAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Amount
+}
+
+func (o *Sale) GetPaymentProcessor() string {
+	if o == nil {
+		return ""
+	}
+	return o.PaymentProcessor
+}
+
+func (o *Sale) GetInvoiceID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InvoiceID
+}
+
+func (o *Sale) GetCurrency() string {
+	if o == nil {
+		return ""
+	}
+	return o.Currency
+}
+
+type TrackSaleClick struct {
+	URL       string `json:"url"`
+	IP        string `json:"ip"`
+	Continent string `json:"continent"`
+	Country   string `json:"country"`
+	City      string `json:"city"`
+	Device    string `json:"device"`
+	Browser   string `json:"browser"`
+	Os        string `json:"os"`
+	Ua        string `json:"ua"`
+	Bot       bool   `json:"bot"`
+	Qr        bool   `json:"qr"`
+	Referer   string `json:"referer"`
+	ID        string `json:"id"`
+}
+
+func (o *TrackSaleClick) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
+}
+
+func (o *TrackSaleClick) GetIP() string {
+	if o == nil {
+		return ""
+	}
+	return o.IP
+}
+
+func (o *TrackSaleClick) GetContinent() string {
+	if o == nil {
+		return ""
+	}
+	return o.Continent
+}
+
+func (o *TrackSaleClick) GetCountry() string {
+	if o == nil {
+		return ""
+	}
+	return o.Country
+}
+
+func (o *TrackSaleClick) GetCity() string {
+	if o == nil {
+		return ""
+	}
+	return o.City
+}
+
+func (o *TrackSaleClick) GetDevice() string {
+	if o == nil {
+		return ""
+	}
+	return o.Device
+}
+
+func (o *TrackSaleClick) GetBrowser() string {
+	if o == nil {
+		return ""
+	}
+	return o.Browser
+}
+
+func (o *TrackSaleClick) GetOs() string {
+	if o == nil {
+		return ""
+	}
+	return o.Os
+}
+
+func (o *TrackSaleClick) GetUa() string {
+	if o == nil {
+		return ""
+	}
+	return o.Ua
+}
+
+func (o *TrackSaleClick) GetBot() bool {
+	if o == nil {
+		return false
+	}
+	return o.Bot
+}
+
+func (o *TrackSaleClick) GetQr() bool {
+	if o == nil {
+		return false
+	}
+	return o.Qr
+}
+
+func (o *TrackSaleClick) GetReferer() string {
+	if o == nil {
+		return ""
+	}
+	return o.Referer
+}
+
+func (o *TrackSaleClick) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+// TrackSaleGeo - Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`. Learn more: https://d.to/geo
+type TrackSaleGeo struct {
+	Af *string `json:"AF,omitempty"`
+	Al *string `json:"AL,omitempty"`
+	Dz *string `json:"DZ,omitempty"`
+	As *string `json:"AS,omitempty"`
+	Ad *string `json:"AD,omitempty"`
+	Ao *string `json:"AO,omitempty"`
+	Ai *string `json:"AI,omitempty"`
+	Aq *string `json:"AQ,omitempty"`
+	Ag *string `json:"AG,omitempty"`
+	Ar *string `json:"AR,omitempty"`
+	Am *string `json:"AM,omitempty"`
+	Aw *string `json:"AW,omitempty"`
+	Au *string `json:"AU,omitempty"`
+	At *string `json:"AT,omitempty"`
+	Az *string `json:"AZ,omitempty"`
+	Bs *string `json:"BS,omitempty"`
+	Bh *string `json:"BH,omitempty"`
+	Bd *string `json:"BD,omitempty"`
+	Bb *string `json:"BB,omitempty"`
+	By *string `json:"BY,omitempty"`
+	Be *string `json:"BE,omitempty"`
+	Bz *string `json:"BZ,omitempty"`
+	Bj *string `json:"BJ,omitempty"`
+	Bm *string `json:"BM,omitempty"`
+	Bt *string `json:"BT,omitempty"`
+	Bo *string `json:"BO,omitempty"`
+	Ba *string `json:"BA,omitempty"`
+	Bw *string `json:"BW,omitempty"`
+	Bv *string `json:"BV,omitempty"`
+	Br *string `json:"BR,omitempty"`
+	Io *string `json:"IO,omitempty"`
+	Bn *string `json:"BN,omitempty"`
+	Bg *string `json:"BG,omitempty"`
+	Bf *string `json:"BF,omitempty"`
+	Bi *string `json:"BI,omitempty"`
+	Kh *string `json:"KH,omitempty"`
+	Cm *string `json:"CM,omitempty"`
+	Ca *string `json:"CA,omitempty"`
+	Cv *string `json:"CV,omitempty"`
+	Ky *string `json:"KY,omitempty"`
+	Cf *string `json:"CF,omitempty"`
+	Td *string `json:"TD,omitempty"`
+	Cl *string `json:"CL,omitempty"`
+	Cn *string `json:"CN,omitempty"`
+	Cx *string `json:"CX,omitempty"`
+	Cc *string `json:"CC,omitempty"`
+	Co *string `json:"CO,omitempty"`
+	Km *string `json:"KM,omitempty"`
+	Cg *string `json:"CG,omitempty"`
+	Cd *string `json:"CD,omitempty"`
+	Ck *string `json:"CK,omitempty"`
+	Cr *string `json:"CR,omitempty"`
+	Ci *string `json:"CI,omitempty"`
+	Hr *string `json:"HR,omitempty"`
+	Cu *string `json:"CU,omitempty"`
+	Cy *string `json:"CY,omitempty"`
+	Cz *string `json:"CZ,omitempty"`
+	Dk *string `json:"DK,omitempty"`
+	Dj *string `json:"DJ,omitempty"`
+	Dm *string `json:"DM,omitempty"`
+	Do *string `json:"DO,omitempty"`
+	Ec *string `json:"EC,omitempty"`
+	Eg *string `json:"EG,omitempty"`
+	Sv *string `json:"SV,omitempty"`
+	Gq *string `json:"GQ,omitempty"`
+	Er *string `json:"ER,omitempty"`
+	Ee *string `json:"EE,omitempty"`
+	Et *string `json:"ET,omitempty"`
+	Fk *string `json:"FK,omitempty"`
+	Fo *string `json:"FO,omitempty"`
+	Fj *string `json:"FJ,omitempty"`
+	Fi *string `json:"FI,omitempty"`
+	Fr *string `json:"FR,omitempty"`
+	Gf *string `json:"GF,omitempty"`
+	Pf *string `json:"PF,omitempty"`
+	Tf *string `json:"TF,omitempty"`
+	Ga *string `json:"GA,omitempty"`
+	Gm *string `json:"GM,omitempty"`
+	Ge *string `json:"GE,omitempty"`
+	De *string `json:"DE,omitempty"`
+	Gh *string `json:"GH,omitempty"`
+	Gi *string `json:"GI,omitempty"`
+	Gr *string `json:"GR,omitempty"`
+	Gl *string `json:"GL,omitempty"`
+	Gd *string `json:"GD,omitempty"`
+	Gp *string `json:"GP,omitempty"`
+	Gu *string `json:"GU,omitempty"`
+	Gt *string `json:"GT,omitempty"`
+	Gn *string `json:"GN,omitempty"`
+	Gw *string `json:"GW,omitempty"`
+	Gy *string `json:"GY,omitempty"`
+	Ht *string `json:"HT,omitempty"`
+	Hm *string `json:"HM,omitempty"`
+	Va *string `json:"VA,omitempty"`
+	Hn *string `json:"HN,omitempty"`
+	Hk *string `json:"HK,omitempty"`
+	Hu *string `json:"HU,omitempty"`
+	Is *string `json:"IS,omitempty"`
+	In *string `json:"IN,omitempty"`
+	ID *string `json:"ID,omitempty"`
+	Ir *string `json:"IR,omitempty"`
+	Iq *string `json:"IQ,omitempty"`
+	Ie *string `json:"IE,omitempty"`
+	Il *string `json:"IL,omitempty"`
+	It *string `json:"IT,omitempty"`
+	Jm *string `json:"JM,omitempty"`
+	Jp *string `json:"JP,omitempty"`
+	Jo *string `json:"JO,omitempty"`
+	Kz *string `json:"KZ,omitempty"`
+	Ke *string `json:"KE,omitempty"`
+	Ki *string `json:"KI,omitempty"`
+	Kp *string `json:"KP,omitempty"`
+	Kr *string `json:"KR,omitempty"`
+	Kw *string `json:"KW,omitempty"`
+	Kg *string `json:"KG,omitempty"`
+	La *string `json:"LA,omitempty"`
+	Lv *string `json:"LV,omitempty"`
+	Lb *string `json:"LB,omitempty"`
+	Ls *string `json:"LS,omitempty"`
+	Lr *string `json:"LR,omitempty"`
+	Ly *string `json:"LY,omitempty"`
+	Li *string `json:"LI,omitempty"`
+	Lt *string `json:"LT,omitempty"`
+	Lu *string `json:"LU,omitempty"`
+	Mo *string `json:"MO,omitempty"`
+	Mg *string `json:"MG,omitempty"`
+	Mw *string `json:"MW,omitempty"`
+	My *string `json:"MY,omitempty"`
+	Mv *string `json:"MV,omitempty"`
+	Ml *string `json:"ML,omitempty"`
+	Mt *string `json:"MT,omitempty"`
+	Mh *string `json:"MH,omitempty"`
+	Mq *string `json:"MQ,omitempty"`
+	Mr *string `json:"MR,omitempty"`
+	Mu *string `json:"MU,omitempty"`
+	Yt *string `json:"YT,omitempty"`
+	Mx *string `json:"MX,omitempty"`
+	Fm *string `json:"FM,omitempty"`
+	Md *string `json:"MD,omitempty"`
+	Mc *string `json:"MC,omitempty"`
+	Mn *string `json:"MN,omitempty"`
+	Ms *string `json:"MS,omitempty"`
+	Ma *string `json:"MA,omitempty"`
+	Mz *string `json:"MZ,omitempty"`
+	Mm *string `json:"MM,omitempty"`
+	Na *string `json:"NA,omitempty"`
+	Nr *string `json:"NR,omitempty"`
+	Np *string `json:"NP,omitempty"`
+	Nl *string `json:"NL,omitempty"`
+	Nc *string `json:"NC,omitempty"`
+	Nz *string `json:"NZ,omitempty"`
+	Ni *string `json:"NI,omitempty"`
+	Ne *string `json:"NE,omitempty"`
+	Ng *string `json:"NG,omitempty"`
+	Nu *string `json:"NU,omitempty"`
+	Nf *string `json:"NF,omitempty"`
+	Mk *string `json:"MK,omitempty"`
+	Mp *string `json:"MP,omitempty"`
+	No *string `json:"NO,omitempty"`
+	Om *string `json:"OM,omitempty"`
+	Pk *string `json:"PK,omitempty"`
+	Pw *string `json:"PW,omitempty"`
+	Ps *string `json:"PS,omitempty"`
+	Pa *string `json:"PA,omitempty"`
+	Pg *string `json:"PG,omitempty"`
+	Py *string `json:"PY,omitempty"`
+	Pe *string `json:"PE,omitempty"`
+	Ph *string `json:"PH,omitempty"`
+	Pn *string `json:"PN,omitempty"`
+	Pl *string `json:"PL,omitempty"`
+	Pt *string `json:"PT,omitempty"`
+	Pr *string `json:"PR,omitempty"`
+	Qa *string `json:"QA,omitempty"`
+	Re *string `json:"RE,omitempty"`
+	Ro *string `json:"RO,omitempty"`
+	Ru *string `json:"RU,omitempty"`
+	Rw *string `json:"RW,omitempty"`
+	Sh *string `json:"SH,omitempty"`
+	Kn *string `json:"KN,omitempty"`
+	Lc *string `json:"LC,omitempty"`
+	Pm *string `json:"PM,omitempty"`
+	Vc *string `json:"VC,omitempty"`
+	Ws *string `json:"WS,omitempty"`
+	Sm *string `json:"SM,omitempty"`
+	St *string `json:"ST,omitempty"`
+	Sa *string `json:"SA,omitempty"`
+	Sn *string `json:"SN,omitempty"`
+	Sc *string `json:"SC,omitempty"`
+	Sl *string `json:"SL,omitempty"`
+	Sg *string `json:"SG,omitempty"`
+	Sk *string `json:"SK,omitempty"`
+	Si *string `json:"SI,omitempty"`
+	Sb *string `json:"SB,omitempty"`
+	So *string `json:"SO,omitempty"`
+	Za *string `json:"ZA,omitempty"`
+	Gs *string `json:"GS,omitempty"`
+	Es *string `json:"ES,omitempty"`
+	Lk *string `json:"LK,omitempty"`
+	Sd *string `json:"SD,omitempty"`
+	Sr *string `json:"SR,omitempty"`
+	Sj *string `json:"SJ,omitempty"`
+	Sz *string `json:"SZ,omitempty"`
+	Se *string `json:"SE,omitempty"`
+	Ch *string `json:"CH,omitempty"`
+	Sy *string `json:"SY,omitempty"`
+	Tw *string `json:"TW,omitempty"`
+	Tj *string `json:"TJ,omitempty"`
+	Tz *string `json:"TZ,omitempty"`
+	Th *string `json:"TH,omitempty"`
+	Tl *string `json:"TL,omitempty"`
+	Tg *string `json:"TG,omitempty"`
+	Tk *string `json:"TK,omitempty"`
+	To *string `json:"TO,omitempty"`
+	Tt *string `json:"TT,omitempty"`
+	Tn *string `json:"TN,omitempty"`
+	Tr *string `json:"TR,omitempty"`
+	Tm *string `json:"TM,omitempty"`
+	Tc *string `json:"TC,omitempty"`
+	Tv *string `json:"TV,omitempty"`
+	Ug *string `json:"UG,omitempty"`
+	Ua *string `json:"UA,omitempty"`
+	Ae *string `json:"AE,omitempty"`
+	Gb *string `json:"GB,omitempty"`
+	Us *string `json:"US,omitempty"`
+	Um *string `json:"UM,omitempty"`
+	Uy *string `json:"UY,omitempty"`
+	Uz *string `json:"UZ,omitempty"`
+	Vu *string `json:"VU,omitempty"`
+	Ve *string `json:"VE,omitempty"`
+	Vn *string `json:"VN,omitempty"`
+	Vg *string `json:"VG,omitempty"`
+	Vi *string `json:"VI,omitempty"`
+	Wf *string `json:"WF,omitempty"`
+	Eh *string `json:"EH,omitempty"`
+	Ye *string `json:"YE,omitempty"`
+	Zm *string `json:"ZM,omitempty"`
+	Zw *string `json:"ZW,omitempty"`
+	Ax *string `json:"AX,omitempty"`
+	Bq *string `json:"BQ,omitempty"`
+	Cw *string `json:"CW,omitempty"`
+	Gg *string `json:"GG,omitempty"`
+	Im *string `json:"IM,omitempty"`
+	Je *string `json:"JE,omitempty"`
+	Me *string `json:"ME,omitempty"`
+	Bl *string `json:"BL,omitempty"`
+	Mf *string `json:"MF,omitempty"`
+	Rs *string `json:"RS,omitempty"`
+	Sx *string `json:"SX,omitempty"`
+	Ss *string `json:"SS,omitempty"`
+	Xk *string `json:"XK,omitempty"`
+}
+
+func (o *TrackSaleGeo) GetAf() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Af
+}
+
+func (o *TrackSaleGeo) GetAl() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Al
+}
+
+func (o *TrackSaleGeo) GetDz() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Dz
+}
+
+func (o *TrackSaleGeo) GetAs() *string {
+	if o == nil {
+		return nil
+	}
+	return o.As
+}
+
+func (o *TrackSaleGeo) GetAd() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ad
+}
+
+func (o *TrackSaleGeo) GetAo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ao
+}
+
+func (o *TrackSaleGeo) GetAi() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ai
+}
+
+func (o *TrackSaleGeo) GetAq() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Aq
+}
+
+func (o *TrackSaleGeo) GetAg() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ag
+}
+
+func (o *TrackSaleGeo) GetAr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ar
+}
+
+func (o *TrackSaleGeo) GetAm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Am
+}
+
+func (o *TrackSaleGeo) GetAw() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Aw
+}
+
+func (o *TrackSaleGeo) GetAu() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Au
+}
+
+func (o *TrackSaleGeo) GetAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.At
+}
+
+func (o *TrackSaleGeo) GetAz() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Az
+}
+
+func (o *TrackSaleGeo) GetBs() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bs
+}
+
+func (o *TrackSaleGeo) GetBh() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bh
+}
+
+func (o *TrackSaleGeo) GetBd() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bd
+}
+
+func (o *TrackSaleGeo) GetBb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bb
+}
+
+func (o *TrackSaleGeo) GetBy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.By
+}
+
+func (o *TrackSaleGeo) GetBe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Be
+}
+
+func (o *TrackSaleGeo) GetBz() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bz
+}
+
+func (o *TrackSaleGeo) GetBj() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bj
+}
+
+func (o *TrackSaleGeo) GetBm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bm
+}
+
+func (o *TrackSaleGeo) GetBt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bt
+}
+
+func (o *TrackSaleGeo) GetBo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bo
+}
+
+func (o *TrackSaleGeo) GetBa() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ba
+}
+
+func (o *TrackSaleGeo) GetBw() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bw
+}
+
+func (o *TrackSaleGeo) GetBv() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bv
+}
+
+func (o *TrackSaleGeo) GetBr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Br
+}
+
+func (o *TrackSaleGeo) GetIo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Io
+}
+
+func (o *TrackSaleGeo) GetBn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bn
+}
+
+func (o *TrackSaleGeo) GetBg() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bg
+}
+
+func (o *TrackSaleGeo) GetBf() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bf
+}
+
+func (o *TrackSaleGeo) GetBi() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bi
+}
+
+func (o *TrackSaleGeo) GetKh() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Kh
+}
+
+func (o *TrackSaleGeo) GetCm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cm
+}
+
+func (o *TrackSaleGeo) GetCa() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ca
+}
+
+func (o *TrackSaleGeo) GetCv() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cv
+}
+
+func (o *TrackSaleGeo) GetKy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ky
+}
+
+func (o *TrackSaleGeo) GetCf() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cf
+}
+
+func (o *TrackSaleGeo) GetTd() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Td
+}
+
+func (o *TrackSaleGeo) GetCl() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cl
+}
+
+func (o *TrackSaleGeo) GetCn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cn
+}
+
+func (o *TrackSaleGeo) GetCx() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cx
+}
+
+func (o *TrackSaleGeo) GetCc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cc
+}
+
+func (o *TrackSaleGeo) GetCo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Co
+}
+
+func (o *TrackSaleGeo) GetKm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Km
+}
+
+func (o *TrackSaleGeo) GetCg() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cg
+}
+
+func (o *TrackSaleGeo) GetCd() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cd
+}
+
+func (o *TrackSaleGeo) GetCk() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ck
+}
+
+func (o *TrackSaleGeo) GetCr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cr
+}
+
+func (o *TrackSaleGeo) GetCi() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ci
+}
+
+func (o *TrackSaleGeo) GetHr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Hr
+}
+
+func (o *TrackSaleGeo) GetCu() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cu
+}
+
+func (o *TrackSaleGeo) GetCy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cy
+}
+
+func (o *TrackSaleGeo) GetCz() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cz
+}
+
+func (o *TrackSaleGeo) GetDk() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Dk
+}
+
+func (o *TrackSaleGeo) GetDj() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Dj
+}
+
+func (o *TrackSaleGeo) GetDm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Dm
+}
+
+func (o *TrackSaleGeo) GetDo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Do
+}
+
+func (o *TrackSaleGeo) GetEc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ec
+}
+
+func (o *TrackSaleGeo) GetEg() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Eg
+}
+
+func (o *TrackSaleGeo) GetSv() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sv
+}
+
+func (o *TrackSaleGeo) GetGq() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gq
+}
+
+func (o *TrackSaleGeo) GetEr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Er
+}
+
+func (o *TrackSaleGeo) GetEe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ee
+}
+
+func (o *TrackSaleGeo) GetEt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Et
+}
+
+func (o *TrackSaleGeo) GetFk() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Fk
+}
+
+func (o *TrackSaleGeo) GetFo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Fo
+}
+
+func (o *TrackSaleGeo) GetFj() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Fj
+}
+
+func (o *TrackSaleGeo) GetFi() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Fi
+}
+
+func (o *TrackSaleGeo) GetFr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Fr
+}
+
+func (o *TrackSaleGeo) GetGf() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gf
+}
+
+func (o *TrackSaleGeo) GetPf() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Pf
+}
+
+func (o *TrackSaleGeo) GetTf() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tf
+}
+
+func (o *TrackSaleGeo) GetGa() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ga
+}
+
+func (o *TrackSaleGeo) GetGm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gm
+}
+
+func (o *TrackSaleGeo) GetGe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ge
+}
+
+func (o *TrackSaleGeo) GetDe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.De
+}
+
+func (o *TrackSaleGeo) GetGh() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gh
+}
+
+func (o *TrackSaleGeo) GetGi() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gi
+}
+
+func (o *TrackSaleGeo) GetGr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gr
+}
+
+func (o *TrackSaleGeo) GetGl() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gl
+}
+
+func (o *TrackSaleGeo) GetGd() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gd
+}
+
+func (o *TrackSaleGeo) GetGp() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gp
+}
+
+func (o *TrackSaleGeo) GetGu() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gu
+}
+
+func (o *TrackSaleGeo) GetGt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gt
+}
+
+func (o *TrackSaleGeo) GetGn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gn
+}
+
+func (o *TrackSaleGeo) GetGw() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gw
+}
+
+func (o *TrackSaleGeo) GetGy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gy
+}
+
+func (o *TrackSaleGeo) GetHt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ht
+}
+
+func (o *TrackSaleGeo) GetHm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Hm
+}
+
+func (o *TrackSaleGeo) GetVa() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Va
+}
+
+func (o *TrackSaleGeo) GetHn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Hn
+}
+
+func (o *TrackSaleGeo) GetHk() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Hk
+}
+
+func (o *TrackSaleGeo) GetHu() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Hu
+}
+
+func (o *TrackSaleGeo) GetIs() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Is
+}
+
+func (o *TrackSaleGeo) GetIn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.In
+}
+
+func (o *TrackSaleGeo) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *TrackSaleGeo) GetIr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ir
+}
+
+func (o *TrackSaleGeo) GetIq() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Iq
+}
+
+func (o *TrackSaleGeo) GetIe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ie
+}
+
+func (o *TrackSaleGeo) GetIl() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Il
+}
+
+func (o *TrackSaleGeo) GetIt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.It
+}
+
+func (o *TrackSaleGeo) GetJm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Jm
+}
+
+func (o *TrackSaleGeo) GetJp() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Jp
+}
+
+func (o *TrackSaleGeo) GetJo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Jo
+}
+
+func (o *TrackSaleGeo) GetKz() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Kz
+}
+
+func (o *TrackSaleGeo) GetKe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ke
+}
+
+func (o *TrackSaleGeo) GetKi() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ki
+}
+
+func (o *TrackSaleGeo) GetKp() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Kp
+}
+
+func (o *TrackSaleGeo) GetKr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Kr
+}
+
+func (o *TrackSaleGeo) GetKw() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Kw
+}
+
+func (o *TrackSaleGeo) GetKg() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Kg
+}
+
+func (o *TrackSaleGeo) GetLa() *string {
+	if o == nil {
+		return nil
+	}
+	return o.La
+}
+
+func (o *TrackSaleGeo) GetLv() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Lv
+}
+
+func (o *TrackSaleGeo) GetLb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Lb
+}
+
+func (o *TrackSaleGeo) GetLs() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ls
+}
+
+func (o *TrackSaleGeo) GetLr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Lr
+}
+
+func (o *TrackSaleGeo) GetLy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ly
+}
+
+func (o *TrackSaleGeo) GetLi() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Li
+}
+
+func (o *TrackSaleGeo) GetLt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Lt
+}
+
+func (o *TrackSaleGeo) GetLu() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Lu
+}
+
+func (o *TrackSaleGeo) GetMo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mo
+}
+
+func (o *TrackSaleGeo) GetMg() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mg
+}
+
+func (o *TrackSaleGeo) GetMw() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mw
+}
+
+func (o *TrackSaleGeo) GetMy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.My
+}
+
+func (o *TrackSaleGeo) GetMv() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mv
+}
+
+func (o *TrackSaleGeo) GetMl() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ml
+}
+
+func (o *TrackSaleGeo) GetMt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mt
+}
+
+func (o *TrackSaleGeo) GetMh() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mh
+}
+
+func (o *TrackSaleGeo) GetMq() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mq
+}
+
+func (o *TrackSaleGeo) GetMr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mr
+}
+
+func (o *TrackSaleGeo) GetMu() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mu
+}
+
+func (o *TrackSaleGeo) GetYt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Yt
+}
+
+func (o *TrackSaleGeo) GetMx() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mx
+}
+
+func (o *TrackSaleGeo) GetFm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Fm
+}
+
+func (o *TrackSaleGeo) GetMd() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Md
+}
+
+func (o *TrackSaleGeo) GetMc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mc
+}
+
+func (o *TrackSaleGeo) GetMn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mn
+}
+
+func (o *TrackSaleGeo) GetMs() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ms
+}
+
+func (o *TrackSaleGeo) GetMa() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ma
+}
+
+func (o *TrackSaleGeo) GetMz() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mz
+}
+
+func (o *TrackSaleGeo) GetMm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mm
+}
+
+func (o *TrackSaleGeo) GetNa() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Na
+}
+
+func (o *TrackSaleGeo) GetNr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Nr
+}
+
+func (o *TrackSaleGeo) GetNp() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Np
+}
+
+func (o *TrackSaleGeo) GetNl() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Nl
+}
+
+func (o *TrackSaleGeo) GetNc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Nc
+}
+
+func (o *TrackSaleGeo) GetNz() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Nz
+}
+
+func (o *TrackSaleGeo) GetNi() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ni
+}
+
+func (o *TrackSaleGeo) GetNe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ne
+}
+
+func (o *TrackSaleGeo) GetNg() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ng
+}
+
+func (o *TrackSaleGeo) GetNu() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Nu
+}
+
+func (o *TrackSaleGeo) GetNf() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Nf
+}
+
+func (o *TrackSaleGeo) GetMk() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mk
+}
+
+func (o *TrackSaleGeo) GetMp() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mp
+}
+
+func (o *TrackSaleGeo) GetNo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.No
+}
+
+func (o *TrackSaleGeo) GetOm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Om
+}
+
+func (o *TrackSaleGeo) GetPk() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Pk
+}
+
+func (o *TrackSaleGeo) GetPw() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Pw
+}
+
+func (o *TrackSaleGeo) GetPs() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ps
+}
+
+func (o *TrackSaleGeo) GetPa() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Pa
+}
+
+func (o *TrackSaleGeo) GetPg() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Pg
+}
+
+func (o *TrackSaleGeo) GetPy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Py
+}
+
+func (o *TrackSaleGeo) GetPe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Pe
+}
+
+func (o *TrackSaleGeo) GetPh() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ph
+}
+
+func (o *TrackSaleGeo) GetPn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Pn
+}
+
+func (o *TrackSaleGeo) GetPl() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Pl
+}
+
+func (o *TrackSaleGeo) GetPt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Pt
+}
+
+func (o *TrackSaleGeo) GetPr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Pr
+}
+
+func (o *TrackSaleGeo) GetQa() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Qa
+}
+
+func (o *TrackSaleGeo) GetRe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Re
+}
+
+func (o *TrackSaleGeo) GetRo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ro
+}
+
+func (o *TrackSaleGeo) GetRu() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ru
+}
+
+func (o *TrackSaleGeo) GetRw() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Rw
+}
+
+func (o *TrackSaleGeo) GetSh() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sh
+}
+
+func (o *TrackSaleGeo) GetKn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Kn
+}
+
+func (o *TrackSaleGeo) GetLc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Lc
+}
+
+func (o *TrackSaleGeo) GetPm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Pm
+}
+
+func (o *TrackSaleGeo) GetVc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Vc
+}
+
+func (o *TrackSaleGeo) GetWs() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ws
+}
+
+func (o *TrackSaleGeo) GetSm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sm
+}
+
+func (o *TrackSaleGeo) GetSt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.St
+}
+
+func (o *TrackSaleGeo) GetSa() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sa
+}
+
+func (o *TrackSaleGeo) GetSn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sn
+}
+
+func (o *TrackSaleGeo) GetSc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sc
+}
+
+func (o *TrackSaleGeo) GetSl() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sl
+}
+
+func (o *TrackSaleGeo) GetSg() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sg
+}
+
+func (o *TrackSaleGeo) GetSk() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sk
+}
+
+func (o *TrackSaleGeo) GetSi() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Si
+}
+
+func (o *TrackSaleGeo) GetSb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sb
+}
+
+func (o *TrackSaleGeo) GetSo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.So
+}
+
+func (o *TrackSaleGeo) GetZa() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Za
+}
+
+func (o *TrackSaleGeo) GetGs() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gs
+}
+
+func (o *TrackSaleGeo) GetEs() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Es
+}
+
+func (o *TrackSaleGeo) GetLk() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Lk
+}
+
+func (o *TrackSaleGeo) GetSd() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sd
+}
+
+func (o *TrackSaleGeo) GetSr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sr
+}
+
+func (o *TrackSaleGeo) GetSj() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sj
+}
+
+func (o *TrackSaleGeo) GetSz() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sz
+}
+
+func (o *TrackSaleGeo) GetSe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Se
+}
+
+func (o *TrackSaleGeo) GetCh() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ch
+}
+
+func (o *TrackSaleGeo) GetSy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sy
+}
+
+func (o *TrackSaleGeo) GetTw() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tw
+}
+
+func (o *TrackSaleGeo) GetTj() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tj
+}
+
+func (o *TrackSaleGeo) GetTz() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tz
+}
+
+func (o *TrackSaleGeo) GetTh() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Th
+}
+
+func (o *TrackSaleGeo) GetTl() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tl
+}
+
+func (o *TrackSaleGeo) GetTg() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tg
+}
+
+func (o *TrackSaleGeo) GetTk() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tk
+}
+
+func (o *TrackSaleGeo) GetTo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.To
+}
+
+func (o *TrackSaleGeo) GetTt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tt
+}
+
+func (o *TrackSaleGeo) GetTn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tn
+}
+
+func (o *TrackSaleGeo) GetTr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tr
+}
+
+func (o *TrackSaleGeo) GetTm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tm
+}
+
+func (o *TrackSaleGeo) GetTc() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tc
+}
+
+func (o *TrackSaleGeo) GetTv() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tv
+}
+
+func (o *TrackSaleGeo) GetUg() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ug
+}
+
+func (o *TrackSaleGeo) GetUa() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ua
+}
+
+func (o *TrackSaleGeo) GetAe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ae
+}
+
+func (o *TrackSaleGeo) GetGb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gb
+}
+
+func (o *TrackSaleGeo) GetUs() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Us
+}
+
+func (o *TrackSaleGeo) GetUm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Um
+}
+
+func (o *TrackSaleGeo) GetUy() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Uy
+}
+
+func (o *TrackSaleGeo) GetUz() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Uz
+}
+
+func (o *TrackSaleGeo) GetVu() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Vu
+}
+
+func (o *TrackSaleGeo) GetVe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ve
+}
+
+func (o *TrackSaleGeo) GetVn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Vn
+}
+
+func (o *TrackSaleGeo) GetVg() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Vg
+}
+
+func (o *TrackSaleGeo) GetVi() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Vi
+}
+
+func (o *TrackSaleGeo) GetWf() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Wf
+}
+
+func (o *TrackSaleGeo) GetEh() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Eh
+}
+
+func (o *TrackSaleGeo) GetYe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ye
+}
+
+func (o *TrackSaleGeo) GetZm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Zm
+}
+
+func (o *TrackSaleGeo) GetZw() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Zw
+}
+
+func (o *TrackSaleGeo) GetAx() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ax
+}
+
+func (o *TrackSaleGeo) GetBq() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bq
+}
+
+func (o *TrackSaleGeo) GetCw() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Cw
+}
+
+func (o *TrackSaleGeo) GetGg() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Gg
+}
+
+func (o *TrackSaleGeo) GetIm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Im
+}
+
+func (o *TrackSaleGeo) GetJe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Je
+}
+
+func (o *TrackSaleGeo) GetMe() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Me
+}
+
+func (o *TrackSaleGeo) GetBl() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Bl
+}
+
+func (o *TrackSaleGeo) GetMf() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Mf
+}
+
+func (o *TrackSaleGeo) GetRs() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Rs
+}
+
+func (o *TrackSaleGeo) GetSx() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Sx
+}
+
+func (o *TrackSaleGeo) GetSs() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ss
+}
+
+func (o *TrackSaleGeo) GetXk() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Xk
+}
+
+type TrackSaleLink struct {
+	// The unique ID of the short link.
+	ID string `json:"id"`
+	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
+	Domain string `json:"domain"`
+	// The short link slug. If not provided, a random 7-character slug will be generated.
+	Key string `json:"key"`
+	// This is the ID of the link in your database. If set, it can be used to identify the link in the future. Must be prefixed with 'ext_' when passed as a query parameter.
+	ExternalID *string `json:"externalId"`
+	// The destination URL of the short link.
+	URL string `json:"url"`
+	// [BETA] Whether to track conversions for the short link.
+	TrackConversion *bool `default:"false" json:"trackConversion"`
+	// Whether the short link is archived.
+	Archived *bool `default:"false" json:"archived"`
+	// The date and time when the short link will expire in ISO-8601 format.
+	ExpiresAt *string `json:"expiresAt"`
+	// The URL to redirect to when the short link has expired.
+	ExpiredURL *string `json:"expiredUrl"`
+	// The password required to access the destination URL of the short link.
+	Password *string `json:"password"`
+	// Whether the short link uses Custom Social Media Cards feature.
+	Proxy *bool `default:"false" json:"proxy"`
+	// The title of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	Title *string `json:"title"`
+	// The description of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	Description *string `json:"description"`
+	// The image of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	Image *string `json:"image"`
+	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
+	Video *string `json:"video"`
+	// Whether the short link uses link cloaking.
+	Rewrite *bool `default:"false" json:"rewrite"`
+	// Whether to allow search engines to index the short link.
+	DoIndex *bool `default:"false" json:"doIndex"`
+	// The iOS destination URL for the short link for iOS device targeting.
+	Ios *string `json:"ios"`
+	// The Android destination URL for the short link for Android device targeting.
+	Android *string `json:"android"`
+	// Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`. Learn more: https://d.to/geo
+	Geo *TrackSaleGeo `json:"geo"`
+	// Whether the short link's stats are publicly accessible.
+	PublicStats *bool `default:"false" json:"publicStats"`
+	// The comments for the short link.
+	Comments *string `json:"comments"`
+	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
+	ShortLink string `json:"shortLink"`
+	// The full URL of the QR code for the short link (e.g. `https://api.dub.co/qr?url=https://dub.sh/try`).
+	QrCode string `json:"qrCode"`
+	// The UTM source of the short link.
+	UtmSource *string `json:"utm_source"`
+	// The UTM medium of the short link.
+	UtmMedium *string `json:"utm_medium"`
+	// The UTM campaign of the short link.
+	UtmCampaign *string `json:"utm_campaign"`
+	// The UTM term of the short link.
+	UtmTerm *string `json:"utm_term"`
+	// The UTM content of the short link.
+	UtmContent *string `json:"utm_content"`
+	// The user ID of the creator of the short link.
+	UserID string `json:"userId"`
+	// The workspace ID of the short link.
+	WorkspaceID string `json:"workspaceId"`
+	// The number of clicks on the short link.
+	Clicks *float64 `default:"0" json:"clicks"`
+	// The date and time when the short link was last clicked.
+	LastClicked *string `json:"lastClicked"`
+	// [BETA]: The number of leads the short links has generated.
+	Leads *float64 `default:"0" json:"leads"`
+	// [BETA]: The number of sales the short links has generated.
+	Sales *float64 `default:"0" json:"sales"`
+	// [BETA]: The total dollar amount of sales the short links has generated (in cents).
+	SaleAmount *float64 `default:"0" json:"saleAmount"`
+	// The date and time when the short link was created.
+	CreatedAt string `json:"createdAt"`
+	// The date and time when the short link was last updated.
+	UpdatedAt string `json:"updatedAt"`
+}
+
+func (t TrackSaleLink) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TrackSaleLink) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *TrackSaleLink) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *TrackSaleLink) GetDomain() string {
+	if o == nil {
+		return ""
+	}
+	return o.Domain
+}
+
+func (o *TrackSaleLink) GetKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.Key
+}
+
+func (o *TrackSaleLink) GetExternalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExternalID
+}
+
+func (o *TrackSaleLink) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
+}
+
+func (o *TrackSaleLink) GetTrackConversion() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.TrackConversion
+}
+
+func (o *TrackSaleLink) GetArchived() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Archived
+}
+
+func (o *TrackSaleLink) GetExpiresAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExpiresAt
+}
+
+func (o *TrackSaleLink) GetExpiredURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExpiredURL
+}
+
+func (o *TrackSaleLink) GetPassword() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Password
+}
+
+func (o *TrackSaleLink) GetProxy() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Proxy
+}
+
+func (o *TrackSaleLink) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *TrackSaleLink) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *TrackSaleLink) GetImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Image
+}
+
+func (o *TrackSaleLink) GetVideo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Video
+}
+
+func (o *TrackSaleLink) GetRewrite() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Rewrite
+}
+
+func (o *TrackSaleLink) GetDoIndex() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.DoIndex
+}
+
+func (o *TrackSaleLink) GetIos() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ios
+}
+
+func (o *TrackSaleLink) GetAndroid() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Android
+}
+
+func (o *TrackSaleLink) GetGeo() *TrackSaleGeo {
+	if o == nil {
+		return nil
+	}
+	return o.Geo
+}
+
+func (o *TrackSaleLink) GetPublicStats() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.PublicStats
+}
+
+func (o *TrackSaleLink) GetComments() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Comments
+}
+
+func (o *TrackSaleLink) GetShortLink() string {
+	if o == nil {
+		return ""
+	}
+	return o.ShortLink
+}
+
+func (o *TrackSaleLink) GetQrCode() string {
+	if o == nil {
+		return ""
+	}
+	return o.QrCode
+}
+
+func (o *TrackSaleLink) GetUtmSource() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmSource
+}
+
+func (o *TrackSaleLink) GetUtmMedium() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmMedium
+}
+
+func (o *TrackSaleLink) GetUtmCampaign() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmCampaign
+}
+
+func (o *TrackSaleLink) GetUtmTerm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmTerm
+}
+
+func (o *TrackSaleLink) GetUtmContent() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmContent
+}
+
+func (o *TrackSaleLink) GetUserID() string {
+	if o == nil {
+		return ""
+	}
+	return o.UserID
+}
+
+func (o *TrackSaleLink) GetWorkspaceID() string {
+	if o == nil {
+		return ""
+	}
+	return o.WorkspaceID
+}
+
+func (o *TrackSaleLink) GetClicks() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Clicks
+}
+
+func (o *TrackSaleLink) GetLastClicked() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LastClicked
+}
+
+func (o *TrackSaleLink) GetLeads() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Leads
+}
+
+func (o *TrackSaleLink) GetSales() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Sales
+}
+
+func (o *TrackSaleLink) GetSaleAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SaleAmount
+}
+
+func (o *TrackSaleLink) GetCreatedAt() string {
+	if o == nil {
+		return ""
+	}
+	return o.CreatedAt
+}
+
+func (o *TrackSaleLink) GetUpdatedAt() string {
+	if o == nil {
+		return ""
+	}
+	return o.UpdatedAt
+}
+
 // TrackSaleResponseBody - A sale was tracked.
 type TrackSaleResponseBody struct {
-	EventName        string         `json:"eventName"`
-	CustomerID       string         `json:"customerId"`
-	Amount           float64        `json:"amount"`
-	PaymentProcessor string         `json:"paymentProcessor"`
-	InvoiceID        *string        `json:"invoiceId"`
-	Currency         string         `json:"currency"`
-	Metadata         map[string]any `json:"metadata"`
+	EventName string            `json:"eventName"`
+	Customer  TrackSaleCustomer `json:"customer"`
+	Sale      Sale              `json:"sale"`
+	Click     TrackSaleClick    `json:"click"`
+	Link      TrackSaleLink     `json:"link"`
 }
 
 func (o *TrackSaleResponseBody) GetEventName() string {
@@ -133,44 +2668,30 @@ func (o *TrackSaleResponseBody) GetEventName() string {
 	return o.EventName
 }
 
-func (o *TrackSaleResponseBody) GetCustomerID() string {
+func (o *TrackSaleResponseBody) GetCustomer() TrackSaleCustomer {
 	if o == nil {
-		return ""
+		return TrackSaleCustomer{}
 	}
-	return o.CustomerID
+	return o.Customer
 }
 
-func (o *TrackSaleResponseBody) GetAmount() float64 {
+func (o *TrackSaleResponseBody) GetSale() Sale {
 	if o == nil {
-		return 0.0
+		return Sale{}
 	}
-	return o.Amount
+	return o.Sale
 }
 
-func (o *TrackSaleResponseBody) GetPaymentProcessor() string {
+func (o *TrackSaleResponseBody) GetClick() TrackSaleClick {
 	if o == nil {
-		return ""
+		return TrackSaleClick{}
 	}
-	return o.PaymentProcessor
+	return o.Click
 }
 
-func (o *TrackSaleResponseBody) GetInvoiceID() *string {
+func (o *TrackSaleResponseBody) GetLink() TrackSaleLink {
 	if o == nil {
-		return nil
+		return TrackSaleLink{}
 	}
-	return o.InvoiceID
-}
-
-func (o *TrackSaleResponseBody) GetCurrency() string {
-	if o == nil {
-		return ""
-	}
-	return o.Currency
-}
-
-func (o *TrackSaleResponseBody) GetMetadata() map[string]any {
-	if o == nil {
-		return nil
-	}
-	return o.Metadata
+	return o.Link
 }

@@ -117,7 +117,6 @@ type SortBy string
 
 const (
 	SortByTimestamp SortBy = "timestamp"
-	SortByAmount    SortBy = "amount"
 )
 
 func (e SortBy) ToPointer() *SortBy {
@@ -130,8 +129,6 @@ func (e *SortBy) UnmarshalJSON(data []byte) error {
 	}
 	switch v {
 	case "timestamp":
-		fallthrough
-	case "amount":
 		*e = SortBy(v)
 		return nil
 	default:
