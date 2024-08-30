@@ -29,7 +29,7 @@ func newEvents(sdkConfig sdkConfiguration) *Events {
 
 // List - Retrieve a list of events
 // Retrieve a paginated list of events for the authenticated workspace.
-func (s *Events) List(ctx context.Context, request operations.ListEventsRequest, opts ...operations.Option) ([]components.ClickEvents, error) {
+func (s *Events) List(ctx context.Context, request operations.ListEventsRequest, opts ...operations.Option) ([]components.ClickEvent, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "listEvents",
@@ -177,7 +177,7 @@ func (s *Events) List(ctx context.Context, request operations.ListEventsRequest,
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			var out []components.ClickEvents
+			var out []components.ClickEvent
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

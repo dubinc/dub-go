@@ -5,12 +5,9 @@ A lead was tracked.
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `ClickID`          | *string*           | :heavy_check_mark: | N/A                |
-| `EventName`        | *string*           | :heavy_check_mark: | N/A                |
-| `CustomerID`       | *string*           | :heavy_check_mark: | N/A                |
-| `CustomerName`     | *string*           | :heavy_check_mark: | N/A                |
-| `CustomerEmail`    | *string*           | :heavy_check_mark: | N/A                |
-| `CustomerAvatar`   | *string*           | :heavy_check_mark: | N/A                |
-| `Metadata`         | map[string]*any*   | :heavy_minus_sign: | N/A                |
+| Field                                                      | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `EventName`                                                | *string*                                                   | :heavy_check_mark:                                         | N/A                                                        |
+| `Customer`                                                 | [operations.Customer](../../models/operations/customer.md) | :heavy_check_mark:                                         | N/A                                                        |
+| `Click`                                                    | [operations.Click](../../models/operations/click.md)       | :heavy_check_mark:                                         | N/A                                                        |
+| `Link`                                                     | [operations.Link](../../models/operations/link.md)         | :heavy_check_mark:                                         | N/A                                                        |

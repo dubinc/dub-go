@@ -6,4 +6,3 @@
 | Name              | Value             |
 | ----------------- | ----------------- |
 | `SortByTimestamp` | timestamp         |
-| `SortByAmount`    | amount            |

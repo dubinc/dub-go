@@ -351,553 +351,193 @@ func (o *RetrieveAnalyticsRequest) GetRoot() *bool {
 type RetrieveAnalyticsResponseBodyType string
 
 const (
-	RetrieveAnalyticsResponseBodyTypeClicksCount             RetrieveAnalyticsResponseBodyType = "ClicksCount"
-	RetrieveAnalyticsResponseBodyTypeArrayOfClicksTimeseries RetrieveAnalyticsResponseBodyType = "arrayOfClicksTimeseries"
-	RetrieveAnalyticsResponseBodyTypeArrayOfClicksCountries  RetrieveAnalyticsResponseBodyType = "arrayOfClicksCountries"
-	RetrieveAnalyticsResponseBodyTypeArrayOfClicksCities     RetrieveAnalyticsResponseBodyType = "arrayOfClicksCities"
-	RetrieveAnalyticsResponseBodyTypeArrayOfClicksDevices    RetrieveAnalyticsResponseBodyType = "arrayOfClicksDevices"
-	RetrieveAnalyticsResponseBodyTypeArrayOfClicksBrowsers   RetrieveAnalyticsResponseBodyType = "arrayOfClicksBrowsers"
-	RetrieveAnalyticsResponseBodyTypeArrayOfClicksOS         RetrieveAnalyticsResponseBodyType = "arrayOfClicksOS"
-	RetrieveAnalyticsResponseBodyTypeArrayOfClicksReferers   RetrieveAnalyticsResponseBodyType = "arrayOfClicksReferers"
-	RetrieveAnalyticsResponseBodyTypeArrayOfClicksTopLinks   RetrieveAnalyticsResponseBodyType = "arrayOfClicksTopLinks"
-	RetrieveAnalyticsResponseBodyTypeArrayOfClicksTopUrls    RetrieveAnalyticsResponseBodyType = "arrayOfClicksTopUrls"
-	RetrieveAnalyticsResponseBodyTypeLeadsCount              RetrieveAnalyticsResponseBodyType = "LeadsCount"
-	RetrieveAnalyticsResponseBodyTypeArrayOfLeadsTimeseries  RetrieveAnalyticsResponseBodyType = "arrayOfLeadsTimeseries"
-	RetrieveAnalyticsResponseBodyTypeArrayOfLeadsCountries   RetrieveAnalyticsResponseBodyType = "arrayOfLeadsCountries"
-	RetrieveAnalyticsResponseBodyTypeArrayOfLeadsCities      RetrieveAnalyticsResponseBodyType = "arrayOfLeadsCities"
-	RetrieveAnalyticsResponseBodyTypeArrayOfLeadsDevices     RetrieveAnalyticsResponseBodyType = "arrayOfLeadsDevices"
-	RetrieveAnalyticsResponseBodyTypeArrayOfLeadsBrowsers    RetrieveAnalyticsResponseBodyType = "arrayOfLeadsBrowsers"
-	RetrieveAnalyticsResponseBodyTypeArrayOfLeadsOS          RetrieveAnalyticsResponseBodyType = "arrayOfLeadsOS"
-	RetrieveAnalyticsResponseBodyTypeArrayOfLeadsReferers    RetrieveAnalyticsResponseBodyType = "arrayOfLeadsReferers"
-	RetrieveAnalyticsResponseBodyTypeArrayOfLeadsTopLinks    RetrieveAnalyticsResponseBodyType = "arrayOfLeadsTopLinks"
-	RetrieveAnalyticsResponseBodyTypeArrayOfLeadsTopUrls     RetrieveAnalyticsResponseBodyType = "arrayOfLeadsTopUrls"
-	RetrieveAnalyticsResponseBodyTypeSalesCount              RetrieveAnalyticsResponseBodyType = "SalesCount"
-	RetrieveAnalyticsResponseBodyTypeArrayOfSalesTimeseries  RetrieveAnalyticsResponseBodyType = "arrayOfSalesTimeseries"
-	RetrieveAnalyticsResponseBodyTypeArrayOfSalesCountries   RetrieveAnalyticsResponseBodyType = "arrayOfSalesCountries"
-	RetrieveAnalyticsResponseBodyTypeArrayOfSalesCities      RetrieveAnalyticsResponseBodyType = "arrayOfSalesCities"
-	RetrieveAnalyticsResponseBodyTypeArrayOfSalesDevices     RetrieveAnalyticsResponseBodyType = "arrayOfSalesDevices"
-	RetrieveAnalyticsResponseBodyTypeArrayOfSalesBrowsers    RetrieveAnalyticsResponseBodyType = "arrayOfSalesBrowsers"
-	RetrieveAnalyticsResponseBodyTypeArrayOfSalesOS          RetrieveAnalyticsResponseBodyType = "arrayOfSalesOS"
-	RetrieveAnalyticsResponseBodyTypeArrayOfSalesReferers    RetrieveAnalyticsResponseBodyType = "arrayOfSalesReferers"
-	RetrieveAnalyticsResponseBodyTypeArrayOfSalesTopLinks    RetrieveAnalyticsResponseBodyType = "arrayOfSalesTopLinks"
-	RetrieveAnalyticsResponseBodyTypeArrayOfSalesTopUrls     RetrieveAnalyticsResponseBodyType = "arrayOfSalesTopUrls"
+	RetrieveAnalyticsResponseBodyTypeAnalyticsCount             RetrieveAnalyticsResponseBodyType = "AnalyticsCount"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTimeseries RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsTimeseries"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCountries  RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsCountries"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCities     RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsCities"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsDevices    RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsDevices"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsBrowsers   RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsBrowsers"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsOS         RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsOS"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsReferers   RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsReferers"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopLinks   RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsTopLinks"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopUrls    RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsTopUrls"
 )
 
 // RetrieveAnalyticsResponseBody - Analytics data
 type RetrieveAnalyticsResponseBody struct {
-	ClicksCount             *components.ClicksCount
-	ArrayOfClicksTimeseries []components.ClicksTimeseries
-	ArrayOfClicksCountries  []components.ClicksCountries
-	ArrayOfClicksCities     []components.ClicksCities
-	ArrayOfClicksDevices    []components.ClicksDevices
-	ArrayOfClicksBrowsers   []components.ClicksBrowsers
-	ArrayOfClicksOS         []components.ClicksOS
-	ArrayOfClicksReferers   []components.ClicksReferers
-	ArrayOfClicksTopLinks   []components.ClicksTopLinks
-	ArrayOfClicksTopUrls    []components.ClicksTopUrls
-	LeadsCount              *components.LeadsCount
-	ArrayOfLeadsTimeseries  []components.LeadsTimeseries
-	ArrayOfLeadsCountries   []components.LeadsCountries
-	ArrayOfLeadsCities      []components.LeadsCities
-	ArrayOfLeadsDevices     []components.LeadsDevices
-	ArrayOfLeadsBrowsers    []components.LeadsBrowsers
-	ArrayOfLeadsOS          []components.LeadsOS
-	ArrayOfLeadsReferers    []components.LeadsReferers
-	ArrayOfLeadsTopLinks    []components.LeadsTopLinks
-	ArrayOfLeadsTopUrls     []components.LeadsTopUrls
-	SalesCount              *components.SalesCount
-	ArrayOfSalesTimeseries  []components.SalesTimeseries
-	ArrayOfSalesCountries   []components.SalesCountries
-	ArrayOfSalesCities      []components.SalesCities
-	ArrayOfSalesDevices     []components.SalesDevices
-	ArrayOfSalesBrowsers    []components.SalesBrowsers
-	ArrayOfSalesOS          []components.SalesOS
-	ArrayOfSalesReferers    []components.SalesReferers
-	ArrayOfSalesTopLinks    []components.SalesTopLinks
-	ArrayOfSalesTopUrls     []components.SalesTopUrls
+	AnalyticsCount             *components.AnalyticsCount
+	ArrayOfAnalyticsTimeseries []components.AnalyticsTimeseries
+	ArrayOfAnalyticsCountries  []components.AnalyticsCountries
+	ArrayOfAnalyticsCities     []components.AnalyticsCities
+	ArrayOfAnalyticsDevices    []components.AnalyticsDevices
+	ArrayOfAnalyticsBrowsers   []components.AnalyticsBrowsers
+	ArrayOfAnalyticsOS         []components.AnalyticsOS
+	ArrayOfAnalyticsReferers   []components.AnalyticsReferers
+	ArrayOfAnalyticsTopLinks   []components.AnalyticsTopLinks
+	ArrayOfAnalyticsTopUrls    []components.AnalyticsTopUrls
 
 	Type RetrieveAnalyticsResponseBodyType
 }
 
-func CreateRetrieveAnalyticsResponseBodyClicksCount(clicksCount components.ClicksCount) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeClicksCount
+func CreateRetrieveAnalyticsResponseBodyAnalyticsCount(analyticsCount components.AnalyticsCount) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeAnalyticsCount
 
 	return RetrieveAnalyticsResponseBody{
-		ClicksCount: &clicksCount,
-		Type:        typ,
+		AnalyticsCount: &analyticsCount,
+		Type:           typ,
 	}
 }
 
-func CreateRetrieveAnalyticsResponseBodyArrayOfClicksTimeseries(arrayOfClicksTimeseries []components.ClicksTimeseries) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfClicksTimeseries
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsTimeseries(arrayOfAnalyticsTimeseries []components.AnalyticsTimeseries) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTimeseries
 
 	return RetrieveAnalyticsResponseBody{
-		ArrayOfClicksTimeseries: arrayOfClicksTimeseries,
+		ArrayOfAnalyticsTimeseries: arrayOfAnalyticsTimeseries,
+		Type:                       typ,
+	}
+}
+
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsCountries(arrayOfAnalyticsCountries []components.AnalyticsCountries) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCountries
+
+	return RetrieveAnalyticsResponseBody{
+		ArrayOfAnalyticsCountries: arrayOfAnalyticsCountries,
+		Type:                      typ,
+	}
+}
+
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsCities(arrayOfAnalyticsCities []components.AnalyticsCities) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCities
+
+	return RetrieveAnalyticsResponseBody{
+		ArrayOfAnalyticsCities: arrayOfAnalyticsCities,
+		Type:                   typ,
+	}
+}
+
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsDevices(arrayOfAnalyticsDevices []components.AnalyticsDevices) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsDevices
+
+	return RetrieveAnalyticsResponseBody{
+		ArrayOfAnalyticsDevices: arrayOfAnalyticsDevices,
 		Type:                    typ,
 	}
 }
 
-func CreateRetrieveAnalyticsResponseBodyArrayOfClicksCountries(arrayOfClicksCountries []components.ClicksCountries) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfClicksCountries
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsBrowsers(arrayOfAnalyticsBrowsers []components.AnalyticsBrowsers) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsBrowsers
 
 	return RetrieveAnalyticsResponseBody{
-		ArrayOfClicksCountries: arrayOfClicksCountries,
-		Type:                   typ,
+		ArrayOfAnalyticsBrowsers: arrayOfAnalyticsBrowsers,
+		Type:                     typ,
 	}
 }
 
-func CreateRetrieveAnalyticsResponseBodyArrayOfClicksCities(arrayOfClicksCities []components.ClicksCities) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfClicksCities
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsOS(arrayOfAnalyticsOS []components.AnalyticsOS) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsOS
 
 	return RetrieveAnalyticsResponseBody{
-		ArrayOfClicksCities: arrayOfClicksCities,
-		Type:                typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfClicksDevices(arrayOfClicksDevices []components.ClicksDevices) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfClicksDevices
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfClicksDevices: arrayOfClicksDevices,
-		Type:                 typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfClicksBrowsers(arrayOfClicksBrowsers []components.ClicksBrowsers) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfClicksBrowsers
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfClicksBrowsers: arrayOfClicksBrowsers,
-		Type:                  typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfClicksOS(arrayOfClicksOS []components.ClicksOS) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfClicksOS
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfClicksOS: arrayOfClicksOS,
-		Type:            typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfClicksReferers(arrayOfClicksReferers []components.ClicksReferers) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfClicksReferers
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfClicksReferers: arrayOfClicksReferers,
-		Type:                  typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfClicksTopLinks(arrayOfClicksTopLinks []components.ClicksTopLinks) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfClicksTopLinks
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfClicksTopLinks: arrayOfClicksTopLinks,
-		Type:                  typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfClicksTopUrls(arrayOfClicksTopUrls []components.ClicksTopUrls) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfClicksTopUrls
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfClicksTopUrls: arrayOfClicksTopUrls,
-		Type:                 typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyLeadsCount(leadsCount components.LeadsCount) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeLeadsCount
-
-	return RetrieveAnalyticsResponseBody{
-		LeadsCount: &leadsCount,
-		Type:       typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfLeadsTimeseries(arrayOfLeadsTimeseries []components.LeadsTimeseries) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfLeadsTimeseries
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfLeadsTimeseries: arrayOfLeadsTimeseries,
-		Type:                   typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfLeadsCountries(arrayOfLeadsCountries []components.LeadsCountries) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfLeadsCountries
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfLeadsCountries: arrayOfLeadsCountries,
-		Type:                  typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfLeadsCities(arrayOfLeadsCities []components.LeadsCities) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfLeadsCities
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfLeadsCities: arrayOfLeadsCities,
+		ArrayOfAnalyticsOS: arrayOfAnalyticsOS,
 		Type:               typ,
 	}
 }
 
-func CreateRetrieveAnalyticsResponseBodyArrayOfLeadsDevices(arrayOfLeadsDevices []components.LeadsDevices) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfLeadsDevices
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsReferers(arrayOfAnalyticsReferers []components.AnalyticsReferers) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsReferers
 
 	return RetrieveAnalyticsResponseBody{
-		ArrayOfLeadsDevices: arrayOfLeadsDevices,
-		Type:                typ,
+		ArrayOfAnalyticsReferers: arrayOfAnalyticsReferers,
+		Type:                     typ,
 	}
 }
 
-func CreateRetrieveAnalyticsResponseBodyArrayOfLeadsBrowsers(arrayOfLeadsBrowsers []components.LeadsBrowsers) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfLeadsBrowsers
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsTopLinks(arrayOfAnalyticsTopLinks []components.AnalyticsTopLinks) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopLinks
 
 	return RetrieveAnalyticsResponseBody{
-		ArrayOfLeadsBrowsers: arrayOfLeadsBrowsers,
-		Type:                 typ,
+		ArrayOfAnalyticsTopLinks: arrayOfAnalyticsTopLinks,
+		Type:                     typ,
 	}
 }
 
-func CreateRetrieveAnalyticsResponseBodyArrayOfLeadsOS(arrayOfLeadsOS []components.LeadsOS) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfLeadsOS
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsTopUrls(arrayOfAnalyticsTopUrls []components.AnalyticsTopUrls) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopUrls
 
 	return RetrieveAnalyticsResponseBody{
-		ArrayOfLeadsOS: arrayOfLeadsOS,
-		Type:           typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfLeadsReferers(arrayOfLeadsReferers []components.LeadsReferers) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfLeadsReferers
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfLeadsReferers: arrayOfLeadsReferers,
-		Type:                 typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfLeadsTopLinks(arrayOfLeadsTopLinks []components.LeadsTopLinks) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfLeadsTopLinks
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfLeadsTopLinks: arrayOfLeadsTopLinks,
-		Type:                 typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfLeadsTopUrls(arrayOfLeadsTopUrls []components.LeadsTopUrls) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfLeadsTopUrls
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfLeadsTopUrls: arrayOfLeadsTopUrls,
-		Type:                typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodySalesCount(salesCount components.SalesCount) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeSalesCount
-
-	return RetrieveAnalyticsResponseBody{
-		SalesCount: &salesCount,
-		Type:       typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfSalesTimeseries(arrayOfSalesTimeseries []components.SalesTimeseries) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfSalesTimeseries
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfSalesTimeseries: arrayOfSalesTimeseries,
-		Type:                   typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfSalesCountries(arrayOfSalesCountries []components.SalesCountries) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfSalesCountries
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfSalesCountries: arrayOfSalesCountries,
-		Type:                  typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfSalesCities(arrayOfSalesCities []components.SalesCities) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfSalesCities
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfSalesCities: arrayOfSalesCities,
-		Type:               typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfSalesDevices(arrayOfSalesDevices []components.SalesDevices) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfSalesDevices
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfSalesDevices: arrayOfSalesDevices,
-		Type:                typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfSalesBrowsers(arrayOfSalesBrowsers []components.SalesBrowsers) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfSalesBrowsers
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfSalesBrowsers: arrayOfSalesBrowsers,
-		Type:                 typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfSalesOS(arrayOfSalesOS []components.SalesOS) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfSalesOS
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfSalesOS: arrayOfSalesOS,
-		Type:           typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfSalesReferers(arrayOfSalesReferers []components.SalesReferers) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfSalesReferers
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfSalesReferers: arrayOfSalesReferers,
-		Type:                 typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfSalesTopLinks(arrayOfSalesTopLinks []components.SalesTopLinks) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfSalesTopLinks
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfSalesTopLinks: arrayOfSalesTopLinks,
-		Type:                 typ,
-	}
-}
-
-func CreateRetrieveAnalyticsResponseBodyArrayOfSalesTopUrls(arrayOfSalesTopUrls []components.SalesTopUrls) RetrieveAnalyticsResponseBody {
-	typ := RetrieveAnalyticsResponseBodyTypeArrayOfSalesTopUrls
-
-	return RetrieveAnalyticsResponseBody{
-		ArrayOfSalesTopUrls: arrayOfSalesTopUrls,
-		Type:                typ,
+		ArrayOfAnalyticsTopUrls: arrayOfAnalyticsTopUrls,
+		Type:                    typ,
 	}
 }
 
 func (u *RetrieveAnalyticsResponseBody) UnmarshalJSON(data []byte) error {
 
-	var leadsCount components.LeadsCount = components.LeadsCount{}
-	if err := utils.UnmarshalJSON(data, &leadsCount, "", true, true); err == nil {
-		u.LeadsCount = &leadsCount
-		u.Type = RetrieveAnalyticsResponseBodyTypeLeadsCount
+	var analyticsCount components.AnalyticsCount = components.AnalyticsCount{}
+	if err := utils.UnmarshalJSON(data, &analyticsCount, "", true, true); err == nil {
+		u.AnalyticsCount = &analyticsCount
+		u.Type = RetrieveAnalyticsResponseBodyTypeAnalyticsCount
 		return nil
 	}
 
-	var clicksCount components.ClicksCount = components.ClicksCount{}
-	if err := utils.UnmarshalJSON(data, &clicksCount, "", true, true); err == nil {
-		u.ClicksCount = &clicksCount
-		u.Type = RetrieveAnalyticsResponseBodyTypeClicksCount
+	var arrayOfAnalyticsTimeseries []components.AnalyticsTimeseries = []components.AnalyticsTimeseries{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsTimeseries, "", true, true); err == nil {
+		u.ArrayOfAnalyticsTimeseries = arrayOfAnalyticsTimeseries
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTimeseries
 		return nil
 	}
 
-	var salesCount components.SalesCount = components.SalesCount{}
-	if err := utils.UnmarshalJSON(data, &salesCount, "", true, true); err == nil {
-		u.SalesCount = &salesCount
-		u.Type = RetrieveAnalyticsResponseBodyTypeSalesCount
+	var arrayOfAnalyticsCountries []components.AnalyticsCountries = []components.AnalyticsCountries{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsCountries, "", true, true); err == nil {
+		u.ArrayOfAnalyticsCountries = arrayOfAnalyticsCountries
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCountries
 		return nil
 	}
 
-	var arrayOfLeadsDevices []components.LeadsDevices = []components.LeadsDevices{}
-	if err := utils.UnmarshalJSON(data, &arrayOfLeadsDevices, "", true, true); err == nil {
-		u.ArrayOfLeadsDevices = arrayOfLeadsDevices
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfLeadsDevices
+	var arrayOfAnalyticsCities []components.AnalyticsCities = []components.AnalyticsCities{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsCities, "", true, true); err == nil {
+		u.ArrayOfAnalyticsCities = arrayOfAnalyticsCities
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCities
 		return nil
 	}
 
-	var arrayOfLeadsOS []components.LeadsOS = []components.LeadsOS{}
-	if err := utils.UnmarshalJSON(data, &arrayOfLeadsOS, "", true, true); err == nil {
-		u.ArrayOfLeadsOS = arrayOfLeadsOS
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfLeadsOS
+	var arrayOfAnalyticsDevices []components.AnalyticsDevices = []components.AnalyticsDevices{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsDevices, "", true, true); err == nil {
+		u.ArrayOfAnalyticsDevices = arrayOfAnalyticsDevices
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsDevices
 		return nil
 	}
 
-	var arrayOfClicksBrowsers []components.ClicksBrowsers = []components.ClicksBrowsers{}
-	if err := utils.UnmarshalJSON(data, &arrayOfClicksBrowsers, "", true, true); err == nil {
-		u.ArrayOfClicksBrowsers = arrayOfClicksBrowsers
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfClicksBrowsers
+	var arrayOfAnalyticsBrowsers []components.AnalyticsBrowsers = []components.AnalyticsBrowsers{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsBrowsers, "", true, true); err == nil {
+		u.ArrayOfAnalyticsBrowsers = arrayOfAnalyticsBrowsers
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsBrowsers
 		return nil
 	}
 
-	var arrayOfClicksOS []components.ClicksOS = []components.ClicksOS{}
-	if err := utils.UnmarshalJSON(data, &arrayOfClicksOS, "", true, true); err == nil {
-		u.ArrayOfClicksOS = arrayOfClicksOS
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfClicksOS
+	var arrayOfAnalyticsOS []components.AnalyticsOS = []components.AnalyticsOS{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsOS, "", true, true); err == nil {
+		u.ArrayOfAnalyticsOS = arrayOfAnalyticsOS
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsOS
 		return nil
 	}
 
-	var arrayOfClicksReferers []components.ClicksReferers = []components.ClicksReferers{}
-	if err := utils.UnmarshalJSON(data, &arrayOfClicksReferers, "", true, true); err == nil {
-		u.ArrayOfClicksReferers = arrayOfClicksReferers
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfClicksReferers
+	var arrayOfAnalyticsReferers []components.AnalyticsReferers = []components.AnalyticsReferers{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsReferers, "", true, true); err == nil {
+		u.ArrayOfAnalyticsReferers = arrayOfAnalyticsReferers
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsReferers
 		return nil
 	}
 
-	var arrayOfClicksTopLinks []components.ClicksTopLinks = []components.ClicksTopLinks{}
-	if err := utils.UnmarshalJSON(data, &arrayOfClicksTopLinks, "", true, true); err == nil {
-		u.ArrayOfClicksTopLinks = arrayOfClicksTopLinks
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfClicksTopLinks
+	var arrayOfAnalyticsTopLinks []components.AnalyticsTopLinks = []components.AnalyticsTopLinks{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsTopLinks, "", true, true); err == nil {
+		u.ArrayOfAnalyticsTopLinks = arrayOfAnalyticsTopLinks
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopLinks
 		return nil
 	}
 
-	var arrayOfClicksTopUrls []components.ClicksTopUrls = []components.ClicksTopUrls{}
-	if err := utils.UnmarshalJSON(data, &arrayOfClicksTopUrls, "", true, true); err == nil {
-		u.ArrayOfClicksTopUrls = arrayOfClicksTopUrls
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfClicksTopUrls
-		return nil
-	}
-
-	var arrayOfClicksCities []components.ClicksCities = []components.ClicksCities{}
-	if err := utils.UnmarshalJSON(data, &arrayOfClicksCities, "", true, true); err == nil {
-		u.ArrayOfClicksCities = arrayOfClicksCities
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfClicksCities
-		return nil
-	}
-
-	var arrayOfLeadsTimeseries []components.LeadsTimeseries = []components.LeadsTimeseries{}
-	if err := utils.UnmarshalJSON(data, &arrayOfLeadsTimeseries, "", true, true); err == nil {
-		u.ArrayOfLeadsTimeseries = arrayOfLeadsTimeseries
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfLeadsTimeseries
-		return nil
-	}
-
-	var arrayOfLeadsCountries []components.LeadsCountries = []components.LeadsCountries{}
-	if err := utils.UnmarshalJSON(data, &arrayOfLeadsCountries, "", true, true); err == nil {
-		u.ArrayOfLeadsCountries = arrayOfLeadsCountries
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfLeadsCountries
-		return nil
-	}
-
-	var arrayOfLeadsCities []components.LeadsCities = []components.LeadsCities{}
-	if err := utils.UnmarshalJSON(data, &arrayOfLeadsCities, "", true, true); err == nil {
-		u.ArrayOfLeadsCities = arrayOfLeadsCities
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfLeadsCities
-		return nil
-	}
-
-	var arrayOfClicksCountries []components.ClicksCountries = []components.ClicksCountries{}
-	if err := utils.UnmarshalJSON(data, &arrayOfClicksCountries, "", true, true); err == nil {
-		u.ArrayOfClicksCountries = arrayOfClicksCountries
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfClicksCountries
-		return nil
-	}
-
-	var arrayOfLeadsBrowsers []components.LeadsBrowsers = []components.LeadsBrowsers{}
-	if err := utils.UnmarshalJSON(data, &arrayOfLeadsBrowsers, "", true, true); err == nil {
-		u.ArrayOfLeadsBrowsers = arrayOfLeadsBrowsers
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfLeadsBrowsers
-		return nil
-	}
-
-	var arrayOfClicksDevices []components.ClicksDevices = []components.ClicksDevices{}
-	if err := utils.UnmarshalJSON(data, &arrayOfClicksDevices, "", true, true); err == nil {
-		u.ArrayOfClicksDevices = arrayOfClicksDevices
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfClicksDevices
-		return nil
-	}
-
-	var arrayOfLeadsReferers []components.LeadsReferers = []components.LeadsReferers{}
-	if err := utils.UnmarshalJSON(data, &arrayOfLeadsReferers, "", true, true); err == nil {
-		u.ArrayOfLeadsReferers = arrayOfLeadsReferers
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfLeadsReferers
-		return nil
-	}
-
-	var arrayOfLeadsTopLinks []components.LeadsTopLinks = []components.LeadsTopLinks{}
-	if err := utils.UnmarshalJSON(data, &arrayOfLeadsTopLinks, "", true, true); err == nil {
-		u.ArrayOfLeadsTopLinks = arrayOfLeadsTopLinks
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfLeadsTopLinks
-		return nil
-	}
-
-	var arrayOfLeadsTopUrls []components.LeadsTopUrls = []components.LeadsTopUrls{}
-	if err := utils.UnmarshalJSON(data, &arrayOfLeadsTopUrls, "", true, true); err == nil {
-		u.ArrayOfLeadsTopUrls = arrayOfLeadsTopUrls
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfLeadsTopUrls
-		return nil
-	}
-
-	var arrayOfClicksTimeseries []components.ClicksTimeseries = []components.ClicksTimeseries{}
-	if err := utils.UnmarshalJSON(data, &arrayOfClicksTimeseries, "", true, true); err == nil {
-		u.ArrayOfClicksTimeseries = arrayOfClicksTimeseries
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfClicksTimeseries
-		return nil
-	}
-
-	var arrayOfSalesTimeseries []components.SalesTimeseries = []components.SalesTimeseries{}
-	if err := utils.UnmarshalJSON(data, &arrayOfSalesTimeseries, "", true, true); err == nil {
-		u.ArrayOfSalesTimeseries = arrayOfSalesTimeseries
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfSalesTimeseries
-		return nil
-	}
-
-	var arrayOfSalesCountries []components.SalesCountries = []components.SalesCountries{}
-	if err := utils.UnmarshalJSON(data, &arrayOfSalesCountries, "", true, true); err == nil {
-		u.ArrayOfSalesCountries = arrayOfSalesCountries
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfSalesCountries
-		return nil
-	}
-
-	var arrayOfSalesCities []components.SalesCities = []components.SalesCities{}
-	if err := utils.UnmarshalJSON(data, &arrayOfSalesCities, "", true, true); err == nil {
-		u.ArrayOfSalesCities = arrayOfSalesCities
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfSalesCities
-		return nil
-	}
-
-	var arrayOfSalesDevices []components.SalesDevices = []components.SalesDevices{}
-	if err := utils.UnmarshalJSON(data, &arrayOfSalesDevices, "", true, true); err == nil {
-		u.ArrayOfSalesDevices = arrayOfSalesDevices
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfSalesDevices
-		return nil
-	}
-
-	var arrayOfSalesBrowsers []components.SalesBrowsers = []components.SalesBrowsers{}
-	if err := utils.UnmarshalJSON(data, &arrayOfSalesBrowsers, "", true, true); err == nil {
-		u.ArrayOfSalesBrowsers = arrayOfSalesBrowsers
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfSalesBrowsers
-		return nil
-	}
-
-	var arrayOfSalesOS []components.SalesOS = []components.SalesOS{}
-	if err := utils.UnmarshalJSON(data, &arrayOfSalesOS, "", true, true); err == nil {
-		u.ArrayOfSalesOS = arrayOfSalesOS
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfSalesOS
-		return nil
-	}
-
-	var arrayOfSalesReferers []components.SalesReferers = []components.SalesReferers{}
-	if err := utils.UnmarshalJSON(data, &arrayOfSalesReferers, "", true, true); err == nil {
-		u.ArrayOfSalesReferers = arrayOfSalesReferers
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfSalesReferers
-		return nil
-	}
-
-	var arrayOfSalesTopLinks []components.SalesTopLinks = []components.SalesTopLinks{}
-	if err := utils.UnmarshalJSON(data, &arrayOfSalesTopLinks, "", true, true); err == nil {
-		u.ArrayOfSalesTopLinks = arrayOfSalesTopLinks
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfSalesTopLinks
-		return nil
-	}
-
-	var arrayOfSalesTopUrls []components.SalesTopUrls = []components.SalesTopUrls{}
-	if err := utils.UnmarshalJSON(data, &arrayOfSalesTopUrls, "", true, true); err == nil {
-		u.ArrayOfSalesTopUrls = arrayOfSalesTopUrls
-		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfSalesTopUrls
+	var arrayOfAnalyticsTopUrls []components.AnalyticsTopUrls = []components.AnalyticsTopUrls{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsTopUrls, "", true, true); err == nil {
+		u.ArrayOfAnalyticsTopUrls = arrayOfAnalyticsTopUrls
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopUrls
 		return nil
 	}
 
@@ -905,124 +545,44 @@ func (u *RetrieveAnalyticsResponseBody) UnmarshalJSON(data []byte) error {
 }
 
 func (u RetrieveAnalyticsResponseBody) MarshalJSON() ([]byte, error) {
-	if u.ClicksCount != nil {
-		return utils.MarshalJSON(u.ClicksCount, "", true)
+	if u.AnalyticsCount != nil {
+		return utils.MarshalJSON(u.AnalyticsCount, "", true)
 	}
 
-	if u.ArrayOfClicksTimeseries != nil {
-		return utils.MarshalJSON(u.ArrayOfClicksTimeseries, "", true)
+	if u.ArrayOfAnalyticsTimeseries != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsTimeseries, "", true)
 	}
 
-	if u.ArrayOfClicksCountries != nil {
-		return utils.MarshalJSON(u.ArrayOfClicksCountries, "", true)
+	if u.ArrayOfAnalyticsCountries != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsCountries, "", true)
 	}
 
-	if u.ArrayOfClicksCities != nil {
-		return utils.MarshalJSON(u.ArrayOfClicksCities, "", true)
+	if u.ArrayOfAnalyticsCities != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsCities, "", true)
 	}
 
-	if u.ArrayOfClicksDevices != nil {
-		return utils.MarshalJSON(u.ArrayOfClicksDevices, "", true)
+	if u.ArrayOfAnalyticsDevices != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsDevices, "", true)
 	}
 
-	if u.ArrayOfClicksBrowsers != nil {
-		return utils.MarshalJSON(u.ArrayOfClicksBrowsers, "", true)
+	if u.ArrayOfAnalyticsBrowsers != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsBrowsers, "", true)
 	}
 
-	if u.ArrayOfClicksOS != nil {
-		return utils.MarshalJSON(u.ArrayOfClicksOS, "", true)
+	if u.ArrayOfAnalyticsOS != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsOS, "", true)
 	}
 
-	if u.ArrayOfClicksReferers != nil {
-		return utils.MarshalJSON(u.ArrayOfClicksReferers, "", true)
+	if u.ArrayOfAnalyticsReferers != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsReferers, "", true)
 	}
 
-	if u.ArrayOfClicksTopLinks != nil {
-		return utils.MarshalJSON(u.ArrayOfClicksTopLinks, "", true)
+	if u.ArrayOfAnalyticsTopLinks != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsTopLinks, "", true)
 	}
 
-	if u.ArrayOfClicksTopUrls != nil {
-		return utils.MarshalJSON(u.ArrayOfClicksTopUrls, "", true)
-	}
-
-	if u.LeadsCount != nil {
-		return utils.MarshalJSON(u.LeadsCount, "", true)
-	}
-
-	if u.ArrayOfLeadsTimeseries != nil {
-		return utils.MarshalJSON(u.ArrayOfLeadsTimeseries, "", true)
-	}
-
-	if u.ArrayOfLeadsCountries != nil {
-		return utils.MarshalJSON(u.ArrayOfLeadsCountries, "", true)
-	}
-
-	if u.ArrayOfLeadsCities != nil {
-		return utils.MarshalJSON(u.ArrayOfLeadsCities, "", true)
-	}
-
-	if u.ArrayOfLeadsDevices != nil {
-		return utils.MarshalJSON(u.ArrayOfLeadsDevices, "", true)
-	}
-
-	if u.ArrayOfLeadsBrowsers != nil {
-		return utils.MarshalJSON(u.ArrayOfLeadsBrowsers, "", true)
-	}
-
-	if u.ArrayOfLeadsOS != nil {
-		return utils.MarshalJSON(u.ArrayOfLeadsOS, "", true)
-	}
-
-	if u.ArrayOfLeadsReferers != nil {
-		return utils.MarshalJSON(u.ArrayOfLeadsReferers, "", true)
-	}
-
-	if u.ArrayOfLeadsTopLinks != nil {
-		return utils.MarshalJSON(u.ArrayOfLeadsTopLinks, "", true)
-	}
-
-	if u.ArrayOfLeadsTopUrls != nil {
-		return utils.MarshalJSON(u.ArrayOfLeadsTopUrls, "", true)
-	}
-
-	if u.SalesCount != nil {
-		return utils.MarshalJSON(u.SalesCount, "", true)
-	}
-
-	if u.ArrayOfSalesTimeseries != nil {
-		return utils.MarshalJSON(u.ArrayOfSalesTimeseries, "", true)
-	}
-
-	if u.ArrayOfSalesCountries != nil {
-		return utils.MarshalJSON(u.ArrayOfSalesCountries, "", true)
-	}
-
-	if u.ArrayOfSalesCities != nil {
-		return utils.MarshalJSON(u.ArrayOfSalesCities, "", true)
-	}
-
-	if u.ArrayOfSalesDevices != nil {
-		return utils.MarshalJSON(u.ArrayOfSalesDevices, "", true)
-	}
-
-	if u.ArrayOfSalesBrowsers != nil {
-		return utils.MarshalJSON(u.ArrayOfSalesBrowsers, "", true)
-	}
-
-	if u.ArrayOfSalesOS != nil {
-		return utils.MarshalJSON(u.ArrayOfSalesOS, "", true)
-	}
-
-	if u.ArrayOfSalesReferers != nil {
-		return utils.MarshalJSON(u.ArrayOfSalesReferers, "", true)
-	}
-
-	if u.ArrayOfSalesTopLinks != nil {
-		return utils.MarshalJSON(u.ArrayOfSalesTopLinks, "", true)
-	}
-
-	if u.ArrayOfSalesTopUrls != nil {
-		return utils.MarshalJSON(u.ArrayOfSalesTopUrls, "", true)
+	if u.ArrayOfAnalyticsTopUrls != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsTopUrls, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type RetrieveAnalyticsResponseBody: all fields are null")
