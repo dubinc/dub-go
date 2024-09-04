@@ -18,8 +18,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -27,11 +27,11 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    request := operations.GetQRCodeRequest{
-        URL: "https://brief-micronutrient.org",
-    }
+
     ctx := context.Background()
-    res, err := s.QRCodes.Get(ctx, request)
+    res, err := s.QRCodes.Get(ctx, operations.GetQRCodeRequest{
+        URL: "https://brief-micronutrient.org",
+    })
     if err != nil {
         log.Fatal(err)
     }

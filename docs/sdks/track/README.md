@@ -20,8 +20,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -29,13 +29,13 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var request *operations.TrackLeadRequestBody = &operations.TrackLeadRequestBody{
+
+    ctx := context.Background()
+    res, err := s.Track.Lead(ctx, &operations.TrackLeadRequestBody{
         ClickID: "<value>",
         EventName: "Sign up",
         CustomerID: "<value>",
-    }
-    ctx := context.Background()
-    res, err := s.Track.Lead(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -84,8 +84,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -93,14 +93,14 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var request *operations.TrackSaleRequestBody = &operations.TrackSaleRequestBody{
+
+    ctx := context.Background()
+    res, err := s.Track.Sale(ctx, &operations.TrackSaleRequestBody{
         CustomerID: "<value>",
         Amount: 996500,
         PaymentProcessor: operations.PaymentProcessorShopify,
         EventName: dubgo.String("Purchase"),
-    }
-    ctx := context.Background()
-    res, err := s.Track.Sale(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -149,7 +149,6 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
 	"log"
 )

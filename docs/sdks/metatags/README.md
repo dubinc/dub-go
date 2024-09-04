@@ -18,8 +18,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -27,11 +27,11 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    request := operations.GetMetatagsRequest{
-        URL: "https://dub.co",
-    }
+
     ctx := context.Background()
-    res, err := s.Metatags.Get(ctx, request)
+    res, err := s.Metatags.Get(ctx, operations.GetMetatagsRequest{
+        URL: "https://dub.co",
+    })
     if err != nil {
         log.Fatal(err)
     }

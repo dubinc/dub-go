@@ -19,8 +19,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -28,11 +28,11 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    request := operations.GetWorkspaceRequest{
-        IDOrSlug: "<value>",
-    }
+
     ctx := context.Background()
-    res, err := s.Workspaces.Get(ctx, request)
+    res, err := s.Workspaces.Get(ctx, operations.GetWorkspaceRequest{
+        IDOrSlug: "<value>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -81,7 +81,6 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
 	"log"
 )
@@ -90,9 +89,9 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var idOrSlug string = "<value>"
+
     ctx := context.Background()
-    res, err := s.Workspaces.Update(ctx, idOrSlug, nil)
+    res, err := s.Workspaces.Update(ctx, "<value>", nil)
     if err != nil {
         log.Fatal(err)
     }

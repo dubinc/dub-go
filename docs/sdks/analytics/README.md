@@ -18,8 +18,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -27,16 +27,16 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    request := operations.RetrieveAnalyticsRequest{
+
+    ctx := context.Background()
+    res, err := s.Analytics.Retrieve(ctx, operations.RetrieveAnalyticsRequest{
         Timezone: dubgo.String("America/New_York"),
         City: dubgo.String("New York"),
         Device: dubgo.String("Desktop"),
         Browser: dubgo.String("Chrome"),
         Os: dubgo.String("Windows"),
         Referer: dubgo.String("google.com"),
-    }
-    ctx := context.Background()
-    res, err := s.Analytics.Retrieve(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }

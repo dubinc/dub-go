@@ -78,7 +78,6 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
 	"log"
 )
@@ -138,7 +137,6 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
 	"log"
 )
@@ -147,9 +145,9 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var id string = "<value>"
+
     ctx := context.Background()
-    res, err := s.Tags.Update(ctx, id, nil)
+    res, err := s.Tags.Update(ctx, "<id>", nil)
     if err != nil {
         log.Fatal(err)
     }
