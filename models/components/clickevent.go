@@ -5,7 +5,6 @@ package components
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/dubinc/dub-go/internal/utils"
 )
 
 type Event string
@@ -32,7 +31,7 @@ func (e *Event) UnmarshalJSON(data []byte) error {
 }
 
 type ClickEvent struct {
-	Event     *Event   `default:"click" json:"event"`
+	Event     Event    `json:"event"`
 	Timestamp string   `json:"timestamp"`
 	ClickID   string   `json:"click_id"`
 	LinkID    string   `json:"link_id"`
@@ -50,20 +49,9 @@ type ClickEvent struct {
 	Qr        *float64 `json:"qr"`
 }
 
-func (c ClickEvent) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *ClickEvent) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *ClickEvent) GetEvent() *Event {
+func (o *ClickEvent) GetEvent() Event {
 	if o == nil {
-		return nil
+		return Event("")
 	}
 	return o.Event
 }

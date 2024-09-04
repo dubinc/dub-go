@@ -13,15 +13,15 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	var request *operations.CreateLinkRequestBody = &operations.CreateLinkRequestBody{
+
+	ctx := context.Background()
+	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
 		TagIds: operations.CreateTagIdsStr(
 			"[\"clux0rgak00011...\"]",
 		),
-	}
-	ctx := context.Background()
-	res, err := s.Links.Create(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -46,7 +46,9 @@ func main() {
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
-	var request *operations.UpsertLinkRequestBody = &operations.UpsertLinkRequestBody{
+
+	ctx := context.Background()
+	res, err := s.Links.Upsert(ctx, &operations.UpsertLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
 		TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(
@@ -54,9 +56,7 @@ func main() {
 				"clux0rgak00011...",
 			},
 		),
-	}
-	ctx := context.Background()
-	res, err := s.Links.Upsert(ctx, request)
+	})
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -21,8 +21,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -30,12 +30,12 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    request := operations.ListDomainsRequest{
+
+    ctx := context.Background()
+    res, err := s.Domains.List(ctx, operations.ListDomainsRequest{
         Page: dubgo.Float64(1),
         PageSize: dubgo.Float64(50),
-    }
-    ctx := context.Background()
-    res, err := s.Domains.List(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -97,8 +97,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -106,14 +106,14 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var request *operations.CreateDomainRequestBody = &operations.CreateDomainRequestBody{
+
+    ctx := context.Background()
+    res, err := s.Domains.Create(ctx, &operations.CreateDomainRequestBody{
         Slug: "acme.com",
         ExpiredURL: dubgo.String("https://acme.com/expired"),
         Archived: dubgo.Bool(false),
         Placeholder: dubgo.String("https://dub.co/help/article/what-is-dub"),
-    }
-    ctx := context.Background()
-    res, err := s.Domains.Create(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -170,9 +170,9 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var slug string = "acme.com"
+
     ctx := context.Background()
-    res, err := s.Domains.Delete(ctx, slug)
+    res, err := s.Domains.Delete(ctx, "acme.com")
     if err != nil {
         log.Fatal(err)
     }
@@ -221,8 +221,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -230,16 +230,14 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    var slug string = "acme.com"
 
-    var requestBody *operations.UpdateDomainRequestBody = &operations.UpdateDomainRequestBody{
+    ctx := context.Background()
+    res, err := s.Domains.Update(ctx, "acme.com", &operations.UpdateDomainRequestBody{
         Slug: dubgo.String("acme.com"),
         ExpiredURL: dubgo.String("https://acme.com/expired"),
         Archived: dubgo.Bool(false),
         Placeholder: dubgo.String("https://dub.co/help/article/what-is-dub"),
-    }
-    ctx := context.Background()
-    res, err := s.Domains.Update(ctx, slug, requestBody)
+    })
     if err != nil {
         log.Fatal(err)
     }

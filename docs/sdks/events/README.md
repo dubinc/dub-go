@@ -18,8 +18,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
 	"context"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -27,16 +27,16 @@ func main() {
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
-    request := operations.ListEventsRequest{
+
+    ctx := context.Background()
+    res, err := s.Events.List(ctx, operations.ListEventsRequest{
         Timezone: dubgo.String("America/New_York"),
         City: dubgo.String("New York"),
         Device: dubgo.String("Desktop"),
         Browser: dubgo.String("Chrome"),
         Os: dubgo.String("Windows"),
         Referer: dubgo.String("google.com"),
-    }
-    ctx := context.Background()
-    res, err := s.Events.List(ctx, request)
+    })
     if err != nil {
         log.Fatal(err)
     }
