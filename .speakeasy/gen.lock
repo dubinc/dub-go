@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: e79768bd6535cef0d8d78eefb5ac63e1
+  docChecksum: 7c8dd0ae20e4cc445c3ce05b75fe9ca9
   docVersion: 0.0.1
-  speakeasyVersion: 1.390.1
-  generationVersion: 2.409.0
-  releaseVersion: 0.8.4
-  configChecksum: d80689321ee4af28fe3bd50ad2aadef1
+  speakeasyVersion: 1.390.7
+  generationVersion: 2.409.8
+  releaseVersion: 0.8.5
+  configChecksum: 3740cd88fc4c5007f9f9461996416d19
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -102,6 +102,8 @@ generatedFiles:
   - /models/components/countrycode.go
   - /models/components/continentcode.go
   - /models/components/clickevent.go
+  - /models/components/leadevent.go
+  - /models/components/saleevent.go
   - /models/components/workspaceschema.go
   - /models/components/domainschema.go
   - /models/components/security.go
@@ -160,6 +162,7 @@ generatedFiles:
   - docs/models/operations/order.md
   - docs/models/operations/sortby.md
   - docs/models/operations/listeventsrequest.md
+  - docs/models/operations/listeventsresponsebody.md
   - docs/models/operations/getworkspacerequest.md
   - docs/models/operations/updateworkspacerequestbody.md
   - docs/models/operations/updateworkspacerequest.md
@@ -210,6 +213,10 @@ generatedFiles:
   - docs/models/components/continentcode.md
   - docs/models/components/event.md
   - docs/models/components/clickevent.md
+  - docs/models/components/leadeventevent.md
+  - docs/models/components/leadevent.md
+  - docs/models/components/saleeventevent.md
+  - docs/models/components/saleevent.md
   - docs/models/components/plan.md
   - docs/models/components/role.md
   - docs/models/components/users.md

@@ -4,6 +4,7 @@ package operations
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/dubinc/dub-go/internal/utils"
 	"github.com/dubinc/dub-go/models/components"
@@ -360,4 +361,90 @@ func (o *ListEventsRequest) GetSortBy() *SortBy {
 		return nil
 	}
 	return o.SortBy
+}
+
+type ListEventsResponseBodyType string
+
+const (
+	ListEventsResponseBodyTypeArrayOfClickEvent ListEventsResponseBodyType = "arrayOfClickEvent"
+	ListEventsResponseBodyTypeArrayOfLeadEvent  ListEventsResponseBodyType = "arrayOfLeadEvent"
+	ListEventsResponseBodyTypeArrayOfSaleEvent  ListEventsResponseBodyType = "arrayOfSaleEvent"
+)
+
+// ListEventsResponseBody - A list of events
+type ListEventsResponseBody struct {
+	ArrayOfClickEvent []components.ClickEvent
+	ArrayOfLeadEvent  []components.LeadEvent
+	ArrayOfSaleEvent  []components.SaleEvent
+
+	Type ListEventsResponseBodyType
+}
+
+func CreateListEventsResponseBodyArrayOfClickEvent(arrayOfClickEvent []components.ClickEvent) ListEventsResponseBody {
+	typ := ListEventsResponseBodyTypeArrayOfClickEvent
+
+	return ListEventsResponseBody{
+		ArrayOfClickEvent: arrayOfClickEvent,
+		Type:              typ,
+	}
+}
+
+func CreateListEventsResponseBodyArrayOfLeadEvent(arrayOfLeadEvent []components.LeadEvent) ListEventsResponseBody {
+	typ := ListEventsResponseBodyTypeArrayOfLeadEvent
+
+	return ListEventsResponseBody{
+		ArrayOfLeadEvent: arrayOfLeadEvent,
+		Type:             typ,
+	}
+}
+
+func CreateListEventsResponseBodyArrayOfSaleEvent(arrayOfSaleEvent []components.SaleEvent) ListEventsResponseBody {
+	typ := ListEventsResponseBodyTypeArrayOfSaleEvent
+
+	return ListEventsResponseBody{
+		ArrayOfSaleEvent: arrayOfSaleEvent,
+		Type:             typ,
+	}
+}
+
+func (u *ListEventsResponseBody) UnmarshalJSON(data []byte) error {
+
+	var arrayOfClickEvent []components.ClickEvent = []components.ClickEvent{}
+	if err := utils.UnmarshalJSON(data, &arrayOfClickEvent, "", true, true); err == nil {
+		u.ArrayOfClickEvent = arrayOfClickEvent
+		u.Type = ListEventsResponseBodyTypeArrayOfClickEvent
+		return nil
+	}
+
+	var arrayOfLeadEvent []components.LeadEvent = []components.LeadEvent{}
+	if err := utils.UnmarshalJSON(data, &arrayOfLeadEvent, "", true, true); err == nil {
+		u.ArrayOfLeadEvent = arrayOfLeadEvent
+		u.Type = ListEventsResponseBodyTypeArrayOfLeadEvent
+		return nil
+	}
+
+	var arrayOfSaleEvent []components.SaleEvent = []components.SaleEvent{}
+	if err := utils.UnmarshalJSON(data, &arrayOfSaleEvent, "", true, true); err == nil {
+		u.ArrayOfSaleEvent = arrayOfSaleEvent
+		u.Type = ListEventsResponseBodyTypeArrayOfSaleEvent
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for ListEventsResponseBody", string(data))
+}
+
+func (u ListEventsResponseBody) MarshalJSON() ([]byte, error) {
+	if u.ArrayOfClickEvent != nil {
+		return utils.MarshalJSON(u.ArrayOfClickEvent, "", true)
+	}
+
+	if u.ArrayOfLeadEvent != nil {
+		return utils.MarshalJSON(u.ArrayOfLeadEvent, "", true)
+	}
+
+	if u.ArrayOfSaleEvent != nil {
+		return utils.MarshalJSON(u.ArrayOfSaleEvent, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type ListEventsResponseBody: all fields are null")
 }

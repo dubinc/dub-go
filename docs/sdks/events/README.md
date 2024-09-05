@@ -56,7 +56,7 @@ func main() {
 
 ### Response
 
-**[[]components.ClickEvent](../../.md), error**
+**[*operations.ListEventsResponseBody](../../models/operations/listeventsresponsebody.md), error**
 
 ### Errors
 

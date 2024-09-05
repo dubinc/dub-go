@@ -185,8 +185,9 @@ type UpdateLinkRequestBody struct {
 	// The iOS destination URL for the short link for iOS device targeting.
 	Ios *string `json:"ios,omitempty"`
 	// The Android destination URL for the short link for Android device targeting.
-	Android *string                      `json:"android,omitempty"`
-	Geo     *components.LinkGeoTargeting `json:"geo,omitempty"`
+	Android *string `json:"android,omitempty"`
+	// Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`.
+	Geo *components.LinkGeoTargeting `json:"geo,omitempty"`
 	// Allow search engines to index your short link. Defaults to `false` if not provided. Learn more: https://d.to/noindex
 	DoIndex *bool `default:"false" json:"doIndex"`
 	// The UTM source of the short link. If set, this will populate or override the UTM source in the destination URL.

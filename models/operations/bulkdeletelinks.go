@@ -4,12 +4,12 @@ package operations
 
 type BulkDeleteLinksRequest struct {
 	// Comma-separated list of link IDs to delete. Maximum of 100 IDs. Non-existing IDs will be ignored.
-	LinkIds string `queryParam:"style=form,explode=true,name=linkIds"`
+	LinkIds []string `queryParam:"style=form,explode=false,name=linkIds"`
 }
 
-func (o *BulkDeleteLinksRequest) GetLinkIds() string {
+func (o *BulkDeleteLinksRequest) GetLinkIds() []string {
 	if o == nil {
-		return ""
+		return []string{}
 	}
 	return o.LinkIds
 }
