@@ -502,7 +502,10 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Links.DeleteMany(ctx, operations.BulkDeleteLinksRequest{
-        LinkIds: "clux0rgak00011...,clux0rgak00022...",
+        LinkIds: []string{
+            "clux0rgak00011...",
+            "clux0rgak00022...",
+        },
     })
     if err != nil {
         log.Fatal(err)
