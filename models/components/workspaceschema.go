@@ -173,8 +173,6 @@ type WorkspaceSchema struct {
 	AiLimit float64 `json:"aiLimit"`
 	// The ID of the referral link of the workspace.
 	ReferralLinkID *string `json:"referralLinkId"`
-	// The number of signups referred by the workspace.
-	ReferredSignups float64 `json:"referredSignups"`
 	// Whether the workspace has conversion tracking enabled (d.to/conversions).
 	ConversionEnabled bool `json:"conversionEnabled"`
 	// The date and time when the workspace was created.
@@ -343,13 +341,6 @@ func (o *WorkspaceSchema) GetReferralLinkID() *string {
 		return nil
 	}
 	return o.ReferralLinkID
-}
-
-func (o *WorkspaceSchema) GetReferredSignups() float64 {
-	if o == nil {
-		return 0.0
-	}
-	return o.ReferredSignups
 }
 
 func (o *WorkspaceSchema) GetConversionEnabled() bool {

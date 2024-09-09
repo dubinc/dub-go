@@ -1,6 +1,6 @@
 # DeleteLinkResponseBody
 
-The deleted link
+The deleted link ID.
 
 
 ## Fields

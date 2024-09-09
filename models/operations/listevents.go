@@ -14,10 +14,9 @@ import (
 type QueryParamEvent string
 
 const (
-	QueryParamEventClicks    QueryParamEvent = "clicks"
-	QueryParamEventLeads     QueryParamEvent = "leads"
-	QueryParamEventSales     QueryParamEvent = "sales"
-	QueryParamEventComposite QueryParamEvent = "composite"
+	QueryParamEventClicks QueryParamEvent = "clicks"
+	QueryParamEventLeads  QueryParamEvent = "leads"
+	QueryParamEventSales  QueryParamEvent = "sales"
 )
 
 func (e QueryParamEvent) ToPointer() *QueryParamEvent {
@@ -34,8 +33,6 @@ func (e *QueryParamEvent) UnmarshalJSON(data []byte) error {
 	case "leads":
 		fallthrough
 	case "sales":
-		fallthrough
-	case "composite":
 		*e = QueryParamEvent(v)
 		return nil
 	default:
@@ -43,18 +40,17 @@ func (e *QueryParamEvent) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// QueryParamInterval - The interval to retrieve analytics for. Takes precedence over start and end. If undefined, defaults to 24h.
+// QueryParamInterval - The interval to retrieve events for. Takes precedence over start and end. If undefined, defaults to 24h.
 type QueryParamInterval string
 
 const (
-	QueryParamIntervalTwentyFourh   QueryParamInterval = "24h"
-	QueryParamIntervalSevend        QueryParamInterval = "7d"
-	QueryParamIntervalThirtyd       QueryParamInterval = "30d"
-	QueryParamIntervalNinetyd       QueryParamInterval = "90d"
-	QueryParamIntervalYtd           QueryParamInterval = "ytd"
-	QueryParamIntervalOney          QueryParamInterval = "1y"
-	QueryParamIntervalAll           QueryParamInterval = "all"
-	QueryParamIntervalAllUnfiltered QueryParamInterval = "all_unfiltered"
+	QueryParamIntervalTwentyFourh QueryParamInterval = "24h"
+	QueryParamIntervalSevend      QueryParamInterval = "7d"
+	QueryParamIntervalThirtyd     QueryParamInterval = "30d"
+	QueryParamIntervalNinetyd     QueryParamInterval = "90d"
+	QueryParamIntervalYtd         QueryParamInterval = "ytd"
+	QueryParamIntervalOney        QueryParamInterval = "1y"
+	QueryParamIntervalAll         QueryParamInterval = "all"
 )
 
 func (e QueryParamInterval) ToPointer() *QueryParamInterval {
@@ -79,8 +75,6 @@ func (e *QueryParamInterval) UnmarshalJSON(data []byte) error {
 	case "1y":
 		fallthrough
 	case "all":
-		fallthrough
-	case "all_unfiltered":
 		*e = QueryParamInterval(v)
 		return nil
 	default:
@@ -148,8 +142,8 @@ type ListEventsRequest struct {
 	LinkID *string `queryParam:"style=form,explode=true,name=linkId"`
 	// This is the ID of the link in the your database. Must be prefixed with 'ext_' when passed as a query parameter.
 	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
-	// The interval to retrieve analytics for. Takes precedence over start and end. If undefined, defaults to 24h.
-	Interval *QueryParamInterval `queryParam:"style=form,explode=true,name=interval"`
+	// The interval to retrieve events for. Takes precedence over start and end. If undefined, defaults to 24h.
+	Interval *QueryParamInterval `default:"24h" queryParam:"style=form,explode=true,name=interval"`
 	// The start date and time when to retrieve analytics from.
 	Start *string `queryParam:"style=form,explode=true,name=start"`
 	// The end date and time when to retrieve analytics from. If not provided, defaults to the current date.

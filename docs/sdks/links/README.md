@@ -117,8 +117,10 @@ func main() {
     res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
         URL: "https://google.com",
         ExternalID: dubgo.String("123456"),
-        TagIds: operations.CreateTagIdsStr(
-        "[\"clux0rgak00011...\"]",
+        TagIds: operations.CreateTagIdsArrayOfStr(
+                []string{
+                    "clux0rgak00011...",
+                },
         ),
     })
     if err != nil {
@@ -572,8 +574,10 @@ func main() {
         },
         Data: operations.Data{
             URL: dubgo.String("https://google.com"),
-            TagIds: operations.CreateBulkUpdateLinksTagIdsStr(
-            "[\"clux0rgak00011...\"]",
+            TagIds: operations.CreateBulkUpdateLinksTagIdsArrayOfStr(
+                    []string{
+                        "clux0rgak00011...",
+                    },
             ),
         },
     })
