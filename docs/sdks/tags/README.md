@@ -7,6 +7,7 @@
 
 * [List](#list) - Retrieve a list of tags
 * [Create](#create) - Create a new tag
+* [Delete](#delete) - Delete a tag
 * [Update](#update) - Update a tag
 
 ## List
@@ -109,6 +110,65 @@ func main() {
 ### Response
 
 **[*components.TagSchema](../../models/components/tagschema.md), error**
+
+### Errors
+
+| Error Object                  | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4xx-5xx                       | */*                           |
+
+
+## Delete
+
+Delete a tag from the workspace. All existing links will still work, but they will no longer be associated with this tag.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	dubgo "github.com/dubinc/dub-go"
+	"context"
+	"log"
+)
+
+func main() {
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+
+    ctx := context.Background()
+    res, err := s.Tags.Delete(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `id`                                                     | *string*                                                 | :heavy_check_mark:                                       | The ID of the tag to delete.                             |
+| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+
+### Response
+
+**[*operations.DeleteTagResponseBody](../../models/operations/deletetagresponsebody.md), error**
 
 ### Errors
 

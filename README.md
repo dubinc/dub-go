@@ -61,8 +61,10 @@ func main() {
 	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
-		TagIds: operations.CreateTagIdsStr(
-			"[\"clux0rgak00011...\"]",
+		TagIds: operations.CreateTagIdsArrayOfStr(
+			[]string{
+				"clux0rgak00011...",
+			},
 		),
 	})
 	if err != nil {
@@ -150,6 +152,7 @@ func main() {
 
 * [List](docs/sdks/tags/README.md#list) - Retrieve a list of tags
 * [Create](docs/sdks/tags/README.md#create) - Create a new tag
+* [Delete](docs/sdks/tags/README.md#delete) - Delete a tag
 * [Update](docs/sdks/tags/README.md#update) - Update a tag
 
 ### [Domains](docs/sdks/domains/README.md)

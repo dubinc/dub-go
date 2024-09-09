@@ -14,7 +14,7 @@ func (o *DeleteLinkRequest) GetLinkID() string {
 	return o.LinkID
 }
 
-// DeleteLinkResponseBody - The deleted link
+// DeleteLinkResponseBody - The deleted link ID.
 type DeleteLinkResponseBody struct {
 	// The ID of the link.
 	ID string `json:"id"`
