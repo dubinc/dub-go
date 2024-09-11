@@ -15,7 +15,7 @@ type AnalyticsBrowsers struct {
 	Leads *float64 `default:"0" json:"leads"`
 	// The number of sales from this browser
 	Sales *float64 `default:"0" json:"sales"`
-	// The total amount of sales from this browser
+	// The total amount of sales from this browser, in cents
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 

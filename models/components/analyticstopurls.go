@@ -15,7 +15,7 @@ type AnalyticsTopUrls struct {
 	Leads *float64 `default:"0" json:"leads"`
 	// The number of sales from this URL
 	Sales *float64 `default:"0" json:"sales"`
-	// The total amount of sales from this URL
+	// The total amount of sales from this URL, in cents
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 
