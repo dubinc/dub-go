@@ -29,7 +29,7 @@ type AnalyticsTopLinks struct {
 	Leads *float64 `default:"0" json:"leads"`
 	// The number of sales from this link
 	Sales *float64 `default:"0" json:"sales"`
-	// The total amount of sales from this link
+	// The total amount of sales from this link, in cents
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 

@@ -15,7 +15,7 @@ type AnalyticsTimeseries struct {
 	Leads *float64 `default:"0" json:"leads"`
 	// The number of sales in the interval
 	Sales *float64 `default:"0" json:"sales"`
-	// The total amount of sales in the interval
+	// The total amount of sales in the interval, in cents
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 

@@ -2183,8 +2183,7 @@ type Link struct {
 	UtmTerm *string `json:"utm_term"`
 	// The UTM content of the short link.
 	UtmContent *string `json:"utm_content"`
-	// The user ID of the creator of the short link.
-	UserID string `json:"userId"`
+	UserID     *string `json:"userId"`
 	// The workspace ID of the short link.
 	WorkspaceID string `json:"workspaceId"`
 	// The number of clicks on the short link.
@@ -2432,9 +2431,9 @@ func (o *Link) GetUtmContent() *string {
 	return o.UtmContent
 }
 
-func (o *Link) GetUserID() string {
+func (o *Link) GetUserID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.UserID
 }

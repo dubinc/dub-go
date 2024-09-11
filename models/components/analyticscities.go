@@ -790,7 +790,7 @@ type AnalyticsCities struct {
 	Leads *float64 `default:"0" json:"leads"`
 	// The number of sales from this city
 	Sales *float64 `default:"0" json:"sales"`
-	// The total amount of sales from this city
+	// The total amount of sales from this city, in cents
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 

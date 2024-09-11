@@ -13,7 +13,7 @@ type AnalyticsCount struct {
 	Leads *float64 `default:"0" json:"leads"`
 	// The total number of sales
 	Sales *float64 `default:"0" json:"sales"`
-	// The total amount of sales
+	// The total amount of sales, in cents
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 

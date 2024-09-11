@@ -15,7 +15,7 @@ type AnalyticsDevices struct {
 	Leads *float64 `default:"0" json:"leads"`
 	// The number of sales from this device
 	Sales *float64 `default:"0" json:"sales"`
-	// The total amount of sales from this device
+	// The total amount of sales from this device, in cents
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 
