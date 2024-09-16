@@ -42,6 +42,9 @@ func Float32(f float32) *float32 { return &f }
 // Float64 provides a helper function to return a pointer to a float64
 func Float64(f float64) *float64 { return &f }
 
+// Pointer provides a helper function to return a pointer to a type
+func Pointer[T any](v T) *T { return &v }
+
 type sdkConfiguration struct {
 	Client            HTTPClient
 	Security          func(context.Context) (interface{}, error)
@@ -154,9 +157,9 @@ func New(opts ...SDKOption) *Dub {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "0.9.0",
-			GenVersion:        "2.415.0",
-			UserAgent:         "speakeasy-sdk/go 0.9.0 2.415.0 0.0.1 github.com/dubinc/dub-go",
+			SDKVersion:        "0.9.1",
+			GenVersion:        "2.415.7",
+			UserAgent:         "speakeasy-sdk/go 0.9.1 2.415.7 0.0.1 github.com/dubinc/dub-go",
 			Hooks:             hooks.New(),
 		},
 	}

@@ -61,11 +61,11 @@ func main() {
 	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
-		TagIds: operations.CreateTagIdsArrayOfStr(
+		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
 			[]string{
 				"clux0rgak00011...",
 			},
-		),
+		)),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -98,11 +98,11 @@ func main() {
 	res, err := s.Links.Upsert(ctx, &operations.UpsertLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
-		TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(
+		TagIds: dubgo.Pointer(operations.CreateUpsertLinkTagIdsArrayOfStr(
 			[]string{
 				"clux0rgak00011...",
 			},
-		),
+		)),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -118,6 +118,25 @@ func main() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
+### [Analytics](docs/sdks/analytics/README.md)
+
+* [Retrieve](docs/sdks/analytics/README.md#retrieve) - Retrieve analytics for a link, a domain, or the authenticated workspace.
+
+### [Domains](docs/sdks/domains/README.md)
+
+* [List](docs/sdks/domains/README.md#list) - Retrieve a list of domains
+* [Create](docs/sdks/domains/README.md#create) - Create a domain
+* [Delete](docs/sdks/domains/README.md#delete) - Delete a domain
+* [Update](docs/sdks/domains/README.md#update) - Update a domain
+
+
+### [Events](docs/sdks/events/README.md)
+
+* [List](docs/sdks/events/README.md#list) - Retrieve a list of events
+
 ### [Links](docs/sdks/links/README.md)
 
 * [List](docs/sdks/links/README.md#list) - Retrieve a list of links
@@ -131,22 +150,13 @@ func main() {
 * [UpdateMany](docs/sdks/links/README.md#updatemany) - Bulk update links
 * [Upsert](docs/sdks/links/README.md#upsert) - Upsert a link
 
+### [Metatags](docs/sdks/metatags/README.md)
+
+* [Get](docs/sdks/metatags/README.md#get) - Retrieve the metatags for a URL
+
 ### [QRCodes](docs/sdks/qrcodes/README.md)
 
 * [Get](docs/sdks/qrcodes/README.md#get) - Retrieve a QR code
-
-### [Analytics](docs/sdks/analytics/README.md)
-
-* [Retrieve](docs/sdks/analytics/README.md#retrieve) - Retrieve analytics for a link, a domain, or the authenticated workspace.
-
-### [Events](docs/sdks/events/README.md)
-
-* [List](docs/sdks/events/README.md#list) - Retrieve a list of events
-
-### [Workspaces](docs/sdks/workspaces/README.md)
-
-* [Get](docs/sdks/workspaces/README.md#get) - Retrieve a workspace
-* [Update](docs/sdks/workspaces/README.md#update) - Update a workspace
 
 ### [Tags](docs/sdks/tags/README.md)
 
@@ -155,22 +165,18 @@ func main() {
 * [Delete](docs/sdks/tags/README.md#delete) - Delete a tag
 * [Update](docs/sdks/tags/README.md#update) - Update a tag
 
-### [Domains](docs/sdks/domains/README.md)
-
-* [List](docs/sdks/domains/README.md#list) - Retrieve a list of domains
-* [Create](docs/sdks/domains/README.md#create) - Create a domain
-* [Delete](docs/sdks/domains/README.md#delete) - Delete a domain
-* [Update](docs/sdks/domains/README.md#update) - Update a domain
-
 ### [Track](docs/sdks/track/README.md)
 
 * [Lead](docs/sdks/track/README.md#lead) - Track a lead
 * [Sale](docs/sdks/track/README.md#sale) - Track a sale
 * [Customer](docs/sdks/track/README.md#customer) - Track a customer
 
-### [Metatags](docs/sdks/metatags/README.md)
+### [Workspaces](docs/sdks/workspaces/README.md)
 
-* [Get](docs/sdks/metatags/README.md#get) - Retrieve the metatags for a URL
+* [Get](docs/sdks/workspaces/README.md#get) - Retrieve a workspace
+* [Update](docs/sdks/workspaces/README.md#update) - Update a workspace
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->

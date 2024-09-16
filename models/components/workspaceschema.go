@@ -175,6 +175,8 @@ type WorkspaceSchema struct {
 	ReferralLinkID *string `json:"referralLinkId"`
 	// Whether the workspace has conversion tracking enabled (d.to/conversions).
 	ConversionEnabled bool `json:"conversionEnabled"`
+	// Whether the workspace has claimed a free .link domain. (dub.link/free)
+	DotLinkClaimed bool `json:"dotLinkClaimed"`
 	// The date and time when the workspace was created.
 	CreatedAt string `json:"createdAt"`
 	// The role of the authenticated user in the workspace.
@@ -348,6 +350,13 @@ func (o *WorkspaceSchema) GetConversionEnabled() bool {
 		return false
 	}
 	return o.ConversionEnabled
+}
+
+func (o *WorkspaceSchema) GetDotLinkClaimed() bool {
+	if o == nil {
+		return false
+	}
+	return o.DotLinkClaimed
 }
 
 func (o *WorkspaceSchema) GetCreatedAt() string {

@@ -6,6 +6,37 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
+// RegisteredDomain - The registered domain record.
+type RegisteredDomain struct {
+	// The ID of the registered domain record.
+	ID string `json:"id"`
+	// The date the domain was created.
+	CreatedAt string `json:"createdAt"`
+	// The date the domain expires.
+	ExpiresAt string `json:"expiresAt"`
+}
+
+func (o *RegisteredDomain) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *RegisteredDomain) GetCreatedAt() string {
+	if o == nil {
+		return ""
+	}
+	return o.CreatedAt
+}
+
+func (o *RegisteredDomain) GetExpiresAt() string {
+	if o == nil {
+		return ""
+	}
+	return o.ExpiresAt
+}
+
 type DomainSchema struct {
 	// The unique identifier of the domain.
 	ID string `json:"id"`
@@ -25,6 +56,8 @@ type DomainSchema struct {
 	CreatedAt string `json:"createdAt"`
 	// The date the domain was last updated.
 	UpdatedAt string `json:"updatedAt"`
+	// The registered domain record.
+	RegisteredDomain *RegisteredDomain `json:"registeredDomain,omitempty"`
 }
 
 func (d DomainSchema) MarshalJSON() ([]byte, error) {
@@ -99,4 +132,11 @@ func (o *DomainSchema) GetUpdatedAt() string {
 		return ""
 	}
 	return o.UpdatedAt
+}
+
+func (o *DomainSchema) GetRegisteredDomain() *RegisteredDomain {
+	if o == nil {
+		return nil
+	}
+	return o.RegisteredDomain
 }
