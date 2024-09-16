@@ -18,11 +18,11 @@ func main() {
 	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
-		TagIds: operations.CreateTagIdsArrayOfStr(
+		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
 			[]string{
 				"clux0rgak00011...",
 			},
-		),
+		)),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -53,11 +53,11 @@ func main() {
 	res, err := s.Links.Upsert(ctx, &operations.UpsertLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
-		TagIds: operations.CreateUpsertLinkTagIdsArrayOfStr(
+		TagIds: dubgo.Pointer(operations.CreateUpsertLinkTagIdsArrayOfStr(
 			[]string{
 				"clux0rgak00011...",
 			},
-		),
+		)),
 	})
 	if err != nil {
 		log.Fatal(err)

@@ -172,7 +172,7 @@ type ListEventsRequest struct {
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
 	Root   *bool    `queryParam:"style=form,explode=true,name=root"`
-	Page   *float64 `default:"0" queryParam:"style=form,explode=true,name=page"`
+	Page   *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
 	Limit  *float64 `default:"100" queryParam:"style=form,explode=true,name=limit"`
 	Order  *Order   `default:"desc" queryParam:"style=form,explode=true,name=order"`
 	SortBy *SortBy  `default:"timestamp" queryParam:"style=form,explode=true,name=sortBy"`
