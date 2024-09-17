@@ -7,7 +7,7 @@ import (
 )
 
 type TrackLeadRequestBody struct {
-	// The ID of the click in th Dub. You can read this value from `dclid` cookie.
+	// The ID of the click in th Dub. You can read this value from `dub_id` cookie.
 	ClickID string `json:"clickId"`
 	// The name of the event to track.
 	EventName string `json:"eventName"`
