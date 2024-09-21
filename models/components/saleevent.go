@@ -2502,9 +2502,17 @@ func (o *SaleEventClick) GetIP() string {
 }
 
 type SaleEventCustomer struct {
+	ID     string `json:"id"`
 	Name   string `json:"name"`
 	Email  string `json:"email"`
 	Avatar string `json:"avatar"`
+}
+
+func (o *SaleEventCustomer) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
 }
 
 func (o *SaleEventCustomer) GetName() string {
@@ -2608,18 +2616,6 @@ type SaleEvent struct {
 	Click     SaleEventClick    `json:"click"`
 	Customer  SaleEventCustomer `json:"customer"`
 	Sale      Sale              `json:"sale"`
-	// Deprecated. Use `customer.name` instead.
-	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	CustomerName string `json:"customer_name"`
-	// Deprecated. Use `customer.email` instead.
-	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	CustomerEmail string `json:"customer_email"`
-	// Deprecated. Use `customer.avatar` instead.
-	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	CustomerAvatar string `json:"customer_avatar"`
 	// Deprecated. Use `sale.amount` instead.
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -2738,27 +2734,6 @@ func (o *SaleEvent) GetSale() Sale {
 		return Sale{}
 	}
 	return o.Sale
-}
-
-func (o *SaleEvent) GetCustomerName() string {
-	if o == nil {
-		return ""
-	}
-	return o.CustomerName
-}
-
-func (o *SaleEvent) GetCustomerEmail() string {
-	if o == nil {
-		return ""
-	}
-	return o.CustomerEmail
-}
-
-func (o *SaleEvent) GetCustomerAvatar() string {
-	if o == nil {
-		return ""
-	}
-	return o.CustomerAvatar
 }
 
 func (o *SaleEvent) GetSaleAmount() float64 {
