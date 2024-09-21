@@ -2502,9 +2502,17 @@ func (o *LeadEventLink) GetProjectID() string {
 }
 
 type Customer struct {
+	ID     string `json:"id"`
 	Name   string `json:"name"`
 	Email  string `json:"email"`
 	Avatar string `json:"avatar"`
+}
+
+func (o *Customer) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
 }
 
 func (o *Customer) GetName() string {
@@ -2536,18 +2544,6 @@ type LeadEvent struct {
 	Click     LeadEventClick `json:"click"`
 	Link      LeadEventLink  `json:"link"`
 	Customer  Customer       `json:"customer"`
-	// Deprecated. Use `customer.name` instead.
-	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	CustomerName string `json:"customer_name"`
-	// Deprecated. Use `customer.email` instead.
-	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	CustomerEmail string `json:"customer_email"`
-	// Deprecated. Use `customer.avatar` instead.
-	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	CustomerAvatar string `json:"customer_avatar"`
 	// Deprecated. Use `click.id` instead.
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -2649,27 +2645,6 @@ func (o *LeadEvent) GetCustomer() Customer {
 		return Customer{}
 	}
 	return o.Customer
-}
-
-func (o *LeadEvent) GetCustomerName() string {
-	if o == nil {
-		return ""
-	}
-	return o.CustomerName
-}
-
-func (o *LeadEvent) GetCustomerEmail() string {
-	if o == nil {
-		return ""
-	}
-	return o.CustomerEmail
-}
-
-func (o *LeadEvent) GetCustomerAvatar() string {
-	if o == nil {
-		return ""
-	}
-	return o.CustomerAvatar
 }
 
 func (o *LeadEvent) GetClickID() string {
