@@ -36,6 +36,7 @@ func main() {
         Browser: dubgo.String("Chrome"),
         Os: dubgo.String("Windows"),
         Referer: dubgo.String("google.com"),
+        RefererURL: dubgo.String("https://dub.co/blog"),
     })
     if err != nil {
         log.Fatal(err)

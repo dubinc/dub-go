@@ -164,6 +164,8 @@ type ListEventsRequest struct {
 	Os *string `queryParam:"style=form,explode=true,name=os"`
 	// The referer to retrieve analytics for.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`
+	// The full referer URL to retrieve analytics for.
+	RefererURL *string `queryParam:"style=form,explode=true,name=refererUrl"`
 	// The URL to retrieve analytics for.
 	URL *string `queryParam:"style=form,explode=true,name=url"`
 	// The tag ID to retrieve analytics for.
@@ -299,6 +301,13 @@ func (o *ListEventsRequest) GetReferer() *string {
 		return nil
 	}
 	return o.Referer
+}
+
+func (o *ListEventsRequest) GetRefererURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RefererURL
 }
 
 func (o *ListEventsRequest) GetURL() *string {
