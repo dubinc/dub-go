@@ -47,18 +47,19 @@ func (e *Event) UnmarshalJSON(data []byte) error {
 type QueryParamGroupBy string
 
 const (
-	QueryParamGroupByCount      QueryParamGroupBy = "count"
-	QueryParamGroupByTimeseries QueryParamGroupBy = "timeseries"
-	QueryParamGroupByContinents QueryParamGroupBy = "continents"
-	QueryParamGroupByCountries  QueryParamGroupBy = "countries"
-	QueryParamGroupByCities     QueryParamGroupBy = "cities"
-	QueryParamGroupByDevices    QueryParamGroupBy = "devices"
-	QueryParamGroupByBrowsers   QueryParamGroupBy = "browsers"
-	QueryParamGroupByOs         QueryParamGroupBy = "os"
-	QueryParamGroupByReferers   QueryParamGroupBy = "referers"
-	QueryParamGroupByTopLinks   QueryParamGroupBy = "top_links"
-	QueryParamGroupByTopUrls    QueryParamGroupBy = "top_urls"
-	QueryParamGroupByTrigger    QueryParamGroupBy = "trigger"
+	QueryParamGroupByCount       QueryParamGroupBy = "count"
+	QueryParamGroupByTimeseries  QueryParamGroupBy = "timeseries"
+	QueryParamGroupByContinents  QueryParamGroupBy = "continents"
+	QueryParamGroupByCountries   QueryParamGroupBy = "countries"
+	QueryParamGroupByCities      QueryParamGroupBy = "cities"
+	QueryParamGroupByDevices     QueryParamGroupBy = "devices"
+	QueryParamGroupByBrowsers    QueryParamGroupBy = "browsers"
+	QueryParamGroupByOs          QueryParamGroupBy = "os"
+	QueryParamGroupByReferers    QueryParamGroupBy = "referers"
+	QueryParamGroupByRefererUrls QueryParamGroupBy = "referer_urls"
+	QueryParamGroupByTopLinks    QueryParamGroupBy = "top_links"
+	QueryParamGroupByTopUrls     QueryParamGroupBy = "top_urls"
+	QueryParamGroupByTrigger     QueryParamGroupBy = "trigger"
 )
 
 func (e QueryParamGroupBy) ToPointer() *QueryParamGroupBy {
@@ -87,6 +88,8 @@ func (e *QueryParamGroupBy) UnmarshalJSON(data []byte) error {
 	case "os":
 		fallthrough
 	case "referers":
+		fallthrough
+	case "referer_urls":
 		fallthrough
 	case "top_links":
 		fallthrough
@@ -180,6 +183,8 @@ type RetrieveAnalyticsRequest struct {
 	Os *string `queryParam:"style=form,explode=true,name=os"`
 	// The referer to retrieve analytics for.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`
+	// The full referer URL to retrieve analytics for.
+	RefererURL *string `queryParam:"style=form,explode=true,name=refererUrl"`
 	// The URL to retrieve analytics for.
 	URL *string `queryParam:"style=form,explode=true,name=url"`
 	// The tag ID to retrieve analytics for.
@@ -318,6 +323,13 @@ func (o *RetrieveAnalyticsRequest) GetReferer() *string {
 		return nil
 	}
 	return o.Referer
+}
+
+func (o *RetrieveAnalyticsRequest) GetRefererURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RefererURL
 }
 
 func (o *RetrieveAnalyticsRequest) GetURL() *string {

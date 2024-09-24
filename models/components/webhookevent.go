@@ -68,17 +68,18 @@ func (o *WebhookEvent4Customer) GetAvatar() *string {
 }
 
 type WebhookEvent4Click struct {
-	ID        string `json:"id"`
-	URL       string `json:"url"`
-	Continent string `json:"continent"`
-	Country   string `json:"country"`
-	City      string `json:"city"`
-	Device    string `json:"device"`
-	Browser   string `json:"browser"`
-	Os        string `json:"os"`
-	Referer   string `json:"referer"`
-	Qr        *bool  `json:"qr,omitempty"`
-	IP        string `json:"ip"`
+	ID         string `json:"id"`
+	URL        string `json:"url"`
+	Continent  string `json:"continent"`
+	Country    string `json:"country"`
+	City       string `json:"city"`
+	Device     string `json:"device"`
+	Browser    string `json:"browser"`
+	Os         string `json:"os"`
+	Referer    string `json:"referer"`
+	RefererURL string `json:"refererUrl"`
+	Qr         *bool  `json:"qr,omitempty"`
+	IP         string `json:"ip"`
 }
 
 func (o *WebhookEvent4Click) GetID() string {
@@ -142,6 +143,13 @@ func (o *WebhookEvent4Click) GetReferer() string {
 		return ""
 	}
 	return o.Referer
+}
+
+func (o *WebhookEvent4Click) GetRefererURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.RefererURL
 }
 
 func (o *WebhookEvent4Click) GetQr() *bool {
@@ -2709,17 +2717,18 @@ func (o *WebhookEventCustomer) GetAvatar() *string {
 }
 
 type WebhookEvent3Click struct {
-	ID        string `json:"id"`
-	URL       string `json:"url"`
-	Continent string `json:"continent"`
-	Country   string `json:"country"`
-	City      string `json:"city"`
-	Device    string `json:"device"`
-	Browser   string `json:"browser"`
-	Os        string `json:"os"`
-	Referer   string `json:"referer"`
-	Qr        *bool  `json:"qr,omitempty"`
-	IP        string `json:"ip"`
+	ID         string `json:"id"`
+	URL        string `json:"url"`
+	Continent  string `json:"continent"`
+	Country    string `json:"country"`
+	City       string `json:"city"`
+	Device     string `json:"device"`
+	Browser    string `json:"browser"`
+	Os         string `json:"os"`
+	Referer    string `json:"referer"`
+	RefererURL string `json:"refererUrl"`
+	Qr         *bool  `json:"qr,omitempty"`
+	IP         string `json:"ip"`
 }
 
 func (o *WebhookEvent3Click) GetID() string {
@@ -2783,6 +2792,13 @@ func (o *WebhookEvent3Click) GetReferer() string {
 		return ""
 	}
 	return o.Referer
+}
+
+func (o *WebhookEvent3Click) GetRefererURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.RefererURL
 }
 
 func (o *WebhookEvent3Click) GetQr() *bool {
@@ -5272,17 +5288,18 @@ func (e *WebhookEvent2Event) UnmarshalJSON(data []byte) error {
 }
 
 type WebhookEventClick struct {
-	ID        string `json:"id"`
-	URL       string `json:"url"`
-	Continent string `json:"continent"`
-	Country   string `json:"country"`
-	City      string `json:"city"`
-	Device    string `json:"device"`
-	Browser   string `json:"browser"`
-	Os        string `json:"os"`
-	Referer   string `json:"referer"`
-	Qr        *bool  `json:"qr,omitempty"`
-	IP        string `json:"ip"`
+	ID         string `json:"id"`
+	URL        string `json:"url"`
+	Continent  string `json:"continent"`
+	Country    string `json:"country"`
+	City       string `json:"city"`
+	Device     string `json:"device"`
+	Browser    string `json:"browser"`
+	Os         string `json:"os"`
+	Referer    string `json:"referer"`
+	RefererURL string `json:"refererUrl"`
+	Qr         *bool  `json:"qr,omitempty"`
+	IP         string `json:"ip"`
 }
 
 func (o *WebhookEventClick) GetID() string {
@@ -5346,6 +5363,13 @@ func (o *WebhookEventClick) GetReferer() string {
 		return ""
 	}
 	return o.Referer
+}
+
+func (o *WebhookEventClick) GetRefererURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.RefererURL
 }
 
 func (o *WebhookEventClick) GetQr() *bool {

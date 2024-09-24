@@ -32,17 +32,18 @@ func (e *Event) UnmarshalJSON(data []byte) error {
 }
 
 type Click struct {
-	ID        string `json:"id"`
-	URL       string `json:"url"`
-	Continent string `json:"continent"`
-	Country   string `json:"country"`
-	City      string `json:"city"`
-	Device    string `json:"device"`
-	Browser   string `json:"browser"`
-	Os        string `json:"os"`
-	Referer   string `json:"referer"`
-	Qr        *bool  `json:"qr,omitempty"`
-	IP        string `json:"ip"`
+	ID         string `json:"id"`
+	URL        string `json:"url"`
+	Continent  string `json:"continent"`
+	Country    string `json:"country"`
+	City       string `json:"city"`
+	Device     string `json:"device"`
+	Browser    string `json:"browser"`
+	Os         string `json:"os"`
+	Referer    string `json:"referer"`
+	RefererURL string `json:"refererUrl"`
+	Qr         *bool  `json:"qr,omitempty"`
+	IP         string `json:"ip"`
 }
 
 func (o *Click) GetID() string {
@@ -106,6 +107,13 @@ func (o *Click) GetReferer() string {
 		return ""
 	}
 	return o.Referer
+}
+
+func (o *Click) GetRefererURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.RefererURL
 }
 
 func (o *Click) GetQr() *bool {

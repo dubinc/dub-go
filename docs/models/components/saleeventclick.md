@@ -14,5 +14,6 @@
 | `Browser`          | *string*           | :heavy_check_mark: | N/A                |
 | `Os`               | *string*           | :heavy_check_mark: | N/A                |
 | `Referer`          | *string*           | :heavy_check_mark: | N/A                |
+| `RefererURL`       | *string*           | :heavy_check_mark: | N/A                |
 | `Qr`               | **bool*            | :heavy_minus_sign: | N/A                |
 | `IP`               | *string*           | :heavy_check_mark: | N/A                |
