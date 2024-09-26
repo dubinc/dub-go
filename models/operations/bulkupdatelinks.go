@@ -192,6 +192,8 @@ type Data struct {
 	UtmTerm *string `json:"utm_term,omitempty"`
 	// The UTM content of the short link. If set, this will populate or override the UTM content in the destination URL.
 	UtmContent *string `json:"utm_content,omitempty"`
+	// The referral tag of the short link. If set, this will populate or override the `ref` query parameter in the destination URL.
+	Ref *string `json:"ref,omitempty"`
 }
 
 func (d Data) MarshalJSON() ([]byte, error) {
@@ -385,6 +387,13 @@ func (o *Data) GetUtmContent() *string {
 		return nil
 	}
 	return o.UtmContent
+}
+
+func (o *Data) GetRef() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ref
 }
 
 type BulkUpdateLinksRequestBody struct {
