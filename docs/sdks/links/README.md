@@ -244,7 +244,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Links.Get(ctx, operations.GetLinkInfoRequest{
         LinkID: dubgo.String("clux0rgak00011..."),
-        ExternalID: dubgo.String("ext_123456"),
+        ExternalID: dubgo.String("123456"),
     })
     if err != nil {
         log.Fatal(err)

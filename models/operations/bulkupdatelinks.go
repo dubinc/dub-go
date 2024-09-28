@@ -397,15 +397,25 @@ func (o *Data) GetRef() *string {
 }
 
 type BulkUpdateLinksRequestBody struct {
-	LinkIds []string `json:"linkIds"`
-	Data    Data     `json:"data"`
+	// The IDs of the links to update. Takes precedence over `externalIds`.
+	LinkIds []string `json:"linkIds,omitempty"`
+	// The external IDs of the links to update as stored in your database.
+	ExternalIds []string `json:"externalIds,omitempty"`
+	Data        Data     `json:"data"`
 }
 
 func (o *BulkUpdateLinksRequestBody) GetLinkIds() []string {
 	if o == nil {
-		return []string{}
+		return nil
 	}
 	return o.LinkIds
+}
+
+func (o *BulkUpdateLinksRequestBody) GetExternalIds() []string {
+	if o == nil {
+		return nil
+	}
+	return o.ExternalIds
 }
 
 func (o *BulkUpdateLinksRequestBody) GetData() Data {
