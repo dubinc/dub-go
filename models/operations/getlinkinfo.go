@@ -8,7 +8,7 @@ type GetLinkInfoRequest struct {
 	Key *string `queryParam:"style=form,explode=true,name=key"`
 	// The unique ID of the short link.
 	LinkID *string `queryParam:"style=form,explode=true,name=linkId"`
-	// This is the ID of the link in the your database. Must be prefixed with `ext_` when passed as a query parameter.
+	// This is the ID of the link in the your database.
 	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
 }
 
