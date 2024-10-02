@@ -2041,13 +2041,15 @@ type SaleEventLink struct {
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
 	Domain string `json:"domain"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
-	Key string `json:"key"`
-	// This is the ID of the link in your database. If set, it can be used to identify the link in the future. Must be prefixed with 'ext_' when passed as a query parameter.
-	ExternalID      *string `json:"externalId"`
-	URL             string  `json:"url"`
-	TrackConversion *bool   `json:"trackConversion,omitempty"`
-	Archived        *bool   `json:"archived,omitempty"`
-	ExpiresAt       string  `json:"expiresAt"`
+	Key             string `json:"key"`
+	URL             string `json:"url"`
+	TrackConversion *bool  `json:"trackConversion,omitempty"`
+	// This is the ID of the link in your database that is unique across your workspace. If set, it can be used to identify the link in future API requests. Must be prefixed with 'ext_' when passed as a query parameter.
+	ExternalID *string `json:"externalId"`
+	// The identifier of the short link that is unique across your workspace. If set, it can be used to identify your short link for client-side click tracking.
+	Identifier *string `json:"identifier"`
+	Archived   *bool   `json:"archived,omitempty"`
+	ExpiresAt  string  `json:"expiresAt"`
 	// The URL to redirect to when the short link has expired.
 	ExpiredURL *string `json:"expiredUrl"`
 	// The password required to access the destination URL of the short link.
@@ -2144,13 +2146,6 @@ func (o *SaleEventLink) GetKey() string {
 	return o.Key
 }
 
-func (o *SaleEventLink) GetExternalID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ExternalID
-}
-
 func (o *SaleEventLink) GetURL() string {
 	if o == nil {
 		return ""
@@ -2163,6 +2158,20 @@ func (o *SaleEventLink) GetTrackConversion() *bool {
 		return nil
 	}
 	return o.TrackConversion
+}
+
+func (o *SaleEventLink) GetExternalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExternalID
+}
+
+func (o *SaleEventLink) GetIdentifier() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Identifier
 }
 
 func (o *SaleEventLink) GetArchived() *bool {

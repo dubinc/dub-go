@@ -2017,12 +2017,14 @@ type LinkSchema struct {
 	Domain string `json:"domain"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key string `json:"key"`
-	// This is the ID of the link in your database. If set, it can be used to identify the link in the future. Must be prefixed with 'ext_' when passed as a query parameter.
-	ExternalID *string `json:"externalId"`
 	// The destination URL of the short link.
 	URL string `json:"url"`
 	// [BETA] Whether to track conversions for the short link.
 	TrackConversion *bool `default:"false" json:"trackConversion"`
+	// This is the ID of the link in your database that is unique across your workspace. If set, it can be used to identify the link in future API requests. Must be prefixed with 'ext_' when passed as a query parameter.
+	ExternalID *string `json:"externalId"`
+	// The identifier of the short link that is unique across your workspace. If set, it can be used to identify your short link for client-side click tracking.
+	Identifier *string `json:"identifier"`
 	// Whether the short link is archived.
 	Archived *bool `default:"false" json:"archived"`
 	// The date and time when the short link will expire in ISO-8601 format.
@@ -2131,13 +2133,6 @@ func (o *LinkSchema) GetKey() string {
 	return o.Key
 }
 
-func (o *LinkSchema) GetExternalID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ExternalID
-}
-
 func (o *LinkSchema) GetURL() string {
 	if o == nil {
 		return ""
@@ -2150,6 +2145,20 @@ func (o *LinkSchema) GetTrackConversion() *bool {
 		return nil
 	}
 	return o.TrackConversion
+}
+
+func (o *LinkSchema) GetExternalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExternalID
+}
+
+func (o *LinkSchema) GetIdentifier() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Identifier
 }
 
 func (o *LinkSchema) GetArchived() *bool {
