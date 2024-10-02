@@ -185,6 +185,8 @@ type WorkspaceSchema struct {
 	Domains []Domains `json:"domains"`
 	// The feature flags of the workspace, indicating which features are enabled.
 	Flags map[string]bool `json:"flags,omitempty"`
+	// The publishable key of the workspace.
+	PublishableKey *string `json:"publishableKey"`
 }
 
 func (w WorkspaceSchema) MarshalJSON() ([]byte, error) {
@@ -385,4 +387,11 @@ func (o *WorkspaceSchema) GetFlags() map[string]bool {
 		return nil
 	}
 	return o.Flags
+}
+
+func (o *WorkspaceSchema) GetPublishableKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PublishableKey
 }
