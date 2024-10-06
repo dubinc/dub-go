@@ -82,6 +82,33 @@ func (e *QueryParamInterval) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// QueryParamTrigger - The trigger to retrieve analytics for. If undefined, return both QR and link clicks.
+type QueryParamTrigger string
+
+const (
+	QueryParamTriggerQr   QueryParamTrigger = "qr"
+	QueryParamTriggerLink QueryParamTrigger = "link"
+)
+
+func (e QueryParamTrigger) ToPointer() *QueryParamTrigger {
+	return &e
+}
+func (e *QueryParamTrigger) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "qr":
+		fallthrough
+	case "link":
+		*e = QueryParamTrigger(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for QueryParamTrigger: %v", v)
+	}
+}
+
 type Order string
 
 const (
@@ -162,6 +189,8 @@ type ListEventsRequest struct {
 	Browser *string `queryParam:"style=form,explode=true,name=browser"`
 	// The OS to retrieve analytics for.
 	Os *string `queryParam:"style=form,explode=true,name=os"`
+	// The trigger to retrieve analytics for. If undefined, return both QR and link clicks.
+	Trigger *QueryParamTrigger `queryParam:"style=form,explode=true,name=trigger"`
 	// The referer to retrieve analytics for.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`
 	// The full referer URL to retrieve analytics for.
@@ -170,7 +199,7 @@ type ListEventsRequest struct {
 	URL *string `queryParam:"style=form,explode=true,name=url"`
 	// The tag ID to retrieve analytics for.
 	TagID *string `queryParam:"style=form,explode=true,name=tagId"`
-	// Filter for QR code scans. If true, filter for QR codes only. If false, filter for links only. If undefined, return both.
+	// Deprecated. Use the `trigger` field instead. Filter for QR code scans. If true, filter for QR codes only. If false, filter for links only. If undefined, return both.
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
 	Root   *bool    `queryParam:"style=form,explode=true,name=root"`
@@ -294,6 +323,13 @@ func (o *ListEventsRequest) GetOs() *string {
 		return nil
 	}
 	return o.Os
+}
+
+func (o *ListEventsRequest) GetTrigger() *QueryParamTrigger {
+	if o == nil {
+		return nil
+	}
+	return o.Trigger
 }
 
 func (o *ListEventsRequest) GetReferer() *string {

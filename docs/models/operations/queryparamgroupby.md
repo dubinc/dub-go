@@ -1,6 +1,6 @@
 # QueryParamGroupBy
 
-The parameter to group the analytics data points by. Defaults to 'count' if undefined.
+The parameter to group the analytics data points by. Defaults to `count` if undefined. Note that `trigger` is deprecated (use `triggers` instead), but kept for backwards compatibility.
 
 
 ## Values
@@ -15,8 +15,9 @@ The parameter to group the analytics data points by. Defaults to 'count' if unde
 | `QueryParamGroupByDevices`     | devices                        |
 | `QueryParamGroupByBrowsers`    | browsers                       |
 | `QueryParamGroupByOs`          | os                             |
+| `QueryParamGroupByTrigger`     | trigger                        |
+| `QueryParamGroupByTriggers`    | triggers                       |
 | `QueryParamGroupByReferers`    | referers                       |
 | `QueryParamGroupByRefererUrls` | referer_urls                   |
 | `QueryParamGroupByTopLinks`    | top_links                      |
 | `QueryParamGroupByTopUrls`     | top_urls                       |
-| `QueryParamGroupByTrigger`     | trigger                        |

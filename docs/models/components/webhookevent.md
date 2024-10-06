@@ -5,27 +5,27 @@ Webhook event schema
 
 ## Supported Types
 
-### One
+### LinkWebhookEvent
 
 ```go
-webhookEvent := components.CreateWebhookEventOne(components.One{/* values here */})
+webhookEvent := components.CreateWebhookEventLinkWebhookEvent(components.LinkWebhookEvent{/* values here */})
 ```
 
-### Two
+### LinkClickedEvent
 
 ```go
-webhookEvent := components.CreateWebhookEventTwo(components.Two{/* values here */})
+webhookEvent := components.CreateWebhookEventLinkClickedEvent(components.LinkClickedEvent{/* values here */})
 ```
 
-### Three
+### LeadCreatedEvent
 
 ```go
-webhookEvent := components.CreateWebhookEventThree(components.Three{/* values here */})
+webhookEvent := components.CreateWebhookEventLeadCreatedEvent(components.LeadCreatedEvent{/* values here */})
 ```
 
-### Four
+### SaleCreatedEvent
 
 ```go
-webhookEvent := components.CreateWebhookEventFour(components.Four{/* values here */})
+webhookEvent := components.CreateWebhookEventSaleCreatedEvent(components.SaleCreatedEvent{/* values here */})
 ```
 

@@ -44,6 +44,8 @@ func (e *Level) UnmarshalJSON(data []byte) error {
 type GetQRCodeRequest struct {
 	// The URL to generate a QR code for.
 	URL string `queryParam:"style=form,explode=true,name=url"`
+	// The logo to include in the QR code. Can only be used with a paid plan on Dub.co.
+	Logo *string `queryParam:"style=form,explode=true,name=logo"`
 	// The size of the QR code in pixels. Defaults to `600` if not provided.
 	Size *float64 `default:"600" queryParam:"style=form,explode=true,name=size"`
 	// The level of error correction to use for the QR code. Defaults to `L` if not provided.
@@ -52,6 +54,8 @@ type GetQRCodeRequest struct {
 	FgColor *string `default:"#000000" queryParam:"style=form,explode=true,name=fgColor"`
 	// The background color of the QR code in hex format. Defaults to `#ffffff` if not provided.
 	BgColor *string `default:"#FFFFFF" queryParam:"style=form,explode=true,name=bgColor"`
+	// Whether to hide the logo in the QR code. Can only be used with a paid plan on Dub.co.
+	HideLogo *bool `default:"false" queryParam:"style=form,explode=true,name=hideLogo"`
 	// Whether to include a margin around the QR code. Defaults to `false` if not provided.
 	IncludeMargin *bool `default:"false" queryParam:"style=form,explode=true,name=includeMargin"`
 }
@@ -72,6 +76,13 @@ func (o *GetQRCodeRequest) GetURL() string {
 		return ""
 	}
 	return o.URL
+}
+
+func (o *GetQRCodeRequest) GetLogo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Logo
 }
 
 func (o *GetQRCodeRequest) GetSize() *float64 {
@@ -100,6 +111,13 @@ func (o *GetQRCodeRequest) GetBgColor() *string {
 		return nil
 	}
 	return o.BgColor
+}
+
+func (o *GetQRCodeRequest) GetHideLogo() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HideLogo
 }
 
 func (o *GetQRCodeRequest) GetIncludeMargin() *bool {
