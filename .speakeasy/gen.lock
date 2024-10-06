@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 5c400b20334e45bb5625715215fcbff4
+  docChecksum: 8620b0f24a0133906ad7b91d73cc1651
   docVersion: 0.0.1
-  speakeasyVersion: 1.409.0
-  generationVersion: 2.429.0
-  releaseVersion: 0.9.8
-  configChecksum: a2ecccd4b6dfa7e53b1b448c8a09e724
+  speakeasyVersion: 1.410.0
+  generationVersion: 2.434.1
+  releaseVersion: 0.9.9
+  configChecksum: a44872345ac3bac755ba9de9786711f9
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -37,14 +37,17 @@ generatedFiles:
   - .gitattributes
   - /models/components/analyticsbrowsers.go
   - /models/components/analyticscities.go
+  - /models/components/analyticscontinents.go
   - /models/components/analyticscount.go
   - /models/components/analyticscountries.go
   - /models/components/analyticsdevices.go
   - /models/components/analyticsos.go
   - /models/components/analyticsreferers.go
+  - /models/components/analyticsrefererurls.go
   - /models/components/analyticstimeseries.go
   - /models/components/analyticstoplinks.go
   - /models/components/analyticstopurls.go
+  - /models/components/analyticstriggers.go
   - /models/components/clickevent.go
   - /models/components/continentcode.go
   - /models/components/countrycode.go
@@ -102,19 +105,23 @@ generatedFiles:
   - docs/models/components/analyticsbrowsers.md
   - docs/models/components/analyticscities.md
   - docs/models/components/analyticscitiescountry.md
+  - docs/models/components/analyticscontinents.md
   - docs/models/components/analyticscount.md
   - docs/models/components/analyticscountries.md
   - docs/models/components/analyticsdevices.md
   - docs/models/components/analyticsos.md
   - docs/models/components/analyticsreferers.md
+  - docs/models/components/analyticsrefererurls.md
   - docs/models/components/analyticstimeseries.md
   - docs/models/components/analyticstoplinks.md
   - docs/models/components/analyticstopurls.md
+  - docs/models/components/analyticstriggers.md
   - docs/models/components/city.md
   - docs/models/components/click.md
   - docs/models/components/clickevent.md
   - docs/models/components/clickeventgeo.md
   - docs/models/components/color.md
+  - docs/models/components/continent.md
   - docs/models/components/continentcode.md
   - docs/models/components/country.md
   - docs/models/components/countrycode.md
@@ -171,6 +178,7 @@ generatedFiles:
   - docs/models/components/security.md
   - docs/models/components/tagschema.md
   - docs/models/components/three.md
+  - docs/models/components/trigger.md
   - docs/models/components/two.md
   - docs/models/components/users.md
   - docs/models/components/webhookevent.md

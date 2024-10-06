@@ -20,6 +20,12 @@ retrieveAnalyticsResponseBody := operations.CreateRetrieveAnalyticsResponseBodyA
 ### 
 
 ```go
+retrieveAnalyticsResponseBody := operations.CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsContinents([]components.AnalyticsContinents{/* values here */})
+```
+
+### 
+
+```go
 retrieveAnalyticsResponseBody := operations.CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsCountries([]components.AnalyticsCountries{/* values here */})
 ```
 
@@ -50,7 +56,19 @@ retrieveAnalyticsResponseBody := operations.CreateRetrieveAnalyticsResponseBodyA
 ### 
 
 ```go
+retrieveAnalyticsResponseBody := operations.CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsTriggers([]components.AnalyticsTriggers{/* values here */})
+```
+
+### 
+
+```go
 retrieveAnalyticsResponseBody := operations.CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsReferers([]components.AnalyticsReferers{/* values here */})
+```
+
+### 
+
+```go
+retrieveAnalyticsResponseBody := operations.CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsRefererUrls([]components.AnalyticsRefererUrls{/* values here */})
 ```
 
 ### 

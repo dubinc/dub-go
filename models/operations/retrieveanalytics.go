@@ -402,30 +402,36 @@ func (o *RetrieveAnalyticsRequest) GetRoot() *bool {
 type RetrieveAnalyticsResponseBodyType string
 
 const (
-	RetrieveAnalyticsResponseBodyTypeAnalyticsCount             RetrieveAnalyticsResponseBodyType = "AnalyticsCount"
-	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTimeseries RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsTimeseries"
-	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCountries  RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsCountries"
-	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCities     RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsCities"
-	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsDevices    RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsDevices"
-	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsBrowsers   RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsBrowsers"
-	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsOS         RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsOS"
-	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsReferers   RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsReferers"
-	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopLinks   RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsTopLinks"
-	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopUrls    RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsTopUrls"
+	RetrieveAnalyticsResponseBodyTypeAnalyticsCount              RetrieveAnalyticsResponseBodyType = "AnalyticsCount"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTimeseries  RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsTimeseries"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsContinents  RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsContinents"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCountries   RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsCountries"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCities      RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsCities"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsDevices     RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsDevices"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsBrowsers    RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsBrowsers"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsOS          RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsOS"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTriggers    RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsTriggers"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsReferers    RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsReferers"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsRefererUrls RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsRefererUrls"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopLinks    RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsTopLinks"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopUrls     RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsTopUrls"
 )
 
 // RetrieveAnalyticsResponseBody - Analytics data
 type RetrieveAnalyticsResponseBody struct {
-	AnalyticsCount             *components.AnalyticsCount
-	ArrayOfAnalyticsTimeseries []components.AnalyticsTimeseries
-	ArrayOfAnalyticsCountries  []components.AnalyticsCountries
-	ArrayOfAnalyticsCities     []components.AnalyticsCities
-	ArrayOfAnalyticsDevices    []components.AnalyticsDevices
-	ArrayOfAnalyticsBrowsers   []components.AnalyticsBrowsers
-	ArrayOfAnalyticsOS         []components.AnalyticsOS
-	ArrayOfAnalyticsReferers   []components.AnalyticsReferers
-	ArrayOfAnalyticsTopLinks   []components.AnalyticsTopLinks
-	ArrayOfAnalyticsTopUrls    []components.AnalyticsTopUrls
+	AnalyticsCount              *components.AnalyticsCount
+	ArrayOfAnalyticsTimeseries  []components.AnalyticsTimeseries
+	ArrayOfAnalyticsContinents  []components.AnalyticsContinents
+	ArrayOfAnalyticsCountries   []components.AnalyticsCountries
+	ArrayOfAnalyticsCities      []components.AnalyticsCities
+	ArrayOfAnalyticsDevices     []components.AnalyticsDevices
+	ArrayOfAnalyticsBrowsers    []components.AnalyticsBrowsers
+	ArrayOfAnalyticsOS          []components.AnalyticsOS
+	ArrayOfAnalyticsTriggers    []components.AnalyticsTriggers
+	ArrayOfAnalyticsReferers    []components.AnalyticsReferers
+	ArrayOfAnalyticsRefererUrls []components.AnalyticsRefererUrls
+	ArrayOfAnalyticsTopLinks    []components.AnalyticsTopLinks
+	ArrayOfAnalyticsTopUrls     []components.AnalyticsTopUrls
 
 	Type RetrieveAnalyticsResponseBodyType
 }
@@ -444,6 +450,15 @@ func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsTimeseries(arrayOfAnalyt
 
 	return RetrieveAnalyticsResponseBody{
 		ArrayOfAnalyticsTimeseries: arrayOfAnalyticsTimeseries,
+		Type:                       typ,
+	}
+}
+
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsContinents(arrayOfAnalyticsContinents []components.AnalyticsContinents) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsContinents
+
+	return RetrieveAnalyticsResponseBody{
+		ArrayOfAnalyticsContinents: arrayOfAnalyticsContinents,
 		Type:                       typ,
 	}
 }
@@ -493,12 +508,30 @@ func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsOS(arrayOfAnalyticsOS []
 	}
 }
 
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsTriggers(arrayOfAnalyticsTriggers []components.AnalyticsTriggers) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTriggers
+
+	return RetrieveAnalyticsResponseBody{
+		ArrayOfAnalyticsTriggers: arrayOfAnalyticsTriggers,
+		Type:                     typ,
+	}
+}
+
 func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsReferers(arrayOfAnalyticsReferers []components.AnalyticsReferers) RetrieveAnalyticsResponseBody {
 	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsReferers
 
 	return RetrieveAnalyticsResponseBody{
 		ArrayOfAnalyticsReferers: arrayOfAnalyticsReferers,
 		Type:                     typ,
+	}
+}
+
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsRefererUrls(arrayOfAnalyticsRefererUrls []components.AnalyticsRefererUrls) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsRefererUrls
+
+	return RetrieveAnalyticsResponseBody{
+		ArrayOfAnalyticsRefererUrls: arrayOfAnalyticsRefererUrls,
+		Type:                        typ,
 	}
 }
 
@@ -533,6 +566,13 @@ func (u *RetrieveAnalyticsResponseBody) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsTimeseries, "", true, true); err == nil {
 		u.ArrayOfAnalyticsTimeseries = arrayOfAnalyticsTimeseries
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTimeseries
+		return nil
+	}
+
+	var arrayOfAnalyticsContinents []components.AnalyticsContinents = []components.AnalyticsContinents{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsContinents, "", true, true); err == nil {
+		u.ArrayOfAnalyticsContinents = arrayOfAnalyticsContinents
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsContinents
 		return nil
 	}
 
@@ -571,10 +611,24 @@ func (u *RetrieveAnalyticsResponseBody) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var arrayOfAnalyticsTriggers []components.AnalyticsTriggers = []components.AnalyticsTriggers{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsTriggers, "", true, true); err == nil {
+		u.ArrayOfAnalyticsTriggers = arrayOfAnalyticsTriggers
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTriggers
+		return nil
+	}
+
 	var arrayOfAnalyticsReferers []components.AnalyticsReferers = []components.AnalyticsReferers{}
 	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsReferers, "", true, true); err == nil {
 		u.ArrayOfAnalyticsReferers = arrayOfAnalyticsReferers
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsReferers
+		return nil
+	}
+
+	var arrayOfAnalyticsRefererUrls []components.AnalyticsRefererUrls = []components.AnalyticsRefererUrls{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsRefererUrls, "", true, true); err == nil {
+		u.ArrayOfAnalyticsRefererUrls = arrayOfAnalyticsRefererUrls
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsRefererUrls
 		return nil
 	}
 
@@ -604,6 +658,10 @@ func (u RetrieveAnalyticsResponseBody) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.ArrayOfAnalyticsTimeseries, "", true)
 	}
 
+	if u.ArrayOfAnalyticsContinents != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsContinents, "", true)
+	}
+
 	if u.ArrayOfAnalyticsCountries != nil {
 		return utils.MarshalJSON(u.ArrayOfAnalyticsCountries, "", true)
 	}
@@ -624,8 +682,16 @@ func (u RetrieveAnalyticsResponseBody) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.ArrayOfAnalyticsOS, "", true)
 	}
 
+	if u.ArrayOfAnalyticsTriggers != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsTriggers, "", true)
+	}
+
 	if u.ArrayOfAnalyticsReferers != nil {
 		return utils.MarshalJSON(u.ArrayOfAnalyticsReferers, "", true)
+	}
+
+	if u.ArrayOfAnalyticsRefererUrls != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsRefererUrls, "", true)
 	}
 
 	if u.ArrayOfAnalyticsTopLinks != nil {
