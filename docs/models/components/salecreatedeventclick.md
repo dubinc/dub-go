@@ -1,4 +1,4 @@
-# WebhookEvent4Click
+# SaleCreatedEventClick
 
 
 ## Fields

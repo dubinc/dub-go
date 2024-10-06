@@ -1,4 +1,4 @@
-# WebhookEvent4Geo
+# LeadCreatedEventGeo
 
 Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`. Learn more: https://d.to/geo
 

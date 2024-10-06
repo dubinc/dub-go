@@ -10,7 +10,7 @@ import (
 	"github.com/dubinc/dub-go/models/components"
 )
 
-// Event - The type of event to retrieve analytics for. Defaults to 'clicks'.
+// Event - The type of event to retrieve analytics for. Defaults to `clicks`.
 type Event string
 
 const (
@@ -43,7 +43,7 @@ func (e *Event) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// QueryParamGroupBy - The parameter to group the analytics data points by. Defaults to 'count' if undefined.
+// QueryParamGroupBy - The parameter to group the analytics data points by. Defaults to `count` if undefined. Note that `trigger` is deprecated (use `triggers` instead), but kept for backwards compatibility.
 type QueryParamGroupBy string
 
 const (
@@ -55,11 +55,12 @@ const (
 	QueryParamGroupByDevices     QueryParamGroupBy = "devices"
 	QueryParamGroupByBrowsers    QueryParamGroupBy = "browsers"
 	QueryParamGroupByOs          QueryParamGroupBy = "os"
+	QueryParamGroupByTrigger     QueryParamGroupBy = "trigger"
+	QueryParamGroupByTriggers    QueryParamGroupBy = "triggers"
 	QueryParamGroupByReferers    QueryParamGroupBy = "referers"
 	QueryParamGroupByRefererUrls QueryParamGroupBy = "referer_urls"
 	QueryParamGroupByTopLinks    QueryParamGroupBy = "top_links"
 	QueryParamGroupByTopUrls     QueryParamGroupBy = "top_urls"
-	QueryParamGroupByTrigger     QueryParamGroupBy = "trigger"
 )
 
 func (e QueryParamGroupBy) ToPointer() *QueryParamGroupBy {
@@ -87,6 +88,10 @@ func (e *QueryParamGroupBy) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "os":
 		fallthrough
+	case "trigger":
+		fallthrough
+	case "triggers":
+		fallthrough
 	case "referers":
 		fallthrough
 	case "referer_urls":
@@ -94,8 +99,6 @@ func (e *QueryParamGroupBy) UnmarshalJSON(data []byte) error {
 	case "top_links":
 		fallthrough
 	case "top_urls":
-		fallthrough
-	case "trigger":
 		*e = QueryParamGroupBy(v)
 		return nil
 	default:
@@ -148,10 +151,37 @@ func (e *Interval) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// Trigger - The trigger to retrieve analytics for. If undefined, return both QR and link clicks.
+type Trigger string
+
+const (
+	TriggerQr   Trigger = "qr"
+	TriggerLink Trigger = "link"
+)
+
+func (e Trigger) ToPointer() *Trigger {
+	return &e
+}
+func (e *Trigger) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "qr":
+		fallthrough
+	case "link":
+		*e = Trigger(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Trigger: %v", v)
+	}
+}
+
 type RetrieveAnalyticsRequest struct {
-	// The type of event to retrieve analytics for. Defaults to 'clicks'.
+	// The type of event to retrieve analytics for. Defaults to `clicks`.
 	Event *Event `default:"clicks" queryParam:"style=form,explode=true,name=event"`
-	// The parameter to group the analytics data points by. Defaults to 'count' if undefined.
+	// The parameter to group the analytics data points by. Defaults to `count` if undefined. Note that `trigger` is deprecated (use `triggers` instead), but kept for backwards compatibility.
 	GroupBy *QueryParamGroupBy `default:"count" queryParam:"style=form,explode=true,name=groupBy"`
 	// The domain to filter analytics for.
 	Domain *string `queryParam:"style=form,explode=true,name=domain"`
@@ -181,6 +211,8 @@ type RetrieveAnalyticsRequest struct {
 	Browser *string `queryParam:"style=form,explode=true,name=browser"`
 	// The OS to retrieve analytics for.
 	Os *string `queryParam:"style=form,explode=true,name=os"`
+	// The trigger to retrieve analytics for. If undefined, return both QR and link clicks.
+	Trigger *Trigger `queryParam:"style=form,explode=true,name=trigger"`
 	// The referer to retrieve analytics for.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`
 	// The full referer URL to retrieve analytics for.
@@ -189,7 +221,7 @@ type RetrieveAnalyticsRequest struct {
 	URL *string `queryParam:"style=form,explode=true,name=url"`
 	// The tag ID to retrieve analytics for.
 	TagID *string `queryParam:"style=form,explode=true,name=tagId"`
-	// Filter for QR code scans. If true, filter for QR codes only. If false, filter for links only. If undefined, return both.
+	// Deprecated. Use the `trigger` field instead. Filter for QR code scans. If true, filter for QR codes only. If false, filter for links only. If undefined, return both.
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
 	Root *bool `queryParam:"style=form,explode=true,name=root"`
@@ -316,6 +348,13 @@ func (o *RetrieveAnalyticsRequest) GetOs() *string {
 		return nil
 	}
 	return o.Os
+}
+
+func (o *RetrieveAnalyticsRequest) GetTrigger() *Trigger {
+	if o == nil {
+		return nil
+	}
+	return o.Trigger
 }
 
 func (o *RetrieveAnalyticsRequest) GetReferer() *string {
