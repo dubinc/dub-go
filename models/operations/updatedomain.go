@@ -11,6 +11,8 @@ type UpdateDomainRequestBody struct {
 	Slug *string `json:"slug,omitempty"`
 	// Redirect users to a specific URL when any link under this domain has expired.
 	ExpiredURL *string `json:"expiredUrl,omitempty"`
+	// Redirect users to a specific URL when a link under this domain doesn't exist.
+	NotFoundURL *string `json:"notFoundUrl,omitempty"`
 	// Whether to archive this domain. `false` will unarchive a previously archived domain.
 	Archived *bool `default:"false" json:"archived"`
 	// Provide context to your teammates in the link creation modal by showing them an example of a link to be shortened.
@@ -40,6 +42,13 @@ func (o *UpdateDomainRequestBody) GetExpiredURL() *string {
 		return nil
 	}
 	return o.ExpiredURL
+}
+
+func (o *UpdateDomainRequestBody) GetNotFoundURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.NotFoundURL
 }
 
 func (o *UpdateDomainRequestBody) GetArchived() *bool {

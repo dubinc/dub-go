@@ -157,9 +157,9 @@ func New(opts ...SDKOption) *Dub {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "0.9.10",
+			SDKVersion:        "0.9.11",
 			GenVersion:        "2.438.3",
-			UserAgent:         "speakeasy-sdk/go 0.9.10 2.438.3 0.0.1 github.com/dubinc/dub-go",
+			UserAgent:         "speakeasy-sdk/go 0.9.11 2.438.3 0.0.1 github.com/dubinc/dub-go",
 			Hooks:             hooks.New(),
 		},
 	}

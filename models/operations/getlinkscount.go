@@ -307,7 +307,7 @@ type GetLinksCountRequest struct {
 	UserID *string `queryParam:"style=form,explode=true,name=userId"`
 	// Whether to include archived links in the response. Defaults to `false` if not provided.
 	ShowArchived *bool `default:"false" queryParam:"style=form,explode=true,name=showArchived"`
-	// Whether to include tags in the response. Defaults to `false` if not provided.
+	// DEPRECATED. Filter for links that have at least one tag assigned to them.
 	WithTags *bool `default:"false" queryParam:"style=form,explode=true,name=withTags"`
 	// The field to group the links by.
 	GroupBy *GroupBy `queryParam:"style=form,explode=true,name=groupBy"`

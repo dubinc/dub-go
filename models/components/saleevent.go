@@ -2078,6 +2078,8 @@ type SaleEventLink struct {
 	TagID *string `json:"tagId"`
 	// The tags assigned to the short link.
 	Tags []TagSchema `json:"tags"`
+	// The IDs of the webhooks that the short link is associated with.
+	WebhookIds []string `json:"webhookIds"`
 	// The comments for the short link.
 	Comments *string `json:"comments"`
 	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
@@ -2291,6 +2293,13 @@ func (o *SaleEventLink) GetTags() []TagSchema {
 		return nil
 	}
 	return o.Tags
+}
+
+func (o *SaleEventLink) GetWebhookIds() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.WebhookIds
 }
 
 func (o *SaleEventLink) GetComments() *string {
