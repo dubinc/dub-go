@@ -20,7 +20,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "createDomain"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"context\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    ctx := context.Background()\n    res, err := s.Domains.Create(ctx, &operations.CreateDomainRequestBody{\n        Slug: \"acme.com\",\n        ExpiredURL: dubgo.String(\"https://acme.com/expired\"),\n        Archived: dubgo.Bool(false),\n        Placeholder: dubgo.String(\"https://dub.co/help/article/what-is-dub\"),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"context\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    ctx := context.Background()\n    res, err := s.Domains.Create(ctx, &operations.CreateDomainRequestBody{\n        Slug: \"acme.com\",\n        ExpiredURL: dubgo.String(\"https://acme.com/expired\"),\n        NotFoundURL: dubgo.String(\"https://acme.com/not-found\"),\n        Archived: dubgo.Bool(false),\n        Placeholder: dubgo.String(\"https://dub.co/help/article/what-is-dub\"),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/domains/{slug}"]["delete"]
     update:
       "x-codeSamples":
@@ -32,7 +32,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "updateDomain"
-          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"context\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    ctx := context.Background()\n    res, err := s.Domains.Update(ctx, \"acme.com\", &operations.UpdateDomainRequestBody{\n        Slug: dubgo.String(\"acme.com\"),\n        ExpiredURL: dubgo.String(\"https://acme.com/expired\"),\n        Archived: dubgo.Bool(false),\n        Placeholder: dubgo.String(\"https://dub.co/help/article/what-is-dub\"),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"context\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    ctx := context.Background()\n    res, err := s.Domains.Update(ctx, \"acme.com\", &operations.UpdateDomainRequestBody{\n        Slug: dubgo.String(\"acme.com\"),\n        ExpiredURL: dubgo.String(\"https://acme.com/expired\"),\n        NotFoundURL: dubgo.String(\"https://acme.com/not-found\"),\n        Archived: dubgo.Bool(false),\n        Placeholder: dubgo.String(\"https://dub.co/help/article/what-is-dub\"),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/events"]["get"]
     update:
       "x-codeSamples":

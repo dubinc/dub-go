@@ -52,12 +52,14 @@ type DomainSchema struct {
 	Placeholder *string `default:"https://dub.co/help/article/what-is-dub" json:"placeholder"`
 	// The URL to redirect to when a link under this domain has expired.
 	ExpiredURL *string `json:"expiredUrl"`
+	// The URL to redirect to when a link under this domain doesn't exist.
+	NotFoundURL *string `json:"notFoundUrl"`
 	// The date the domain was created.
 	CreatedAt string `json:"createdAt"`
 	// The date the domain was last updated.
 	UpdatedAt string `json:"updatedAt"`
 	// The registered domain record.
-	RegisteredDomain *RegisteredDomain `json:"registeredDomain,omitempty"`
+	RegisteredDomain *RegisteredDomain `json:"registeredDomain"`
 }
 
 func (d DomainSchema) MarshalJSON() ([]byte, error) {
@@ -118,6 +120,13 @@ func (o *DomainSchema) GetExpiredURL() *string {
 		return nil
 	}
 	return o.ExpiredURL
+}
+
+func (o *DomainSchema) GetNotFoundURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.NotFoundURL
 }
 
 func (o *DomainSchema) GetCreatedAt() string {
