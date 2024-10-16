@@ -49,7 +49,7 @@ type DomainSchema struct {
 	// Whether the domain is archived.
 	Archived *bool `default:"false" json:"archived"`
 	// Provide context to your teammates in the link creation modal by showing them an example of a link to be shortened.
-	Placeholder *string `default:"https://dub.co/help/article/what-is-dub" json:"placeholder"`
+	Placeholder *string `json:"placeholder"`
 	// The URL to redirect to when a link under this domain has expired.
 	ExpiredURL *string `json:"expiredUrl"`
 	// The URL to redirect to when a link under this domain doesn't exist.
