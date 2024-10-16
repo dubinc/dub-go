@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: dd50d9803155ecb1d90a2bbf2802878d
+  docChecksum: 8e16a6ad2773fc570daf1ee5754298d1
   docVersion: 0.0.1
-  speakeasyVersion: 1.418.3
+  speakeasyVersion: 1.418.4
   generationVersion: 2.438.3
-  releaseVersion: 0.9.11
-  configChecksum: d8ac1a96397cd0a177482e3c0c7023a9
+  releaseVersion: 0.9.12
+  configChecksum: bbec0597e03e1c4f178edf3cf51ee89a
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
