@@ -139,16 +139,18 @@ type WorkspaceSchema struct {
 	Slug string `json:"slug"`
 	// The logo of the workspace.
 	Logo *string `default:"null" json:"logo"`
+	// The invite code of the workspace.
+	InviteCode *string `json:"inviteCode"`
 	// The plan of the workspace.
 	Plan Plan `json:"plan"`
 	// The Stripe ID of the workspace.
 	StripeID *string `json:"stripeId"`
 	// The date and time when the billing cycle starts for the workspace.
 	BillingCycleStart float64 `json:"billingCycleStart"`
+	// The date and time when the payment failed for the workspace.
+	PaymentFailedAt *string `json:"paymentFailedAt"`
 	// [BETA]: The Stripe Connect ID of the workspace.
 	StripeConnectID *string `json:"stripeConnectId"`
-	// The invite code of the workspace.
-	InviteCode *string `json:"inviteCode"`
 	// The usage of the workspace.
 	Usage float64 `json:"usage"`
 	// The usage limit of the workspace.
@@ -228,6 +230,13 @@ func (o *WorkspaceSchema) GetLogo() *string {
 	return o.Logo
 }
 
+func (o *WorkspaceSchema) GetInviteCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InviteCode
+}
+
 func (o *WorkspaceSchema) GetPlan() Plan {
 	if o == nil {
 		return Plan("")
@@ -249,18 +258,18 @@ func (o *WorkspaceSchema) GetBillingCycleStart() float64 {
 	return o.BillingCycleStart
 }
 
+func (o *WorkspaceSchema) GetPaymentFailedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PaymentFailedAt
+}
+
 func (o *WorkspaceSchema) GetStripeConnectID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.StripeConnectID
-}
-
-func (o *WorkspaceSchema) GetInviteCode() *string {
-	if o == nil {
-		return nil
-	}
-	return o.InviteCode
 }
 
 func (o *WorkspaceSchema) GetUsage() float64 {
