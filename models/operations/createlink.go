@@ -154,7 +154,9 @@ type CreateLinkRequestBody struct {
 	Identifier *string `json:"identifier,omitempty"`
 	// Whether the short link is archived.
 	Archived *bool `default:"false" json:"archived"`
-	// Whether the short link's stats are publicly accessible.
+	// Deprecated: Use `dashboard` instead. Whether the short link's stats are publicly accessible.
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	PublicStats *bool `default:"false" json:"publicStats"`
 	// The unique ID of the tag assigned to the short link. This field is deprecated – use `tagIds` instead.
 	//
