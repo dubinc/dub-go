@@ -16,7 +16,7 @@ type CreateDomainRequestBody struct {
 	// Whether to archive this domain. `false` will unarchive a previously archived domain.
 	Archived *bool `default:"false" json:"archived"`
 	// Provide context to your teammates in the link creation modal by showing them an example of a link to be shortened.
-	Placeholder *string `default:"https://dub.co/help/article/what-is-dub" json:"placeholder"`
+	Placeholder *string `json:"placeholder,omitempty"`
 }
 
 func (c CreateDomainRequestBody) MarshalJSON() ([]byte, error) {
