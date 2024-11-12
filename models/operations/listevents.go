@@ -109,6 +109,70 @@ func (e *QueryParamTrigger) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type ListEventsQueryParamTagIdsType string
+
+const (
+	ListEventsQueryParamTagIdsTypeStr        ListEventsQueryParamTagIdsType = "str"
+	ListEventsQueryParamTagIdsTypeArrayOfStr ListEventsQueryParamTagIdsType = "arrayOfStr"
+)
+
+// ListEventsQueryParamTagIds - The tag IDs to retrieve analytics for.
+type ListEventsQueryParamTagIds struct {
+	Str        *string
+	ArrayOfStr []string
+
+	Type ListEventsQueryParamTagIdsType
+}
+
+func CreateListEventsQueryParamTagIdsStr(str string) ListEventsQueryParamTagIds {
+	typ := ListEventsQueryParamTagIdsTypeStr
+
+	return ListEventsQueryParamTagIds{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateListEventsQueryParamTagIdsArrayOfStr(arrayOfStr []string) ListEventsQueryParamTagIds {
+	typ := ListEventsQueryParamTagIdsTypeArrayOfStr
+
+	return ListEventsQueryParamTagIds{
+		ArrayOfStr: arrayOfStr,
+		Type:       typ,
+	}
+}
+
+func (u *ListEventsQueryParamTagIds) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+		u.Str = &str
+		u.Type = ListEventsQueryParamTagIdsTypeStr
+		return nil
+	}
+
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = ListEventsQueryParamTagIdsTypeArrayOfStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for ListEventsQueryParamTagIds", string(data))
+}
+
+func (u ListEventsQueryParamTagIds) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type ListEventsQueryParamTagIds: all fields are null")
+}
+
 type Order string
 
 const (
@@ -197,8 +261,10 @@ type ListEventsRequest struct {
 	RefererURL *string `queryParam:"style=form,explode=true,name=refererUrl"`
 	// The URL to retrieve analytics for.
 	URL *string `queryParam:"style=form,explode=true,name=url"`
-	// The tag ID to retrieve analytics for.
+	// Deprecated. Use `tagIds` instead. The tag ID to retrieve analytics for.
 	TagID *string `queryParam:"style=form,explode=true,name=tagId"`
+	// The tag IDs to retrieve analytics for.
+	TagIds *ListEventsQueryParamTagIds `queryParam:"style=form,explode=true,name=tagIds"`
 	// Deprecated. Use the `trigger` field instead. Filter for QR code scans. If true, filter for QR codes only. If false, filter for links only. If undefined, return both.
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
@@ -358,6 +424,13 @@ func (o *ListEventsRequest) GetTagID() *string {
 		return nil
 	}
 	return o.TagID
+}
+
+func (o *ListEventsRequest) GetTagIds() *ListEventsQueryParamTagIds {
+	if o == nil {
+		return nil
+	}
+	return o.TagIds
 }
 
 func (o *ListEventsRequest) GetQr() *bool {

@@ -1,23 +1,23 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 82aaffb8b85f5d349c96f40e961bfb78
+  docChecksum: 34bf2c8628db0d6fa3a73fc90d888f0c
   docVersion: 0.0.1
-  speakeasyVersion: 1.423.1
-  generationVersion: 2.442.11
-  releaseVersion: 0.10.0
-  configChecksum: 995af96899a5952e3b3699f094d875e7
+  speakeasyVersion: 1.438.1
+  generationVersion: 2.457.2
+  releaseVersion: 0.11.0
+  configChecksum: 76b692af322f53fb0d648394d319dc02
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.5.14
+    core: 3.5.15
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
-    envVarSecurityUsage: 0.3.1
-    errors: 2.81.10
+    envVarSecurityUsage: 0.3.2
+    errors: 2.83.0
     examples: 2.81.3
     flattening: 2.81.1
     globalSecurity: 2.82.10
@@ -33,7 +33,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.1.0
     tests: 0.6.0
-    unions: 2.85.9
+    unions: 2.85.10
 generatedFiles:
   - .gitattributes
   - /models/components/analyticsbrowsers.go
@@ -220,6 +220,7 @@ generatedFiles:
   - docs/models/operations/level.md
   - docs/models/operations/listdomainsrequest.md
   - docs/models/operations/listdomainsresponse.md
+  - docs/models/operations/listeventsqueryparamtagids.md
   - docs/models/operations/listeventsrequest.md
   - docs/models/operations/listeventsresponsebody.md
   - docs/models/operations/one.md
@@ -233,6 +234,7 @@ generatedFiles:
   - docs/models/operations/queryparamtagnames.md
   - docs/models/operations/queryparamtrigger.md
   - docs/models/operations/requestbody.md
+  - docs/models/operations/retrieveanalyticsqueryparamtagids.md
   - docs/models/operations/retrieveanalyticsrequest.md
   - docs/models/operations/retrieveanalyticsresponsebody.md
   - docs/models/operations/sale.md
