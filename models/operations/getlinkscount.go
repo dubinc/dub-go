@@ -295,7 +295,7 @@ func (u GroupBy) MarshalJSON() ([]byte, error) {
 type GetLinksCountRequest struct {
 	// The domain to filter the links by. E.g. `ac.me`. If not provided, all links for the workspace will be returned.
 	Domain *string `queryParam:"style=form,explode=true,name=domain"`
-	// The tag ID to filter the links by. This field is deprecated – use `tagIds` instead.
+	// Deprecated. Use `tagIds` instead. The tag ID to filter the links by.
 	TagID *string `queryParam:"style=form,explode=true,name=tagId"`
 	// The tag IDs to filter the links by.
 	TagIds *GetLinksCountQueryParamTagIds `queryParam:"style=form,explode=true,name=tagIds"`

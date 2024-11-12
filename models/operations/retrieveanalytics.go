@@ -178,6 +178,70 @@ func (e *Trigger) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type RetrieveAnalyticsQueryParamTagIdsType string
+
+const (
+	RetrieveAnalyticsQueryParamTagIdsTypeStr        RetrieveAnalyticsQueryParamTagIdsType = "str"
+	RetrieveAnalyticsQueryParamTagIdsTypeArrayOfStr RetrieveAnalyticsQueryParamTagIdsType = "arrayOfStr"
+)
+
+// RetrieveAnalyticsQueryParamTagIds - The tag IDs to retrieve analytics for.
+type RetrieveAnalyticsQueryParamTagIds struct {
+	Str        *string
+	ArrayOfStr []string
+
+	Type RetrieveAnalyticsQueryParamTagIdsType
+}
+
+func CreateRetrieveAnalyticsQueryParamTagIdsStr(str string) RetrieveAnalyticsQueryParamTagIds {
+	typ := RetrieveAnalyticsQueryParamTagIdsTypeStr
+
+	return RetrieveAnalyticsQueryParamTagIds{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateRetrieveAnalyticsQueryParamTagIdsArrayOfStr(arrayOfStr []string) RetrieveAnalyticsQueryParamTagIds {
+	typ := RetrieveAnalyticsQueryParamTagIdsTypeArrayOfStr
+
+	return RetrieveAnalyticsQueryParamTagIds{
+		ArrayOfStr: arrayOfStr,
+		Type:       typ,
+	}
+}
+
+func (u *RetrieveAnalyticsQueryParamTagIds) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+		u.Str = &str
+		u.Type = RetrieveAnalyticsQueryParamTagIdsTypeStr
+		return nil
+	}
+
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = RetrieveAnalyticsQueryParamTagIdsTypeArrayOfStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for RetrieveAnalyticsQueryParamTagIds", string(data))
+}
+
+func (u RetrieveAnalyticsQueryParamTagIds) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type RetrieveAnalyticsQueryParamTagIds: all fields are null")
+}
+
 type RetrieveAnalyticsRequest struct {
 	// The type of event to retrieve analytics for. Defaults to `clicks`.
 	Event *Event `default:"clicks" queryParam:"style=form,explode=true,name=event"`
@@ -219,8 +283,10 @@ type RetrieveAnalyticsRequest struct {
 	RefererURL *string `queryParam:"style=form,explode=true,name=refererUrl"`
 	// The URL to retrieve analytics for.
 	URL *string `queryParam:"style=form,explode=true,name=url"`
-	// The tag ID to retrieve analytics for.
+	// Deprecated. Use `tagIds` instead. The tag ID to retrieve analytics for.
 	TagID *string `queryParam:"style=form,explode=true,name=tagId"`
+	// The tag IDs to retrieve analytics for.
+	TagIds *RetrieveAnalyticsQueryParamTagIds `queryParam:"style=form,explode=true,name=tagIds"`
 	// Deprecated. Use the `trigger` field instead. Filter for QR code scans. If true, filter for QR codes only. If false, filter for links only. If undefined, return both.
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
@@ -383,6 +449,13 @@ func (o *RetrieveAnalyticsRequest) GetTagID() *string {
 		return nil
 	}
 	return o.TagID
+}
+
+func (o *RetrieveAnalyticsRequest) GetTagIds() *RetrieveAnalyticsQueryParamTagIds {
+	if o == nil {
+		return nil
+	}
+	return o.TagIds
 }
 
 func (o *RetrieveAnalyticsRequest) GetQr() *bool {

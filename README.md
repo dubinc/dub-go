@@ -187,18 +187,18 @@ By Default, an API error will return `sdkerrors.SDKError`. When custom error res
 
 For example, the `Create` function may return the following errors:
 
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| sdkerrors.BadRequest          | 400                           | application/json              |
-| sdkerrors.Unauthorized        | 401                           | application/json              |
-| sdkerrors.Forbidden           | 403                           | application/json              |
-| sdkerrors.NotFound            | 404                           | application/json              |
-| sdkerrors.Conflict            | 409                           | application/json              |
-| sdkerrors.InviteExpired       | 410                           | application/json              |
-| sdkerrors.UnprocessableEntity | 422                           | application/json              |
-| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
-| sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+| Error Type                    | Status Code | Content Type     |
+| ----------------------------- | ----------- | ---------------- |
+| sdkerrors.BadRequest          | 400         | application/json |
+| sdkerrors.Unauthorized        | 401         | application/json |
+| sdkerrors.Forbidden           | 403         | application/json |
+| sdkerrors.NotFound            | 404         | application/json |
+| sdkerrors.Conflict            | 409         | application/json |
+| sdkerrors.InviteExpired       | 410         | application/json |
+| sdkerrors.UnprocessableEntity | 422         | application/json |
+| sdkerrors.RateLimitExceeded   | 429         | application/json |
+| sdkerrors.InternalServerError | 500         | application/json |
+| sdkerrors.SDKError            | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -299,56 +299,9 @@ func main() {
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
-
-You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.dub.co` | None |
-
-#### Example
-
-```go
-package main
-
-import (
-	"context"
-	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
-	"log"
-)
-
-func main() {
-	s := dubgo.New(
-		dubgo.WithServerIndex(0),
-		dubgo.WithSecurity("DUB_API_KEY"),
-	)
-
-	ctx := context.Background()
-	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
-		URL:        "https://google.com",
-		ExternalID: dubgo.String("123456"),
-		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
-		)),
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res != nil {
-		// handle response
-	}
-}
-
-```
-
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
+The default server can also be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
 ```go
 package main
 
@@ -422,9 +375,9 @@ This can be a convenient way to configure timeouts, cookies, proxies, custom hea
 
 This SDK supports the following security scheme globally:
 
-| Name        | Type        | Scheme      |
-| ----------- | ----------- | ----------- |
-| `Token`     | http        | HTTP Bearer |
+| Name    | Type | Scheme      |
+| ------- | ---- | ----------- |
+| `Token` | http | HTTP Bearer |
 
 You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
 ```go
