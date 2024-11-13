@@ -149,7 +149,7 @@ type WorkspaceSchema struct {
 	BillingCycleStart float64 `json:"billingCycleStart"`
 	// The date and time when the payment failed for the workspace.
 	PaymentFailedAt *string `json:"paymentFailedAt"`
-	// [BETA]: The Stripe Connect ID of the workspace.
+	// [BETA – Dub Conversions]: The Stripe Connect ID of the workspace.
 	StripeConnectID *string `json:"stripeConnectId"`
 	// The usage of the workspace.
 	Usage float64 `json:"usage"`
@@ -189,6 +189,14 @@ type WorkspaceSchema struct {
 	Flags map[string]bool `json:"flags,omitempty"`
 	// The publishable key of the workspace.
 	PublishableKey *string `json:"publishableKey"`
+	// [BETA – Dub Partners]: The name of the connected bank account.
+	BankAccountName *string `json:"bankAccountName"`
+	// [BETA – Dub Partners]: The partial account number of the bank account.
+	PartialAccountNumber *string `json:"partialAccountNumber"`
+	// [BETA – Dub Partners]: The routing number of the bank account.
+	RoutingNumber *string `json:"routingNumber"`
+	// [BETA – Dub Partners]: Whether the bank account is verified.
+	BankAccountVerified bool `json:"bankAccountVerified"`
 }
 
 func (w WorkspaceSchema) MarshalJSON() ([]byte, error) {
@@ -403,4 +411,32 @@ func (o *WorkspaceSchema) GetPublishableKey() *string {
 		return nil
 	}
 	return o.PublishableKey
+}
+
+func (o *WorkspaceSchema) GetBankAccountName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BankAccountName
+}
+
+func (o *WorkspaceSchema) GetPartialAccountNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PartialAccountNumber
+}
+
+func (o *WorkspaceSchema) GetRoutingNumber() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RoutingNumber
+}
+
+func (o *WorkspaceSchema) GetBankAccountVerified() bool {
+	if o == nil {
+		return false
+	}
+	return o.BankAccountVerified
 }

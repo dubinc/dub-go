@@ -2528,10 +2528,18 @@ func (o *SaleEventClick) GetIP() string {
 }
 
 type SaleEventCustomer struct {
-	ID     string `json:"id"`
-	Name   string `json:"name"`
-	Email  string `json:"email"`
-	Avatar string `json:"avatar"`
+	// The unique identifier of the customer in Dub.
+	ID string `json:"id"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// Name of the customer.
+	Name string `json:"name"`
+	// Email of the customer.
+	Email *string `json:"email,omitempty"`
+	// Avatar URL of the customer.
+	Avatar *string `json:"avatar,omitempty"`
+	// The date the customer was created.
+	CreatedAt string `json:"createdAt"`
 }
 
 func (o *SaleEventCustomer) GetID() string {
@@ -2541,6 +2549,13 @@ func (o *SaleEventCustomer) GetID() string {
 	return o.ID
 }
 
+func (o *SaleEventCustomer) GetExternalID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ExternalID
+}
+
 func (o *SaleEventCustomer) GetName() string {
 	if o == nil {
 		return ""
@@ -2548,18 +2563,25 @@ func (o *SaleEventCustomer) GetName() string {
 	return o.Name
 }
 
-func (o *SaleEventCustomer) GetEmail() string {
+func (o *SaleEventCustomer) GetEmail() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Email
 }
 
-func (o *SaleEventCustomer) GetAvatar() string {
+func (o *SaleEventCustomer) GetAvatar() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Avatar
+}
+
+func (o *SaleEventCustomer) GetCreatedAt() string {
 	if o == nil {
 		return ""
 	}
-	return o.Avatar
+	return o.CreatedAt
 }
 
 // PaymentProcessor - The payment processor via which the sale was made.

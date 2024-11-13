@@ -1,4 +1,6 @@
-# LeadCreatedEventCustomer
+# CreateCustomerResponseBody
+
+The customer was created.
 
 
 ## Fields

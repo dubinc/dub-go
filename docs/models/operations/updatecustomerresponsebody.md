@@ -1,4 +1,6 @@
-# LeadCreatedEventCustomer
+# UpdateCustomerResponseBody
+
+The customer was updated.
 
 
 ## Fields

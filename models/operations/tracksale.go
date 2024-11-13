@@ -40,7 +40,11 @@ func (e *PaymentProcessor) UnmarshalJSON(data []byte) error {
 
 type TrackSaleRequestBody struct {
 	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
-	CustomerID string `json:"customerId"`
+	ExternalID *string `default:"" json:"externalId"`
+	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	CustomerID *string `default:"null" json:"customerId"`
 	// The amount of the sale. Should be passed in cents.
 	Amount int64 `json:"amount"`
 	// The payment processor via which the sale was made.
@@ -66,9 +70,16 @@ func (t *TrackSaleRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TrackSaleRequestBody) GetCustomerID() string {
+func (o *TrackSaleRequestBody) GetExternalID() *string {
 	if o == nil {
-		return ""
+		return nil
+	}
+	return o.ExternalID
+}
+
+func (o *TrackSaleRequestBody) GetCustomerID() *string {
+	if o == nil {
+		return nil
 	}
 	return o.CustomerID
 }
@@ -116,10 +127,11 @@ func (o *TrackSaleRequestBody) GetMetadata() map[string]any {
 }
 
 type TrackSaleCustomer struct {
-	ID     string  `json:"id"`
-	Name   *string `json:"name"`
-	Email  *string `json:"email"`
-	Avatar *string `json:"avatar"`
+	ID         string  `json:"id"`
+	Name       *string `json:"name"`
+	Email      *string `json:"email"`
+	Avatar     *string `json:"avatar"`
+	ExternalID *string `json:"externalId"`
 }
 
 func (o *TrackSaleCustomer) GetID() string {
@@ -148,6 +160,13 @@ func (o *TrackSaleCustomer) GetAvatar() *string {
 		return nil
 	}
 	return o.Avatar
+}
+
+func (o *TrackSaleCustomer) GetExternalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExternalID
 }
 
 type Sale struct {

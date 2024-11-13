@@ -32,10 +32,18 @@ func (e *LeadCreatedEventEvent) UnmarshalJSON(data []byte) error {
 }
 
 type LeadCreatedEventCustomer struct {
-	ID     string  `json:"id"`
-	Name   *string `json:"name"`
-	Email  *string `json:"email"`
-	Avatar *string `json:"avatar"`
+	// The unique identifier of the customer in Dub.
+	ID string `json:"id"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// Name of the customer.
+	Name string `json:"name"`
+	// Email of the customer.
+	Email *string `json:"email,omitempty"`
+	// Avatar URL of the customer.
+	Avatar *string `json:"avatar,omitempty"`
+	// The date the customer was created.
+	CreatedAt string `json:"createdAt"`
 }
 
 func (o *LeadCreatedEventCustomer) GetID() string {
@@ -45,9 +53,16 @@ func (o *LeadCreatedEventCustomer) GetID() string {
 	return o.ID
 }
 
-func (o *LeadCreatedEventCustomer) GetName() *string {
+func (o *LeadCreatedEventCustomer) GetExternalID() string {
 	if o == nil {
-		return nil
+		return ""
+	}
+	return o.ExternalID
+}
+
+func (o *LeadCreatedEventCustomer) GetName() string {
+	if o == nil {
+		return ""
 	}
 	return o.Name
 }
@@ -64,6 +79,13 @@ func (o *LeadCreatedEventCustomer) GetAvatar() *string {
 		return nil
 	}
 	return o.Avatar
+}
+
+func (o *LeadCreatedEventCustomer) GetCreatedAt() string {
+	if o == nil {
+		return ""
+	}
+	return o.CreatedAt
 }
 
 type LeadCreatedEventClick struct {
