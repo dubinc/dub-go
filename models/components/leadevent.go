@@ -2528,10 +2528,18 @@ func (o *LeadEventLink) GetProjectID() string {
 }
 
 type Customer struct {
-	ID     string `json:"id"`
-	Name   string `json:"name"`
-	Email  string `json:"email"`
-	Avatar string `json:"avatar"`
+	// The unique identifier of the customer in Dub.
+	ID string `json:"id"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// Name of the customer.
+	Name string `json:"name"`
+	// Email of the customer.
+	Email *string `json:"email,omitempty"`
+	// Avatar URL of the customer.
+	Avatar *string `json:"avatar,omitempty"`
+	// The date the customer was created.
+	CreatedAt string `json:"createdAt"`
 }
 
 func (o *Customer) GetID() string {
@@ -2541,6 +2549,13 @@ func (o *Customer) GetID() string {
 	return o.ID
 }
 
+func (o *Customer) GetExternalID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ExternalID
+}
+
 func (o *Customer) GetName() string {
 	if o == nil {
 		return ""
@@ -2548,18 +2563,25 @@ func (o *Customer) GetName() string {
 	return o.Name
 }
 
-func (o *Customer) GetEmail() string {
+func (o *Customer) GetEmail() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Email
 }
 
-func (o *Customer) GetAvatar() string {
+func (o *Customer) GetAvatar() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Avatar
+}
+
+func (o *Customer) GetCreatedAt() string {
 	if o == nil {
 		return ""
 	}
-	return o.Avatar
+	return o.CreatedAt
 }
 
 type LeadEvent struct {

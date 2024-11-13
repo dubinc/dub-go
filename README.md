@@ -124,6 +124,14 @@ func main() {
 
 * [Retrieve](docs/sdks/analytics/README.md#retrieve) - Retrieve analytics for a link, a domain, or the authenticated workspace.
 
+### [Customers](docs/sdks/customers/README.md)
+
+* [List](docs/sdks/customers/README.md#list) - Get a list of customers
+* [Create](docs/sdks/customers/README.md#create) - Create a customer
+* [Get](docs/sdks/customers/README.md#get) - Get a customer
+* [Update](docs/sdks/customers/README.md#update) - Update a customer
+* [Delete](docs/sdks/customers/README.md#delete) - Delete a customer
+
 ### [Domains](docs/sdks/domains/README.md)
 
 * [Create](docs/sdks/domains/README.md#create) - Create a domain
@@ -168,7 +176,7 @@ func main() {
 
 * [Lead](docs/sdks/track/README.md#lead) - Track a lead
 * [Sale](docs/sdks/track/README.md#sale) - Track a sale
-* [Customer](docs/sdks/track/README.md#customer) - Track a customer
+* [~~Customer~~](docs/sdks/track/README.md#customer) - Track a customer :warning: **Deprecated**
 
 ### [Workspaces](docs/sdks/workspaces/README.md)
 

@@ -7,7 +7,7 @@
 
 * [Lead](#lead) - Track a lead
 * [Sale](#sale) - Track a sale
-* [Customer](#customer) - Track a customer
+* [~~Customer~~](#customer) - Track a customer :warning: **Deprecated**
 
 ## Lead
 
@@ -34,7 +34,7 @@ func main() {
     res, err := s.Track.Lead(ctx, &operations.TrackLeadRequestBody{
         ClickID: "<value>",
         EventName: "Sign up",
-        CustomerID: "<value>",
+        CustomerID: dubgo.String("<value>"),
     })
     if err != nil {
         log.Fatal(err)
@@ -95,7 +95,7 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Track.Sale(ctx, &operations.TrackSaleRequestBody{
-        CustomerID: "<value>",
+        CustomerID: dubgo.String("<value>"),
         Amount: 996500,
         PaymentProcessor: operations.PaymentProcessorShopify,
         EventName: dubgo.String("Purchase"),
@@ -136,9 +136,11 @@ func main() {
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
-## Customer
+## ~~Customer~~
 
 Track a customer for an authenticated workspace.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 

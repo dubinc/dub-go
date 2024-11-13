@@ -12,7 +12,11 @@ type TrackLeadRequestBody struct {
 	// The name of the event to track.
 	EventName string `json:"eventName"`
 	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
-	CustomerID string `json:"customerId"`
+	ExternalID *string `default:"" json:"externalId"`
+	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
+	//
+	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	CustomerID *string `default:"null" json:"customerId"`
 	// Name of the customer in the client's app.
 	CustomerName *string `default:"null" json:"customerName"`
 	// Email of the customer in the client's app.
@@ -48,9 +52,16 @@ func (o *TrackLeadRequestBody) GetEventName() string {
 	return o.EventName
 }
 
-func (o *TrackLeadRequestBody) GetCustomerID() string {
+func (o *TrackLeadRequestBody) GetExternalID() *string {
 	if o == nil {
-		return ""
+		return nil
+	}
+	return o.ExternalID
+}
+
+func (o *TrackLeadRequestBody) GetCustomerID() *string {
+	if o == nil {
+		return nil
 	}
 	return o.CustomerID
 }
@@ -95,17 +106,10 @@ func (o *Click) GetID() string {
 }
 
 type Customer struct {
-	ID     string  `json:"id"`
-	Name   *string `json:"name"`
-	Email  *string `json:"email"`
-	Avatar *string `json:"avatar"`
-}
-
-func (o *Customer) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
+	Name       *string `json:"name"`
+	Email      *string `json:"email"`
+	Avatar     *string `json:"avatar"`
+	ExternalID *string `json:"externalId"`
 }
 
 func (o *Customer) GetName() *string {
@@ -127,6 +131,13 @@ func (o *Customer) GetAvatar() *string {
 		return nil
 	}
 	return o.Avatar
+}
+
+func (o *Customer) GetExternalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExternalID
 }
 
 // TrackLeadResponseBody - A lead was tracked.

@@ -1,0 +1,11 @@
+# CreateCustomerRequestBody
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `Email`                                                                                     | **string*                                                                                   | :heavy_minus_sign:                                                                          | Email of the customer in the client's app.                                                  |
+| `Name`                                                                                      | **string*                                                                                   | :heavy_minus_sign:                                                                          | Name of the customer in the client's app. If not provided, a random name will be generated. |
+| `Avatar`                                                                                    | **string*                                                                                   | :heavy_minus_sign:                                                                          | Avatar URL of the customer in the client's app.                                             |
+| `ExternalID`                                                                                | *string*                                                                                    | :heavy_check_mark:                                                                          | Unique identifier for the customer in the client's app.                                     |

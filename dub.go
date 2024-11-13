@@ -71,13 +71,14 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // Dub - Dub.co API: Dub is link management infrastructure for companies to create marketing campaigns, link sharing features, and referral programs.
 type Dub struct {
 	Links      *Links
-	QRCodes    *QRCodes
 	Analytics  *Analytics
 	Events     *Events
-	Workspaces *Workspaces
 	Tags       *Tags
 	Domains    *Domains
 	Track      *Track
+	Customers  *Customers
+	Workspaces *Workspaces
+	QRCodes    *QRCodes
 	Metatags   *Metatags
 
 	sdkConfiguration sdkConfiguration
@@ -157,9 +158,9 @@ func New(opts ...SDKOption) *Dub {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "0.11.0",
+			SDKVersion:        "0.11.1",
 			GenVersion:        "2.457.2",
-			UserAgent:         "speakeasy-sdk/go 0.11.0 2.457.2 0.0.1 github.com/dubinc/dub-go",
+			UserAgent:         "speakeasy-sdk/go 0.11.1 2.457.2 0.0.1 github.com/dubinc/dub-go",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -181,19 +182,21 @@ func New(opts ...SDKOption) *Dub {
 
 	sdk.Links = newLinks(sdk.sdkConfiguration)
 
-	sdk.QRCodes = newQRCodes(sdk.sdkConfiguration)
-
 	sdk.Analytics = newAnalytics(sdk.sdkConfiguration)
 
 	sdk.Events = newEvents(sdk.sdkConfiguration)
-
-	sdk.Workspaces = newWorkspaces(sdk.sdkConfiguration)
 
 	sdk.Tags = newTags(sdk.sdkConfiguration)
 
 	sdk.Domains = newDomains(sdk.sdkConfiguration)
 
 	sdk.Track = newTrack(sdk.sdkConfiguration)
+
+	sdk.Customers = newCustomers(sdk.sdkConfiguration)
+
+	sdk.Workspaces = newWorkspaces(sdk.sdkConfiguration)
+
+	sdk.QRCodes = newQRCodes(sdk.sdkConfiguration)
 
 	sdk.Metatags = newMetatags(sdk.sdkConfiguration)
 
