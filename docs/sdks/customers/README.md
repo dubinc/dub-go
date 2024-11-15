@@ -5,15 +5,15 @@
 
 ### Available Operations
 
-* [List](#list) - Get a list of customers
+* [List](#list) - Retrieve a list of customers
 * [Create](#create) - Create a customer
-* [Get](#get) - Get a customer
+* [Get](#get) - Retrieve a customer
 * [Update](#update) - Update a customer
 * [Delete](#delete) - Delete a customer
 
 ## List
 
-Get a list of customers for the authenticated workspace.
+Retrieve a list of customers for the authenticated workspace.
 
 ### Example Usage
 
@@ -128,7 +128,7 @@ func main() {
 
 ## Get
 
-Get a customer by ID for the authenticated workspace.
+Retrieve a customer by ID for the authenticated workspace.
 
 ### Example Usage
 

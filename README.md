@@ -126,9 +126,9 @@ func main() {
 
 ### [Customers](docs/sdks/customers/README.md)
 
-* [List](docs/sdks/customers/README.md#list) - Get a list of customers
+* [List](docs/sdks/customers/README.md#list) - Retrieve a list of customers
 * [Create](docs/sdks/customers/README.md#create) - Create a customer
-* [Get](docs/sdks/customers/README.md#get) - Get a customer
+* [Get](docs/sdks/customers/README.md#get) - Retrieve a customer
 * [Update](docs/sdks/customers/README.md#update) - Update a customer
 * [Delete](docs/sdks/customers/README.md#delete) - Delete a customer
 
