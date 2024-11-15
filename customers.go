@@ -25,8 +25,8 @@ func newCustomers(sdkConfig sdkConfiguration) *Customers {
 	}
 }
 
-// List - Get a list of customers
-// Get a list of customers for the authenticated workspace.
+// List - Retrieve a list of customers
+// Retrieve a list of customers for the authenticated workspace.
 func (s *Customers) List(ctx context.Context, opts ...operations.Option) ([]operations.ResponseBody, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -763,8 +763,8 @@ func (s *Customers) Create(ctx context.Context, request *operations.CreateCustom
 
 }
 
-// Get a customer
-// Get a customer by ID for the authenticated workspace.
+// Get - Retrieve a customer
+// Retrieve a customer by ID for the authenticated workspace.
 func (s *Customers) Get(ctx context.Context, request operations.GetCustomerRequest, opts ...operations.Option) (*operations.GetCustomerResponseBody, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
