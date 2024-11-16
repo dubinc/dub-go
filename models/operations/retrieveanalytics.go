@@ -106,7 +106,7 @@ func (e *QueryParamGroupBy) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Interval - The interval to retrieve analytics for. Takes precedence over start and end. If undefined, defaults to 24h.
+// Interval - The interval to retrieve analytics for. If undefined, defaults to 24h.
 type Interval string
 
 const (
@@ -255,11 +255,11 @@ type RetrieveAnalyticsRequest struct {
 	LinkID *string `queryParam:"style=form,explode=true,name=linkId"`
 	// This is the ID of the link in the your database. Must be prefixed with 'ext_' when passed as a query parameter.
 	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
-	// The interval to retrieve analytics for. Takes precedence over start and end. If undefined, defaults to 24h.
+	// The interval to retrieve analytics for. If undefined, defaults to 24h.
 	Interval *Interval `queryParam:"style=form,explode=true,name=interval"`
-	// The start date and time when to retrieve analytics from.
+	// The start date and time when to retrieve analytics from. Takes precedence over `interval`.
 	Start *string `queryParam:"style=form,explode=true,name=start"`
-	// The end date and time when to retrieve analytics from. If not provided, defaults to the current date.
+	// The end date and time when to retrieve analytics from. If not provided, defaults to the current date. Takes precedence over `interval`.
 	End *string `queryParam:"style=form,explode=true,name=end"`
 	// The IANA time zone code for aligning timeseries granularity (e.g. America/New_York). Defaults to UTC.
 	Timezone *string `default:"UTC" queryParam:"style=form,explode=true,name=timezone"`
