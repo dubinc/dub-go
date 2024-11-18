@@ -206,6 +206,8 @@ type UpsertLinkRequestBody struct {
 	UtmContent *string `json:"utm_content,omitempty"`
 	// The referral tag of the short link. If set, this will populate or override the `ref` query parameter in the destination URL.
 	Ref *string `json:"ref,omitempty"`
+	// The ID of the program the short link is associated with.
+	ProgramID *string `json:"programId,omitempty"`
 	// An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
 	WebhookIds []string `json:"webhookIds,omitempty"`
 }
@@ -443,6 +445,13 @@ func (o *UpsertLinkRequestBody) GetRef() *string {
 		return nil
 	}
 	return o.Ref
+}
+
+func (o *UpsertLinkRequestBody) GetProgramID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProgramID
 }
 
 func (o *UpsertLinkRequestBody) GetWebhookIds() []string {
