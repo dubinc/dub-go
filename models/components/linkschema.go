@@ -2101,6 +2101,8 @@ type LinkSchema struct {
 	//
 	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
 	ProjectID string `json:"projectId"`
+	// The ID of the program the short link is associated with.
+	ProgramID *string `json:"programId"`
 }
 
 func (l LinkSchema) MarshalJSON() ([]byte, error) {
@@ -2413,4 +2415,11 @@ func (o *LinkSchema) GetProjectID() string {
 		return ""
 	}
 	return o.ProjectID
+}
+
+func (o *LinkSchema) GetProgramID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProgramID
 }
