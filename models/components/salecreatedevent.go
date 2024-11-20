@@ -2206,7 +2206,6 @@ type SaleCreatedEventLink struct {
 	Identifier *string `json:"identifier"`
 	Archived   *bool   `json:"archived,omitempty"`
 	ExpiresAt  string  `json:"expiresAt"`
-	// The URL to redirect to when the short link has expired.
 	ExpiredURL *string `json:"expiredUrl"`
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password"`
