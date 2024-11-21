@@ -56,8 +56,10 @@ type GetQRCodeRequest struct {
 	BgColor *string `default:"#FFFFFF" queryParam:"style=form,explode=true,name=bgColor"`
 	// Whether to hide the logo in the QR code. Can only be used with a paid plan on Dub.co.
 	HideLogo *bool `default:"false" queryParam:"style=form,explode=true,name=hideLogo"`
-	// Whether to include a margin around the QR code. Defaults to `false` if not provided.
-	IncludeMargin *bool `default:"false" queryParam:"style=form,explode=true,name=includeMargin"`
+	// The size of the margin around the QR code. Defaults to 2 if not provided.
+	Margin *float64 `default:"2" queryParam:"style=form,explode=true,name=margin"`
+	// DEPRECATED: Margin is included by default. Use the `margin` prop to customize the margin size.
+	IncludeMargin *bool `default:"true" queryParam:"style=form,explode=true,name=includeMargin"`
 }
 
 func (g GetQRCodeRequest) MarshalJSON() ([]byte, error) {
@@ -118,6 +120,13 @@ func (o *GetQRCodeRequest) GetHideLogo() *bool {
 		return nil
 	}
 	return o.HideLogo
+}
+
+func (o *GetQRCodeRequest) GetMargin() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Margin
 }
 
 func (o *GetQRCodeRequest) GetIncludeMargin() *bool {
