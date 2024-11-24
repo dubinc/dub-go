@@ -91,9 +91,10 @@ func (o *LeadCreatedEventCustomer) GetCreatedAt() string {
 type LeadCreatedEventClick struct {
 	ID         string `json:"id"`
 	URL        string `json:"url"`
-	Continent  string `json:"continent"`
 	Country    string `json:"country"`
 	City       string `json:"city"`
+	Region     string `json:"region"`
+	Continent  string `json:"continent"`
 	Device     string `json:"device"`
 	Browser    string `json:"browser"`
 	Os         string `json:"os"`
@@ -117,13 +118,6 @@ func (o *LeadCreatedEventClick) GetURL() string {
 	return o.URL
 }
 
-func (o *LeadCreatedEventClick) GetContinent() string {
-	if o == nil {
-		return ""
-	}
-	return o.Continent
-}
-
 func (o *LeadCreatedEventClick) GetCountry() string {
 	if o == nil {
 		return ""
@@ -136,6 +130,20 @@ func (o *LeadCreatedEventClick) GetCity() string {
 		return ""
 	}
 	return o.City
+}
+
+func (o *LeadCreatedEventClick) GetRegion() string {
+	if o == nil {
+		return ""
+	}
+	return o.Region
+}
+
+func (o *LeadCreatedEventClick) GetContinent() string {
+	if o == nil {
+		return ""
+	}
+	return o.Continent
 }
 
 func (o *LeadCreatedEventClick) GetDevice() string {

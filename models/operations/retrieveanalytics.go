@@ -50,6 +50,7 @@ const (
 	QueryParamGroupByCount       QueryParamGroupBy = "count"
 	QueryParamGroupByTimeseries  QueryParamGroupBy = "timeseries"
 	QueryParamGroupByContinents  QueryParamGroupBy = "continents"
+	QueryParamGroupByRegions     QueryParamGroupBy = "regions"
 	QueryParamGroupByCountries   QueryParamGroupBy = "countries"
 	QueryParamGroupByCities      QueryParamGroupBy = "cities"
 	QueryParamGroupByDevices     QueryParamGroupBy = "devices"
@@ -77,6 +78,8 @@ func (e *QueryParamGroupBy) UnmarshalJSON(data []byte) error {
 	case "timeseries":
 		fallthrough
 	case "continents":
+		fallthrough
+	case "regions":
 		fallthrough
 	case "countries":
 		fallthrough
@@ -263,12 +266,14 @@ type RetrieveAnalyticsRequest struct {
 	End *string `queryParam:"style=form,explode=true,name=end"`
 	// The IANA time zone code for aligning timeseries granularity (e.g. America/New_York). Defaults to UTC.
 	Timezone *string `default:"UTC" queryParam:"style=form,explode=true,name=timezone"`
-	// The continent to retrieve analytics for.
-	Continent *components.ContinentCode `queryParam:"style=form,explode=true,name=continent"`
 	// The country to retrieve analytics for.
 	Country *components.CountryCode `queryParam:"style=form,explode=true,name=country"`
 	// The city to retrieve analytics for.
 	City *string `queryParam:"style=form,explode=true,name=city"`
+	// The ISO 3166-2 region code to retrieve analytics for.
+	Region *string `queryParam:"style=form,explode=true,name=region"`
+	// The continent to retrieve analytics for.
+	Continent *components.ContinentCode `queryParam:"style=form,explode=true,name=continent"`
 	// The device to retrieve analytics for.
 	Device *string `queryParam:"style=form,explode=true,name=device"`
 	// The browser to retrieve analytics for.
@@ -374,13 +379,6 @@ func (o *RetrieveAnalyticsRequest) GetTimezone() *string {
 	return o.Timezone
 }
 
-func (o *RetrieveAnalyticsRequest) GetContinent() *components.ContinentCode {
-	if o == nil {
-		return nil
-	}
-	return o.Continent
-}
-
 func (o *RetrieveAnalyticsRequest) GetCountry() *components.CountryCode {
 	if o == nil {
 		return nil
@@ -393,6 +391,20 @@ func (o *RetrieveAnalyticsRequest) GetCity() *string {
 		return nil
 	}
 	return o.City
+}
+
+func (o *RetrieveAnalyticsRequest) GetRegion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Region
+}
+
+func (o *RetrieveAnalyticsRequest) GetContinent() *components.ContinentCode {
+	if o == nil {
+		return nil
+	}
+	return o.Continent
 }
 
 func (o *RetrieveAnalyticsRequest) GetDevice() *string {
