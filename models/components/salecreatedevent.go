@@ -91,9 +91,10 @@ func (o *SaleCreatedEventCustomer) GetCreatedAt() string {
 type SaleCreatedEventClick struct {
 	ID         string `json:"id"`
 	URL        string `json:"url"`
-	Continent  string `json:"continent"`
 	Country    string `json:"country"`
 	City       string `json:"city"`
+	Region     string `json:"region"`
+	Continent  string `json:"continent"`
 	Device     string `json:"device"`
 	Browser    string `json:"browser"`
 	Os         string `json:"os"`
@@ -117,13 +118,6 @@ func (o *SaleCreatedEventClick) GetURL() string {
 	return o.URL
 }
 
-func (o *SaleCreatedEventClick) GetContinent() string {
-	if o == nil {
-		return ""
-	}
-	return o.Continent
-}
-
 func (o *SaleCreatedEventClick) GetCountry() string {
 	if o == nil {
 		return ""
@@ -136,6 +130,20 @@ func (o *SaleCreatedEventClick) GetCity() string {
 		return ""
 	}
 	return o.City
+}
+
+func (o *SaleCreatedEventClick) GetRegion() string {
+	if o == nil {
+		return ""
+	}
+	return o.Region
+}
+
+func (o *SaleCreatedEventClick) GetContinent() string {
+	if o == nil {
+		return ""
+	}
+	return o.Continent
 }
 
 func (o *SaleCreatedEventClick) GetDevice() string {

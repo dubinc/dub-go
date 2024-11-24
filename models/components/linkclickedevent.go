@@ -34,9 +34,10 @@ func (e *LinkClickedEventEvent) UnmarshalJSON(data []byte) error {
 type LinkClickedEventClick struct {
 	ID         string `json:"id"`
 	URL        string `json:"url"`
-	Continent  string `json:"continent"`
 	Country    string `json:"country"`
 	City       string `json:"city"`
+	Region     string `json:"region"`
+	Continent  string `json:"continent"`
 	Device     string `json:"device"`
 	Browser    string `json:"browser"`
 	Os         string `json:"os"`
@@ -60,13 +61,6 @@ func (o *LinkClickedEventClick) GetURL() string {
 	return o.URL
 }
 
-func (o *LinkClickedEventClick) GetContinent() string {
-	if o == nil {
-		return ""
-	}
-	return o.Continent
-}
-
 func (o *LinkClickedEventClick) GetCountry() string {
 	if o == nil {
 		return ""
@@ -79,6 +73,20 @@ func (o *LinkClickedEventClick) GetCity() string {
 		return ""
 	}
 	return o.City
+}
+
+func (o *LinkClickedEventClick) GetRegion() string {
+	if o == nil {
+		return ""
+	}
+	return o.Region
+}
+
+func (o *LinkClickedEventClick) GetContinent() string {
+	if o == nil {
+		return ""
+	}
+	return o.Continent
 }
 
 func (o *LinkClickedEventClick) GetDevice() string {

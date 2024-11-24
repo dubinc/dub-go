@@ -2439,9 +2439,10 @@ func (o *SaleEventLink) GetProgramID() *string {
 type SaleEventClick struct {
 	ID         string `json:"id"`
 	URL        string `json:"url"`
-	Continent  string `json:"continent"`
 	Country    string `json:"country"`
 	City       string `json:"city"`
+	Region     string `json:"region"`
+	Continent  string `json:"continent"`
 	Device     string `json:"device"`
 	Browser    string `json:"browser"`
 	Os         string `json:"os"`
@@ -2465,13 +2466,6 @@ func (o *SaleEventClick) GetURL() string {
 	return o.URL
 }
 
-func (o *SaleEventClick) GetContinent() string {
-	if o == nil {
-		return ""
-	}
-	return o.Continent
-}
-
 func (o *SaleEventClick) GetCountry() string {
 	if o == nil {
 		return ""
@@ -2484,6 +2478,20 @@ func (o *SaleEventClick) GetCity() string {
 		return ""
 	}
 	return o.City
+}
+
+func (o *SaleEventClick) GetRegion() string {
+	if o == nil {
+		return ""
+	}
+	return o.Region
+}
+
+func (o *SaleEventClick) GetContinent() string {
+	if o == nil {
+		return ""
+	}
+	return o.Continent
 }
 
 func (o *SaleEventClick) GetDevice() string {
