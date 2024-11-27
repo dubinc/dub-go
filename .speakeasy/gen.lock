@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: be72cffee97b5924a429380aa231ccb8
+  docChecksum: eae1ba18bcf69b50e7b53142f6625750
   docVersion: 0.0.1
-  speakeasyVersion: 1.444.1
-  generationVersion: 2.461.4
-  releaseVersion: 0.11.8
-  configChecksum: 4e5a9aac52f1c6d38469b032105a82d5
+  speakeasyVersion: 1.448.0
+  generationVersion: 2.466.0
+  releaseVersion: 0.12.0
+  configChecksum: cabdaf9785dcae816658b98b92ea7127
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.5.16
+    core: 3.5.17
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
     envVarSecurityUsage: 0.3.2
@@ -32,7 +32,6 @@ features:
     responseFormat: 0.1.2
     retries: 2.83.1
     sdkHooks: 0.1.0
-    tests: 0.6.0
     unions: 2.85.10
 generatedFiles:
   - .gitattributes
@@ -326,6 +325,7 @@ generatedFiles:
   - go.mod
   - internal/hooks/hooks.go
   - internal/utils/contenttype.go
+  - internal/utils/env.go
   - internal/utils/form.go
   - internal/utils/headers.go
   - internal/utils/json.go
@@ -1158,3 +1158,4 @@ examples:
           application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
         "500":
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+generatedTests: {}
