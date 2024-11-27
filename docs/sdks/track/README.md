@@ -20,8 +20,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
@@ -83,8 +83,8 @@ package main
 
 import(
 	dubgo "github.com/dubinc/dub-go"
-	"context"
 	"github.com/dubinc/dub-go/models/operations"
+	"context"
 	"log"
 )
 
