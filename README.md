@@ -15,16 +15,20 @@ Dub.co API: Dub is link management infrastructure for companies to create market
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [github.com/dubinc/dub-go](#githubcomdubincdub-go)
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication)
+  * [Retries](#retries)
+  * [Pagination](#pagination)
+* [Development](#development)
+  * [Contributions](#contributions)
 
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Pagination](#pagination)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -139,6 +143,10 @@ func main() {
 * [Update](docs/sdks/domains/README.md#update) - Update a domain
 * [Delete](docs/sdks/domains/README.md#delete) - Delete a domain
 
+
+### [EmbedTokens](docs/sdks/embedtokens/README.md)
+
+* [Create](docs/sdks/embedtokens/README.md#create) - Create a new embed token
 
 ### [Events](docs/sdks/events/README.md)
 
