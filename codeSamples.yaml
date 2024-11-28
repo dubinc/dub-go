@@ -165,6 +165,12 @@ actions:
         - "lang": "go"
           "label": "updateTag"
           "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    ctx := context.Background()\n    res, err := s.Tags.Update(ctx, \"<id>\", nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/tokens/embed"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "createEmbedToken"
+          "source": "package main\n\nimport(\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"context\"\n\t\"log\"\n)\n\nfunc main() {\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    ctx := context.Background()\n    res, err := s.EmbedTokens.Create(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/track/lead"]["post"]
     update:
       "x-codeSamples":

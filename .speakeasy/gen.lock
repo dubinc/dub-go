@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: eae1ba18bcf69b50e7b53142f6625750
+  docChecksum: 756dac9e9f7f9954fef9635bbe0c7ca8
   docVersion: 0.0.1
-  speakeasyVersion: 1.448.0
-  generationVersion: 2.466.0
-  releaseVersion: 0.12.0
-  configChecksum: cabdaf9785dcae816658b98b92ea7127
+  speakeasyVersion: 1.448.2
+  generationVersion: 2.467.4
+  releaseVersion: 0.12.1
+  configChecksum: f4582b5f08c3bc35ee869ee754c21d3c
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -69,6 +69,7 @@ generatedFiles:
   - /models/operations/bulkupdatelinks.go
   - /models/operations/createcustomer.go
   - /models/operations/createdomain.go
+  - /models/operations/createembedtoken.go
   - /models/operations/createlink.go
   - /models/operations/createtag.go
   - /models/operations/deletecustomer.go
@@ -201,6 +202,8 @@ generatedFiles:
   - docs/models/operations/createcustomerrequestbody.md
   - docs/models/operations/createcustomerresponsebody.md
   - docs/models/operations/createdomainrequestbody.md
+  - docs/models/operations/createembedtokenrequestbody.md
+  - docs/models/operations/createembedtokenresponsebody.md
   - docs/models/operations/createlinkrequestbody.md
   - docs/models/operations/createtagrequestbody.md
   - docs/models/operations/customer.md
@@ -312,6 +315,7 @@ generatedFiles:
   - docs/sdks/customers/README.md
   - docs/sdks/domains/README.md
   - docs/sdks/dub/README.md
+  - docs/sdks/embedtokens/README.md
   - docs/sdks/events/README.md
   - docs/sdks/links/README.md
   - docs/sdks/metatags/README.md
@@ -321,6 +325,7 @@ generatedFiles:
   - docs/sdks/workspaces/README.md
   - domains.go
   - dub.go
+  - embedtokens.go
   - events.go
   - go.mod
   - internal/hooks/hooks.go
@@ -1140,6 +1145,29 @@ examples:
       responses:
         "200":
           application/json: {"id": "<id>"}
+        "400":
+          application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
+        "401":
+          application/json: {"error": {"code": "unauthorized", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#unauthorized"}}
+        "403":
+          application/json: {"error": {"code": "forbidden", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#forbidden"}}
+        "404":
+          application/json: {"error": {"code": "not_found", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#not-found"}}
+        "409":
+          application/json: {"error": {"code": "conflict", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#conflict"}}
+        "410":
+          application/json: {"error": {"code": "invite_expired", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#invite-expired"}}
+        "422":
+          application/json: {"error": {"code": "unprocessable_entity", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#unprocessable-entity"}}
+        "429":
+          application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
+        "500":
+          application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+  createEmbedToken:
+    speakeasy-default-create-embed-token:
+      responses:
+        "201":
+          application/json: {"publicToken": "<value>", "expires": "<value>"}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
