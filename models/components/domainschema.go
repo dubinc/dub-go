@@ -54,6 +54,8 @@ type DomainSchema struct {
 	ExpiredURL *string `json:"expiredUrl"`
 	// The URL to redirect to when a link under this domain doesn't exist.
 	NotFoundURL *string `json:"notFoundUrl"`
+	// The logo of the domain.
+	Logo *string `json:"logo"`
 	// The date the domain was created.
 	CreatedAt string `json:"createdAt"`
 	// The date the domain was last updated.
@@ -127,6 +129,13 @@ func (o *DomainSchema) GetNotFoundURL() *string {
 		return nil
 	}
 	return o.NotFoundURL
+}
+
+func (o *DomainSchema) GetLogo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Logo
 }
 
 func (o *DomainSchema) GetCreatedAt() string {
