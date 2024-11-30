@@ -17,6 +17,8 @@ type CreateDomainRequestBody struct {
 	Archived *bool `default:"false" json:"archived"`
 	// Provide context to your teammates in the link creation modal by showing them an example of a link to be shortened.
 	Placeholder *string `json:"placeholder,omitempty"`
+	// The logo of the domain.
+	Logo *string `json:"logo,omitempty"`
 }
 
 func (c CreateDomainRequestBody) MarshalJSON() ([]byte, error) {
@@ -63,4 +65,11 @@ func (o *CreateDomainRequestBody) GetPlaceholder() *string {
 		return nil
 	}
 	return o.Placeholder
+}
+
+func (o *CreateDomainRequestBody) GetLogo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Logo
 }
