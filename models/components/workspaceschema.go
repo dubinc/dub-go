@@ -173,8 +173,6 @@ type WorkspaceSchema struct {
 	AiUsage float64 `json:"aiUsage"`
 	// The AI limit of the workspace.
 	AiLimit float64 `json:"aiLimit"`
-	// The ID of the referral link of the workspace.
-	ReferralLinkID *string `json:"referralLinkId"`
 	// Whether the workspace has conversion tracking enabled (d.to/conversions).
 	ConversionEnabled bool `json:"conversionEnabled"`
 	// Whether the workspace has claimed a free .link domain. (dub.link/free)
@@ -355,13 +353,6 @@ func (o *WorkspaceSchema) GetAiLimit() float64 {
 		return 0.0
 	}
 	return o.AiLimit
-}
-
-func (o *WorkspaceSchema) GetReferralLinkID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ReferralLinkID
 }
 
 func (o *WorkspaceSchema) GetConversionEnabled() bool {
