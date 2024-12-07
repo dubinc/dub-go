@@ -185,8 +185,6 @@ type WorkspaceSchema struct {
 	Domains []Domains `json:"domains"`
 	// The feature flags of the workspace, indicating which features are enabled.
 	Flags map[string]bool `json:"flags,omitempty"`
-	// The publishable key of the workspace.
-	PublishableKey *string `json:"publishableKey"`
 	// [BETA – Dub Partners]: The name of the connected bank account.
 	BankAccountName *string `json:"bankAccountName"`
 	// [BETA – Dub Partners]: The partial account number of the bank account.
@@ -395,13 +393,6 @@ func (o *WorkspaceSchema) GetFlags() map[string]bool {
 		return nil
 	}
 	return o.Flags
-}
-
-func (o *WorkspaceSchema) GetPublishableKey() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PublishableKey
 }
 
 func (o *WorkspaceSchema) GetBankAccountName() *string {
