@@ -150,8 +150,6 @@ type CreateLinkRequestBody struct {
 	Prefix *string `json:"prefix,omitempty"`
 	// Whether to track conversions for the short link.
 	TrackConversion *bool `default:"false" json:"trackConversion"`
-	// The identifier of the short link that is unique across your workspace. If set, it can be used to identify your short link for client-side click tracking.
-	Identifier *string `json:"identifier,omitempty"`
 	// Whether the short link is archived.
 	Archived *bool `default:"false" json:"archived"`
 	// Deprecated: Use `dashboard` instead. Whether the short link's stats are publicly accessible.
@@ -263,13 +261,6 @@ func (o *CreateLinkRequestBody) GetTrackConversion() *bool {
 		return nil
 	}
 	return o.TrackConversion
-}
-
-func (o *CreateLinkRequestBody) GetIdentifier() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Identifier
 }
 
 func (o *CreateLinkRequestBody) GetArchived() *bool {

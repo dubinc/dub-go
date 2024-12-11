@@ -2046,8 +2046,6 @@ type SaleEventLink struct {
 	TrackConversion *bool  `json:"trackConversion,omitempty"`
 	// This is the ID of the link in your database that is unique across your workspace. If set, it can be used to identify the link in future API requests. Must be prefixed with 'ext_' when passed as a query parameter.
 	ExternalID *string `json:"externalId"`
-	// The identifier of the short link that is unique across your workspace. If set, it can be used to identify your short link for client-side click tracking.
-	Identifier *string `json:"identifier"`
 	Archived   *bool   `json:"archived,omitempty"`
 	ExpiresAt  string  `json:"expiresAt"`
 	ExpiredURL *string `json:"expiredUrl"`
@@ -2168,13 +2166,6 @@ func (o *SaleEventLink) GetExternalID() *string {
 		return nil
 	}
 	return o.ExternalID
-}
-
-func (o *SaleEventLink) GetIdentifier() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Identifier
 }
 
 func (o *SaleEventLink) GetArchived() *bool {
