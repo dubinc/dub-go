@@ -17,18 +17,19 @@ Retrieve a QR code for a link.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.QRCodes.Get(ctx, operations.GetQRCodeRequest{
         URL: "https://brief-micronutrient.org",
     })

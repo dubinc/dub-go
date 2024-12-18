@@ -17,17 +17,18 @@ Create a new embed token for the referral link.
 package main
 
 import(
-	dubgo "github.com/dubinc/dub-go"
 	"context"
+	dubgo "github.com/dubinc/dub-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.EmbedTokens.Create(ctx, nil)
     if err != nil {
         log.Fatal(err)

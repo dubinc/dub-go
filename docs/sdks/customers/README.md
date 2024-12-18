@@ -21,17 +21,18 @@ Retrieve a list of customers for the authenticated workspace.
 package main
 
 import(
-	dubgo "github.com/dubinc/dub-go"
 	"context"
+	dubgo "github.com/dubinc/dub-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Customers.List(ctx)
     if err != nil {
         log.Fatal(err)
@@ -78,17 +79,18 @@ Create a customer for the authenticated workspace.
 package main
 
 import(
-	dubgo "github.com/dubinc/dub-go"
 	"context"
+	dubgo "github.com/dubinc/dub-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Customers.Create(ctx, nil)
     if err != nil {
         log.Fatal(err)
@@ -136,18 +138,19 @@ Retrieve a customer by ID for the authenticated workspace.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
         ID: "<id>",
     })
@@ -197,17 +200,18 @@ Update a customer for the authenticated workspace.
 package main
 
 import(
-	dubgo "github.com/dubinc/dub-go"
 	"context"
+	dubgo "github.com/dubinc/dub-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Customers.Update(ctx, "<id>", nil)
     if err != nil {
         log.Fatal(err)
@@ -256,17 +260,18 @@ Delete a customer from a workspace.
 package main
 
 import(
-	dubgo "github.com/dubinc/dub-go"
 	"context"
+	dubgo "github.com/dubinc/dub-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Customers.Delete(ctx, "<id>")
     if err != nil {
         log.Fatal(err)

@@ -151,6 +151,8 @@ type WorkspaceSchema struct {
 	PaymentFailedAt *string `json:"paymentFailedAt"`
 	// [BETA – Dub Conversions]: The Stripe Connect ID of the workspace.
 	StripeConnectID *string `json:"stripeConnectId"`
+	// [BETA – Dub Partners]: The ID of the payment method for partner payouts.
+	PayoutMethodID *string `json:"payoutMethodId"`
 	// The usage of the workspace.
 	Usage float64 `json:"usage"`
 	// The usage limit of the workspace.
@@ -185,14 +187,6 @@ type WorkspaceSchema struct {
 	Domains []Domains `json:"domains"`
 	// The feature flags of the workspace, indicating which features are enabled.
 	Flags map[string]bool `json:"flags,omitempty"`
-	// [BETA – Dub Partners]: The name of the connected bank account.
-	BankAccountName *string `json:"bankAccountName"`
-	// [BETA – Dub Partners]: The partial account number of the bank account.
-	PartialAccountNumber *string `json:"partialAccountNumber"`
-	// [BETA – Dub Partners]: The routing number of the bank account.
-	RoutingNumber *string `json:"routingNumber"`
-	// [BETA – Dub Partners]: Whether the bank account is verified.
-	BankAccountVerified bool `json:"bankAccountVerified"`
 }
 
 func (w WorkspaceSchema) MarshalJSON() ([]byte, error) {
@@ -274,6 +268,13 @@ func (o *WorkspaceSchema) GetStripeConnectID() *string {
 		return nil
 	}
 	return o.StripeConnectID
+}
+
+func (o *WorkspaceSchema) GetPayoutMethodID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PayoutMethodID
 }
 
 func (o *WorkspaceSchema) GetUsage() float64 {
@@ -393,32 +394,4 @@ func (o *WorkspaceSchema) GetFlags() map[string]bool {
 		return nil
 	}
 	return o.Flags
-}
-
-func (o *WorkspaceSchema) GetBankAccountName() *string {
-	if o == nil {
-		return nil
-	}
-	return o.BankAccountName
-}
-
-func (o *WorkspaceSchema) GetPartialAccountNumber() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PartialAccountNumber
-}
-
-func (o *WorkspaceSchema) GetRoutingNumber() *string {
-	if o == nil {
-		return nil
-	}
-	return o.RoutingNumber
-}
-
-func (o *WorkspaceSchema) GetBankAccountVerified() bool {
-	if o == nil {
-		return false
-	}
-	return o.BankAccountVerified
 }

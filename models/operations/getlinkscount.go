@@ -18,8 +18,8 @@ const (
 
 // GetLinksCountQueryParamTagIds - The tag IDs to filter the links by.
 type GetLinksCountQueryParamTagIds struct {
-	Str        *string
-	ArrayOfStr []string
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type GetLinksCountQueryParamTagIdsType
 }
@@ -82,8 +82,8 @@ const (
 
 // GetLinksCountQueryParamTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type GetLinksCountQueryParamTagNames struct {
-	Str        *string
-	ArrayOfStr []string
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type GetLinksCountQueryParamTagNamesType
 }
@@ -216,9 +216,9 @@ const (
 
 // GroupBy - The field to group the links by.
 type GroupBy struct {
-	One   *One
-	Two   *Two
-	Three *Three
+	One   *One   `queryParam:"inline"`
+	Two   *Two   `queryParam:"inline"`
+	Three *Three `queryParam:"inline"`
 
 	Type GroupByType
 }

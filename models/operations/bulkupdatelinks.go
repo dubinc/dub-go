@@ -18,8 +18,8 @@ const (
 
 // BulkUpdateLinksTagIds - The unique IDs of the tags assigned to the short link.
 type BulkUpdateLinksTagIds struct {
-	Str        *string
-	ArrayOfStr []string
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type BulkUpdateLinksTagIdsType
 }
@@ -82,8 +82,8 @@ const (
 
 // BulkUpdateLinksTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type BulkUpdateLinksTagNames struct {
-	Str        *string
-	ArrayOfStr []string
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type BulkUpdateLinksTagNamesType
 }

@@ -18,8 +18,8 @@ const (
 
 // TagIds - The unique IDs of the tags assigned to the short link.
 type TagIds struct {
-	Str        *string
-	ArrayOfStr []string
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type TagIdsType
 }
@@ -82,8 +82,8 @@ const (
 
 // TagNames - The unique name of the tags assigned to the short link (case insensitive).
 type TagNames struct {
-	Str        *string
-	ArrayOfStr []string
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type TagNamesType
 }

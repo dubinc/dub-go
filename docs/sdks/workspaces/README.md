@@ -18,18 +18,19 @@ Retrieve a workspace for the authenticated user.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Workspaces.Get(ctx, operations.GetWorkspaceRequest{
         IDOrSlug: "<value>",
     })
@@ -79,17 +80,18 @@ Update a workspace by ID or slug.
 package main
 
 import(
-	dubgo "github.com/dubinc/dub-go"
 	"context"
+	dubgo "github.com/dubinc/dub-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Workspaces.Update(ctx, "<value>", nil)
     if err != nil {
         log.Fatal(err)
