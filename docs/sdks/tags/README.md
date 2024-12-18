@@ -20,17 +20,18 @@ Create a new tag for the authenticated workspace.
 package main
 
 import(
-	dubgo "github.com/dubinc/dub-go"
 	"context"
+	dubgo "github.com/dubinc/dub-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Tags.Create(ctx, nil)
     if err != nil {
         log.Fatal(err)
@@ -78,17 +79,18 @@ Retrieve a list of tags for the authenticated workspace.
 package main
 
 import(
-	dubgo "github.com/dubinc/dub-go"
 	"context"
+	dubgo "github.com/dubinc/dub-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Tags.List(ctx)
     if err != nil {
         log.Fatal(err)
@@ -135,17 +137,18 @@ Update a tag in the workspace.
 package main
 
 import(
-	dubgo "github.com/dubinc/dub-go"
 	"context"
+	dubgo "github.com/dubinc/dub-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Tags.Update(ctx, "<id>", nil)
     if err != nil {
         log.Fatal(err)
@@ -194,17 +197,18 @@ Delete a tag from the workspace. All existing links will still work, but they wi
 package main
 
 import(
-	dubgo "github.com/dubinc/dub-go"
 	"context"
+	dubgo "github.com/dubinc/dub-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Tags.Delete(ctx, "<id>")
     if err != nil {
         log.Fatal(err)

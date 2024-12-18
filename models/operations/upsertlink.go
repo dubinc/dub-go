@@ -18,8 +18,8 @@ const (
 
 // UpsertLinkTagIds - The unique IDs of the tags assigned to the short link.
 type UpsertLinkTagIds struct {
-	Str        *string
-	ArrayOfStr []string
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type UpsertLinkTagIdsType
 }
@@ -82,8 +82,8 @@ const (
 
 // UpsertLinkTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type UpsertLinkTagNames struct {
-	Str        *string
-	ArrayOfStr []string
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type UpsertLinkTagNamesType
 }

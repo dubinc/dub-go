@@ -17,18 +17,19 @@ Retrieve analytics for a link, a domain, or the authenticated workspace. The res
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Analytics.Retrieve(ctx, operations.RetrieveAnalyticsRequest{
         Timezone: dubgo.String("America/New_York"),
         City: dubgo.String("New York"),

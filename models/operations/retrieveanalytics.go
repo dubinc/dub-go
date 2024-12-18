@@ -190,8 +190,8 @@ const (
 
 // RetrieveAnalyticsQueryParamTagIds - The tag IDs to retrieve analytics for.
 type RetrieveAnalyticsQueryParamTagIds struct {
-	Str        *string
-	ArrayOfStr []string
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type RetrieveAnalyticsQueryParamTagIdsType
 }
@@ -504,19 +504,19 @@ const (
 
 // RetrieveAnalyticsResponseBody - Analytics data
 type RetrieveAnalyticsResponseBody struct {
-	AnalyticsCount              *components.AnalyticsCount
-	ArrayOfAnalyticsTimeseries  []components.AnalyticsTimeseries
-	ArrayOfAnalyticsContinents  []components.AnalyticsContinents
-	ArrayOfAnalyticsCountries   []components.AnalyticsCountries
-	ArrayOfAnalyticsCities      []components.AnalyticsCities
-	ArrayOfAnalyticsDevices     []components.AnalyticsDevices
-	ArrayOfAnalyticsBrowsers    []components.AnalyticsBrowsers
-	ArrayOfAnalyticsOS          []components.AnalyticsOS
-	ArrayOfAnalyticsTriggers    []components.AnalyticsTriggers
-	ArrayOfAnalyticsReferers    []components.AnalyticsReferers
-	ArrayOfAnalyticsRefererUrls []components.AnalyticsRefererUrls
-	ArrayOfAnalyticsTopLinks    []components.AnalyticsTopLinks
-	ArrayOfAnalyticsTopUrls     []components.AnalyticsTopUrls
+	AnalyticsCount              *components.AnalyticsCount        `queryParam:"inline"`
+	ArrayOfAnalyticsTimeseries  []components.AnalyticsTimeseries  `queryParam:"inline"`
+	ArrayOfAnalyticsContinents  []components.AnalyticsContinents  `queryParam:"inline"`
+	ArrayOfAnalyticsCountries   []components.AnalyticsCountries   `queryParam:"inline"`
+	ArrayOfAnalyticsCities      []components.AnalyticsCities      `queryParam:"inline"`
+	ArrayOfAnalyticsDevices     []components.AnalyticsDevices     `queryParam:"inline"`
+	ArrayOfAnalyticsBrowsers    []components.AnalyticsBrowsers    `queryParam:"inline"`
+	ArrayOfAnalyticsOS          []components.AnalyticsOS          `queryParam:"inline"`
+	ArrayOfAnalyticsTriggers    []components.AnalyticsTriggers    `queryParam:"inline"`
+	ArrayOfAnalyticsReferers    []components.AnalyticsReferers    `queryParam:"inline"`
+	ArrayOfAnalyticsRefererUrls []components.AnalyticsRefererUrls `queryParam:"inline"`
+	ArrayOfAnalyticsTopLinks    []components.AnalyticsTopLinks    `queryParam:"inline"`
+	ArrayOfAnalyticsTopUrls     []components.AnalyticsTopUrls     `queryParam:"inline"`
 
 	Type RetrieveAnalyticsResponseBodyType
 }

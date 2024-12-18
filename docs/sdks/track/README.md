@@ -19,18 +19,19 @@ Track a lead for a short link.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Track.Lead(ctx, &operations.TrackLeadRequestBody{
         ClickID: "<value>",
         EventName: "Sign up",
@@ -82,18 +83,19 @@ Track a sale for a short link.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Track.Sale(ctx, &operations.TrackSaleRequestBody{
         CustomerID: dubgo.String("<value>"),
         Amount: 996500,
@@ -148,17 +150,18 @@ Track a customer for an authenticated workspace.
 package main
 
 import(
-	dubgo "github.com/dubinc/dub-go"
 	"context"
+	dubgo "github.com/dubinc/dub-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Track.Customer(ctx, nil)
     if err != nil {
         log.Fatal(err)

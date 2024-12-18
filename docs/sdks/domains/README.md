@@ -20,18 +20,19 @@ Create a domain for the authenticated workspace.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Domains.Create(ctx, &operations.CreateDomainRequestBody{
         Slug: "acme.com",
         ExpiredURL: dubgo.String("https://acme.com/expired"),
@@ -85,18 +86,19 @@ Retrieve a list of domains associated with the authenticated workspace.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Domains.List(ctx, operations.ListDomainsRequest{
         Page: dubgo.Float64(1),
         PageSize: dubgo.Float64(50),
@@ -159,18 +161,19 @@ Update a domain for the authenticated workspace.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Domains.Update(ctx, "acme.com", &operations.UpdateDomainRequestBody{
         Slug: dubgo.String("acme.com"),
         ExpiredURL: dubgo.String("https://acme.com/expired"),
@@ -225,17 +228,18 @@ Delete a domain from a workspace. It cannot be undone. This will also delete all
 package main
 
 import(
-	dubgo "github.com/dubinc/dub-go"
 	"context"
+	dubgo "github.com/dubinc/dub-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Domains.Delete(ctx, "acme.com")
     if err != nil {
         log.Fatal(err)

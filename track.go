@@ -47,7 +47,12 @@ func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBo
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/track/lead")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -79,6 +84,10 @@ func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBo
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -423,7 +432,12 @@ func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBo
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/track/sale")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -455,6 +469,10 @@ func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBo
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -801,7 +819,12 @@ func (s *Track) Customer(ctx context.Context, request *operations.TrackCustomerR
 		}
 	}
 
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
 	opURL, err := url.JoinPath(baseURL, "/track/customer")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
@@ -833,6 +856,10 @@ func (s *Track) Customer(ctx context.Context, request *operations.TrackCustomerR
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig

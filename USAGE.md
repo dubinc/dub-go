@@ -10,11 +10,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),
@@ -45,11 +46,12 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := dubgo.New(
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
 
-	ctx := context.Background()
 	res, err := s.Links.Upsert(ctx, &operations.UpsertLinkRequestBody{
 		URL:        "https://google.com",
 		ExternalID: dubgo.String("123456"),

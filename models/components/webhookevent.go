@@ -19,10 +19,10 @@ const (
 
 // WebhookEvent - Webhook event schema
 type WebhookEvent struct {
-	LinkWebhookEvent *LinkWebhookEvent
-	LinkClickedEvent *LinkClickedEvent
-	LeadCreatedEvent *LeadCreatedEvent
-	SaleCreatedEvent *SaleCreatedEvent
+	LinkWebhookEvent *LinkWebhookEvent `queryParam:"inline"`
+	LinkClickedEvent *LinkClickedEvent `queryParam:"inline"`
+	LeadCreatedEvent *LeadCreatedEvent `queryParam:"inline"`
+	SaleCreatedEvent *SaleCreatedEvent `queryParam:"inline"`
 
 	Type WebhookEventType
 }

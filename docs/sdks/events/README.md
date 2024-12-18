@@ -17,18 +17,19 @@ Retrieve a paginated list of events for the authenticated workspace.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Events.List(ctx, operations.ListEventsRequest{
         Timezone: dubgo.String("America/New_York"),
         City: dubgo.String("New York"),

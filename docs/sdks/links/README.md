@@ -26,18 +26,19 @@ Create a new link for the authenticated workspace.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
         URL: "https://google.com",
         ExternalID: dubgo.String("123456"),
@@ -93,18 +94,19 @@ Retrieve a paginated list of links for the authenticated workspace.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Links.List(ctx, operations.GetLinksRequest{
         Page: dubgo.Float64(1),
         PageSize: dubgo.Float64(50),
@@ -167,18 +169,19 @@ Retrieve the number of links for the authenticated workspace.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Links.Count(ctx, operations.GetLinksCountRequest{})
     if err != nil {
         log.Fatal(err)
@@ -226,18 +229,19 @@ Retrieve the info for a link.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Links.Get(ctx, operations.GetLinkInfoRequest{
         LinkID: dubgo.String("clux0rgak00011..."),
         ExternalID: dubgo.String("123456"),
@@ -288,18 +292,19 @@ Update a link for the authenticated workspace. If there's no change, returns it 
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Links.Update(ctx, "<value>", &operations.UpdateLinkRequestBody{
         URL: dubgo.String("https://google.com"),
         ExternalID: dubgo.String("123456"),
@@ -356,17 +361,18 @@ Delete a link for the authenticated workspace.
 package main
 
 import(
-	dubgo "github.com/dubinc/dub-go"
 	"context"
+	dubgo "github.com/dubinc/dub-go"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Links.Delete(ctx, "<value>")
     if err != nil {
         log.Fatal(err)
@@ -414,18 +420,19 @@ Bulk create up to 100 links for the authenticated workspace.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Links.CreateMany(ctx, []operations.RequestBody{
         operations.RequestBody{
             URL: "https://google.com",
@@ -483,18 +490,19 @@ Bulk update up to 100 links with the same data for the authenticated workspace.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Links.UpdateMany(ctx, &operations.BulkUpdateLinksRequestBody{
         LinkIds: []string{
             "<value>",
@@ -554,18 +562,19 @@ Bulk delete up to 100 links for the authenticated workspace.
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Links.DeleteMany(ctx, operations.BulkDeleteLinksRequest{
         LinkIds: []string{
             "clux0rgak00011...",
@@ -618,18 +627,19 @@ Upsert a link for the authenticated workspace by its URL. If a link with the sam
 package main
 
 import(
+	"context"
 	dubgo "github.com/dubinc/dub-go"
 	"github.com/dubinc/dub-go/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    ctx := context.Background()
     res, err := s.Links.Upsert(ctx, &operations.UpsertLinkRequestBody{
         URL: "https://google.com",
         ExternalID: dubgo.String("123456"),

@@ -118,8 +118,8 @@ const (
 
 // ListEventsQueryParamTagIds - The tag IDs to retrieve analytics for.
 type ListEventsQueryParamTagIds struct {
-	Str        *string
-	ArrayOfStr []string
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type ListEventsQueryParamTagIdsType
 }
@@ -494,9 +494,9 @@ const (
 
 // ListEventsResponseBody - A list of events
 type ListEventsResponseBody struct {
-	ArrayOfClickEvent []components.ClickEvent
-	ArrayOfLeadEvent  []components.LeadEvent
-	ArrayOfSaleEvent  []components.SaleEvent
+	ArrayOfClickEvent []components.ClickEvent `queryParam:"inline"`
+	ArrayOfLeadEvent  []components.LeadEvent  `queryParam:"inline"`
+	ArrayOfSaleEvent  []components.SaleEvent  `queryParam:"inline"`
 
 	Type ListEventsResponseBodyType
 }

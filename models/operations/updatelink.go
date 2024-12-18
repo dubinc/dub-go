@@ -18,8 +18,8 @@ const (
 
 // UpdateLinkTagIds - The unique IDs of the tags assigned to the short link.
 type UpdateLinkTagIds struct {
-	Str        *string
-	ArrayOfStr []string
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type UpdateLinkTagIdsType
 }
@@ -82,8 +82,8 @@ const (
 
 // UpdateLinkTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type UpdateLinkTagNames struct {
-	Str        *string
-	ArrayOfStr []string
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
 
 	Type UpdateLinkTagNamesType
 }
