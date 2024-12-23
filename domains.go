@@ -575,7 +575,10 @@ func (s *Domains) List(ctx context.Context, request operations.ListDomainsReques
 		if err != nil {
 			return nil, err
 		}
-		p := *request.Page
+		var p float64 = 1
+		if request.Page != nil {
+			p = *request.Page
+		}
 		nP := float64(p + 1)
 		r, err := ajson.Eval(b, "$")
 		if err != nil {
@@ -591,7 +594,11 @@ func (s *Domains) List(ctx context.Context, request operations.ListDomainsReques
 		if len(arr) == 0 {
 			return nil, nil
 		}
-		l := int(*request.PageSize)
+
+		l := 0
+		if request.PageSize != nil {
+			l = int(*request.PageSize)
+		}
 		if len(arr) < l {
 			return nil, nil
 		}

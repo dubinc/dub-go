@@ -61,6 +61,54 @@ func (o *UpdateCustomerRequest) GetRequestBody() *UpdateCustomerRequestBody {
 	return o.RequestBody
 }
 
+type UpdateCustomerLink struct {
+	// The unique ID of the short link.
+	ID string `json:"id"`
+	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
+	Domain string `json:"domain"`
+	// The short link slug. If not provided, a random 7-character slug will be generated.
+	Key string `json:"key"`
+	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
+	ShortLink string `json:"shortLink"`
+	// The ID of the program the short link is associated with.
+	ProgramID *string `json:"programId"`
+}
+
+func (o *UpdateCustomerLink) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *UpdateCustomerLink) GetDomain() string {
+	if o == nil {
+		return ""
+	}
+	return o.Domain
+}
+
+func (o *UpdateCustomerLink) GetKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.Key
+}
+
+func (o *UpdateCustomerLink) GetShortLink() string {
+	if o == nil {
+		return ""
+	}
+	return o.ShortLink
+}
+
+func (o *UpdateCustomerLink) GetProgramID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProgramID
+}
+
 // UpdateCustomerResponseBody - The customer was updated.
 type UpdateCustomerResponseBody struct {
 	// The unique identifier of the customer in Dub.
@@ -73,8 +121,11 @@ type UpdateCustomerResponseBody struct {
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
 	Avatar *string `json:"avatar,omitempty"`
+	// Country of the customer.
+	Country *string `json:"country,omitempty"`
 	// The date the customer was created.
-	CreatedAt string `json:"createdAt"`
+	CreatedAt string              `json:"createdAt"`
+	Link      *UpdateCustomerLink `json:"link,omitempty"`
 }
 
 func (o *UpdateCustomerResponseBody) GetID() string {
@@ -112,9 +163,23 @@ func (o *UpdateCustomerResponseBody) GetAvatar() *string {
 	return o.Avatar
 }
 
+func (o *UpdateCustomerResponseBody) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
 func (o *UpdateCustomerResponseBody) GetCreatedAt() string {
 	if o == nil {
 		return ""
 	}
 	return o.CreatedAt
+}
+
+func (o *UpdateCustomerResponseBody) GetLink() *UpdateCustomerLink {
+	if o == nil {
+		return nil
+	}
+	return o.Link
 }

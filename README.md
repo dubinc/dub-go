@@ -186,7 +186,6 @@ func main() {
 
 * [Lead](docs/sdks/track/README.md#lead) - Track a lead
 * [Sale](docs/sdks/track/README.md#sale) - Track a sale
-* [~~Customer~~](docs/sdks/track/README.md#customer) - Track a customer :warning: **Deprecated**
 
 ### [Workspaces](docs/sdks/workspaces/README.md)
 

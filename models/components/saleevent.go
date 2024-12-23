@@ -2534,6 +2534,54 @@ func (o *SaleEventClick) GetIP() string {
 	return o.IP
 }
 
+type SaleEventCustomerLink struct {
+	// The unique ID of the short link.
+	ID string `json:"id"`
+	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
+	Domain string `json:"domain"`
+	// The short link slug. If not provided, a random 7-character slug will be generated.
+	Key string `json:"key"`
+	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
+	ShortLink string `json:"shortLink"`
+	// The ID of the program the short link is associated with.
+	ProgramID *string `json:"programId"`
+}
+
+func (o *SaleEventCustomerLink) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *SaleEventCustomerLink) GetDomain() string {
+	if o == nil {
+		return ""
+	}
+	return o.Domain
+}
+
+func (o *SaleEventCustomerLink) GetKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.Key
+}
+
+func (o *SaleEventCustomerLink) GetShortLink() string {
+	if o == nil {
+		return ""
+	}
+	return o.ShortLink
+}
+
+func (o *SaleEventCustomerLink) GetProgramID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProgramID
+}
+
 type SaleEventCustomer struct {
 	// The unique identifier of the customer in Dub.
 	ID string `json:"id"`
@@ -2545,8 +2593,11 @@ type SaleEventCustomer struct {
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
 	Avatar *string `json:"avatar,omitempty"`
+	// Country of the customer.
+	Country *string `json:"country,omitempty"`
 	// The date the customer was created.
-	CreatedAt string `json:"createdAt"`
+	CreatedAt string                 `json:"createdAt"`
+	Link      *SaleEventCustomerLink `json:"link,omitempty"`
 }
 
 func (o *SaleEventCustomer) GetID() string {
@@ -2584,11 +2635,25 @@ func (o *SaleEventCustomer) GetAvatar() *string {
 	return o.Avatar
 }
 
+func (o *SaleEventCustomer) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
 func (o *SaleEventCustomer) GetCreatedAt() string {
 	if o == nil {
 		return ""
 	}
 	return o.CreatedAt
+}
+
+func (o *SaleEventCustomer) GetLink() *SaleEventCustomerLink {
+	if o == nil {
+		return nil
+	}
+	return o.Link
 }
 
 // PaymentProcessor - The payment processor via which the sale was made.
