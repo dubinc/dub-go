@@ -2582,6 +2582,152 @@ func (o *SaleEventCustomerLink) GetProgramID() *string {
 	return o.ProgramID
 }
 
+type SaleEventPartner struct {
+	ID    string  `json:"id"`
+	Name  string  `json:"name"`
+	Email string  `json:"email"`
+	Image *string `json:"image,omitempty"`
+}
+
+func (o *SaleEventPartner) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *SaleEventPartner) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *SaleEventPartner) GetEmail() string {
+	if o == nil {
+		return ""
+	}
+	return o.Email
+}
+
+func (o *SaleEventPartner) GetImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Image
+}
+
+type SaleEventType string
+
+const (
+	SaleEventTypePercentage SaleEventType = "percentage"
+	SaleEventTypeFlat       SaleEventType = "flat"
+)
+
+func (e SaleEventType) ToPointer() *SaleEventType {
+	return &e
+}
+func (e *SaleEventType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "percentage":
+		fallthrough
+	case "flat":
+		*e = SaleEventType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SaleEventType: %v", v)
+	}
+}
+
+type SaleEventInterval string
+
+const (
+	SaleEventIntervalMonth SaleEventInterval = "month"
+	SaleEventIntervalYear  SaleEventInterval = "year"
+)
+
+func (e SaleEventInterval) ToPointer() *SaleEventInterval {
+	return &e
+}
+func (e *SaleEventInterval) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "month":
+		fallthrough
+	case "year":
+		*e = SaleEventInterval(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SaleEventInterval: %v", v)
+	}
+}
+
+type SaleEventDiscount struct {
+	ID           string             `json:"id"`
+	CouponID     *string            `json:"couponId"`
+	CouponTestID *string            `json:"couponTestId"`
+	Amount       float64            `json:"amount"`
+	Type         SaleEventType      `json:"type"`
+	Duration     *float64           `json:"duration"`
+	Interval     *SaleEventInterval `json:"interval"`
+}
+
+func (o *SaleEventDiscount) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *SaleEventDiscount) GetCouponID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponID
+}
+
+func (o *SaleEventDiscount) GetCouponTestID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponTestID
+}
+
+func (o *SaleEventDiscount) GetAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Amount
+}
+
+func (o *SaleEventDiscount) GetType() SaleEventType {
+	if o == nil {
+		return SaleEventType("")
+	}
+	return o.Type
+}
+
+func (o *SaleEventDiscount) GetDuration() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Duration
+}
+
+func (o *SaleEventDiscount) GetInterval() *SaleEventInterval {
+	if o == nil {
+		return nil
+	}
+	return o.Interval
+}
+
 type SaleEventCustomer struct {
 	// The unique identifier of the customer in Dub.
 	ID string `json:"id"`
@@ -2598,6 +2744,8 @@ type SaleEventCustomer struct {
 	// The date the customer was created.
 	CreatedAt string                 `json:"createdAt"`
 	Link      *SaleEventCustomerLink `json:"link,omitempty"`
+	Partner   *SaleEventPartner      `json:"partner,omitempty"`
+	Discount  *SaleEventDiscount     `json:"discount,omitempty"`
 }
 
 func (o *SaleEventCustomer) GetID() string {
@@ -2654,6 +2802,20 @@ func (o *SaleEventCustomer) GetLink() *SaleEventCustomerLink {
 		return nil
 	}
 	return o.Link
+}
+
+func (o *SaleEventCustomer) GetPartner() *SaleEventPartner {
+	if o == nil {
+		return nil
+	}
+	return o.Partner
+}
+
+func (o *SaleEventCustomer) GetDiscount() *SaleEventDiscount {
+	if o == nil {
+		return nil
+	}
+	return o.Discount
 }
 
 // PaymentProcessor - The payment processor via which the sale was made.

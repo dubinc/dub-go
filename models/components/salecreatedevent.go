@@ -79,6 +79,152 @@ func (o *SaleCreatedEventDataLink) GetProgramID() *string {
 	return o.ProgramID
 }
 
+type SaleCreatedEventPartner struct {
+	ID    string  `json:"id"`
+	Name  string  `json:"name"`
+	Email string  `json:"email"`
+	Image *string `json:"image,omitempty"`
+}
+
+func (o *SaleCreatedEventPartner) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *SaleCreatedEventPartner) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *SaleCreatedEventPartner) GetEmail() string {
+	if o == nil {
+		return ""
+	}
+	return o.Email
+}
+
+func (o *SaleCreatedEventPartner) GetImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Image
+}
+
+type SaleCreatedEventType string
+
+const (
+	SaleCreatedEventTypePercentage SaleCreatedEventType = "percentage"
+	SaleCreatedEventTypeFlat       SaleCreatedEventType = "flat"
+)
+
+func (e SaleCreatedEventType) ToPointer() *SaleCreatedEventType {
+	return &e
+}
+func (e *SaleCreatedEventType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "percentage":
+		fallthrough
+	case "flat":
+		*e = SaleCreatedEventType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SaleCreatedEventType: %v", v)
+	}
+}
+
+type SaleCreatedEventInterval string
+
+const (
+	SaleCreatedEventIntervalMonth SaleCreatedEventInterval = "month"
+	SaleCreatedEventIntervalYear  SaleCreatedEventInterval = "year"
+)
+
+func (e SaleCreatedEventInterval) ToPointer() *SaleCreatedEventInterval {
+	return &e
+}
+func (e *SaleCreatedEventInterval) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "month":
+		fallthrough
+	case "year":
+		*e = SaleCreatedEventInterval(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SaleCreatedEventInterval: %v", v)
+	}
+}
+
+type SaleCreatedEventDiscount struct {
+	ID           string                    `json:"id"`
+	CouponID     *string                   `json:"couponId"`
+	CouponTestID *string                   `json:"couponTestId"`
+	Amount       float64                   `json:"amount"`
+	Type         SaleCreatedEventType      `json:"type"`
+	Duration     *float64                  `json:"duration"`
+	Interval     *SaleCreatedEventInterval `json:"interval"`
+}
+
+func (o *SaleCreatedEventDiscount) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *SaleCreatedEventDiscount) GetCouponID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponID
+}
+
+func (o *SaleCreatedEventDiscount) GetCouponTestID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponTestID
+}
+
+func (o *SaleCreatedEventDiscount) GetAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Amount
+}
+
+func (o *SaleCreatedEventDiscount) GetType() SaleCreatedEventType {
+	if o == nil {
+		return SaleCreatedEventType("")
+	}
+	return o.Type
+}
+
+func (o *SaleCreatedEventDiscount) GetDuration() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Duration
+}
+
+func (o *SaleCreatedEventDiscount) GetInterval() *SaleCreatedEventInterval {
+	if o == nil {
+		return nil
+	}
+	return o.Interval
+}
+
 type SaleCreatedEventCustomer struct {
 	// The unique identifier of the customer in Dub.
 	ID string `json:"id"`
@@ -95,6 +241,8 @@ type SaleCreatedEventCustomer struct {
 	// The date the customer was created.
 	CreatedAt string                    `json:"createdAt"`
 	Link      *SaleCreatedEventDataLink `json:"link,omitempty"`
+	Partner   *SaleCreatedEventPartner  `json:"partner,omitempty"`
+	Discount  *SaleCreatedEventDiscount `json:"discount,omitempty"`
 }
 
 func (o *SaleCreatedEventCustomer) GetID() string {
@@ -151,6 +299,20 @@ func (o *SaleCreatedEventCustomer) GetLink() *SaleCreatedEventDataLink {
 		return nil
 	}
 	return o.Link
+}
+
+func (o *SaleCreatedEventCustomer) GetPartner() *SaleCreatedEventPartner {
+	if o == nil {
+		return nil
+	}
+	return o.Partner
+}
+
+func (o *SaleCreatedEventCustomer) GetDiscount() *SaleCreatedEventDiscount {
+	if o == nil {
+		return nil
+	}
+	return o.Discount
 }
 
 type SaleCreatedEventClick struct {

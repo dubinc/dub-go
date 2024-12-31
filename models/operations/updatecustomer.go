@@ -2,6 +2,11 @@
 
 package operations
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 type UpdateCustomerRequestBody struct {
 	// Email of the customer in the client's app.
 	Email *string `json:"email,omitempty"`
@@ -109,6 +114,152 @@ func (o *UpdateCustomerLink) GetProgramID() *string {
 	return o.ProgramID
 }
 
+type UpdateCustomerPartner struct {
+	ID    string  `json:"id"`
+	Name  string  `json:"name"`
+	Email string  `json:"email"`
+	Image *string `json:"image,omitempty"`
+}
+
+func (o *UpdateCustomerPartner) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *UpdateCustomerPartner) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *UpdateCustomerPartner) GetEmail() string {
+	if o == nil {
+		return ""
+	}
+	return o.Email
+}
+
+func (o *UpdateCustomerPartner) GetImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Image
+}
+
+type UpdateCustomerType string
+
+const (
+	UpdateCustomerTypePercentage UpdateCustomerType = "percentage"
+	UpdateCustomerTypeFlat       UpdateCustomerType = "flat"
+)
+
+func (e UpdateCustomerType) ToPointer() *UpdateCustomerType {
+	return &e
+}
+func (e *UpdateCustomerType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "percentage":
+		fallthrough
+	case "flat":
+		*e = UpdateCustomerType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateCustomerType: %v", v)
+	}
+}
+
+type UpdateCustomerInterval string
+
+const (
+	UpdateCustomerIntervalMonth UpdateCustomerInterval = "month"
+	UpdateCustomerIntervalYear  UpdateCustomerInterval = "year"
+)
+
+func (e UpdateCustomerInterval) ToPointer() *UpdateCustomerInterval {
+	return &e
+}
+func (e *UpdateCustomerInterval) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "month":
+		fallthrough
+	case "year":
+		*e = UpdateCustomerInterval(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateCustomerInterval: %v", v)
+	}
+}
+
+type UpdateCustomerDiscount struct {
+	ID           string                  `json:"id"`
+	CouponID     *string                 `json:"couponId"`
+	CouponTestID *string                 `json:"couponTestId"`
+	Amount       float64                 `json:"amount"`
+	Type         UpdateCustomerType      `json:"type"`
+	Duration     *float64                `json:"duration"`
+	Interval     *UpdateCustomerInterval `json:"interval"`
+}
+
+func (o *UpdateCustomerDiscount) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *UpdateCustomerDiscount) GetCouponID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponID
+}
+
+func (o *UpdateCustomerDiscount) GetCouponTestID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponTestID
+}
+
+func (o *UpdateCustomerDiscount) GetAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Amount
+}
+
+func (o *UpdateCustomerDiscount) GetType() UpdateCustomerType {
+	if o == nil {
+		return UpdateCustomerType("")
+	}
+	return o.Type
+}
+
+func (o *UpdateCustomerDiscount) GetDuration() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Duration
+}
+
+func (o *UpdateCustomerDiscount) GetInterval() *UpdateCustomerInterval {
+	if o == nil {
+		return nil
+	}
+	return o.Interval
+}
+
 // UpdateCustomerResponseBody - The customer was updated.
 type UpdateCustomerResponseBody struct {
 	// The unique identifier of the customer in Dub.
@@ -124,8 +275,10 @@ type UpdateCustomerResponseBody struct {
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
 	// The date the customer was created.
-	CreatedAt string              `json:"createdAt"`
-	Link      *UpdateCustomerLink `json:"link,omitempty"`
+	CreatedAt string                  `json:"createdAt"`
+	Link      *UpdateCustomerLink     `json:"link,omitempty"`
+	Partner   *UpdateCustomerPartner  `json:"partner,omitempty"`
+	Discount  *UpdateCustomerDiscount `json:"discount,omitempty"`
 }
 
 func (o *UpdateCustomerResponseBody) GetID() string {
@@ -182,4 +335,18 @@ func (o *UpdateCustomerResponseBody) GetLink() *UpdateCustomerLink {
 		return nil
 	}
 	return o.Link
+}
+
+func (o *UpdateCustomerResponseBody) GetPartner() *UpdateCustomerPartner {
+	if o == nil {
+		return nil
+	}
+	return o.Partner
+}
+
+func (o *UpdateCustomerResponseBody) GetDiscount() *UpdateCustomerDiscount {
+	if o == nil {
+		return nil
+	}
+	return o.Discount
 }
