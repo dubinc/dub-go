@@ -2,6 +2,11 @@
 
 package operations
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 type GetCustomerRequest struct {
 	// The unique identifier of the customer in Dub.
 	ID string `pathParam:"style=simple,explode=false,name=id"`
@@ -62,6 +67,152 @@ func (o *GetCustomerLink) GetProgramID() *string {
 	return o.ProgramID
 }
 
+type GetCustomerPartner struct {
+	ID    string  `json:"id"`
+	Name  string  `json:"name"`
+	Email string  `json:"email"`
+	Image *string `json:"image,omitempty"`
+}
+
+func (o *GetCustomerPartner) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *GetCustomerPartner) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *GetCustomerPartner) GetEmail() string {
+	if o == nil {
+		return ""
+	}
+	return o.Email
+}
+
+func (o *GetCustomerPartner) GetImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Image
+}
+
+type GetCustomerType string
+
+const (
+	GetCustomerTypePercentage GetCustomerType = "percentage"
+	GetCustomerTypeFlat       GetCustomerType = "flat"
+)
+
+func (e GetCustomerType) ToPointer() *GetCustomerType {
+	return &e
+}
+func (e *GetCustomerType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "percentage":
+		fallthrough
+	case "flat":
+		*e = GetCustomerType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomerType: %v", v)
+	}
+}
+
+type GetCustomerInterval string
+
+const (
+	GetCustomerIntervalMonth GetCustomerInterval = "month"
+	GetCustomerIntervalYear  GetCustomerInterval = "year"
+)
+
+func (e GetCustomerInterval) ToPointer() *GetCustomerInterval {
+	return &e
+}
+func (e *GetCustomerInterval) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "month":
+		fallthrough
+	case "year":
+		*e = GetCustomerInterval(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomerInterval: %v", v)
+	}
+}
+
+type GetCustomerDiscount struct {
+	ID           string               `json:"id"`
+	CouponID     *string              `json:"couponId"`
+	CouponTestID *string              `json:"couponTestId"`
+	Amount       float64              `json:"amount"`
+	Type         GetCustomerType      `json:"type"`
+	Duration     *float64             `json:"duration"`
+	Interval     *GetCustomerInterval `json:"interval"`
+}
+
+func (o *GetCustomerDiscount) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *GetCustomerDiscount) GetCouponID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponID
+}
+
+func (o *GetCustomerDiscount) GetCouponTestID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponTestID
+}
+
+func (o *GetCustomerDiscount) GetAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Amount
+}
+
+func (o *GetCustomerDiscount) GetType() GetCustomerType {
+	if o == nil {
+		return GetCustomerType("")
+	}
+	return o.Type
+}
+
+func (o *GetCustomerDiscount) GetDuration() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Duration
+}
+
+func (o *GetCustomerDiscount) GetInterval() *GetCustomerInterval {
+	if o == nil {
+		return nil
+	}
+	return o.Interval
+}
+
 // GetCustomerResponseBody - The customer object.
 type GetCustomerResponseBody struct {
 	// The unique identifier of the customer in Dub.
@@ -77,8 +228,10 @@ type GetCustomerResponseBody struct {
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
 	// The date the customer was created.
-	CreatedAt string           `json:"createdAt"`
-	Link      *GetCustomerLink `json:"link,omitempty"`
+	CreatedAt string               `json:"createdAt"`
+	Link      *GetCustomerLink     `json:"link,omitempty"`
+	Partner   *GetCustomerPartner  `json:"partner,omitempty"`
+	Discount  *GetCustomerDiscount `json:"discount,omitempty"`
 }
 
 func (o *GetCustomerResponseBody) GetID() string {
@@ -135,4 +288,18 @@ func (o *GetCustomerResponseBody) GetLink() *GetCustomerLink {
 		return nil
 	}
 	return o.Link
+}
+
+func (o *GetCustomerResponseBody) GetPartner() *GetCustomerPartner {
+	if o == nil {
+		return nil
+	}
+	return o.Partner
+}
+
+func (o *GetCustomerResponseBody) GetDiscount() *GetCustomerDiscount {
+	if o == nil {
+		return nil
+	}
+	return o.Discount
 }

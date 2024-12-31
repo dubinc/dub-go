@@ -2,6 +2,11 @@
 
 package operations
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 type CreateCustomerRequestBody struct {
 	// Email of the customer in the client's app.
 	Email *string `json:"email,omitempty"`
@@ -89,6 +94,152 @@ func (o *CreateCustomerLink) GetProgramID() *string {
 	return o.ProgramID
 }
 
+type CreateCustomerPartner struct {
+	ID    string  `json:"id"`
+	Name  string  `json:"name"`
+	Email string  `json:"email"`
+	Image *string `json:"image,omitempty"`
+}
+
+func (o *CreateCustomerPartner) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *CreateCustomerPartner) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *CreateCustomerPartner) GetEmail() string {
+	if o == nil {
+		return ""
+	}
+	return o.Email
+}
+
+func (o *CreateCustomerPartner) GetImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Image
+}
+
+type CreateCustomerType string
+
+const (
+	CreateCustomerTypePercentage CreateCustomerType = "percentage"
+	CreateCustomerTypeFlat       CreateCustomerType = "flat"
+)
+
+func (e CreateCustomerType) ToPointer() *CreateCustomerType {
+	return &e
+}
+func (e *CreateCustomerType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "percentage":
+		fallthrough
+	case "flat":
+		*e = CreateCustomerType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomerType: %v", v)
+	}
+}
+
+type CreateCustomerInterval string
+
+const (
+	CreateCustomerIntervalMonth CreateCustomerInterval = "month"
+	CreateCustomerIntervalYear  CreateCustomerInterval = "year"
+)
+
+func (e CreateCustomerInterval) ToPointer() *CreateCustomerInterval {
+	return &e
+}
+func (e *CreateCustomerInterval) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "month":
+		fallthrough
+	case "year":
+		*e = CreateCustomerInterval(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateCustomerInterval: %v", v)
+	}
+}
+
+type CreateCustomerDiscount struct {
+	ID           string                  `json:"id"`
+	CouponID     *string                 `json:"couponId"`
+	CouponTestID *string                 `json:"couponTestId"`
+	Amount       float64                 `json:"amount"`
+	Type         CreateCustomerType      `json:"type"`
+	Duration     *float64                `json:"duration"`
+	Interval     *CreateCustomerInterval `json:"interval"`
+}
+
+func (o *CreateCustomerDiscount) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *CreateCustomerDiscount) GetCouponID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponID
+}
+
+func (o *CreateCustomerDiscount) GetCouponTestID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponTestID
+}
+
+func (o *CreateCustomerDiscount) GetAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Amount
+}
+
+func (o *CreateCustomerDiscount) GetType() CreateCustomerType {
+	if o == nil {
+		return CreateCustomerType("")
+	}
+	return o.Type
+}
+
+func (o *CreateCustomerDiscount) GetDuration() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Duration
+}
+
+func (o *CreateCustomerDiscount) GetInterval() *CreateCustomerInterval {
+	if o == nil {
+		return nil
+	}
+	return o.Interval
+}
+
 // CreateCustomerResponseBody - The customer was created.
 type CreateCustomerResponseBody struct {
 	// The unique identifier of the customer in Dub.
@@ -104,8 +255,10 @@ type CreateCustomerResponseBody struct {
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
 	// The date the customer was created.
-	CreatedAt string              `json:"createdAt"`
-	Link      *CreateCustomerLink `json:"link,omitempty"`
+	CreatedAt string                  `json:"createdAt"`
+	Link      *CreateCustomerLink     `json:"link,omitempty"`
+	Partner   *CreateCustomerPartner  `json:"partner,omitempty"`
+	Discount  *CreateCustomerDiscount `json:"discount,omitempty"`
 }
 
 func (o *CreateCustomerResponseBody) GetID() string {
@@ -162,4 +315,18 @@ func (o *CreateCustomerResponseBody) GetLink() *CreateCustomerLink {
 		return nil
 	}
 	return o.Link
+}
+
+func (o *CreateCustomerResponseBody) GetPartner() *CreateCustomerPartner {
+	if o == nil {
+		return nil
+	}
+	return o.Partner
+}
+
+func (o *CreateCustomerResponseBody) GetDiscount() *CreateCustomerDiscount {
+	if o == nil {
+		return nil
+	}
+	return o.Discount
 }
