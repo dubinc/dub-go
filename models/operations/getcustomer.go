@@ -10,6 +10,8 @@ import (
 type GetCustomerRequest struct {
 	// The unique identifier of the customer in Dub.
 	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Whether to include expanded fields on the customer (`link`, `partner`, `discount`).
+	IncludeExpandedFields *bool `queryParam:"style=form,explode=true,name=includeExpandedFields"`
 }
 
 func (o *GetCustomerRequest) GetID() string {
@@ -17,6 +19,13 @@ func (o *GetCustomerRequest) GetID() string {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *GetCustomerRequest) GetIncludeExpandedFields() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeExpandedFields
 }
 
 type GetCustomerLink struct {
