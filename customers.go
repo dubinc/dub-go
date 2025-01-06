@@ -27,7 +27,7 @@ func newCustomers(sdkConfig sdkConfiguration) *Customers {
 
 // List - Retrieve a list of customers
 // Retrieve a list of customers for the authenticated workspace.
-func (s *Customers) List(ctx context.Context, opts ...operations.Option) ([]operations.ResponseBody, error) {
+func (s *Customers) List(ctx context.Context, request operations.GetCustomersRequest, opts ...operations.Option) ([]operations.ResponseBody, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getCustomers",
@@ -75,6 +75,10 @@ func (s *Customers) List(ctx context.Context, opts ...operations.Option) ([]oper
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -840,6 +844,10 @@ func (s *Customers) Get(ctx context.Context, request operations.GetCustomerReque
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
+
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
@@ -1170,17 +1178,12 @@ func (s *Customers) Get(ctx context.Context, request operations.GetCustomerReque
 
 // Update a customer
 // Update a customer for the authenticated workspace.
-func (s *Customers) Update(ctx context.Context, id string, requestBody *operations.UpdateCustomerRequestBody, opts ...operations.Option) (*operations.UpdateCustomerResponseBody, error) {
+func (s *Customers) Update(ctx context.Context, request operations.UpdateCustomerRequest, opts ...operations.Option) (*operations.UpdateCustomerResponseBody, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "updateCustomer",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
-	}
-
-	request := operations.UpdateCustomerRequest{
-		ID:          id,
-		RequestBody: requestBody,
 	}
 
 	o := operations.Options{}
@@ -1229,6 +1232,10 @@ func (s *Customers) Update(ctx context.Context, id string, requestBody *operatio
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	req.Header.Set("Content-Type", reqContentType)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err

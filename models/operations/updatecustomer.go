@@ -48,8 +48,10 @@ func (o *UpdateCustomerRequestBody) GetExternalID() *string {
 
 type UpdateCustomerRequest struct {
 	// The unique identifier of the customer in Dub.
-	ID          string                     `pathParam:"style=simple,explode=false,name=id"`
-	RequestBody *UpdateCustomerRequestBody `request:"mediaType=application/json"`
+	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Whether to include expanded fields on the customer (`link`, `partner`, `discount`).
+	IncludeExpandedFields *bool                      `queryParam:"style=form,explode=true,name=includeExpandedFields"`
+	RequestBody           *UpdateCustomerRequestBody `request:"mediaType=application/json"`
 }
 
 func (o *UpdateCustomerRequest) GetID() string {
@@ -57,6 +59,13 @@ func (o *UpdateCustomerRequest) GetID() string {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *UpdateCustomerRequest) GetIncludeExpandedFields() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeExpandedFields
 }
 
 func (o *UpdateCustomerRequest) GetRequestBody() *UpdateCustomerRequestBody {
