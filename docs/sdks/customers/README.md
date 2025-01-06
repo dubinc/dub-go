@@ -23,6 +23,7 @@ package main
 import(
 	"context"
 	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -33,7 +34,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.Customers.List(ctx)
+    res, err := s.Customers.List(ctx, operations.GetCustomersRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -45,10 +46,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.GetCustomersRequest](../../models/operations/getcustomersrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
@@ -202,6 +204,7 @@ package main
 import(
 	"context"
 	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -212,7 +215,9 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.Customers.Update(ctx, "<id>", nil)
+    res, err := s.Customers.Update(ctx, operations.UpdateCustomerRequest{
+        ID: "<id>",
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -224,12 +229,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                         | [context.Context](https://pkg.go.dev/context#Context)                                         | :heavy_check_mark:                                                                            | The context to use for the request.                                                           |
-| `id`                                                                                          | *string*                                                                                      | :heavy_check_mark:                                                                            | The unique identifier of the customer in Dub.                                                 |
-| `requestBody`                                                                                 | [*operations.UpdateCustomerRequestBody](../../models/operations/updatecustomerrequestbody.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
-| `opts`                                                                                        | [][operations.Option](../../models/operations/option.md)                                      | :heavy_minus_sign:                                                                            | The options for this request.                                                                 |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.UpdateCustomerRequest](../../models/operations/updatecustomerrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 ### Response
 

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: b6c3f376c48f7905069b63adb30d9d19
+  docChecksum: e904bd8a77ea57b3ba18586e860e5b93
   docVersion: 0.0.1
-  speakeasyVersion: 1.460.3
-  generationVersion: 2.484.0
-  releaseVersion: 0.13.3
-  configChecksum: 3fb1e16bfafa43fb1137a149ef4edde8
+  speakeasyVersion: 1.462.2
+  generationVersion: 2.486.1
+  releaseVersion: 0.13.4
+  configChecksum: 8e14469f54e0e59c899c824d04cdda01
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -15,7 +15,7 @@ features:
     constsAndDefaults: 0.1.6
     core: 3.6.2
     defaultEnabledRetries: 0.2.0
-    deprecations: 2.81.1
+    deprecations: 2.81.2
     envVarSecurityUsage: 0.3.2
     errors: 2.83.0
     examples: 2.81.3
@@ -249,6 +249,7 @@ generatedFiles:
   - docs/models/operations/getcustomerrequest.md
   - docs/models/operations/getcustomerresponsebody.md
   - docs/models/operations/getcustomersinterval.md
+  - docs/models/operations/getcustomersrequest.md
   - docs/models/operations/getcustomertype.md
   - docs/models/operations/getlinkinforequest.md
   - docs/models/operations/getlinkscountqueryparamtagids.md
@@ -1127,6 +1128,7 @@ examples:
       parameters:
         path:
           id: "<id>"
+        query: {}
       responses:
         "200":
           application/json: {"id": "<id>", "externalId": "<id>", "name": "<value>", "createdAt": "<value>"}
@@ -1153,6 +1155,7 @@ examples:
       parameters:
         path:
           id: "<id>"
+        query: {}
       responses:
         "200":
           application/json: {"id": "<id>", "externalId": "<id>", "name": "<value>", "createdAt": "<value>"}

@@ -7,6 +7,36 @@ import (
 	"fmt"
 )
 
+type GetCustomersRequest struct {
+	// A case-sensitive filter on the list based on the customer's `email` field. The value must be a string.
+	Email *string `queryParam:"style=form,explode=true,name=email"`
+	// A case-sensitive filter on the list based on the customer's `externalId` field. The value must be a string.
+	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
+	// Whether to include expanded fields on the customer (`link`, `partner`, `discount`).
+	IncludeExpandedFields *bool `queryParam:"style=form,explode=true,name=includeExpandedFields"`
+}
+
+func (o *GetCustomersRequest) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *GetCustomersRequest) GetExternalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExternalID
+}
+
+func (o *GetCustomersRequest) GetIncludeExpandedFields() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeExpandedFields
+}
+
 type Link struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
