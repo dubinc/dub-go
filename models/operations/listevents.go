@@ -173,6 +173,60 @@ func (u ListEventsQueryParamTagIds) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type ListEventsQueryParamTagIds: all fields are null")
 }
 
+// QueryParamSortOrder - The sort order. The default is `desc`.
+type QueryParamSortOrder string
+
+const (
+	QueryParamSortOrderAsc  QueryParamSortOrder = "asc"
+	QueryParamSortOrderDesc QueryParamSortOrder = "desc"
+)
+
+func (e QueryParamSortOrder) ToPointer() *QueryParamSortOrder {
+	return &e
+}
+func (e *QueryParamSortOrder) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "asc":
+		fallthrough
+	case "desc":
+		*e = QueryParamSortOrder(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for QueryParamSortOrder: %v", v)
+	}
+}
+
+// QueryParamSortBy - The field to sort the events by. The default is `timestamp`.
+type QueryParamSortBy string
+
+const (
+	QueryParamSortByTimestamp QueryParamSortBy = "timestamp"
+)
+
+func (e QueryParamSortBy) ToPointer() *QueryParamSortBy {
+	return &e
+}
+func (e *QueryParamSortBy) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "timestamp":
+		*e = QueryParamSortBy(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for QueryParamSortBy: %v", v)
+	}
+}
+
+// Order - DEPRECATED. Use `sortOrder` instead.
+//
+// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
 type Order string
 
 const (
@@ -196,29 +250,6 @@ func (e *Order) UnmarshalJSON(data []byte) error {
 		return nil
 	default:
 		return fmt.Errorf("invalid value for Order: %v", v)
-	}
-}
-
-type SortBy string
-
-const (
-	SortByTimestamp SortBy = "timestamp"
-)
-
-func (e SortBy) ToPointer() *SortBy {
-	return &e
-}
-func (e *SortBy) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "timestamp":
-		*e = SortBy(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SortBy: %v", v)
 	}
 }
 
@@ -270,11 +301,15 @@ type ListEventsRequest struct {
 	// Deprecated. Use the `trigger` field instead. Filter for QR code scans. If true, filter for QR codes only. If false, filter for links only. If undefined, return both.
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
-	Root   *bool    `queryParam:"style=form,explode=true,name=root"`
-	Page   *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
-	Limit  *float64 `default:"100" queryParam:"style=form,explode=true,name=limit"`
-	Order  *Order   `default:"desc" queryParam:"style=form,explode=true,name=order"`
-	SortBy *SortBy  `default:"timestamp" queryParam:"style=form,explode=true,name=sortBy"`
+	Root  *bool    `queryParam:"style=form,explode=true,name=root"`
+	Page  *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	Limit *float64 `default:"100" queryParam:"style=form,explode=true,name=limit"`
+	// The sort order. The default is `desc`.
+	SortOrder *QueryParamSortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
+	// The field to sort the events by. The default is `timestamp`.
+	SortBy *QueryParamSortBy `default:"timestamp" queryParam:"style=form,explode=true,name=sortBy"`
+	// DEPRECATED. Use `sortOrder` instead.
+	Order *Order `default:"desc" queryParam:"style=form,explode=true,name=order"`
 }
 
 func (l ListEventsRequest) MarshalJSON() ([]byte, error) {
@@ -470,18 +505,25 @@ func (o *ListEventsRequest) GetLimit() *float64 {
 	return o.Limit
 }
 
+func (o *ListEventsRequest) GetSortOrder() *QueryParamSortOrder {
+	if o == nil {
+		return nil
+	}
+	return o.SortOrder
+}
+
+func (o *ListEventsRequest) GetSortBy() *QueryParamSortBy {
+	if o == nil {
+		return nil
+	}
+	return o.SortBy
+}
+
 func (o *ListEventsRequest) GetOrder() *Order {
 	if o == nil {
 		return nil
 	}
 	return o.Order
-}
-
-func (o *ListEventsRequest) GetSortBy() *SortBy {
-	if o == nil {
-		return nil
-	}
-	return o.SortBy
 }
 
 type ListEventsResponseBodyType string

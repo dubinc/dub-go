@@ -27,7 +27,7 @@ func newCustomers(sdkConfig sdkConfiguration) *Customers {
 
 // List - Retrieve a list of customers
 // Retrieve a list of customers for the authenticated workspace.
-func (s *Customers) List(ctx context.Context, request operations.GetCustomersRequest, opts ...operations.Option) ([]operations.ResponseBody, error) {
+func (s *Customers) List(ctx context.Context, request operations.GetCustomersRequest, opts ...operations.Option) ([]operations.GetCustomersResponseBody, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "getCustomers",
@@ -186,7 +186,7 @@ func (s *Customers) List(ctx context.Context, request operations.GetCustomersReq
 				return nil, err
 			}
 
-			var out []operations.ResponseBody
+			var out []operations.GetCustomersResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

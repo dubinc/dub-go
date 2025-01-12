@@ -54,7 +54,7 @@ func main() {
 
 ### Response
 
-**[[]operations.ResponseBody](../../.md), error**
+**[[]operations.GetCustomersResponseBody](../../.md), error**
 
 ### Errors
 

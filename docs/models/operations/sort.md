@@ -1,6 +1,8 @@
-# Sort
+# ~~Sort~~
 
-The field to sort the links by. The default is `createdAt`, and sort order is always descending.
+DEPRECATED. Use `sortBy` instead.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 
 ## Values
@@ -9,4 +11,5 @@ The field to sort the links by. The default is `createdAt`, and sort order is al
 | ----------------- | ----------------- |
 | `SortCreatedAt`   | createdAt         |
 | `SortClicks`      | clicks            |
+| `SortSaleAmount`  | saleAmount        |
 | `SortLastClicked` | lastClicked       |

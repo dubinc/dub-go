@@ -149,7 +149,7 @@ type WorkspaceSchema struct {
 	BillingCycleStart float64 `json:"billingCycleStart"`
 	// The date and time when the payment failed for the workspace.
 	PaymentFailedAt *string `json:"paymentFailedAt"`
-	// [BETA – Dub Conversions]: The Stripe Connect ID of the workspace.
+	// The Stripe Connect ID of the workspace.
 	StripeConnectID *string `json:"stripeConnectId"`
 	// [BETA – Dub Partners]: The ID of the payment method for partner payouts.
 	PayoutMethodID *string `json:"payoutMethodId"`

@@ -231,7 +231,7 @@ func (o *Discount) GetInterval() *GetCustomersInterval {
 	return o.Interval
 }
 
-type ResponseBody struct {
+type GetCustomersResponseBody struct {
 	// The unique identifier of the customer in Dub.
 	ID string `json:"id"`
 	// Unique identifier for the customer in the client's app.
@@ -251,70 +251,70 @@ type ResponseBody struct {
 	Discount  *Discount `json:"discount,omitempty"`
 }
 
-func (o *ResponseBody) GetID() string {
+func (o *GetCustomersResponseBody) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *ResponseBody) GetExternalID() string {
+func (o *GetCustomersResponseBody) GetExternalID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ExternalID
 }
 
-func (o *ResponseBody) GetName() string {
+func (o *GetCustomersResponseBody) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *ResponseBody) GetEmail() *string {
+func (o *GetCustomersResponseBody) GetEmail() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Email
 }
 
-func (o *ResponseBody) GetAvatar() *string {
+func (o *GetCustomersResponseBody) GetAvatar() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Avatar
 }
 
-func (o *ResponseBody) GetCountry() *string {
+func (o *GetCustomersResponseBody) GetCountry() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *ResponseBody) GetCreatedAt() string {
+func (o *GetCustomersResponseBody) GetCreatedAt() string {
 	if o == nil {
 		return ""
 	}
 	return o.CreatedAt
 }
 
-func (o *ResponseBody) GetLink() *Link {
+func (o *GetCustomersResponseBody) GetLink() *Link {
 	if o == nil {
 		return nil
 	}
 	return o.Link
 }
 
-func (o *ResponseBody) GetPartner() *Partner {
+func (o *GetCustomersResponseBody) GetPartner() *Partner {
 	if o == nil {
 		return nil
 	}
 	return o.Partner
 }
 
-func (o *ResponseBody) GetDiscount() *Discount {
+func (o *GetCustomersResponseBody) GetDiscount() *Discount {
 	if o == nil {
 		return nil
 	}

@@ -2019,10 +2019,12 @@ type LinkSchema struct {
 	Key string `json:"key"`
 	// The destination URL of the short link.
 	URL string `json:"url"`
-	// [BETA] Whether to track conversions for the short link.
+	// Whether to track conversions for the short link.
 	TrackConversion *bool `default:"false" json:"trackConversion"`
-	// This is the ID of the link in your database that is unique across your workspace. If set, it can be used to identify the link in future API requests. Must be prefixed with 'ext_' when passed as a query parameter.
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
 	ExternalID *string `json:"externalId"`
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	TenantID *string `json:"tenantId"`
 	// Whether the short link is archived.
 	Archived *bool `default:"false" json:"archived"`
 	// The date and time when the short link will expire in ISO-8601 format.
@@ -2085,11 +2087,11 @@ type LinkSchema struct {
 	Clicks *float64 `default:"0" json:"clicks"`
 	// The date and time when the short link was last clicked.
 	LastClicked *string `json:"lastClicked"`
-	// [BETA]: The number of leads the short links has generated.
+	// The number of leads the short links has generated.
 	Leads *float64 `default:"0" json:"leads"`
-	// [BETA]: The number of sales the short links has generated.
+	// The number of sales the short links has generated.
 	Sales *float64 `default:"0" json:"sales"`
-	// [BETA]: The total dollar amount of sales the short links has generated (in cents).
+	// The total dollar amount of sales the short links has generated (in cents).
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 	// The date and time when the short link was created.
 	CreatedAt string `json:"createdAt"`
@@ -2108,7 +2110,7 @@ func (l LinkSchema) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LinkSchema) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, true); err != nil {
 		return err
 	}
 	return nil
@@ -2154,6 +2156,13 @@ func (o *LinkSchema) GetExternalID() *string {
 		return nil
 	}
 	return o.ExternalID
+}
+
+func (o *LinkSchema) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
 }
 
 func (o *LinkSchema) GetArchived() *bool {

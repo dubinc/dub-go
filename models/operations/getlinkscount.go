@@ -305,6 +305,8 @@ type GetLinksCountRequest struct {
 	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// The user ID to filter the links by.
 	UserID *string `queryParam:"style=form,explode=true,name=userId"`
+	// The ID of the tenant that created the link inside your system. If set, will only return links for the specified tenant.
+	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
 	// Whether to include archived links in the response. Defaults to `false` if not provided.
 	ShowArchived *bool `default:"false" queryParam:"style=form,explode=true,name=showArchived"`
 	// DEPRECATED. Filter for links that have at least one tag assigned to them.
@@ -364,6 +366,13 @@ func (o *GetLinksCountRequest) GetUserID() *string {
 		return nil
 	}
 	return o.UserID
+}
+
+func (o *GetLinksCountRequest) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
 }
 
 func (o *GetLinksCountRequest) GetShowArchived() *bool {

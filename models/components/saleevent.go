@@ -2044,8 +2044,10 @@ type SaleEventLink struct {
 	Key             string `json:"key"`
 	URL             string `json:"url"`
 	TrackConversion *bool  `json:"trackConversion,omitempty"`
-	// This is the ID of the link in your database that is unique across your workspace. If set, it can be used to identify the link in future API requests. Must be prefixed with 'ext_' when passed as a query parameter.
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
 	ExternalID *string `json:"externalId"`
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	TenantID   *string `json:"tenantId"`
 	Archived   *bool   `json:"archived,omitempty"`
 	ExpiresAt  string  `json:"expiresAt"`
 	ExpiredURL *string `json:"expiredUrl"`
@@ -2099,11 +2101,11 @@ type SaleEventLink struct {
 	// The number of clicks on the short link.
 	Clicks      *float64 `default:"0" json:"clicks"`
 	LastClicked string   `json:"lastClicked"`
-	// [BETA]: The number of leads the short links has generated.
+	// The number of leads the short links has generated.
 	Leads *float64 `default:"0" json:"leads"`
-	// [BETA]: The number of sales the short links has generated.
+	// The number of sales the short links has generated.
 	Sales *float64 `default:"0" json:"sales"`
-	// [BETA]: The total dollar amount of sales the short links has generated (in cents).
+	// The total dollar amount of sales the short links has generated (in cents).
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 	CreatedAt  string   `json:"createdAt"`
 	UpdatedAt  string   `json:"updatedAt"`
@@ -2166,6 +2168,13 @@ func (o *SaleEventLink) GetExternalID() *string {
 		return nil
 	}
 	return o.ExternalID
+}
+
+func (o *SaleEventLink) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
 }
 
 func (o *SaleEventLink) GetArchived() *bool {

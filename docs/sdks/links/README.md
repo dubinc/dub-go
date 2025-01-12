@@ -463,7 +463,7 @@ func main() {
 
 ### Response
 
-**[[]components.LinkSchema](../../.md), error**
+**[[]operations.ResponseBody](../../.md), error**
 
 ### Errors
 

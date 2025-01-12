@@ -144,8 +144,10 @@ type CreateLinkRequestBody struct {
 	Domain *string `json:"domain,omitempty"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key *string `json:"key,omitempty"`
-	// This is the ID of the link in your database. If set, it can be used to identify the link in the future. Must be prefixed with `ext_` when passed as a query parameter.
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
 	ExternalID *string `json:"externalId,omitempty"`
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	TenantID *string `json:"tenantId,omitempty"`
 	// The prefix of the short link slug for randomly-generated keys (e.g. if prefix is `/c/`, generated keys will be in the `/c/:key` format). Will be ignored if `key` is provided.
 	Prefix *string `json:"prefix,omitempty"`
 	// Whether to track conversions for the short link.
@@ -247,6 +249,13 @@ func (o *CreateLinkRequestBody) GetExternalID() *string {
 		return nil
 	}
 	return o.ExternalID
+}
+
+func (o *CreateLinkRequestBody) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
 }
 
 func (o *CreateLinkRequestBody) GetPrefix() *string {
