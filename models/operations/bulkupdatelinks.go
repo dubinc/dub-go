@@ -140,6 +140,8 @@ func (u BulkUpdateLinksTagNames) MarshalJSON() ([]byte, error) {
 type Data struct {
 	// The destination URL of the short link.
 	URL *string `json:"url,omitempty"`
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	TenantID *string `json:"tenantId,omitempty"`
 	// Whether to track conversions for the short link.
 	TrackConversion *bool `default:"false" json:"trackConversion"`
 	// Whether the short link is archived.
@@ -218,6 +220,13 @@ func (o *Data) GetURL() *string {
 		return nil
 	}
 	return o.URL
+}
+
+func (o *Data) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
 }
 
 func (o *Data) GetTrackConversion() *bool {

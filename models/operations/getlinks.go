@@ -138,12 +138,75 @@ func (u QueryParamTagNames) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type QueryParamTagNames: all fields are null")
 }
 
-// Sort - The field to sort the links by. The default is `createdAt`, and sort order is always descending.
+// SortBy - The field to sort the links by. The default is `createdAt`.
+type SortBy string
+
+const (
+	SortByCreatedAt   SortBy = "createdAt"
+	SortByClicks      SortBy = "clicks"
+	SortBySaleAmount  SortBy = "saleAmount"
+	SortByLastClicked SortBy = "lastClicked"
+)
+
+func (e SortBy) ToPointer() *SortBy {
+	return &e
+}
+func (e *SortBy) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "createdAt":
+		fallthrough
+	case "clicks":
+		fallthrough
+	case "saleAmount":
+		fallthrough
+	case "lastClicked":
+		*e = SortBy(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SortBy: %v", v)
+	}
+}
+
+// SortOrder - The sort order. The default is `desc`.
+type SortOrder string
+
+const (
+	SortOrderAsc  SortOrder = "asc"
+	SortOrderDesc SortOrder = "desc"
+)
+
+func (e SortOrder) ToPointer() *SortOrder {
+	return &e
+}
+func (e *SortOrder) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "asc":
+		fallthrough
+	case "desc":
+		*e = SortOrder(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SortOrder: %v", v)
+	}
+}
+
+// Sort - DEPRECATED. Use `sortBy` instead.
+//
+// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
 type Sort string
 
 const (
 	SortCreatedAt   Sort = "createdAt"
 	SortClicks      Sort = "clicks"
+	SortSaleAmount  Sort = "saleAmount"
 	SortLastClicked Sort = "lastClicked"
 )
 
@@ -159,6 +222,8 @@ func (e *Sort) UnmarshalJSON(data []byte) error {
 	case "createdAt":
 		fallthrough
 	case "clicks":
+		fallthrough
+	case "saleAmount":
 		fallthrough
 	case "lastClicked":
 		*e = Sort(v)
@@ -181,11 +246,17 @@ type GetLinksRequest struct {
 	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// The user ID to filter the links by.
 	UserID *string `queryParam:"style=form,explode=true,name=userId"`
+	// The ID of the tenant that created the link inside your system. If set, will only return links for the specified tenant.
+	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
 	// Whether to include archived links in the response. Defaults to `false` if not provided.
 	ShowArchived *bool `default:"false" queryParam:"style=form,explode=true,name=showArchived"`
 	// DEPRECATED. Filter for links that have at least one tag assigned to them.
 	WithTags *bool `default:"false" queryParam:"style=form,explode=true,name=withTags"`
-	// The field to sort the links by. The default is `createdAt`, and sort order is always descending.
+	// The field to sort the links by. The default is `createdAt`.
+	SortBy *SortBy `default:"createdAt" queryParam:"style=form,explode=true,name=sortBy"`
+	// The sort order. The default is `desc`.
+	SortOrder *SortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
+	// DEPRECATED. Use `sortBy` instead.
 	Sort *Sort `default:"createdAt" queryParam:"style=form,explode=true,name=sort"`
 	// The page number for pagination.
 	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
@@ -246,6 +317,13 @@ func (o *GetLinksRequest) GetUserID() *string {
 	return o.UserID
 }
 
+func (o *GetLinksRequest) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
+}
+
 func (o *GetLinksRequest) GetShowArchived() *bool {
 	if o == nil {
 		return nil
@@ -258,6 +336,20 @@ func (o *GetLinksRequest) GetWithTags() *bool {
 		return nil
 	}
 	return o.WithTags
+}
+
+func (o *GetLinksRequest) GetSortBy() *SortBy {
+	if o == nil {
+		return nil
+	}
+	return o.SortBy
+}
+
+func (o *GetLinksRequest) GetSortOrder() *SortOrder {
+	if o == nil {
+		return nil
+	}
+	return o.SortOrder
 }
 
 func (o *GetLinksRequest) GetSort() *Sort {

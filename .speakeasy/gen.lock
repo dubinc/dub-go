@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: e904bd8a77ea57b3ba18586e860e5b93
+  docChecksum: a6a1e65c1a9ddd2d1b445252e12b8157
   docVersion: 0.0.1
-  speakeasyVersion: 1.462.2
-  generationVersion: 2.486.1
-  releaseVersion: 0.13.4
-  configChecksum: 8e14469f54e0e59c899c824d04cdda01
+  speakeasyVersion: 1.468.2
+  generationVersion: 2.493.4
+  releaseVersion: 0.13.5
+  configChecksum: 9324b1c81d44a4f7ce03aa644877de0d
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -18,7 +18,7 @@ features:
     deprecations: 2.81.2
     envVarSecurityUsage: 0.3.2
     errors: 2.83.0
-    examples: 2.81.3
+    examples: 2.81.4
     flattening: 2.81.1
     globalSecurity: 2.82.10
     globalSecurityCallbacks: 0.1.0
@@ -30,7 +30,7 @@ features:
     nullables: 0.1.0
     pagination: 2.82.2
     responseFormat: 0.1.2
-    retries: 2.83.1
+    retries: 2.83.2
     sdkHooks: 0.1.0
     unions: 2.85.10
 generatedFiles:
@@ -55,6 +55,7 @@ generatedFiles:
   - /models/components/leadcreatedevent.go
   - /models/components/leadevent.go
   - /models/components/linkclickedevent.go
+  - /models/components/linkerrorschema.go
   - /models/components/linkgeotargeting.go
   - /models/components/linkschema.go
   - /models/components/linkwebhookevent.go
@@ -104,7 +105,6 @@ generatedFiles:
   - /models/sdkerrors/ratelimitexceeded.go
   - /models/sdkerrors/unauthorized.go
   - /models/sdkerrors/unprocessableentity.go
-  - CONTRIBUTING.md
   - USAGE.md
   - analytics.go
   - customers.go
@@ -126,6 +126,7 @@ generatedFiles:
   - docs/models/components/click.md
   - docs/models/components/clickevent.md
   - docs/models/components/clickeventgeo.md
+  - docs/models/components/code.md
   - docs/models/components/color.md
   - docs/models/components/continent.md
   - docs/models/components/continentcode.md
@@ -164,6 +165,7 @@ generatedFiles:
   - docs/models/components/linkclickedeventevent.md
   - docs/models/components/linkclickedeventgeo.md
   - docs/models/components/linkclickedeventlink.md
+  - docs/models/components/linkerrorschema.md
   - docs/models/components/linkgeotargeting.md
   - docs/models/components/linkschema.md
   - docs/models/components/linkwebhookevent.md
@@ -250,6 +252,7 @@ generatedFiles:
   - docs/models/operations/getcustomerresponsebody.md
   - docs/models/operations/getcustomersinterval.md
   - docs/models/operations/getcustomersrequest.md
+  - docs/models/operations/getcustomersresponsebody.md
   - docs/models/operations/getcustomertype.md
   - docs/models/operations/getlinkinforequest.md
   - docs/models/operations/getlinkscountqueryparamtagids.md
@@ -278,6 +281,8 @@ generatedFiles:
   - docs/models/operations/queryparamevent.md
   - docs/models/operations/queryparamgroupby.md
   - docs/models/operations/queryparaminterval.md
+  - docs/models/operations/queryparamsortby.md
+  - docs/models/operations/queryparamsortorder.md
   - docs/models/operations/queryparamtagids.md
   - docs/models/operations/queryparamtagnames.md
   - docs/models/operations/queryparamtrigger.md
@@ -289,6 +294,7 @@ generatedFiles:
   - docs/models/operations/sale.md
   - docs/models/operations/sort.md
   - docs/models/operations/sortby.md
+  - docs/models/operations/sortorder.md
   - docs/models/operations/tagids.md
   - docs/models/operations/tagnames.md
   - docs/models/operations/three.md
@@ -426,7 +432,7 @@ examples:
         application/json: {"url": "https://google.com", "externalId": "123456", "tagIds": ["clux0rgak00011..."]}
       responses:
         "200":
-          application/json: {"id": "<id>", "domain": "lighthearted-kilogram.name", "key": "<key>", "url": "https://impartial-dump.com", "externalId": "<value>", "expiresAt": "<value>", "expiredUrl": "https://big-young.net", "password": "DuL1dlrnUXohO_B", "title": "<value>", "description": "Ameliorated demand-driven superstructure", "image": "https://loremflickr.com/640/480", "video": "<value>", "ios": "<value>", "android": "<value>", "tagId": "<value>", "tags": [], "webhookIds": ["<value>"], "comments": "<value>", "shortLink": "http://massive-cup.biz", "qrCode": "http://safe-bankruptcy.net", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "userId": "<value>", "workspaceId": "<value>", "lastClicked": "<value>", "createdAt": "<value>", "updatedAt": "<value>", "projectId": "<value>", "programId": "<id>"}
+          application/json: {"id": "<id>", "domain": "lighthearted-kilogram.name", "key": "<key>", "url": "https://impartial-dump.com", "externalId": "<value>", "tenantId": "<id>", "expiresAt": "<value>", "expiredUrl": "https://big-young.net", "password": "DuL1dlrnUXohO_B", "title": "<value>", "description": "Ameliorated demand-driven superstructure", "image": "https://loremflickr.com/640/480", "video": "<value>", "ios": "<value>", "android": "<value>", "tagId": "<value>", "tags": [], "webhookIds": ["<value>"], "comments": "<value>", "shortLink": "http://massive-cup.biz", "qrCode": "http://safe-bankruptcy.net", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "userId": "<value>", "workspaceId": "<value>", "lastClicked": "<value>", "createdAt": "<value>", "updatedAt": "<value>", "projectId": "<value>", "programId": "<id>"}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -476,7 +482,7 @@ examples:
           externalId: "123456"
       responses:
         "200":
-          application/json: {"id": "<id>", "domain": "ringed-blow.name", "key": "<key>", "url": "https://monumental-spaghetti.name", "externalId": "<value>", "expiresAt": "<value>", "expiredUrl": "http://wiggly-substitution.info", "password": "fKH9v5zJBmg5IWA", "title": "<value>", "description": "Optional reciprocal projection", "image": "https://loremflickr.com/640/480", "video": "<value>", "ios": "<value>", "android": "<value>", "tagId": "<value>", "tags": [], "webhookIds": ["<value>", "<value>"], "comments": "<value>", "shortLink": "https://hefty-festival.net", "qrCode": "https://pale-civilisation.name", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "userId": "<value>", "workspaceId": "<value>", "lastClicked": "<value>", "createdAt": "<value>", "updatedAt": "<value>", "projectId": "<value>", "programId": "<id>"}
+          application/json: {"id": "<id>", "domain": "ringed-blow.name", "key": "<key>", "url": "https://monumental-spaghetti.name", "externalId": "<value>", "tenantId": "<id>", "expiresAt": "<value>", "expiredUrl": "http://wiggly-substitution.info", "password": "fKH9v5zJBmg5IWA", "title": "<value>", "description": "Optional reciprocal projection", "image": "https://loremflickr.com/640/480", "video": "<value>", "ios": "<value>", "android": "<value>", "tagId": "<value>", "tags": [], "webhookIds": ["<value>", "<value>"], "comments": "<value>", "shortLink": "https://hefty-festival.net", "qrCode": "https://pale-civilisation.name", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "userId": "<value>", "workspaceId": "<value>", "lastClicked": "<value>", "createdAt": "<value>", "updatedAt": "<value>", "projectId": "<value>", "programId": "<id>"}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -530,7 +536,7 @@ examples:
         application/json: {"url": "https://google.com", "externalId": "123456", "tagIds": ["clux0rgak00011..."]}
       responses:
         "200":
-          application/json: {"id": "<id>", "domain": "tidy-amazon.name", "key": "<key>", "url": "http://grand-pupa.org", "externalId": "<value>", "expiresAt": "<value>", "expiredUrl": "http://plastic-powder.info", "password": "KvPKDk8CkuAMJjb", "title": "<value>", "description": "User-friendly foreground interface", "image": "https://loremflickr.com/640/480", "video": "<value>", "ios": "<value>", "android": "<value>", "tagId": "<value>", "tags": [], "webhookIds": ["<value>", "<value>", "<value>"], "comments": "<value>", "shortLink": "http://glossy-roller.info", "qrCode": "https://poor-howard.com", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "userId": "<value>", "workspaceId": "<value>", "lastClicked": "<value>", "createdAt": "<value>", "updatedAt": "<value>", "projectId": "<value>", "programId": "<id>"}
+          application/json: {"id": "<id>", "domain": "tidy-amazon.name", "key": "<key>", "url": "http://grand-pupa.org", "externalId": "<value>", "tenantId": "<id>", "expiresAt": "<value>", "expiredUrl": "http://plastic-powder.info", "password": "KvPKDk8CkuAMJjb", "title": "<value>", "description": "User-friendly foreground interface", "image": "https://loremflickr.com/640/480", "video": "<value>", "ios": "<value>", "android": "<value>", "tagId": "<value>", "tags": [], "webhookIds": ["<value>", "<value>", "<value>"], "comments": "<value>", "shortLink": "http://glossy-roller.info", "qrCode": "https://poor-howard.com", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "userId": "<value>", "workspaceId": "<value>", "lastClicked": "<value>", "createdAt": "<value>", "updatedAt": "<value>", "projectId": "<value>", "programId": "<id>"}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -631,7 +637,7 @@ examples:
         application/json: {"url": "https://google.com", "externalId": "123456", "tagIds": ["clux0rgak00011..."]}
       responses:
         "200":
-          application/json: {"id": "<id>", "domain": "monthly-hometown.info", "key": "<key>", "url": "https://honored-equality.info", "externalId": "<value>", "expiresAt": "<value>", "expiredUrl": "https://eminent-acknowledgment.net", "password": "wZDcrQrPcHBWicB", "title": "<value>", "description": "Re-engineered 24 hour structure", "image": "https://loremflickr.com/640/480", "video": "<value>", "ios": "<value>", "android": "<value>", "tagId": "<value>", "tags": [], "webhookIds": ["<value>", "<value>"], "comments": "<value>", "shortLink": "http://nocturnal-spirituality.com", "qrCode": "https://potable-app.org", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "userId": "<value>", "workspaceId": "<value>", "lastClicked": "<value>", "createdAt": "<value>", "updatedAt": "<value>", "projectId": "<value>", "programId": "<id>"}
+          application/json: {"id": "<id>", "domain": "monthly-hometown.info", "key": "<key>", "url": "https://honored-equality.info", "externalId": "<value>", "tenantId": "<id>", "expiresAt": "<value>", "expiredUrl": "https://eminent-acknowledgment.net", "password": "wZDcrQrPcHBWicB", "title": "<value>", "description": "Re-engineered 24 hour structure", "image": "https://loremflickr.com/640/480", "video": "<value>", "ios": "<value>", "android": "<value>", "tagId": "<value>", "tags": [], "webhookIds": ["<value>", "<value>"], "comments": "<value>", "shortLink": "http://nocturnal-spirituality.com", "qrCode": "https://potable-app.org", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "userId": "<value>", "workspaceId": "<value>", "lastClicked": "<value>", "createdAt": "<value>", "updatedAt": "<value>", "projectId": "<value>", "programId": "<id>"}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":

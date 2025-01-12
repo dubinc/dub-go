@@ -612,8 +612,11 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest, op
 				TagNames:     request.TagNames,
 				Search:       request.Search,
 				UserID:       request.UserID,
+				TenantID:     request.TenantID,
 				ShowArchived: request.ShowArchived,
 				WithTags:     request.WithTags,
+				SortBy:       request.SortBy,
+				SortOrder:    request.SortOrder,
 				Sort:         request.Sort,
 				Page:         &nP,
 				PageSize:     request.PageSize,
@@ -2394,7 +2397,7 @@ func (s *Links) Delete(ctx context.Context, linkID string, opts ...operations.Op
 
 // CreateMany - Bulk create links
 // Bulk create up to 100 links for the authenticated workspace.
-func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody, opts ...operations.Option) ([]components.LinkSchema, error) {
+func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody, opts ...operations.Option) ([]operations.ResponseBody, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "bulkCreateLinks",
@@ -2555,7 +2558,7 @@ func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody
 				return nil, err
 			}
 
-			var out []components.LinkSchema
+			var out []operations.ResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

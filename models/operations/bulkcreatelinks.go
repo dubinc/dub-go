@@ -144,8 +144,10 @@ type RequestBody struct {
 	Domain *string `json:"domain,omitempty"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key *string `json:"key,omitempty"`
-	// This is the ID of the link in your database. If set, it can be used to identify the link in the future. Must be prefixed with `ext_` when passed as a query parameter.
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
 	ExternalID *string `json:"externalId,omitempty"`
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	TenantID *string `json:"tenantId,omitempty"`
 	// The prefix of the short link slug for randomly-generated keys (e.g. if prefix is `/c/`, generated keys will be in the `/c/:key` format). Will be ignored if `key` is provided.
 	Prefix *string `json:"prefix,omitempty"`
 	// Whether to track conversions for the short link.
@@ -247,6 +249,13 @@ func (o *RequestBody) GetExternalID() *string {
 		return nil
 	}
 	return o.ExternalID
+}
+
+func (o *RequestBody) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
 }
 
 func (o *RequestBody) GetPrefix() *string {
@@ -450,4 +459,67 @@ func (o *RequestBody) GetWebhookIds() []string {
 		return nil
 	}
 	return o.WebhookIds
+}
+
+type ResponseBodyType string
+
+const (
+	ResponseBodyTypeLinkSchema      ResponseBodyType = "LinkSchema"
+	ResponseBodyTypeLinkErrorSchema ResponseBodyType = "LinkErrorSchema"
+)
+
+type ResponseBody struct {
+	LinkSchema      *components.LinkSchema      `queryParam:"inline"`
+	LinkErrorSchema *components.LinkErrorSchema `queryParam:"inline"`
+
+	Type ResponseBodyType
+}
+
+func CreateResponseBodyLinkSchema(linkSchema components.LinkSchema) ResponseBody {
+	typ := ResponseBodyTypeLinkSchema
+
+	return ResponseBody{
+		LinkSchema: &linkSchema,
+		Type:       typ,
+	}
+}
+
+func CreateResponseBodyLinkErrorSchema(linkErrorSchema components.LinkErrorSchema) ResponseBody {
+	typ := ResponseBodyTypeLinkErrorSchema
+
+	return ResponseBody{
+		LinkErrorSchema: &linkErrorSchema,
+		Type:            typ,
+	}
+}
+
+func (u *ResponseBody) UnmarshalJSON(data []byte) error {
+
+	var linkErrorSchema components.LinkErrorSchema = components.LinkErrorSchema{}
+	if err := utils.UnmarshalJSON(data, &linkErrorSchema, "", true, true); err == nil {
+		u.LinkErrorSchema = &linkErrorSchema
+		u.Type = ResponseBodyTypeLinkErrorSchema
+		return nil
+	}
+
+	var linkSchema components.LinkSchema = components.LinkSchema{}
+	if err := utils.UnmarshalJSON(data, &linkSchema, "", true, true); err == nil {
+		u.LinkSchema = &linkSchema
+		u.Type = ResponseBodyTypeLinkSchema
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for ResponseBody", string(data))
+}
+
+func (u ResponseBody) MarshalJSON() ([]byte, error) {
+	if u.LinkSchema != nil {
+		return utils.MarshalJSON(u.LinkSchema, "", true)
+	}
+
+	if u.LinkErrorSchema != nil {
+		return utils.MarshalJSON(u.LinkErrorSchema, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type ResponseBody: all fields are null")
 }
