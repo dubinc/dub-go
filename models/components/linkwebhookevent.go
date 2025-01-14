@@ -2205,7 +2205,7 @@ type Data struct {
 	PublicStats *bool                `json:"publicStats,omitempty"`
 	// The unique ID of the tag assigned to the short link. This field is deprecated – use `tags` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	TagID *string `json:"tagId"`
 	// The tags assigned to the short link.
 	Tags []TagSchema `json:"tags"`
@@ -2243,7 +2243,7 @@ type Data struct {
 	UpdatedAt  string   `json:"updatedAt"`
 	// The project ID of the short link. This field is deprecated – use `workspaceId` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	ProjectID string `json:"projectId"`
 	// The ID of the program the short link is associated with.
 	ProgramID *string `json:"programId"`

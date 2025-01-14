@@ -150,17 +150,17 @@ type CreateLinkRequestBody struct {
 	TenantID *string `json:"tenantId,omitempty"`
 	// The prefix of the short link slug for randomly-generated keys (e.g. if prefix is `/c/`, generated keys will be in the `/c/:key` format). Will be ignored if `key` is provided.
 	Prefix *string `json:"prefix,omitempty"`
-	// Whether to track conversions for the short link.
-	TrackConversion *bool `default:"false" json:"trackConversion"`
-	// Whether the short link is archived.
-	Archived *bool `default:"false" json:"archived"`
-	// Deprecated: Use `dashboard` instead. Whether the short link's stats are publicly accessible.
+	// Whether to track conversions for the short link. Defaults to `false` if not provided.
+	TrackConversion *bool `json:"trackConversion,omitempty"`
+	// Whether the short link is archived. Defaults to `false` if not provided.
+	Archived *bool `json:"archived,omitempty"`
+	// Deprecated: Use `dashboard` instead. Whether the short link's stats are publicly accessible. Defaults to `false` if not provided.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-	PublicStats *bool `default:"false" json:"publicStats"`
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	PublicStats *bool `json:"publicStats,omitempty"`
 	// The unique ID of the tag assigned to the short link. This field is deprecated – use `tagIds` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	TagID *string `json:"tagId,omitempty"`
 	// The unique IDs of the tags assigned to the short link.
 	TagIds *TagIds `json:"tagIds,omitempty"`
@@ -174,8 +174,8 @@ type CreateLinkRequestBody struct {
 	ExpiredURL *string `json:"expiredUrl,omitempty"`
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password,omitempty"`
-	// Whether the short link uses Custom Social Media Cards feature.
-	Proxy *bool `default:"false" json:"proxy"`
+	// Whether the short link uses Custom Social Media Cards feature. Defaults to `false` if not provided.
+	Proxy *bool `json:"proxy,omitempty"`
 	// The custom link preview title (og:title). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Title *string `json:"title,omitempty"`
 	// The custom link preview description (og:description). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
@@ -184,8 +184,8 @@ type CreateLinkRequestBody struct {
 	Image *string `json:"image,omitempty"`
 	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Video *string `json:"video,omitempty"`
-	// Whether the short link uses link cloaking.
-	Rewrite *bool `default:"false" json:"rewrite"`
+	// Whether the short link uses link cloaking. Defaults to `false` if not provided.
+	Rewrite *bool `json:"rewrite,omitempty"`
 	// The iOS destination URL for the short link for iOS device targeting.
 	Ios *string `json:"ios,omitempty"`
 	// The Android destination URL for the short link for Android device targeting.
@@ -193,7 +193,7 @@ type CreateLinkRequestBody struct {
 	// Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`.
 	Geo *components.LinkGeoTargeting `json:"geo,omitempty"`
 	// Allow search engines to index your short link. Defaults to `false` if not provided. Learn more: https://d.to/noindex
-	DoIndex *bool `default:"false" json:"doIndex"`
+	DoIndex *bool `json:"doIndex,omitempty"`
 	// The UTM source of the short link. If set, this will populate or override the UTM source in the destination URL.
 	UtmSource *string `json:"utm_source,omitempty"`
 	// The UTM medium of the short link. If set, this will populate or override the UTM medium in the destination URL.
@@ -210,17 +210,6 @@ type CreateLinkRequestBody struct {
 	ProgramID *string `json:"programId,omitempty"`
 	// An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
 	WebhookIds []string `json:"webhookIds,omitempty"`
-}
-
-func (c CreateLinkRequestBody) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *CreateLinkRequestBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
-		return err
-	}
-	return nil
 }
 
 func (o *CreateLinkRequestBody) GetURL() string {

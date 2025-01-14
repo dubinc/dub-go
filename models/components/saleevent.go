@@ -2073,7 +2073,7 @@ type SaleEventLink struct {
 	PublicStats *bool         `json:"publicStats,omitempty"`
 	// The unique ID of the tag assigned to the short link. This field is deprecated – use `tags` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	TagID *string `json:"tagId"`
 	// The tags assigned to the short link.
 	Tags []TagSchema `json:"tags"`
@@ -2111,7 +2111,7 @@ type SaleEventLink struct {
 	UpdatedAt  string   `json:"updatedAt"`
 	// The project ID of the short link. This field is deprecated – use `workspaceId` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	ProjectID string `json:"projectId"`
 	// The ID of the program the short link is associated with.
 	ProgramID *string `json:"programId"`
@@ -2909,65 +2909,65 @@ type SaleEvent struct {
 	Sale      Sale              `json:"sale"`
 	// Deprecated. Use `sale.amount` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	SaleAmount float64 `json:"saleAmount"`
 	// Deprecated. Use `sale.invoiceId` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	InvoiceID string `json:"invoice_id"`
 	// Deprecated. Use `sale.paymentProcessor` instead.
 	PaymentProcessor string `json:"payment_processor"`
 	// Deprecated. Use `click.id` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	ClickID string `json:"click_id"`
 	// Deprecated. Use `link.id` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	LinkID string `json:"link_id"`
 	// Deprecated. Use `link.domain` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Domain string `json:"domain"`
 	// Deprecated. Use `link.key` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Key string `json:"key"`
 	// Deprecated. Use `click.url` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	URL string `json:"url"`
 	// Deprecated. Use `click.continent` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Continent string `json:"continent"`
 	// Deprecated. Use `click.country` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Country string `json:"country"`
 	// Deprecated. Use `click.city` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	City string `json:"city"`
 	// Deprecated. Use `click.device` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Device string `json:"device"`
 	// Deprecated. Use `click.browser` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Browser string `json:"browser"`
 	// Deprecated. Use `click.os` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Os string `json:"os"`
 	// Deprecated. Use `click.qr` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Qr float64 `json:"qr"`
 	// Deprecated. Use `click.ip` instead.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	IP string `json:"ip"`
 }
 
