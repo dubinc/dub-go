@@ -43,7 +43,7 @@ type TrackSaleRequestBody struct {
 	ExternalID *string `default:"" json:"externalId"`
 	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	CustomerID *string `default:"null" json:"customerId"`
 	// The amount of the sale. Should be passed in cents.
 	Amount int64 `json:"amount"`

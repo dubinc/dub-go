@@ -226,7 +226,7 @@ func (e *QueryParamSortBy) UnmarshalJSON(data []byte) error {
 
 // Order - DEPRECATED. Use `sortOrder` instead.
 //
-// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
+// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 type Order string
 
 const (

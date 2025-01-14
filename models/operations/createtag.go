@@ -56,7 +56,7 @@ type CreateTagRequestBody struct {
 	Color *Color `json:"color,omitempty"`
 	// The name of the tag to create.
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Tag *string `json:"tag,omitempty"`
 }
 

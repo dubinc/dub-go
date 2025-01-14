@@ -9,7 +9,7 @@ import (
 type AnalyticsTopLinks struct {
 	// The unique ID of the short link
 	//
-	// Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Link string `json:"link"`
 	// The unique ID of the short link
 	ID string `json:"id"`

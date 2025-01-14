@@ -200,7 +200,7 @@ func (e *SortOrder) UnmarshalJSON(data []byte) error {
 
 // Sort - DEPRECATED. Use `sortBy` instead.
 //
-// Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
+// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 type Sort string
 
 const (
