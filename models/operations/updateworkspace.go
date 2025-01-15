@@ -3,9 +3,10 @@
 package operations
 
 type UpdateWorkspaceRequestBody struct {
-	Name *string `json:"name,omitempty"`
-	Slug *string `json:"slug,omitempty"`
-	Logo *string `json:"logo,omitempty"`
+	Name              *string `json:"name,omitempty"`
+	Slug              *string `json:"slug,omitempty"`
+	Logo              *string `json:"logo,omitempty"`
+	ConversionEnabled *bool   `json:"conversionEnabled,omitempty"`
 }
 
 func (o *UpdateWorkspaceRequestBody) GetName() *string {
@@ -27,6 +28,13 @@ func (o *UpdateWorkspaceRequestBody) GetLogo() *string {
 		return nil
 	}
 	return o.Logo
+}
+
+func (o *UpdateWorkspaceRequestBody) GetConversionEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ConversionEnabled
 }
 
 type UpdateWorkspaceRequest struct {

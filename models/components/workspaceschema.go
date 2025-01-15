@@ -175,7 +175,7 @@ type WorkspaceSchema struct {
 	AiUsage float64 `json:"aiUsage"`
 	// The AI limit of the workspace.
 	AiLimit float64 `json:"aiLimit"`
-	// Whether the workspace has conversion tracking enabled (d.to/conversions).
+	// Whether the workspace has conversion tracking enabled automatically for new links (d.to/conversions).
 	ConversionEnabled bool `json:"conversionEnabled"`
 	// Whether the workspace has claimed a free .link domain. (dub.link/free)
 	DotLinkClaimed bool `json:"dotLinkClaimed"`
@@ -189,6 +189,8 @@ type WorkspaceSchema struct {
 	Domains []Domains `json:"domains"`
 	// The feature flags of the workspace, indicating which features are enabled.
 	Flags map[string]bool `json:"flags,omitempty"`
+	// The miscellaneous key-value store of the workspace.
+	Store map[string]any `json:"store"`
 }
 
 func (w WorkspaceSchema) MarshalJSON() ([]byte, error) {
@@ -403,4 +405,11 @@ func (o *WorkspaceSchema) GetFlags() map[string]bool {
 		return nil
 	}
 	return o.Flags
+}
+
+func (o *WorkspaceSchema) GetStore() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.Store
 }
