@@ -434,15 +434,7 @@ func main() {
     )
 
     res, err := s.Links.CreateMany(ctx, []operations.RequestBody{
-        operations.RequestBody{
-            URL: "https://google.com",
-            ExternalID: dubgo.String("123456"),
-            TagIds: dubgo.Pointer(operations.CreateBulkCreateLinksTagIdsArrayOfStr(
-                []string{
-                    "clux0rgak00011...",
-                },
-            )),
-        },
+
     })
     if err != nil {
         log.Fatal(err)
@@ -505,7 +497,7 @@ func main() {
 
     res, err := s.Links.UpdateMany(ctx, &operations.BulkUpdateLinksRequestBody{
         LinkIds: []string{
-            "<value>",
+
         },
         Data: operations.Data{
             URL: dubgo.String("https://google.com"),
