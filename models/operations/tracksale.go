@@ -214,9 +214,9 @@ func (o *Sale) GetMetadata() map[string]any {
 
 // TrackSaleResponseBody - A sale was tracked.
 type TrackSaleResponseBody struct {
-	EventName string            `json:"eventName"`
-	Customer  TrackSaleCustomer `json:"customer"`
-	Sale      Sale              `json:"sale"`
+	EventName string             `json:"eventName"`
+	Customer  *TrackSaleCustomer `json:"customer"`
+	Sale      *Sale              `json:"sale"`
 }
 
 func (o *TrackSaleResponseBody) GetEventName() string {
@@ -226,16 +226,16 @@ func (o *TrackSaleResponseBody) GetEventName() string {
 	return o.EventName
 }
 
-func (o *TrackSaleResponseBody) GetCustomer() TrackSaleCustomer {
+func (o *TrackSaleResponseBody) GetCustomer() *TrackSaleCustomer {
 	if o == nil {
-		return TrackSaleCustomer{}
+		return nil
 	}
 	return o.Customer
 }
 
-func (o *TrackSaleResponseBody) GetSale() Sale {
+func (o *TrackSaleResponseBody) GetSale() *Sale {
 	if o == nil {
-		return Sale{}
+		return nil
 	}
 	return o.Sale
 }

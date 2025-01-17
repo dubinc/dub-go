@@ -709,3 +709,13 @@ Based on:
 - [go v0.13.7] .
 ### Releases
 - [Go v0.13.7] https://github.com/dubinc/dub-go/releases/tag/v0.13.7 - .
+
+## 2025-01-17 00:12:15
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.468.9 (2.493.21) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.13.8] .
+### Releases
+- [Go v0.13.8] https://github.com/dubinc/dub-go/releases/tag/v0.13.8 - .

@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 810d019618d329428080463b7bf165c7
+  docChecksum: c7226fc27f4fb4b6c492bc7d8bb0ce6d
   docVersion: 0.0.1
-  speakeasyVersion: 1.468.6
-  generationVersion: 2.493.13
-  releaseVersion: 0.13.7
-  configChecksum: 2f2039ee32c0cf12dca9120c6482d369
+  speakeasyVersion: 1.468.9
+  generationVersion: 2.493.21
+  releaseVersion: 0.13.8
+  configChecksum: d8f401459f441daef587a52f205431bd
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.6.5
+    core: 3.6.6
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.2
     envVarSecurityUsage: 0.3.2
@@ -84,6 +84,7 @@ generatedFiles:
   - /models/operations/getlinkscount.go
   - /models/operations/getmetatags.go
   - /models/operations/getqrcode.go
+  - /models/operations/gettags.go
   - /models/operations/getworkspace.go
   - /models/operations/listdomains.go
   - /models/operations/listevents.go
@@ -263,8 +264,12 @@ generatedFiles:
   - docs/models/operations/getmetatagsrequest.md
   - docs/models/operations/getmetatagsresponsebody.md
   - docs/models/operations/getqrcoderequest.md
+  - docs/models/operations/gettagsqueryparamsortby.md
+  - docs/models/operations/gettagsqueryparamsortorder.md
+  - docs/models/operations/gettagsrequest.md
   - docs/models/operations/getworkspacerequest.md
   - docs/models/operations/groupby.md
+  - docs/models/operations/ids.md
   - docs/models/operations/interval.md
   - docs/models/operations/level.md
   - docs/models/operations/link.md
@@ -800,6 +805,10 @@ examples:
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
   getTags:
     speakeasy-default-get-tags:
+      parameters:
+        query:
+          page: 1
+          pageSize: 50
       responses:
         "200":
           application/json: []
