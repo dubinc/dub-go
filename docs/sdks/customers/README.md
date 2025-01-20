@@ -6,7 +6,7 @@
 ### Available Operations
 
 * [List](#list) - Retrieve a list of customers
-* [Create](#create) - Create a customer
+* [~~Create~~](#create) - Create a customer :warning: **Deprecated**
 * [Get](#get) - Retrieve a customer
 * [Update](#update) - Update a customer
 * [Delete](#delete) - Delete a customer
@@ -71,9 +71,11 @@ func main() {
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
-## Create
+## ~~Create~~
 
-Create a customer for the authenticated workspace.
+[Deprecated]: Customer creation can only be done via tracking a lead event. Use the /track/lead endpoint instead.
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 

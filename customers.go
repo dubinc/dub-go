@@ -413,7 +413,9 @@ func (s *Customers) List(ctx context.Context, request operations.GetCustomersReq
 }
 
 // Create a customer
-// Create a customer for the authenticated workspace.
+// [Deprecated]: Customer creation can only be done via tracking a lead event. Use the /track/lead endpoint instead.
+//
+// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 func (s *Customers) Create(ctx context.Context, request *operations.CreateCustomerRequestBody, opts ...operations.Option) (*operations.CreateCustomerResponseBody, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,

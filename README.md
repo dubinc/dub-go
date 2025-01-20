@@ -133,7 +133,7 @@ func main() {
 ### [Customers](docs/sdks/customers/README.md)
 
 * [List](docs/sdks/customers/README.md#list) - Retrieve a list of customers
-* [Create](docs/sdks/customers/README.md#create) - Create a customer
+* [~~Create~~](docs/sdks/customers/README.md#create) - Create a customer :warning: **Deprecated**
 * [Get](docs/sdks/customers/README.md#get) - Retrieve a customer
 * [Update](docs/sdks/customers/README.md#update) - Update a customer
 * [Delete](docs/sdks/customers/README.md#delete) - Delete a customer
@@ -566,8 +566,12 @@ func main() {
 	)
 
 	res, err := s.Links.List(ctx, operations.GetLinksRequest{
-		Page:     dubgo.Float64(1),
-		PageSize: dubgo.Float64(50),
+		ShowArchived: dubgo.Bool(true),
+		WithTags:     dubgo.Bool(true),
+		SortBy:       operations.SortByCreatedAt.ToPointer(),
+		SortOrder:    operations.SortOrderDesc.ToPointer(),
+		Page:         dubgo.Float64(1),
+		PageSize:     dubgo.Float64(50),
 	})
 	if err != nil {
 		log.Fatal(err)
