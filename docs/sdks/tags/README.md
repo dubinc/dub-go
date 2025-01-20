@@ -93,6 +93,8 @@ func main() {
     )
 
     res, err := s.Tags.List(ctx, operations.GetTagsRequest{
+        SortBy: operations.GetTagsQueryParamSortByName.ToPointer(),
+        SortOrder: operations.GetTagsQueryParamSortOrderAsc.ToPointer(),
         Page: dubgo.Float64(1),
         PageSize: dubgo.Float64(50),
     })

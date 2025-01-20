@@ -32,9 +32,13 @@ func main() {
     )
 
     res, err := s.Track.Lead(ctx, &operations.TrackLeadRequestBody{
-        ClickID: "<value>",
+        ClickID: "<id>",
         EventName: "Sign up",
-        CustomerID: dubgo.String("<value>"),
+        ExternalID: dubgo.String(""),
+        CustomerID: nil,
+        CustomerName: nil,
+        CustomerEmail: nil,
+        CustomerAvatar: nil,
     })
     if err != nil {
         log.Fatal(err)
@@ -96,10 +100,13 @@ func main() {
     )
 
     res, err := s.Track.Sale(ctx, &operations.TrackSaleRequestBody{
-        CustomerID: dubgo.String("<value>"),
+        ExternalID: dubgo.String(""),
+        CustomerID: nil,
         Amount: 996500,
-        PaymentProcessor: operations.PaymentProcessorShopify,
+        PaymentProcessor: operations.PaymentProcessorPaddle,
         EventName: dubgo.String("Purchase"),
+        InvoiceID: nil,
+        Currency: dubgo.String("usd"),
     })
     if err != nil {
         log.Fatal(err)

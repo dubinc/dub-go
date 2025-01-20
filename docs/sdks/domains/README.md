@@ -100,6 +100,7 @@ func main() {
     )
 
     res, err := s.Domains.List(ctx, operations.ListDomainsRequest{
+        Archived: dubgo.Bool(true),
         Page: dubgo.Float64(1),
         PageSize: dubgo.Float64(50),
     })
