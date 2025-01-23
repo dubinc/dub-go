@@ -43,25 +43,30 @@ func (e *Event) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// QueryParamGroupBy - The parameter to group the analytics data points by. Defaults to `count` if undefined. Note that `trigger` is deprecated (use `triggers` instead), but kept for backwards compatibility.
+// QueryParamGroupBy - The parameter to group the analytics data points by. Defaults to `count` if undefined.
 type QueryParamGroupBy string
 
 const (
-	QueryParamGroupByCount       QueryParamGroupBy = "count"
-	QueryParamGroupByTimeseries  QueryParamGroupBy = "timeseries"
-	QueryParamGroupByContinents  QueryParamGroupBy = "continents"
-	QueryParamGroupByRegions     QueryParamGroupBy = "regions"
-	QueryParamGroupByCountries   QueryParamGroupBy = "countries"
-	QueryParamGroupByCities      QueryParamGroupBy = "cities"
-	QueryParamGroupByDevices     QueryParamGroupBy = "devices"
-	QueryParamGroupByBrowsers    QueryParamGroupBy = "browsers"
-	QueryParamGroupByOs          QueryParamGroupBy = "os"
-	QueryParamGroupByTrigger     QueryParamGroupBy = "trigger"
-	QueryParamGroupByTriggers    QueryParamGroupBy = "triggers"
-	QueryParamGroupByReferers    QueryParamGroupBy = "referers"
-	QueryParamGroupByRefererUrls QueryParamGroupBy = "referer_urls"
-	QueryParamGroupByTopLinks    QueryParamGroupBy = "top_links"
-	QueryParamGroupByTopUrls     QueryParamGroupBy = "top_urls"
+	QueryParamGroupByCount        QueryParamGroupBy = "count"
+	QueryParamGroupByTimeseries   QueryParamGroupBy = "timeseries"
+	QueryParamGroupByContinents   QueryParamGroupBy = "continents"
+	QueryParamGroupByRegions      QueryParamGroupBy = "regions"
+	QueryParamGroupByCountries    QueryParamGroupBy = "countries"
+	QueryParamGroupByCities       QueryParamGroupBy = "cities"
+	QueryParamGroupByDevices      QueryParamGroupBy = "devices"
+	QueryParamGroupByBrowsers     QueryParamGroupBy = "browsers"
+	QueryParamGroupByOs           QueryParamGroupBy = "os"
+	QueryParamGroupByTrigger      QueryParamGroupBy = "trigger"
+	QueryParamGroupByTriggers     QueryParamGroupBy = "triggers"
+	QueryParamGroupByReferers     QueryParamGroupBy = "referers"
+	QueryParamGroupByRefererUrls  QueryParamGroupBy = "referer_urls"
+	QueryParamGroupByTopLinks     QueryParamGroupBy = "top_links"
+	QueryParamGroupByTopUrls      QueryParamGroupBy = "top_urls"
+	QueryParamGroupByUtmSources   QueryParamGroupBy = "utm_sources"
+	QueryParamGroupByUtmMediums   QueryParamGroupBy = "utm_mediums"
+	QueryParamGroupByUtmCampaigns QueryParamGroupBy = "utm_campaigns"
+	QueryParamGroupByUtmTerms     QueryParamGroupBy = "utm_terms"
+	QueryParamGroupByUtmContents  QueryParamGroupBy = "utm_contents"
 )
 
 func (e QueryParamGroupBy) ToPointer() *QueryParamGroupBy {
@@ -102,6 +107,16 @@ func (e *QueryParamGroupBy) UnmarshalJSON(data []byte) error {
 	case "top_links":
 		fallthrough
 	case "top_urls":
+		fallthrough
+	case "utm_sources":
+		fallthrough
+	case "utm_mediums":
+		fallthrough
+	case "utm_campaigns":
+		fallthrough
+	case "utm_terms":
+		fallthrough
+	case "utm_contents":
 		*e = QueryParamGroupBy(v)
 		return nil
 	default:
@@ -248,7 +263,7 @@ func (u RetrieveAnalyticsQueryParamTagIds) MarshalJSON() ([]byte, error) {
 type RetrieveAnalyticsRequest struct {
 	// The type of event to retrieve analytics for. Defaults to `clicks`.
 	Event *Event `default:"clicks" queryParam:"style=form,explode=true,name=event"`
-	// The parameter to group the analytics data points by. Defaults to `count` if undefined. Note that `trigger` is deprecated (use `triggers` instead), but kept for backwards compatibility.
+	// The parameter to group the analytics data points by. Defaults to `count` if undefined.
 	GroupBy *QueryParamGroupBy `default:"count" queryParam:"style=form,explode=true,name=groupBy"`
 	// The domain to filter analytics for.
 	Domain *string `queryParam:"style=form,explode=true,name=domain"`
@@ -296,6 +311,16 @@ type RetrieveAnalyticsRequest struct {
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
 	Root *bool `queryParam:"style=form,explode=true,name=root"`
+	// The UTM source of the short link.
+	UtmSource *string `queryParam:"style=form,explode=true,name=utm_source"`
+	// The UTM medium of the short link.
+	UtmMedium *string `queryParam:"style=form,explode=true,name=utm_medium"`
+	// The UTM campaign of the short link.
+	UtmCampaign *string `queryParam:"style=form,explode=true,name=utm_campaign"`
+	// The UTM term of the short link.
+	UtmTerm *string `queryParam:"style=form,explode=true,name=utm_term"`
+	// The UTM content of the short link.
+	UtmContent *string `queryParam:"style=form,explode=true,name=utm_content"`
 }
 
 func (r RetrieveAnalyticsRequest) MarshalJSON() ([]byte, error) {
@@ -482,6 +507,41 @@ func (o *RetrieveAnalyticsRequest) GetRoot() *bool {
 		return nil
 	}
 	return o.Root
+}
+
+func (o *RetrieveAnalyticsRequest) GetUtmSource() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmSource
+}
+
+func (o *RetrieveAnalyticsRequest) GetUtmMedium() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmMedium
+}
+
+func (o *RetrieveAnalyticsRequest) GetUtmCampaign() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmCampaign
+}
+
+func (o *RetrieveAnalyticsRequest) GetUtmTerm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmTerm
+}
+
+func (o *RetrieveAnalyticsRequest) GetUtmContent() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmContent
 }
 
 type RetrieveAnalyticsResponseBodyType string
