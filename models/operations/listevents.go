@@ -301,9 +301,19 @@ type ListEventsRequest struct {
 	// Deprecated. Use the `trigger` field instead. Filter for QR code scans. If true, filter for QR codes only. If false, filter for links only. If undefined, return both.
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
-	Root  *bool    `queryParam:"style=form,explode=true,name=root"`
-	Page  *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
-	Limit *float64 `default:"100" queryParam:"style=form,explode=true,name=limit"`
+	Root *bool `queryParam:"style=form,explode=true,name=root"`
+	// The UTM source of the short link.
+	UtmSource *string `queryParam:"style=form,explode=true,name=utm_source"`
+	// The UTM medium of the short link.
+	UtmMedium *string `queryParam:"style=form,explode=true,name=utm_medium"`
+	// The UTM campaign of the short link.
+	UtmCampaign *string `queryParam:"style=form,explode=true,name=utm_campaign"`
+	// The UTM term of the short link.
+	UtmTerm *string `queryParam:"style=form,explode=true,name=utm_term"`
+	// The UTM content of the short link.
+	UtmContent *string  `queryParam:"style=form,explode=true,name=utm_content"`
+	Page       *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	Limit      *float64 `default:"100" queryParam:"style=form,explode=true,name=limit"`
 	// The sort order. The default is `desc`.
 	SortOrder *QueryParamSortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
 	// The field to sort the events by. The default is `timestamp`.
@@ -489,6 +499,41 @@ func (o *ListEventsRequest) GetRoot() *bool {
 		return nil
 	}
 	return o.Root
+}
+
+func (o *ListEventsRequest) GetUtmSource() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmSource
+}
+
+func (o *ListEventsRequest) GetUtmMedium() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmMedium
+}
+
+func (o *ListEventsRequest) GetUtmCampaign() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmCampaign
+}
+
+func (o *ListEventsRequest) GetUtmTerm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmTerm
+}
+
+func (o *ListEventsRequest) GetUtmContent() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmContent
 }
 
 func (o *ListEventsRequest) GetPage() *float64 {

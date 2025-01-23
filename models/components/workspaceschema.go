@@ -151,8 +151,6 @@ type WorkspaceSchema struct {
 	PaymentFailedAt *string `json:"paymentFailedAt"`
 	// The Stripe Connect ID of the workspace.
 	StripeConnectID *string `json:"stripeConnectId"`
-	// [BETA – Dub Partners]: The ID of the payment method for partner payouts.
-	PayoutMethodID *string `json:"payoutMethodId"`
 	// The usage of the workspace.
 	Usage float64 `json:"usage"`
 	// The usage limit of the workspace.
@@ -272,13 +270,6 @@ func (o *WorkspaceSchema) GetStripeConnectID() *string {
 		return nil
 	}
 	return o.StripeConnectID
-}
-
-func (o *WorkspaceSchema) GetPayoutMethodID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PayoutMethodID
 }
 
 func (o *WorkspaceSchema) GetUsage() float64 {
