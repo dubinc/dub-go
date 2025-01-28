@@ -171,6 +171,10 @@ func main() {
 
 * [Get](docs/sdks/metatags/README.md#get) - Retrieve the metatags for a URL
 
+### [Partners](docs/sdks/partners/README.md)
+
+* [Create](docs/sdks/partners/README.md#create) - Create a new partner
+
 ### [QRCodes](docs/sdks/qrcodes/README.md)
 
 * [Get](docs/sdks/qrcodes/README.md#get) - Retrieve a QR code
