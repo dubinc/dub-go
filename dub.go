@@ -77,6 +77,7 @@ type Dub struct {
 	Domains     *Domains
 	Track       *Track
 	Customers   *Customers
+	Partners    *Partners
 	Workspaces  *Workspaces
 	EmbedTokens *EmbedTokens
 	QRCodes     *QRCodes
@@ -159,9 +160,9 @@ func New(opts ...SDKOption) *Dub {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "0.13.10",
-			GenVersion:        "2.493.34",
-			UserAgent:         "speakeasy-sdk/go 0.13.10 2.493.34 0.0.1 github.com/dubinc/dub-go",
+			SDKVersion:        "0.13.11",
+			GenVersion:        "2.495.1",
+			UserAgent:         "speakeasy-sdk/go 0.13.11 2.495.1 0.0.1 github.com/dubinc/dub-go",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -194,6 +195,8 @@ func New(opts ...SDKOption) *Dub {
 	sdk.Track = newTrack(sdk.sdkConfiguration)
 
 	sdk.Customers = newCustomers(sdk.sdkConfiguration)
+
+	sdk.Partners = newPartners(sdk.sdkConfiguration)
 
 	sdk.Workspaces = newWorkspaces(sdk.sdkConfiguration)
 
