@@ -4,6 +4,7 @@ package operations
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/dubinc/dub-go/internal/utils"
 )
@@ -779,6 +780,363 @@ func (e *Country) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type CreatePartnerTagIdsType string
+
+const (
+	CreatePartnerTagIdsTypeStr        CreatePartnerTagIdsType = "str"
+	CreatePartnerTagIdsTypeArrayOfStr CreatePartnerTagIdsType = "arrayOfStr"
+)
+
+// CreatePartnerTagIds - The unique IDs of the tags assigned to the short link.
+type CreatePartnerTagIds struct {
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
+
+	Type CreatePartnerTagIdsType
+}
+
+func CreateCreatePartnerTagIdsStr(str string) CreatePartnerTagIds {
+	typ := CreatePartnerTagIdsTypeStr
+
+	return CreatePartnerTagIds{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateCreatePartnerTagIdsArrayOfStr(arrayOfStr []string) CreatePartnerTagIds {
+	typ := CreatePartnerTagIdsTypeArrayOfStr
+
+	return CreatePartnerTagIds{
+		ArrayOfStr: arrayOfStr,
+		Type:       typ,
+	}
+}
+
+func (u *CreatePartnerTagIds) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+		u.Str = &str
+		u.Type = CreatePartnerTagIdsTypeStr
+		return nil
+	}
+
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = CreatePartnerTagIdsTypeArrayOfStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CreatePartnerTagIds", string(data))
+}
+
+func (u CreatePartnerTagIds) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type CreatePartnerTagIds: all fields are null")
+}
+
+type CreatePartnerTagNamesType string
+
+const (
+	CreatePartnerTagNamesTypeStr        CreatePartnerTagNamesType = "str"
+	CreatePartnerTagNamesTypeArrayOfStr CreatePartnerTagNamesType = "arrayOfStr"
+)
+
+// CreatePartnerTagNames - The unique name of the tags assigned to the short link (case insensitive).
+type CreatePartnerTagNames struct {
+	Str        *string  `queryParam:"inline"`
+	ArrayOfStr []string `queryParam:"inline"`
+
+	Type CreatePartnerTagNamesType
+}
+
+func CreateCreatePartnerTagNamesStr(str string) CreatePartnerTagNames {
+	typ := CreatePartnerTagNamesTypeStr
+
+	return CreatePartnerTagNames{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateCreatePartnerTagNamesArrayOfStr(arrayOfStr []string) CreatePartnerTagNames {
+	typ := CreatePartnerTagNamesTypeArrayOfStr
+
+	return CreatePartnerTagNames{
+		ArrayOfStr: arrayOfStr,
+		Type:       typ,
+	}
+}
+
+func (u *CreatePartnerTagNames) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+		u.Str = &str
+		u.Type = CreatePartnerTagNamesTypeStr
+		return nil
+	}
+
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = CreatePartnerTagNamesTypeArrayOfStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CreatePartnerTagNames", string(data))
+}
+
+func (u CreatePartnerTagNames) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type CreatePartnerTagNames: all fields are null")
+}
+
+// LinkProps - Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
+type LinkProps struct {
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
+	ExternalID *string `json:"externalId,omitempty"`
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	TenantID *string `json:"tenantId,omitempty"`
+	// The prefix of the short link slug for randomly-generated keys (e.g. if prefix is `/c/`, generated keys will be in the `/c/:key` format). Will be ignored if `key` is provided.
+	Prefix *string `json:"prefix,omitempty"`
+	// Whether the short link is archived. Defaults to `false` if not provided.
+	Archived *bool `json:"archived,omitempty"`
+	// The unique IDs of the tags assigned to the short link.
+	TagIds *CreatePartnerTagIds `json:"tagIds,omitempty"`
+	// The unique name of the tags assigned to the short link (case insensitive).
+	TagNames *CreatePartnerTagNames `json:"tagNames,omitempty"`
+	// The comments for the short link.
+	Comments *string `json:"comments,omitempty"`
+	// The date and time when the short link will expire at.
+	ExpiresAt *string `json:"expiresAt,omitempty"`
+	// The URL to redirect to when the short link has expired.
+	ExpiredURL *string `json:"expiredUrl,omitempty"`
+	// The password required to access the destination URL of the short link.
+	Password *string `json:"password,omitempty"`
+	// Whether the short link uses Custom Social Media Cards feature. Defaults to `false` if not provided.
+	Proxy *bool `json:"proxy,omitempty"`
+	// The custom link preview title (og:title). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
+	Title *string `json:"title,omitempty"`
+	// The custom link preview description (og:description). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
+	Description *string `json:"description,omitempty"`
+	// The custom link preview image (og:image). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
+	Image *string `json:"image,omitempty"`
+	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
+	Video *string `json:"video,omitempty"`
+	// Whether the short link uses link cloaking. Defaults to `false` if not provided.
+	Rewrite *bool `json:"rewrite,omitempty"`
+	// The iOS destination URL for the short link for iOS device targeting.
+	Ios *string `json:"ios,omitempty"`
+	// The Android destination URL for the short link for Android device targeting.
+	Android *string `json:"android,omitempty"`
+	// Allow search engines to index your short link. Defaults to `false` if not provided. Learn more: https://d.to/noindex
+	DoIndex *bool `json:"doIndex,omitempty"`
+	// The UTM source of the short link. If set, this will populate or override the UTM source in the destination URL.
+	UtmSource *string `json:"utm_source,omitempty"`
+	// The UTM medium of the short link. If set, this will populate or override the UTM medium in the destination URL.
+	UtmMedium *string `json:"utm_medium,omitempty"`
+	// The UTM campaign of the short link. If set, this will populate or override the UTM campaign in the destination URL.
+	UtmCampaign *string `json:"utm_campaign,omitempty"`
+	// The UTM term of the short link. If set, this will populate or override the UTM term in the destination URL.
+	UtmTerm *string `json:"utm_term,omitempty"`
+	// The UTM content of the short link. If set, this will populate or override the UTM content in the destination URL.
+	UtmContent *string `json:"utm_content,omitempty"`
+	// The referral tag of the short link. If set, this will populate or override the `ref` query parameter in the destination URL.
+	Ref *string `json:"ref,omitempty"`
+}
+
+func (o *LinkProps) GetExternalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExternalID
+}
+
+func (o *LinkProps) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
+}
+
+func (o *LinkProps) GetPrefix() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Prefix
+}
+
+func (o *LinkProps) GetArchived() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Archived
+}
+
+func (o *LinkProps) GetTagIds() *CreatePartnerTagIds {
+	if o == nil {
+		return nil
+	}
+	return o.TagIds
+}
+
+func (o *LinkProps) GetTagNames() *CreatePartnerTagNames {
+	if o == nil {
+		return nil
+	}
+	return o.TagNames
+}
+
+func (o *LinkProps) GetComments() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Comments
+}
+
+func (o *LinkProps) GetExpiresAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExpiresAt
+}
+
+func (o *LinkProps) GetExpiredURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExpiredURL
+}
+
+func (o *LinkProps) GetPassword() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Password
+}
+
+func (o *LinkProps) GetProxy() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Proxy
+}
+
+func (o *LinkProps) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *LinkProps) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *LinkProps) GetImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Image
+}
+
+func (o *LinkProps) GetVideo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Video
+}
+
+func (o *LinkProps) GetRewrite() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Rewrite
+}
+
+func (o *LinkProps) GetIos() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ios
+}
+
+func (o *LinkProps) GetAndroid() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Android
+}
+
+func (o *LinkProps) GetDoIndex() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.DoIndex
+}
+
+func (o *LinkProps) GetUtmSource() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmSource
+}
+
+func (o *LinkProps) GetUtmMedium() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmMedium
+}
+
+func (o *LinkProps) GetUtmCampaign() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmCampaign
+}
+
+func (o *LinkProps) GetUtmTerm() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmTerm
+}
+
+func (o *LinkProps) GetUtmContent() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UtmContent
+}
+
+func (o *LinkProps) GetRef() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Ref
+}
+
 type CreatePartnerRequestBody struct {
 	// The ID of the program to create a partner for.
 	ProgramID string `json:"programId"`
@@ -794,6 +1152,8 @@ type CreatePartnerRequestBody struct {
 	Country *Country `json:"country,omitempty"`
 	// A brief description of the partner and their background.
 	Description *string `json:"description,omitempty"`
+	// Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
+	LinkProps *LinkProps `json:"linkProps,omitempty"`
 }
 
 func (o *CreatePartnerRequestBody) GetProgramID() string {
@@ -843,6 +1203,13 @@ func (o *CreatePartnerRequestBody) GetDescription() *string {
 		return nil
 	}
 	return o.Description
+}
+
+func (o *CreatePartnerRequestBody) GetLinkProps() *LinkProps {
+	if o == nil {
+		return nil
+	}
+	return o.LinkProps
 }
 
 type Status string

@@ -189,6 +189,8 @@ type WorkspaceSchema struct {
 	Flags map[string]bool `json:"flags,omitempty"`
 	// The miscellaneous key-value store of the workspace.
 	Store map[string]any `json:"store"`
+	// Specifies hostnames permitted for client-side click tracking.
+	AllowedHostnames []string `json:"allowedHostnames"`
 }
 
 func (w WorkspaceSchema) MarshalJSON() ([]byte, error) {
@@ -403,4 +405,11 @@ func (o *WorkspaceSchema) GetStore() map[string]any {
 		return nil
 	}
 	return o.Store
+}
+
+func (o *WorkspaceSchema) GetAllowedHostnames() []string {
+	if o == nil {
+		return nil
+	}
+	return o.AllowedHostnames
 }
