@@ -19,6 +19,7 @@ package main
 import(
 	"context"
 	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -29,7 +30,20 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.Partners.Create(ctx, nil)
+    res, err := s.Partners.Create(ctx, &operations.CreatePartnerRequestBody{
+        ProgramID: "<id>",
+        Name: "<value>",
+        Email: "Loyal79@yahoo.com",
+        Username: "Aaliyah_Borer",
+        LinkProps: &operations.LinkProps{
+            ExternalID: dubgo.String("123456"),
+            TagIds: dubgo.Pointer(operations.CreateCreatePartnerTagIdsArrayOfStr(
+                []string{
+                    "clux0rgak00011...",
+                },
+            )),
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
