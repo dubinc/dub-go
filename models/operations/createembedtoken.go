@@ -3,14 +3,30 @@
 package operations
 
 type CreateEmbedTokenRequestBody struct {
-	LinkID string `json:"linkId"`
+	ProgramID string  `json:"programId"`
+	PartnerID *string `json:"partnerId,omitempty"`
+	TenantID  *string `json:"tenantId,omitempty"`
 }
 
-func (o *CreateEmbedTokenRequestBody) GetLinkID() string {
+func (o *CreateEmbedTokenRequestBody) GetProgramID() string {
 	if o == nil {
 		return ""
 	}
-	return o.LinkID
+	return o.ProgramID
+}
+
+func (o *CreateEmbedTokenRequestBody) GetPartnerID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PartnerID
+}
+
+func (o *CreateEmbedTokenRequestBody) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
 }
 
 // CreateEmbedTokenResponseBody - The created public embed token.

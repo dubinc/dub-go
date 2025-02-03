@@ -37,7 +37,6 @@ func main() {
         Slug: "acme.com",
         ExpiredURL: dubgo.String("https://acme.com/expired"),
         NotFoundURL: dubgo.String("https://acme.com/not-found"),
-        Archived: dubgo.Bool(false),
         Placeholder: dubgo.String("https://dub.co/help/article/what-is-dub"),
     })
     if err != nil {
@@ -99,11 +98,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.Domains.List(ctx, operations.ListDomainsRequest{
-        Archived: dubgo.Bool(true),
-        Page: dubgo.Float64(1),
-        PageSize: dubgo.Float64(50),
-    })
+    res, err := s.Domains.List(ctx, operations.ListDomainsRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -179,7 +174,6 @@ func main() {
         Slug: dubgo.String("acme.com"),
         ExpiredURL: dubgo.String("https://acme.com/expired"),
         NotFoundURL: dubgo.String("https://acme.com/not-found"),
-        Archived: dubgo.Bool(false),
         Placeholder: dubgo.String("https://dub.co/help/article/what-is-dub"),
     })
     if err != nil {

@@ -92,12 +92,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.Tags.List(ctx, operations.GetTagsRequest{
-        SortBy: operations.GetTagsQueryParamSortByName.ToPointer(),
-        SortOrder: operations.GetTagsQueryParamSortOrderAsc.ToPointer(),
-        Page: dubgo.Float64(1),
-        PageSize: dubgo.Float64(50),
-    })
+    res, err := s.Tags.List(ctx, operations.GetTagsRequest{})
     if err != nil {
         log.Fatal(err)
     }

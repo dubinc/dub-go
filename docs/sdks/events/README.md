@@ -31,19 +31,12 @@ func main() {
     )
 
     res, err := s.Events.List(ctx, operations.ListEventsRequest{
-        Event: operations.QueryParamEventClicks.ToPointer(),
-        Interval: operations.QueryParamIntervalTwentyFourh.ToPointer(),
-        Timezone: dubgo.String("America/New_York"),
         City: dubgo.String("New York"),
         Device: dubgo.String("Desktop"),
         Browser: dubgo.String("Chrome"),
         Os: dubgo.String("Windows"),
         Referer: dubgo.String("google.com"),
         RefererURL: dubgo.String("https://dub.co/blog"),
-        Page: dubgo.Float64(1),
-        Limit: dubgo.Float64(100),
-        SortOrder: operations.QueryParamSortOrderDesc.ToPointer(),
-        SortBy: operations.QueryParamSortByTimestamp.ToPointer(),
     })
     if err != nil {
         log.Fatal(err)

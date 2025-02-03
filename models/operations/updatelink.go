@@ -148,6 +148,10 @@ type UpdateLinkRequestBody struct {
 	ExternalID *string `json:"externalId,omitempty"`
 	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
 	TenantID *string `json:"tenantId,omitempty"`
+	// The ID of the program the short link is associated with.
+	ProgramID *string `json:"programId,omitempty"`
+	// The ID of the partner the short link is associated with.
+	PartnerID *string `json:"partnerId,omitempty"`
 	// The prefix of the short link slug for randomly-generated keys (e.g. if prefix is `/c/`, generated keys will be in the `/c/:key` format). Will be ignored if `key` is provided.
 	Prefix *string `json:"prefix,omitempty"`
 	// Whether to track conversions for the short link. Defaults to `false` if not provided.
@@ -206,8 +210,6 @@ type UpdateLinkRequestBody struct {
 	UtmContent *string `json:"utm_content,omitempty"`
 	// The referral tag of the short link. If set, this will populate or override the `ref` query parameter in the destination URL.
 	Ref *string `json:"ref,omitempty"`
-	// The ID of the program the short link is associated with.
-	ProgramID *string `json:"programId,omitempty"`
 	// An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
 	WebhookIds []string `json:"webhookIds,omitempty"`
 }
@@ -245,6 +247,20 @@ func (o *UpdateLinkRequestBody) GetTenantID() *string {
 		return nil
 	}
 	return o.TenantID
+}
+
+func (o *UpdateLinkRequestBody) GetProgramID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProgramID
+}
+
+func (o *UpdateLinkRequestBody) GetPartnerID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PartnerID
 }
 
 func (o *UpdateLinkRequestBody) GetPrefix() *string {
@@ -434,13 +450,6 @@ func (o *UpdateLinkRequestBody) GetRef() *string {
 		return nil
 	}
 	return o.Ref
-}
-
-func (o *UpdateLinkRequestBody) GetProgramID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ProgramID
 }
 
 func (o *UpdateLinkRequestBody) GetWebhookIds() []string {

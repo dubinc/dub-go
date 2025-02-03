@@ -2438,7 +2438,11 @@ type LeadCreatedEventLink struct {
 	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
 	ExternalID *string `json:"externalId"`
 	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
-	TenantID   *string `json:"tenantId"`
+	TenantID *string `json:"tenantId"`
+	// The ID of the program the short link is associated with.
+	ProgramID *string `json:"programId"`
+	// The ID of the partner the short link is associated with.
+	PartnerID  *string `json:"partnerId"`
 	Archived   *bool   `json:"archived,omitempty"`
 	ExpiresAt  string  `json:"expiresAt"`
 	ExpiredURL *string `json:"expiredUrl"`
@@ -2504,8 +2508,6 @@ type LeadCreatedEventLink struct {
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	ProjectID string `json:"projectId"`
-	// The ID of the program the short link is associated with.
-	ProgramID *string `json:"programId"`
 }
 
 func (l LeadCreatedEventLink) MarshalJSON() ([]byte, error) {
@@ -2566,6 +2568,20 @@ func (o *LeadCreatedEventLink) GetTenantID() *string {
 		return nil
 	}
 	return o.TenantID
+}
+
+func (o *LeadCreatedEventLink) GetProgramID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProgramID
+}
+
+func (o *LeadCreatedEventLink) GetPartnerID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PartnerID
 }
 
 func (o *LeadCreatedEventLink) GetArchived() *bool {
@@ -2818,13 +2834,6 @@ func (o *LeadCreatedEventLink) GetProjectID() string {
 		return ""
 	}
 	return o.ProjectID
-}
-
-func (o *LeadCreatedEventLink) GetProgramID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ProgramID
 }
 
 type LeadCreatedEventData struct {

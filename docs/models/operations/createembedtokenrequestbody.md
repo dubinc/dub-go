@@ -5,4 +5,6 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `LinkID`           | *string*           | :heavy_check_mark: | N/A                |
+| `ProgramID`        | *string*           | :heavy_check_mark: | N/A                |
+| `PartnerID`        | **string*          | :heavy_minus_sign: | N/A                |
+| `TenantID`         | **string*          | :heavy_minus_sign: | N/A                |

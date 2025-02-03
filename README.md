@@ -569,14 +569,7 @@ func main() {
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
 
-	res, err := s.Links.List(ctx, operations.GetLinksRequest{
-		ShowArchived: dubgo.Bool(true),
-		WithTags:     dubgo.Bool(true),
-		SortBy:       operations.SortByCreatedAt.ToPointer(),
-		SortOrder:    operations.SortOrderDesc.ToPointer(),
-		Page:         dubgo.Float64(1),
-		PageSize:     dubgo.Float64(50),
-	})
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{})
 	if err != nil {
 		log.Fatal(err)
 	}

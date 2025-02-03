@@ -32,13 +32,6 @@ func main() {
 
     res, err := s.QRCodes.Get(ctx, operations.GetQRCodeRequest{
         URL: "https://normal-making.name",
-        Size: dubgo.Float64(600),
-        Level: operations.LevelL.ToPointer(),
-        FgColor: dubgo.String("#000000"),
-        BgColor: dubgo.String("#FFFFFF"),
-        HideLogo: dubgo.Bool(true),
-        Margin: dubgo.Float64(2),
-        IncludeMargin: dubgo.Bool(true),
     })
     if err != nil {
         log.Fatal(err)

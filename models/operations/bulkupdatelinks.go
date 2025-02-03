@@ -142,6 +142,10 @@ type Data struct {
 	URL *string `json:"url,omitempty"`
 	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
 	TenantID *string `json:"tenantId,omitempty"`
+	// The ID of the program the short link is associated with.
+	ProgramID *string `json:"programId,omitempty"`
+	// The ID of the partner the short link is associated with.
+	PartnerID *string `json:"partnerId,omitempty"`
 	// Whether to track conversions for the short link. Defaults to `false` if not provided.
 	TrackConversion *bool `json:"trackConversion,omitempty"`
 	// Whether the short link is archived. Defaults to `false` if not provided.
@@ -198,8 +202,6 @@ type Data struct {
 	UtmContent *string `json:"utm_content,omitempty"`
 	// The referral tag of the short link. If set, this will populate or override the `ref` query parameter in the destination URL.
 	Ref *string `json:"ref,omitempty"`
-	// The ID of the program the short link is associated with.
-	ProgramID *string `json:"programId,omitempty"`
 	// An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
 	WebhookIds []string `json:"webhookIds,omitempty"`
 }
@@ -216,6 +218,20 @@ func (o *Data) GetTenantID() *string {
 		return nil
 	}
 	return o.TenantID
+}
+
+func (o *Data) GetProgramID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProgramID
+}
+
+func (o *Data) GetPartnerID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PartnerID
 }
 
 func (o *Data) GetTrackConversion() *bool {
@@ -398,13 +414,6 @@ func (o *Data) GetRef() *string {
 		return nil
 	}
 	return o.Ref
-}
-
-func (o *Data) GetProgramID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ProgramID
 }
 
 func (o *Data) GetWebhookIds() []string {

@@ -273,6 +273,12 @@ type RetrieveAnalyticsRequest struct {
 	LinkID *string `queryParam:"style=form,explode=true,name=linkId"`
 	// This is the ID of the link in the your database. Must be prefixed with 'ext_' when passed as a query parameter.
 	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
+	// The ID of the tenant that created the link inside your system.
+	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
+	// The ID of the program to retrieve analytics for.
+	ProgramID *string `queryParam:"style=form,explode=true,name=programId"`
+	// The ID of the partner to retrieve analytics for.
+	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
 	// The interval to retrieve analytics for. If undefined, defaults to 24h.
 	Interval *Interval `queryParam:"style=form,explode=true,name=interval"`
 	// The start date and time when to retrieve analytics from. Takes precedence over `interval`.
@@ -374,6 +380,27 @@ func (o *RetrieveAnalyticsRequest) GetExternalID() *string {
 		return nil
 	}
 	return o.ExternalID
+}
+
+func (o *RetrieveAnalyticsRequest) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
+}
+
+func (o *RetrieveAnalyticsRequest) GetProgramID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProgramID
+}
+
+func (o *RetrieveAnalyticsRequest) GetPartnerID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PartnerID
 }
 
 func (o *RetrieveAnalyticsRequest) GetInterval() *Interval {

@@ -31,9 +31,6 @@ func main() {
     )
 
     res, err := s.Analytics.Retrieve(ctx, operations.RetrieveAnalyticsRequest{
-        Event: operations.EventClicks.ToPointer(),
-        GroupBy: operations.QueryParamGroupByCount.ToPointer(),
-        Timezone: dubgo.String("America/New_York"),
         City: dubgo.String("New York"),
         Device: dubgo.String("Desktop"),
         Browser: dubgo.String("Chrome"),
