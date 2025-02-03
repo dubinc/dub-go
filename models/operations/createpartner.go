@@ -914,6 +914,8 @@ type LinkProps struct {
 	ExternalID *string `json:"externalId,omitempty"`
 	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
 	TenantID *string `json:"tenantId,omitempty"`
+	// The ID of the partner the short link is associated with.
+	PartnerID *string `json:"partnerId,omitempty"`
 	// The prefix of the short link slug for randomly-generated keys (e.g. if prefix is `/c/`, generated keys will be in the `/c/:key` format). Will be ignored if `key` is provided.
 	Prefix *string `json:"prefix,omitempty"`
 	// Whether the short link is archived. Defaults to `false` if not provided.
@@ -974,6 +976,13 @@ func (o *LinkProps) GetTenantID() *string {
 		return nil
 	}
 	return o.TenantID
+}
+
+func (o *LinkProps) GetPartnerID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PartnerID
 }
 
 func (o *LinkProps) GetPrefix() *string {
@@ -1152,6 +1161,8 @@ type CreatePartnerRequestBody struct {
 	Country *Country `json:"country,omitempty"`
 	// A brief description of the partner and their background.
 	Description *string `json:"description,omitempty"`
+	// The ID of the partner in your system.
+	TenantID *string `json:"tenantId,omitempty"`
 	// Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
 	LinkProps *LinkProps `json:"linkProps,omitempty"`
 }
@@ -1205,6 +1216,13 @@ func (o *CreatePartnerRequestBody) GetDescription() *string {
 	return o.Description
 }
 
+func (o *CreatePartnerRequestBody) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
+}
+
 func (o *CreatePartnerRequestBody) GetLinkProps() *LinkProps {
 	if o == nil {
 		return nil
@@ -1241,15 +1259,15 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type CreatePartnerLink struct {
+type Links struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
-	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
-	ShortLink string `json:"shortLink"`
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
 	Domain string `json:"domain"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key string `json:"key"`
+	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
+	ShortLink string `json:"shortLink"`
 	// The destination URL of the short link.
 	URL string `json:"url"`
 	// The number of clicks on the short link.
@@ -1262,74 +1280,74 @@ type CreatePartnerLink struct {
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 
-func (c CreatePartnerLink) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
+func (l Links) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
 }
 
-func (c *CreatePartnerLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+func (l *Links) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *CreatePartnerLink) GetID() string {
+func (o *Links) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *CreatePartnerLink) GetShortLink() string {
-	if o == nil {
-		return ""
-	}
-	return o.ShortLink
-}
-
-func (o *CreatePartnerLink) GetDomain() string {
+func (o *Links) GetDomain() string {
 	if o == nil {
 		return ""
 	}
 	return o.Domain
 }
 
-func (o *CreatePartnerLink) GetKey() string {
+func (o *Links) GetKey() string {
 	if o == nil {
 		return ""
 	}
 	return o.Key
 }
 
-func (o *CreatePartnerLink) GetURL() string {
+func (o *Links) GetShortLink() string {
+	if o == nil {
+		return ""
+	}
+	return o.ShortLink
+}
+
+func (o *Links) GetURL() string {
 	if o == nil {
 		return ""
 	}
 	return o.URL
 }
 
-func (o *CreatePartnerLink) GetClicks() *float64 {
+func (o *Links) GetClicks() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Clicks
 }
 
-func (o *CreatePartnerLink) GetLeads() *float64 {
+func (o *Links) GetLeads() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Leads
 }
 
-func (o *CreatePartnerLink) GetSales() *float64 {
+func (o *Links) GetSales() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Sales
 }
 
-func (o *CreatePartnerLink) GetSaleAmount() *float64 {
+func (o *Links) GetSaleAmount() *float64 {
 	if o == nil {
 		return nil
 	}
@@ -1461,10 +1479,25 @@ type CreatePartnerResponseBody struct {
 	CreatedAt        string                 `json:"createdAt"`
 	UpdatedAt        string                 `json:"updatedAt"`
 	Status           Status                 `json:"status"`
-	Link             *CreatePartnerLink     `json:"link"`
+	Links            []Links                `json:"links"`
 	Discount         *CreatePartnerDiscount `json:"discount,omitempty"`
 	CommissionAmount *float64               `json:"commissionAmount"`
-	Earnings         float64                `json:"earnings"`
+	Earnings         *float64               `default:"0" json:"earnings"`
+	Clicks           *float64               `default:"0" json:"clicks"`
+	Leads            *float64               `default:"0" json:"leads"`
+	Sales            *float64               `default:"0" json:"sales"`
+	SalesAmount      *float64               `default:"0" json:"salesAmount"`
+}
+
+func (c CreatePartnerResponseBody) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreatePartnerResponseBody) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CreatePartnerResponseBody) GetID() string {
@@ -1551,11 +1584,11 @@ func (o *CreatePartnerResponseBody) GetStatus() Status {
 	return o.Status
 }
 
-func (o *CreatePartnerResponseBody) GetLink() *CreatePartnerLink {
+func (o *CreatePartnerResponseBody) GetLinks() []Links {
 	if o == nil {
 		return nil
 	}
-	return o.Link
+	return o.Links
 }
 
 func (o *CreatePartnerResponseBody) GetDiscount() *CreatePartnerDiscount {
@@ -1572,9 +1605,37 @@ func (o *CreatePartnerResponseBody) GetCommissionAmount() *float64 {
 	return o.CommissionAmount
 }
 
-func (o *CreatePartnerResponseBody) GetEarnings() float64 {
+func (o *CreatePartnerResponseBody) GetEarnings() *float64 {
 	if o == nil {
-		return 0.0
+		return nil
 	}
 	return o.Earnings
+}
+
+func (o *CreatePartnerResponseBody) GetClicks() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Clicks
+}
+
+func (o *CreatePartnerResponseBody) GetLeads() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Leads
+}
+
+func (o *CreatePartnerResponseBody) GetSales() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Sales
+}
+
+func (o *CreatePartnerResponseBody) GetSalesAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SalesAmount
 }
