@@ -21,6 +21,8 @@ type AnalyticsTopLinks struct {
 	ShortLink string `json:"shortLink"`
 	// The destination URL of the short link
 	URL string `json:"url"`
+	// The comments of the short link
+	Comments *string `json:"comments,omitempty"`
 	// The creation timestamp of the short link
 	CreatedAt string `json:"createdAt"`
 	// The number of clicks from this link
@@ -84,6 +86,13 @@ func (o *AnalyticsTopLinks) GetURL() string {
 		return ""
 	}
 	return o.URL
+}
+
+func (o *AnalyticsTopLinks) GetComments() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Comments
 }
 
 func (o *AnalyticsTopLinks) GetCreatedAt() string {
