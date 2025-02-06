@@ -33,6 +33,7 @@ func (e *LeadEventEvent) UnmarshalJSON(data []byte) error {
 
 type LeadEventClick struct {
 	ID         string `json:"id"`
+	Timestamp  string `json:"timestamp"`
 	URL        string `json:"url"`
 	Country    string `json:"country"`
 	City       string `json:"city"`
@@ -52,6 +53,13 @@ func (o *LeadEventClick) GetID() string {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *LeadEventClick) GetTimestamp() string {
+	if o == nil {
+		return ""
+	}
+	return o.Timestamp
 }
 
 func (o *LeadEventClick) GetURL() string {
