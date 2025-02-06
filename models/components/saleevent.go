@@ -2447,6 +2447,7 @@ func (o *SaleEventLink) GetProjectID() string {
 
 type SaleEventClick struct {
 	ID         string `json:"id"`
+	Timestamp  string `json:"timestamp"`
 	URL        string `json:"url"`
 	Country    string `json:"country"`
 	City       string `json:"city"`
@@ -2466,6 +2467,13 @@ func (o *SaleEventClick) GetID() string {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *SaleEventClick) GetTimestamp() string {
+	if o == nil {
+		return ""
+	}
+	return o.Timestamp
 }
 
 func (o *SaleEventClick) GetURL() string {

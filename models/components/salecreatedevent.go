@@ -317,6 +317,7 @@ func (o *SaleCreatedEventCustomer) GetDiscount() *SaleCreatedEventDiscount {
 
 type SaleCreatedEventClick struct {
 	ID         string `json:"id"`
+	Timestamp  string `json:"timestamp"`
 	URL        string `json:"url"`
 	Country    string `json:"country"`
 	City       string `json:"city"`
@@ -336,6 +337,13 @@ func (o *SaleCreatedEventClick) GetID() string {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *SaleCreatedEventClick) GetTimestamp() string {
+	if o == nil {
+		return ""
+	}
+	return o.Timestamp
 }
 
 func (o *SaleCreatedEventClick) GetURL() string {

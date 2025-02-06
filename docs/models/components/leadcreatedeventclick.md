@@ -6,6 +6,7 @@
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
 | `ID`               | *string*           | :heavy_check_mark: | N/A                |
+| `Timestamp`        | *string*           | :heavy_check_mark: | N/A                |
 | `URL`              | *string*           | :heavy_check_mark: | N/A                |
 | `Country`          | *string*           | :heavy_check_mark: | N/A                |
 | `City`             | *string*           | :heavy_check_mark: | N/A                |
