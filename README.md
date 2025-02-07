@@ -175,6 +175,7 @@ func main() {
 
 * [Create](docs/sdks/partners/README.md#create) - Create a new partner
 * [CreateLink](docs/sdks/partners/README.md#createlink) - Create a link for a partner
+* [UpsertLink](docs/sdks/partners/README.md#upsertlink) - Upsert a link for a partner
 
 ### [QRCodes](docs/sdks/qrcodes/README.md)
 

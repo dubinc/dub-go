@@ -47,7 +47,7 @@ func (o *UpdateCustomerRequestBody) GetExternalID() *string {
 }
 
 type UpdateCustomerRequest struct {
-	// The unique identifier of the customer in Dub.
+	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Whether to include expanded fields on the customer (`link`, `partner`, `discount`).
 	IncludeExpandedFields *bool                      `queryParam:"style=form,explode=true,name=includeExpandedFields"`
@@ -271,7 +271,7 @@ func (o *UpdateCustomerDiscount) GetInterval() *UpdateCustomerInterval {
 
 // UpdateCustomerResponseBody - The customer was updated.
 type UpdateCustomerResponseBody struct {
-	// The unique identifier of the customer in Dub.
+	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
 	// Unique identifier for the customer in the client's app.
 	ExternalID string `json:"externalId"`
