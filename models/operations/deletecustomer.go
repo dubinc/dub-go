@@ -3,7 +3,7 @@
 package operations
 
 type DeleteCustomerRequest struct {
-	// The unique identifier of the customer in Dub.
+	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
@@ -16,7 +16,7 @@ func (o *DeleteCustomerRequest) GetID() string {
 
 // DeleteCustomerResponseBody - The customer was deleted.
 type DeleteCustomerResponseBody struct {
-	// The unique identifier of the customer in Dub.
+	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
 }
 
