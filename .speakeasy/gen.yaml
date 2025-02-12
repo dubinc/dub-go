@@ -15,7 +15,7 @@ generation:
 go:
   version: 0.14.1
   additionalDependencies: {}
-  allowUnknownFieldsInWeakUnions: false
+  allowUnknownFieldsInWeakUnions: true
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKError
   flattenGlobalSecurity: true
