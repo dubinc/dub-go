@@ -124,21 +124,21 @@ func CreateLinkWebhookEventEventThree(three Three) LinkWebhookEventEvent {
 func (u *LinkWebhookEventEvent) UnmarshalJSON(data []byte) error {
 
 	var one One = One("")
-	if err := utils.UnmarshalJSON(data, &one, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &one, "", true, false); err == nil {
 		u.One = &one
 		u.Type = LinkWebhookEventEventTypeOne
 		return nil
 	}
 
 	var two Two = Two("")
-	if err := utils.UnmarshalJSON(data, &two, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &two, "", true, false); err == nil {
 		u.Two = &two
 		u.Type = LinkWebhookEventEventTypeTwo
 		return nil
 	}
 
 	var three Three = Three("")
-	if err := utils.UnmarshalJSON(data, &three, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &three, "", true, false); err == nil {
 		u.Three = &three
 		u.Type = LinkWebhookEventEventTypeThree
 		return nil

@@ -238,14 +238,14 @@ func CreateRetrieveAnalyticsQueryParamTagIdsArrayOfStr(arrayOfStr []string) Retr
 func (u *RetrieveAnalyticsQueryParamTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = RetrieveAnalyticsQueryParamTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = RetrieveAnalyticsQueryParamTagIdsTypeArrayOfStr
 		return nil
@@ -743,91 +743,91 @@ func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsTopUrls(arrayOfAnalytics
 func (u *RetrieveAnalyticsResponseBody) UnmarshalJSON(data []byte) error {
 
 	var analyticsCount components.AnalyticsCount = components.AnalyticsCount{}
-	if err := utils.UnmarshalJSON(data, &analyticsCount, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &analyticsCount, "", true, false); err == nil {
 		u.AnalyticsCount = &analyticsCount
 		u.Type = RetrieveAnalyticsResponseBodyTypeAnalyticsCount
 		return nil
 	}
 
 	var arrayOfAnalyticsTimeseries []components.AnalyticsTimeseries = []components.AnalyticsTimeseries{}
-	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsTimeseries, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsTimeseries, "", true, false); err == nil {
 		u.ArrayOfAnalyticsTimeseries = arrayOfAnalyticsTimeseries
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTimeseries
 		return nil
 	}
 
 	var arrayOfAnalyticsContinents []components.AnalyticsContinents = []components.AnalyticsContinents{}
-	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsContinents, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsContinents, "", true, false); err == nil {
 		u.ArrayOfAnalyticsContinents = arrayOfAnalyticsContinents
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsContinents
 		return nil
 	}
 
 	var arrayOfAnalyticsCountries []components.AnalyticsCountries = []components.AnalyticsCountries{}
-	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsCountries, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsCountries, "", true, false); err == nil {
 		u.ArrayOfAnalyticsCountries = arrayOfAnalyticsCountries
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCountries
 		return nil
 	}
 
 	var arrayOfAnalyticsCities []components.AnalyticsCities = []components.AnalyticsCities{}
-	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsCities, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsCities, "", true, false); err == nil {
 		u.ArrayOfAnalyticsCities = arrayOfAnalyticsCities
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCities
 		return nil
 	}
 
 	var arrayOfAnalyticsDevices []components.AnalyticsDevices = []components.AnalyticsDevices{}
-	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsDevices, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsDevices, "", true, false); err == nil {
 		u.ArrayOfAnalyticsDevices = arrayOfAnalyticsDevices
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsDevices
 		return nil
 	}
 
 	var arrayOfAnalyticsBrowsers []components.AnalyticsBrowsers = []components.AnalyticsBrowsers{}
-	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsBrowsers, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsBrowsers, "", true, false); err == nil {
 		u.ArrayOfAnalyticsBrowsers = arrayOfAnalyticsBrowsers
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsBrowsers
 		return nil
 	}
 
 	var arrayOfAnalyticsOS []components.AnalyticsOS = []components.AnalyticsOS{}
-	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsOS, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsOS, "", true, false); err == nil {
 		u.ArrayOfAnalyticsOS = arrayOfAnalyticsOS
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsOS
 		return nil
 	}
 
 	var arrayOfAnalyticsTriggers []components.AnalyticsTriggers = []components.AnalyticsTriggers{}
-	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsTriggers, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsTriggers, "", true, false); err == nil {
 		u.ArrayOfAnalyticsTriggers = arrayOfAnalyticsTriggers
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTriggers
 		return nil
 	}
 
 	var arrayOfAnalyticsReferers []components.AnalyticsReferers = []components.AnalyticsReferers{}
-	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsReferers, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsReferers, "", true, false); err == nil {
 		u.ArrayOfAnalyticsReferers = arrayOfAnalyticsReferers
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsReferers
 		return nil
 	}
 
 	var arrayOfAnalyticsRefererUrls []components.AnalyticsRefererUrls = []components.AnalyticsRefererUrls{}
-	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsRefererUrls, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsRefererUrls, "", true, false); err == nil {
 		u.ArrayOfAnalyticsRefererUrls = arrayOfAnalyticsRefererUrls
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsRefererUrls
 		return nil
 	}
 
 	var arrayOfAnalyticsTopLinks []components.AnalyticsTopLinks = []components.AnalyticsTopLinks{}
-	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsTopLinks, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsTopLinks, "", true, false); err == nil {
 		u.ArrayOfAnalyticsTopLinks = arrayOfAnalyticsTopLinks
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopLinks
 		return nil
 	}
 
 	var arrayOfAnalyticsTopUrls []components.AnalyticsTopUrls = []components.AnalyticsTopUrls{}
-	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsTopUrls, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsTopUrls, "", true, false); err == nil {
 		u.ArrayOfAnalyticsTopUrls = arrayOfAnalyticsTopUrls
 		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopUrls
 		return nil

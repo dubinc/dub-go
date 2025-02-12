@@ -28,13 +28,6 @@ func newMetatags(sdkConfig sdkConfiguration) *Metatags {
 // Get - Retrieve the metatags for a URL
 // Retrieve the metatags for a URL.
 func (s *Metatags) Get(ctx context.Context, request operations.GetMetatagsRequest, opts ...operations.Option) (*operations.GetMetatagsResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getMetatags",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -56,6 +49,14 @@ func (s *Metatags) Get(ctx context.Context, request operations.GetMetatagsReques
 	opURL, err := url.JoinPath(baseURL, "/metatags")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getMetatags",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

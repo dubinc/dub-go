@@ -29,13 +29,6 @@ func newPartners(sdkConfig sdkConfiguration) *Partners {
 // Create a new partner
 // Create a new partner for a program. If partner exists, automatically enrolls them.
 func (s *Partners) Create(ctx context.Context, request *operations.CreatePartnerRequestBody, opts ...operations.Option) (*operations.CreatePartnerResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createPartner",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -59,6 +52,13 @@ func (s *Partners) Create(ctx context.Context, request *operations.CreatePartner
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createPartner",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -420,13 +420,6 @@ func (s *Partners) Create(ctx context.Context, request *operations.CreatePartner
 // CreateLink - Create a link for a partner
 // Create a new link for a partner that is enrolled in your program.
 func (s *Partners) CreateLink(ctx context.Context, request *operations.CreatePartnerLinkRequestBody, opts ...operations.Option) (*components.LinkSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createPartnerLink",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -450,6 +443,13 @@ func (s *Partners) CreateLink(ctx context.Context, request *operations.CreatePar
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createPartnerLink",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -811,13 +811,6 @@ func (s *Partners) CreateLink(ctx context.Context, request *operations.CreatePar
 // UpsertLink - Upsert a link for a partner
 // Upsert a link for a partner that is enrolled in your program. If a link with the same URL already exists, return it (or update it if there are any changes). Otherwise, a new link will be created.
 func (s *Partners) UpsertLink(ctx context.Context, request *operations.UpsertPartnerLinkRequestBody, opts ...operations.Option) (*components.LinkSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "upsertPartnerLink",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -841,6 +834,13 @@ func (s *Partners) UpsertLink(ctx context.Context, request *operations.UpsertPar
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "upsertPartnerLink",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1202,13 +1202,6 @@ func (s *Partners) UpsertLink(ctx context.Context, request *operations.UpsertPar
 // Analytics - Retrieve analytics for a partner
 // Retrieve analytics for a partner within a program. The response type vary based on the `groupBy` query parameter.
 func (s *Partners) Analytics(ctx context.Context, request operations.RetrievePartnerAnalyticsRequest, opts ...operations.Option) (*operations.RetrievePartnerAnalyticsResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "retrievePartnerAnalytics",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1230,6 +1223,14 @@ func (s *Partners) Analytics(ctx context.Context, request operations.RetrievePar
 	opURL, err := url.JoinPath(baseURL, "/partners/analytics")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "retrievePartnerAnalytics",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

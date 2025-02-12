@@ -45,14 +45,14 @@ func CreateBulkUpdateLinksTagIdsArrayOfStr(arrayOfStr []string) BulkUpdateLinksT
 func (u *BulkUpdateLinksTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = BulkUpdateLinksTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = BulkUpdateLinksTagIdsTypeArrayOfStr
 		return nil
@@ -109,14 +109,14 @@ func CreateBulkUpdateLinksTagNamesArrayOfStr(arrayOfStr []string) BulkUpdateLink
 func (u *BulkUpdateLinksTagNames) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = BulkUpdateLinksTagNamesTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = BulkUpdateLinksTagNamesTypeArrayOfStr
 		return nil

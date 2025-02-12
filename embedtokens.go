@@ -28,13 +28,6 @@ func newEmbedTokens(sdkConfig sdkConfiguration) *EmbedTokens {
 // Create a new embed token
 // Create a new embed token for the referral link.
 func (s *EmbedTokens) Create(ctx context.Context, request *operations.CreateEmbedTokenRequestBody, opts ...operations.Option) (*operations.CreateEmbedTokenResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createEmbedToken",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -58,6 +51,13 @@ func (s *EmbedTokens) Create(ctx context.Context, request *operations.CreateEmbe
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createEmbedToken",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err

@@ -28,13 +28,6 @@ func newTrack(sdkConfig sdkConfiguration) *Track {
 // Lead - Track a lead
 // Track a lead for a short link.
 func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBody, opts ...operations.Option) (*operations.TrackLeadResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "trackLead",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -58,6 +51,13 @@ func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBo
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "trackLead",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -419,13 +419,6 @@ func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBo
 // Sale - Track a sale
 // Track a sale for a short link.
 func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBody, opts ...operations.Option) (*operations.TrackSaleResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "trackSale",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -449,6 +442,13 @@ func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBo
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "trackSale",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err

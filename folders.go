@@ -29,13 +29,6 @@ func newFolders(sdkConfig sdkConfiguration) *Folders {
 // Create a new folder
 // Create a new folder for the authenticated workspace.
 func (s *Folders) Create(ctx context.Context, request *operations.CreateFolderRequestBody, opts ...operations.Option) (*components.FolderSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createFolder",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -59,6 +52,13 @@ func (s *Folders) Create(ctx context.Context, request *operations.CreateFolderRe
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createFolder",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -420,13 +420,6 @@ func (s *Folders) Create(ctx context.Context, request *operations.CreateFolderRe
 // List - Retrieve a list of folders
 // Retrieve a list of folders for the authenticated workspace.
 func (s *Folders) List(ctx context.Context, request operations.ListFoldersRequest, opts ...operations.Option) ([]components.FolderSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "listFolders",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -448,6 +441,14 @@ func (s *Folders) List(ctx context.Context, request operations.ListFoldersReques
 	opURL, err := url.JoinPath(baseURL, "/folders")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "listFolders",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -807,13 +808,6 @@ func (s *Folders) List(ctx context.Context, request operations.ListFoldersReques
 // Update a folder
 // Update a folder in the workspace.
 func (s *Folders) Update(ctx context.Context, id string, requestBody *operations.UpdateFolderRequestBody, opts ...operations.Option) (*components.FolderSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateFolder",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.UpdateFolderRequest{
 		ID:          id,
 		RequestBody: requestBody,
@@ -842,6 +836,13 @@ func (s *Folders) Update(ctx context.Context, id string, requestBody *operations
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateFolder",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1203,13 +1204,6 @@ func (s *Folders) Update(ctx context.Context, id string, requestBody *operations
 // Delete a folder
 // Delete a folder from the workspace. All existing links will still work, but they will no longer be associated with this folder.
 func (s *Folders) Delete(ctx context.Context, id string, opts ...operations.Option) (*operations.DeleteFolderResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteFolder",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.DeleteFolderRequest{
 		ID: id,
 	}
@@ -1235,6 +1229,14 @@ func (s *Folders) Delete(ctx context.Context, id string, opts ...operations.Opti
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/folders/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteFolder",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

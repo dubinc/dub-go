@@ -816,14 +816,14 @@ func CreateCreatePartnerTagIdsArrayOfStr(arrayOfStr []string) CreatePartnerTagId
 func (u *CreatePartnerTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = CreatePartnerTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = CreatePartnerTagIdsTypeArrayOfStr
 		return nil
@@ -880,14 +880,14 @@ func CreateCreatePartnerTagNamesArrayOfStr(arrayOfStr []string) CreatePartnerTag
 func (u *CreatePartnerTagNames) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = CreatePartnerTagNamesTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = CreatePartnerTagNamesTypeArrayOfStr
 		return nil
@@ -1365,22 +1365,23 @@ func (o *Links) GetSaleAmount() *float64 {
 
 // CreatePartnerResponseBody - The created partner
 type CreatePartnerResponseBody struct {
-	ID          string   `json:"id"`
-	Name        string   `json:"name"`
-	Email       *string  `json:"email"`
-	Image       *string  `json:"image"`
-	Description *string  `json:"description,omitempty"`
-	Country     string   `json:"country"`
-	CreatedAt   string   `json:"createdAt"`
-	Status      Status   `json:"status"`
-	ProgramID   string   `json:"programId"`
-	TenantID    *string  `json:"tenantId"`
-	Links       []Links  `json:"links"`
-	Clicks      *float64 `default:"0" json:"clicks"`
-	Leads       *float64 `default:"0" json:"leads"`
-	Sales       *float64 `default:"0" json:"sales"`
-	SaleAmount  *float64 `default:"0" json:"saleAmount"`
-	Earnings    *float64 `default:"0" json:"earnings"`
+	ID             string   `json:"id"`
+	Name           string   `json:"name"`
+	Email          *string  `json:"email"`
+	Image          *string  `json:"image"`
+	Description    *string  `json:"description,omitempty"`
+	Country        string   `json:"country"`
+	PayoutsEnabled bool     `json:"payoutsEnabled"`
+	CreatedAt      string   `json:"createdAt"`
+	Status         Status   `json:"status"`
+	ProgramID      string   `json:"programId"`
+	TenantID       *string  `json:"tenantId"`
+	Links          []Links  `json:"links"`
+	Clicks         *float64 `default:"0" json:"clicks"`
+	Leads          *float64 `default:"0" json:"leads"`
+	Sales          *float64 `default:"0" json:"sales"`
+	SaleAmount     *float64 `default:"0" json:"saleAmount"`
+	Earnings       *float64 `default:"0" json:"earnings"`
 }
 
 func (c CreatePartnerResponseBody) MarshalJSON() ([]byte, error) {
@@ -1434,6 +1435,13 @@ func (o *CreatePartnerResponseBody) GetCountry() string {
 		return ""
 	}
 	return o.Country
+}
+
+func (o *CreatePartnerResponseBody) GetPayoutsEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.PayoutsEnabled
 }
 
 func (o *CreatePartnerResponseBody) GetCreatedAt() string {
