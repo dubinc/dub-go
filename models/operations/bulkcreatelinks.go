@@ -45,14 +45,14 @@ func CreateBulkCreateLinksTagIdsArrayOfStr(arrayOfStr []string) BulkCreateLinksT
 func (u *BulkCreateLinksTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = BulkCreateLinksTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = BulkCreateLinksTagIdsTypeArrayOfStr
 		return nil
@@ -109,14 +109,14 @@ func CreateBulkCreateLinksTagNamesArrayOfStr(arrayOfStr []string) BulkCreateLink
 func (u *BulkCreateLinksTagNames) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = BulkCreateLinksTagNamesTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = BulkCreateLinksTagNamesTypeArrayOfStr
 		return nil
@@ -503,14 +503,14 @@ func CreateResponseBodyLinkErrorSchema(linkErrorSchema components.LinkErrorSchem
 func (u *ResponseBody) UnmarshalJSON(data []byte) error {
 
 	var linkErrorSchema components.LinkErrorSchema = components.LinkErrorSchema{}
-	if err := utils.UnmarshalJSON(data, &linkErrorSchema, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &linkErrorSchema, "", true, false); err == nil {
 		u.LinkErrorSchema = &linkErrorSchema
 		u.Type = ResponseBodyTypeLinkErrorSchema
 		return nil
 	}
 
 	var linkSchema components.LinkSchema = components.LinkSchema{}
-	if err := utils.UnmarshalJSON(data, &linkSchema, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &linkSchema, "", true, false); err == nil {
 		u.LinkSchema = &linkSchema
 		u.Type = ResponseBodyTypeLinkSchema
 		return nil

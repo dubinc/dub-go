@@ -12,8 +12,8 @@ import (
 type UpdateFolderAccessLevel string
 
 const (
-	UpdateFolderAccessLevelRead  UpdateFolderAccessLevel = "read"
 	UpdateFolderAccessLevelWrite UpdateFolderAccessLevel = "write"
+	UpdateFolderAccessLevelRead  UpdateFolderAccessLevel = "read"
 )
 
 func (e UpdateFolderAccessLevel) ToPointer() *UpdateFolderAccessLevel {
@@ -25,9 +25,9 @@ func (e *UpdateFolderAccessLevel) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
-	case "read":
-		fallthrough
 	case "write":
+		fallthrough
+	case "read":
 		*e = UpdateFolderAccessLevel(v)
 		return nil
 	default:

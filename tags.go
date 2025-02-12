@@ -29,13 +29,6 @@ func newTags(sdkConfig sdkConfiguration) *Tags {
 // Create a new tag
 // Create a new tag for the authenticated workspace.
 func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestBody, opts ...operations.Option) (*components.TagSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createTag",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -59,6 +52,13 @@ func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestB
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createTag",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -420,13 +420,6 @@ func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestB
 // List - Retrieve a list of tags
 // Retrieve a list of tags for the authenticated workspace.
 func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest, opts ...operations.Option) ([]components.TagSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getTags",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -448,6 +441,14 @@ func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest, opts
 	opURL, err := url.JoinPath(baseURL, "/tags")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getTags",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -807,13 +808,6 @@ func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest, opts
 // Update a tag
 // Update a tag in the workspace.
 func (s *Tags) Update(ctx context.Context, id string, requestBody *operations.UpdateTagRequestBody, opts ...operations.Option) (*components.TagSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateTag",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.UpdateTagRequest{
 		ID:          id,
 		RequestBody: requestBody,
@@ -842,6 +836,13 @@ func (s *Tags) Update(ctx context.Context, id string, requestBody *operations.Up
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateTag",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1203,13 +1204,6 @@ func (s *Tags) Update(ctx context.Context, id string, requestBody *operations.Up
 // Delete a tag
 // Delete a tag from the workspace. All existing links will still work, but they will no longer be associated with this tag.
 func (s *Tags) Delete(ctx context.Context, id string, opts ...operations.Option) (*operations.DeleteTagResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteTag",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.DeleteTagRequest{
 		ID: id,
 	}
@@ -1235,6 +1229,14 @@ func (s *Tags) Delete(ctx context.Context, id string, opts ...operations.Option)
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/tags/{id}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteTag",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

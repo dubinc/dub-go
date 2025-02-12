@@ -28,13 +28,6 @@ func newAnalytics(sdkConfig sdkConfiguration) *Analytics {
 // Retrieve analytics for a link, a domain, or the authenticated workspace.
 // Retrieve analytics for a link, a domain, or the authenticated workspace. The response type depends on the `event` and `type` query parameters.
 func (s *Analytics) Retrieve(ctx context.Context, request operations.RetrieveAnalyticsRequest, opts ...operations.Option) (*operations.RetrieveAnalyticsResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "retrieveAnalytics",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -56,6 +49,14 @@ func (s *Analytics) Retrieve(ctx context.Context, request operations.RetrieveAna
 	opURL, err := url.JoinPath(baseURL, "/analytics")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "retrieveAnalytics",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

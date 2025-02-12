@@ -151,14 +151,14 @@ func CreateListEventsQueryParamTagIdsArrayOfStr(arrayOfStr []string) ListEventsQ
 func (u *ListEventsQueryParamTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = ListEventsQueryParamTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = ListEventsQueryParamTagIdsTypeArrayOfStr
 		return nil
@@ -660,21 +660,21 @@ func CreateListEventsResponseBodyArrayOfSaleEvent(arrayOfSaleEvent []components.
 func (u *ListEventsResponseBody) UnmarshalJSON(data []byte) error {
 
 	var arrayOfClickEvent []components.ClickEvent = []components.ClickEvent{}
-	if err := utils.UnmarshalJSON(data, &arrayOfClickEvent, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfClickEvent, "", true, false); err == nil {
 		u.ArrayOfClickEvent = arrayOfClickEvent
 		u.Type = ListEventsResponseBodyTypeArrayOfClickEvent
 		return nil
 	}
 
 	var arrayOfLeadEvent []components.LeadEvent = []components.LeadEvent{}
-	if err := utils.UnmarshalJSON(data, &arrayOfLeadEvent, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfLeadEvent, "", true, false); err == nil {
 		u.ArrayOfLeadEvent = arrayOfLeadEvent
 		u.Type = ListEventsResponseBodyTypeArrayOfLeadEvent
 		return nil
 	}
 
 	var arrayOfSaleEvent []components.SaleEvent = []components.SaleEvent{}
-	if err := utils.UnmarshalJSON(data, &arrayOfSaleEvent, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfSaleEvent, "", true, false); err == nil {
 		u.ArrayOfSaleEvent = arrayOfSaleEvent
 		u.Type = ListEventsResponseBodyTypeArrayOfSaleEvent
 		return nil

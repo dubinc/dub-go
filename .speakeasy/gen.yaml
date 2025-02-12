@@ -9,11 +9,12 @@ generation:
     nameResolutionDec2023: true
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
+    securityFeb2025: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
 go:
-  version: 0.14.1
+  version: 0.14.2
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: true
   clientServerStatusCodesAsErrors: true

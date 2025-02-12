@@ -12,8 +12,8 @@ import (
 type AccessLevel string
 
 const (
-	AccessLevelRead  AccessLevel = "read"
 	AccessLevelWrite AccessLevel = "write"
+	AccessLevelRead  AccessLevel = "read"
 )
 
 func (e AccessLevel) ToPointer() *AccessLevel {
@@ -25,9 +25,9 @@ func (e *AccessLevel) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
-	case "read":
-		fallthrough
 	case "write":
+		fallthrough
+	case "read":
 		*e = AccessLevel(v)
 		return nil
 	default:

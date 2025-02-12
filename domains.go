@@ -30,13 +30,6 @@ func newDomains(sdkConfig sdkConfiguration) *Domains {
 // Create a domain
 // Create a domain for the authenticated workspace.
 func (s *Domains) Create(ctx context.Context, request *operations.CreateDomainRequestBody, opts ...operations.Option) (*components.DomainSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createDomain",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -60,6 +53,13 @@ func (s *Domains) Create(ctx context.Context, request *operations.CreateDomainRe
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createDomain",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -421,13 +421,6 @@ func (s *Domains) Create(ctx context.Context, request *operations.CreateDomainRe
 // List - Retrieve a list of domains
 // Retrieve a list of domains associated with the authenticated workspace.
 func (s *Domains) List(ctx context.Context, request operations.ListDomainsRequest, opts ...operations.Option) (*operations.ListDomainsResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "listDomains",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -449,6 +442,14 @@ func (s *Domains) List(ctx context.Context, request operations.ListDomainsReques
 	opURL, err := url.JoinPath(baseURL, "/domains")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "listDomains",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -859,13 +860,6 @@ func (s *Domains) List(ctx context.Context, request operations.ListDomainsReques
 // Update a domain
 // Update a domain for the authenticated workspace.
 func (s *Domains) Update(ctx context.Context, slug string, requestBody *operations.UpdateDomainRequestBody, opts ...operations.Option) (*components.DomainSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateDomain",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.UpdateDomainRequest{
 		Slug:        slug,
 		RequestBody: requestBody,
@@ -894,6 +888,13 @@ func (s *Domains) Update(ctx context.Context, slug string, requestBody *operatio
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateDomain",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -1255,13 +1256,6 @@ func (s *Domains) Update(ctx context.Context, slug string, requestBody *operatio
 // Delete a domain
 // Delete a domain from a workspace. It cannot be undone. This will also delete all the links associated with the domain.
 func (s *Domains) Delete(ctx context.Context, slug string, opts ...operations.Option) (*operations.DeleteDomainResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteDomain",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.DeleteDomainRequest{
 		Slug: slug,
 	}
@@ -1287,6 +1281,14 @@ func (s *Domains) Delete(ctx context.Context, slug string, opts ...operations.Op
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/domains/{slug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteDomain",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

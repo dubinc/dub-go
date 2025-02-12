@@ -28,13 +28,6 @@ func newQRCodes(sdkConfig sdkConfiguration) *QRCodes {
 // Get - Retrieve a QR code
 // Retrieve a QR code for a link.
 func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest, opts ...operations.Option) (*string, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getQRCode",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -56,6 +49,14 @@ func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest, 
 	opURL, err := url.JoinPath(baseURL, "/qr")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getQRCode",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout

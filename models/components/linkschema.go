@@ -2114,7 +2114,7 @@ func (l LinkSchema) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LinkSchema) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
 		return err
 	}
 	return nil

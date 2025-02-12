@@ -30,13 +30,6 @@ func newLinks(sdkConfig sdkConfiguration) *Links {
 // Create a new link
 // Create a new link for the authenticated workspace.
 func (s *Links) Create(ctx context.Context, request *operations.CreateLinkRequestBody, opts ...operations.Option) (*components.LinkSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "createLink",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -60,6 +53,13 @@ func (s *Links) Create(ctx context.Context, request *operations.CreateLinkReques
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "createLink",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -421,13 +421,6 @@ func (s *Links) Create(ctx context.Context, request *operations.CreateLinkReques
 // List - Retrieve a list of links
 // Retrieve a paginated list of links for the authenticated workspace.
 func (s *Links) List(ctx context.Context, request operations.GetLinksRequest, opts ...operations.Option) (*operations.GetLinksResponse, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getLinks",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -449,6 +442,14 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest, op
 	opURL, err := url.JoinPath(baseURL, "/links")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getLinks",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -870,13 +871,6 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest, op
 // Count - Retrieve links count
 // Retrieve the number of links for the authenticated workspace.
 func (s *Links) Count(ctx context.Context, request operations.GetLinksCountRequest, opts ...operations.Option) (*float64, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getLinksCount",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -898,6 +892,14 @@ func (s *Links) Count(ctx context.Context, request operations.GetLinksCountReque
 	opURL, err := url.JoinPath(baseURL, "/links/count")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getLinksCount",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1257,13 +1259,6 @@ func (s *Links) Count(ctx context.Context, request operations.GetLinksCountReque
 // Get - Retrieve a link
 // Retrieve the info for a link.
 func (s *Links) Get(ctx context.Context, request operations.GetLinkInfoRequest, opts ...operations.Option) (*components.LinkSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getLinkInfo",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1285,6 +1280,14 @@ func (s *Links) Get(ctx context.Context, request operations.GetLinkInfoRequest, 
 	opURL, err := url.JoinPath(baseURL, "/links/info")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getLinkInfo",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1644,13 +1647,6 @@ func (s *Links) Get(ctx context.Context, request operations.GetLinkInfoRequest, 
 // Update a link
 // Update a link for the authenticated workspace. If there's no change, returns it as it is.
 func (s *Links) Update(ctx context.Context, linkID string, requestBody *operations.UpdateLinkRequestBody, opts ...operations.Option) (*components.LinkSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateLink",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.UpdateLinkRequest{
 		LinkID:      linkID,
 		RequestBody: requestBody,
@@ -1679,6 +1675,13 @@ func (s *Links) Update(ctx context.Context, linkID string, requestBody *operatio
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateLink",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -2040,13 +2043,6 @@ func (s *Links) Update(ctx context.Context, linkID string, requestBody *operatio
 // Delete a link
 // Delete a link for the authenticated workspace.
 func (s *Links) Delete(ctx context.Context, linkID string, opts ...operations.Option) (*operations.DeleteLinkResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "deleteLink",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.DeleteLinkRequest{
 		LinkID: linkID,
 	}
@@ -2072,6 +2068,14 @@ func (s *Links) Delete(ctx context.Context, linkID string, opts ...operations.Op
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/links/{linkId}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "deleteLink",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2427,13 +2431,6 @@ func (s *Links) Delete(ctx context.Context, linkID string, opts ...operations.Op
 // CreateMany - Bulk create links
 // Bulk create up to 100 links for the authenticated workspace.
 func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody, opts ...operations.Option) ([]operations.ResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "bulkCreateLinks",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2457,6 +2454,13 @@ func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "bulkCreateLinks",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -2818,13 +2822,6 @@ func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody
 // UpdateMany - Bulk update links
 // Bulk update up to 100 links with the same data for the authenticated workspace.
 func (s *Links) UpdateMany(ctx context.Context, request *operations.BulkUpdateLinksRequestBody, opts ...operations.Option) ([]components.LinkSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "bulkUpdateLinks",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -2848,6 +2845,13 @@ func (s *Links) UpdateMany(ctx context.Context, request *operations.BulkUpdateLi
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "bulkUpdateLinks",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
@@ -3209,13 +3213,6 @@ func (s *Links) UpdateMany(ctx context.Context, request *operations.BulkUpdateLi
 // DeleteMany - Bulk delete links
 // Bulk delete up to 100 links for the authenticated workspace.
 func (s *Links) DeleteMany(ctx context.Context, request operations.BulkDeleteLinksRequest, opts ...operations.Option) (*operations.BulkDeleteLinksResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "bulkDeleteLinks",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -3237,6 +3234,14 @@ func (s *Links) DeleteMany(ctx context.Context, request operations.BulkDeleteLin
 	opURL, err := url.JoinPath(baseURL, "/links/bulk")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "bulkDeleteLinks",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -3596,13 +3601,6 @@ func (s *Links) DeleteMany(ctx context.Context, request operations.BulkDeleteLin
 // Upsert a link
 // Upsert a link for the authenticated workspace by its URL. If a link with the same URL already exists, return it (or update it if there are any changes). Otherwise, a new link will be created.
 func (s *Links) Upsert(ctx context.Context, request *operations.UpsertLinkRequestBody, opts ...operations.Option) (*components.LinkSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "upsertLink",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -3626,6 +3624,13 @@ func (s *Links) Upsert(ctx context.Context, request *operations.UpsertLinkReques
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "upsertLink",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err

@@ -28,13 +28,6 @@ func newWorkspaces(sdkConfig sdkConfiguration) *Workspaces {
 // Get - Retrieve a workspace
 // Retrieve a workspace for the authenticated user.
 func (s *Workspaces) Get(ctx context.Context, request operations.GetWorkspaceRequest, opts ...operations.Option) (*components.WorkspaceSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "getWorkspace",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -56,6 +49,14 @@ func (s *Workspaces) Get(ctx context.Context, request operations.GetWorkspaceReq
 	opURL, err := utils.GenerateURL(ctx, baseURL, "/workspaces/{idOrSlug}", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "getWorkspace",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -411,13 +412,6 @@ func (s *Workspaces) Get(ctx context.Context, request operations.GetWorkspaceReq
 // Update a workspace
 // Update a workspace by ID or slug.
 func (s *Workspaces) Update(ctx context.Context, idOrSlug string, requestBody *operations.UpdateWorkspaceRequestBody, opts ...operations.Option) (*components.WorkspaceSchema, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "updateWorkspace",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	request := operations.UpdateWorkspaceRequest{
 		IDOrSlug:    idOrSlug,
 		RequestBody: requestBody,
@@ -446,6 +440,13 @@ func (s *Workspaces) Update(ctx context.Context, idOrSlug string, requestBody *o
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "updateWorkspace",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
+	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err

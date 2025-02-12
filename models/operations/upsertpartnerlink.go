@@ -44,14 +44,14 @@ func CreateUpsertPartnerLinkTagIdsArrayOfStr(arrayOfStr []string) UpsertPartnerL
 func (u *UpsertPartnerLinkTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = UpsertPartnerLinkTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = UpsertPartnerLinkTagIdsTypeArrayOfStr
 		return nil
@@ -108,14 +108,14 @@ func CreateUpsertPartnerLinkTagNamesArrayOfStr(arrayOfStr []string) UpsertPartne
 func (u *UpsertPartnerLinkTagNames) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
 		u.Str = &str
 		u.Type = UpsertPartnerLinkTagNamesTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = UpsertPartnerLinkTagNamesTypeArrayOfStr
 		return nil

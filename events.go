@@ -28,13 +28,6 @@ func newEvents(sdkConfig sdkConfiguration) *Events {
 // List - Retrieve a list of events
 // Retrieve a paginated list of events for the authenticated workspace.
 func (s *Events) List(ctx context.Context, request operations.ListEventsRequest, opts ...operations.Option) (*operations.ListEventsResponseBody, error) {
-	hookCtx := hooks.HookContext{
-		Context:        ctx,
-		OperationID:    "listEvents",
-		OAuth2Scopes:   []string{},
-		SecuritySource: s.sdkConfiguration.Security,
-	}
-
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -56,6 +49,14 @@ func (s *Events) List(ctx context.Context, request operations.ListEventsRequest,
 	opURL, err := url.JoinPath(baseURL, "/events")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		BaseURL:        baseURL,
+		Context:        ctx,
+		OperationID:    "listEvents",
+		OAuth2Scopes:   []string{},
+		SecuritySource: s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
