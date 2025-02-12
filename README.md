@@ -154,6 +154,13 @@ func main() {
 
 * [List](docs/sdks/events/README.md#list) - Retrieve a list of events
 
+### [Folders](docs/sdks/folders/README.md)
+
+* [Create](docs/sdks/folders/README.md#create) - Create a new folder
+* [List](docs/sdks/folders/README.md#list) - Retrieve a list of folders
+* [Update](docs/sdks/folders/README.md#update) - Update a folder
+* [Delete](docs/sdks/folders/README.md#delete) - Delete a folder
+
 ### [Links](docs/sdks/links/README.md)
 
 * [Create](docs/sdks/links/README.md#create) - Create a new link
@@ -176,6 +183,7 @@ func main() {
 * [Create](docs/sdks/partners/README.md#create) - Create a new partner
 * [CreateLink](docs/sdks/partners/README.md#createlink) - Create a link for a partner
 * [UpsertLink](docs/sdks/partners/README.md#upsertlink) - Upsert a link for a partner
+* [Analytics](docs/sdks/partners/README.md#analytics) - Retrieve analytics for a partner
 
 ### [QRCodes](docs/sdks/qrcodes/README.md)
 

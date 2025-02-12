@@ -2081,6 +2081,8 @@ type SaleEventLink struct {
 	TagID *string `json:"tagId"`
 	// The tags assigned to the short link.
 	Tags []TagSchema `json:"tags"`
+	// The unique ID of the folder assigned to the short link.
+	FolderID *string `json:"folderId"`
 	// The IDs of the webhooks that the short link is associated with.
 	WebhookIds []string `json:"webhookIds"`
 	// The comments for the short link.
@@ -2310,6 +2312,13 @@ func (o *SaleEventLink) GetTags() []TagSchema {
 		return nil
 	}
 	return o.Tags
+}
+
+func (o *SaleEventLink) GetFolderID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FolderID
 }
 
 func (o *SaleEventLink) GetWebhookIds() []string {

@@ -167,6 +167,8 @@ type WorkspaceSchema struct {
 	DomainsLimit float64 `json:"domainsLimit"`
 	// The tags limit of the workspace.
 	TagsLimit float64 `json:"tagsLimit"`
+	// The folders limit of the workspace.
+	FoldersLimit float64 `json:"foldersLimit"`
 	// The users limit of the workspace.
 	UsersLimit float64 `json:"usersLimit"`
 	// The AI usage of the workspace.
@@ -328,6 +330,13 @@ func (o *WorkspaceSchema) GetTagsLimit() float64 {
 		return 0.0
 	}
 	return o.TagsLimit
+}
+
+func (o *WorkspaceSchema) GetFoldersLimit() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.FoldersLimit
 }
 
 func (o *WorkspaceSchema) GetUsersLimit() float64 {

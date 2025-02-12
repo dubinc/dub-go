@@ -29,3 +29,9 @@ webhookEvent := components.CreateWebhookEventLeadCreatedEvent(components.LeadCre
 webhookEvent := components.CreateWebhookEventSaleCreatedEvent(components.SaleCreatedEvent{/* values here */})
 ```
 
+### PartnerCreatedEvent
+
+```go
+webhookEvent := components.CreateWebhookEventPartnerCreatedEvent(components.PartnerCreatedEvent{/* values here */})
+```
+

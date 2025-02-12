@@ -63,6 +63,30 @@ actions:
         - "lang": "go"
           "label": "listEvents"
           "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Events.List(ctx, operations.ListEventsRequest{\n        City: dubgo.String(\"New York\"),\n        Device: dubgo.String(\"Desktop\"),\n        Browser: dubgo.String(\"Chrome\"),\n        Os: dubgo.String(\"Windows\"),\n        Referer: dubgo.String(\"google.com\"),\n        RefererURL: dubgo.String(\"https://dub.co/blog\"),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/folders"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "listFolders"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Folders.List(ctx, operations.ListFoldersRequest{})\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/folders"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "createFolder"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Folders.Create(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/folders/{id}"]["delete"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "deleteFolder"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Folders.Delete(ctx, \"<id>\")\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/folders/{id}"]["patch"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "updateFolder"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Folders.Update(ctx, \"<id>\", nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/links"]["get"]
     update:
       "x-codeSamples":
@@ -135,18 +159,24 @@ actions:
         - "lang": "go"
           "label": "createPartner"
           "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.Create(ctx, &operations.CreatePartnerRequestBody{\n        ProgramID: \"<id>\",\n        Name: \"<value>\",\n        Email: \"Loyal79@yahoo.com\",\n        Username: \"Aaliyah_Borer\",\n        LinkProps: &operations.LinkProps{\n            ExternalID: dubgo.String(\"123456\"),\n            TagIds: dubgo.Pointer(operations.CreateCreatePartnerTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n            )),\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/partners/analytics"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "retrievePartnerAnalytics"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.Analytics(ctx, operations.RetrievePartnerAnalyticsRequest{\n        ProgramID: \"<id>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/partners/links"]["post"]
     update:
       "x-codeSamples":
         - "lang": "go"
           "label": "createPartnerLink"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.CreateLink(ctx, &operations.CreatePartnerLinkRequestBody{\n        ProgramID: \"<id>\",\n        URL: \"https://necessary-brief.name\",\n        LinkProps: &operations.CreatePartnerLinkLinkProps{\n            ExternalID: dubgo.String(\"123456\"),\n            TagIds: dubgo.Pointer(operations.CreateCreatePartnerLinkTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n            )),\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.CreateLink(ctx, &operations.CreatePartnerLinkRequestBody{\n        ProgramID: \"<id>\",\n        LinkProps: &operations.CreatePartnerLinkLinkProps{\n            ExternalID: dubgo.String(\"123456\"),\n            TagIds: dubgo.Pointer(operations.CreateCreatePartnerLinkTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n            )),\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/partners/links/upsert"]["put"]
     update:
       "x-codeSamples":
         - "lang": "go"
           "label": "upsertPartnerLink"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.UpsertLink(ctx, &operations.UpsertPartnerLinkRequestBody{\n        ProgramID: \"<id>\",\n        URL: \"https://unsteady-lobster.com/\",\n        LinkProps: &operations.UpsertPartnerLinkLinkProps{\n            ExternalID: dubgo.String(\"123456\"),\n            TagIds: dubgo.Pointer(operations.CreateUpsertPartnerLinkTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n            )),\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n    \n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.UpsertLink(ctx, &operations.UpsertPartnerLinkRequestBody{\n        ProgramID: \"<id>\",\n        LinkProps: &operations.UpsertPartnerLinkLinkProps{\n            ExternalID: dubgo.String(\"123456\"),\n            TagIds: dubgo.Pointer(operations.CreateUpsertPartnerLinkTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n            )),\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/qr"]["get"]
     update:
       "x-codeSamples":

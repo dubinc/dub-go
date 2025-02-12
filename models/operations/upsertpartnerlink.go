@@ -152,6 +152,8 @@ type UpsertPartnerLinkLinkProps struct {
 	TagIds *UpsertPartnerLinkTagIds `json:"tagIds,omitempty"`
 	// The unique name of the tags assigned to the short link (case insensitive).
 	TagNames *UpsertPartnerLinkTagNames `json:"tagNames,omitempty"`
+	// The unique ID existing folder to assign the short link to.
+	FolderID *string `json:"folderId,omitempty"`
 	// The comments for the short link.
 	Comments *string `json:"comments,omitempty"`
 	// The date and time when the short link will expire at.
@@ -239,6 +241,13 @@ func (o *UpsertPartnerLinkLinkProps) GetTagNames() *UpsertPartnerLinkTagNames {
 		return nil
 	}
 	return o.TagNames
+}
+
+func (o *UpsertPartnerLinkLinkProps) GetFolderID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FolderID
 }
 
 func (o *UpsertPartnerLinkLinkProps) GetComments() *string {
@@ -381,8 +390,8 @@ type UpsertPartnerLinkRequestBody struct {
 	PartnerID *string `json:"partnerId,omitempty"`
 	// The ID of the partner in your system. If both `partnerId` and `tenantId` are not provided, an error will be thrown.
 	TenantID *string `json:"tenantId,omitempty"`
-	// The URL to shorten. Will throw an error if the domain doesn't match the program's default URL domain.
-	URL string `json:"url"`
+	// The URL to shorten (if not provided, the program's default URL will be used). Will throw an error if the domain doesn't match the program's default URL domain.
+	URL *string `json:"url,omitempty"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key *string `json:"key,omitempty"`
 	// Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
@@ -410,9 +419,9 @@ func (o *UpsertPartnerLinkRequestBody) GetTenantID() *string {
 	return o.TenantID
 }
 
-func (o *UpsertPartnerLinkRequestBody) GetURL() string {
+func (o *UpsertPartnerLinkRequestBody) GetURL() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.URL
 }

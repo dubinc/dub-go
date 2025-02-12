@@ -242,6 +242,8 @@ type GetLinksRequest struct {
 	TagIds *QueryParamTagIds `queryParam:"style=form,explode=true,name=tagIds"`
 	// The unique name of the tags assigned to the short link (case insensitive).
 	TagNames *QueryParamTagNames `queryParam:"style=form,explode=true,name=tagNames"`
+	// The folder ID to filter the links by.
+	FolderID *string `queryParam:"style=form,explode=true,name=folderId"`
 	// The search term to filter the links by. The search term will be matched against the short link slug and the destination url.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// The user ID to filter the links by.
@@ -301,6 +303,13 @@ func (o *GetLinksRequest) GetTagNames() *QueryParamTagNames {
 		return nil
 	}
 	return o.TagNames
+}
+
+func (o *GetLinksRequest) GetFolderID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FolderID
 }
 
 func (o *GetLinksRequest) GetSearch() *string {

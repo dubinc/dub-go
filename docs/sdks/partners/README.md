@@ -8,6 +8,7 @@
 * [Create](#create) - Create a new partner
 * [CreateLink](#createlink) - Create a link for a partner
 * [UpsertLink](#upsertlink) - Upsert a link for a partner
+* [Analytics](#analytics) - Retrieve analytics for a partner
 
 ## Create
 
@@ -107,7 +108,7 @@ func main() {
 
     res, err := s.Partners.CreateLink(ctx, &operations.CreatePartnerLinkRequestBody{
         ProgramID: "<id>",
-        URL: "https://necessary-brief.name",
+        URL: dubgo.String("https://necessary-brief.name"),
         LinkProps: &operations.CreatePartnerLinkLinkProps{
             ExternalID: dubgo.String("123456"),
             TagIds: dubgo.Pointer(operations.CreateCreatePartnerLinkTagIdsArrayOfStr(
@@ -178,7 +179,7 @@ func main() {
 
     res, err := s.Partners.UpsertLink(ctx, &operations.UpsertPartnerLinkRequestBody{
         ProgramID: "<id>",
-        URL: "https://unsteady-lobster.com/",
+        URL: dubgo.String("https://unsteady-lobster.com/"),
         LinkProps: &operations.UpsertPartnerLinkLinkProps{
             ExternalID: dubgo.String("123456"),
             TagIds: dubgo.Pointer(operations.CreateUpsertPartnerLinkTagIdsArrayOfStr(
@@ -208,6 +209,68 @@ func main() {
 ### Response
 
 **[*components.LinkSchema](../../models/components/linkschema.md), error**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+
+## Analytics
+
+Retrieve analytics for a partner within a program. The response type vary based on the `groupBy` query parameter.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+    
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+
+    res, err := s.Partners.Analytics(ctx, operations.RetrievePartnerAnalyticsRequest{
+        ProgramID: "<id>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
+| `request`                                                                                                | [operations.RetrievePartnerAnalyticsRequest](../../models/operations/retrievepartneranalyticsrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
+| `opts`                                                                                                   | [][operations.Option](../../models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+
+### Response
+
+**[*operations.RetrievePartnerAnalyticsResponseBody](../../models/operations/retrievepartneranalyticsresponsebody.md), error**
 
 ### Errors
 

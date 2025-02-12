@@ -137,6 +137,29 @@ func (u GetLinksCountQueryParamTagNames) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type GetLinksCountQueryParamTagNames: all fields are null")
 }
 
+type Four string
+
+const (
+	FourFolderID Four = "folderId"
+)
+
+func (e Four) ToPointer() *Four {
+	return &e
+}
+func (e *Four) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "folderId":
+		*e = Four(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Four: %v", v)
+	}
+}
+
 type Three string
 
 const (
@@ -212,6 +235,7 @@ const (
 	GroupByTypeOne   GroupByType = "1"
 	GroupByTypeTwo   GroupByType = "2"
 	GroupByTypeThree GroupByType = "3"
+	GroupByTypeFour  GroupByType = "4"
 )
 
 // GroupBy - The field to group the links by.
@@ -219,6 +243,7 @@ type GroupBy struct {
 	One   *One   `queryParam:"inline"`
 	Two   *Two   `queryParam:"inline"`
 	Three *Three `queryParam:"inline"`
+	Four  *Four  `queryParam:"inline"`
 
 	Type GroupByType
 }
@@ -250,6 +275,15 @@ func CreateGroupByThree(three Three) GroupBy {
 	}
 }
 
+func CreateGroupByFour(four Four) GroupBy {
+	typ := GroupByTypeFour
+
+	return GroupBy{
+		Four: &four,
+		Type: typ,
+	}
+}
+
 func (u *GroupBy) UnmarshalJSON(data []byte) error {
 
 	var one One = One("")
@@ -273,6 +307,13 @@ func (u *GroupBy) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var four Four = Four("")
+	if err := utils.UnmarshalJSON(data, &four, "", true, true); err == nil {
+		u.Four = &four
+		u.Type = GroupByTypeFour
+		return nil
+	}
+
 	return fmt.Errorf("could not unmarshal `%s` into any supported union types for GroupBy", string(data))
 }
 
@@ -289,6 +330,10 @@ func (u GroupBy) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Three, "", true)
 	}
 
+	if u.Four != nil {
+		return utils.MarshalJSON(u.Four, "", true)
+	}
+
 	return nil, errors.New("could not marshal union type GroupBy: all fields are null")
 }
 
@@ -301,6 +346,8 @@ type GetLinksCountRequest struct {
 	TagIds *GetLinksCountQueryParamTagIds `queryParam:"style=form,explode=true,name=tagIds"`
 	// The unique name of the tags assigned to the short link (case insensitive).
 	TagNames *GetLinksCountQueryParamTagNames `queryParam:"style=form,explode=true,name=tagNames"`
+	// The folder ID to filter the links by.
+	FolderID *string `queryParam:"style=form,explode=true,name=folderId"`
 	// The search term to filter the links by. The search term will be matched against the short link slug and the destination url.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// The user ID to filter the links by.
@@ -352,6 +399,13 @@ func (o *GetLinksCountRequest) GetTagNames() *GetLinksCountQueryParamTagNames {
 		return nil
 	}
 	return o.TagNames
+}
+
+func (o *GetLinksCountRequest) GetFolderID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FolderID
 }
 
 func (o *GetLinksCountRequest) GetSearch() *string {

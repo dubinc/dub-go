@@ -170,6 +170,8 @@ type CreateLinkRequestBody struct {
 	TagIds *TagIds `json:"tagIds,omitempty"`
 	// The unique name of the tags assigned to the short link (case insensitive).
 	TagNames *TagNames `json:"tagNames,omitempty"`
+	// The unique ID existing folder to assign the short link to.
+	FolderID *string `json:"folderId,omitempty"`
 	// The comments for the short link.
 	Comments *string `json:"comments,omitempty"`
 	// The date and time when the short link will expire at.
@@ -310,6 +312,13 @@ func (o *CreateLinkRequestBody) GetTagNames() *TagNames {
 		return nil
 	}
 	return o.TagNames
+}
+
+func (o *CreateLinkRequestBody) GetFolderID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FolderID
 }
 
 func (o *CreateLinkRequestBody) GetComments() *string {
