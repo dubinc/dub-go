@@ -132,8 +132,10 @@ const (
 	IntervalSevend        Interval = "7d"
 	IntervalThirtyd       Interval = "30d"
 	IntervalNinetyd       Interval = "90d"
-	IntervalYtd           Interval = "ytd"
 	IntervalOney          Interval = "1y"
+	IntervalMtd           Interval = "mtd"
+	IntervalQtd           Interval = "qtd"
+	IntervalYtd           Interval = "ytd"
 	IntervalAll           Interval = "all"
 	IntervalAllUnfiltered Interval = "all_unfiltered"
 )
@@ -155,9 +157,13 @@ func (e *Interval) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "90d":
 		fallthrough
-	case "ytd":
-		fallthrough
 	case "1y":
+		fallthrough
+	case "mtd":
+		fallthrough
+	case "qtd":
+		fallthrough
+	case "ytd":
 		fallthrough
 	case "all":
 		fallthrough
@@ -313,6 +319,8 @@ type RetrieveAnalyticsRequest struct {
 	TagID *string `queryParam:"style=form,explode=true,name=tagId"`
 	// The tag IDs to retrieve analytics for.
 	TagIds *RetrieveAnalyticsQueryParamTagIds `queryParam:"style=form,explode=true,name=tagIds"`
+	// The folder ID to retrieve analytics for. If not provided, return analytics for unsorted links.
+	FolderID *string `queryParam:"style=form,explode=true,name=folderId"`
 	// Deprecated. Use the `trigger` field instead. Filter for QR code scans. If true, filter for QR codes only. If false, filter for links only. If undefined, return both.
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
@@ -520,6 +528,13 @@ func (o *RetrieveAnalyticsRequest) GetTagIds() *RetrieveAnalyticsQueryParamTagId
 		return nil
 	}
 	return o.TagIds
+}
+
+func (o *RetrieveAnalyticsRequest) GetFolderID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FolderID
 }
 
 func (o *RetrieveAnalyticsRequest) GetQr() *bool {

@@ -23,3 +23,9 @@ groupBy := operations.CreateGroupByTwo(operations.Two{/* values here */})
 groupBy := operations.CreateGroupByThree(operations.Three{/* values here */})
 ```
 
+### Four
+
+```go
+groupBy := operations.CreateGroupByFour(operations.Four{/* values here */})
+```
+

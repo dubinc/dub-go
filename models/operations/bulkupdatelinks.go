@@ -162,6 +162,8 @@ type Data struct {
 	TagIds *BulkUpdateLinksTagIds `json:"tagIds,omitempty"`
 	// The unique name of the tags assigned to the short link (case insensitive).
 	TagNames *BulkUpdateLinksTagNames `json:"tagNames,omitempty"`
+	// The unique ID existing folder to assign the short link to.
+	FolderID *string `json:"folderId,omitempty"`
 	// The comments for the short link.
 	Comments *string `json:"comments,omitempty"`
 	// The date and time when the short link will expire at.
@@ -274,6 +276,13 @@ func (o *Data) GetTagNames() *BulkUpdateLinksTagNames {
 		return nil
 	}
 	return o.TagNames
+}
+
+func (o *Data) GetFolderID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FolderID
 }
 
 func (o *Data) GetComments() *string {

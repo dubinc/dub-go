@@ -74,6 +74,7 @@ type Dub struct {
 	Analytics   *Analytics
 	Events      *Events
 	Tags        *Tags
+	Folders     *Folders
 	Domains     *Domains
 	Track       *Track
 	Customers   *Customers
@@ -160,9 +161,9 @@ func New(opts ...SDKOption) *Dub {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "0.14.0",
+			SDKVersion:        "0.14.1",
 			GenVersion:        "2.506.0",
-			UserAgent:         "speakeasy-sdk/go 0.14.0 2.506.0 0.0.1 github.com/dubinc/dub-go",
+			UserAgent:         "speakeasy-sdk/go 0.14.1 2.506.0 0.0.1 github.com/dubinc/dub-go",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -189,6 +190,8 @@ func New(opts ...SDKOption) *Dub {
 	sdk.Events = newEvents(sdk.sdkConfiguration)
 
 	sdk.Tags = newTags(sdk.sdkConfiguration)
+
+	sdk.Folders = newFolders(sdk.sdkConfiguration)
 
 	sdk.Domains = newDomains(sdk.sdkConfiguration)
 

@@ -616,6 +616,7 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest, op
 				TagID:        request.TagID,
 				TagIds:       request.TagIds,
 				TagNames:     request.TagNames,
+				FolderID:     request.FolderID,
 				Search:       request.Search,
 				UserID:       request.UserID,
 				TenantID:     request.TenantID,

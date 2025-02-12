@@ -11,6 +11,8 @@ The interval to retrieve events for. Takes precedence over start and end. If und
 | `QueryParamIntervalSevend`      | 7d                              |
 | `QueryParamIntervalThirtyd`     | 30d                             |
 | `QueryParamIntervalNinetyd`     | 90d                             |
-| `QueryParamIntervalYtd`         | ytd                             |
 | `QueryParamIntervalOney`        | 1y                              |
+| `QueryParamIntervalMtd`         | mtd                             |
+| `QueryParamIntervalQtd`         | qtd                             |
+| `QueryParamIntervalYtd`         | ytd                             |
 | `QueryParamIntervalAll`         | all                             |

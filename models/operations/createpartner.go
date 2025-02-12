@@ -924,6 +924,8 @@ type LinkProps struct {
 	TagIds *CreatePartnerTagIds `json:"tagIds,omitempty"`
 	// The unique name of the tags assigned to the short link (case insensitive).
 	TagNames *CreatePartnerTagNames `json:"tagNames,omitempty"`
+	// The unique ID existing folder to assign the short link to.
+	FolderID *string `json:"folderId,omitempty"`
 	// The comments for the short link.
 	Comments *string `json:"comments,omitempty"`
 	// The date and time when the short link will expire at.
@@ -1011,6 +1013,13 @@ func (o *LinkProps) GetTagNames() *CreatePartnerTagNames {
 		return nil
 	}
 	return o.TagNames
+}
+
+func (o *LinkProps) GetFolderID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.FolderID
 }
 
 func (o *LinkProps) GetComments() *string {
@@ -1354,139 +1363,24 @@ func (o *Links) GetSaleAmount() *float64 {
 	return o.SaleAmount
 }
 
-type CreatePartnerType string
-
-const (
-	CreatePartnerTypePercentage CreatePartnerType = "percentage"
-	CreatePartnerTypeFlat       CreatePartnerType = "flat"
-)
-
-func (e CreatePartnerType) ToPointer() *CreatePartnerType {
-	return &e
-}
-func (e *CreatePartnerType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "percentage":
-		fallthrough
-	case "flat":
-		*e = CreatePartnerType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CreatePartnerType: %v", v)
-	}
-}
-
-type CreatePartnerInterval string
-
-const (
-	CreatePartnerIntervalMonth CreatePartnerInterval = "month"
-	CreatePartnerIntervalYear  CreatePartnerInterval = "year"
-)
-
-func (e CreatePartnerInterval) ToPointer() *CreatePartnerInterval {
-	return &e
-}
-func (e *CreatePartnerInterval) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "month":
-		fallthrough
-	case "year":
-		*e = CreatePartnerInterval(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CreatePartnerInterval: %v", v)
-	}
-}
-
-type CreatePartnerDiscount struct {
-	ID           string                 `json:"id"`
-	CouponID     *string                `json:"couponId"`
-	CouponTestID *string                `json:"couponTestId"`
-	Amount       float64                `json:"amount"`
-	Type         CreatePartnerType      `json:"type"`
-	Duration     *float64               `json:"duration"`
-	Interval     *CreatePartnerInterval `json:"interval"`
-}
-
-func (o *CreatePartnerDiscount) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
-func (o *CreatePartnerDiscount) GetCouponID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CouponID
-}
-
-func (o *CreatePartnerDiscount) GetCouponTestID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CouponTestID
-}
-
-func (o *CreatePartnerDiscount) GetAmount() float64 {
-	if o == nil {
-		return 0.0
-	}
-	return o.Amount
-}
-
-func (o *CreatePartnerDiscount) GetType() CreatePartnerType {
-	if o == nil {
-		return CreatePartnerType("")
-	}
-	return o.Type
-}
-
-func (o *CreatePartnerDiscount) GetDuration() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.Duration
-}
-
-func (o *CreatePartnerDiscount) GetInterval() *CreatePartnerInterval {
-	if o == nil {
-		return nil
-	}
-	return o.Interval
-}
-
 // CreatePartnerResponseBody - The created partner
 type CreatePartnerResponseBody struct {
-	ID               string                 `json:"id"`
-	Name             string                 `json:"name"`
-	Email            *string                `json:"email"`
-	Image            *string                `json:"image"`
-	Country          string                 `json:"country"`
-	Bio              *string                `json:"bio"`
-	StripeConnectID  *string                `json:"stripeConnectId"`
-	CouponID         *string                `json:"couponId,omitempty"`
-	PayoutsEnabled   bool                   `json:"payoutsEnabled"`
-	CreatedAt        string                 `json:"createdAt"`
-	UpdatedAt        string                 `json:"updatedAt"`
-	Status           Status                 `json:"status"`
-	Links            []Links                `json:"links"`
-	Discount         *CreatePartnerDiscount `json:"discount,omitempty"`
-	CommissionAmount *float64               `json:"commissionAmount"`
-	Earnings         *float64               `default:"0" json:"earnings"`
-	Clicks           *float64               `default:"0" json:"clicks"`
-	Leads            *float64               `default:"0" json:"leads"`
-	Sales            *float64               `default:"0" json:"sales"`
-	SalesAmount      *float64               `default:"0" json:"salesAmount"`
+	ID          string   `json:"id"`
+	Name        string   `json:"name"`
+	Email       *string  `json:"email"`
+	Image       *string  `json:"image"`
+	Description *string  `json:"description,omitempty"`
+	Country     string   `json:"country"`
+	CreatedAt   string   `json:"createdAt"`
+	Status      Status   `json:"status"`
+	ProgramID   string   `json:"programId"`
+	TenantID    *string  `json:"tenantId"`
+	Links       []Links  `json:"links"`
+	Clicks      *float64 `default:"0" json:"clicks"`
+	Leads       *float64 `default:"0" json:"leads"`
+	Sales       *float64 `default:"0" json:"sales"`
+	SaleAmount  *float64 `default:"0" json:"saleAmount"`
+	Earnings    *float64 `default:"0" json:"earnings"`
 }
 
 func (c CreatePartnerResponseBody) MarshalJSON() ([]byte, error) {
@@ -1528,39 +1422,18 @@ func (o *CreatePartnerResponseBody) GetImage() *string {
 	return o.Image
 }
 
+func (o *CreatePartnerResponseBody) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
 func (o *CreatePartnerResponseBody) GetCountry() string {
 	if o == nil {
 		return ""
 	}
 	return o.Country
-}
-
-func (o *CreatePartnerResponseBody) GetBio() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Bio
-}
-
-func (o *CreatePartnerResponseBody) GetStripeConnectID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.StripeConnectID
-}
-
-func (o *CreatePartnerResponseBody) GetCouponID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CouponID
-}
-
-func (o *CreatePartnerResponseBody) GetPayoutsEnabled() bool {
-	if o == nil {
-		return false
-	}
-	return o.PayoutsEnabled
 }
 
 func (o *CreatePartnerResponseBody) GetCreatedAt() string {
@@ -1570,13 +1443,6 @@ func (o *CreatePartnerResponseBody) GetCreatedAt() string {
 	return o.CreatedAt
 }
 
-func (o *CreatePartnerResponseBody) GetUpdatedAt() string {
-	if o == nil {
-		return ""
-	}
-	return o.UpdatedAt
-}
-
 func (o *CreatePartnerResponseBody) GetStatus() Status {
 	if o == nil {
 		return Status("")
@@ -1584,32 +1450,25 @@ func (o *CreatePartnerResponseBody) GetStatus() Status {
 	return o.Status
 }
 
+func (o *CreatePartnerResponseBody) GetProgramID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ProgramID
+}
+
+func (o *CreatePartnerResponseBody) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
+}
+
 func (o *CreatePartnerResponseBody) GetLinks() []Links {
 	if o == nil {
 		return nil
 	}
 	return o.Links
-}
-
-func (o *CreatePartnerResponseBody) GetDiscount() *CreatePartnerDiscount {
-	if o == nil {
-		return nil
-	}
-	return o.Discount
-}
-
-func (o *CreatePartnerResponseBody) GetCommissionAmount() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.CommissionAmount
-}
-
-func (o *CreatePartnerResponseBody) GetEarnings() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.Earnings
 }
 
 func (o *CreatePartnerResponseBody) GetClicks() *float64 {
@@ -1633,9 +1492,16 @@ func (o *CreatePartnerResponseBody) GetSales() *float64 {
 	return o.Sales
 }
 
-func (o *CreatePartnerResponseBody) GetSalesAmount() *float64 {
+func (o *CreatePartnerResponseBody) GetSaleAmount() *float64 {
 	if o == nil {
 		return nil
 	}
-	return o.SalesAmount
+	return o.SaleAmount
+}
+
+func (o *CreatePartnerResponseBody) GetEarnings() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Earnings
 }
