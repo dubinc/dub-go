@@ -57,6 +57,8 @@ type TrackSaleRequestBody struct {
 	Currency *string `default:"usd" json:"currency"`
 	// Additional metadata to be stored with the sale event.
 	Metadata map[string]any `json:"metadata,omitempty"`
+	// The name of the lead event that occurred before the sale.
+	LeadEventName *string `default:"null" json:"leadEventName"`
 }
 
 func (t TrackSaleRequestBody) MarshalJSON() ([]byte, error) {
@@ -124,6 +126,13 @@ func (o *TrackSaleRequestBody) GetMetadata() map[string]any {
 		return nil
 	}
 	return o.Metadata
+}
+
+func (o *TrackSaleRequestBody) GetLeadEventName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LeadEventName
 }
 
 type TrackSaleCustomer struct {
