@@ -57,7 +57,7 @@ type TrackSaleRequestBody struct {
 	Currency *string `default:"usd" json:"currency"`
 	// Additional metadata to be stored with the sale event.
 	Metadata map[string]any `json:"metadata,omitempty"`
-	// The name of the lead event that occurred before the sale.
+	// The name of the lead event that occurred before the sale (case-sensitive).
 	LeadEventName *string `default:"null" json:"leadEventName"`
 }
 

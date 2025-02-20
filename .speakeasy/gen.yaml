@@ -7,6 +7,7 @@ generation:
   useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: true
+    nameResolutionFeb2025: false
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
     securityFeb2025: false
@@ -14,7 +15,7 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
 go:
-  version: 0.14.4
+  version: 0.14.5
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: true
   clientServerStatusCodesAsErrors: true
