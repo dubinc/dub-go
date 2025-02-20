@@ -779,6 +779,29 @@ func (e *Country) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type Region string
+
+const (
+	RegionWildcard Region = "*"
+)
+
+func (e Region) ToPointer() *Region {
+	return &e
+}
+func (e *Region) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "*":
+		*e = Region(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Region: %v", v)
+	}
+}
+
 type City string
 
 const (
@@ -805,6 +828,7 @@ func (e *City) UnmarshalJSON(data []byte) error {
 type AnalyticsCountries struct {
 	// The 2-letter ISO 3166-1 country code for the country associated with the location of the user. Learn more: https://d.to/geo
 	Country Country `json:"country"`
+	Region  *Region `default:"*" json:"region"`
 	City    *City   `default:"*" json:"city"`
 	// The number of clicks from this country
 	Clicks *float64 `default:"0" json:"clicks"`
@@ -832,6 +856,13 @@ func (o *AnalyticsCountries) GetCountry() Country {
 		return Country("")
 	}
 	return o.Country
+}
+
+func (o *AnalyticsCountries) GetRegion() *Region {
+	if o == nil {
+		return nil
+	}
+	return o.Region
 }
 
 func (o *AnalyticsCountries) GetCity() *City {

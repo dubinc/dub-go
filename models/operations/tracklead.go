@@ -7,10 +7,12 @@ import (
 )
 
 type TrackLeadRequestBody struct {
-	// The ID of the click in th Dub. You can read this value from `dub_id` cookie.
+	// The ID of the click in Dub. You can read this value from `dub_id` cookie.
 	ClickID string `json:"clickId"`
-	// The name of the event to track.
+	// The name of the lead event to track.
 	EventName string `json:"eventName"`
+	// The numerical value associated with this lead event (e.g., number of provisioned seats in a free trial). If defined as N, the lead event will be tracked N times.
+	EventQuantity *float64 `json:"eventQuantity,omitempty"`
 	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
 	ExternalID *string `default:"" json:"externalId"`
 	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
@@ -50,6 +52,13 @@ func (o *TrackLeadRequestBody) GetEventName() string {
 		return ""
 	}
 	return o.EventName
+}
+
+func (o *TrackLeadRequestBody) GetEventQuantity() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.EventQuantity
 }
 
 func (o *TrackLeadRequestBody) GetExternalID() *string {

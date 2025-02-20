@@ -593,6 +593,7 @@ const (
 	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTimeseries  RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsTimeseries"
 	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsContinents  RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsContinents"
 	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCountries   RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsCountries"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsRegions     RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsRegions"
 	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCities      RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsCities"
 	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsDevices     RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsDevices"
 	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsBrowsers    RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsBrowsers"
@@ -610,6 +611,7 @@ type RetrieveAnalyticsResponseBody struct {
 	ArrayOfAnalyticsTimeseries  []components.AnalyticsTimeseries  `queryParam:"inline"`
 	ArrayOfAnalyticsContinents  []components.AnalyticsContinents  `queryParam:"inline"`
 	ArrayOfAnalyticsCountries   []components.AnalyticsCountries   `queryParam:"inline"`
+	ArrayOfAnalyticsRegions     []components.AnalyticsRegions     `queryParam:"inline"`
 	ArrayOfAnalyticsCities      []components.AnalyticsCities      `queryParam:"inline"`
 	ArrayOfAnalyticsDevices     []components.AnalyticsDevices     `queryParam:"inline"`
 	ArrayOfAnalyticsBrowsers    []components.AnalyticsBrowsers    `queryParam:"inline"`
@@ -656,6 +658,15 @@ func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsCountries(arrayOfAnalyti
 	return RetrieveAnalyticsResponseBody{
 		ArrayOfAnalyticsCountries: arrayOfAnalyticsCountries,
 		Type:                      typ,
+	}
+}
+
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsRegions(arrayOfAnalyticsRegions []components.AnalyticsRegions) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsRegions
+
+	return RetrieveAnalyticsResponseBody{
+		ArrayOfAnalyticsRegions: arrayOfAnalyticsRegions,
+		Type:                    typ,
 	}
 }
 
@@ -770,6 +781,13 @@ func (u *RetrieveAnalyticsResponseBody) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var arrayOfAnalyticsRegions []components.AnalyticsRegions = []components.AnalyticsRegions{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsRegions, "", true, false); err == nil {
+		u.ArrayOfAnalyticsRegions = arrayOfAnalyticsRegions
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsRegions
+		return nil
+	}
+
 	var arrayOfAnalyticsCities []components.AnalyticsCities = []components.AnalyticsCities{}
 	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsCities, "", true, false); err == nil {
 		u.ArrayOfAnalyticsCities = arrayOfAnalyticsCities
@@ -851,6 +869,10 @@ func (u RetrieveAnalyticsResponseBody) MarshalJSON() ([]byte, error) {
 
 	if u.ArrayOfAnalyticsCountries != nil {
 		return utils.MarshalJSON(u.ArrayOfAnalyticsCountries, "", true)
+	}
+
+	if u.ArrayOfAnalyticsRegions != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsRegions, "", true)
 	}
 
 	if u.ArrayOfAnalyticsCities != nil {

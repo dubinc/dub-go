@@ -32,6 +32,12 @@ retrieveAnalyticsResponseBody := operations.CreateRetrieveAnalyticsResponseBodyA
 ### 
 
 ```go
+retrieveAnalyticsResponseBody := operations.CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsRegions([]components.AnalyticsRegions{/* values here */})
+```
+
+### 
+
+```go
 retrieveAnalyticsResponseBody := operations.CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsCities([]components.AnalyticsCities{/* values here */})
 ```
 
