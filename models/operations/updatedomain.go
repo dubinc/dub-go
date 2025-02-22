@@ -19,6 +19,10 @@ type UpdateDomainRequestBody struct {
 	Placeholder *string `json:"placeholder,omitempty"`
 	// The logo of the domain.
 	Logo *string `json:"logo,omitempty"`
+	// assetLinks.json configuration file (for deep link support on Android).
+	AssetLinks *string `json:"assetLinks,omitempty"`
+	// apple-app-site-association configuration file (for deep link support on iOS).
+	AppleAppSiteAssociation *string `json:"appleAppSiteAssociation,omitempty"`
 }
 
 func (u UpdateDomainRequestBody) MarshalJSON() ([]byte, error) {
@@ -72,6 +76,20 @@ func (o *UpdateDomainRequestBody) GetLogo() *string {
 		return nil
 	}
 	return o.Logo
+}
+
+func (o *UpdateDomainRequestBody) GetAssetLinks() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AssetLinks
+}
+
+func (o *UpdateDomainRequestBody) GetAppleAppSiteAssociation() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AppleAppSiteAssociation
 }
 
 type UpdateDomainRequest struct {
