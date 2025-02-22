@@ -1370,7 +1370,7 @@ type CreatePartnerResponseBody struct {
 	Email          *string  `json:"email"`
 	Image          *string  `json:"image"`
 	Description    *string  `json:"description,omitempty"`
-	Country        string   `json:"country"`
+	Country        *string  `json:"country"`
 	PayoutsEnabled bool     `json:"payoutsEnabled"`
 	CreatedAt      string   `json:"createdAt"`
 	Status         Status   `json:"status"`
@@ -1430,9 +1430,9 @@ func (o *CreatePartnerResponseBody) GetDescription() *string {
 	return o.Description
 }
 
-func (o *CreatePartnerResponseBody) GetCountry() string {
+func (o *CreatePartnerResponseBody) GetCountry() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Country
 }

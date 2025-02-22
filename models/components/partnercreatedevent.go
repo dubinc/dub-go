@@ -161,7 +161,7 @@ type PartnerCreatedEventData struct {
 	Email          *string  `json:"email"`
 	Image          *string  `json:"image"`
 	Description    *string  `json:"description,omitempty"`
-	Country        string   `json:"country"`
+	Country        *string  `json:"country"`
 	PayoutsEnabled bool     `json:"payoutsEnabled"`
 	CreatedAt      string   `json:"createdAt"`
 	Status         Status   `json:"status"`
@@ -221,9 +221,9 @@ func (o *PartnerCreatedEventData) GetDescription() *string {
 	return o.Description
 }
 
-func (o *PartnerCreatedEventData) GetCountry() string {
+func (o *PartnerCreatedEventData) GetCountry() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Country
 }
