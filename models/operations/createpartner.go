@@ -1382,6 +1382,7 @@ type CreatePartnerResponseBody struct {
 	Sales          *float64 `default:"0" json:"sales"`
 	SaleAmount     *float64 `default:"0" json:"saleAmount"`
 	Earnings       *float64 `default:"0" json:"earnings"`
+	ApplicationID  *string  `json:"applicationId,omitempty"`
 }
 
 func (c CreatePartnerResponseBody) MarshalJSON() ([]byte, error) {
@@ -1512,4 +1513,11 @@ func (o *CreatePartnerResponseBody) GetEarnings() *float64 {
 		return nil
 	}
 	return o.Earnings
+}
+
+func (o *CreatePartnerResponseBody) GetApplicationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ApplicationID
 }

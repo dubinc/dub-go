@@ -24,3 +24,4 @@ The created partner
 | `Sales`                                                | **float64*                                             | :heavy_minus_sign:                                     | N/A                                                    |
 | `SaleAmount`                                           | **float64*                                             | :heavy_minus_sign:                                     | N/A                                                    |
 | `Earnings`                                             | **float64*                                             | :heavy_minus_sign:                                     | N/A                                                    |
+| `ApplicationID`                                        | **string*                                              | :heavy_minus_sign:                                     | N/A                                                    |
