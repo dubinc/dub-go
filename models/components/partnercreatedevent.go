@@ -173,6 +173,7 @@ type PartnerCreatedEventData struct {
 	Sales          *float64 `default:"0" json:"sales"`
 	SaleAmount     *float64 `default:"0" json:"saleAmount"`
 	Earnings       *float64 `default:"0" json:"earnings"`
+	ApplicationID  *string  `json:"applicationId,omitempty"`
 }
 
 func (p PartnerCreatedEventData) MarshalJSON() ([]byte, error) {
@@ -303,6 +304,13 @@ func (o *PartnerCreatedEventData) GetEarnings() *float64 {
 		return nil
 	}
 	return o.Earnings
+}
+
+func (o *PartnerCreatedEventData) GetApplicationID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ApplicationID
 }
 
 // PartnerCreatedEvent - Triggered when a partner is created.
