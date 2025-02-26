@@ -394,6 +394,8 @@ type CreatePartnerLinkRequestBody struct {
 	URL *string `json:"url,omitempty"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key *string `json:"key,omitempty"`
+	// The comments for the short link.
+	Comments *string `json:"comments,omitempty"`
 	// Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
 	LinkProps *CreatePartnerLinkLinkProps `json:"linkProps,omitempty"`
 }
@@ -431,6 +433,13 @@ func (o *CreatePartnerLinkRequestBody) GetKey() *string {
 		return nil
 	}
 	return o.Key
+}
+
+func (o *CreatePartnerLinkRequestBody) GetComments() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Comments
 }
 
 func (o *CreatePartnerLinkRequestBody) GetLinkProps() *CreatePartnerLinkLinkProps {
