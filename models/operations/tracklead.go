@@ -3,8 +3,37 @@
 package operations
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/dubinc/dub-go/internal/utils"
 )
+
+// Mode - The mode to use for tracking the lead event. `async` will not block the request; `wait` will block the request until the lead event is fully recorded in Dub.
+type Mode string
+
+const (
+	ModeAsync Mode = "async"
+	ModeWait  Mode = "wait"
+)
+
+func (e Mode) ToPointer() *Mode {
+	return &e
+}
+func (e *Mode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "async":
+		fallthrough
+	case "wait":
+		*e = Mode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Mode: %v", v)
+	}
+}
 
 type TrackLeadRequestBody struct {
 	// The ID of the click in Dub. You can read this value from `dub_id` cookie.
@@ -27,6 +56,8 @@ type TrackLeadRequestBody struct {
 	CustomerAvatar *string `default:"null" json:"customerAvatar"`
 	// Additional metadata to be stored with the lead event
 	Metadata map[string]any `json:"metadata,omitempty"`
+	// The mode to use for tracking the lead event. `async` will not block the request; `wait` will block the request until the lead event is fully recorded in Dub.
+	Mode *Mode `default:"async" json:"mode"`
 }
 
 func (t TrackLeadRequestBody) MarshalJSON() ([]byte, error) {
@@ -101,6 +132,13 @@ func (o *TrackLeadRequestBody) GetMetadata() map[string]any {
 		return nil
 	}
 	return o.Metadata
+}
+
+func (o *TrackLeadRequestBody) GetMode() *Mode {
+	if o == nil {
+		return nil
+	}
+	return o.Mode
 }
 
 type Click struct {

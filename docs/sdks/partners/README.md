@@ -27,8 +27,9 @@ import(
 )
 
 func main() {
-    ctx := context.Background()
-    
+ctx := context.Background()
+
+
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
@@ -100,8 +101,9 @@ import(
 )
 
 func main() {
-    ctx := context.Background()
-    
+ctx := context.Background()
+
+
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
@@ -171,8 +173,9 @@ import(
 )
 
 func main() {
-    ctx := context.Background()
-    
+ctx := context.Background()
+
+
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
@@ -242,8 +245,9 @@ import(
 )
 
 func main() {
-    ctx := context.Background()
-    
+ctx := context.Background()
+
+
     s := dubgo.New(
         dubgo.WithSecurity("DUB_API_KEY"),
     )
