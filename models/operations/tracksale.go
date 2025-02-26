@@ -14,7 +14,9 @@ type PaymentProcessor string
 const (
 	PaymentProcessorStripe  PaymentProcessor = "stripe"
 	PaymentProcessorShopify PaymentProcessor = "shopify"
+	PaymentProcessorPolar   PaymentProcessor = "polar"
 	PaymentProcessorPaddle  PaymentProcessor = "paddle"
+	PaymentProcessorCustom  PaymentProcessor = "custom"
 )
 
 func (e PaymentProcessor) ToPointer() *PaymentProcessor {
@@ -30,7 +32,11 @@ func (e *PaymentProcessor) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "shopify":
 		fallthrough
+	case "polar":
+		fallthrough
 	case "paddle":
+		fallthrough
+	case "custom":
 		*e = PaymentProcessor(v)
 		return nil
 	default:
@@ -51,7 +57,7 @@ type TrackSaleRequestBody struct {
 	PaymentProcessor PaymentProcessor `json:"paymentProcessor"`
 	// The name of the sale event. It can be used to track different types of event for example 'Purchase', 'Upgrade', 'Payment', etc.
 	EventName *string `default:"Purchase" json:"eventName"`
-	// The invoice ID of the sale.
+	// The invoice ID of the sale. Can be used as a idempotency key – only one sale event can be recorded for a given invoice ID.
 	InvoiceID *string `default:"null" json:"invoiceId"`
 	// The currency of the sale. Accepts ISO 4217 currency codes.
 	Currency *string `default:"usd" json:"currency"`

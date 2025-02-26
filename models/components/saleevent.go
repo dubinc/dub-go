@@ -2859,7 +2859,9 @@ type PaymentProcessor string
 const (
 	PaymentProcessorStripe  PaymentProcessor = "stripe"
 	PaymentProcessorShopify PaymentProcessor = "shopify"
+	PaymentProcessorPolar   PaymentProcessor = "polar"
 	PaymentProcessorPaddle  PaymentProcessor = "paddle"
+	PaymentProcessorCustom  PaymentProcessor = "custom"
 )
 
 func (e PaymentProcessor) ToPointer() *PaymentProcessor {
@@ -2875,7 +2877,11 @@ func (e *PaymentProcessor) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "shopify":
 		fallthrough
+	case "polar":
+		fallthrough
 	case "paddle":
+		fallthrough
+	case "custom":
 		*e = PaymentProcessor(v)
 		return nil
 	default:
@@ -2886,7 +2892,7 @@ func (e *PaymentProcessor) UnmarshalJSON(data []byte) error {
 type Sale struct {
 	// The amount of the sale. Should be passed in cents.
 	Amount int64 `json:"amount"`
-	// The invoice ID of the sale.
+	// The invoice ID of the sale. Can be used as a idempotency key – only one sale event can be recorded for a given invoice ID.
 	InvoiceID *string `default:"null" json:"invoiceId"`
 	// The payment processor via which the sale was made.
 	PaymentProcessor PaymentProcessor `json:"paymentProcessor"`
