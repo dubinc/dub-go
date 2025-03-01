@@ -343,7 +343,7 @@ type GetLinksCountRequest struct {
 	// Deprecated. Use `tagIds` instead. The tag ID to filter the links by.
 	TagID *string `queryParam:"style=form,explode=true,name=tagId"`
 	// The tag IDs to filter the links by.
-	TagIds *GetLinksCountQueryParamTagIds `queryParam:"style=form,explode=true,name=tagIds"`
+	TagIds *GetLinksCountQueryParamTagIds `queryParam:"style=form,explode=false,name=tagIds"`
 	// The unique name of the tags assigned to the short link (case insensitive).
 	TagNames *GetLinksCountQueryParamTagNames `queryParam:"style=form,explode=true,name=tagNames"`
 	// The folder ID to filter the links by.
