@@ -2,9 +2,30 @@
 
 package operations
 
+import (
+	"github.com/dubinc/dub-go/internal/utils"
+)
+
 type ListFoldersRequest struct {
 	// The search term to filter the folders by.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
+	// Whether to include the link count in the response.
+	IncludeLinkCount *bool `queryParam:"style=form,explode=true,name=includeLinkCount"`
+	// The page number for pagination.
+	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	// The number of items per page.
+	PageSize *float64 `default:"50" queryParam:"style=form,explode=true,name=pageSize"`
+}
+
+func (l ListFoldersRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListFoldersRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ListFoldersRequest) GetSearch() *string {
@@ -12,4 +33,25 @@ func (o *ListFoldersRequest) GetSearch() *string {
 		return nil
 	}
 	return o.Search
+}
+
+func (o *ListFoldersRequest) GetIncludeLinkCount() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IncludeLinkCount
+}
+
+func (o *ListFoldersRequest) GetPage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *ListFoldersRequest) GetPageSize() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
 }
