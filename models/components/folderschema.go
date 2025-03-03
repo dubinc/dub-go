@@ -8,6 +8,32 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
+type Type string
+
+const (
+	TypeDefault Type = "default"
+	TypeMega    Type = "mega"
+)
+
+func (e Type) ToPointer() *Type {
+	return &e
+}
+func (e *Type) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "default":
+		fallthrough
+	case "mega":
+		*e = Type(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Type: %v", v)
+	}
+}
+
 // AccessLevel - The access level of the folder within the workspace.
 type AccessLevel string
 
@@ -40,6 +66,7 @@ type FolderSchema struct {
 	ID string `json:"id"`
 	// The name of the folder.
 	Name string `json:"name"`
+	Type Type   `json:"type"`
 	// The access level of the folder within the workspace.
 	AccessLevel *AccessLevel `default:"null" json:"accessLevel"`
 	// The number of links in the folder.
@@ -73,6 +100,13 @@ func (o *FolderSchema) GetName() string {
 		return ""
 	}
 	return o.Name
+}
+
+func (o *FolderSchema) GetType() Type {
+	if o == nil {
+		return Type("")
+	}
+	return o.Type
 }
 
 func (o *FolderSchema) GetAccessLevel() *AccessLevel {
