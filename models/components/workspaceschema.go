@@ -151,6 +151,8 @@ type WorkspaceSchema struct {
 	PaymentFailedAt *string `json:"paymentFailedAt"`
 	// The Stripe Connect ID of the workspace.
 	StripeConnectID *string `json:"stripeConnectId"`
+	// The total number of links in the workspace.
+	TotalLinks float64 `json:"totalLinks"`
 	// The usage of the workspace.
 	Usage float64 `json:"usage"`
 	// The usage limit of the workspace.
@@ -276,6 +278,13 @@ func (o *WorkspaceSchema) GetStripeConnectID() *string {
 		return nil
 	}
 	return o.StripeConnectID
+}
+
+func (o *WorkspaceSchema) GetTotalLinks() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalLinks
 }
 
 func (o *WorkspaceSchema) GetUsage() float64 {

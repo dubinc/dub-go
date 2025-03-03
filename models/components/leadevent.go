@@ -2652,17 +2652,17 @@ func (o *Partner) GetImage() *string {
 	return o.Image
 }
 
-type Type string
+type LeadEventType string
 
 const (
-	TypePercentage Type = "percentage"
-	TypeFlat       Type = "flat"
+	LeadEventTypePercentage LeadEventType = "percentage"
+	LeadEventTypeFlat       LeadEventType = "flat"
 )
 
-func (e Type) ToPointer() *Type {
+func (e LeadEventType) ToPointer() *LeadEventType {
 	return &e
 }
-func (e *Type) UnmarshalJSON(data []byte) error {
+func (e *LeadEventType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -2671,10 +2671,10 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	case "percentage":
 		fallthrough
 	case "flat":
-		*e = Type(v)
+		*e = LeadEventType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Type: %v", v)
+		return fmt.Errorf("invalid value for LeadEventType: %v", v)
 	}
 }
 
@@ -2705,13 +2705,13 @@ func (e *Interval) UnmarshalJSON(data []byte) error {
 }
 
 type Discount struct {
-	ID           string    `json:"id"`
-	CouponID     *string   `json:"couponId"`
-	CouponTestID *string   `json:"couponTestId"`
-	Amount       float64   `json:"amount"`
-	Type         Type      `json:"type"`
-	Duration     *float64  `json:"duration"`
-	Interval     *Interval `json:"interval"`
+	ID           string        `json:"id"`
+	CouponID     *string       `json:"couponId"`
+	CouponTestID *string       `json:"couponTestId"`
+	Amount       float64       `json:"amount"`
+	Type         LeadEventType `json:"type"`
+	Duration     *float64      `json:"duration"`
+	Interval     *Interval     `json:"interval"`
 }
 
 func (o *Discount) GetID() string {
@@ -2742,9 +2742,9 @@ func (o *Discount) GetAmount() float64 {
 	return o.Amount
 }
 
-func (o *Discount) GetType() Type {
+func (o *Discount) GetType() LeadEventType {
 	if o == nil {
-		return Type("")
+		return LeadEventType("")
 	}
 	return o.Type
 }
