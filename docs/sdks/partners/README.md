@@ -38,7 +38,7 @@ func main() {
         ProgramID: "<id>",
         Name: "<value>",
         Email: "Loyal79@yahoo.com",
-        Username: "Aaliyah_Borer",
+        Username: dubgo.String("Aaliyah_Borer"),
         LinkProps: &operations.LinkProps{
             ExternalID: dubgo.String("123456"),
             TagIds: dubgo.Pointer(operations.CreateCreatePartnerTagIdsArrayOfStr(

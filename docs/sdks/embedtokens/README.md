@@ -5,11 +5,11 @@
 
 ### Available Operations
 
-* [Create](#create) - Create a new embed token
+* [Referrals](#referrals) - Create a new referrals embed token
 
-## Create
+## Referrals
 
-Create a new embed token for the referral link.
+Create a new referrals embed token for the given partner/tenant.
 
 ### Example Usage
 
@@ -19,6 +19,7 @@ package main
 import(
 	"context"
 	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -29,7 +30,21 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.EmbedTokens.Create(ctx, nil)
+    res, err := s.EmbedTokens.Referrals(ctx, &operations.CreateReferralsEmbedTokenRequestBody{
+        ProgramID: "<id>",
+        Partner: &operations.Partner{
+            Name: "<value>",
+            Email: "Florencio98@hotmail.com",
+            LinkProps: &operations.CreateReferralsEmbedTokenLinkProps{
+                ExternalID: dubgo.String("123456"),
+                TagIds: dubgo.Pointer(operations.CreateCreateReferralsEmbedTokenTagIdsArrayOfStr(
+                    []string{
+                        "clux0rgak00011...",
+                    },
+                )),
+            },
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -41,15 +56,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [operations.CreateEmbedTokenRequestBody](../../models/operations/createembedtokenrequestbody.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |
+| `request`                                                                                                          | [operations.CreateReferralsEmbedTokenRequestBody](../../models/operations/createreferralsembedtokenrequestbody.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
+| `opts`                                                                                                             | [][operations.Option](../../models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |
 
 ### Response
 
-**[*operations.CreateEmbedTokenResponseBody](../../models/operations/createembedtokenresponsebody.md), error**
+**[*operations.CreateReferralsEmbedTokenResponseBody](../../models/operations/createreferralsembedtokenresponsebody.md), error**
 
 ### Errors
 

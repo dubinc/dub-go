@@ -142,8 +142,6 @@ type CreatePartnerLinkLinkProps struct {
 	ExternalID *string `json:"externalId,omitempty"`
 	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
 	TenantID *string `json:"tenantId,omitempty"`
-	// The ID of the partner the short link is associated with.
-	PartnerID *string `json:"partnerId,omitempty"`
 	// The prefix of the short link slug for randomly-generated keys (e.g. if prefix is `/c/`, generated keys will be in the `/c/:key` format). Will be ignored if `key` is provided.
 	Prefix *string `json:"prefix,omitempty"`
 	// Whether the short link is archived. Defaults to `false` if not provided.
@@ -206,13 +204,6 @@ func (o *CreatePartnerLinkLinkProps) GetTenantID() *string {
 		return nil
 	}
 	return o.TenantID
-}
-
-func (o *CreatePartnerLinkLinkProps) GetPartnerID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PartnerID
 }
 
 func (o *CreatePartnerLinkLinkProps) GetPrefix() *string {

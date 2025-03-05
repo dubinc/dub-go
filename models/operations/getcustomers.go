@@ -85,35 +85,35 @@ func (o *Link) GetProgramID() *string {
 	return o.ProgramID
 }
 
-type Partner struct {
+type GetCustomersPartner struct {
 	ID    string  `json:"id"`
 	Name  string  `json:"name"`
 	Email string  `json:"email"`
 	Image *string `json:"image,omitempty"`
 }
 
-func (o *Partner) GetID() string {
+func (o *GetCustomersPartner) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *Partner) GetName() string {
+func (o *GetCustomersPartner) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *Partner) GetEmail() string {
+func (o *GetCustomersPartner) GetEmail() string {
 	if o == nil {
 		return ""
 	}
 	return o.Email
 }
 
-func (o *Partner) GetImage() *string {
+func (o *GetCustomersPartner) GetImage() *string {
 	if o == nil {
 		return nil
 	}
@@ -245,10 +245,10 @@ type GetCustomersResponseBody struct {
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
 	// The date the customer was created.
-	CreatedAt string    `json:"createdAt"`
-	Link      *Link     `json:"link,omitempty"`
-	Partner   *Partner  `json:"partner,omitempty"`
-	Discount  *Discount `json:"discount,omitempty"`
+	CreatedAt string               `json:"createdAt"`
+	Link      *Link                `json:"link,omitempty"`
+	Partner   *GetCustomersPartner `json:"partner,omitempty"`
+	Discount  *Discount            `json:"discount,omitempty"`
 }
 
 func (o *GetCustomersResponseBody) GetID() string {
@@ -307,7 +307,7 @@ func (o *GetCustomersResponseBody) GetLink() *Link {
 	return o.Link
 }
 
-func (o *GetCustomersResponseBody) GetPartner() *Partner {
+func (o *GetCustomersResponseBody) GetPartner() *GetCustomersPartner {
 	if o == nil {
 		return nil
 	}

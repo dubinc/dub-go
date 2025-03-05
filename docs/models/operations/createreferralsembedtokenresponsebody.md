@@ -1,4 +1,4 @@
-# CreateEmbedTokenResponseBody
+# CreateReferralsEmbedTokenResponseBody
 
 The created public embed token.
 

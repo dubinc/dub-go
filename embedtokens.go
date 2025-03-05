@@ -25,9 +25,9 @@ func newEmbedTokens(sdkConfig sdkConfiguration) *EmbedTokens {
 	}
 }
 
-// Create a new embed token
-// Create a new embed token for the referral link.
-func (s *EmbedTokens) Create(ctx context.Context, request *operations.CreateEmbedTokenRequestBody, opts ...operations.Option) (*operations.CreateEmbedTokenResponseBody, error) {
+// Referrals - Create a new referrals embed token
+// Create a new referrals embed token for the given partner/tenant.
+func (s *EmbedTokens) Referrals(ctx context.Context, request *operations.CreateReferralsEmbedTokenRequestBody, opts ...operations.Option) (*operations.CreateReferralsEmbedTokenResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -46,7 +46,7 @@ func (s *EmbedTokens) Create(ctx context.Context, request *operations.CreateEmbe
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/tokens/embed")
+	opURL, err := url.JoinPath(baseURL, "/tokens/embed/referrals")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -54,7 +54,7 @@ func (s *EmbedTokens) Create(ctx context.Context, request *operations.CreateEmbe
 	hookCtx := hooks.HookContext{
 		BaseURL:        baseURL,
 		Context:        ctx,
-		OperationID:    "createEmbedToken",
+		OperationID:    "createReferralsEmbedToken",
 		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
@@ -190,7 +190,7 @@ func (s *EmbedTokens) Create(ctx context.Context, request *operations.CreateEmbe
 				return nil, err
 			}
 
-			var out operations.CreateEmbedTokenResponseBody
+			var out operations.CreateReferralsEmbedTokenResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

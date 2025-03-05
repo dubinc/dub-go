@@ -914,8 +914,6 @@ type LinkProps struct {
 	ExternalID *string `json:"externalId,omitempty"`
 	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
 	TenantID *string `json:"tenantId,omitempty"`
-	// The ID of the partner the short link is associated with.
-	PartnerID *string `json:"partnerId,omitempty"`
 	// The prefix of the short link slug for randomly-generated keys (e.g. if prefix is `/c/`, generated keys will be in the `/c/:key` format). Will be ignored if `key` is provided.
 	Prefix *string `json:"prefix,omitempty"`
 	// Whether the short link is archived. Defaults to `false` if not provided.
@@ -978,13 +976,6 @@ func (o *LinkProps) GetTenantID() *string {
 		return nil
 	}
 	return o.TenantID
-}
-
-func (o *LinkProps) GetPartnerID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PartnerID
 }
 
 func (o *LinkProps) GetPrefix() *string {
@@ -1162,8 +1153,8 @@ type CreatePartnerRequestBody struct {
 	Name string `json:"name"`
 	// Email for the partner in your system. Partners will be able to claim their profile by signing up to Dub Partners with this email.
 	Email string `json:"email"`
-	// A unique username for the partner in your system. This will be used to create a short link for the partner using your program's default domain.
-	Username string `json:"username"`
+	// A unique username for the partner in your system (max 100 characters). This will be used to create a short link for the partner using your program's default domain. If not provided, Dub will try to generate a username from the partner's name or email.
+	Username *string `json:"username,omitempty"`
 	// Avatar image for the partner – if not provided, a default avatar will be used.
 	Image *string `json:"image,omitempty"`
 	// Country where the partner is based.
@@ -1197,9 +1188,9 @@ func (o *CreatePartnerRequestBody) GetEmail() string {
 	return o.Email
 }
 
-func (o *CreatePartnerRequestBody) GetUsername() string {
+func (o *CreatePartnerRequestBody) GetUsername() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Username
 }
