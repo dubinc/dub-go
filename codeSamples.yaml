@@ -158,7 +158,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "createPartner"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.Create(ctx, &operations.CreatePartnerRequestBody{\n        ProgramID: \"<id>\",\n        Name: \"<value>\",\n        Email: \"Loyal79@yahoo.com\",\n        Username: \"Aaliyah_Borer\",\n        LinkProps: &operations.LinkProps{\n            ExternalID: dubgo.String(\"123456\"),\n            TagIds: dubgo.Pointer(operations.CreateCreatePartnerTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n            )),\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.Create(ctx, &operations.CreatePartnerRequestBody{\n        ProgramID: \"<id>\",\n        Name: \"<value>\",\n        Email: \"Loyal79@yahoo.com\",\n        LinkProps: &operations.LinkProps{\n            ExternalID: dubgo.String(\"123456\"),\n            TagIds: dubgo.Pointer(operations.CreateCreatePartnerTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n            )),\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/partners/analytics"]["get"]
     update:
       "x-codeSamples":
@@ -213,12 +213,12 @@ actions:
         - "lang": "go"
           "label": "updateTag"
           "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Tags.Update(ctx, \"<id>\", nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/tokens/embed"]["post"]
+  - target: $["paths"]["/tokens/embed/referrals"]["post"]
     update:
       "x-codeSamples":
         - "lang": "go"
-          "label": "createEmbedToken"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.EmbedTokens.Create(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "label": "createReferralsEmbedToken"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.EmbedTokens.Referrals(ctx, &operations.CreateReferralsEmbedTokenRequestBody{\n        ProgramID: \"<id>\",\n        Partner: &operations.Partner{\n            Name: \"<value>\",\n            Email: \"Florencio98@hotmail.com\",\n            LinkProps: &operations.CreateReferralsEmbedTokenLinkProps{\n                ExternalID: dubgo.String(\"123456\"),\n                TagIds: dubgo.Pointer(operations.CreateCreateReferralsEmbedTokenTagIdsArrayOfStr(\n                    []string{\n                        \"clux0rgak00011...\",\n                    },\n                )),\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/track/lead"]["post"]
     update:
       "x-codeSamples":

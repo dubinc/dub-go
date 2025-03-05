@@ -14,16 +14,15 @@ import (
 type RetrievePartnerAnalyticsQueryParamInterval string
 
 const (
-	RetrievePartnerAnalyticsQueryParamIntervalTwentyFourh   RetrievePartnerAnalyticsQueryParamInterval = "24h"
-	RetrievePartnerAnalyticsQueryParamIntervalSevend        RetrievePartnerAnalyticsQueryParamInterval = "7d"
-	RetrievePartnerAnalyticsQueryParamIntervalThirtyd       RetrievePartnerAnalyticsQueryParamInterval = "30d"
-	RetrievePartnerAnalyticsQueryParamIntervalNinetyd       RetrievePartnerAnalyticsQueryParamInterval = "90d"
-	RetrievePartnerAnalyticsQueryParamIntervalOney          RetrievePartnerAnalyticsQueryParamInterval = "1y"
-	RetrievePartnerAnalyticsQueryParamIntervalMtd           RetrievePartnerAnalyticsQueryParamInterval = "mtd"
-	RetrievePartnerAnalyticsQueryParamIntervalQtd           RetrievePartnerAnalyticsQueryParamInterval = "qtd"
-	RetrievePartnerAnalyticsQueryParamIntervalYtd           RetrievePartnerAnalyticsQueryParamInterval = "ytd"
-	RetrievePartnerAnalyticsQueryParamIntervalAll           RetrievePartnerAnalyticsQueryParamInterval = "all"
-	RetrievePartnerAnalyticsQueryParamIntervalAllUnfiltered RetrievePartnerAnalyticsQueryParamInterval = "all_unfiltered"
+	RetrievePartnerAnalyticsQueryParamIntervalTwentyFourh RetrievePartnerAnalyticsQueryParamInterval = "24h"
+	RetrievePartnerAnalyticsQueryParamIntervalSevend      RetrievePartnerAnalyticsQueryParamInterval = "7d"
+	RetrievePartnerAnalyticsQueryParamIntervalThirtyd     RetrievePartnerAnalyticsQueryParamInterval = "30d"
+	RetrievePartnerAnalyticsQueryParamIntervalNinetyd     RetrievePartnerAnalyticsQueryParamInterval = "90d"
+	RetrievePartnerAnalyticsQueryParamIntervalOney        RetrievePartnerAnalyticsQueryParamInterval = "1y"
+	RetrievePartnerAnalyticsQueryParamIntervalMtd         RetrievePartnerAnalyticsQueryParamInterval = "mtd"
+	RetrievePartnerAnalyticsQueryParamIntervalQtd         RetrievePartnerAnalyticsQueryParamInterval = "qtd"
+	RetrievePartnerAnalyticsQueryParamIntervalYtd         RetrievePartnerAnalyticsQueryParamInterval = "ytd"
+	RetrievePartnerAnalyticsQueryParamIntervalAll         RetrievePartnerAnalyticsQueryParamInterval = "all"
 )
 
 func (e RetrievePartnerAnalyticsQueryParamInterval) ToPointer() *RetrievePartnerAnalyticsQueryParamInterval {
@@ -52,8 +51,6 @@ func (e *RetrievePartnerAnalyticsQueryParamInterval) UnmarshalJSON(data []byte) 
 	case "ytd":
 		fallthrough
 	case "all":
-		fallthrough
-	case "all_unfiltered":
 		*e = RetrievePartnerAnalyticsQueryParamInterval(v)
 		return nil
 	default:

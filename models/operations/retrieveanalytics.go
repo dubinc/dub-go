@@ -128,16 +128,15 @@ func (e *QueryParamGroupBy) UnmarshalJSON(data []byte) error {
 type Interval string
 
 const (
-	IntervalTwentyFourh   Interval = "24h"
-	IntervalSevend        Interval = "7d"
-	IntervalThirtyd       Interval = "30d"
-	IntervalNinetyd       Interval = "90d"
-	IntervalOney          Interval = "1y"
-	IntervalMtd           Interval = "mtd"
-	IntervalQtd           Interval = "qtd"
-	IntervalYtd           Interval = "ytd"
-	IntervalAll           Interval = "all"
-	IntervalAllUnfiltered Interval = "all_unfiltered"
+	IntervalTwentyFourh Interval = "24h"
+	IntervalSevend      Interval = "7d"
+	IntervalThirtyd     Interval = "30d"
+	IntervalNinetyd     Interval = "90d"
+	IntervalOney        Interval = "1y"
+	IntervalMtd         Interval = "mtd"
+	IntervalQtd         Interval = "qtd"
+	IntervalYtd         Interval = "ytd"
+	IntervalAll         Interval = "all"
 )
 
 func (e Interval) ToPointer() *Interval {
@@ -166,8 +165,6 @@ func (e *Interval) UnmarshalJSON(data []byte) error {
 	case "ytd":
 		fallthrough
 	case "all":
-		fallthrough
-	case "all_unfiltered":
 		*e = Interval(v)
 		return nil
 	default:

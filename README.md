@@ -148,7 +148,7 @@ func main() {
 
 ### [EmbedTokens](docs/sdks/embedtokens/README.md)
 
-* [Create](docs/sdks/embedtokens/README.md#create) - Create a new embed token
+* [Referrals](docs/sdks/embedtokens/README.md#referrals) - Create a new referrals embed token
 
 ### [Events](docs/sdks/events/README.md)
 
