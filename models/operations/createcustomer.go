@@ -97,8 +97,8 @@ func (o *CreateCustomerLink) GetProgramID() *string {
 type CreateCustomerPartner struct {
 	ID    string  `json:"id"`
 	Name  string  `json:"name"`
-	Email string  `json:"email"`
-	Image *string `json:"image,omitempty"`
+	Email *string `json:"email"`
+	Image *string `json:"image"`
 }
 
 func (o *CreateCustomerPartner) GetID() string {
@@ -115,9 +115,9 @@ func (o *CreateCustomerPartner) GetName() string {
 	return o.Name
 }
 
-func (o *CreateCustomerPartner) GetEmail() string {
+func (o *CreateCustomerPartner) GetEmail() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Email
 }

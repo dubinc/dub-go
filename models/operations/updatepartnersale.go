@@ -10,8 +10,10 @@ import (
 type UpdatePartnerSaleRequestBody struct {
 	ProgramID string `json:"programId"`
 	InvoiceID string `json:"invoiceId"`
-	// The new amount for the sale.
-	Amount float64 `json:"amount"`
+	// The new absolute amount for the sale.
+	Amount *float64 `json:"amount,omitempty"`
+	// Modify the current sale amount: use positive values to increase the amount, negative values to decrease it.
+	ModifyAmount *float64 `json:"modifyAmount,omitempty"`
 }
 
 func (o *UpdatePartnerSaleRequestBody) GetProgramID() string {
@@ -28,11 +30,18 @@ func (o *UpdatePartnerSaleRequestBody) GetInvoiceID() string {
 	return o.InvoiceID
 }
 
-func (o *UpdatePartnerSaleRequestBody) GetAmount() float64 {
+func (o *UpdatePartnerSaleRequestBody) GetAmount() *float64 {
 	if o == nil {
-		return 0.0
+		return nil
 	}
 	return o.Amount
+}
+
+func (o *UpdatePartnerSaleRequestBody) GetModifyAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.ModifyAmount
 }
 
 type UpdatePartnerSaleStatus string
@@ -80,6 +89,7 @@ type UpdatePartnerSaleResponseBody struct {
 	Earnings  float64                 `json:"earnings"`
 	Currency  string                  `json:"currency"`
 	Status    UpdatePartnerSaleStatus `json:"status"`
+	InvoiceID *string                 `json:"invoiceId,omitempty"`
 	CreatedAt string                  `json:"createdAt"`
 	UpdatedAt string                  `json:"updatedAt"`
 }
@@ -117,6 +127,13 @@ func (o *UpdatePartnerSaleResponseBody) GetStatus() UpdatePartnerSaleStatus {
 		return UpdatePartnerSaleStatus("")
 	}
 	return o.Status
+}
+
+func (o *UpdatePartnerSaleResponseBody) GetInvoiceID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.InvoiceID
 }
 
 func (o *UpdatePartnerSaleResponseBody) GetCreatedAt() string {
