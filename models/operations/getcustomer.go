@@ -137,40 +137,14 @@ func (e *GetCustomerType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type GetCustomerInterval string
-
-const (
-	GetCustomerIntervalMonth GetCustomerInterval = "month"
-	GetCustomerIntervalYear  GetCustomerInterval = "year"
-)
-
-func (e GetCustomerInterval) ToPointer() *GetCustomerInterval {
-	return &e
-}
-func (e *GetCustomerInterval) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "month":
-		fallthrough
-	case "year":
-		*e = GetCustomerInterval(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetCustomerInterval: %v", v)
-	}
-}
-
 type GetCustomerDiscount struct {
-	ID           string               `json:"id"`
-	CouponID     *string              `json:"couponId"`
-	CouponTestID *string              `json:"couponTestId"`
-	Amount       float64              `json:"amount"`
-	Type         GetCustomerType      `json:"type"`
-	Duration     *float64             `json:"duration"`
-	Interval     *GetCustomerInterval `json:"interval"`
+	ID            string          `json:"id"`
+	Amount        float64         `json:"amount"`
+	Type          GetCustomerType `json:"type"`
+	MaxDuration   *float64        `json:"maxDuration"`
+	CouponID      *string         `json:"couponId"`
+	CouponTestID  *string         `json:"couponTestId"`
+	PartnersCount *float64        `json:"partnersCount,omitempty"`
 }
 
 func (o *GetCustomerDiscount) GetID() string {
@@ -178,20 +152,6 @@ func (o *GetCustomerDiscount) GetID() string {
 		return ""
 	}
 	return o.ID
-}
-
-func (o *GetCustomerDiscount) GetCouponID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CouponID
-}
-
-func (o *GetCustomerDiscount) GetCouponTestID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CouponTestID
 }
 
 func (o *GetCustomerDiscount) GetAmount() float64 {
@@ -208,18 +168,32 @@ func (o *GetCustomerDiscount) GetType() GetCustomerType {
 	return o.Type
 }
 
-func (o *GetCustomerDiscount) GetDuration() *float64 {
+func (o *GetCustomerDiscount) GetMaxDuration() *float64 {
 	if o == nil {
 		return nil
 	}
-	return o.Duration
+	return o.MaxDuration
 }
 
-func (o *GetCustomerDiscount) GetInterval() *GetCustomerInterval {
+func (o *GetCustomerDiscount) GetCouponID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Interval
+	return o.CouponID
+}
+
+func (o *GetCustomerDiscount) GetCouponTestID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponTestID
+}
+
+func (o *GetCustomerDiscount) GetPartnersCount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.PartnersCount
 }
 
 // GetCustomerResponseBody - The customer object.
