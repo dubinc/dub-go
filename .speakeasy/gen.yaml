@@ -15,7 +15,7 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
 go:
-  version: 0.14.14
+  version: 0.14.15
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: true
   clientServerStatusCodesAsErrors: true

@@ -146,40 +146,14 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type GetCustomersInterval string
-
-const (
-	GetCustomersIntervalMonth GetCustomersInterval = "month"
-	GetCustomersIntervalYear  GetCustomersInterval = "year"
-)
-
-func (e GetCustomersInterval) ToPointer() *GetCustomersInterval {
-	return &e
-}
-func (e *GetCustomersInterval) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "month":
-		fallthrough
-	case "year":
-		*e = GetCustomersInterval(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for GetCustomersInterval: %v", v)
-	}
-}
-
 type Discount struct {
-	ID           string                `json:"id"`
-	CouponID     *string               `json:"couponId"`
-	CouponTestID *string               `json:"couponTestId"`
-	Amount       float64               `json:"amount"`
-	Type         Type                  `json:"type"`
-	Duration     *float64              `json:"duration"`
-	Interval     *GetCustomersInterval `json:"interval"`
+	ID            string   `json:"id"`
+	Amount        float64  `json:"amount"`
+	Type          Type     `json:"type"`
+	MaxDuration   *float64 `json:"maxDuration"`
+	CouponID      *string  `json:"couponId"`
+	CouponTestID  *string  `json:"couponTestId"`
+	PartnersCount *float64 `json:"partnersCount,omitempty"`
 }
 
 func (o *Discount) GetID() string {
@@ -187,20 +161,6 @@ func (o *Discount) GetID() string {
 		return ""
 	}
 	return o.ID
-}
-
-func (o *Discount) GetCouponID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CouponID
-}
-
-func (o *Discount) GetCouponTestID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CouponTestID
 }
 
 func (o *Discount) GetAmount() float64 {
@@ -217,18 +177,32 @@ func (o *Discount) GetType() Type {
 	return o.Type
 }
 
-func (o *Discount) GetDuration() *float64 {
+func (o *Discount) GetMaxDuration() *float64 {
 	if o == nil {
 		return nil
 	}
-	return o.Duration
+	return o.MaxDuration
 }
 
-func (o *Discount) GetInterval() *GetCustomersInterval {
+func (o *Discount) GetCouponID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Interval
+	return o.CouponID
+}
+
+func (o *Discount) GetCouponTestID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponTestID
+}
+
+func (o *Discount) GetPartnersCount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.PartnersCount
 }
 
 type GetCustomersResponseBody struct {

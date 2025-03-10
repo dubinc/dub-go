@@ -5,6 +5,7 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/dubinc/dub-go/internal/utils"
 )
 
 type UpdatePartnerSaleRequestBody struct {
@@ -14,6 +15,19 @@ type UpdatePartnerSaleRequestBody struct {
 	Amount *float64 `json:"amount,omitempty"`
 	// Modify the current sale amount: use positive values to increase the amount, negative values to decrease it.
 	ModifyAmount *float64 `json:"modifyAmount,omitempty"`
+	// The currency of the sale amount to update. Accepts ISO 4217 currency codes.
+	Currency *string `default:"usd" json:"currency"`
+}
+
+func (u UpdatePartnerSaleRequestBody) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdatePartnerSaleRequestBody) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *UpdatePartnerSaleRequestBody) GetProgramID() string {
@@ -42,6 +56,13 @@ func (o *UpdatePartnerSaleRequestBody) GetModifyAmount() *float64 {
 		return nil
 	}
 	return o.ModifyAmount
+}
+
+func (o *UpdatePartnerSaleRequestBody) GetCurrency() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Currency
 }
 
 type UpdatePartnerSaleStatus string
