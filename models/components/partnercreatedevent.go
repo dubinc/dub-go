@@ -156,24 +156,24 @@ func (o *Links) GetSaleAmount() *float64 {
 }
 
 type PartnerCreatedEventData struct {
-	ID             string   `json:"id"`
-	Name           string   `json:"name"`
-	Email          *string  `json:"email"`
-	Image          *string  `json:"image"`
-	Description    *string  `json:"description,omitempty"`
-	Country        *string  `json:"country"`
-	PayoutsEnabled bool     `json:"payoutsEnabled"`
-	CreatedAt      string   `json:"createdAt"`
-	Status         Status   `json:"status"`
-	ProgramID      string   `json:"programId"`
-	TenantID       *string  `json:"tenantId"`
-	Links          []Links  `json:"links"`
-	Clicks         *float64 `default:"0" json:"clicks"`
-	Leads          *float64 `default:"0" json:"leads"`
-	Sales          *float64 `default:"0" json:"sales"`
-	SaleAmount     *float64 `default:"0" json:"saleAmount"`
-	Earnings       *float64 `default:"0" json:"earnings"`
-	ApplicationID  *string  `json:"applicationId,omitempty"`
+	ID               string   `json:"id"`
+	Name             string   `json:"name"`
+	Email            *string  `json:"email"`
+	Image            *string  `json:"image"`
+	Description      *string  `json:"description,omitempty"`
+	Country          *string  `json:"country"`
+	PayoutsEnabledAt *string  `json:"payoutsEnabledAt"`
+	CreatedAt        string   `json:"createdAt"`
+	Status           Status   `json:"status"`
+	ProgramID        string   `json:"programId"`
+	TenantID         *string  `json:"tenantId"`
+	Links            []Links  `json:"links"`
+	Clicks           *float64 `default:"0" json:"clicks"`
+	Leads            *float64 `default:"0" json:"leads"`
+	Sales            *float64 `default:"0" json:"sales"`
+	SaleAmount       *float64 `default:"0" json:"saleAmount"`
+	Earnings         *float64 `default:"0" json:"earnings"`
+	ApplicationID    *string  `json:"applicationId,omitempty"`
 }
 
 func (p PartnerCreatedEventData) MarshalJSON() ([]byte, error) {
@@ -229,11 +229,11 @@ func (o *PartnerCreatedEventData) GetCountry() *string {
 	return o.Country
 }
 
-func (o *PartnerCreatedEventData) GetPayoutsEnabled() bool {
+func (o *PartnerCreatedEventData) GetPayoutsEnabledAt() *string {
 	if o == nil {
-		return false
+		return nil
 	}
-	return o.PayoutsEnabled
+	return o.PayoutsEnabledAt
 }
 
 func (o *PartnerCreatedEventData) GetCreatedAt() string {

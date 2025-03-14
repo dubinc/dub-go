@@ -184,40 +184,14 @@ func (e *UpdateCustomerType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type UpdateCustomerInterval string
-
-const (
-	UpdateCustomerIntervalMonth UpdateCustomerInterval = "month"
-	UpdateCustomerIntervalYear  UpdateCustomerInterval = "year"
-)
-
-func (e UpdateCustomerInterval) ToPointer() *UpdateCustomerInterval {
-	return &e
-}
-func (e *UpdateCustomerInterval) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "month":
-		fallthrough
-	case "year":
-		*e = UpdateCustomerInterval(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpdateCustomerInterval: %v", v)
-	}
-}
-
 type UpdateCustomerDiscount struct {
-	ID           string                  `json:"id"`
-	CouponID     *string                 `json:"couponId"`
-	CouponTestID *string                 `json:"couponTestId"`
-	Amount       float64                 `json:"amount"`
-	Type         UpdateCustomerType      `json:"type"`
-	Duration     *float64                `json:"duration"`
-	Interval     *UpdateCustomerInterval `json:"interval"`
+	ID            string             `json:"id"`
+	Amount        float64            `json:"amount"`
+	Type          UpdateCustomerType `json:"type"`
+	MaxDuration   *float64           `json:"maxDuration"`
+	CouponID      *string            `json:"couponId"`
+	CouponTestID  *string            `json:"couponTestId"`
+	PartnersCount *float64           `json:"partnersCount,omitempty"`
 }
 
 func (o *UpdateCustomerDiscount) GetID() string {
@@ -225,20 +199,6 @@ func (o *UpdateCustomerDiscount) GetID() string {
 		return ""
 	}
 	return o.ID
-}
-
-func (o *UpdateCustomerDiscount) GetCouponID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CouponID
-}
-
-func (o *UpdateCustomerDiscount) GetCouponTestID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CouponTestID
 }
 
 func (o *UpdateCustomerDiscount) GetAmount() float64 {
@@ -255,18 +215,32 @@ func (o *UpdateCustomerDiscount) GetType() UpdateCustomerType {
 	return o.Type
 }
 
-func (o *UpdateCustomerDiscount) GetDuration() *float64 {
+func (o *UpdateCustomerDiscount) GetMaxDuration() *float64 {
 	if o == nil {
 		return nil
 	}
-	return o.Duration
+	return o.MaxDuration
 }
 
-func (o *UpdateCustomerDiscount) GetInterval() *UpdateCustomerInterval {
+func (o *UpdateCustomerDiscount) GetCouponID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Interval
+	return o.CouponID
+}
+
+func (o *UpdateCustomerDiscount) GetCouponTestID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponTestID
+}
+
+func (o *UpdateCustomerDiscount) GetPartnersCount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.PartnersCount
 }
 
 // UpdateCustomerResponseBody - The customer was updated.
