@@ -155,40 +155,14 @@ func (e *CreateCustomerType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type CreateCustomerInterval string
-
-const (
-	CreateCustomerIntervalMonth CreateCustomerInterval = "month"
-	CreateCustomerIntervalYear  CreateCustomerInterval = "year"
-)
-
-func (e CreateCustomerInterval) ToPointer() *CreateCustomerInterval {
-	return &e
-}
-func (e *CreateCustomerInterval) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "month":
-		fallthrough
-	case "year":
-		*e = CreateCustomerInterval(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CreateCustomerInterval: %v", v)
-	}
-}
-
 type CreateCustomerDiscount struct {
-	ID           string                  `json:"id"`
-	CouponID     *string                 `json:"couponId"`
-	CouponTestID *string                 `json:"couponTestId"`
-	Amount       float64                 `json:"amount"`
-	Type         CreateCustomerType      `json:"type"`
-	Duration     *float64                `json:"duration"`
-	Interval     *CreateCustomerInterval `json:"interval"`
+	ID            string             `json:"id"`
+	Amount        float64            `json:"amount"`
+	Type          CreateCustomerType `json:"type"`
+	MaxDuration   *float64           `json:"maxDuration"`
+	CouponID      *string            `json:"couponId"`
+	CouponTestID  *string            `json:"couponTestId"`
+	PartnersCount *float64           `json:"partnersCount,omitempty"`
 }
 
 func (o *CreateCustomerDiscount) GetID() string {
@@ -196,20 +170,6 @@ func (o *CreateCustomerDiscount) GetID() string {
 		return ""
 	}
 	return o.ID
-}
-
-func (o *CreateCustomerDiscount) GetCouponID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CouponID
-}
-
-func (o *CreateCustomerDiscount) GetCouponTestID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CouponTestID
 }
 
 func (o *CreateCustomerDiscount) GetAmount() float64 {
@@ -226,18 +186,32 @@ func (o *CreateCustomerDiscount) GetType() CreateCustomerType {
 	return o.Type
 }
 
-func (o *CreateCustomerDiscount) GetDuration() *float64 {
+func (o *CreateCustomerDiscount) GetMaxDuration() *float64 {
 	if o == nil {
 		return nil
 	}
-	return o.Duration
+	return o.MaxDuration
 }
 
-func (o *CreateCustomerDiscount) GetInterval() *CreateCustomerInterval {
+func (o *CreateCustomerDiscount) GetCouponID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Interval
+	return o.CouponID
+}
+
+func (o *CreateCustomerDiscount) GetCouponTestID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CouponTestID
+}
+
+func (o *CreateCustomerDiscount) GetPartnersCount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.PartnersCount
 }
 
 // CreateCustomerResponseBody - The customer was created.
