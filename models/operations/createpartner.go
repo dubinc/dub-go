@@ -1233,9 +1233,11 @@ func (o *CreatePartnerRequestBody) GetLinkProps() *LinkProps {
 type Status string
 
 const (
+	StatusInvited  Status = "invited"
 	StatusApproved Status = "approved"
-	StatusPending  Status = "pending"
 	StatusRejected Status = "rejected"
+	StatusDeclined Status = "declined"
+	StatusPending  Status = "pending"
 )
 
 func (e Status) ToPointer() *Status {
@@ -1247,11 +1249,15 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
+	case "invited":
+		fallthrough
 	case "approved":
 		fallthrough
-	case "pending":
-		fallthrough
 	case "rejected":
+		fallthrough
+	case "declined":
+		fallthrough
+	case "pending":
 		*e = Status(v)
 		return nil
 	default:
