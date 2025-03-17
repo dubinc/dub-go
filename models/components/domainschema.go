@@ -54,6 +54,10 @@ type DomainSchema struct {
 	ExpiredURL *string `json:"expiredUrl"`
 	// The URL to redirect to when a link under this domain doesn't exist.
 	NotFoundURL *string `json:"notFoundUrl"`
+	// assetLinks.json configuration file (for deep link support on Android).
+	AssetLinks *string `default:"null" json:"assetLinks"`
+	// apple-app-site-association configuration file (for deep link support on iOS).
+	AppleAppSiteAssociation *string `default:"null" json:"appleAppSiteAssociation"`
 	// The logo of the domain.
 	Logo *string `json:"logo"`
 	// The date the domain was created.
@@ -129,6 +133,20 @@ func (o *DomainSchema) GetNotFoundURL() *string {
 		return nil
 	}
 	return o.NotFoundURL
+}
+
+func (o *DomainSchema) GetAssetLinks() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AssetLinks
+}
+
+func (o *DomainSchema) GetAppleAppSiteAssociation() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AppleAppSiteAssociation
 }
 
 func (o *DomainSchema) GetLogo() *string {
