@@ -18,6 +18,7 @@ const (
 	PlanBusinessPlus  Plan = "business plus"
 	PlanBusinessExtra Plan = "business extra"
 	PlanBusinessMax   Plan = "business max"
+	PlanAdvanced      Plan = "advanced"
 	PlanEnterprise    Plan = "enterprise"
 )
 
@@ -41,6 +42,8 @@ func (e *Plan) UnmarshalJSON(data []byte) error {
 	case "business extra":
 		fallthrough
 	case "business max":
+		fallthrough
+	case "advanced":
 		fallthrough
 	case "enterprise":
 		*e = Plan(v)
