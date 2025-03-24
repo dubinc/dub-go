@@ -5,8 +5,9 @@
 
 | Name             | Value            |
 | ---------------- | ---------------- |
-| `StatusInvited`  | invited          |
+| `StatusPending`  | pending          |
 | `StatusApproved` | approved         |
 | `StatusRejected` | rejected         |
+| `StatusInvited`  | invited          |
 | `StatusDeclined` | declined         |
-| `StatusPending`  | pending          |
+| `StatusBanned`   | banned           |

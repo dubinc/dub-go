@@ -11,3 +11,4 @@
 | `UpdatePartnerSaleStatusRefunded`  | refunded                           |
 | `UpdatePartnerSaleStatusDuplicate` | duplicate                          |
 | `UpdatePartnerSaleStatusFraud`     | fraud                              |
+| `UpdatePartnerSaleStatusCanceled`  | canceled                           |
