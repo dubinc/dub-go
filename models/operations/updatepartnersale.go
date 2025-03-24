@@ -74,6 +74,7 @@ const (
 	UpdatePartnerSaleStatusRefunded  UpdatePartnerSaleStatus = "refunded"
 	UpdatePartnerSaleStatusDuplicate UpdatePartnerSaleStatus = "duplicate"
 	UpdatePartnerSaleStatusFraud     UpdatePartnerSaleStatus = "fraud"
+	UpdatePartnerSaleStatusCanceled  UpdatePartnerSaleStatus = "canceled"
 )
 
 func (e UpdatePartnerSaleStatus) ToPointer() *UpdatePartnerSaleStatus {
@@ -96,6 +97,8 @@ func (e *UpdatePartnerSaleStatus) UnmarshalJSON(data []byte) error {
 	case "duplicate":
 		fallthrough
 	case "fraud":
+		fallthrough
+	case "canceled":
 		*e = UpdatePartnerSaleStatus(v)
 		return nil
 	default:
