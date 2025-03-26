@@ -83,6 +83,8 @@ func (e *Role) UnmarshalJSON(data []byte) error {
 type Users struct {
 	// The role of the authenticated user in the workspace.
 	Role Role `json:"role"`
+	// The ID of the default folder for the user in the workspace.
+	DefaultFolderID *string `json:"defaultFolderId"`
 }
 
 func (o *Users) GetRole() Role {
@@ -90,6 +92,13 @@ func (o *Users) GetRole() Role {
 		return Role("")
 	}
 	return o.Role
+}
+
+func (o *Users) GetDefaultFolderID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultFolderID
 }
 
 type Domains struct {
