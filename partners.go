@@ -56,7 +56,7 @@ func (s *Partners) Create(ctx context.Context, request *operations.CreatePartner
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "createPartner",
-		OAuth2Scopes:   []string{},
+		OAuth2Scopes:   nil,
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -447,7 +447,7 @@ func (s *Partners) CreateLink(ctx context.Context, request *operations.CreatePar
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "createPartnerLink",
-		OAuth2Scopes:   []string{},
+		OAuth2Scopes:   nil,
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -838,7 +838,7 @@ func (s *Partners) UpsertLink(ctx context.Context, request *operations.UpsertPar
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "upsertPartnerLink",
-		OAuth2Scopes:   []string{},
+		OAuth2Scopes:   nil,
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -1229,7 +1229,7 @@ func (s *Partners) Analytics(ctx context.Context, request operations.RetrievePar
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "retrievePartnerAnalytics",
-		OAuth2Scopes:   []string{},
+		OAuth2Scopes:   nil,
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
@@ -1617,7 +1617,7 @@ func (s *Partners) UpdateSale(ctx context.Context, request *operations.UpdatePar
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "updatePartnerSale",
-		OAuth2Scopes:   []string{},
+		OAuth2Scopes:   nil,
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
