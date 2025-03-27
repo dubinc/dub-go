@@ -55,7 +55,7 @@ func (s *Metatags) Get(ctx context.Context, request operations.GetMetatagsReques
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "getMetatags",
-		OAuth2Scopes:   []string{},
+		OAuth2Scopes:   nil,
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 

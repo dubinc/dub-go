@@ -189,6 +189,7 @@ type UpdateCustomerDiscount struct {
 	Amount        float64            `json:"amount"`
 	Type          UpdateCustomerType `json:"type"`
 	MaxDuration   *float64           `json:"maxDuration"`
+	Description   *string            `json:"description,omitempty"`
 	CouponID      *string            `json:"couponId"`
 	CouponTestID  *string            `json:"couponTestId"`
 	PartnersCount *float64           `json:"partnersCount,omitempty"`
@@ -220,6 +221,13 @@ func (o *UpdateCustomerDiscount) GetMaxDuration() *float64 {
 		return nil
 	}
 	return o.MaxDuration
+}
+
+func (o *UpdateCustomerDiscount) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
 }
 
 func (o *UpdateCustomerDiscount) GetCouponID() *string {

@@ -55,7 +55,7 @@ func (s *Track) Lead(ctx context.Context, request *operations.TrackLeadRequestBo
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "trackLead",
-		OAuth2Scopes:   []string{},
+		OAuth2Scopes:   nil,
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -446,7 +446,7 @@ func (s *Track) Sale(ctx context.Context, request *operations.TrackSaleRequestBo
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "trackSale",
-		OAuth2Scopes:   []string{},
+		OAuth2Scopes:   nil,
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
