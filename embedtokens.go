@@ -55,7 +55,7 @@ func (s *EmbedTokens) Referrals(ctx context.Context, request *operations.CreateR
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "createReferralsEmbedToken",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)

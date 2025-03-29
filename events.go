@@ -55,7 +55,7 @@ func (s *Events) List(ctx context.Context, request operations.ListEventsRequest,
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "listEvents",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 

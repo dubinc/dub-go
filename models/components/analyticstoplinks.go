@@ -23,6 +23,8 @@ type AnalyticsTopLinks struct {
 	URL string `json:"url"`
 	// The comments of the short link
 	Comments *string `json:"comments,omitempty"`
+	// The custom link preview title (og:title)
+	Title *string `json:"title,omitempty"`
 	// The creation timestamp of the short link
 	CreatedAt string `json:"createdAt"`
 	// The number of clicks from this link
@@ -93,6 +95,13 @@ func (o *AnalyticsTopLinks) GetComments() *string {
 		return nil
 	}
 	return o.Comments
+}
+
+func (o *AnalyticsTopLinks) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
 }
 
 func (o *AnalyticsTopLinks) GetCreatedAt() string {

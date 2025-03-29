@@ -55,7 +55,7 @@ func (s *Workspaces) Get(ctx context.Context, request operations.GetWorkspaceReq
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "getWorkspace",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
@@ -444,7 +444,7 @@ func (s *Workspaces) Update(ctx context.Context, idOrSlug string, requestBody *o
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "updateWorkspace",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
