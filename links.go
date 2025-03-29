@@ -57,7 +57,7 @@ func (s *Links) Create(ctx context.Context, request *operations.CreateLinkReques
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "createLink",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -448,7 +448,7 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest, op
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "getLinks",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
@@ -898,7 +898,7 @@ func (s *Links) Count(ctx context.Context, request operations.GetLinksCountReque
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "getLinksCount",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
@@ -1286,7 +1286,7 @@ func (s *Links) Get(ctx context.Context, request operations.GetLinkInfoRequest, 
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "getLinkInfo",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
@@ -1679,7 +1679,7 @@ func (s *Links) Update(ctx context.Context, linkID string, requestBody *operatio
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "updateLink",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -2074,7 +2074,7 @@ func (s *Links) Delete(ctx context.Context, linkID string, opts ...operations.Op
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "deleteLink",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
@@ -2458,7 +2458,7 @@ func (s *Links) CreateMany(ctx context.Context, request []operations.RequestBody
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "bulkCreateLinks",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -2849,7 +2849,7 @@ func (s *Links) UpdateMany(ctx context.Context, request *operations.BulkUpdateLi
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "bulkUpdateLinks",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -3240,7 +3240,7 @@ func (s *Links) DeleteMany(ctx context.Context, request operations.BulkDeleteLin
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "bulkDeleteLinks",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
@@ -3628,7 +3628,7 @@ func (s *Links) Upsert(ctx context.Context, request *operations.UpsertLinkReques
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "upsertLink",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)

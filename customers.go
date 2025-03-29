@@ -55,7 +55,7 @@ func (s *Customers) List(ctx context.Context, request operations.GetCustomersReq
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "getCustomers",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
@@ -445,7 +445,7 @@ func (s *Customers) Create(ctx context.Context, request *operations.CreateCustom
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "createCustomer",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -836,7 +836,7 @@ func (s *Customers) Get(ctx context.Context, request operations.GetCustomerReque
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "getCustomer",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
@@ -1224,7 +1224,7 @@ func (s *Customers) Update(ctx context.Context, request operations.UpdateCustome
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "updateCustomer",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -1623,7 +1623,7 @@ func (s *Customers) Delete(ctx context.Context, id string, opts ...operations.Op
 		BaseURL:        baseURL,
 		Context:        ctx,
 		OperationID:    "deleteCustomer",
-		OAuth2Scopes:   nil,
+		OAuth2Scopes:   []string{},
 		SecuritySource: s.sdkConfiguration.Security,
 	}
 
