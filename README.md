@@ -182,6 +182,7 @@ func main() {
 
 * [Create](docs/sdks/partners/README.md#create) - Create a new partner
 * [CreateLink](docs/sdks/partners/README.md#createlink) - Create a link for a partner
+* [RetrieveLinks](docs/sdks/partners/README.md#retrievelinks) - Retrieve a partner's links.
 * [UpsertLink](docs/sdks/partners/README.md#upsertlink) - Upsert a link for a partner
 * [Analytics](docs/sdks/partners/README.md#analytics) - Retrieve analytics for a partner
 * [UpdateSale](docs/sdks/partners/README.md#updatesale) - Update a sale for a partner.
