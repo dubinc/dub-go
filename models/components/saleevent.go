@@ -2035,6 +2035,25 @@ func (o *SaleEventGeo) GetXk() *string {
 	return o.Xk
 }
 
+type SaleEventTestVariants struct {
+	URL        string  `json:"url"`
+	Percentage float64 `json:"percentage"`
+}
+
+func (o *SaleEventTestVariants) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
+}
+
+func (o *SaleEventTestVariants) GetPercentage() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Percentage
+}
+
 type SaleEventLink struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
@@ -2058,11 +2077,11 @@ type SaleEventLink struct {
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password"`
 	Proxy    *bool   `json:"proxy,omitempty"`
-	// The title of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The title of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Title *string `json:"title"`
-	// The description of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The description of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Description *string `json:"description"`
-	// The image of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The image of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Image *string `json:"image"`
 	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Video   *string `json:"video"`
@@ -2101,7 +2120,11 @@ type SaleEventLink struct {
 	UtmTerm *string `json:"utm_term"`
 	// The UTM content of the short link.
 	UtmContent *string `json:"utm_content"`
-	UserID     *string `json:"userId"`
+	// An array of A/B test URLs and the percentage of traffic to send to each URL.
+	TestVariants    []SaleEventTestVariants `json:"testVariants,omitempty"`
+	TestStartedAt   *string                 `json:"testStartedAt"`
+	TestCompletedAt *string                 `json:"testCompletedAt"`
+	UserID          *string                 `json:"userId"`
 	// The workspace ID of the short link.
 	WorkspaceID string `json:"workspaceId"`
 	// The number of clicks on the short link.
@@ -2382,6 +2405,27 @@ func (o *SaleEventLink) GetUtmContent() *string {
 		return nil
 	}
 	return o.UtmContent
+}
+
+func (o *SaleEventLink) GetTestVariants() []SaleEventTestVariants {
+	if o == nil {
+		return nil
+	}
+	return o.TestVariants
+}
+
+func (o *SaleEventLink) GetTestStartedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestStartedAt
+}
+
+func (o *SaleEventLink) GetTestCompletedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestCompletedAt
 }
 
 func (o *SaleEventLink) GetUserID() *string {
@@ -2672,7 +2716,7 @@ func (e *PaymentProcessor) UnmarshalJSON(data []byte) error {
 }
 
 type Sale struct {
-	// The amount of the sale. Should be passed in cents.
+	// The amount of the sale in cents.
 	Amount int64 `json:"amount"`
 	// The invoice ID of the sale. Can be used as a idempotency key – only one sale event can be recorded for a given invoice ID.
 	InvoiceID *string `default:"null" json:"invoiceId"`
@@ -2731,6 +2775,7 @@ type SaleEvent struct {
 	InvoiceID string `json:"invoice_id"`
 	// Deprecated. Use `sale.paymentProcessor` instead.
 	PaymentProcessor string `json:"payment_processor"`
+	Metadata         string `json:"metadata"`
 	// Deprecated. Use `click.id` instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -2860,6 +2905,13 @@ func (o *SaleEvent) GetPaymentProcessor() string {
 		return ""
 	}
 	return o.PaymentProcessor
+}
+
+func (o *SaleEvent) GetMetadata() string {
+	if o == nil {
+		return ""
+	}
+	return o.Metadata
 }
 
 func (o *SaleEvent) GetClickID() string {

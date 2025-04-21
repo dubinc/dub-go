@@ -36,28 +36,24 @@ func (e *Mode) UnmarshalJSON(data []byte) error {
 }
 
 type TrackLeadRequestBody struct {
-	// The ID of the click in Dub. You can read this value from `dub_id` cookie.
+	// The unique ID of the click that the lead conversion event is attributed to. You can read this value from `dub_id` cookie.
 	ClickID string `json:"clickId"`
-	// The name of the lead event to track.
+	// The name of the lead event to track. Can also be used as a unique identifier to associate a given lead event for a customer for a subsequent sale event (via the `leadEventName` prop in `/track/sale`).
 	EventName string `json:"eventName"`
 	// The numerical value associated with this lead event (e.g., number of provisioned seats in a free trial). If defined as N, the lead event will be tracked N times.
 	EventQuantity *float64 `json:"eventQuantity,omitempty"`
-	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
-	ExternalID *string `default:"" json:"externalId"`
-	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
-	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	CustomerID *string `default:"null" json:"customerId"`
-	// Name of the customer in the client's app.
+	// The unique ID of the customer in your system. Will be used to identify and attribute all future events to this customer.
+	ExternalID string `json:"externalId"`
+	// The name of the customer. If not passed, a random name will be generated (e.g. “Big Red Caribou”).
 	CustomerName *string `default:"null" json:"customerName"`
-	// Email of the customer in the client's app.
+	// The email address of the customer.
 	CustomerEmail *string `default:"null" json:"customerEmail"`
-	// Avatar of the customer in the client's app.
+	// The avatar URL of the customer.
 	CustomerAvatar *string `default:"null" json:"customerAvatar"`
-	// Additional metadata to be stored with the lead event
-	Metadata map[string]any `json:"metadata,omitempty"`
 	// The mode to use for tracking the lead event. `async` will not block the request; `wait` will block the request until the lead event is fully recorded in Dub.
 	Mode *Mode `default:"async" json:"mode"`
+	// Additional metadata to be stored with the lead event. Max 10,000 characters.
+	Metadata map[string]any `json:"metadata,omitempty"`
 }
 
 func (t TrackLeadRequestBody) MarshalJSON() ([]byte, error) {
@@ -92,18 +88,11 @@ func (o *TrackLeadRequestBody) GetEventQuantity() *float64 {
 	return o.EventQuantity
 }
 
-func (o *TrackLeadRequestBody) GetExternalID() *string {
+func (o *TrackLeadRequestBody) GetExternalID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ExternalID
-}
-
-func (o *TrackLeadRequestBody) GetCustomerID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CustomerID
 }
 
 func (o *TrackLeadRequestBody) GetCustomerName() *string {
@@ -127,18 +116,18 @@ func (o *TrackLeadRequestBody) GetCustomerAvatar() *string {
 	return o.CustomerAvatar
 }
 
-func (o *TrackLeadRequestBody) GetMetadata() map[string]any {
-	if o == nil {
-		return nil
-	}
-	return o.Metadata
-}
-
 func (o *TrackLeadRequestBody) GetMode() *Mode {
 	if o == nil {
 		return nil
 	}
 	return o.Mode
+}
+
+func (o *TrackLeadRequestBody) GetMetadata() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
 }
 
 type Click struct {

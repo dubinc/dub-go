@@ -2010,6 +2010,25 @@ func (o *Geo) GetXk() *string {
 	return o.Xk
 }
 
+type TestVariants struct {
+	URL        string  `json:"url"`
+	Percentage float64 `json:"percentage"`
+}
+
+func (o *TestVariants) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
+}
+
+func (o *TestVariants) GetPercentage() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Percentage
+}
+
 type LinkSchema struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
@@ -2039,11 +2058,11 @@ type LinkSchema struct {
 	Password *string `json:"password"`
 	// Whether the short link uses Custom Social Media Cards feature.
 	Proxy *bool `default:"false" json:"proxy"`
-	// The title of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The title of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Title *string `json:"title"`
-	// The description of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The description of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Description *string `json:"description"`
-	// The image of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The image of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Image *string `json:"image"`
 	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Video *string `json:"video"`
@@ -2085,6 +2104,12 @@ type LinkSchema struct {
 	UtmTerm *string `json:"utm_term"`
 	// The UTM content of the short link.
 	UtmContent *string `json:"utm_content"`
+	// An array of A/B test URLs and the percentage of traffic to send to each URL.
+	TestVariants []TestVariants `json:"testVariants,omitempty"`
+	// The date and time when the tests started.
+	TestStartedAt *string `json:"testStartedAt,omitempty"`
+	// The date and time when the tests were or will be completed.
+	TestCompletedAt *string `json:"testCompletedAt,omitempty"`
 	// The user ID of the creator of the short link.
 	UserID *string `json:"userId"`
 	// The workspace ID of the short link.
@@ -2370,6 +2395,27 @@ func (o *LinkSchema) GetUtmContent() *string {
 		return nil
 	}
 	return o.UtmContent
+}
+
+func (o *LinkSchema) GetTestVariants() []TestVariants {
+	if o == nil {
+		return nil
+	}
+	return o.TestVariants
+}
+
+func (o *LinkSchema) GetTestStartedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestStartedAt
+}
+
+func (o *LinkSchema) GetTestCompletedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestCompletedAt
 }
 
 func (o *LinkSchema) GetUserID() *string {

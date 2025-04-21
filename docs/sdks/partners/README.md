@@ -39,7 +39,6 @@ func main() {
         ProgramID: "<id>",
         Name: "<value>",
         Email: "Loyal79@yahoo.com",
-        Username: dubgo.String("Aaliyah_Borer"),
         LinkProps: &operations.LinkProps{
             ExternalID: dubgo.String("123456"),
             TagIds: dubgo.Pointer(operations.CreateCreatePartnerTagIdsArrayOfStr(
@@ -47,6 +46,16 @@ func main() {
                     "clux0rgak00011...",
                 },
             )),
+            TestVariants: []operations.CreatePartnerTestVariants{
+                operations.CreatePartnerTestVariants{
+                    URL: "https://example.com/variant-1",
+                    Percentage: 50,
+                },
+                operations.CreatePartnerTestVariants{
+                    URL: "https://example.com/variant-2",
+                    Percentage: 50,
+                },
+            },
         },
     })
     if err != nil {
@@ -110,7 +119,6 @@ func main() {
 
     res, err := s.Partners.CreateLink(ctx, &operations.CreatePartnerLinkRequestBody{
         ProgramID: "<id>",
-        URL: dubgo.String("https://necessary-brief.name"),
         LinkProps: &operations.CreatePartnerLinkLinkProps{
             ExternalID: dubgo.String("123456"),
             TagIds: dubgo.Pointer(operations.CreateCreatePartnerLinkTagIdsArrayOfStr(
@@ -118,6 +126,16 @@ func main() {
                     "clux0rgak00011...",
                 },
             )),
+            TestVariants: []operations.CreatePartnerLinkTestVariants{
+                operations.CreatePartnerLinkTestVariants{
+                    URL: "https://example.com/variant-1",
+                    Percentage: 50,
+                },
+                operations.CreatePartnerLinkTestVariants{
+                    URL: "https://example.com/variant-2",
+                    Percentage: 50,
+                },
+            },
         },
     })
     if err != nil {
@@ -243,7 +261,6 @@ func main() {
 
     res, err := s.Partners.UpsertLink(ctx, &operations.UpsertPartnerLinkRequestBody{
         ProgramID: "<id>",
-        URL: dubgo.String("https://unsteady-lobster.com/"),
         LinkProps: &operations.UpsertPartnerLinkLinkProps{
             ExternalID: dubgo.String("123456"),
             TagIds: dubgo.Pointer(operations.CreateUpsertPartnerLinkTagIdsArrayOfStr(
@@ -251,6 +268,16 @@ func main() {
                     "clux0rgak00011...",
                 },
             )),
+            TestVariants: []operations.UpsertPartnerLinkTestVariants{
+                operations.UpsertPartnerLinkTestVariants{
+                    URL: "https://example.com/variant-1",
+                    Percentage: 50,
+                },
+                operations.UpsertPartnerLinkTestVariants{
+                    URL: "https://example.com/variant-2",
+                    Percentage: 50,
+                },
+            },
         },
     })
     if err != nil {

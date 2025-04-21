@@ -3,7 +3,8 @@
 
 ## Values
 
-| Name             | Value            |
-| ---------------- | ---------------- |
-| `TypePercentage` | percentage       |
-| `TypeFlat`       | flat             |
+| Name        | Value       |
+| ----------- | ----------- |
+| `TypeClick` | click       |
+| `TypeLead`  | lead        |
+| `TypeSale`  | sale        |

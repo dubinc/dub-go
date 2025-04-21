@@ -221,6 +221,7 @@ type GetCustomerResponseBody struct {
 	// The date the customer was created.
 	CreatedAt string               `json:"createdAt"`
 	Link      *GetCustomerLink     `json:"link,omitempty"`
+	ProgramID *string              `json:"programId,omitempty"`
 	Partner   *GetCustomerPartner  `json:"partner,omitempty"`
 	Discount  *GetCustomerDiscount `json:"discount,omitempty"`
 }
@@ -279,6 +280,13 @@ func (o *GetCustomerResponseBody) GetLink() *GetCustomerLink {
 		return nil
 	}
 	return o.Link
+}
+
+func (o *GetCustomerResponseBody) GetProgramID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProgramID
 }
 
 func (o *GetCustomerResponseBody) GetPartner() *GetCustomerPartner {

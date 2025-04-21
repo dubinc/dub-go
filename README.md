@@ -70,6 +70,16 @@ func main() {
 				"clux0rgak00011...",
 			},
 		)),
+		TestVariants: []operations.TestVariants{
+			operations.TestVariants{
+				URL:        "https://example.com/variant-1",
+				Percentage: 50,
+			},
+			operations.TestVariants{
+				URL:        "https://example.com/variant-2",
+				Percentage: 50,
+			},
+		},
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -108,6 +118,16 @@ func main() {
 				"clux0rgak00011...",
 			},
 		)),
+		TestVariants: []operations.UpsertLinkTestVariants{
+			operations.UpsertLinkTestVariants{
+				URL:        "https://example.com/variant-1",
+				Percentage: 50,
+			},
+			operations.UpsertLinkTestVariants{
+				URL:        "https://example.com/variant-2",
+				Percentage: 50,
+			},
+		},
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -173,10 +193,6 @@ func main() {
 * [UpdateMany](docs/sdks/links/README.md#updatemany) - Bulk update links
 * [DeleteMany](docs/sdks/links/README.md#deletemany) - Bulk delete links
 * [Upsert](docs/sdks/links/README.md#upsert) - Upsert a link
-
-### [Metatags](docs/sdks/metatags/README.md)
-
-* [Get](docs/sdks/metatags/README.md#get) - Retrieve the metatags for a URL
 
 ### [Partners](docs/sdks/partners/README.md)
 
@@ -262,6 +278,16 @@ func main() {
 				"clux0rgak00011...",
 			},
 		)),
+		TestVariants: []operations.TestVariants{
+			operations.TestVariants{
+				URL:        "https://example.com/variant-1",
+				Percentage: 50,
+			},
+			operations.TestVariants{
+				URL:        "https://example.com/variant-2",
+				Percentage: 50,
+			},
+		},
 	})
 	if err != nil {
 
@@ -362,6 +388,16 @@ func main() {
 				"clux0rgak00011...",
 			},
 		)),
+		TestVariants: []operations.TestVariants{
+			operations.TestVariants{
+				URL:        "https://example.com/variant-1",
+				Percentage: 50,
+			},
+			operations.TestVariants{
+				URL:        "https://example.com/variant-2",
+				Percentage: 50,
+			},
+		},
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -440,6 +476,16 @@ func main() {
 				"clux0rgak00011...",
 			},
 		)),
+		TestVariants: []operations.TestVariants{
+			operations.TestVariants{
+				URL:        "https://example.com/variant-1",
+				Percentage: 50,
+			},
+			operations.TestVariants{
+				URL:        "https://example.com/variant-2",
+				Percentage: 50,
+			},
+		},
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -485,6 +531,16 @@ func main() {
 				"clux0rgak00011...",
 			},
 		)),
+		TestVariants: []operations.TestVariants{
+			operations.TestVariants{
+				URL:        "https://example.com/variant-1",
+				Percentage: 50,
+			},
+			operations.TestVariants{
+				URL:        "https://example.com/variant-2",
+				Percentage: 50,
+			},
+		},
 	}, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
@@ -544,6 +600,16 @@ func main() {
 				"clux0rgak00011...",
 			},
 		)),
+		TestVariants: []operations.TestVariants{
+			operations.TestVariants{
+				URL:        "https://example.com/variant-1",
+				Percentage: 50,
+			},
+			operations.TestVariants{
+				URL:        "https://example.com/variant-2",
+				Percentage: 50,
+			},
+		},
 	})
 	if err != nil {
 		log.Fatal(err)

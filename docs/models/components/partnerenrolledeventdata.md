@@ -1,4 +1,4 @@
-# PartnerCreatedEventData
+# PartnerEnrolledEventData
 
 
 ## Fields

@@ -2167,6 +2167,25 @@ func (o *LinkWebhookEventGeo) GetXk() *string {
 	return o.Xk
 }
 
+type LinkWebhookEventTestVariants struct {
+	URL        string  `json:"url"`
+	Percentage float64 `json:"percentage"`
+}
+
+func (o *LinkWebhookEventTestVariants) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
+}
+
+func (o *LinkWebhookEventTestVariants) GetPercentage() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Percentage
+}
+
 type Data struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
@@ -2190,11 +2209,11 @@ type Data struct {
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password"`
 	Proxy    *bool   `json:"proxy,omitempty"`
-	// The title of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The title of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Title *string `json:"title"`
-	// The description of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The description of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Description *string `json:"description"`
-	// The image of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The image of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Image *string `json:"image"`
 	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Video   *string `json:"video"`
@@ -2233,7 +2252,11 @@ type Data struct {
 	UtmTerm *string `json:"utm_term"`
 	// The UTM content of the short link.
 	UtmContent *string `json:"utm_content"`
-	UserID     *string `json:"userId"`
+	// An array of A/B test URLs and the percentage of traffic to send to each URL.
+	TestVariants    []LinkWebhookEventTestVariants `json:"testVariants,omitempty"`
+	TestStartedAt   *string                        `json:"testStartedAt"`
+	TestCompletedAt *string                        `json:"testCompletedAt"`
+	UserID          *string                        `json:"userId"`
 	// The workspace ID of the short link.
 	WorkspaceID string `json:"workspaceId"`
 	// The number of clicks on the short link.
@@ -2514,6 +2537,27 @@ func (o *Data) GetUtmContent() *string {
 		return nil
 	}
 	return o.UtmContent
+}
+
+func (o *Data) GetTestVariants() []LinkWebhookEventTestVariants {
+	if o == nil {
+		return nil
+	}
+	return o.TestVariants
+}
+
+func (o *Data) GetTestStartedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestStartedAt
+}
+
+func (o *Data) GetTestCompletedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestCompletedAt
 }
 
 func (o *Data) GetUserID() *string {

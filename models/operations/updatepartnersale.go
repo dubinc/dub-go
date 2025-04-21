@@ -65,6 +65,35 @@ func (o *UpdatePartnerSaleRequestBody) GetCurrency() *string {
 	return o.Currency
 }
 
+type Type string
+
+const (
+	TypeClick Type = "click"
+	TypeLead  Type = "lead"
+	TypeSale  Type = "sale"
+)
+
+func (e Type) ToPointer() *Type {
+	return &e
+}
+func (e *Type) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "click":
+		fallthrough
+	case "lead":
+		fallthrough
+	case "sale":
+		*e = Type(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Type: %v", v)
+	}
+}
+
 type UpdatePartnerSaleStatus string
 
 const (
@@ -109,6 +138,7 @@ func (e *UpdatePartnerSaleStatus) UnmarshalJSON(data []byte) error {
 // UpdatePartnerSaleResponseBody - The updated sale.
 type UpdatePartnerSaleResponseBody struct {
 	ID        string                  `json:"id"`
+	Type      *Type                   `json:"type,omitempty"`
 	Amount    float64                 `json:"amount"`
 	Earnings  float64                 `json:"earnings"`
 	Currency  string                  `json:"currency"`
@@ -123,6 +153,13 @@ func (o *UpdatePartnerSaleResponseBody) GetID() string {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *UpdatePartnerSaleResponseBody) GetType() *Type {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }
 
 func (o *UpdatePartnerSaleResponseBody) GetAmount() float64 {

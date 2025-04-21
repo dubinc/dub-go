@@ -276,6 +276,8 @@ type ListEventsRequest struct {
 	ProgramID *string `queryParam:"style=form,explode=true,name=programId"`
 	// The ID of the partner to retrieve analytics for.
 	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
+	// The ID of the customer to retrieve analytics for.
+	CustomerID *string `queryParam:"style=form,explode=true,name=customerId"`
 	// The interval to retrieve events for. Takes precedence over start and end. If undefined, defaults to 24h.
 	Interval *QueryParamInterval `default:"24h" queryParam:"style=form,explode=true,name=interval"`
 	// The start date and time when to retrieve analytics from. Takes precedence over `interval`.
@@ -401,6 +403,13 @@ func (o *ListEventsRequest) GetPartnerID() *string {
 		return nil
 	}
 	return o.PartnerID
+}
+
+func (o *ListEventsRequest) GetCustomerID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerID
 }
 
 func (o *ListEventsRequest) GetInterval() *QueryParamInterval {
