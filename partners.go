@@ -810,7 +810,7 @@ func (s *Partners) CreateLink(ctx context.Context, request *operations.CreatePar
 
 // RetrieveLinks - Retrieve a partner's links.
 // Retrieve a partner's links by their partner ID or tenant ID.
-func (s *Partners) RetrieveLinks(ctx context.Context, request operations.RetrieveLinksRequest, opts ...operations.Option) ([]operations.RetrieveLinksResponseBody, error) {
+func (s *Partners) RetrieveLinks(ctx context.Context, request operations.RetrieveLinksRequest, opts ...operations.Option) ([]operations.Link, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -970,7 +970,7 @@ func (s *Partners) RetrieveLinks(ctx context.Context, request operations.Retriev
 				return nil, err
 			}
 
-			var out []operations.RetrieveLinksResponseBody
+			var out []operations.Link
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

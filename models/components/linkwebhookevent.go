@@ -2186,7 +2186,7 @@ func (o *LinkWebhookEventTestVariants) GetPercentage() float64 {
 	return o.Percentage
 }
 
-type Data struct {
+type LinkWebhookEventLink struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
@@ -2194,7 +2194,7 @@ type Data struct {
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key             string `json:"key"`
 	URL             string `json:"url"`
-	TrackConversion *bool  `json:"trackConversion,omitempty"`
+	TrackConversion bool   `json:"trackConversion"`
 	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
 	ExternalID *string `json:"externalId"`
 	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
@@ -2203,12 +2203,12 @@ type Data struct {
 	ProgramID *string `json:"programId"`
 	// The ID of the partner the short link is associated with.
 	PartnerID  *string `json:"partnerId"`
-	Archived   *bool   `json:"archived,omitempty"`
+	Archived   bool    `json:"archived"`
 	ExpiresAt  string  `json:"expiresAt"`
 	ExpiredURL *string `json:"expiredUrl"`
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password"`
-	Proxy    *bool   `json:"proxy,omitempty"`
+	Proxy    bool    `json:"proxy"`
 	// The title of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Title *string `json:"title"`
 	// The description of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
@@ -2217,15 +2217,15 @@ type Data struct {
 	Image *string `json:"image"`
 	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Video   *string `json:"video"`
-	Rewrite *bool   `json:"rewrite,omitempty"`
-	DoIndex *bool   `json:"doIndex,omitempty"`
+	Rewrite bool    `json:"rewrite"`
+	DoIndex bool    `json:"doIndex"`
 	// The iOS destination URL for the short link for iOS device targeting.
 	Ios *string `json:"ios"`
 	// The Android destination URL for the short link for Android device targeting.
 	Android *string `json:"android"`
 	// Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`. Learn more: https://d.to/geo
 	Geo         *LinkWebhookEventGeo `json:"geo"`
-	PublicStats *bool                `json:"publicStats,omitempty"`
+	PublicStats bool                 `json:"publicStats"`
 	// The unique ID of the tag assigned to the short link. This field is deprecated – use `tags` instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -2276,354 +2276,354 @@ type Data struct {
 	ProjectID string `json:"projectId"`
 }
 
-func (d Data) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(d, "", false)
+func (l LinkWebhookEventLink) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
 }
 
-func (d *Data) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+func (l *LinkWebhookEventLink) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Data) GetID() string {
+func (o *LinkWebhookEventLink) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *Data) GetDomain() string {
+func (o *LinkWebhookEventLink) GetDomain() string {
 	if o == nil {
 		return ""
 	}
 	return o.Domain
 }
 
-func (o *Data) GetKey() string {
+func (o *LinkWebhookEventLink) GetKey() string {
 	if o == nil {
 		return ""
 	}
 	return o.Key
 }
 
-func (o *Data) GetURL() string {
+func (o *LinkWebhookEventLink) GetURL() string {
 	if o == nil {
 		return ""
 	}
 	return o.URL
 }
 
-func (o *Data) GetTrackConversion() *bool {
+func (o *LinkWebhookEventLink) GetTrackConversion() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.TrackConversion
 }
 
-func (o *Data) GetExternalID() *string {
+func (o *LinkWebhookEventLink) GetExternalID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ExternalID
 }
 
-func (o *Data) GetTenantID() *string {
+func (o *LinkWebhookEventLink) GetTenantID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.TenantID
 }
 
-func (o *Data) GetProgramID() *string {
+func (o *LinkWebhookEventLink) GetProgramID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ProgramID
 }
 
-func (o *Data) GetPartnerID() *string {
+func (o *LinkWebhookEventLink) GetPartnerID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PartnerID
 }
 
-func (o *Data) GetArchived() *bool {
+func (o *LinkWebhookEventLink) GetArchived() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Archived
 }
 
-func (o *Data) GetExpiresAt() string {
+func (o *LinkWebhookEventLink) GetExpiresAt() string {
 	if o == nil {
 		return ""
 	}
 	return o.ExpiresAt
 }
 
-func (o *Data) GetExpiredURL() *string {
+func (o *LinkWebhookEventLink) GetExpiredURL() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ExpiredURL
 }
 
-func (o *Data) GetPassword() *string {
+func (o *LinkWebhookEventLink) GetPassword() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Password
 }
 
-func (o *Data) GetProxy() *bool {
+func (o *LinkWebhookEventLink) GetProxy() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Proxy
 }
 
-func (o *Data) GetTitle() *string {
+func (o *LinkWebhookEventLink) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *Data) GetDescription() *string {
+func (o *LinkWebhookEventLink) GetDescription() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *Data) GetImage() *string {
+func (o *LinkWebhookEventLink) GetImage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Image
 }
 
-func (o *Data) GetVideo() *string {
+func (o *LinkWebhookEventLink) GetVideo() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Video
 }
 
-func (o *Data) GetRewrite() *bool {
+func (o *LinkWebhookEventLink) GetRewrite() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Rewrite
 }
 
-func (o *Data) GetDoIndex() *bool {
+func (o *LinkWebhookEventLink) GetDoIndex() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.DoIndex
 }
 
-func (o *Data) GetIos() *string {
+func (o *LinkWebhookEventLink) GetIos() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Ios
 }
 
-func (o *Data) GetAndroid() *string {
+func (o *LinkWebhookEventLink) GetAndroid() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Android
 }
 
-func (o *Data) GetGeo() *LinkWebhookEventGeo {
+func (o *LinkWebhookEventLink) GetGeo() *LinkWebhookEventGeo {
 	if o == nil {
 		return nil
 	}
 	return o.Geo
 }
 
-func (o *Data) GetPublicStats() *bool {
+func (o *LinkWebhookEventLink) GetPublicStats() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.PublicStats
 }
 
-func (o *Data) GetTagID() *string {
+func (o *LinkWebhookEventLink) GetTagID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.TagID
 }
 
-func (o *Data) GetTags() []TagSchema {
+func (o *LinkWebhookEventLink) GetTags() []TagSchema {
 	if o == nil {
 		return nil
 	}
 	return o.Tags
 }
 
-func (o *Data) GetFolderID() *string {
+func (o *LinkWebhookEventLink) GetFolderID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.FolderID
 }
 
-func (o *Data) GetWebhookIds() []string {
+func (o *LinkWebhookEventLink) GetWebhookIds() []string {
 	if o == nil {
 		return []string{}
 	}
 	return o.WebhookIds
 }
 
-func (o *Data) GetComments() *string {
+func (o *LinkWebhookEventLink) GetComments() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Comments
 }
 
-func (o *Data) GetShortLink() string {
+func (o *LinkWebhookEventLink) GetShortLink() string {
 	if o == nil {
 		return ""
 	}
 	return o.ShortLink
 }
 
-func (o *Data) GetQrCode() string {
+func (o *LinkWebhookEventLink) GetQrCode() string {
 	if o == nil {
 		return ""
 	}
 	return o.QrCode
 }
 
-func (o *Data) GetUtmSource() *string {
+func (o *LinkWebhookEventLink) GetUtmSource() *string {
 	if o == nil {
 		return nil
 	}
 	return o.UtmSource
 }
 
-func (o *Data) GetUtmMedium() *string {
+func (o *LinkWebhookEventLink) GetUtmMedium() *string {
 	if o == nil {
 		return nil
 	}
 	return o.UtmMedium
 }
 
-func (o *Data) GetUtmCampaign() *string {
+func (o *LinkWebhookEventLink) GetUtmCampaign() *string {
 	if o == nil {
 		return nil
 	}
 	return o.UtmCampaign
 }
 
-func (o *Data) GetUtmTerm() *string {
+func (o *LinkWebhookEventLink) GetUtmTerm() *string {
 	if o == nil {
 		return nil
 	}
 	return o.UtmTerm
 }
 
-func (o *Data) GetUtmContent() *string {
+func (o *LinkWebhookEventLink) GetUtmContent() *string {
 	if o == nil {
 		return nil
 	}
 	return o.UtmContent
 }
 
-func (o *Data) GetTestVariants() []LinkWebhookEventTestVariants {
+func (o *LinkWebhookEventLink) GetTestVariants() []LinkWebhookEventTestVariants {
 	if o == nil {
 		return nil
 	}
 	return o.TestVariants
 }
 
-func (o *Data) GetTestStartedAt() *string {
+func (o *LinkWebhookEventLink) GetTestStartedAt() *string {
 	if o == nil {
 		return nil
 	}
 	return o.TestStartedAt
 }
 
-func (o *Data) GetTestCompletedAt() *string {
+func (o *LinkWebhookEventLink) GetTestCompletedAt() *string {
 	if o == nil {
 		return nil
 	}
 	return o.TestCompletedAt
 }
 
-func (o *Data) GetUserID() *string {
+func (o *LinkWebhookEventLink) GetUserID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.UserID
 }
 
-func (o *Data) GetWorkspaceID() string {
+func (o *LinkWebhookEventLink) GetWorkspaceID() string {
 	if o == nil {
 		return ""
 	}
 	return o.WorkspaceID
 }
 
-func (o *Data) GetClicks() *float64 {
+func (o *LinkWebhookEventLink) GetClicks() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Clicks
 }
 
-func (o *Data) GetLastClicked() string {
+func (o *LinkWebhookEventLink) GetLastClicked() string {
 	if o == nil {
 		return ""
 	}
 	return o.LastClicked
 }
 
-func (o *Data) GetLeads() *float64 {
+func (o *LinkWebhookEventLink) GetLeads() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Leads
 }
 
-func (o *Data) GetSales() *float64 {
+func (o *LinkWebhookEventLink) GetSales() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Sales
 }
 
-func (o *Data) GetSaleAmount() *float64 {
+func (o *LinkWebhookEventLink) GetSaleAmount() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.SaleAmount
 }
 
-func (o *Data) GetCreatedAt() string {
+func (o *LinkWebhookEventLink) GetCreatedAt() string {
 	if o == nil {
 		return ""
 	}
 	return o.CreatedAt
 }
 
-func (o *Data) GetUpdatedAt() string {
+func (o *LinkWebhookEventLink) GetUpdatedAt() string {
 	if o == nil {
 		return ""
 	}
 	return o.UpdatedAt
 }
 
-func (o *Data) GetProjectID() string {
+func (o *LinkWebhookEventLink) GetProjectID() string {
 	if o == nil {
 		return ""
 	}
@@ -2635,7 +2635,7 @@ type LinkWebhookEvent struct {
 	ID        string                `json:"id"`
 	Event     LinkWebhookEventEvent `json:"event"`
 	CreatedAt string                `json:"createdAt"`
-	Data      Data                  `json:"data"`
+	Data      LinkWebhookEventLink  `json:"data"`
 }
 
 func (o *LinkWebhookEvent) GetID() string {
@@ -2659,9 +2659,9 @@ func (o *LinkWebhookEvent) GetCreatedAt() string {
 	return o.CreatedAt
 }
 
-func (o *LinkWebhookEvent) GetData() Data {
+func (o *LinkWebhookEvent) GetData() LinkWebhookEventLink {
 	if o == nil {
-		return Data{}
+		return LinkWebhookEventLink{}
 	}
 	return o.Data
 }

@@ -33,7 +33,7 @@ func (o *RetrieveLinksRequest) GetTenantID() *string {
 	return o.TenantID
 }
 
-type RetrieveLinksResponseBody struct {
+type Link struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
@@ -54,74 +54,74 @@ type RetrieveLinksResponseBody struct {
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 
-func (r RetrieveLinksResponseBody) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(r, "", false)
+func (l Link) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
 }
 
-func (r *RetrieveLinksResponseBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+func (l *Link) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *RetrieveLinksResponseBody) GetID() string {
+func (o *Link) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *RetrieveLinksResponseBody) GetDomain() string {
+func (o *Link) GetDomain() string {
 	if o == nil {
 		return ""
 	}
 	return o.Domain
 }
 
-func (o *RetrieveLinksResponseBody) GetKey() string {
+func (o *Link) GetKey() string {
 	if o == nil {
 		return ""
 	}
 	return o.Key
 }
 
-func (o *RetrieveLinksResponseBody) GetShortLink() string {
+func (o *Link) GetShortLink() string {
 	if o == nil {
 		return ""
 	}
 	return o.ShortLink
 }
 
-func (o *RetrieveLinksResponseBody) GetURL() string {
+func (o *Link) GetURL() string {
 	if o == nil {
 		return ""
 	}
 	return o.URL
 }
 
-func (o *RetrieveLinksResponseBody) GetClicks() *float64 {
+func (o *Link) GetClicks() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Clicks
 }
 
-func (o *RetrieveLinksResponseBody) GetLeads() *float64 {
+func (o *Link) GetLeads() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Leads
 }
 
-func (o *RetrieveLinksResponseBody) GetSales() *float64 {
+func (o *Link) GetSales() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Sales
 }
 
-func (o *RetrieveLinksResponseBody) GetSaleAmount() *float64 {
+func (o *Link) GetSaleAmount() *float64 {
 	if o == nil {
 		return nil
 	}

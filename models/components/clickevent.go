@@ -44,7 +44,7 @@ type Click struct {
 	Os         string `json:"os"`
 	Referer    string `json:"referer"`
 	RefererURL string `json:"refererUrl"`
-	Qr         *bool  `json:"qr,omitempty"`
+	Qr         bool   `json:"qr"`
 	IP         string `json:"ip"`
 }
 
@@ -132,9 +132,9 @@ func (o *Click) GetRefererURL() string {
 	return o.RefererURL
 }
 
-func (o *Click) GetQr() *bool {
+func (o *Click) GetQr() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Qr
 }
@@ -2177,7 +2177,7 @@ type Link struct {
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key             string `json:"key"`
 	URL             string `json:"url"`
-	TrackConversion *bool  `json:"trackConversion,omitempty"`
+	TrackConversion bool   `json:"trackConversion"`
 	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
 	ExternalID *string `json:"externalId"`
 	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
@@ -2186,12 +2186,12 @@ type Link struct {
 	ProgramID *string `json:"programId"`
 	// The ID of the partner the short link is associated with.
 	PartnerID  *string `json:"partnerId"`
-	Archived   *bool   `json:"archived,omitempty"`
+	Archived   bool    `json:"archived"`
 	ExpiresAt  string  `json:"expiresAt"`
 	ExpiredURL *string `json:"expiredUrl"`
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password"`
-	Proxy    *bool   `json:"proxy,omitempty"`
+	Proxy    bool    `json:"proxy"`
 	// The title of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Title *string `json:"title"`
 	// The description of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
@@ -2200,15 +2200,15 @@ type Link struct {
 	Image *string `json:"image"`
 	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Video   *string `json:"video"`
-	Rewrite *bool   `json:"rewrite,omitempty"`
-	DoIndex *bool   `json:"doIndex,omitempty"`
+	Rewrite bool    `json:"rewrite"`
+	DoIndex bool    `json:"doIndex"`
 	// The iOS destination URL for the short link for iOS device targeting.
 	Ios *string `json:"ios"`
 	// The Android destination URL for the short link for Android device targeting.
 	Android *string `json:"android"`
 	// Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`. Learn more: https://d.to/geo
 	Geo         *ClickEventGeo `json:"geo"`
-	PublicStats *bool          `json:"publicStats,omitempty"`
+	PublicStats bool           `json:"publicStats"`
 	// The unique ID of the tag assigned to the short link. This field is deprecated – use `tags` instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -2298,9 +2298,9 @@ func (o *Link) GetURL() string {
 	return o.URL
 }
 
-func (o *Link) GetTrackConversion() *bool {
+func (o *Link) GetTrackConversion() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.TrackConversion
 }
@@ -2333,9 +2333,9 @@ func (o *Link) GetPartnerID() *string {
 	return o.PartnerID
 }
 
-func (o *Link) GetArchived() *bool {
+func (o *Link) GetArchived() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Archived
 }
@@ -2361,9 +2361,9 @@ func (o *Link) GetPassword() *string {
 	return o.Password
 }
 
-func (o *Link) GetProxy() *bool {
+func (o *Link) GetProxy() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Proxy
 }
@@ -2396,16 +2396,16 @@ func (o *Link) GetVideo() *string {
 	return o.Video
 }
 
-func (o *Link) GetRewrite() *bool {
+func (o *Link) GetRewrite() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Rewrite
 }
 
-func (o *Link) GetDoIndex() *bool {
+func (o *Link) GetDoIndex() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.DoIndex
 }
@@ -2431,9 +2431,9 @@ func (o *Link) GetGeo() *ClickEventGeo {
 	return o.Geo
 }
 
-func (o *Link) GetPublicStats() *bool {
+func (o *Link) GetPublicStats() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.PublicStats
 }
@@ -2614,10 +2614,10 @@ func (o *Link) GetProjectID() string {
 }
 
 type ClickEvent struct {
-	Event     Event   `json:"event"`
-	Timestamp *string `json:"timestamp,omitempty"`
-	Click     Click   `json:"click"`
-	Link      Link    `json:"link"`
+	Event     Event  `json:"event"`
+	Timestamp string `json:"timestamp"`
+	Click     Click  `json:"click"`
+	Link      Link   `json:"link"`
 	// Deprecated. Use `click.id` instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -2679,9 +2679,9 @@ func (o *ClickEvent) GetEvent() Event {
 	return o.Event
 }
 
-func (o *ClickEvent) GetTimestamp() *string {
+func (o *ClickEvent) GetTimestamp() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Timestamp
 }

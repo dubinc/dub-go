@@ -2062,7 +2062,7 @@ type SaleEventLink struct {
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key             string `json:"key"`
 	URL             string `json:"url"`
-	TrackConversion *bool  `json:"trackConversion,omitempty"`
+	TrackConversion bool   `json:"trackConversion"`
 	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
 	ExternalID *string `json:"externalId"`
 	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
@@ -2071,12 +2071,12 @@ type SaleEventLink struct {
 	ProgramID *string `json:"programId"`
 	// The ID of the partner the short link is associated with.
 	PartnerID  *string `json:"partnerId"`
-	Archived   *bool   `json:"archived,omitempty"`
+	Archived   bool    `json:"archived"`
 	ExpiresAt  string  `json:"expiresAt"`
 	ExpiredURL *string `json:"expiredUrl"`
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password"`
-	Proxy    *bool   `json:"proxy,omitempty"`
+	Proxy    bool    `json:"proxy"`
 	// The title of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Title *string `json:"title"`
 	// The description of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
@@ -2085,15 +2085,15 @@ type SaleEventLink struct {
 	Image *string `json:"image"`
 	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Video   *string `json:"video"`
-	Rewrite *bool   `json:"rewrite,omitempty"`
-	DoIndex *bool   `json:"doIndex,omitempty"`
+	Rewrite bool    `json:"rewrite"`
+	DoIndex bool    `json:"doIndex"`
 	// The iOS destination URL for the short link for iOS device targeting.
 	Ios *string `json:"ios"`
 	// The Android destination URL for the short link for Android device targeting.
 	Android *string `json:"android"`
 	// Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`. Learn more: https://d.to/geo
 	Geo         *SaleEventGeo `json:"geo"`
-	PublicStats *bool         `json:"publicStats,omitempty"`
+	PublicStats bool          `json:"publicStats"`
 	// The unique ID of the tag assigned to the short link. This field is deprecated – use `tags` instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -2183,9 +2183,9 @@ func (o *SaleEventLink) GetURL() string {
 	return o.URL
 }
 
-func (o *SaleEventLink) GetTrackConversion() *bool {
+func (o *SaleEventLink) GetTrackConversion() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.TrackConversion
 }
@@ -2218,9 +2218,9 @@ func (o *SaleEventLink) GetPartnerID() *string {
 	return o.PartnerID
 }
 
-func (o *SaleEventLink) GetArchived() *bool {
+func (o *SaleEventLink) GetArchived() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Archived
 }
@@ -2246,9 +2246,9 @@ func (o *SaleEventLink) GetPassword() *string {
 	return o.Password
 }
 
-func (o *SaleEventLink) GetProxy() *bool {
+func (o *SaleEventLink) GetProxy() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Proxy
 }
@@ -2281,16 +2281,16 @@ func (o *SaleEventLink) GetVideo() *string {
 	return o.Video
 }
 
-func (o *SaleEventLink) GetRewrite() *bool {
+func (o *SaleEventLink) GetRewrite() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Rewrite
 }
 
-func (o *SaleEventLink) GetDoIndex() *bool {
+func (o *SaleEventLink) GetDoIndex() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.DoIndex
 }
@@ -2316,9 +2316,9 @@ func (o *SaleEventLink) GetGeo() *SaleEventGeo {
 	return o.Geo
 }
 
-func (o *SaleEventLink) GetPublicStats() *bool {
+func (o *SaleEventLink) GetPublicStats() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.PublicStats
 }
@@ -2511,7 +2511,7 @@ type SaleEventClick struct {
 	Os         string `json:"os"`
 	Referer    string `json:"referer"`
 	RefererURL string `json:"refererUrl"`
-	Qr         *bool  `json:"qr,omitempty"`
+	Qr         bool   `json:"qr"`
 	IP         string `json:"ip"`
 }
 
@@ -2599,9 +2599,9 @@ func (o *SaleEventClick) GetRefererURL() string {
 	return o.RefererURL
 }
 
-func (o *SaleEventClick) GetQr() *bool {
+func (o *SaleEventClick) GetQr() bool {
 	if o == nil {
-		return nil
+		return false
 	}
 	return o.Qr
 }
@@ -2758,7 +2758,7 @@ func (o *Sale) GetPaymentProcessor() PaymentProcessor {
 
 type SaleEvent struct {
 	Event     SaleEventEvent    `json:"event"`
-	Timestamp *string           `json:"timestamp,omitempty"`
+	Timestamp string            `json:"timestamp"`
 	EventID   string            `json:"eventId"`
 	EventName string            `json:"eventName"`
 	Link      SaleEventLink     `json:"link"`
@@ -2837,9 +2837,9 @@ func (o *SaleEvent) GetEvent() SaleEventEvent {
 	return o.Event
 }
 
-func (o *SaleEvent) GetTimestamp() *string {
+func (o *SaleEvent) GetTimestamp() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.Timestamp
 }
