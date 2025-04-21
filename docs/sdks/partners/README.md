@@ -219,7 +219,7 @@ func main() {
 
 ### Response
 
-**[[]operations.RetrieveLinksResponseBody](../../.md), error**
+**[[]operations.Link](../../.md), error**
 
 ### Errors
 

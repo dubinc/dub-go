@@ -1,4 +1,4 @@
-# RetrieveLinksResponseBody
+# CreatePartnerLink
 
 
 ## Fields

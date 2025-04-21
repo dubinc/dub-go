@@ -37,7 +37,7 @@ func (o *GetCustomersRequest) GetIncludeExpandedFields() *bool {
 	return o.IncludeExpandedFields
 }
 
-type Link struct {
+type GetCustomersLink struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
@@ -50,35 +50,35 @@ type Link struct {
 	ProgramID *string `json:"programId"`
 }
 
-func (o *Link) GetID() string {
+func (o *GetCustomersLink) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *Link) GetDomain() string {
+func (o *GetCustomersLink) GetDomain() string {
 	if o == nil {
 		return ""
 	}
 	return o.Domain
 }
 
-func (o *Link) GetKey() string {
+func (o *GetCustomersLink) GetKey() string {
 	if o == nil {
 		return ""
 	}
 	return o.Key
 }
 
-func (o *Link) GetShortLink() string {
+func (o *GetCustomersLink) GetShortLink() string {
 	if o == nil {
 		return ""
 	}
 	return o.ShortLink
 }
 
-func (o *Link) GetProgramID() *string {
+func (o *GetCustomersLink) GetProgramID() *string {
 	if o == nil {
 		return nil
 	}
@@ -228,7 +228,7 @@ type GetCustomersResponseBody struct {
 	Country *string `json:"country,omitempty"`
 	// The date the customer was created.
 	CreatedAt string               `json:"createdAt"`
-	Link      *Link                `json:"link,omitempty"`
+	Link      *GetCustomersLink    `json:"link,omitempty"`
 	ProgramID *string              `json:"programId,omitempty"`
 	Partner   *GetCustomersPartner `json:"partner,omitempty"`
 	Discount  *Discount            `json:"discount,omitempty"`
@@ -283,7 +283,7 @@ func (o *GetCustomersResponseBody) GetCreatedAt() string {
 	return o.CreatedAt
 }
 
-func (o *GetCustomersResponseBody) GetLink() *Link {
+func (o *GetCustomersResponseBody) GetLink() *GetCustomersLink {
 	if o == nil {
 		return nil
 	}
