@@ -2150,6 +2150,25 @@ func (o *LeadEventGeo) GetXk() *string {
 	return o.Xk
 }
 
+type LeadEventTestVariants struct {
+	URL        string  `json:"url"`
+	Percentage float64 `json:"percentage"`
+}
+
+func (o *LeadEventTestVariants) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
+}
+
+func (o *LeadEventTestVariants) GetPercentage() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Percentage
+}
+
 type LeadEventLink struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
@@ -2173,11 +2192,11 @@ type LeadEventLink struct {
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password"`
 	Proxy    *bool   `json:"proxy,omitempty"`
-	// The title of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The title of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Title *string `json:"title"`
-	// The description of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The description of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Description *string `json:"description"`
-	// The image of the short link generated via `api.dub.co/metatags`. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The image of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
 	Image *string `json:"image"`
 	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Video   *string `json:"video"`
@@ -2216,7 +2235,11 @@ type LeadEventLink struct {
 	UtmTerm *string `json:"utm_term"`
 	// The UTM content of the short link.
 	UtmContent *string `json:"utm_content"`
-	UserID     *string `json:"userId"`
+	// An array of A/B test URLs and the percentage of traffic to send to each URL.
+	TestVariants    []LeadEventTestVariants `json:"testVariants,omitempty"`
+	TestStartedAt   *string                 `json:"testStartedAt"`
+	TestCompletedAt *string                 `json:"testCompletedAt"`
+	UserID          *string                 `json:"userId"`
 	// The workspace ID of the short link.
 	WorkspaceID string `json:"workspaceId"`
 	// The number of clicks on the short link.
@@ -2499,6 +2522,27 @@ func (o *LeadEventLink) GetUtmContent() *string {
 	return o.UtmContent
 }
 
+func (o *LeadEventLink) GetTestVariants() []LeadEventTestVariants {
+	if o == nil {
+		return nil
+	}
+	return o.TestVariants
+}
+
+func (o *LeadEventLink) GetTestStartedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestStartedAt
+}
+
+func (o *LeadEventLink) GetTestCompletedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestCompletedAt
+}
+
 func (o *LeadEventLink) GetUserID() *string {
 	if o == nil {
 		return nil
@@ -2640,6 +2684,7 @@ type LeadEvent struct {
 	Timestamp *string        `json:"timestamp,omitempty"`
 	EventID   string         `json:"eventId"`
 	EventName string         `json:"eventName"`
+	Metadata  string         `json:"metadata"`
 	Click     LeadEventClick `json:"click"`
 	Link      LeadEventLink  `json:"link"`
 	Customer  Customer       `json:"customer"`
@@ -2723,6 +2768,13 @@ func (o *LeadEvent) GetEventName() string {
 		return ""
 	}
 	return o.EventName
+}
+
+func (o *LeadEvent) GetMetadata() string {
+	if o == nil {
+		return ""
+	}
+	return o.Metadata
 }
 
 func (o *LeadEvent) GetClick() LeadEventClick {

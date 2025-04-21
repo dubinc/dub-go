@@ -34,6 +34,7 @@ func main() {
     res, err := s.Track.Lead(ctx, &operations.TrackLeadRequestBody{
         ClickID: "<id>",
         EventName: "Sign up",
+        ExternalID: "<id>",
     })
     if err != nil {
         log.Fatal(err)
@@ -95,8 +96,9 @@ func main() {
     )
 
     res, err := s.Track.Sale(ctx, &operations.TrackSaleRequestBody{
+        ExternalID: "<id>",
         Amount: 996500,
-        PaymentProcessor: operations.PaymentProcessorPaddle,
+        PaymentProcessor: operations.PaymentProcessorCustom,
     })
     if err != nil {
         log.Fatal(err)

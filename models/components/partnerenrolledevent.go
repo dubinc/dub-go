@@ -8,26 +8,26 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
-type PartnerCreatedEventEvent string
+type PartnerEnrolledEventEvent string
 
 const (
-	PartnerCreatedEventEventPartnerCreated PartnerCreatedEventEvent = "partner.created"
+	PartnerEnrolledEventEventPartnerEnrolled PartnerEnrolledEventEvent = "partner.enrolled"
 )
 
-func (e PartnerCreatedEventEvent) ToPointer() *PartnerCreatedEventEvent {
+func (e PartnerEnrolledEventEvent) ToPointer() *PartnerEnrolledEventEvent {
 	return &e
 }
-func (e *PartnerCreatedEventEvent) UnmarshalJSON(data []byte) error {
+func (e *PartnerEnrolledEventEvent) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
-	case "partner.created":
-		*e = PartnerCreatedEventEvent(v)
+	case "partner.enrolled":
+		*e = PartnerEnrolledEventEvent(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PartnerCreatedEventEvent: %v", v)
+		return fmt.Errorf("invalid value for PartnerEnrolledEventEvent: %v", v)
 	}
 }
 
@@ -164,7 +164,7 @@ func (o *Links) GetSaleAmount() *float64 {
 	return o.SaleAmount
 }
 
-type PartnerCreatedEventData struct {
+type PartnerEnrolledEventData struct {
 	ID               string   `json:"id"`
 	Name             string   `json:"name"`
 	Email            *string  `json:"email"`
@@ -185,175 +185,175 @@ type PartnerCreatedEventData struct {
 	ApplicationID    *string  `json:"applicationId,omitempty"`
 }
 
-func (p PartnerCreatedEventData) MarshalJSON() ([]byte, error) {
+func (p PartnerEnrolledEventData) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(p, "", false)
 }
 
-func (p *PartnerCreatedEventData) UnmarshalJSON(data []byte) error {
+func (p *PartnerEnrolledEventData) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PartnerCreatedEventData) GetID() string {
+func (o *PartnerEnrolledEventData) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *PartnerCreatedEventData) GetName() string {
+func (o *PartnerEnrolledEventData) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *PartnerCreatedEventData) GetEmail() *string {
+func (o *PartnerEnrolledEventData) GetEmail() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Email
 }
 
-func (o *PartnerCreatedEventData) GetImage() *string {
+func (o *PartnerEnrolledEventData) GetImage() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Image
 }
 
-func (o *PartnerCreatedEventData) GetDescription() *string {
+func (o *PartnerEnrolledEventData) GetDescription() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Description
 }
 
-func (o *PartnerCreatedEventData) GetCountry() *string {
+func (o *PartnerEnrolledEventData) GetCountry() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Country
 }
 
-func (o *PartnerCreatedEventData) GetPayoutsEnabledAt() *string {
+func (o *PartnerEnrolledEventData) GetPayoutsEnabledAt() *string {
 	if o == nil {
 		return nil
 	}
 	return o.PayoutsEnabledAt
 }
 
-func (o *PartnerCreatedEventData) GetCreatedAt() string {
+func (o *PartnerEnrolledEventData) GetCreatedAt() string {
 	if o == nil {
 		return ""
 	}
 	return o.CreatedAt
 }
 
-func (o *PartnerCreatedEventData) GetStatus() Status {
+func (o *PartnerEnrolledEventData) GetStatus() Status {
 	if o == nil {
 		return Status("")
 	}
 	return o.Status
 }
 
-func (o *PartnerCreatedEventData) GetProgramID() string {
+func (o *PartnerEnrolledEventData) GetProgramID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ProgramID
 }
 
-func (o *PartnerCreatedEventData) GetTenantID() *string {
+func (o *PartnerEnrolledEventData) GetTenantID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.TenantID
 }
 
-func (o *PartnerCreatedEventData) GetLinks() []Links {
+func (o *PartnerEnrolledEventData) GetLinks() []Links {
 	if o == nil {
 		return nil
 	}
 	return o.Links
 }
 
-func (o *PartnerCreatedEventData) GetClicks() *float64 {
+func (o *PartnerEnrolledEventData) GetClicks() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Clicks
 }
 
-func (o *PartnerCreatedEventData) GetLeads() *float64 {
+func (o *PartnerEnrolledEventData) GetLeads() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Leads
 }
 
-func (o *PartnerCreatedEventData) GetSales() *float64 {
+func (o *PartnerEnrolledEventData) GetSales() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Sales
 }
 
-func (o *PartnerCreatedEventData) GetSaleAmount() *float64 {
+func (o *PartnerEnrolledEventData) GetSaleAmount() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.SaleAmount
 }
 
-func (o *PartnerCreatedEventData) GetEarnings() *float64 {
+func (o *PartnerEnrolledEventData) GetEarnings() *float64 {
 	if o == nil {
 		return nil
 	}
 	return o.Earnings
 }
 
-func (o *PartnerCreatedEventData) GetApplicationID() *string {
+func (o *PartnerEnrolledEventData) GetApplicationID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ApplicationID
 }
 
-// PartnerCreatedEvent - Triggered when a partner is created.
-type PartnerCreatedEvent struct {
-	ID        string                   `json:"id"`
-	Event     PartnerCreatedEventEvent `json:"event"`
-	CreatedAt string                   `json:"createdAt"`
-	Data      PartnerCreatedEventData  `json:"data"`
+// PartnerEnrolledEvent - Triggered when a partner is enrolled.
+type PartnerEnrolledEvent struct {
+	ID        string                    `json:"id"`
+	Event     PartnerEnrolledEventEvent `json:"event"`
+	CreatedAt string                    `json:"createdAt"`
+	Data      PartnerEnrolledEventData  `json:"data"`
 }
 
-func (o *PartnerCreatedEvent) GetID() string {
+func (o *PartnerEnrolledEvent) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *PartnerCreatedEvent) GetEvent() PartnerCreatedEventEvent {
+func (o *PartnerEnrolledEvent) GetEvent() PartnerEnrolledEventEvent {
 	if o == nil {
-		return PartnerCreatedEventEvent("")
+		return PartnerEnrolledEventEvent("")
 	}
 	return o.Event
 }
 
-func (o *PartnerCreatedEvent) GetCreatedAt() string {
+func (o *PartnerEnrolledEvent) GetCreatedAt() string {
 	if o == nil {
 		return ""
 	}
 	return o.CreatedAt
 }
 
-func (o *PartnerCreatedEvent) GetData() PartnerCreatedEventData {
+func (o *PartnerEnrolledEvent) GetData() PartnerEnrolledEventData {
 	if o == nil {
-		return PartnerCreatedEventData{}
+		return PartnerEnrolledEventData{}
 	}
 	return o.Data
 }

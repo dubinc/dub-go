@@ -42,6 +42,16 @@ func main() {
                         "clux0rgak00011...",
                     },
                 )),
+                TestVariants: []operations.CreateReferralsEmbedTokenTestVariants{
+                    operations.CreateReferralsEmbedTokenTestVariants{
+                        URL: "https://example.com/variant-1",
+                        Percentage: 50,
+                    },
+                    operations.CreateReferralsEmbedTokenTestVariants{
+                        URL: "https://example.com/variant-2",
+                        Percentage: 50,
+                    },
+                },
             },
         },
     })

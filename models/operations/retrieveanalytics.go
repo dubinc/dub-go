@@ -282,6 +282,8 @@ type RetrieveAnalyticsRequest struct {
 	ProgramID *string `queryParam:"style=form,explode=true,name=programId"`
 	// The ID of the partner to retrieve analytics for.
 	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
+	// The ID of the customer to retrieve analytics for.
+	CustomerID *string `queryParam:"style=form,explode=true,name=customerId"`
 	// The interval to retrieve analytics for. If undefined, defaults to 24h.
 	Interval *Interval `queryParam:"style=form,explode=true,name=interval"`
 	// The start date and time when to retrieve analytics from. Takes precedence over `interval`.
@@ -406,6 +408,13 @@ func (o *RetrieveAnalyticsRequest) GetPartnerID() *string {
 		return nil
 	}
 	return o.PartnerID
+}
+
+func (o *RetrieveAnalyticsRequest) GetCustomerID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerID
 }
 
 func (o *RetrieveAnalyticsRequest) GetInterval() *Interval {

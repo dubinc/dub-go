@@ -137,6 +137,25 @@ func (u UpdateLinkTagNames) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type UpdateLinkTagNames: all fields are null")
 }
 
+type UpdateLinkTestVariants struct {
+	URL        string  `json:"url"`
+	Percentage float64 `json:"percentage"`
+}
+
+func (o *UpdateLinkTestVariants) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
+}
+
+func (o *UpdateLinkTestVariants) GetPercentage() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Percentage
+}
+
 type UpdateLinkRequestBody struct {
 	// The destination URL of the short link.
 	URL *string `json:"url,omitempty"`
@@ -214,6 +233,12 @@ type UpdateLinkRequestBody struct {
 	Ref *string `json:"ref,omitempty"`
 	// An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
 	WebhookIds []string `json:"webhookIds,omitempty"`
+	// An array of A/B test URLs and the percentage of traffic to send to each URL.
+	TestVariants []UpdateLinkTestVariants `json:"testVariants,omitempty"`
+	// The date and time when the tests started.
+	TestStartedAt *string `json:"testStartedAt,omitempty"`
+	// The date and time when the tests were or will be completed.
+	TestCompletedAt *string `json:"testCompletedAt,omitempty"`
 }
 
 func (o *UpdateLinkRequestBody) GetURL() *string {
@@ -466,6 +491,27 @@ func (o *UpdateLinkRequestBody) GetWebhookIds() []string {
 		return nil
 	}
 	return o.WebhookIds
+}
+
+func (o *UpdateLinkRequestBody) GetTestVariants() []UpdateLinkTestVariants {
+	if o == nil {
+		return nil
+	}
+	return o.TestVariants
+}
+
+func (o *UpdateLinkRequestBody) GetTestStartedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestStartedAt
+}
+
+func (o *UpdateLinkRequestBody) GetTestCompletedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestCompletedAt
 }
 
 type UpdateLinkRequest struct {

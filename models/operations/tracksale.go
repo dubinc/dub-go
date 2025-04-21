@@ -45,26 +45,22 @@ func (e *PaymentProcessor) UnmarshalJSON(data []byte) error {
 }
 
 type TrackSaleRequestBody struct {
-	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
-	ExternalID *string `default:"" json:"externalId"`
-	// This is the unique identifier for the customer in the client's app. This is used to track the customer's journey.
-	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	CustomerID *string `default:"null" json:"customerId"`
-	// The amount of the sale. Should be passed in cents.
+	// The unique ID of the customer in your system. Will be used to identify and attribute all future events to this customer.
+	ExternalID string `json:"externalId"`
+	// The amount of the sale in cents.
 	Amount int64 `json:"amount"`
 	// The payment processor via which the sale was made.
 	PaymentProcessor PaymentProcessor `json:"paymentProcessor"`
-	// The name of the sale event. It can be used to track different types of event for example 'Purchase', 'Upgrade', 'Payment', etc.
+	// The name of the sale event.
 	EventName *string `default:"Purchase" json:"eventName"`
 	// The invoice ID of the sale. Can be used as a idempotency key – only one sale event can be recorded for a given invoice ID.
 	InvoiceID *string `default:"null" json:"invoiceId"`
 	// The currency of the sale. Accepts ISO 4217 currency codes.
 	Currency *string `default:"usd" json:"currency"`
-	// Additional metadata to be stored with the sale event.
-	Metadata map[string]any `json:"metadata,omitempty"`
 	// The name of the lead event that occurred before the sale (case-sensitive). This is used to associate the sale event with a particular lead event (instead of the latest lead event, which is the default behavior).
 	LeadEventName *string `default:"null" json:"leadEventName"`
+	// Additional metadata to be stored with the sale event. Max 10,000 characters.
+	Metadata map[string]any `json:"metadata,omitempty"`
 }
 
 func (t TrackSaleRequestBody) MarshalJSON() ([]byte, error) {
@@ -78,18 +74,11 @@ func (t *TrackSaleRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TrackSaleRequestBody) GetExternalID() *string {
+func (o *TrackSaleRequestBody) GetExternalID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ExternalID
-}
-
-func (o *TrackSaleRequestBody) GetCustomerID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.CustomerID
 }
 
 func (o *TrackSaleRequestBody) GetAmount() int64 {
@@ -127,18 +116,18 @@ func (o *TrackSaleRequestBody) GetCurrency() *string {
 	return o.Currency
 }
 
-func (o *TrackSaleRequestBody) GetMetadata() map[string]any {
-	if o == nil {
-		return nil
-	}
-	return o.Metadata
-}
-
 func (o *TrackSaleRequestBody) GetLeadEventName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.LeadEventName
+}
+
+func (o *TrackSaleRequestBody) GetMetadata() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
 }
 
 type TrackSaleCustomer struct {

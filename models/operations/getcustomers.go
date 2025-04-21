@@ -120,17 +120,17 @@ func (o *GetCustomersPartner) GetImage() *string {
 	return o.Image
 }
 
-type Type string
+type GetCustomersType string
 
 const (
-	TypePercentage Type = "percentage"
-	TypeFlat       Type = "flat"
+	GetCustomersTypePercentage GetCustomersType = "percentage"
+	GetCustomersTypeFlat       GetCustomersType = "flat"
 )
 
-func (e Type) ToPointer() *Type {
+func (e GetCustomersType) ToPointer() *GetCustomersType {
 	return &e
 }
-func (e *Type) UnmarshalJSON(data []byte) error {
+func (e *GetCustomersType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -139,22 +139,22 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	case "percentage":
 		fallthrough
 	case "flat":
-		*e = Type(v)
+		*e = GetCustomersType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Type: %v", v)
+		return fmt.Errorf("invalid value for GetCustomersType: %v", v)
 	}
 }
 
 type Discount struct {
-	ID            string   `json:"id"`
-	Amount        float64  `json:"amount"`
-	Type          Type     `json:"type"`
-	MaxDuration   *float64 `json:"maxDuration"`
-	Description   *string  `json:"description,omitempty"`
-	CouponID      *string  `json:"couponId"`
-	CouponTestID  *string  `json:"couponTestId"`
-	PartnersCount *float64 `json:"partnersCount,omitempty"`
+	ID            string           `json:"id"`
+	Amount        float64          `json:"amount"`
+	Type          GetCustomersType `json:"type"`
+	MaxDuration   *float64         `json:"maxDuration"`
+	Description   *string          `json:"description,omitempty"`
+	CouponID      *string          `json:"couponId"`
+	CouponTestID  *string          `json:"couponTestId"`
+	PartnersCount *float64         `json:"partnersCount,omitempty"`
 }
 
 func (o *Discount) GetID() string {
@@ -171,9 +171,9 @@ func (o *Discount) GetAmount() float64 {
 	return o.Amount
 }
 
-func (o *Discount) GetType() Type {
+func (o *Discount) GetType() GetCustomersType {
 	if o == nil {
-		return Type("")
+		return GetCustomersType("")
 	}
 	return o.Type
 }
@@ -229,6 +229,7 @@ type GetCustomersResponseBody struct {
 	// The date the customer was created.
 	CreatedAt string               `json:"createdAt"`
 	Link      *Link                `json:"link,omitempty"`
+	ProgramID *string              `json:"programId,omitempty"`
 	Partner   *GetCustomersPartner `json:"partner,omitempty"`
 	Discount  *Discount            `json:"discount,omitempty"`
 }
@@ -287,6 +288,13 @@ func (o *GetCustomersResponseBody) GetLink() *Link {
 		return nil
 	}
 	return o.Link
+}
+
+func (o *GetCustomersResponseBody) GetProgramID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProgramID
 }
 
 func (o *GetCustomersResponseBody) GetPartner() *GetCustomersPartner {

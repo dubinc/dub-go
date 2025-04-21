@@ -908,6 +908,25 @@ func (u CreateReferralsEmbedTokenTagNames) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type CreateReferralsEmbedTokenTagNames: all fields are null")
 }
 
+type CreateReferralsEmbedTokenTestVariants struct {
+	URL        string  `json:"url"`
+	Percentage float64 `json:"percentage"`
+}
+
+func (o *CreateReferralsEmbedTokenTestVariants) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
+}
+
+func (o *CreateReferralsEmbedTokenTestVariants) GetPercentage() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Percentage
+}
+
 // CreateReferralsEmbedTokenLinkProps - Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
 type CreateReferralsEmbedTokenLinkProps struct {
 	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
@@ -962,6 +981,12 @@ type CreateReferralsEmbedTokenLinkProps struct {
 	UtmContent *string `json:"utm_content,omitempty"`
 	// The referral tag of the short link. If set, this will populate or override the `ref` query parameter in the destination URL.
 	Ref *string `json:"ref,omitempty"`
+	// An array of A/B test URLs and the percentage of traffic to send to each URL.
+	TestVariants []CreateReferralsEmbedTokenTestVariants `json:"testVariants,omitempty"`
+	// The date and time when the tests started.
+	TestStartedAt *string `json:"testStartedAt,omitempty"`
+	// The date and time when the tests were or will be completed.
+	TestCompletedAt *string `json:"testCompletedAt,omitempty"`
 }
 
 func (o *CreateReferralsEmbedTokenLinkProps) GetExternalID() *string {
@@ -1144,6 +1169,27 @@ func (o *CreateReferralsEmbedTokenLinkProps) GetRef() *string {
 		return nil
 	}
 	return o.Ref
+}
+
+func (o *CreateReferralsEmbedTokenLinkProps) GetTestVariants() []CreateReferralsEmbedTokenTestVariants {
+	if o == nil {
+		return nil
+	}
+	return o.TestVariants
+}
+
+func (o *CreateReferralsEmbedTokenLinkProps) GetTestStartedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestStartedAt
+}
+
+func (o *CreateReferralsEmbedTokenLinkProps) GetTestCompletedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestCompletedAt
 }
 
 type Partner struct {

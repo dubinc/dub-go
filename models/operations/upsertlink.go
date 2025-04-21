@@ -137,6 +137,25 @@ func (u UpsertLinkTagNames) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type UpsertLinkTagNames: all fields are null")
 }
 
+type UpsertLinkTestVariants struct {
+	URL        string  `json:"url"`
+	Percentage float64 `json:"percentage"`
+}
+
+func (o *UpsertLinkTestVariants) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
+}
+
+func (o *UpsertLinkTestVariants) GetPercentage() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Percentage
+}
+
 type UpsertLinkRequestBody struct {
 	// The destination URL of the short link.
 	URL string `json:"url"`
@@ -214,6 +233,12 @@ type UpsertLinkRequestBody struct {
 	Ref *string `json:"ref,omitempty"`
 	// An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
 	WebhookIds []string `json:"webhookIds,omitempty"`
+	// An array of A/B test URLs and the percentage of traffic to send to each URL.
+	TestVariants []UpsertLinkTestVariants `json:"testVariants,omitempty"`
+	// The date and time when the tests started.
+	TestStartedAt *string `json:"testStartedAt,omitempty"`
+	// The date and time when the tests were or will be completed.
+	TestCompletedAt *string `json:"testCompletedAt,omitempty"`
 }
 
 func (o *UpsertLinkRequestBody) GetURL() string {
@@ -466,4 +491,25 @@ func (o *UpsertLinkRequestBody) GetWebhookIds() []string {
 		return nil
 	}
 	return o.WebhookIds
+}
+
+func (o *UpsertLinkRequestBody) GetTestVariants() []UpsertLinkTestVariants {
+	if o == nil {
+		return nil
+	}
+	return o.TestVariants
+}
+
+func (o *UpsertLinkRequestBody) GetTestStartedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestStartedAt
+}
+
+func (o *UpsertLinkRequestBody) GetTestCompletedAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestCompletedAt
 }
