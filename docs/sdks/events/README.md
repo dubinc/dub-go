@@ -31,6 +31,7 @@ func main() {
     )
 
     res, err := s.Events.List(ctx, operations.ListEventsRequest{
+        Interval: operations.QueryParamIntervalTwentyFourh.ToPointer(),
         City: dubgo.String("New York"),
         Device: dubgo.String("Desktop"),
         Browser: dubgo.String("Chrome"),

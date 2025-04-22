@@ -286,9 +286,9 @@ type RetrieveAnalyticsRequest struct {
 	CustomerID *string `queryParam:"style=form,explode=true,name=customerId"`
 	// The interval to retrieve analytics for. If undefined, defaults to 24h.
 	Interval *Interval `queryParam:"style=form,explode=true,name=interval"`
-	// The start date and time when to retrieve analytics from. Takes precedence over `interval`.
+	// The start date and time when to retrieve analytics from. If set, takes precedence over `interval`.
 	Start *string `queryParam:"style=form,explode=true,name=start"`
-	// The end date and time when to retrieve analytics from. If not provided, defaults to the current date. Takes precedence over `interval`.
+	// The end date and time when to retrieve analytics from. If not provided, defaults to the current date. If set along with `start`, takes precedence over `interval`.
 	End *string `queryParam:"style=form,explode=true,name=end"`
 	// The IANA time zone code for aligning timeseries granularity (e.g. America/New_York). Defaults to UTC.
 	Timezone *string `default:"UTC" queryParam:"style=form,explode=true,name=timezone"`
