@@ -5,15 +5,33 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/dubinc/dub-go/internal/utils"
 )
 
 type GetCustomersRequest struct {
-	// A case-sensitive filter on the list based on the customer's `email` field. The value must be a string.
+	// A case-sensitive filter on the list based on the customer's `email` field. The value must be a string. Takes precedence over `externalId`.
 	Email *string `queryParam:"style=form,explode=true,name=email"`
-	// A case-sensitive filter on the list based on the customer's `externalId` field. The value must be a string.
+	// A case-sensitive filter on the list based on the customer's `externalId` field. The value must be a string. Takes precedence over `search`.
 	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
+	// A search query to filter customers by email, externalId, or name. If `email` or `externalId` is provided, this will be ignored.
+	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// Whether to include expanded fields on the customer (`link`, `partner`, `discount`).
 	IncludeExpandedFields *bool `queryParam:"style=form,explode=true,name=includeExpandedFields"`
+	// The page number for pagination.
+	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	// The number of items per page.
+	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
+}
+
+func (g GetCustomersRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomersRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *GetCustomersRequest) GetEmail() *string {
@@ -30,11 +48,32 @@ func (o *GetCustomersRequest) GetExternalID() *string {
 	return o.ExternalID
 }
 
+func (o *GetCustomersRequest) GetSearch() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Search
+}
+
 func (o *GetCustomersRequest) GetIncludeExpandedFields() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.IncludeExpandedFields
+}
+
+func (o *GetCustomersRequest) GetPage() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Page
+}
+
+func (o *GetCustomersRequest) GetPageSize() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.PageSize
 }
 
 type GetCustomersLink struct {
