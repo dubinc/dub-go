@@ -68,9 +68,11 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 	return ServerList[c.ServerIndex], nil
 }
 
-// Dub - Dub.co API: Dub is link management infrastructure for companies to create marketing campaigns, link sharing features, and referral programs.
+// Dub API: Dub is link management infrastructure for companies to create marketing campaigns, link sharing features, and referral programs.
 type Dub struct {
-	Links       *Links
+	Links *Links
+	// Retrieve analytics for a partner
+	// Retrieve analytics for a partner within a program. The response type vary based on the `groupBy` query parameter.
 	Analytics   *Analytics
 	Events      *Events
 	Tags        *Tags
@@ -160,9 +162,9 @@ func New(opts ...SDKOption) *Dub {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "0.14.26",
+			SDKVersion:        "0.14.27",
 			GenVersion:        "2.593.4",
-			UserAgent:         "speakeasy-sdk/go 0.14.26 2.593.4 0.0.1 github.com/dubinc/dub-go",
+			UserAgent:         "speakeasy-sdk/go 0.14.27 2.593.4 0.0.1 github.com/dubinc/dub-go",
 			Hooks:             hooks.New(),
 		},
 	}

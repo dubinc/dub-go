@@ -44,7 +44,7 @@ func (e *Level) UnmarshalJSON(data []byte) error {
 type GetQRCodeRequest struct {
 	// The URL to generate a QR code for.
 	URL string `queryParam:"style=form,explode=true,name=url"`
-	// The logo to include in the QR code. Can only be used with a paid plan on Dub.co.
+	// The logo to include in the QR code. Can only be used with a paid plan on Dub.
 	Logo *string `queryParam:"style=form,explode=true,name=logo"`
 	// The size of the QR code in pixels. Defaults to `600` if not provided.
 	Size *float64 `default:"600" queryParam:"style=form,explode=true,name=size"`
@@ -54,7 +54,7 @@ type GetQRCodeRequest struct {
 	FgColor *string `default:"#000000" queryParam:"style=form,explode=true,name=fgColor"`
 	// The background color of the QR code in hex format. Defaults to `#ffffff` if not provided.
 	BgColor *string `default:"#FFFFFF" queryParam:"style=form,explode=true,name=bgColor"`
-	// Whether to hide the logo in the QR code. Can only be used with a paid plan on Dub.co.
+	// Whether to hide the logo in the QR code. Can only be used with a paid plan on Dub.
 	HideLogo *bool `default:"false" queryParam:"style=form,explode=true,name=hideLogo"`
 	// The size of the margin around the QR code. Defaults to 2 if not provided.
 	Margin *float64 `default:"2" queryParam:"style=form,explode=true,name=margin"`
