@@ -2684,7 +2684,6 @@ type LeadEvent struct {
 	Timestamp string         `json:"timestamp"`
 	EventID   string         `json:"eventId"`
 	EventName string         `json:"eventName"`
-	Metadata  string         `json:"metadata"`
 	Click     LeadEventClick `json:"click"`
 	Link      LeadEventLink  `json:"link"`
 	Customer  Customer       `json:"customer"`
@@ -2768,13 +2767,6 @@ func (o *LeadEvent) GetEventName() string {
 		return ""
 	}
 	return o.EventName
-}
-
-func (o *LeadEvent) GetMetadata() string {
-	if o == nil {
-		return ""
-	}
-	return o.Metadata
 }
 
 func (o *LeadEvent) GetClick() LeadEventClick {

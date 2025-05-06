@@ -1417,6 +1417,8 @@ type CreatePartnerResponseBody struct {
 	Image            *string             `json:"image"`
 	Description      *string             `json:"description,omitempty"`
 	Country          *string             `json:"country"`
+	PaypalEmail      *string             `json:"paypalEmail"`
+	StripeConnectID  *string             `json:"stripeConnectId"`
 	PayoutsEnabledAt *string             `json:"payoutsEnabledAt"`
 	CreatedAt        string              `json:"createdAt"`
 	Status           Status              `json:"status"`
@@ -1482,6 +1484,20 @@ func (o *CreatePartnerResponseBody) GetCountry() *string {
 		return nil
 	}
 	return o.Country
+}
+
+func (o *CreatePartnerResponseBody) GetPaypalEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PaypalEmail
+}
+
+func (o *CreatePartnerResponseBody) GetStripeConnectID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StripeConnectID
 }
 
 func (o *CreatePartnerResponseBody) GetPayoutsEnabledAt() *string {

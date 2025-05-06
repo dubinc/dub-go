@@ -171,6 +171,8 @@ type PartnerEnrolledEventData struct {
 	Image            *string                    `json:"image"`
 	Description      *string                    `json:"description,omitempty"`
 	Country          *string                    `json:"country"`
+	PaypalEmail      *string                    `json:"paypalEmail"`
+	StripeConnectID  *string                    `json:"stripeConnectId"`
 	PayoutsEnabledAt *string                    `json:"payoutsEnabledAt"`
 	CreatedAt        string                     `json:"createdAt"`
 	Status           Status                     `json:"status"`
@@ -236,6 +238,20 @@ func (o *PartnerEnrolledEventData) GetCountry() *string {
 		return nil
 	}
 	return o.Country
+}
+
+func (o *PartnerEnrolledEventData) GetPaypalEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PaypalEmail
+}
+
+func (o *PartnerEnrolledEventData) GetStripeConnectID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.StripeConnectID
 }
 
 func (o *PartnerEnrolledEventData) GetPayoutsEnabledAt() *string {

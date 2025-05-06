@@ -27,7 +27,7 @@ func newEvents(sdkConfig sdkConfiguration) *Events {
 
 // List - Retrieve a list of events
 // Retrieve a paginated list of events for the authenticated workspace.
-func (s *Events) List(ctx context.Context, request operations.ListEventsRequest, opts ...operations.Option) (*operations.ListEventsResponseBody, error) {
+func (s *Events) List(ctx context.Context, request operations.ListEventsRequest, opts ...operations.Option) ([]operations.ListEventsResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -187,12 +187,12 @@ func (s *Events) List(ctx context.Context, request operations.ListEventsRequest,
 				return nil, err
 			}
 
-			var out operations.ListEventsResponseBody
+			var out []operations.ListEventsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			return &out, nil
+			return out, nil
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

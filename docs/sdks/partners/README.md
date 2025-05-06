@@ -5,7 +5,7 @@
 
 ### Available Operations
 
-* [Create](#create) - Create a new partner
+* [Create](#create) - Create a partner
 * [CreateLink](#createlink) - Create a link for a partner
 * [RetrieveLinks](#retrievelinks) - Retrieve a partner's links.
 * [UpsertLink](#upsertlink) - Upsert a link for a partner
@@ -14,7 +14,7 @@
 
 ## Create
 
-Create a new partner for a program. If partner exists, automatically enrolls them.
+Create a partner for a program. If partner exists, automatically enrolls them.
 
 ### Example Usage
 
@@ -96,7 +96,7 @@ func main() {
 
 ## CreateLink
 
-Create a new link for a partner that is enrolled in your program.
+Create a link for a partner that is enrolled in your program.
 
 ### Example Usage
 

@@ -625,67 +625,93 @@ func (o *ListEventsRequest) GetOrder() *Order {
 type ListEventsResponseBodyType string
 
 const (
-	ListEventsResponseBodyTypeArrayOfClickEvent ListEventsResponseBodyType = "arrayOfClickEvent"
-	ListEventsResponseBodyTypeArrayOfLeadEvent  ListEventsResponseBodyType = "arrayOfLeadEvent"
-	ListEventsResponseBodyTypeArrayOfSaleEvent  ListEventsResponseBodyType = "arrayOfSaleEvent"
+	ListEventsResponseBodyTypeClick ListEventsResponseBodyType = "click"
+	ListEventsResponseBodyTypeLead  ListEventsResponseBodyType = "lead"
+	ListEventsResponseBodyTypeSale  ListEventsResponseBodyType = "sale"
 )
 
-// ListEventsResponseBody - A list of events
 type ListEventsResponseBody struct {
-	ArrayOfClickEvent []components.ClickEvent `queryParam:"inline"`
-	ArrayOfLeadEvent  []components.LeadEvent  `queryParam:"inline"`
-	ArrayOfSaleEvent  []components.SaleEvent  `queryParam:"inline"`
+	ClickEvent *components.ClickEvent `queryParam:"inline"`
+	LeadEvent  *components.LeadEvent  `queryParam:"inline"`
+	SaleEvent  *components.SaleEvent  `queryParam:"inline"`
 
 	Type ListEventsResponseBodyType
 }
 
-func CreateListEventsResponseBodyArrayOfClickEvent(arrayOfClickEvent []components.ClickEvent) ListEventsResponseBody {
-	typ := ListEventsResponseBodyTypeArrayOfClickEvent
+func CreateListEventsResponseBodyClick(click components.ClickEvent) ListEventsResponseBody {
+	typ := ListEventsResponseBodyTypeClick
+
+	typStr := components.Event(typ)
+	click.Event = typStr
 
 	return ListEventsResponseBody{
-		ArrayOfClickEvent: arrayOfClickEvent,
-		Type:              typ,
+		ClickEvent: &click,
+		Type:       typ,
 	}
 }
 
-func CreateListEventsResponseBodyArrayOfLeadEvent(arrayOfLeadEvent []components.LeadEvent) ListEventsResponseBody {
-	typ := ListEventsResponseBodyTypeArrayOfLeadEvent
+func CreateListEventsResponseBodyLead(lead components.LeadEvent) ListEventsResponseBody {
+	typ := ListEventsResponseBodyTypeLead
+
+	typStr := components.LeadEventEvent(typ)
+	lead.Event = typStr
 
 	return ListEventsResponseBody{
-		ArrayOfLeadEvent: arrayOfLeadEvent,
-		Type:             typ,
+		LeadEvent: &lead,
+		Type:      typ,
 	}
 }
 
-func CreateListEventsResponseBodyArrayOfSaleEvent(arrayOfSaleEvent []components.SaleEvent) ListEventsResponseBody {
-	typ := ListEventsResponseBodyTypeArrayOfSaleEvent
+func CreateListEventsResponseBodySale(sale components.SaleEvent) ListEventsResponseBody {
+	typ := ListEventsResponseBodyTypeSale
+
+	typStr := components.SaleEventEvent(typ)
+	sale.Event = typStr
 
 	return ListEventsResponseBody{
-		ArrayOfSaleEvent: arrayOfSaleEvent,
-		Type:             typ,
+		SaleEvent: &sale,
+		Type:      typ,
 	}
 }
 
 func (u *ListEventsResponseBody) UnmarshalJSON(data []byte) error {
 
-	var arrayOfClickEvent []components.ClickEvent = []components.ClickEvent{}
-	if err := utils.UnmarshalJSON(data, &arrayOfClickEvent, "", true, false); err == nil {
-		u.ArrayOfClickEvent = arrayOfClickEvent
-		u.Type = ListEventsResponseBodyTypeArrayOfClickEvent
-		return nil
+	type discriminator struct {
+		Event string `json:"event"`
 	}
 
-	var arrayOfLeadEvent []components.LeadEvent = []components.LeadEvent{}
-	if err := utils.UnmarshalJSON(data, &arrayOfLeadEvent, "", true, false); err == nil {
-		u.ArrayOfLeadEvent = arrayOfLeadEvent
-		u.Type = ListEventsResponseBodyTypeArrayOfLeadEvent
-		return nil
+	dis := new(discriminator)
+	if err := json.Unmarshal(data, &dis); err != nil {
+		return fmt.Errorf("could not unmarshal discriminator: %w", err)
 	}
 
-	var arrayOfSaleEvent []components.SaleEvent = []components.SaleEvent{}
-	if err := utils.UnmarshalJSON(data, &arrayOfSaleEvent, "", true, false); err == nil {
-		u.ArrayOfSaleEvent = arrayOfSaleEvent
-		u.Type = ListEventsResponseBodyTypeArrayOfSaleEvent
+	switch dis.Event {
+	case "click":
+		clickEvent := new(components.ClickEvent)
+		if err := utils.UnmarshalJSON(data, &clickEvent, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Event == click) type components.ClickEvent within ListEventsResponseBody: %w", string(data), err)
+		}
+
+		u.ClickEvent = clickEvent
+		u.Type = ListEventsResponseBodyTypeClick
+		return nil
+	case "lead":
+		leadEvent := new(components.LeadEvent)
+		if err := utils.UnmarshalJSON(data, &leadEvent, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Event == lead) type components.LeadEvent within ListEventsResponseBody: %w", string(data), err)
+		}
+
+		u.LeadEvent = leadEvent
+		u.Type = ListEventsResponseBodyTypeLead
+		return nil
+	case "sale":
+		saleEvent := new(components.SaleEvent)
+		if err := utils.UnmarshalJSON(data, &saleEvent, "", true, false); err != nil {
+			return fmt.Errorf("could not unmarshal `%s` into expected (Event == sale) type components.SaleEvent within ListEventsResponseBody: %w", string(data), err)
+		}
+
+		u.SaleEvent = saleEvent
+		u.Type = ListEventsResponseBodyTypeSale
 		return nil
 	}
 
@@ -693,16 +719,16 @@ func (u *ListEventsResponseBody) UnmarshalJSON(data []byte) error {
 }
 
 func (u ListEventsResponseBody) MarshalJSON() ([]byte, error) {
-	if u.ArrayOfClickEvent != nil {
-		return utils.MarshalJSON(u.ArrayOfClickEvent, "", true)
+	if u.ClickEvent != nil {
+		return utils.MarshalJSON(u.ClickEvent, "", true)
 	}
 
-	if u.ArrayOfLeadEvent != nil {
-		return utils.MarshalJSON(u.ArrayOfLeadEvent, "", true)
+	if u.LeadEvent != nil {
+		return utils.MarshalJSON(u.LeadEvent, "", true)
 	}
 
-	if u.ArrayOfSaleEvent != nil {
-		return utils.MarshalJSON(u.ArrayOfSaleEvent, "", true)
+	if u.SaleEvent != nil {
+		return utils.MarshalJSON(u.SaleEvent, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type ListEventsResponseBody: all fields are null")
