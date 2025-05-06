@@ -2775,7 +2775,6 @@ type SaleEvent struct {
 	InvoiceID string `json:"invoice_id"`
 	// Deprecated. Use `sale.paymentProcessor` instead.
 	PaymentProcessor string `json:"payment_processor"`
-	Metadata         string `json:"metadata"`
 	// Deprecated. Use `click.id` instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -2905,13 +2904,6 @@ func (o *SaleEvent) GetPaymentProcessor() string {
 		return ""
 	}
 	return o.PaymentProcessor
-}
-
-func (o *SaleEvent) GetMetadata() string {
-	if o == nil {
-		return ""
-	}
-	return o.Metadata
 }
 
 func (o *SaleEvent) GetClickID() string {

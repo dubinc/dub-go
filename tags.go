@@ -26,8 +26,8 @@ func newTags(sdkConfig sdkConfiguration) *Tags {
 	}
 }
 
-// Create a new tag
-// Create a new tag for the authenticated workspace.
+// Create a tag
+// Create a tag for the authenticated workspace.
 func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestBody, opts ...operations.Option) (*components.TagSchema, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

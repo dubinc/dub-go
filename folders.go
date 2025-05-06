@@ -26,8 +26,8 @@ func newFolders(sdkConfig sdkConfiguration) *Folders {
 	}
 }
 
-// Create a new folder
-// Create a new folder for the authenticated workspace.
+// Create a folder
+// Create a folder for the authenticated workspace.
 func (s *Folders) Create(ctx context.Context, request *operations.CreateFolderRequestBody, opts ...operations.Option) (*components.FolderSchema, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

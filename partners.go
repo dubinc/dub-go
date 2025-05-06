@@ -26,8 +26,8 @@ func newPartners(sdkConfig sdkConfiguration) *Partners {
 	}
 }
 
-// Create a new partner
-// Create a new partner for a program. If partner exists, automatically enrolls them.
+// Create a partner
+// Create a partner for a program. If partner exists, automatically enrolls them.
 func (s *Partners) Create(ctx context.Context, request *operations.CreatePartnerRequestBody, opts ...operations.Option) (*operations.CreatePartnerResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -418,7 +418,7 @@ func (s *Partners) Create(ctx context.Context, request *operations.CreatePartner
 }
 
 // CreateLink - Create a link for a partner
-// Create a new link for a partner that is enrolled in your program.
+// Create a link for a partner that is enrolled in your program.
 func (s *Partners) CreateLink(ctx context.Context, request *operations.CreatePartnerLinkRequestBody, opts ...operations.Option) (*components.LinkSchema, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

@@ -27,8 +27,8 @@ func newLinks(sdkConfig sdkConfiguration) *Links {
 	}
 }
 
-// Create a new link
-// Create a new link for the authenticated workspace.
+// Create a link
+// Create a link for the authenticated workspace.
 func (s *Links) Create(ctx context.Context, request *operations.CreateLinkRequestBody, opts ...operations.Option) (*components.LinkSchema, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

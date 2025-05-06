@@ -205,8 +205,7 @@ type UpdateLinkRequestBody struct {
 	Title *string `json:"title,omitempty"`
 	// The custom link preview description (og:description). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Description *string `json:"description,omitempty"`
-	// The custom link preview image (og:image). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
-	Image *string `json:"image,omitempty"`
+	Image       *string `json:"image,omitempty"`
 	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
 	Video *string `json:"video,omitempty"`
 	// Whether the short link uses link cloaking. Defaults to `false` if not provided.

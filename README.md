@@ -168,7 +168,7 @@ func main() {
 
 ### [EmbedTokens](docs/sdks/embedtokens/README.md)
 
-* [Referrals](docs/sdks/embedtokens/README.md#referrals) - Create a new referrals embed token
+* [Referrals](docs/sdks/embedtokens/README.md#referrals) - Create a referrals embed token
 
 ### [Events](docs/sdks/events/README.md)
 
@@ -176,14 +176,14 @@ func main() {
 
 ### [Folders](docs/sdks/folders/README.md)
 
-* [Create](docs/sdks/folders/README.md#create) - Create a new folder
+* [Create](docs/sdks/folders/README.md#create) - Create a folder
 * [List](docs/sdks/folders/README.md#list) - Retrieve a list of folders
 * [Update](docs/sdks/folders/README.md#update) - Update a folder
 * [Delete](docs/sdks/folders/README.md#delete) - Delete a folder
 
 ### [Links](docs/sdks/links/README.md)
 
-* [Create](docs/sdks/links/README.md#create) - Create a new link
+* [Create](docs/sdks/links/README.md#create) - Create a link
 * [List](docs/sdks/links/README.md#list) - Retrieve a list of links
 * [Count](docs/sdks/links/README.md#count) - Retrieve links count
 * [Get](docs/sdks/links/README.md#get) - Retrieve a link
@@ -196,7 +196,7 @@ func main() {
 
 ### [Partners](docs/sdks/partners/README.md)
 
-* [Create](docs/sdks/partners/README.md#create) - Create a new partner
+* [Create](docs/sdks/partners/README.md#create) - Create a partner
 * [CreateLink](docs/sdks/partners/README.md#createlink) - Create a link for a partner
 * [RetrieveLinks](docs/sdks/partners/README.md#retrievelinks) - Retrieve a partner's links.
 * [UpsertLink](docs/sdks/partners/README.md#upsertlink) - Upsert a link for a partner
@@ -209,7 +209,7 @@ func main() {
 
 ### [Tags](docs/sdks/tags/README.md)
 
-* [Create](docs/sdks/tags/README.md#create) - Create a new tag
+* [Create](docs/sdks/tags/README.md#create) - Create a tag
 * [List](docs/sdks/tags/README.md#list) - Retrieve a list of tags
 * [Update](docs/sdks/tags/README.md#update) - Update a tag
 * [Delete](docs/sdks/tags/README.md#delete) - Delete a tag

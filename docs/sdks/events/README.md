@@ -58,7 +58,7 @@ func main() {
 
 ### Response
 
-**[*operations.ListEventsResponseBody](../../models/operations/listeventsresponsebody.md), error**
+**[[]operations.ListEventsResponseBody](../../.md), error**
 
 ### Errors
 

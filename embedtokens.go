@@ -25,8 +25,8 @@ func newEmbedTokens(sdkConfig sdkConfiguration) *EmbedTokens {
 	}
 }
 
-// Referrals - Create a new referrals embed token
-// Create a new referrals embed token for the given partner/tenant.
+// Referrals - Create a referrals embed token
+// Create a referrals embed token for the given partner/tenant.
 func (s *EmbedTokens) Referrals(ctx context.Context, request *operations.CreateReferralsEmbedTokenRequestBody, opts ...operations.Option) (*operations.CreateReferralsEmbedTokenResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

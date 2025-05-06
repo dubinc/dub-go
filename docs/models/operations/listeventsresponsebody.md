@@ -1,25 +1,23 @@
 # ListEventsResponseBody
 
-A list of events
-
 
 ## Supported Types
 
-### 
+### ClickEvent
 
 ```go
-listEventsResponseBody := operations.CreateListEventsResponseBodyArrayOfClickEvent([]components.ClickEvent{/* values here */})
+listEventsResponseBody := operations.CreateListEventsResponseBodyClick(components.ClickEvent{/* values here */})
 ```
 
-### 
+### LeadEvent
 
 ```go
-listEventsResponseBody := operations.CreateListEventsResponseBodyArrayOfLeadEvent([]components.LeadEvent{/* values here */})
+listEventsResponseBody := operations.CreateListEventsResponseBodyLead(components.LeadEvent{/* values here */})
 ```
 
-### 
+### SaleEvent
 
 ```go
-listEventsResponseBody := operations.CreateListEventsResponseBodyArrayOfSaleEvent([]components.SaleEvent{/* values here */})
+listEventsResponseBody := operations.CreateListEventsResponseBodySale(components.SaleEvent{/* values here */})
 ```
 

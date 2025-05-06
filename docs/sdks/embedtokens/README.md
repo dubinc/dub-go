@@ -5,11 +5,11 @@
 
 ### Available Operations
 
-* [Referrals](#referrals) - Create a new referrals embed token
+* [Referrals](#referrals) - Create a referrals embed token
 
 ## Referrals
 
-Create a new referrals embed token for the given partner/tenant.
+Create a referrals embed token for the given partner/tenant.
 
 ### Example Usage
 
