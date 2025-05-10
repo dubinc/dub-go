@@ -44,6 +44,10 @@ type LeadCreatedEventCustomer struct {
 	Avatar *string `json:"avatar,omitempty"`
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
+	// Total number of sales for the customer.
+	Sales *float64 `json:"sales,omitempty"`
+	// Total amount of sales for the customer.
+	SaleAmount *float64 `json:"saleAmount,omitempty"`
 	// The date the customer was created.
 	CreatedAt string `json:"createdAt"`
 }
@@ -88,6 +92,20 @@ func (o *LeadCreatedEventCustomer) GetCountry() *string {
 		return nil
 	}
 	return o.Country
+}
+
+func (o *LeadCreatedEventCustomer) GetSales() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Sales
+}
+
+func (o *LeadCreatedEventCustomer) GetSaleAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SaleAmount
 }
 
 func (o *LeadCreatedEventCustomer) GetCreatedAt() string {

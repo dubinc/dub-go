@@ -8,6 +8,60 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
+// GetCustomersQueryParamSortBy - The field to sort the customers by. The default is `createdAt`.
+type GetCustomersQueryParamSortBy string
+
+const (
+	GetCustomersQueryParamSortByCreatedAt  GetCustomersQueryParamSortBy = "createdAt"
+	GetCustomersQueryParamSortBySaleAmount GetCustomersQueryParamSortBy = "saleAmount"
+)
+
+func (e GetCustomersQueryParamSortBy) ToPointer() *GetCustomersQueryParamSortBy {
+	return &e
+}
+func (e *GetCustomersQueryParamSortBy) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "createdAt":
+		fallthrough
+	case "saleAmount":
+		*e = GetCustomersQueryParamSortBy(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomersQueryParamSortBy: %v", v)
+	}
+}
+
+// GetCustomersQueryParamSortOrder - The sort order. The default is `desc`.
+type GetCustomersQueryParamSortOrder string
+
+const (
+	GetCustomersQueryParamSortOrderAsc  GetCustomersQueryParamSortOrder = "asc"
+	GetCustomersQueryParamSortOrderDesc GetCustomersQueryParamSortOrder = "desc"
+)
+
+func (e GetCustomersQueryParamSortOrder) ToPointer() *GetCustomersQueryParamSortOrder {
+	return &e
+}
+func (e *GetCustomersQueryParamSortOrder) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "asc":
+		fallthrough
+	case "desc":
+		*e = GetCustomersQueryParamSortOrder(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GetCustomersQueryParamSortOrder: %v", v)
+	}
+}
+
 type GetCustomersRequest struct {
 	// A case-sensitive filter on the list based on the customer's `email` field. The value must be a string. Takes precedence over `externalId`.
 	Email *string `queryParam:"style=form,explode=true,name=email"`
@@ -15,8 +69,16 @@ type GetCustomersRequest struct {
 	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
 	// A search query to filter customers by email, externalId, or name. If `email` or `externalId` is provided, this will be ignored.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
+	// A filter on the list based on the customer's `country` field.
+	Country *string `queryParam:"style=form,explode=true,name=country"`
+	// A filter on the list based on the customer's `linkId` field (the referral link ID).
+	LinkID *string `queryParam:"style=form,explode=true,name=linkId"`
 	// Whether to include expanded fields on the customer (`link`, `partner`, `discount`).
 	IncludeExpandedFields *bool `queryParam:"style=form,explode=true,name=includeExpandedFields"`
+	// The field to sort the customers by. The default is `createdAt`.
+	SortBy *GetCustomersQueryParamSortBy `default:"createdAt" queryParam:"style=form,explode=true,name=sortBy"`
+	// The sort order. The default is `desc`.
+	SortOrder *GetCustomersQueryParamSortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
 	// The page number for pagination.
 	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
@@ -55,11 +117,39 @@ func (o *GetCustomersRequest) GetSearch() *string {
 	return o.Search
 }
 
+func (o *GetCustomersRequest) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
+func (o *GetCustomersRequest) GetLinkID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LinkID
+}
+
 func (o *GetCustomersRequest) GetIncludeExpandedFields() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.IncludeExpandedFields
+}
+
+func (o *GetCustomersRequest) GetSortBy() *GetCustomersQueryParamSortBy {
+	if o == nil {
+		return nil
+	}
+	return o.SortBy
+}
+
+func (o *GetCustomersRequest) GetSortOrder() *GetCustomersQueryParamSortOrder {
+	if o == nil {
+		return nil
+	}
+	return o.SortOrder
 }
 
 func (o *GetCustomersRequest) GetPage() *float64 {
@@ -85,6 +175,8 @@ type GetCustomersLink struct {
 	Key string `json:"key"`
 	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
 	ShortLink string `json:"shortLink"`
+	// The destination URL of the short link.
+	URL string `json:"url"`
 	// The ID of the program the short link is associated with.
 	ProgramID *string `json:"programId"`
 }
@@ -115,6 +207,13 @@ func (o *GetCustomersLink) GetShortLink() string {
 		return ""
 	}
 	return o.ShortLink
+}
+
+func (o *GetCustomersLink) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
 }
 
 func (o *GetCustomersLink) GetProgramID() *string {
@@ -265,6 +364,10 @@ type GetCustomersResponseBody struct {
 	Avatar *string `json:"avatar,omitempty"`
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
+	// Total number of sales for the customer.
+	Sales *float64 `json:"sales,omitempty"`
+	// Total amount of sales for the customer.
+	SaleAmount *float64 `json:"saleAmount,omitempty"`
 	// The date the customer was created.
 	CreatedAt string               `json:"createdAt"`
 	Link      *GetCustomersLink    `json:"link,omitempty"`
@@ -313,6 +416,20 @@ func (o *GetCustomersResponseBody) GetCountry() *string {
 		return nil
 	}
 	return o.Country
+}
+
+func (o *GetCustomersResponseBody) GetSales() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Sales
+}
+
+func (o *GetCustomersResponseBody) GetSaleAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SaleAmount
 }
 
 func (o *GetCustomersResponseBody) GetCreatedAt() string {

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: a7ba8704507363fabccfcbe7aad3310c
+  docChecksum: 8a6a0e4f5b4986b7f9ed7f84fe894d95
   docVersion: 0.0.1
-  speakeasyVersion: 1.542.3
-  generationVersion: 2.597.9
-  releaseVersion: 0.14.28
-  configChecksum: 10d32f1d0903e0c231b4f97fa6e37c26
+  speakeasyVersion: 1.543.4
+  generationVersion: 2.598.22
+  releaseVersion: 0.14.29
+  configChecksum: 56ca05206a82cb942315a9bf75c269f0
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -23,7 +23,7 @@ features:
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.2
+    globalServerURLs: 2.82.3
     includes: 2.81.1
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
@@ -293,6 +293,8 @@ generatedFiles:
   - docs/models/operations/getcustomerresponsebody.md
   - docs/models/operations/getcustomerslink.md
   - docs/models/operations/getcustomerspartner.md
+  - docs/models/operations/getcustomersqueryparamsortby.md
+  - docs/models/operations/getcustomersqueryparamsortorder.md
   - docs/models/operations/getcustomersrequest.md
   - docs/models/operations/getcustomersresponsebody.md
   - docs/models/operations/getcustomerstype.md
@@ -1174,6 +1176,8 @@ examples:
         query:
           page: 1
           pageSize: 50
+          sortBy: "createdAt"
+          sortOrder: "desc"
       responses:
         "200":
           application/json: [{"id": "<id>", "externalId": "<id>", "name": "<value>", "createdAt": "1730924956522"}, {"id": "<id>", "externalId": "<id>", "name": "<value>", "createdAt": "1735057575504"}, {"id": "<id>", "externalId": "<id>", "name": "<value>", "createdAt": "1719270342602"}]
