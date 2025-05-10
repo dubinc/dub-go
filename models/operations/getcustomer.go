@@ -37,6 +37,8 @@ type GetCustomerLink struct {
 	Key string `json:"key"`
 	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
 	ShortLink string `json:"shortLink"`
+	// The destination URL of the short link.
+	URL string `json:"url"`
 	// The ID of the program the short link is associated with.
 	ProgramID *string `json:"programId"`
 }
@@ -67,6 +69,13 @@ func (o *GetCustomerLink) GetShortLink() string {
 		return ""
 	}
 	return o.ShortLink
+}
+
+func (o *GetCustomerLink) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
 }
 
 func (o *GetCustomerLink) GetProgramID() *string {
@@ -218,6 +227,10 @@ type GetCustomerResponseBody struct {
 	Avatar *string `json:"avatar,omitempty"`
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
+	// Total number of sales for the customer.
+	Sales *float64 `json:"sales,omitempty"`
+	// Total amount of sales for the customer.
+	SaleAmount *float64 `json:"saleAmount,omitempty"`
 	// The date the customer was created.
 	CreatedAt string               `json:"createdAt"`
 	Link      *GetCustomerLink     `json:"link,omitempty"`
@@ -266,6 +279,20 @@ func (o *GetCustomerResponseBody) GetCountry() *string {
 		return nil
 	}
 	return o.Country
+}
+
+func (o *GetCustomerResponseBody) GetSales() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Sales
+}
+
+func (o *GetCustomerResponseBody) GetSaleAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SaleAmount
 }
 
 func (o *GetCustomerResponseBody) GetCreatedAt() string {
