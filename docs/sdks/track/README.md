@@ -97,8 +97,8 @@ func main() {
 
     res, err := s.Track.Sale(ctx, &operations.TrackSaleRequestBody{
         ExternalID: "<id>",
-        Amount: 996500,
-        PaymentProcessor: operations.PaymentProcessorCustom,
+        Amount: 594903,
+        PaymentProcessor: operations.PaymentProcessorPolar,
     })
     if err != nil {
         log.Fatal(err)
