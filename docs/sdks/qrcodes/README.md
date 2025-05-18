@@ -31,7 +31,7 @@ func main() {
     )
 
     res, err := s.QRCodes.Get(ctx, operations.GetQRCodeRequest{
-        URL: "https://normal-making.name",
+        URL: "https://needy-newsstand.biz/",
     })
     if err != nil {
         log.Fatal(err)

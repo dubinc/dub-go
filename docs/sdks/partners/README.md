@@ -38,7 +38,7 @@ func main() {
     res, err := s.Partners.Create(ctx, &operations.CreatePartnerRequestBody{
         ProgramID: "<id>",
         Name: "<value>",
-        Email: "Loyal79@yahoo.com",
+        Email: "Summer50@yahoo.com",
         LinkProps: &operations.LinkProps{
             ExternalID: dubgo.String("123456"),
             TagIds: dubgo.Pointer(operations.CreateCreatePartnerTagIdsArrayOfStr(

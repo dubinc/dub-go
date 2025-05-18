@@ -104,9 +104,13 @@ func (o *CreateCustomerLink) GetProgramID() *string {
 }
 
 type CreateCustomerPartner struct {
-	ID    string  `json:"id"`
-	Name  string  `json:"name"`
+	// The partner's unique ID on Dub.
+	ID string `json:"id"`
+	// The partner's full legal name.
+	Name string `json:"name"`
+	// The partner's email address. Should be a unique value across Dub.
 	Email *string `json:"email"`
+	// The partner's avatar image.
 	Image *string `json:"image"`
 }
 
