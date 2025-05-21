@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 52d41a0d1eb818cb99d6364c33c6cc9a
+  docChecksum: efdac56f4e3c654dda7366d7daef7320
   docVersion: 0.0.1
-  speakeasyVersion: 1.546.2
-  generationVersion: 2.604.4
-  releaseVersion: 0.14.30
-  configChecksum: 3d6e576b2df7800c1c95dfdfe1838976
+  speakeasyVersion: 1.548.3
+  generationVersion: 2.605.6
+  releaseVersion: 0.14.31
+  configChecksum: ac2c7b229cffcc29d88573d29a461f32
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -95,6 +95,7 @@ generatedFiles:
   - /models/operations/getqrcode.go
   - /models/operations/gettags.go
   - /models/operations/getworkspace.go
+  - /models/operations/listcommissions.go
   - /models/operations/listdomains.go
   - /models/operations/listevents.go
   - /models/operations/listfolders.go
@@ -103,11 +104,11 @@ generatedFiles:
   - /models/operations/retrievepartneranalytics.go
   - /models/operations/tracklead.go
   - /models/operations/tracksale.go
+  - /models/operations/updatecommission.go
   - /models/operations/updatecustomer.go
   - /models/operations/updatedomain.go
   - /models/operations/updatefolder.go
   - /models/operations/updatelink.go
-  - /models/operations/updatepartnersale.go
   - /models/operations/updatetag.go
   - /models/operations/updateworkspace.go
   - /models/operations/upsertlink.go
@@ -123,6 +124,7 @@ generatedFiles:
   - /models/sdkerrors/unprocessableentity.go
   - USAGE.md
   - analytics.go
+  - commissions.go
   - customers.go
   - docs/models/components/accesslevel.md
   - docs/models/components/analyticsbrowsers.md
@@ -260,6 +262,7 @@ generatedFiles:
   - docs/models/operations/createpartnerlinktestvariants.md
   - docs/models/operations/createpartnerrequestbody.md
   - docs/models/operations/createpartnerresponsebody.md
+  - docs/models/operations/createpartnerstatus.md
   - docs/models/operations/createpartnertagids.md
   - docs/models/operations/createpartnertagnames.md
   - docs/models/operations/createpartnertestvariants.md
@@ -316,6 +319,13 @@ generatedFiles:
   - docs/models/operations/level.md
   - docs/models/operations/link.md
   - docs/models/operations/linkprops.md
+  - docs/models/operations/listcommissionsqueryparaminterval.md
+  - docs/models/operations/listcommissionsqueryparamsortby.md
+  - docs/models/operations/listcommissionsqueryparamsortorder.md
+  - docs/models/operations/listcommissionsrequest.md
+  - docs/models/operations/listcommissionsresponsebody.md
+  - docs/models/operations/listcommissionsstatus.md
+  - docs/models/operations/listcommissionstype.md
   - docs/models/operations/listdomainsrequest.md
   - docs/models/operations/listdomainsresponse.md
   - docs/models/operations/listeventsqueryparamtagids.md
@@ -333,6 +343,7 @@ generatedFiles:
   - docs/models/operations/queryparaminterval.md
   - docs/models/operations/queryparamsortby.md
   - docs/models/operations/queryparamsortorder.md
+  - docs/models/operations/queryparamstatus.md
   - docs/models/operations/queryparamtagids.md
   - docs/models/operations/queryparamtagnames.md
   - docs/models/operations/queryparamtrigger.md
@@ -363,6 +374,11 @@ generatedFiles:
   - docs/models/operations/trigger.md
   - docs/models/operations/two.md
   - docs/models/operations/type.md
+  - docs/models/operations/updatecommissionrequest.md
+  - docs/models/operations/updatecommissionrequestbody.md
+  - docs/models/operations/updatecommissionresponsebody.md
+  - docs/models/operations/updatecommissionstatus.md
+  - docs/models/operations/updatecommissiontype.md
   - docs/models/operations/updatecustomerdiscount.md
   - docs/models/operations/updatecustomerlink.md
   - docs/models/operations/updatecustomerpartner.md
@@ -380,9 +396,6 @@ generatedFiles:
   - docs/models/operations/updatelinktagids.md
   - docs/models/operations/updatelinktagnames.md
   - docs/models/operations/updatelinktestvariants.md
-  - docs/models/operations/updatepartnersalerequestbody.md
-  - docs/models/operations/updatepartnersaleresponsebody.md
-  - docs/models/operations/updatepartnersalestatus.md
   - docs/models/operations/updatetagcolor.md
   - docs/models/operations/updatetagrequest.md
   - docs/models/operations/updatetagrequestbody.md
@@ -425,6 +438,7 @@ generatedFiles:
   - docs/models/sdkerrors/unprocessableentitycode.md
   - docs/models/sdkerrors/unprocessableentityerror.md
   - docs/sdks/analytics/README.md
+  - docs/sdks/commissions/README.md
   - docs/sdks/customers/README.md
   - docs/sdks/domains/README.md
   - docs/sdks/dub/README.md
@@ -505,6 +519,7 @@ examples:
           sortOrder: "desc"
           page: 1
           pageSize: 50
+          sort: "createdAt"
       responses:
         "200":
           application/json: [{"id": "<id>", "domain": "huge-minion.org", "key": "<key>", "url": "https://essential-tooth.info/", "trackConversion": false, "externalId": "<id>", "tenantId": "<id>", "programId": "<id>", "partnerId": "<id>", "archived": false, "expiresAt": "1764555360789", "expiredUrl": "https://tempting-other.name", "password": "0UsPyTSlYxCfhoJ", "proxy": false, "title": "<value>", "description": "ick through ravioli switch phew ravioli the", "image": "https://picsum.photos/seed/Xg8BHe/2358/2157", "video": "https://picsum.videos/seed/3h3l3d5r/1544/361", "rewrite": false, "doIndex": false, "ios": "<value>", "android": "<id>", "geo": {}, "publicStats": false, "tagId": "<id>", "tags": [{"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}], "folderId": "<id>", "webhookIds": ["<value 1>", "<value 2>"], "comments": "between boohoo darling quizzically swath round fearless gah yowza peppery daily concentration during whirlwind intend pointless ouch along following onto", "shortLink": "https://afraid-whale.name", "qrCode": "https://intelligent-onset.net/", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}], "userId": "<id>", "workspaceId": "<id>", "clicks": 0, "lastClicked": "<value>", "leads": 0, "sales": 0, "saleAmount": 0, "createdAt": "1728445644743", "updatedAt": "1747540121726", "projectId": "<id>"}, {"id": "<id>", "domain": "huge-minion.org", "key": "<key>", "url": "https://essential-tooth.info/", "trackConversion": false, "externalId": "<id>", "tenantId": "<id>", "programId": "<id>", "partnerId": "<id>", "archived": false, "expiresAt": "1764555360789", "expiredUrl": "https://tempting-other.name", "password": "0UsPyTSlYxCfhoJ", "proxy": false, "title": "<value>", "description": "ick through ravioli switch phew ravioli the", "image": "https://picsum.photos/seed/Xg8BHe/2358/2157", "video": "https://picsum.videos/seed/3h3l3d5r/1544/361", "rewrite": false, "doIndex": false, "ios": "<value>", "android": "<id>", "geo": {}, "publicStats": false, "tagId": "<id>", "tags": [{"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}], "folderId": "<id>", "webhookIds": ["<value 1>", "<value 2>"], "comments": "between boohoo darling quizzically swath round fearless gah yowza peppery daily concentration during whirlwind intend pointless ouch along following onto", "shortLink": "https://afraid-whale.name", "qrCode": "https://intelligent-onset.net/", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}], "userId": "<id>", "workspaceId": "<id>", "clicks": 0, "lastClicked": "<value>", "leads": 0, "sales": 0, "saleAmount": 0, "createdAt": "1728445644743", "updatedAt": "1747540121726", "projectId": "<id>"}, {"id": "<id>", "domain": "huge-minion.org", "key": "<key>", "url": "https://essential-tooth.info/", "trackConversion": false, "externalId": "<id>", "tenantId": "<id>", "programId": "<id>", "partnerId": "<id>", "archived": false, "expiresAt": "1764555360789", "expiredUrl": "https://tempting-other.name", "password": "0UsPyTSlYxCfhoJ", "proxy": false, "title": "<value>", "description": "ick through ravioli switch phew ravioli the", "image": "https://picsum.photos/seed/Xg8BHe/2358/2157", "video": "https://picsum.videos/seed/3h3l3d5r/1544/361", "rewrite": false, "doIndex": false, "ios": "<value>", "android": "<id>", "geo": {}, "publicStats": false, "tagId": "<id>", "tags": [{"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}], "folderId": "<id>", "webhookIds": ["<value 1>", "<value 2>"], "comments": "between boohoo darling quizzically swath round fearless gah yowza peppery daily concentration during whirlwind intend pointless ouch along following onto", "shortLink": "https://afraid-whale.name", "qrCode": "https://intelligent-onset.net/", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}], "userId": "<id>", "workspaceId": "<id>", "clicks": 0, "lastClicked": "<value>", "leads": 0, "sales": 0, "saleAmount": 0, "createdAt": "1728445644743", "updatedAt": "1747540121726", "projectId": "<id>"}]
@@ -785,6 +800,7 @@ examples:
           limit: 100
           sortOrder: "desc"
           sortBy: "timestamp"
+          order: "desc"
       responses:
         "200":
           application/json: [{"event": "lead", "timestamp": "<value>", "eventId": "<id>", "eventName": "<value>", "click": {"id": "<id>", "timestamp": "<value>", "url": "https://meager-advancement.org/", "country": "Saint Kitts and Nevis", "city": "Pfannerstillborough", "region": "<value>", "continent": "Asia", "device": "Mobile", "browser": "Firefox", "os": "Windows", "referer": "wide-vision.org", "refererUrl": "https://accomplished-final.net", "qr": false, "ip": "cc7a:df7a:b6dc:bdb1:0394:d55c:f23c:96f8"}, "link": {"id": "<id>", "domain": "unwelcome-gown.biz", "key": "<key>", "url": "https://victorious-characterization.name", "trackConversion": true, "externalId": "<id>", "tenantId": "<id>", "programId": "<id>", "partnerId": "<id>", "archived": false, "expiresAt": "1760341898549", "expiredUrl": "https://unripe-fork.org", "password": "wgPQMpAKj7qM_9Q", "proxy": false, "title": "<value>", "description": "coil frankly violent yahoo and shoddy", "image": "https://loremflickr.com/143/3646?lock=1138692876108126", "video": "https://picsum.videos/seed/iEUe8/3542/320", "rewrite": true, "doIndex": true, "ios": "<value>", "android": "<id>", "geo": {}, "publicStats": false, "tagId": "<id>", "tags": [{"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}], "folderId": "<id>", "webhookIds": ["<value 1>", "<value 2>", "<value 3>"], "comments": "in-joke whose roundabout tricky that feline ack upbeat rarely given nor throughout", "shortLink": "https://impossible-meal.biz/", "qrCode": "https://pushy-hundred.net", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}], "testStartedAt": "<value>", "testCompletedAt": "<value>", "userId": "<id>", "workspaceId": "<id>", "clicks": 0, "lastClicked": "<value>", "leads": 0, "sales": 0, "saleAmount": 0, "createdAt": "1738268944498", "updatedAt": "1747557867669", "projectId": "<id>"}, "customer": {"id": "<id>", "externalId": "<id>", "name": "<value>", "createdAt": "1737747075565"}, "click_id": "<id>", "link_id": "<id>", "domain": "frequent-embarrassment.biz", "key": "<key>", "url": "https://perfumed-shipper.name/", "continent": "Asia", "country": "Hong Kong", "city": "Waltham", "device": "Mobile", "browser": "Firefox", "os": "WebOS", "qr": 723.73, "ip": "c2f8:81ec:f3e6:fe30:2bb1:84c7:1500:7edc"}, {"event": "lead", "timestamp": "<value>", "eventId": "<id>", "eventName": "<value>", "click": {"id": "<id>", "timestamp": "<value>", "url": "https://meager-advancement.org/", "country": "Saint Kitts and Nevis", "city": "Pfannerstillborough", "region": "<value>", "continent": "Asia", "device": "Mobile", "browser": "Firefox", "os": "Windows", "referer": "wide-vision.org", "refererUrl": "https://accomplished-final.net", "qr": false, "ip": "cc7a:df7a:b6dc:bdb1:0394:d55c:f23c:96f8"}, "link": {"id": "<id>", "domain": "unwelcome-gown.biz", "key": "<key>", "url": "https://victorious-characterization.name", "trackConversion": true, "externalId": "<id>", "tenantId": "<id>", "programId": "<id>", "partnerId": "<id>", "archived": false, "expiresAt": "1760341898549", "expiredUrl": "https://unripe-fork.org", "password": "wgPQMpAKj7qM_9Q", "proxy": false, "title": "<value>", "description": "coil frankly violent yahoo and shoddy", "image": "https://loremflickr.com/143/3646?lock=1138692876108126", "video": "https://picsum.videos/seed/iEUe8/3542/320", "rewrite": true, "doIndex": true, "ios": "<value>", "android": "<id>", "geo": {}, "publicStats": false, "tagId": "<id>", "tags": [{"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}], "folderId": "<id>", "webhookIds": ["<value 1>", "<value 2>", "<value 3>"], "comments": "in-joke whose roundabout tricky that feline ack upbeat rarely given nor throughout", "shortLink": "https://impossible-meal.biz/", "qrCode": "https://pushy-hundred.net", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}], "testStartedAt": "<value>", "testCompletedAt": "<value>", "userId": "<id>", "workspaceId": "<id>", "clicks": 0, "lastClicked": "<value>", "leads": 0, "sales": 0, "saleAmount": 0, "createdAt": "1738268944498", "updatedAt": "1747557867669", "projectId": "<id>"}, "customer": {"id": "<id>", "externalId": "<id>", "name": "<value>", "createdAt": "1737747075565"}, "click_id": "<id>", "link_id": "<id>", "domain": "frequent-embarrassment.biz", "key": "<key>", "url": "https://perfumed-shipper.name/", "continent": "Asia", "country": "Hong Kong", "city": "Waltham", "device": "Mobile", "browser": "Firefox", "os": "WebOS", "qr": 723.73, "ip": "c2f8:81ec:f3e6:fe30:2bb1:84c7:1500:7edc"}, {"event": "click", "timestamp": "<value>", "click": {"id": "<id>", "timestamp": "<value>", "url": "https://puzzled-remark.com", "country": "Spain", "city": "Kiannaville", "region": "<value>", "continent": "Africa", "device": "Desktop", "browser": "Safari", "os": "Linux", "referer": "twin-phrase.net", "refererUrl": "https://right-travel.biz", "qr": false, "ip": "0510:cb0c:5eb9:add1:af1e:4f0c:6aba:8e1f"}, "link": {"id": "<id>", "domain": "favorable-conversation.org", "key": "<key>", "url": "https://definitive-slide.biz", "trackConversion": false, "externalId": "<id>", "tenantId": "<id>", "programId": "<id>", "partnerId": "<id>", "archived": true, "expiresAt": "1766088600492", "expiredUrl": "https://suburban-providence.com/", "password": "cSyr9N9Comz95cd", "proxy": true, "title": "<value>", "description": "up reiterate than someplace ordinary thunderbolt", "image": "https://loremflickr.com/1709/681?lock=3577114032181318", "video": "https://loremflickr.com/3785/1135?lock=4672271138596177", "rewrite": true, "doIndex": true, "ios": "<value>", "android": "<id>", "geo": {}, "publicStats": false, "tagId": "<id>", "tags": [{"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}], "folderId": "<id>", "webhookIds": ["<value 1>", "<value 2>"], "comments": "fatally slipper lumpy tempting monthly astride", "shortLink": "https://wretched-essence.name", "qrCode": "https://messy-godparent.org", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}], "testStartedAt": "<value>", "testCompletedAt": "<value>", "userId": "<id>", "workspaceId": "<id>", "clicks": 0, "lastClicked": "<value>", "leads": 0, "sales": 0, "saleAmount": 0, "createdAt": "1722653474289", "updatedAt": "1747531351908", "projectId": "<id>"}, "click_id": "<id>", "link_id": "<id>", "domain": "instructive-overheard.net", "key": "<key>", "url": "https://flashy-ruin.com/", "continent": "Asia", "country": "Guyana", "city": "Lake Isaiahhaven", "device": "Desktop", "browser": "Firefox", "os": "iOS", "qr": 5044.97, "ip": "bdfd:5567:37f7:d6ac:bf9f:b6ad:e9fe:aea8"}]
@@ -1545,6 +1561,62 @@ examples:
       responses:
         "200":
           image/png: "<value>"
+        "400":
+          application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
+        "401":
+          application/json: {"error": {"code": "unauthorized", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#unauthorized"}}
+        "403":
+          application/json: {"error": {"code": "forbidden", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#forbidden"}}
+        "404":
+          application/json: {"error": {"code": "not_found", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#not-found"}}
+        "409":
+          application/json: {"error": {"code": "conflict", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#conflict"}}
+        "410":
+          application/json: {"error": {"code": "invite_expired", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#invite-expired"}}
+        "422":
+          application/json: {"error": {"code": "unprocessable_entity", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#unprocessable-entity"}}
+        "429":
+          application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
+        "500":
+          application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+  listCommissions:
+    speakeasy-default-list-commissions:
+      parameters:
+        query:
+          sortBy: "createdAt"
+          sortOrder: "desc"
+          interval: "all"
+          page: 1
+          pageSize: 50
+      responses:
+        "200":
+          application/json: [{"id": "cm_1JVR7XRCSR0EDBAF39FZ4PMYE", "amount": 3320.11, "earnings": 7217.59, "currency": "Ethiopian Birr", "status": "refunded", "createdAt": "1725904231169", "updatedAt": "1735639009138"}, {"id": "cm_1JVR7XRCSR0EDBAF39FZ4PMYE", "amount": 3320.11, "earnings": 7217.59, "currency": "Ethiopian Birr", "status": "refunded", "createdAt": "1725904231169", "updatedAt": "1735639009138"}]
+        "400":
+          application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
+        "401":
+          application/json: {"error": {"code": "unauthorized", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#unauthorized"}}
+        "403":
+          application/json: {"error": {"code": "forbidden", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#forbidden"}}
+        "404":
+          application/json: {"error": {"code": "not_found", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#not-found"}}
+        "409":
+          application/json: {"error": {"code": "conflict", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#conflict"}}
+        "410":
+          application/json: {"error": {"code": "invite_expired", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#invite-expired"}}
+        "422":
+          application/json: {"error": {"code": "unprocessable_entity", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#unprocessable-entity"}}
+        "429":
+          application/json: {"error": {"code": "rate_limit_exceeded", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#rate-limit_exceeded"}}
+        "500":
+          application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
+  updateCommission:
+    speakeasy-default-update-commission:
+      parameters:
+        path:
+          id: "cm_1JVR7XRCSR0EDBAF39FZ4PMYE"
+      responses:
+        "200":
+          application/json: {"id": "cm_1JVR7XRCSR0EDBAF39FZ4PMYE", "amount": 7439.54, "earnings": 3399.15, "currency": "Gourde", "status": "processed", "createdAt": "1712704982111", "updatedAt": "1735651406534"}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":

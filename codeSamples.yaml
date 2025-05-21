@@ -9,6 +9,18 @@ actions:
         - "lang": "go"
           "label": "retrieveAnalytics"
           "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Analytics.Retrieve(ctx, operations.RetrieveAnalyticsRequest{\n        City: dubgo.String(\"New York\"),\n        Device: dubgo.String(\"Desktop\"),\n        Browser: dubgo.String(\"Chrome\"),\n        Os: dubgo.String(\"Windows\"),\n        Referer: dubgo.String(\"google.com\"),\n        RefererURL: dubgo.String(\"https://dub.co/blog\"),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/commissions"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "listCommissions"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Commissions.List(ctx, operations.ListCommissionsRequest{})\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/commissions/{id}"]["patch"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "updateCommission"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Commissions.Update(ctx, operations.UpdateCommissionRequest{\n        ID: \"cm_1JVR7XRCSR0EDBAF39FZ4PMYE\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/customers"]["get"]
     update:
       "x-codeSamples":
@@ -177,12 +189,6 @@ actions:
         - "lang": "go"
           "label": "upsertPartnerLink"
           "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.UpsertLink(ctx, &operations.UpsertPartnerLinkRequestBody{\n        ProgramID: \"<id>\",\n        LinkProps: &operations.UpsertPartnerLinkLinkProps{\n            ExternalID: dubgo.String(\"123456\"),\n            TagIds: dubgo.Pointer(operations.CreateUpsertPartnerLinkTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n            )),\n            TestVariants: []operations.UpsertPartnerLinkTestVariants{\n                operations.UpsertPartnerLinkTestVariants{\n                    URL: \"https://example.com/variant-1\",\n                    Percentage: 50,\n                },\n                operations.UpsertPartnerLinkTestVariants{\n                    URL: \"https://example.com/variant-2\",\n                    Percentage: 50,\n                },\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/partners/sales"]["patch"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "updatePartnerSale"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.UpdateSale(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/qr"]["get"]
     update:
       "x-codeSamples":
