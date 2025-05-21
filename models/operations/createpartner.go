@@ -1276,22 +1276,22 @@ func (o *CreatePartnerRequestBody) GetLinkProps() *LinkProps {
 	return o.LinkProps
 }
 
-// Status - The status of the partner's enrollment in the program.
-type Status string
+// CreatePartnerStatus - The status of the partner's enrollment in the program.
+type CreatePartnerStatus string
 
 const (
-	StatusPending  Status = "pending"
-	StatusApproved Status = "approved"
-	StatusRejected Status = "rejected"
-	StatusInvited  Status = "invited"
-	StatusDeclined Status = "declined"
-	StatusBanned   Status = "banned"
+	CreatePartnerStatusPending  CreatePartnerStatus = "pending"
+	CreatePartnerStatusApproved CreatePartnerStatus = "approved"
+	CreatePartnerStatusRejected CreatePartnerStatus = "rejected"
+	CreatePartnerStatusInvited  CreatePartnerStatus = "invited"
+	CreatePartnerStatusDeclined CreatePartnerStatus = "declined"
+	CreatePartnerStatusBanned   CreatePartnerStatus = "banned"
 )
 
-func (e Status) ToPointer() *Status {
+func (e CreatePartnerStatus) ToPointer() *CreatePartnerStatus {
 	return &e
 }
-func (e *Status) UnmarshalJSON(data []byte) error {
+func (e *CreatePartnerStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -1308,10 +1308,10 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 	case "declined":
 		fallthrough
 	case "banned":
-		*e = Status(v)
+		*e = CreatePartnerStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Status: %v", v)
+		return fmt.Errorf("invalid value for CreatePartnerStatus: %v", v)
 	}
 }
 
@@ -1445,7 +1445,7 @@ type CreatePartnerResponseBody struct {
 	// The date when the partner was created on Dub.
 	CreatedAt string `json:"createdAt"`
 	// The status of the partner's enrollment in the program.
-	Status Status `json:"status"`
+	Status CreatePartnerStatus `json:"status"`
 	// The program's unique ID on Dub.
 	ProgramID string `json:"programId"`
 	// The partner's unique ID within your database. Can be useful for associating the partner with a user in your database and retrieving/update their data in the future.
@@ -1589,9 +1589,9 @@ func (o *CreatePartnerResponseBody) GetCreatedAt() string {
 	return o.CreatedAt
 }
 
-func (o *CreatePartnerResponseBody) GetStatus() Status {
+func (o *CreatePartnerResponseBody) GetStatus() CreatePartnerStatus {
 	if o == nil {
-		return Status("")
+		return CreatePartnerStatus("")
 	}
 	return o.Status
 }

@@ -150,6 +150,11 @@ func main() {
 
 * [Retrieve](docs/sdks/analytics/README.md#retrieve) - Retrieve analytics for a link, a domain, or the authenticated workspace.
 
+### [Commissions](docs/sdks/commissions/README.md)
+
+* [List](docs/sdks/commissions/README.md#list) - Get commissions for a program.
+* [Update](docs/sdks/commissions/README.md#update) - Update a commission.
+
 ### [Customers](docs/sdks/customers/README.md)
 
 * [List](docs/sdks/customers/README.md#list) - Retrieve a list of customers
@@ -201,7 +206,6 @@ func main() {
 * [RetrieveLinks](docs/sdks/partners/README.md#retrievelinks) - Retrieve a partner's links.
 * [UpsertLink](docs/sdks/partners/README.md#upsertlink) - Upsert a link for a partner
 * [Analytics](docs/sdks/partners/README.md#analytics) - Retrieve analytics for a partner
-* [UpdateSale](docs/sdks/partners/README.md#updatesale) - Update a sale for a partner.
 
 ### [QRCodes](docs/sdks/qrcodes/README.md)
 
