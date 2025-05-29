@@ -69,8 +69,6 @@ type FolderSchema struct {
 	Type Type   `json:"type"`
 	// The access level of the folder within the workspace.
 	AccessLevel *AccessLevel `default:"null" json:"accessLevel"`
-	// The number of links in the folder.
-	LinkCount *float64 `default:"0" json:"linkCount"`
 	// The date the folder was created.
 	CreatedAt string `json:"createdAt"`
 	// The date the folder was updated.
@@ -114,13 +112,6 @@ func (o *FolderSchema) GetAccessLevel() *AccessLevel {
 		return nil
 	}
 	return o.AccessLevel
-}
-
-func (o *FolderSchema) GetLinkCount() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.LinkCount
 }
 
 func (o *FolderSchema) GetCreatedAt() string {

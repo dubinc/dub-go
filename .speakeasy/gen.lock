@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: efdac56f4e3c654dda7366d7daef7320
+  docChecksum: a2ac297972706e86f31e833913025851
   docVersion: 0.0.1
-  speakeasyVersion: 1.548.3
-  generationVersion: 2.605.6
-  releaseVersion: 0.14.31
-  configChecksum: ac2c7b229cffcc29d88573d29a461f32
+  speakeasyVersion: 1.552.0
+  generationVersion: 2.610.0
+  releaseVersion: 0.14.32
+  configChecksum: e990175ff41102cda4e7b3878aef59f6
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -930,7 +930,7 @@ examples:
     speakeasy-default-create-folder:
       responses:
         "201":
-          application/json: {"id": "<id>", "name": "<value>", "type": "mega", "accessLevel": null, "linkCount": 0, "createdAt": "1737752987796", "updatedAt": "1747570295650"}
+          application/json: {"id": "<id>", "name": "<value>", "type": "mega", "accessLevel": null, "createdAt": "1737752987796", "updatedAt": "1747570295650"}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -957,7 +957,7 @@ examples:
           pageSize: 50
       responses:
         "200":
-          application/json: [{"id": "<id>", "name": "<value>", "type": "default", "accessLevel": null, "linkCount": 0, "createdAt": "1739500925331", "updatedAt": "1747574885783"}, {"id": "<id>", "name": "<value>", "type": "default", "accessLevel": null, "linkCount": 0, "createdAt": "1739500925331", "updatedAt": "1747574885783"}]
+          application/json: [{"id": "<id>", "name": "<value>", "type": "default", "accessLevel": null, "createdAt": "1739500925331", "updatedAt": "1747574885783"}, {"id": "<id>", "name": "<value>", "type": "default", "accessLevel": null, "createdAt": "1739500925331", "updatedAt": "1747574885783"}]
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -983,7 +983,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"id": "<id>", "name": "<value>", "type": "default", "accessLevel": null, "linkCount": 0, "createdAt": "1719092330353", "updatedAt": "1747578286321"}
+          application/json: {"id": "<id>", "name": "<value>", "type": "default", "accessLevel": null, "createdAt": "1719092330353", "updatedAt": "1747578286321"}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
