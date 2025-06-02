@@ -2,9 +2,12 @@
 
 package dubgo
 
+// Generated from OpenAPI doc version 0.0.1 and generator version 2.616.1
+
 import (
 	"context"
 	"fmt"
+	"github.com/dubinc/dub-go/internal/config"
 	"github.com/dubinc/dub-go/internal/hooks"
 	"github.com/dubinc/dub-go/internal/utils"
 	"github.com/dubinc/dub-go/models/components"
@@ -19,7 +22,7 @@ var ServerList = []string{
 	"https://api.dub.co",
 }
 
-// HTTPClient provides an interface for suplying the SDK with a custom HTTP client
+// HTTPClient provides an interface for supplying the SDK with a custom HTTP client
 type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
@@ -45,32 +48,10 @@ func Float64(f float64) *float64 { return &f }
 // Pointer provides a helper function to return a pointer to a type
 func Pointer[T any](v T) *T { return &v }
 
-type sdkConfiguration struct {
-	Client            HTTPClient
-	Security          func(context.Context) (interface{}, error)
-	ServerURL         string
-	ServerIndex       int
-	Language          string
-	OpenAPIDocVersion string
-	SDKVersion        string
-	GenVersion        string
-	UserAgent         string
-	RetryConfig       *retry.Config
-	Hooks             *hooks.Hooks
-	Timeout           *time.Duration
-}
-
-func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
-	if c.ServerURL != "" {
-		return c.ServerURL, nil
-	}
-
-	return ServerList[c.ServerIndex], nil
-}
-
 // Dub API: Dub is link management infrastructure for companies to create marketing campaigns, link sharing features, and referral programs.
 type Dub struct {
-	Links *Links
+	SDKVersion string
+	Links      *Links
 	// Retrieve analytics for a partner
 	// Retrieve analytics for a partner within a program. The response type vary based on the `groupBy` query parameter.
 	Analytics   *Analytics
@@ -86,7 +67,8 @@ type Dub struct {
 	EmbedTokens *EmbedTokens
 	QRCodes     *QRCodes
 
-	sdkConfiguration sdkConfiguration
+	sdkConfiguration config.SDKConfiguration
+	hooks            *hooks.Hooks
 }
 
 type SDKOption func(*Dub)
@@ -160,14 +142,12 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Dub {
 	sdk := &Dub{
-		sdkConfiguration: sdkConfiguration{
-			Language:          "go",
-			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "0.14.32",
-			GenVersion:        "2.610.0",
-			UserAgent:         "speakeasy-sdk/go 0.14.32 2.610.0 0.0.1 github.com/dubinc/dub-go",
-			Hooks:             hooks.New(),
+		SDKVersion: "0.15.0",
+		sdkConfiguration: config.SDKConfiguration{
+			UserAgent:  "speakeasy-sdk/go 0.15.0 2.616.1 0.0.1 github.com/dubinc/dub-go",
+			ServerList: ServerList,
 		},
+		hooks: hooks.New(),
 	}
 	for _, opt := range opts {
 		opt(sdk)
@@ -180,36 +160,24 @@ func New(opts ...SDKOption) *Dub {
 
 	currentServerURL, _ := sdk.sdkConfiguration.GetServerDetails()
 	serverURL := currentServerURL
-	serverURL, sdk.sdkConfiguration.Client = sdk.sdkConfiguration.Hooks.SDKInit(currentServerURL, sdk.sdkConfiguration.Client)
-	if serverURL != currentServerURL {
+	serverURL, sdk.sdkConfiguration.Client = sdk.hooks.SDKInit(currentServerURL, sdk.sdkConfiguration.Client)
+	if currentServerURL != serverURL {
 		sdk.sdkConfiguration.ServerURL = serverURL
 	}
 
-	sdk.Links = newLinks(sdk.sdkConfiguration)
-
-	sdk.Analytics = newAnalytics(sdk.sdkConfiguration)
-
-	sdk.Events = newEvents(sdk.sdkConfiguration)
-
-	sdk.Tags = newTags(sdk.sdkConfiguration)
-
-	sdk.Folders = newFolders(sdk.sdkConfiguration)
-
-	sdk.Domains = newDomains(sdk.sdkConfiguration)
-
-	sdk.Track = newTrack(sdk.sdkConfiguration)
-
-	sdk.Customers = newCustomers(sdk.sdkConfiguration)
-
-	sdk.Partners = newPartners(sdk.sdkConfiguration)
-
-	sdk.Commissions = newCommissions(sdk.sdkConfiguration)
-
-	sdk.Workspaces = newWorkspaces(sdk.sdkConfiguration)
-
-	sdk.EmbedTokens = newEmbedTokens(sdk.sdkConfiguration)
-
-	sdk.QRCodes = newQRCodes(sdk.sdkConfiguration)
+	sdk.Links = newLinks(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Analytics = newAnalytics(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Events = newEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Tags = newTags(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Folders = newFolders(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Domains = newDomains(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Track = newTrack(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Customers = newCustomers(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Partners = newPartners(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Commissions = newCommissions(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Workspaces = newWorkspaces(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.EmbedTokens = newEmbedTokens(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.QRCodes = newQRCodes(sdk, sdk.sdkConfiguration, sdk.hooks)
 
 	return sdk
 }

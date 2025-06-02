@@ -60,6 +60,7 @@ const (
 	QueryParamGroupByTriggers     QueryParamGroupBy = "triggers"
 	QueryParamGroupByReferers     QueryParamGroupBy = "referers"
 	QueryParamGroupByRefererUrls  QueryParamGroupBy = "referer_urls"
+	QueryParamGroupByTopPartners  QueryParamGroupBy = "top_partners"
 	QueryParamGroupByTopLinks     QueryParamGroupBy = "top_links"
 	QueryParamGroupByTopUrls      QueryParamGroupBy = "top_urls"
 	QueryParamGroupByUtmSources   QueryParamGroupBy = "utm_sources"
@@ -103,6 +104,8 @@ func (e *QueryParamGroupBy) UnmarshalJSON(data []byte) error {
 	case "referers":
 		fallthrough
 	case "referer_urls":
+		fallthrough
+	case "top_partners":
 		fallthrough
 	case "top_links":
 		fallthrough
