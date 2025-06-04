@@ -339,6 +339,7 @@ func main() {
     )
 
     res, err := s.Partners.Analytics(ctx, operations.RetrievePartnerAnalyticsRequest{
+        Timezone: dubgo.String("America/New_York"),
         ProgramID: "<id>",
     })
     if err != nil {

@@ -169,6 +169,8 @@ func main() {
 * [List](docs/sdks/domains/README.md#list) - Retrieve a list of domains
 * [Update](docs/sdks/domains/README.md#update) - Update a domain
 * [Delete](docs/sdks/domains/README.md#delete) - Delete a domain
+* [Register](docs/sdks/domains/README.md#register) - Register a domain
+* [CheckStatus](docs/sdks/domains/README.md#checkstatus) - Check the availability of one or more domains
 
 
 ### [EmbedTokens](docs/sdks/embedtokens/README.md)
@@ -651,7 +653,9 @@ func main() {
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
 
-	res, err := s.Links.List(ctx, operations.GetLinksRequest{})
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
+		PageSize: dubgo.Float64(50),
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
