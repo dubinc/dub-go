@@ -16,6 +16,8 @@ import (
 	"net/url"
 )
 
+// Analytics - Retrieve analytics for a partner
+// Retrieve analytics for a partner within a program. The response type vary based on the `groupBy` query parameter.
 type Analytics struct {
 	rootSDK          *Dub
 	sdkConfiguration config.SDKConfiguration
@@ -116,11 +118,13 @@ func (s *Analytics) Retrieve(ctx context.Context, request operations.RetrieveAna
 				"504",
 			},
 		}, func() (*http.Response, error) {
-			if req.Body != nil {
+			if req.Body != nil && req.Body != http.NoBody && req.GetBody != nil {
 				copyBody, err := req.GetBody()
+
 				if err != nil {
 					return nil, err
 				}
+
 				req.Body = copyBody
 			}
 

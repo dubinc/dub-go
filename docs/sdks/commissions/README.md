@@ -31,7 +31,9 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.Commissions.List(ctx, operations.ListCommissionsRequest{})
+    res, err := s.Commissions.List(ctx, operations.ListCommissionsRequest{
+        PageSize: dubgo.Float64(50),
+    })
     if err != nil {
         log.Fatal(err)
     }

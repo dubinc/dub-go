@@ -31,6 +31,7 @@ func main() {
     )
 
     res, err := s.Analytics.Retrieve(ctx, operations.RetrieveAnalyticsRequest{
+        Timezone: dubgo.String("America/New_York"),
         City: dubgo.String("New York"),
         Device: dubgo.String("Desktop"),
         Browser: dubgo.String("Chrome"),

@@ -92,7 +92,9 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.Tags.List(ctx, operations.GetTagsRequest{})
+    res, err := s.Tags.List(ctx, operations.GetTagsRequest{
+        PageSize: dubgo.Float64(50),
+    })
     if err != nil {
         log.Fatal(err)
     }
