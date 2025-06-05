@@ -173,10 +173,10 @@ type WorkspaceSchema struct {
 	LinksUsage float64 `json:"linksUsage"`
 	// The links limit of the workspace.
 	LinksLimit float64 `json:"linksLimit"`
-	// The dollar amount of tracked revenue in the current billing cycle (in cents).
-	SalesUsage float64 `json:"salesUsage"`
-	// The limit of tracked revenue in the current billing cycle (in cents).
-	SalesLimit float64 `json:"salesLimit"`
+	// The dollar amount of partner payouts processed in the current billing cycle (in cents).
+	PayoutsUsage float64 `json:"payoutsUsage"`
+	// The max dollar amount of partner payouts that can be processed within a billing cycle (in cents).
+	PayoutsLimit float64 `json:"payoutsLimit"`
 	// The domains limit of the workspace.
 	DomainsLimit float64 `json:"domainsLimit"`
 	// The tags limit of the workspace.
@@ -327,18 +327,18 @@ func (o *WorkspaceSchema) GetLinksLimit() float64 {
 	return o.LinksLimit
 }
 
-func (o *WorkspaceSchema) GetSalesUsage() float64 {
+func (o *WorkspaceSchema) GetPayoutsUsage() float64 {
 	if o == nil {
 		return 0.0
 	}
-	return o.SalesUsage
+	return o.PayoutsUsage
 }
 
-func (o *WorkspaceSchema) GetSalesLimit() float64 {
+func (o *WorkspaceSchema) GetPayoutsLimit() float64 {
 	if o == nil {
 		return 0.0
 	}
-	return o.SalesLimit
+	return o.PayoutsLimit
 }
 
 func (o *WorkspaceSchema) GetDomainsLimit() float64 {
