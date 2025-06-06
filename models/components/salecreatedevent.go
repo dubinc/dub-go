@@ -2276,13 +2276,13 @@ type SaleCreatedEventLink struct {
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password"`
 	Proxy    bool    `json:"proxy"`
-	// The title of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The title of the short link. Will be used for Custom Link Previews if `proxy` is true.
 	Title *string `json:"title"`
-	// The description of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The description of the short link. Will be used for Custom Link Previews if `proxy` is true.
 	Description *string `json:"description"`
-	// The image of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The image of the short link. Will be used for Custom Link Previews if `proxy` is true.
 	Image *string `json:"image"`
-	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
+	// The custom link preview video (og:video). Will be used for Custom Link Previews if `proxy` is true. Learn more: https://d.to/og
 	Video   *string `json:"video"`
 	Rewrite bool    `json:"rewrite"`
 	DoIndex bool    `json:"doIndex"`
