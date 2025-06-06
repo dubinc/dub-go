@@ -2056,15 +2056,15 @@ type LinkSchema struct {
 	ExpiredURL *string `json:"expiredUrl"`
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password"`
-	// Whether the short link uses Custom Social Media Cards feature.
+	// Whether the short link uses Custom Link Previews feature.
 	Proxy *bool `default:"false" json:"proxy"`
-	// The title of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The title of the short link. Will be used for Custom Link Previews if `proxy` is true.
 	Title *string `json:"title"`
-	// The description of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The description of the short link. Will be used for Custom Link Previews if `proxy` is true.
 	Description *string `json:"description"`
-	// The image of the short link. Will be used for Custom Social Media Cards if `proxy` is true.
+	// The image of the short link. Will be used for Custom Link Previews if `proxy` is true.
 	Image *string `json:"image"`
-	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
+	// The custom link preview video (og:video). Will be used for Custom Link Previews if `proxy` is true. Learn more: https://d.to/og
 	Video *string `json:"video"`
 	// Whether the short link uses link cloaking.
 	Rewrite *bool `default:"false" json:"rewrite"`

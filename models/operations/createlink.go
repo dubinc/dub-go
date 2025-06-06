@@ -199,15 +199,15 @@ type CreateLinkRequestBody struct {
 	ExpiredURL *string `json:"expiredUrl,omitempty"`
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password,omitempty"`
-	// Whether the short link uses Custom Social Media Cards feature. Defaults to `false` if not provided.
+	// Whether the short link uses Custom Link Previews feature. Defaults to `false` if not provided.
 	Proxy *bool `json:"proxy,omitempty"`
-	// The custom link preview title (og:title). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
+	// The custom link preview title (og:title). Will be used for Custom Link Previews if `proxy` is true. Learn more: https://d.to/og
 	Title *string `json:"title,omitempty"`
-	// The custom link preview description (og:description). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
+	// The custom link preview description (og:description). Will be used for Custom Link Previews if `proxy` is true. Learn more: https://d.to/og
 	Description *string `json:"description,omitempty"`
-	// The custom link preview image (og:image). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
+	// The custom link preview image (og:image). Will be used for Custom Link Previews if `proxy` is true. Learn more: https://d.to/og
 	Image *string `json:"image,omitempty"`
-	// The custom link preview video (og:video). Will be used for Custom Social Media Cards if `proxy` is true. Learn more: https://d.to/og
+	// The custom link preview video (og:video). Will be used for Custom Link Previews if `proxy` is true. Learn more: https://d.to/og
 	Video *string `json:"video,omitempty"`
 	// Whether the short link uses link cloaking. Defaults to `false` if not provided.
 	Rewrite *bool `json:"rewrite,omitempty"`
