@@ -17,9 +17,10 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
 go:
-  version: 0.15.3
+  version: 0.16.0
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: true
+  baseErrorName: DubError
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKError
   flattenGlobalSecurity: true

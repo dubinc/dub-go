@@ -13,3 +13,4 @@ The status of the partner's enrollment in the program.
 | `StatusInvited`  | invited          |
 | `StatusDeclined` | declined         |
 | `StatusBanned`   | banned           |
+| `StatusArchived` | archived         |
