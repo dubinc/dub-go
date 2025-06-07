@@ -41,6 +41,7 @@ const (
 	StatusInvited  Status = "invited"
 	StatusDeclined Status = "declined"
 	StatusBanned   Status = "banned"
+	StatusArchived Status = "archived"
 )
 
 func (e Status) ToPointer() *Status {
@@ -63,6 +64,8 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 	case "declined":
 		fallthrough
 	case "banned":
+		fallthrough
+	case "archived":
 		*e = Status(v)
 		return nil
 	default:

@@ -13,3 +13,4 @@ The status of the partner's enrollment in the program.
 | `CreatePartnerStatusInvited`  | invited                       |
 | `CreatePartnerStatusDeclined` | declined                      |
 | `CreatePartnerStatusBanned`   | banned                        |
+| `CreatePartnerStatusArchived` | archived                      |

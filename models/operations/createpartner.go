@@ -1286,6 +1286,7 @@ const (
 	CreatePartnerStatusInvited  CreatePartnerStatus = "invited"
 	CreatePartnerStatusDeclined CreatePartnerStatus = "declined"
 	CreatePartnerStatusBanned   CreatePartnerStatus = "banned"
+	CreatePartnerStatusArchived CreatePartnerStatus = "archived"
 )
 
 func (e CreatePartnerStatus) ToPointer() *CreatePartnerStatus {
@@ -1308,6 +1309,8 @@ func (e *CreatePartnerStatus) UnmarshalJSON(data []byte) error {
 	case "declined":
 		fallthrough
 	case "banned":
+		fallthrough
+	case "archived":
 		*e = CreatePartnerStatus(v)
 		return nil
 	default:
