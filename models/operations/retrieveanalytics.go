@@ -273,11 +273,11 @@ type RetrieveAnalyticsRequest struct {
 	GroupBy *QueryParamGroupBy `default:"count" queryParam:"style=form,explode=true,name=groupBy"`
 	// The domain to filter analytics for.
 	Domain *string `queryParam:"style=form,explode=true,name=domain"`
-	// The short link slug.
+	// The slug of the short link to retrieve analytics for. Must be used along with the corresponding `domain` of the short link to fetch analytics for a specific short link.
 	Key *string `queryParam:"style=form,explode=true,name=key"`
-	// The unique ID of the short link on Dub.
+	// The unique ID of the short link on Dub to retrieve analytics for.
 	LinkID *string `queryParam:"style=form,explode=true,name=linkId"`
-	// This is the ID of the link in the your database. Must be prefixed with 'ext_' when passed as a query parameter.
+	// The ID of the link in the your database. Must be prefixed with 'ext_' when passed as a query parameter.
 	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
 	// The ID of the tenant that created the link inside your system.
 	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`

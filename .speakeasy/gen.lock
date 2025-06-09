@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: e450149ec16a21a87e277cf10297c22b
+  docChecksum: 71dbc68df2b1c96868c3215ae9aca92d
   docVersion: 0.0.1
-  speakeasyVersion: 1.556.2
-  generationVersion: 2.621.3
-  releaseVersion: 0.15.3
-  configChecksum: f63511b739ebdb8e371a83ecf5be16d8
+  speakeasyVersion: 1.557.0
+  generationVersion: 2.623.0
+  releaseVersion: 0.16.0
+  configChecksum: b860cc38992074d4616f1b4102af3c9c
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.7.5
+    core: 3.8.0
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     envVarSecurityUsage: 0.3.2
@@ -1331,7 +1331,7 @@ examples:
         application/json: {"programId": "<id>", "name": "<value>", "email": "Summer50@yahoo.com", "linkProps": {"externalId": "123456", "tagIds": ["clux0rgak00011..."], "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}]}}
       responses:
         "201":
-          application/json: {"id": "<id>", "name": "<value>", "email": "Jan9@yahoo.com", "image": "https://loremflickr.com/2599/3934?lock=3607054824535492", "country": "Equatorial Guinea", "website": "<value>", "youtube": "<value>", "twitter": "<value>", "linkedin": "<value>", "instagram": "<value>", "tiktok": "<value>", "paypalEmail": "<value>", "stripeConnectId": "<id>", "payoutsEnabledAt": "<value>", "createdAt": "1736363425056", "status": "banned", "programId": "<id>", "tenantId": "<id>", "links": [], "clicks": 0, "leads": 0, "sales": 0, "saleAmount": 0, "earnings": 0}
+          application/json: {"id": "<id>", "name": "<value>", "email": "Jan9@yahoo.com", "image": "https://loremflickr.com/2599/3934?lock=3607054824535492", "country": "Equatorial Guinea", "website": "<value>", "youtube": "<value>", "twitter": "<value>", "linkedin": "<value>", "instagram": "<value>", "tiktok": "<value>", "paypalEmail": "<value>", "stripeConnectId": "<id>", "payoutsEnabledAt": "<value>", "createdAt": "1736363425056", "status": "banned", "programId": "<id>", "tenantId": "<id>", "links": [], "clicks": 0, "leads": 0, "sales": 0, "saleAmount": 0, "totalCommissions": 0, "netRevenue": 0, "earnings": 0}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
