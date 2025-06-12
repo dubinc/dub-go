@@ -11,9 +11,10 @@ import (
 type Type string
 
 const (
-	TypeClick Type = "click"
-	TypeLead  Type = "lead"
-	TypeSale  Type = "sale"
+	TypeClick  Type = "click"
+	TypeLead   Type = "lead"
+	TypeSale   Type = "sale"
+	TypeCustom Type = "custom"
 )
 
 func (e Type) ToPointer() *Type {
@@ -30,6 +31,8 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	case "lead":
 		fallthrough
 	case "sale":
+		fallthrough
+	case "custom":
 		*e = Type(v)
 		return nil
 	default:
@@ -314,9 +317,10 @@ func (o *ListCommissionsRequest) GetPageSize() *float64 {
 type ListCommissionsType string
 
 const (
-	ListCommissionsTypeClick ListCommissionsType = "click"
-	ListCommissionsTypeLead  ListCommissionsType = "lead"
-	ListCommissionsTypeSale  ListCommissionsType = "sale"
+	ListCommissionsTypeClick  ListCommissionsType = "click"
+	ListCommissionsTypeLead   ListCommissionsType = "lead"
+	ListCommissionsTypeSale   ListCommissionsType = "sale"
+	ListCommissionsTypeCustom ListCommissionsType = "custom"
 )
 
 func (e ListCommissionsType) ToPointer() *ListCommissionsType {
@@ -333,6 +337,8 @@ func (e *ListCommissionsType) UnmarshalJSON(data []byte) error {
 	case "lead":
 		fallthrough
 	case "sale":
+		fallthrough
+	case "custom":
 		*e = ListCommissionsType(v)
 		return nil
 	default:
