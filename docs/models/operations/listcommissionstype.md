@@ -3,8 +3,9 @@
 
 ## Values
 
-| Name                       | Value                      |
-| -------------------------- | -------------------------- |
-| `ListCommissionsTypeClick` | click                      |
-| `ListCommissionsTypeLead`  | lead                       |
-| `ListCommissionsTypeSale`  | sale                       |
+| Name                        | Value                       |
+| --------------------------- | --------------------------- |
+| `ListCommissionsTypeClick`  | click                       |
+| `ListCommissionsTypeLead`   | lead                        |
+| `ListCommissionsTypeSale`   | sale                        |
+| `ListCommissionsTypeCustom` | custom                      |

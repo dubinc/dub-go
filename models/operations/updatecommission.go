@@ -114,9 +114,10 @@ func (o *UpdateCommissionRequest) GetRequestBody() *UpdateCommissionRequestBody 
 type UpdateCommissionType string
 
 const (
-	UpdateCommissionTypeClick UpdateCommissionType = "click"
-	UpdateCommissionTypeLead  UpdateCommissionType = "lead"
-	UpdateCommissionTypeSale  UpdateCommissionType = "sale"
+	UpdateCommissionTypeClick  UpdateCommissionType = "click"
+	UpdateCommissionTypeLead   UpdateCommissionType = "lead"
+	UpdateCommissionTypeSale   UpdateCommissionType = "sale"
+	UpdateCommissionTypeCustom UpdateCommissionType = "custom"
 )
 
 func (e UpdateCommissionType) ToPointer() *UpdateCommissionType {
@@ -133,6 +134,8 @@ func (e *UpdateCommissionType) UnmarshalJSON(data []byte) error {
 	case "lead":
 		fallthrough
 	case "sale":
+		fallthrough
+	case "custom":
 		*e = UpdateCommissionType(v)
 		return nil
 	default:
