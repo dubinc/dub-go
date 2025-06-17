@@ -206,27 +206,27 @@ func (e *QueryParamSortOrder) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// QueryParamSortBy - The field to sort the events by. The default is `timestamp`.
-type QueryParamSortBy string
+// ListEventsQueryParamSortBy - The field to sort the events by. The default is `timestamp`.
+type ListEventsQueryParamSortBy string
 
 const (
-	QueryParamSortByTimestamp QueryParamSortBy = "timestamp"
+	ListEventsQueryParamSortByTimestamp ListEventsQueryParamSortBy = "timestamp"
 )
 
-func (e QueryParamSortBy) ToPointer() *QueryParamSortBy {
+func (e ListEventsQueryParamSortBy) ToPointer() *ListEventsQueryParamSortBy {
 	return &e
 }
-func (e *QueryParamSortBy) UnmarshalJSON(data []byte) error {
+func (e *ListEventsQueryParamSortBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "timestamp":
-		*e = QueryParamSortBy(v)
+		*e = ListEventsQueryParamSortBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for QueryParamSortBy: %v", v)
+		return fmt.Errorf("invalid value for ListEventsQueryParamSortBy: %v", v)
 	}
 }
 
@@ -333,7 +333,7 @@ type ListEventsRequest struct {
 	// The sort order. The default is `desc`.
 	SortOrder *QueryParamSortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
 	// The field to sort the events by. The default is `timestamp`.
-	SortBy *QueryParamSortBy `default:"timestamp" queryParam:"style=form,explode=true,name=sortBy"`
+	SortBy *ListEventsQueryParamSortBy `default:"timestamp" queryParam:"style=form,explode=true,name=sortBy"`
 	// DEPRECATED. Use `sortOrder` instead.
 	Order *Order `default:"desc" queryParam:"style=form,explode=true,name=order"`
 }
@@ -608,7 +608,7 @@ func (o *ListEventsRequest) GetSortOrder() *QueryParamSortOrder {
 	return o.SortOrder
 }
 
-func (o *ListEventsRequest) GetSortBy() *QueryParamSortBy {
+func (o *ListEventsRequest) GetSortBy() *ListEventsQueryParamSortBy {
 	if o == nil {
 		return nil
 	}
