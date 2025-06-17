@@ -266,6 +266,35 @@ func (u RetrieveAnalyticsQueryParamTagIds) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type RetrieveAnalyticsQueryParamTagIds: all fields are null")
 }
 
+type QueryParamSortBy string
+
+const (
+	QueryParamSortByClicks QueryParamSortBy = "clicks"
+	QueryParamSortByLeads  QueryParamSortBy = "leads"
+	QueryParamSortBySales  QueryParamSortBy = "sales"
+)
+
+func (e QueryParamSortBy) ToPointer() *QueryParamSortBy {
+	return &e
+}
+func (e *QueryParamSortBy) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "clicks":
+		fallthrough
+	case "leads":
+		fallthrough
+	case "sales":
+		*e = QueryParamSortBy(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for QueryParamSortBy: %v", v)
+	}
+}
+
 type RetrieveAnalyticsRequest struct {
 	// The type of event to retrieve analytics for. Defaults to `clicks`.
 	Event *Event `default:"clicks" queryParam:"style=form,explode=true,name=event"`
@@ -326,7 +355,8 @@ type RetrieveAnalyticsRequest struct {
 	// Deprecated. Use the `trigger` field instead. Filter for QR code scans. If true, filter for QR codes only. If false, filter for links only. If undefined, return both.
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
-	Root *bool `queryParam:"style=form,explode=true,name=root"`
+	Root   *bool             `queryParam:"style=form,explode=true,name=root"`
+	SortBy *QueryParamSortBy `queryParam:"style=form,explode=true,name=sortBy"`
 	// The UTM source of the short link.
 	UtmSource *string `queryParam:"style=form,explode=true,name=utm_source"`
 	// The UTM medium of the short link.
@@ -558,6 +588,13 @@ func (o *RetrieveAnalyticsRequest) GetRoot() *bool {
 		return nil
 	}
 	return o.Root
+}
+
+func (o *RetrieveAnalyticsRequest) GetSortBy() *QueryParamSortBy {
+	if o == nil {
+		return nil
+	}
+	return o.SortBy
 }
 
 func (o *RetrieveAnalyticsRequest) GetUtmSource() *string {

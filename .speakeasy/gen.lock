@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 1f2d4c898b6141a97115319cc3fc6712
+  docChecksum: 2888b170a568c5574a256a458ca8e766
   docVersion: 0.0.1
-  speakeasyVersion: 1.561.0
-  generationVersion: 2.628.0
-  releaseVersion: 0.16.1
-  configChecksum: eeb311e32e0f4ab9eb4c16f5f8721da9
+  speakeasyVersion: 1.563.4
+  generationVersion: 2.630.6
+  releaseVersion: 0.16.2
+  configChecksum: 696637ded7ebcb2da560dc31ea2837ab
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -333,6 +333,7 @@ generatedFiles:
   - docs/models/operations/listcommissionstype.md
   - docs/models/operations/listdomainsrequest.md
   - docs/models/operations/listdomainsresponse.md
+  - docs/models/operations/listeventsqueryparamsortby.md
   - docs/models/operations/listeventsqueryparamtagids.md
   - docs/models/operations/listeventsrequest.md
   - docs/models/operations/listeventsresponsebody.md
