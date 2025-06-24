@@ -430,8 +430,6 @@ func (o *UpsertPartnerLinkLinkProps) GetTestCompletedAt() *string {
 }
 
 type UpsertPartnerLinkRequestBody struct {
-	// The ID of the program that the partner is enrolled in.
-	ProgramID string `json:"programId"`
 	// The ID of the partner to create a link for. Will take precedence over `tenantId` if provided.
 	PartnerID *string `json:"partnerId,omitempty"`
 	// The ID of the partner in your system. If both `partnerId` and `tenantId` are not provided, an error will be thrown.
@@ -444,13 +442,6 @@ type UpsertPartnerLinkRequestBody struct {
 	Comments *string `json:"comments,omitempty"`
 	// Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
 	LinkProps *UpsertPartnerLinkLinkProps `json:"linkProps,omitempty"`
-}
-
-func (o *UpsertPartnerLinkRequestBody) GetProgramID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ProgramID
 }
 
 func (o *UpsertPartnerLinkRequestBody) GetPartnerID() *string {

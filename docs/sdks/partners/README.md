@@ -35,7 +35,6 @@ func main() {
     )
 
     res, err := s.Partners.Create(ctx, &operations.CreatePartnerRequestBody{
-        ProgramID: "<id>",
         Name: "<value>",
         Email: "Summer50@yahoo.com",
         LinkProps: &operations.LinkProps{
@@ -117,7 +116,6 @@ func main() {
     )
 
     res, err := s.Partners.CreateLink(ctx, &operations.CreatePartnerLinkRequestBody{
-        ProgramID: "<id>",
         LinkProps: &operations.CreatePartnerLinkLinkProps{
             ExternalID: dubgo.String("123456"),
             TagIds: dubgo.Pointer(operations.CreateCreatePartnerLinkTagIdsArrayOfStr(
@@ -259,7 +257,6 @@ func main() {
     )
 
     res, err := s.Partners.UpsertLink(ctx, &operations.UpsertPartnerLinkRequestBody{
-        ProgramID: "<id>",
         LinkProps: &operations.UpsertPartnerLinkLinkProps{
             ExternalID: dubgo.String("123456"),
             TagIds: dubgo.Pointer(operations.CreateUpsertPartnerLinkTagIdsArrayOfStr(
@@ -340,7 +337,6 @@ func main() {
 
     res, err := s.Partners.Analytics(ctx, operations.RetrievePartnerAnalyticsRequest{
         Timezone: dubgo.String("America/New_York"),
-        ProgramID: "<id>",
     })
     if err != nil {
         log.Fatal(err)
