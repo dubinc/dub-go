@@ -1277,17 +1277,9 @@ func (o *Partner) GetLinkProps() *CreateReferralsEmbedTokenLinkProps {
 }
 
 type CreateReferralsEmbedTokenRequestBody struct {
-	ProgramID string   `json:"programId"`
 	PartnerID *string  `json:"partnerId,omitempty"`
 	TenantID  *string  `json:"tenantId,omitempty"`
 	Partner   *Partner `json:"partner,omitempty"`
-}
-
-func (o *CreateReferralsEmbedTokenRequestBody) GetProgramID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ProgramID
 }
 
 func (o *CreateReferralsEmbedTokenRequestBody) GetPartnerID() *string {

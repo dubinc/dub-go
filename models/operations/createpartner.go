@@ -1202,8 +1202,6 @@ func (o *LinkProps) GetTestCompletedAt() *string {
 }
 
 type CreatePartnerRequestBody struct {
-	// The ID of the program to create a partner for.
-	ProgramID string `json:"programId"`
 	// Full legal name of the partner.
 	Name string `json:"name"`
 	// Email for the partner in your system. Partners will be able to claim their profile by signing up to Dub Partners with this email.
@@ -1220,13 +1218,6 @@ type CreatePartnerRequestBody struct {
 	TenantID *string `json:"tenantId,omitempty"`
 	// Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
 	LinkProps *LinkProps `json:"linkProps,omitempty"`
-}
-
-func (o *CreatePartnerRequestBody) GetProgramID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ProgramID
 }
 
 func (o *CreatePartnerRequestBody) GetName() string {

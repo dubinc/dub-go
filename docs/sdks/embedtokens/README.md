@@ -31,7 +31,6 @@ func main() {
     )
 
     res, err := s.EmbedTokens.Referrals(ctx, &operations.CreateReferralsEmbedTokenRequestBody{
-        ProgramID: "<id>",
         Partner: &operations.Partner{
             Name: "<value>",
             Email: "Letha_Wuckert2@yahoo.com",

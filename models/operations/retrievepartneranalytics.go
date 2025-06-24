@@ -103,8 +103,6 @@ type RetrievePartnerAnalyticsRequest struct {
 	Timezone *string `default:"UTC" queryParam:"style=form,explode=true,name=timezone"`
 	// The parameter to group the analytics data points by. Defaults to `count` if undefined.
 	GroupBy *RetrievePartnerAnalyticsQueryParamGroupBy `default:"count" queryParam:"style=form,explode=true,name=groupBy"`
-	// The ID of the program to retrieve analytics for.
-	ProgramID string `queryParam:"style=form,explode=true,name=programId"`
 }
 
 func (r RetrievePartnerAnalyticsRequest) MarshalJSON() ([]byte, error) {
@@ -165,13 +163,6 @@ func (o *RetrievePartnerAnalyticsRequest) GetGroupBy() *RetrievePartnerAnalytics
 		return nil
 	}
 	return o.GroupBy
-}
-
-func (o *RetrievePartnerAnalyticsRequest) GetProgramID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ProgramID
 }
 
 type RetrievePartnerAnalyticsResponseBodyType string
