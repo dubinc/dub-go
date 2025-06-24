@@ -157,6 +157,8 @@ func (o *UpsertPartnerLinkTestVariants) GetPercentage() float64 {
 
 // UpsertPartnerLinkLinkProps - Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
 type UpsertPartnerLinkLinkProps struct {
+	// The length of the short link slug. Defaults to 7 if not provided. When used with `prefix`, the total length of the key will be `prefix.length + keyLength`.
+	KeyLength *float64 `json:"keyLength,omitempty"`
 	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
 	ExternalID *string `json:"externalId,omitempty"`
 	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
@@ -215,6 +217,13 @@ type UpsertPartnerLinkLinkProps struct {
 	TestStartedAt *string `json:"testStartedAt,omitempty"`
 	// The date and time when the tests were or will be completed.
 	TestCompletedAt *string `json:"testCompletedAt,omitempty"`
+}
+
+func (o *UpsertPartnerLinkLinkProps) GetKeyLength() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.KeyLength
 }
 
 func (o *UpsertPartnerLinkLinkProps) GetExternalID() *string {

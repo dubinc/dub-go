@@ -389,15 +389,16 @@ func (e *ListCommissionsStatus) UnmarshalJSON(data []byte) error {
 
 type ListCommissionsResponseBody struct {
 	// The commission's unique ID on Dub.
-	ID        string                `json:"id"`
-	Type      *ListCommissionsType  `json:"type,omitempty"`
-	Amount    float64               `json:"amount"`
-	Earnings  float64               `json:"earnings"`
-	Currency  string                `json:"currency"`
-	Status    ListCommissionsStatus `json:"status"`
-	InvoiceID *string               `json:"invoiceId,omitempty"`
-	CreatedAt string                `json:"createdAt"`
-	UpdatedAt string                `json:"updatedAt"`
+	ID          string                `json:"id"`
+	Type        *ListCommissionsType  `json:"type,omitempty"`
+	Amount      float64               `json:"amount"`
+	Earnings    float64               `json:"earnings"`
+	Currency    string                `json:"currency"`
+	Status      ListCommissionsStatus `json:"status"`
+	InvoiceID   *string               `json:"invoiceId,omitempty"`
+	Description *string               `json:"description,omitempty"`
+	CreatedAt   string                `json:"createdAt"`
+	UpdatedAt   string                `json:"updatedAt"`
 }
 
 func (o *ListCommissionsResponseBody) GetID() string {
@@ -447,6 +448,13 @@ func (o *ListCommissionsResponseBody) GetInvoiceID() *string {
 		return nil
 	}
 	return o.InvoiceID
+}
+
+func (o *ListCommissionsResponseBody) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
 }
 
 func (o *ListCommissionsResponseBody) GetCreatedAt() string {

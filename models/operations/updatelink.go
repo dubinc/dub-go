@@ -171,8 +171,6 @@ type UpdateLinkRequestBody struct {
 	ProgramID *string `json:"programId,omitempty"`
 	// The ID of the partner the short link is associated with.
 	PartnerID *string `json:"partnerId,omitempty"`
-	// The prefix of the short link slug for randomly-generated keys (e.g. if prefix is `/c/`, generated keys will be in the `/c/:key` format). Will be ignored if `key` is provided.
-	Prefix *string `json:"prefix,omitempty"`
 	// Whether to track conversions for the short link. Defaults to `false` if not provided.
 	TrackConversion *bool `json:"trackConversion,omitempty"`
 	// Whether the short link is archived. Defaults to `false` if not provided.
@@ -287,13 +285,6 @@ func (o *UpdateLinkRequestBody) GetPartnerID() *string {
 		return nil
 	}
 	return o.PartnerID
-}
-
-func (o *UpdateLinkRequestBody) GetPrefix() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Prefix
 }
 
 func (o *UpdateLinkRequestBody) GetTrackConversion() *bool {
