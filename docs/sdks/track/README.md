@@ -98,8 +98,8 @@ func main() {
     res, err := s.Track.Sale(ctx, &operations.TrackSaleRequestBody{
         ExternalID: "<id>",
         Amount: 594903,
-        PaymentProcessor: operations.PaymentProcessorPolar,
         EventName: dubgo.String("Invoice paid"),
+        PaymentProcessor: operations.PaymentProcessorPolar,
         LeadEventName: dubgo.String("Cloned template 1481267"),
     })
     if err != nil {

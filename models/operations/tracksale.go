@@ -47,19 +47,19 @@ func (e *PaymentProcessor) UnmarshalJSON(data []byte) error {
 type TrackSaleRequestBody struct {
 	// The unique ID of the customer in your system. Will be used to identify and attribute all future events to this customer.
 	ExternalID string `json:"externalId"`
-	// The amount of the sale in cents.
+	// The amount of the sale in cents (for all two-decimal currencies). If the sale is in a zero-decimal currency, pass the full integer value (e.g. `1437` JPY). Learn more: https://d.to/currency
 	Amount int64 `json:"amount"`
+	// The currency of the sale. Accepts ISO 4217 currency codes. Sales will be automatically converted and stored as USD at the latest exchange rates. Learn more: https://d.to/currency
+	Currency *string `default:"usd" json:"currency"`
+	// The name of the sale event. Recommended format: `Invoice paid` or `Subscription created`.
+	EventName *string `default:"Purchase" json:"eventName"`
 	// The payment processor via which the sale was made.
 	PaymentProcessor PaymentProcessor `json:"paymentProcessor"`
-	// The name of the sale event.
-	EventName *string `default:"Purchase" json:"eventName"`
 	// The invoice ID of the sale. Can be used as a idempotency key – only one sale event can be recorded for a given invoice ID.
 	InvoiceID *string `default:"null" json:"invoiceId"`
-	// The currency of the sale. Accepts ISO 4217 currency codes.
-	Currency *string `default:"usd" json:"currency"`
-	// The name of the lead event that occurred before the sale (case-sensitive). This is used to associate the sale event with a particular lead event (instead of the latest lead event, which is the default behavior).
+	// The name of the lead event that occurred before the sale (case-sensitive). This is used to associate the sale event with a particular lead event (instead of the latest lead event for a link-customer combination, which is the default behavior).
 	LeadEventName *string `default:"null" json:"leadEventName"`
-	// Additional metadata to be stored with the sale event. Max 10,000 characters.
+	// Additional metadata to be stored with the sale event. Max 10,000 characters when stringified.
 	Metadata map[string]any `json:"metadata,omitempty"`
 }
 
@@ -88,11 +88,11 @@ func (o *TrackSaleRequestBody) GetAmount() int64 {
 	return o.Amount
 }
 
-func (o *TrackSaleRequestBody) GetPaymentProcessor() PaymentProcessor {
+func (o *TrackSaleRequestBody) GetCurrency() *string {
 	if o == nil {
-		return PaymentProcessor("")
+		return nil
 	}
-	return o.PaymentProcessor
+	return o.Currency
 }
 
 func (o *TrackSaleRequestBody) GetEventName() *string {
@@ -102,18 +102,18 @@ func (o *TrackSaleRequestBody) GetEventName() *string {
 	return o.EventName
 }
 
+func (o *TrackSaleRequestBody) GetPaymentProcessor() PaymentProcessor {
+	if o == nil {
+		return PaymentProcessor("")
+	}
+	return o.PaymentProcessor
+}
+
 func (o *TrackSaleRequestBody) GetInvoiceID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.InvoiceID
-}
-
-func (o *TrackSaleRequestBody) GetCurrency() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Currency
 }
 
 func (o *TrackSaleRequestBody) GetLeadEventName() *string {
