@@ -286,7 +286,7 @@ type ListEventsRequest struct {
 	End *string `queryParam:"style=form,explode=true,name=end"`
 	// The IANA time zone code for aligning timeseries granularity (e.g. America/New_York). Defaults to UTC.
 	Timezone *string `default:"UTC" queryParam:"style=form,explode=true,name=timezone"`
-	// The country to retrieve analytics for.
+	// The country to retrieve analytics for. Must be passed as a 2-letter ISO 3166-1 country code. Learn more: https://d.to/geo
 	Country *components.CountryCode `queryParam:"style=form,explode=true,name=country"`
 	// The city to retrieve analytics for.
 	City *string `queryParam:"style=form,explode=true,name=city"`

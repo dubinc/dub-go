@@ -40,8 +40,6 @@ type TrackLeadRequestBody struct {
 	ClickID string `json:"clickId"`
 	// The name of the lead event to track. Can also be used as a unique identifier to associate a given lead event for a customer for a subsequent sale event (via the `leadEventName` prop in `/track/sale`).
 	EventName string `json:"eventName"`
-	// The numerical value associated with this lead event (e.g., number of provisioned seats in a free trial). If defined as N, the lead event will be tracked N times.
-	EventQuantity *float64 `json:"eventQuantity,omitempty"`
 	// The unique ID of the customer in your system. Will be used to identify and attribute all future events to this customer.
 	ExternalID string `json:"externalId"`
 	// The name of the customer. If not passed, a random name will be generated (e.g. “Big Red Caribou”).
@@ -50,6 +48,8 @@ type TrackLeadRequestBody struct {
 	CustomerEmail *string `default:"null" json:"customerEmail"`
 	// The avatar URL of the customer.
 	CustomerAvatar *string `default:"null" json:"customerAvatar"`
+	// The numerical value associated with this lead event (e.g., number of provisioned seats in a free trial). If defined as N, the lead event will be tracked N times.
+	EventQuantity *float64 `json:"eventQuantity,omitempty"`
 	// The mode to use for tracking the lead event. `async` will not block the request; `wait` will block the request until the lead event is fully recorded in Dub.
 	Mode *Mode `default:"async" json:"mode"`
 	// Additional metadata to be stored with the lead event. Max 10,000 characters.
@@ -81,13 +81,6 @@ func (o *TrackLeadRequestBody) GetEventName() string {
 	return o.EventName
 }
 
-func (o *TrackLeadRequestBody) GetEventQuantity() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.EventQuantity
-}
-
 func (o *TrackLeadRequestBody) GetExternalID() string {
 	if o == nil {
 		return ""
@@ -114,6 +107,13 @@ func (o *TrackLeadRequestBody) GetCustomerAvatar() *string {
 		return nil
 	}
 	return o.CustomerAvatar
+}
+
+func (o *TrackLeadRequestBody) GetEventQuantity() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.EventQuantity
 }
 
 func (o *TrackLeadRequestBody) GetMode() *Mode {
