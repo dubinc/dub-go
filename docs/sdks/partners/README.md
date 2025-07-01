@@ -35,7 +35,6 @@ func main() {
     )
 
     res, err := s.Partners.Create(ctx, &operations.CreatePartnerRequestBody{
-        Name: "<value>",
         Email: "Summer50@yahoo.com",
         LinkProps: &operations.LinkProps{
             ExternalID: dubgo.String("123456"),
@@ -194,9 +193,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.Partners.RetrieveLinks(ctx, operations.RetrieveLinksRequest{
-        ProgramID: "<id>",
-    })
+    res, err := s.Partners.RetrieveLinks(ctx, operations.RetrieveLinksRequest{})
     if err != nil {
         log.Fatal(err)
     }

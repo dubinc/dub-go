@@ -2,7 +2,7 @@
 
 package dubgo
 
-// Generated from OpenAPI doc version 0.0.1 and generator version 2.634.2
+// Generated from OpenAPI doc version 0.0.1 and generator version 2.644.1
 
 import (
 	"context"
@@ -140,9 +140,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Dub {
 	sdk := &Dub{
-		SDKVersion: "0.16.5",
+		SDKVersion: "0.16.6",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.16.5 2.634.2 0.0.1 github.com/dubinc/dub-go",
+			UserAgent:  "speakeasy-sdk/go 0.16.6 2.644.1 0.0.1 github.com/dubinc/dub-go",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),

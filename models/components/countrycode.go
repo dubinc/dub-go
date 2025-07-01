@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// CountryCode - The country to retrieve analytics for.
+// CountryCode - The country to retrieve analytics for. Must be passed as a 2-letter ISO 3166-1 country code. Learn more: https://d.to/geo
 type CountryCode string
 
 const (

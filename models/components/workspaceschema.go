@@ -177,6 +177,8 @@ type WorkspaceSchema struct {
 	PayoutsUsage float64 `json:"payoutsUsage"`
 	// The max dollar amount of partner payouts that can be processed within a billing cycle (in cents).
 	PayoutsLimit float64 `json:"payoutsLimit"`
+	// The processing fee (in decimals) for partner payouts. For card payments, an additional 0.03 is added to the fee. Learn more: https://d.to/payouts
+	PayoutFee float64 `json:"payoutFee"`
 	// The domains limit of the workspace.
 	DomainsLimit float64 `json:"domainsLimit"`
 	// The tags limit of the workspace.
@@ -339,6 +341,13 @@ func (o *WorkspaceSchema) GetPayoutsLimit() float64 {
 		return 0.0
 	}
 	return o.PayoutsLimit
+}
+
+func (o *WorkspaceSchema) GetPayoutFee() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.PayoutFee
 }
 
 func (o *WorkspaceSchema) GetDomainsLimit() float64 {
