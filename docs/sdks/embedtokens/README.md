@@ -32,7 +32,6 @@ func main() {
 
     res, err := s.EmbedTokens.Referrals(ctx, &operations.CreateReferralsEmbedTokenRequestBody{
         Partner: &operations.Partner{
-            Name: "<value>",
             Email: "Letha_Wuckert2@yahoo.com",
             LinkProps: &operations.CreateReferralsEmbedTokenLinkProps{
                 ExternalID: dubgo.String("123456"),

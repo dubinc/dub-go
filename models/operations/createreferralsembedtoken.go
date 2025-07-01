@@ -9,7 +9,7 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
-// CreateReferralsEmbedTokenCountry - Country where the partner is based.
+// CreateReferralsEmbedTokenCountry - The partner's country of residence. Must be passed as a 2-letter ISO 3166-1 country code. Learn more: https://d.to/geo
 type CreateReferralsEmbedTokenCountry string
 
 const (
@@ -1202,27 +1202,27 @@ func (o *CreateReferralsEmbedTokenLinkProps) GetTestCompletedAt() *string {
 }
 
 type Partner struct {
-	// Full legal name of the partner.
-	Name string `json:"name"`
-	// Email for the partner in your system. Partners will be able to claim their profile by signing up to Dub Partners with this email.
+	// The partner's full name. If undefined, the partner's email will be used in lieu of their name (e.g. `john@acme.com`)
+	Name *string `json:"name,omitempty"`
+	// The partner's email address. Partners will be able to claim their profile by signing up at `partners.dub.co` with this email.
 	Email string `json:"email"`
-	// A unique username for the partner in your system (max 100 characters). This will be used to create a short link for the partner using your program's default domain. If not provided, Dub will try to generate a username from the partner's name or email.
+	// The partner's unique username in your system (max 100 characters). This will be used to create a short link for the partner using your program's default domain. If not provided, Dub will try to generate a username from the partner's name or email.
 	Username *string `json:"username,omitempty"`
-	// Avatar image for the partner – if not provided, a default avatar will be used.
+	// The partner's avatar image. If not provided, a default avatar will be used.
 	Image *string `json:"image,omitempty"`
-	// Country where the partner is based.
-	Country *CreateReferralsEmbedTokenCountry `json:"country,omitempty"`
-	// A brief description of the partner and their background.
-	Description *string `json:"description,omitempty"`
-	// The ID of the partner in your system.
+	// The partner's unique ID in your system. Useful for retrieving the partner's links and stats later on. If not provided, the partner will be created as a standalone partner.
 	TenantID *string `json:"tenantId,omitempty"`
+	// The partner's country of residence. Must be passed as a 2-letter ISO 3166-1 country code. Learn more: https://d.to/geo
+	Country *CreateReferralsEmbedTokenCountry `json:"country,omitempty"`
+	// A brief description of the partner and their background. Max 5,000 characters.
+	Description *string `json:"description,omitempty"`
 	// Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
 	LinkProps *CreateReferralsEmbedTokenLinkProps `json:"linkProps,omitempty"`
 }
 
-func (o *Partner) GetName() string {
+func (o *Partner) GetName() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Name
 }
@@ -1248,6 +1248,13 @@ func (o *Partner) GetImage() *string {
 	return o.Image
 }
 
+func (o *Partner) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
+}
+
 func (o *Partner) GetCountry() *CreateReferralsEmbedTokenCountry {
 	if o == nil {
 		return nil
@@ -1260,13 +1267,6 @@ func (o *Partner) GetDescription() *string {
 		return nil
 	}
 	return o.Description
-}
-
-func (o *Partner) GetTenantID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.TenantID
 }
 
 func (o *Partner) GetLinkProps() *CreateReferralsEmbedTokenLinkProps {

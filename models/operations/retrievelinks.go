@@ -7,16 +7,8 @@ import (
 )
 
 type RetrieveLinksRequest struct {
-	ProgramID string  `queryParam:"style=form,explode=true,name=programId"`
 	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
 	TenantID  *string `queryParam:"style=form,explode=true,name=tenantId"`
-}
-
-func (o *RetrieveLinksRequest) GetProgramID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ProgramID
 }
 
 func (o *RetrieveLinksRequest) GetPartnerID() *string {
