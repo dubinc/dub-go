@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 9cde19fee10d246922e255635d90eec7
+  docChecksum: 6e45f3521cae083a495cc5102bf01725
   docVersion: 0.0.1
-  speakeasyVersion: 1.573.0
-  generationVersion: 2.644.1
-  releaseVersion: 0.16.6
-  configChecksum: a7843c1a8422c0ef078972d1d9fe01b3
+  speakeasyVersion: 1.576.1
+  generationVersion: 2.651.2
+  releaseVersion: 0.16.7
+  configChecksum: 820fbe7b2a60f25fa6ea6e5b9cc66dc5
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -32,7 +32,7 @@ features:
     responseFormat: 0.1.2
     retries: 2.83.3
     sdkHooks: 0.2.0
-    unions: 2.85.11
+    unions: 2.85.12
 generatedFiles:
   - .gitattributes
   - /models/components/analyticsbrowsers.go
