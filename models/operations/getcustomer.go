@@ -159,6 +159,7 @@ type GetCustomerDiscount struct {
 	CouponID      *string         `json:"couponId"`
 	CouponTestID  *string         `json:"couponTestId"`
 	PartnersCount *float64        `json:"partnersCount,omitempty"`
+	Default       bool            `json:"default"`
 }
 
 func (o *GetCustomerDiscount) GetID() string {
@@ -215,6 +216,13 @@ func (o *GetCustomerDiscount) GetPartnersCount() *float64 {
 		return nil
 	}
 	return o.PartnersCount
+}
+
+func (o *GetCustomerDiscount) GetDefault() bool {
+	if o == nil {
+		return false
+	}
+	return o.Default
 }
 
 // GetCustomerResponseBody - The customer object.
