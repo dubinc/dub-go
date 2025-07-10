@@ -41,7 +41,7 @@ type TrackLeadRequestBody struct {
 	// The name of the lead event to track. Can also be used as a unique identifier to associate a given lead event for a customer for a subsequent sale event (via the `leadEventName` prop in `/track/sale`).
 	EventName string `json:"eventName"`
 	// The unique ID of the customer in your system. Will be used to identify and attribute all future events to this customer.
-	ExternalID string `json:"externalId"`
+	CustomerExternalID string `json:"customerExternalId"`
 	// The name of the customer. If not passed, a random name will be generated (e.g. “Big Red Caribou”).
 	CustomerName *string `default:"null" json:"customerName"`
 	// The email address of the customer.
@@ -81,11 +81,11 @@ func (o *TrackLeadRequestBody) GetEventName() string {
 	return o.EventName
 }
 
-func (o *TrackLeadRequestBody) GetExternalID() string {
+func (o *TrackLeadRequestBody) GetCustomerExternalID() string {
 	if o == nil {
 		return ""
 	}
-	return o.ExternalID
+	return o.CustomerExternalID
 }
 
 func (o *TrackLeadRequestBody) GetCustomerName() *string {

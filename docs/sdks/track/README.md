@@ -34,7 +34,7 @@ func main() {
     res, err := s.Track.Lead(ctx, &operations.TrackLeadRequestBody{
         ClickID: "<id>",
         EventName: "Sign up",
-        ExternalID: "<id>",
+        CustomerExternalID: "<id>",
     })
     if err != nil {
         log.Fatal(err)
@@ -96,7 +96,7 @@ func main() {
     )
 
     res, err := s.Track.Sale(ctx, &operations.TrackSaleRequestBody{
-        ExternalID: "<id>",
+        CustomerExternalID: "<id>",
         Amount: 594903,
         EventName: dubgo.String("Invoice paid"),
         PaymentProcessor: operations.PaymentProcessorPolar,

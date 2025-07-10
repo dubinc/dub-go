@@ -46,7 +46,7 @@ func (e *PaymentProcessor) UnmarshalJSON(data []byte) error {
 
 type TrackSaleRequestBody struct {
 	// The unique ID of the customer in your system. Will be used to identify and attribute all future events to this customer.
-	ExternalID string `json:"externalId"`
+	CustomerExternalID string `json:"customerExternalId"`
 	// The amount of the sale in cents (for all two-decimal currencies). If the sale is in a zero-decimal currency, pass the full integer value (e.g. `1437` JPY). Learn more: https://d.to/currency
 	Amount int64 `json:"amount"`
 	// The currency of the sale. Accepts ISO 4217 currency codes. Sales will be automatically converted and stored as USD at the latest exchange rates. Learn more: https://d.to/currency
@@ -74,11 +74,11 @@ func (t *TrackSaleRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TrackSaleRequestBody) GetExternalID() string {
+func (o *TrackSaleRequestBody) GetCustomerExternalID() string {
 	if o == nil {
 		return ""
 	}
-	return o.ExternalID
+	return o.CustomerExternalID
 }
 
 func (o *TrackSaleRequestBody) GetAmount() int64 {
