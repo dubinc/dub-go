@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 6e45f3521cae083a495cc5102bf01725
+  docChecksum: aa92a2d401a7d3e37140aef2558f04b3
   docVersion: 0.0.1
-  speakeasyVersion: 1.576.1
-  generationVersion: 2.651.2
-  releaseVersion: 0.16.7
-  configChecksum: 820fbe7b2a60f25fa6ea6e5b9cc66dc5
+  speakeasyVersion: 1.580.2
+  generationVersion: 2.656.5
+  releaseVersion: 0.16.8
+  configChecksum: d36679594731336d7c88751ab292e91a
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -18,7 +18,7 @@ features:
     deprecations: 2.81.3
     envVarSecurityUsage: 0.3.2
     errors: 2.83.0
-    examples: 2.81.4
+    examples: 2.81.5
     flattening: 2.81.1
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
@@ -1143,7 +1143,7 @@ examples:
   trackLead:
     speakeasy-default-track-lead:
       requestBody:
-        application/json: {"clickId": "<id>", "eventName": "Sign up", "externalId": "<id>", "customerName": null, "customerEmail": null, "customerAvatar": null, "mode": "async"}
+        application/json: {"clickId": "<id>", "eventName": "Sign up", "customerExternalId": "<id>", "customerName": null, "customerEmail": null, "customerAvatar": null, "mode": "async"}
       responses:
         "200":
           application/json: {"click": {"id": "<id>"}, "customer": {"name": "<value>", "email": "Beaulah.Hamill78@gmail.com", "avatar": "https://picsum.photos/seed/4p2vQu6/2339/955", "externalId": "<id>"}}
@@ -1168,7 +1168,7 @@ examples:
   trackSale:
     speakeasy-default-track-sale:
       requestBody:
-        application/json: {"externalId": "<id>", "amount": 594903, "currency": "usd", "eventName": "Invoice paid", "paymentProcessor": "polar", "invoiceId": null, "leadEventName": "Cloned template 1481267"}
+        application/json: {"customerExternalId": "<id>", "amount": 594903, "currency": "usd", "eventName": "Invoice paid", "paymentProcessor": "polar", "invoiceId": null, "leadEventName": "Cloned template 1481267"}
       responses:
         "200":
           application/json: {"eventName": "<value>", "customer": {"id": "<id>", "name": "<value>", "email": "Jettie.Hirthe97@yahoo.com", "avatar": "https://loremflickr.com/2112/1585?lock=96959249386723", "externalId": "<id>"}, "sale": {"amount": 67.63, "currency": "Pula", "paymentProcessor": "<value>", "invoiceId": "<id>", "metadata": {"key": "<value>"}}}
