@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: aa92a2d401a7d3e37140aef2558f04b3
+  docChecksum: 70eee2145acbaca8d02afd666a946594
   docVersion: 0.0.1
-  speakeasyVersion: 1.580.2
-  generationVersion: 2.656.5
-  releaseVersion: 0.16.8
-  configChecksum: d36679594731336d7c88751ab292e91a
+  speakeasyVersion: 1.583.0
+  generationVersion: 2.658.3
+  releaseVersion: 0.16.9
+  configChecksum: b0dde95939a66544f6833ca4f0ff18ef
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -50,6 +50,7 @@ generatedFiles:
   - /models/components/analyticstopurls.go
   - /models/components/analyticstriggers.go
   - /models/components/clickevent.go
+  - /models/components/commissioncreatedevent.go
   - /models/components/continentcode.go
   - /models/components/countrycode.go
   - /models/components/domainschema.go
@@ -151,6 +152,12 @@ generatedFiles:
   - docs/models/components/clickeventtestvariants.md
   - docs/models/components/code.md
   - docs/models/components/color.md
+  - docs/models/components/commissioncreatedevent.md
+  - docs/models/components/commissioncreatedeventcustomer.md
+  - docs/models/components/commissioncreatedeventdata.md
+  - docs/models/components/commissioncreatedeventevent.md
+  - docs/models/components/commissioncreatedeventstatus.md
+  - docs/models/components/commissioncreatedeventtype.md
   - docs/models/components/continent.md
   - docs/models/components/continentcode.md
   - docs/models/components/countrycode.md
@@ -191,6 +198,7 @@ generatedFiles:
   - docs/models/components/linkwebhookeventlink.md
   - docs/models/components/linkwebhookeventtestvariants.md
   - docs/models/components/one.md
+  - docs/models/components/partner.md
   - docs/models/components/partneranalyticscount.md
   - docs/models/components/partneranalyticstimeseries.md
   - docs/models/components/partneranalyticstoplinks.md
@@ -321,6 +329,8 @@ generatedFiles:
   - docs/models/operations/level.md
   - docs/models/operations/link.md
   - docs/models/operations/linkprops.md
+  - docs/models/operations/listcommissionscustomer.md
+  - docs/models/operations/listcommissionspartner.md
   - docs/models/operations/listcommissionsqueryparaminterval.md
   - docs/models/operations/listcommissionsqueryparamsortby.md
   - docs/models/operations/listcommissionsqueryparamsortorder.md
@@ -378,6 +388,8 @@ generatedFiles:
   - docs/models/operations/trigger.md
   - docs/models/operations/two.md
   - docs/models/operations/type.md
+  - docs/models/operations/updatecommissioncustomer.md
+  - docs/models/operations/updatecommissionpartner.md
   - docs/models/operations/updatecommissionrequest.md
   - docs/models/operations/updatecommissionrequestbody.md
   - docs/models/operations/updatecommissionresponsebody.md
@@ -1595,7 +1607,7 @@ examples:
           pageSize: 50
       responses:
         "200":
-          application/json: [{"id": "cm_1JVR7XRCSR0EDBAF39FZ4PMYE", "amount": 3320.11, "earnings": 7217.59, "currency": "Ethiopian Birr", "status": "refunded", "createdAt": "1725904231169", "updatedAt": "1735639009138"}, {"id": "cm_1JVR7XRCSR0EDBAF39FZ4PMYE", "amount": 3320.11, "earnings": 7217.59, "currency": "Ethiopian Birr", "status": "refunded", "createdAt": "1725904231169", "updatedAt": "1735639009138"}]
+          application/json: [{"id": "cm_1JVR7XRCSR0EDBAF39FZ4PMYE", "amount": 3320.11, "earnings": 7217.59, "currency": "Ethiopian Birr", "status": "refunded", "invoiceId": "<id>", "description": "entire apud whereas maintainer or impressionable beyond mindless", "quantity": 9385.84, "createdAt": "1725904231169", "updatedAt": "1735639009138", "partner": {"id": "<id>", "name": "<value>", "email": "Robb.Connelly98@yahoo.com", "image": "https://picsum.photos/seed/Iy5IMeaTL/492/441", "payoutsEnabledAt": "<value>", "country": "Greenland"}}, {"id": "cm_1JVR7XRCSR0EDBAF39FZ4PMYE", "amount": 3320.11, "earnings": 7217.59, "currency": "Ethiopian Birr", "status": "refunded", "invoiceId": "<id>", "description": null, "quantity": 4998.11, "createdAt": "1725904231169", "updatedAt": "1735639009138", "partner": {"id": "<id>", "name": "<value>", "email": "Robb.Connelly98@yahoo.com", "image": "https://picsum.photos/seed/Iy5IMeaTL/492/441", "payoutsEnabledAt": "<value>", "country": "Greenland"}}]
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -1621,7 +1633,7 @@ examples:
           id: "cm_1JVR7XRCSR0EDBAF39FZ4PMYE"
       responses:
         "200":
-          application/json: {"id": "cm_1JVR7XRCSR0EDBAF39FZ4PMYE", "amount": 7439.54, "earnings": 3399.15, "currency": "Gourde", "status": "processed", "createdAt": "1712704982111", "updatedAt": "1735651406534"}
+          application/json: {"id": "cm_1JVR7XRCSR0EDBAF39FZ4PMYE", "amount": 7439.54, "earnings": 3399.15, "currency": "Gourde", "status": "processed", "invoiceId": "<id>", "description": "ferret heavily depot per briefly", "quantity": 4142.74, "createdAt": "1712704982111", "updatedAt": "1735651406534", "partner": {"id": "<id>", "name": "<value>", "email": "Abbey_Tromp78@gmail.com", "image": "https://picsum.photos/seed/341QLpYt/2312/3915", "payoutsEnabledAt": null, "country": "Algeria"}}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":

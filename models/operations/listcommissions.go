@@ -387,6 +387,147 @@ func (e *ListCommissionsStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type ListCommissionsPartner struct {
+	// The partner's unique ID on Dub.
+	ID string `json:"id"`
+	// The partner's full legal name.
+	Name string `json:"name"`
+	// The partner's email address. Should be a unique value across Dub.
+	Email *string `json:"email"`
+	// The partner's avatar image.
+	Image *string `json:"image"`
+	// The date when the partner enabled payouts.
+	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
+	// The partner's country (required for tax purposes).
+	Country *string `json:"country"`
+}
+
+func (o *ListCommissionsPartner) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *ListCommissionsPartner) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *ListCommissionsPartner) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *ListCommissionsPartner) GetImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Image
+}
+
+func (o *ListCommissionsPartner) GetPayoutsEnabledAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PayoutsEnabledAt
+}
+
+func (o *ListCommissionsPartner) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
+type ListCommissionsCustomer struct {
+	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
+	ID string `json:"id"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// Name of the customer.
+	Name string `json:"name"`
+	// Email of the customer.
+	Email *string `json:"email,omitempty"`
+	// Avatar URL of the customer.
+	Avatar *string `json:"avatar,omitempty"`
+	// Country of the customer.
+	Country *string `json:"country,omitempty"`
+	// Total number of sales for the customer.
+	Sales *float64 `json:"sales,omitempty"`
+	// Total amount of sales for the customer.
+	SaleAmount *float64 `json:"saleAmount,omitempty"`
+	// The date the customer was created.
+	CreatedAt string `json:"createdAt"`
+}
+
+func (o *ListCommissionsCustomer) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *ListCommissionsCustomer) GetExternalID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ExternalID
+}
+
+func (o *ListCommissionsCustomer) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *ListCommissionsCustomer) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *ListCommissionsCustomer) GetAvatar() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Avatar
+}
+
+func (o *ListCommissionsCustomer) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
+func (o *ListCommissionsCustomer) GetSales() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Sales
+}
+
+func (o *ListCommissionsCustomer) GetSaleAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SaleAmount
+}
+
+func (o *ListCommissionsCustomer) GetCreatedAt() string {
+	if o == nil {
+		return ""
+	}
+	return o.CreatedAt
+}
+
 type ListCommissionsResponseBody struct {
 	// The commission's unique ID on Dub.
 	ID          string                `json:"id"`
@@ -395,10 +536,15 @@ type ListCommissionsResponseBody struct {
 	Earnings    float64               `json:"earnings"`
 	Currency    string                `json:"currency"`
 	Status      ListCommissionsStatus `json:"status"`
-	InvoiceID   *string               `json:"invoiceId,omitempty"`
-	Description *string               `json:"description,omitempty"`
-	CreatedAt   string                `json:"createdAt"`
-	UpdatedAt   string                `json:"updatedAt"`
+	InvoiceID   *string               `json:"invoiceId"`
+	Description *string               `json:"description"`
+	Quantity    float64               `json:"quantity"`
+	// The user who created the manual commission.
+	UserID    *string                  `json:"userId,omitempty"`
+	CreatedAt string                   `json:"createdAt"`
+	UpdatedAt string                   `json:"updatedAt"`
+	Partner   ListCommissionsPartner   `json:"partner"`
+	Customer  *ListCommissionsCustomer `json:"customer,omitempty"`
 }
 
 func (o *ListCommissionsResponseBody) GetID() string {
@@ -457,6 +603,20 @@ func (o *ListCommissionsResponseBody) GetDescription() *string {
 	return o.Description
 }
 
+func (o *ListCommissionsResponseBody) GetQuantity() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Quantity
+}
+
+func (o *ListCommissionsResponseBody) GetUserID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UserID
+}
+
 func (o *ListCommissionsResponseBody) GetCreatedAt() string {
 	if o == nil {
 		return ""
@@ -469,4 +629,18 @@ func (o *ListCommissionsResponseBody) GetUpdatedAt() string {
 		return ""
 	}
 	return o.UpdatedAt
+}
+
+func (o *ListCommissionsResponseBody) GetPartner() ListCommissionsPartner {
+	if o == nil {
+		return ListCommissionsPartner{}
+	}
+	return o.Partner
+}
+
+func (o *ListCommissionsResponseBody) GetCustomer() *ListCommissionsCustomer {
+	if o == nil {
+		return nil
+	}
+	return o.Customer
 }

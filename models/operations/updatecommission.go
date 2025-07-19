@@ -184,6 +184,147 @@ func (e *UpdateCommissionStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type UpdateCommissionPartner struct {
+	// The partner's unique ID on Dub.
+	ID string `json:"id"`
+	// The partner's full legal name.
+	Name string `json:"name"`
+	// The partner's email address. Should be a unique value across Dub.
+	Email *string `json:"email"`
+	// The partner's avatar image.
+	Image *string `json:"image"`
+	// The date when the partner enabled payouts.
+	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
+	// The partner's country (required for tax purposes).
+	Country *string `json:"country"`
+}
+
+func (o *UpdateCommissionPartner) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *UpdateCommissionPartner) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *UpdateCommissionPartner) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *UpdateCommissionPartner) GetImage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Image
+}
+
+func (o *UpdateCommissionPartner) GetPayoutsEnabledAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PayoutsEnabledAt
+}
+
+func (o *UpdateCommissionPartner) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
+type UpdateCommissionCustomer struct {
+	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
+	ID string `json:"id"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// Name of the customer.
+	Name string `json:"name"`
+	// Email of the customer.
+	Email *string `json:"email,omitempty"`
+	// Avatar URL of the customer.
+	Avatar *string `json:"avatar,omitempty"`
+	// Country of the customer.
+	Country *string `json:"country,omitempty"`
+	// Total number of sales for the customer.
+	Sales *float64 `json:"sales,omitempty"`
+	// Total amount of sales for the customer.
+	SaleAmount *float64 `json:"saleAmount,omitempty"`
+	// The date the customer was created.
+	CreatedAt string `json:"createdAt"`
+}
+
+func (o *UpdateCommissionCustomer) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *UpdateCommissionCustomer) GetExternalID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ExternalID
+}
+
+func (o *UpdateCommissionCustomer) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *UpdateCommissionCustomer) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *UpdateCommissionCustomer) GetAvatar() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Avatar
+}
+
+func (o *UpdateCommissionCustomer) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
+func (o *UpdateCommissionCustomer) GetSales() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Sales
+}
+
+func (o *UpdateCommissionCustomer) GetSaleAmount() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.SaleAmount
+}
+
+func (o *UpdateCommissionCustomer) GetCreatedAt() string {
+	if o == nil {
+		return ""
+	}
+	return o.CreatedAt
+}
+
 // UpdateCommissionResponseBody - The updated commission.
 type UpdateCommissionResponseBody struct {
 	// The commission's unique ID on Dub.
@@ -193,10 +334,15 @@ type UpdateCommissionResponseBody struct {
 	Earnings    float64                `json:"earnings"`
 	Currency    string                 `json:"currency"`
 	Status      UpdateCommissionStatus `json:"status"`
-	InvoiceID   *string                `json:"invoiceId,omitempty"`
-	Description *string                `json:"description,omitempty"`
-	CreatedAt   string                 `json:"createdAt"`
-	UpdatedAt   string                 `json:"updatedAt"`
+	InvoiceID   *string                `json:"invoiceId"`
+	Description *string                `json:"description"`
+	Quantity    float64                `json:"quantity"`
+	// The user who created the manual commission.
+	UserID    *string                   `json:"userId,omitempty"`
+	CreatedAt string                    `json:"createdAt"`
+	UpdatedAt string                    `json:"updatedAt"`
+	Partner   UpdateCommissionPartner   `json:"partner"`
+	Customer  *UpdateCommissionCustomer `json:"customer,omitempty"`
 }
 
 func (o *UpdateCommissionResponseBody) GetID() string {
@@ -255,6 +401,20 @@ func (o *UpdateCommissionResponseBody) GetDescription() *string {
 	return o.Description
 }
 
+func (o *UpdateCommissionResponseBody) GetQuantity() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.Quantity
+}
+
+func (o *UpdateCommissionResponseBody) GetUserID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UserID
+}
+
 func (o *UpdateCommissionResponseBody) GetCreatedAt() string {
 	if o == nil {
 		return ""
@@ -267,4 +427,18 @@ func (o *UpdateCommissionResponseBody) GetUpdatedAt() string {
 		return ""
 	}
 	return o.UpdatedAt
+}
+
+func (o *UpdateCommissionResponseBody) GetPartner() UpdateCommissionPartner {
+	if o == nil {
+		return UpdateCommissionPartner{}
+	}
+	return o.Partner
+}
+
+func (o *UpdateCommissionResponseBody) GetCustomer() *UpdateCommissionCustomer {
+	if o == nil {
+		return nil
+	}
+	return o.Customer
 }
