@@ -1,0 +1,13 @@
+# CommissionCreatedEvent
+
+Triggered when a commission is created for a partner.
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ID`                                                                                             | *string*                                                                                         | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `Event`                                                                                          | [components.CommissionCreatedEventEvent](../../models/components/commissioncreatedeventevent.md) | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `CreatedAt`                                                                                      | *string*                                                                                         | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `Data`                                                                                           | [components.CommissionCreatedEventData](../../models/components/commissioncreatedeventdata.md)   | :heavy_check_mark:                                                                               | N/A                                                                                              |

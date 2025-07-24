@@ -5,7 +5,9 @@ The trigger to retrieve analytics for. If undefined, return both QR and link cli
 
 ## Values
 
-| Name                    | Value                   |
-| ----------------------- | ----------------------- |
-| `QueryParamTriggerQr`   | qr                      |
-| `QueryParamTriggerLink` | link                    |
+| Name                        | Value                       |
+| --------------------------- | --------------------------- |
+| `QueryParamTriggerQr`       | qr                          |
+| `QueryParamTriggerLink`     | link                        |
+| `QueryParamTriggerPageview` | pageview                    |
+| `QueryParamTriggerDeeplink` | deeplink                    |

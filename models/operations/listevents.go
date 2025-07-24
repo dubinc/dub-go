@@ -92,8 +92,10 @@ func (e *QueryParamInterval) UnmarshalJSON(data []byte) error {
 type QueryParamTrigger string
 
 const (
-	QueryParamTriggerQr   QueryParamTrigger = "qr"
-	QueryParamTriggerLink QueryParamTrigger = "link"
+	QueryParamTriggerQr       QueryParamTrigger = "qr"
+	QueryParamTriggerLink     QueryParamTrigger = "link"
+	QueryParamTriggerPageview QueryParamTrigger = "pageview"
+	QueryParamTriggerDeeplink QueryParamTrigger = "deeplink"
 )
 
 func (e QueryParamTrigger) ToPointer() *QueryParamTrigger {
@@ -108,6 +110,10 @@ func (e *QueryParamTrigger) UnmarshalJSON(data []byte) error {
 	case "qr":
 		fallthrough
 	case "link":
+		fallthrough
+	case "pageview":
+		fallthrough
+	case "deeplink":
 		*e = QueryParamTrigger(v)
 		return nil
 	default:
@@ -177,6 +183,33 @@ func (u ListEventsQueryParamTagIds) MarshalJSON() ([]byte, error) {
 	}
 
 	return nil, errors.New("could not marshal union type ListEventsQueryParamTagIds: all fields are null")
+}
+
+// QueryParamSaleType - Filter sales by type: 'new' for first-time purchases, 'recurring' for repeat purchases. If undefined, returns both.
+type QueryParamSaleType string
+
+const (
+	QueryParamSaleTypeNew       QueryParamSaleType = "new"
+	QueryParamSaleTypeRecurring QueryParamSaleType = "recurring"
+)
+
+func (e QueryParamSaleType) ToPointer() *QueryParamSaleType {
+	return &e
+}
+func (e *QueryParamSaleType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "new":
+		fallthrough
+	case "recurring":
+		*e = QueryParamSaleType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for QueryParamSaleType: %v", v)
+	}
 }
 
 // QueryParamSortOrder - The sort order. The default is `desc`.
@@ -318,6 +351,8 @@ type ListEventsRequest struct {
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
 	Root *bool `queryParam:"style=form,explode=true,name=root"`
+	// Filter sales by type: 'new' for first-time purchases, 'recurring' for repeat purchases. If undefined, returns both.
+	SaleType *QueryParamSaleType `queryParam:"style=form,explode=true,name=saleType"`
 	// The UTM source of the short link.
 	UtmSource *string `queryParam:"style=form,explode=true,name=utm_source"`
 	// The UTM medium of the short link.
@@ -550,6 +585,13 @@ func (o *ListEventsRequest) GetRoot() *bool {
 		return nil
 	}
 	return o.Root
+}
+
+func (o *ListEventsRequest) GetSaleType() *QueryParamSaleType {
+	if o == nil {
+		return nil
+	}
+	return o.SaleType
 }
 
 func (o *ListEventsRequest) GetUtmSource() *string {
