@@ -204,6 +204,7 @@ func main() {
 ### [Partners](docs/sdks/partners/README.md)
 
 * [Create](docs/sdks/partners/README.md#create) - Create a partner
+* [List](docs/sdks/partners/README.md#list) - List all partners
 * [CreateLink](docs/sdks/partners/README.md#createlink) - Create a link for a partner
 * [RetrieveLinks](docs/sdks/partners/README.md#retrievelinks) - Retrieve a partner's links.
 * [UpsertLink](docs/sdks/partners/README.md#upsertlink) - Upsert a link for a partner

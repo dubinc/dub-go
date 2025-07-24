@@ -179,8 +179,10 @@ func (e *Interval) UnmarshalJSON(data []byte) error {
 type Trigger string
 
 const (
-	TriggerQr   Trigger = "qr"
-	TriggerLink Trigger = "link"
+	TriggerQr       Trigger = "qr"
+	TriggerLink     Trigger = "link"
+	TriggerPageview Trigger = "pageview"
+	TriggerDeeplink Trigger = "deeplink"
 )
 
 func (e Trigger) ToPointer() *Trigger {
@@ -195,6 +197,10 @@ func (e *Trigger) UnmarshalJSON(data []byte) error {
 	case "qr":
 		fallthrough
 	case "link":
+		fallthrough
+	case "pageview":
+		fallthrough
+	case "deeplink":
 		*e = Trigger(v)
 		return nil
 	default:
@@ -266,6 +272,33 @@ func (u RetrieveAnalyticsQueryParamTagIds) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type RetrieveAnalyticsQueryParamTagIds: all fields are null")
 }
 
+// SaleType - Filter sales by type: 'new' for first-time purchases, 'recurring' for repeat purchases. If undefined, returns both.
+type SaleType string
+
+const (
+	SaleTypeNew       SaleType = "new"
+	SaleTypeRecurring SaleType = "recurring"
+)
+
+func (e SaleType) ToPointer() *SaleType {
+	return &e
+}
+func (e *SaleType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "new":
+		fallthrough
+	case "recurring":
+		*e = SaleType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for SaleType: %v", v)
+	}
+}
+
 type RetrieveAnalyticsRequest struct {
 	// The type of event to retrieve analytics for. Defaults to `clicks`.
 	Event *Event `default:"clicks" queryParam:"style=form,explode=true,name=event"`
@@ -327,6 +360,8 @@ type RetrieveAnalyticsRequest struct {
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
 	Root *bool `queryParam:"style=form,explode=true,name=root"`
+	// Filter sales by type: 'new' for first-time purchases, 'recurring' for repeat purchases. If undefined, returns both.
+	SaleType *SaleType `queryParam:"style=form,explode=true,name=saleType"`
 	// The UTM source of the short link.
 	UtmSource *string `queryParam:"style=form,explode=true,name=utm_source"`
 	// The UTM medium of the short link.
@@ -558,6 +593,13 @@ func (o *RetrieveAnalyticsRequest) GetRoot() *bool {
 		return nil
 	}
 	return o.Root
+}
+
+func (o *RetrieveAnalyticsRequest) GetSaleType() *SaleType {
+	if o == nil {
+		return nil
+	}
+	return o.SaleType
 }
 
 func (o *RetrieveAnalyticsRequest) GetUtmSource() *string {

@@ -6,6 +6,7 @@
 ### Available Operations
 
 * [Create](#create) - Create a partner
+* [List](#list) - List all partners
 * [CreateLink](#createlink) - Create a link for a partner
 * [RetrieveLinks](#retrievelinks) - Retrieve a partner's links.
 * [UpsertLink](#upsertlink) - Upsert a link for a partner
@@ -75,6 +76,73 @@ func main() {
 ### Response
 
 **[*operations.CreatePartnerResponseBody](../../models/operations/createpartnerresponsebody.md), error**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+
+## List
+
+List all partners for a partner program.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+
+    res, err := s.Partners.List(ctx, operations.ListPartnersRequest{
+        Status: operations.ListPartnersQueryParamStatusApproved.ToPointer(),
+        Country: dubgo.String("US"),
+        TenantID: dubgo.String("1K0NM7HCN944PEMZ3CQPH43H8"),
+        IncludeExpandedFields: dubgo.Bool(false),
+        Search: dubgo.String("john"),
+        PageSize: dubgo.Float64(50),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.ListPartnersRequest](../../models/operations/listpartnersrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+
+### Response
+
+**[[]operations.ListPartnersResponseBody](../../.md), error**
 
 ### Errors
 

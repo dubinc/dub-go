@@ -12,8 +12,10 @@ import (
 type Trigger string
 
 const (
-	TriggerQr   Trigger = "qr"
-	TriggerLink Trigger = "link"
+	TriggerQr       Trigger = "qr"
+	TriggerLink     Trigger = "link"
+	TriggerPageview Trigger = "pageview"
+	TriggerDeeplink Trigger = "deeplink"
 )
 
 func (e Trigger) ToPointer() *Trigger {
@@ -28,6 +30,10 @@ func (e *Trigger) UnmarshalJSON(data []byte) error {
 	case "qr":
 		fallthrough
 	case "link":
+		fallthrough
+	case "pageview":
+		fallthrough
+	case "deeplink":
 		*e = Trigger(v)
 		return nil
 	default:

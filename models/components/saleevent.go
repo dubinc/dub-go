@@ -2701,11 +2701,12 @@ func (o *SaleEventCustomer) GetCreatedAt() string {
 type PaymentProcessor string
 
 const (
-	PaymentProcessorStripe  PaymentProcessor = "stripe"
-	PaymentProcessorShopify PaymentProcessor = "shopify"
-	PaymentProcessorPolar   PaymentProcessor = "polar"
-	PaymentProcessorPaddle  PaymentProcessor = "paddle"
-	PaymentProcessorCustom  PaymentProcessor = "custom"
+	PaymentProcessorStripe     PaymentProcessor = "stripe"
+	PaymentProcessorShopify    PaymentProcessor = "shopify"
+	PaymentProcessorPolar      PaymentProcessor = "polar"
+	PaymentProcessorPaddle     PaymentProcessor = "paddle"
+	PaymentProcessorRevenuecat PaymentProcessor = "revenuecat"
+	PaymentProcessorCustom     PaymentProcessor = "custom"
 )
 
 func (e PaymentProcessor) ToPointer() *PaymentProcessor {
@@ -2724,6 +2725,8 @@ func (e *PaymentProcessor) UnmarshalJSON(data []byte) error {
 	case "polar":
 		fallthrough
 	case "paddle":
+		fallthrough
+	case "revenuecat":
 		fallthrough
 	case "custom":
 		*e = PaymentProcessor(v)

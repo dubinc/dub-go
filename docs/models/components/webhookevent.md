@@ -35,3 +35,9 @@ webhookEvent := components.CreateWebhookEventSaleCreatedEvent(components.SaleCre
 webhookEvent := components.CreateWebhookEventPartnerEnrolledEvent(components.PartnerEnrolledEvent{/* values here */})
 ```
 
+### CommissionCreatedEvent
+
+```go
+webhookEvent := components.CreateWebhookEventCommissionCreatedEvent(components.CommissionCreatedEvent{/* values here */})
+```
+

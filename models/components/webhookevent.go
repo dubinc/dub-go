@@ -11,20 +11,22 @@ import (
 type WebhookEventType string
 
 const (
-	WebhookEventTypeLinkWebhookEvent     WebhookEventType = "LinkWebhookEvent"
-	WebhookEventTypeLinkClickedEvent     WebhookEventType = "LinkClickedEvent"
-	WebhookEventTypeLeadCreatedEvent     WebhookEventType = "LeadCreatedEvent"
-	WebhookEventTypeSaleCreatedEvent     WebhookEventType = "SaleCreatedEvent"
-	WebhookEventTypePartnerEnrolledEvent WebhookEventType = "PartnerEnrolledEvent"
+	WebhookEventTypeLinkWebhookEvent       WebhookEventType = "LinkWebhookEvent"
+	WebhookEventTypeLinkClickedEvent       WebhookEventType = "LinkClickedEvent"
+	WebhookEventTypeLeadCreatedEvent       WebhookEventType = "LeadCreatedEvent"
+	WebhookEventTypeSaleCreatedEvent       WebhookEventType = "SaleCreatedEvent"
+	WebhookEventTypePartnerEnrolledEvent   WebhookEventType = "PartnerEnrolledEvent"
+	WebhookEventTypeCommissionCreatedEvent WebhookEventType = "CommissionCreatedEvent"
 )
 
 // WebhookEvent - Webhook event schema
 type WebhookEvent struct {
-	LinkWebhookEvent     *LinkWebhookEvent     `queryParam:"inline"`
-	LinkClickedEvent     *LinkClickedEvent     `queryParam:"inline"`
-	LeadCreatedEvent     *LeadCreatedEvent     `queryParam:"inline"`
-	SaleCreatedEvent     *SaleCreatedEvent     `queryParam:"inline"`
-	PartnerEnrolledEvent *PartnerEnrolledEvent `queryParam:"inline"`
+	LinkWebhookEvent       *LinkWebhookEvent       `queryParam:"inline"`
+	LinkClickedEvent       *LinkClickedEvent       `queryParam:"inline"`
+	LeadCreatedEvent       *LeadCreatedEvent       `queryParam:"inline"`
+	SaleCreatedEvent       *SaleCreatedEvent       `queryParam:"inline"`
+	PartnerEnrolledEvent   *PartnerEnrolledEvent   `queryParam:"inline"`
+	CommissionCreatedEvent *CommissionCreatedEvent `queryParam:"inline"`
 
 	Type WebhookEventType
 }
@@ -74,6 +76,15 @@ func CreateWebhookEventPartnerEnrolledEvent(partnerEnrolledEvent PartnerEnrolled
 	}
 }
 
+func CreateWebhookEventCommissionCreatedEvent(commissionCreatedEvent CommissionCreatedEvent) WebhookEvent {
+	typ := WebhookEventTypeCommissionCreatedEvent
+
+	return WebhookEvent{
+		CommissionCreatedEvent: &commissionCreatedEvent,
+		Type:                   typ,
+	}
+}
+
 func (u *WebhookEvent) UnmarshalJSON(data []byte) error {
 
 	var linkWebhookEvent LinkWebhookEvent = LinkWebhookEvent{}
@@ -111,6 +122,13 @@ func (u *WebhookEvent) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var commissionCreatedEvent CommissionCreatedEvent = CommissionCreatedEvent{}
+	if err := utils.UnmarshalJSON(data, &commissionCreatedEvent, "", true, false); err == nil {
+		u.CommissionCreatedEvent = &commissionCreatedEvent
+		u.Type = WebhookEventTypeCommissionCreatedEvent
+		return nil
+	}
+
 	return fmt.Errorf("could not unmarshal `%s` into any supported union types for WebhookEvent", string(data))
 }
 
@@ -133,6 +151,10 @@ func (u WebhookEvent) MarshalJSON() ([]byte, error) {
 
 	if u.PartnerEnrolledEvent != nil {
 		return utils.MarshalJSON(u.PartnerEnrolledEvent, "", true)
+	}
+
+	if u.CommissionCreatedEvent != nil {
+		return utils.MarshalJSON(u.CommissionCreatedEvent, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type WebhookEvent: all fields are null")
