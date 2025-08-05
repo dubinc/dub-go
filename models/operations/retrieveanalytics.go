@@ -175,7 +175,7 @@ func (e *Interval) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Trigger - The trigger to retrieve analytics for. If undefined, return both QR and link clicks.
+// Trigger - The trigger to retrieve analytics for. If undefined, returns all trigger types.
 type Trigger string
 
 const (
@@ -342,7 +342,7 @@ type RetrieveAnalyticsRequest struct {
 	Browser *string `queryParam:"style=form,explode=true,name=browser"`
 	// The OS to retrieve analytics for.
 	Os *string `queryParam:"style=form,explode=true,name=os"`
-	// The trigger to retrieve analytics for. If undefined, return both QR and link clicks.
+	// The trigger to retrieve analytics for. If undefined, returns all trigger types.
 	Trigger *Trigger `queryParam:"style=form,explode=true,name=trigger"`
 	// The referer to retrieve analytics for.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`
@@ -350,18 +350,20 @@ type RetrieveAnalyticsRequest struct {
 	RefererURL *string `queryParam:"style=form,explode=true,name=refererUrl"`
 	// The URL to retrieve analytics for.
 	URL *string `queryParam:"style=form,explode=true,name=url"`
-	// Deprecated. Use `tagIds` instead. The tag ID to retrieve analytics for.
-	TagID *string `queryParam:"style=form,explode=true,name=tagId"`
 	// The tag IDs to retrieve analytics for.
 	TagIds *RetrieveAnalyticsQueryParamTagIds `queryParam:"style=form,explode=true,name=tagIds"`
 	// The folder ID to retrieve analytics for. If not provided, return analytics for unsorted links.
 	FolderID *string `queryParam:"style=form,explode=true,name=folderId"`
-	// Deprecated. Use the `trigger` field instead. Filter for QR code scans. If true, filter for QR codes only. If false, filter for links only. If undefined, return both.
-	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
 	Root *bool `queryParam:"style=form,explode=true,name=root"`
 	// Filter sales by type: 'new' for first-time purchases, 'recurring' for repeat purchases. If undefined, returns both.
 	SaleType *SaleType `queryParam:"style=form,explode=true,name=saleType"`
+	// Search the events by a custom metadata value. Only available for lead and sale events.
+	Query *string `queryParam:"style=form,explode=true,name=query"`
+	// Deprecated: Use `tagIds` instead. The tag ID to retrieve analytics for.
+	TagID *string `queryParam:"style=form,explode=true,name=tagId"`
+	// Deprecated: Use the `trigger` field instead. Filter for QR code scans. If true, filter for QR codes only. If false, filter for links only. If undefined, return both.
+	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
 	// The UTM source of the short link.
 	UtmSource *string `queryParam:"style=form,explode=true,name=utm_source"`
 	// The UTM medium of the short link.
@@ -560,13 +562,6 @@ func (o *RetrieveAnalyticsRequest) GetURL() *string {
 	return o.URL
 }
 
-func (o *RetrieveAnalyticsRequest) GetTagID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.TagID
-}
-
 func (o *RetrieveAnalyticsRequest) GetTagIds() *RetrieveAnalyticsQueryParamTagIds {
 	if o == nil {
 		return nil
@@ -581,13 +576,6 @@ func (o *RetrieveAnalyticsRequest) GetFolderID() *string {
 	return o.FolderID
 }
 
-func (o *RetrieveAnalyticsRequest) GetQr() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.Qr
-}
-
 func (o *RetrieveAnalyticsRequest) GetRoot() *bool {
 	if o == nil {
 		return nil
@@ -600,6 +588,27 @@ func (o *RetrieveAnalyticsRequest) GetSaleType() *SaleType {
 		return nil
 	}
 	return o.SaleType
+}
+
+func (o *RetrieveAnalyticsRequest) GetQuery() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Query
+}
+
+func (o *RetrieveAnalyticsRequest) GetTagID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TagID
+}
+
+func (o *RetrieveAnalyticsRequest) GetQr() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Qr
 }
 
 func (o *RetrieveAnalyticsRequest) GetUtmSource() *string {

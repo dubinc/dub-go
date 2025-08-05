@@ -15,6 +15,7 @@
 | `Device`           | *string*           | :heavy_check_mark: | N/A                |
 | `Browser`          | *string*           | :heavy_check_mark: | N/A                |
 | `Os`               | *string*           | :heavy_check_mark: | N/A                |
+| `Trigger`          | **string*          | :heavy_minus_sign: | N/A                |
 | `Referer`          | *string*           | :heavy_check_mark: | N/A                |
 | `RefererURL`       | *string*           | :heavy_check_mark: | N/A                |
 | `Qr`               | *bool*             | :heavy_check_mark: | N/A                |

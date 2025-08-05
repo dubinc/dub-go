@@ -13,6 +13,7 @@ Retrieve a QR code for a link.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getQRCode" method="get" path="/qr" -->
 ```go
 package main
 

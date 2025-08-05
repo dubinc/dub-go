@@ -13,6 +13,7 @@ Retrieve analytics for a link, a domain, or the authenticated workspace. The res
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="retrieveAnalytics" method="get" path="/analytics" -->
 ```go
 package main
 
@@ -38,6 +39,7 @@ func main() {
         Os: dubgo.String("Windows"),
         Referer: dubgo.String("google.com"),
         RefererURL: dubgo.String("https://dub.co/blog"),
+        Query: dubgo.String("metadata['key']:'value'"),
     })
     if err != nil {
         log.Fatal(err)

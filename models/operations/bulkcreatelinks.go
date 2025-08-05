@@ -179,14 +179,6 @@ type RequestBody struct {
 	TrackConversion *bool `json:"trackConversion,omitempty"`
 	// Whether the short link is archived. Defaults to `false` if not provided.
 	Archived *bool `json:"archived,omitempty"`
-	// Deprecated: Use `dashboard` instead. Whether the short link's stats are publicly accessible. Defaults to `false` if not provided.
-	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	PublicStats *bool `json:"publicStats,omitempty"`
-	// The unique ID of the tag assigned to the short link. This field is deprecated – use `tagIds` instead.
-	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	TagID *string `json:"tagId,omitempty"`
 	// The unique IDs of the tags assigned to the short link.
 	TagIds *BulkCreateLinksTagIds `json:"tagIds,omitempty"`
 	// The unique name of the tags assigned to the short link (case insensitive).
@@ -241,6 +233,14 @@ type RequestBody struct {
 	TestStartedAt *string `json:"testStartedAt,omitempty"`
 	// The date and time when the tests were or will be completed.
 	TestCompletedAt *string `json:"testCompletedAt,omitempty"`
+	// Deprecated: Use `dashboard` instead. Whether the short link's stats are publicly accessible. Defaults to `false` if not provided.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	PublicStats *bool `json:"publicStats,omitempty"`
+	// Deprecated: Use `tagIds` instead. The unique ID of the tag assigned to the short link.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	TagID *string `json:"tagId,omitempty"`
 }
 
 func (o *RequestBody) GetURL() string {
@@ -318,20 +318,6 @@ func (o *RequestBody) GetArchived() *bool {
 		return nil
 	}
 	return o.Archived
-}
-
-func (o *RequestBody) GetPublicStats() *bool {
-	if o == nil {
-		return nil
-	}
-	return o.PublicStats
-}
-
-func (o *RequestBody) GetTagID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.TagID
 }
 
 func (o *RequestBody) GetTagIds() *BulkCreateLinksTagIds {
@@ -521,6 +507,20 @@ func (o *RequestBody) GetTestCompletedAt() *string {
 		return nil
 	}
 	return o.TestCompletedAt
+}
+
+func (o *RequestBody) GetPublicStats() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.PublicStats
+}
+
+func (o *RequestBody) GetTagID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TagID
 }
 
 type ResponseBodyType string
