@@ -14,6 +14,7 @@ Retrieve a list of commissions for a program.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listCommissions" method="get" path="/commissions" -->
 ```go
 package main
 
@@ -76,6 +77,7 @@ Update an existing commission amount. This is useful for handling refunds (parti
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updateCommission" method="patch" path="/commissions/{id}" -->
 ```go
 package main
 

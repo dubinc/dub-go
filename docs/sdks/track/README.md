@@ -14,6 +14,7 @@ Track a lead for a short link.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="trackLead" method="post" path="/track/lead" -->
 ```go
 package main
 
@@ -78,6 +79,7 @@ Track a sale for a short link.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="trackSale" method="post" path="/track/sale" -->
 ```go
 package main
 

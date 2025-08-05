@@ -18,6 +18,7 @@ Create a partner for a program. If partner exists, automatically enrolls them.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="createPartner" method="post" path="/partners" -->
 ```go
 package main
 
@@ -98,6 +99,7 @@ List all partners for a partner program.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listPartners" method="get" path="/partners" -->
 ```go
 package main
 
@@ -165,6 +167,7 @@ Create a link for a partner that is enrolled in your program.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="createPartnerLink" method="post" path="/partners/links" -->
 ```go
 package main
 
@@ -244,6 +247,7 @@ Retrieve a partner's links by their partner ID or tenant ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="retrieveLinks" method="get" path="/partners/links" -->
 ```go
 package main
 
@@ -304,6 +308,7 @@ Upsert a link for a partner that is enrolled in your program. If a link with the
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="upsertPartnerLink" method="put" path="/partners/links/upsert" -->
 ```go
 package main
 
@@ -383,6 +388,7 @@ Retrieve analytics for a partner within a program. The response type vary based 
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="retrievePartnerAnalytics" method="get" path="/partners/analytics" -->
 ```go
 package main
 

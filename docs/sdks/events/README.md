@@ -13,6 +13,7 @@ Retrieve a paginated list of events for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listEvents" method="get" path="/events" -->
 ```go
 package main
 
@@ -38,6 +39,7 @@ func main() {
         Os: dubgo.String("Windows"),
         Referer: dubgo.String("google.com"),
         RefererURL: dubgo.String("https://dub.co/blog"),
+        Query: dubgo.String("metadata['key']:'value'"),
     })
     if err != nil {
         log.Fatal(err)

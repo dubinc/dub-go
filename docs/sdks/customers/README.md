@@ -17,6 +17,7 @@ Retrieve a list of customers for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getCustomers" method="get" path="/customers" -->
 ```go
 package main
 
@@ -81,6 +82,7 @@ func main() {
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="createCustomer" method="post" path="/customers" -->
 ```go
 package main
 
@@ -140,6 +142,7 @@ Retrieve a customer by ID for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getCustomer" method="get" path="/customers/{id}" -->
 ```go
 package main
 
@@ -202,6 +205,7 @@ Update a customer for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updateCustomer" method="patch" path="/customers/{id}" -->
 ```go
 package main
 
@@ -264,6 +268,7 @@ Delete a customer from a workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="deleteCustomer" method="delete" path="/customers/{id}" -->
 ```go
 package main
 

@@ -16,6 +16,7 @@ Create a tag for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="createTag" method="post" path="/tags" -->
 ```go
 package main
 
@@ -75,6 +76,7 @@ Retrieve a list of tags for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getTags" method="get" path="/tags" -->
 ```go
 package main
 
@@ -137,6 +139,7 @@ Update a tag in the workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updateTag" method="patch" path="/tags/{id}" -->
 ```go
 package main
 
@@ -197,6 +200,7 @@ Delete a tag from the workspace. All existing links will still work, but they wi
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="deleteTag" method="delete" path="/tags/{id}" -->
 ```go
 package main
 

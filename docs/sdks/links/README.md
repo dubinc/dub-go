@@ -22,6 +22,7 @@ Create a link for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="createLink" method="post" path="/links" -->
 ```go
 package main
 
@@ -100,6 +101,7 @@ Retrieve a paginated list of links for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getLinks" method="get" path="/links" -->
 ```go
 package main
 
@@ -174,6 +176,7 @@ Retrieve the number of links for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getLinksCount" method="get" path="/links/count" -->
 ```go
 package main
 
@@ -234,6 +237,7 @@ Retrieve the info for a link.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getLinkInfo" method="get" path="/links/info" -->
 ```go
 package main
 
@@ -297,6 +301,7 @@ Update a link for the authenticated workspace. If there's no change, returns it 
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updateLink" method="patch" path="/links/{linkId}" -->
 ```go
 package main
 
@@ -376,6 +381,7 @@ Delete a link for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="deleteLink" method="delete" path="/links/{linkId}" -->
 ```go
 package main
 
@@ -435,6 +441,7 @@ Bulk create up to 100 links for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="bulkCreateLinks" method="post" path="/links/bulk" -->
 ```go
 package main
 
@@ -534,6 +541,7 @@ Bulk update up to 100 links with the same data for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="bulkUpdateLinks" method="patch" path="/links/bulk" -->
 ```go
 package main
 
@@ -613,6 +621,7 @@ Bulk delete up to 100 links for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="bulkDeleteLinks" method="delete" path="/links/bulk" -->
 ```go
 package main
 
@@ -678,6 +687,7 @@ Upsert a link for the authenticated workspace by its URL. If a link with the sam
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="upsertLink" method="put" path="/links/upsert" -->
 ```go
 package main
 

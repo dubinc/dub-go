@@ -18,6 +18,7 @@ Create a domain for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="createDomain" method="post" path="/domains" -->
 ```go
 package main
 
@@ -83,6 +84,7 @@ Retrieve a list of domains associated with the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listDomains" method="get" path="/domains" -->
 ```go
 package main
 
@@ -155,6 +157,7 @@ Update a domain for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updateDomain" method="patch" path="/domains/{slug}" -->
 ```go
 package main
 
@@ -221,6 +224,7 @@ Delete a domain from a workspace. It cannot be undone. This will also delete all
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="deleteDomain" method="delete" path="/domains/{slug}" -->
 ```go
 package main
 
@@ -280,6 +284,7 @@ Register a domain for the authenticated workspace. Only available for Enterprise
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="registerDomain" method="post" path="/domains/register" -->
 ```go
 package main
 
@@ -342,6 +347,7 @@ Check if a domain name is available for purchase. You can check multiple domains
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="checkDomainStatus" method="get" path="/domains/status" -->
 ```go
 package main
 

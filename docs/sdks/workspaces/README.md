@@ -14,6 +14,7 @@ Retrieve a workspace for the authenticated user.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="getWorkspace" method="get" path="/workspaces/{idOrSlug}" -->
 ```go
 package main
 
@@ -76,6 +77,7 @@ Update a workspace by ID or slug.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updateWorkspace" method="patch" path="/workspaces/{idOrSlug}" -->
 ```go
 package main
 

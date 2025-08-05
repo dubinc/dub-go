@@ -16,6 +16,7 @@ Create a folder for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="createFolder" method="post" path="/folders" -->
 ```go
 package main
 
@@ -75,6 +76,7 @@ Retrieve a list of folders for the authenticated workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="listFolders" method="get" path="/folders" -->
 ```go
 package main
 
@@ -135,6 +137,7 @@ Update a folder in the workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="updateFolder" method="patch" path="/folders/{id}" -->
 ```go
 package main
 
@@ -195,6 +198,7 @@ Delete a folder from the workspace. All existing links will still work, but they
 
 ### Example Usage
 
+<!-- UsageSnippet language="go" operationID="deleteFolder" method="delete" path="/folders/{id}" -->
 ```go
 package main
 
