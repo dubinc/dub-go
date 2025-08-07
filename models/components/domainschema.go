@@ -10,10 +10,14 @@ import (
 type RegisteredDomain struct {
 	// The ID of the registered domain record.
 	ID string `json:"id"`
+	// The date the domain auto-renew is disabled.
+	AutoRenewalDisabledAt *string `json:"autoRenewalDisabledAt"`
 	// The date the domain was created.
 	CreatedAt string `json:"createdAt"`
 	// The date the domain expires.
 	ExpiresAt string `json:"expiresAt"`
+	// The fee to renew the domain.
+	RenewalFee float64 `json:"renewalFee"`
 }
 
 func (o *RegisteredDomain) GetID() string {
@@ -21,6 +25,13 @@ func (o *RegisteredDomain) GetID() string {
 		return ""
 	}
 	return o.ID
+}
+
+func (o *RegisteredDomain) GetAutoRenewalDisabledAt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AutoRenewalDisabledAt
 }
 
 func (o *RegisteredDomain) GetCreatedAt() string {
@@ -35,6 +46,13 @@ func (o *RegisteredDomain) GetExpiresAt() string {
 		return ""
 	}
 	return o.ExpiresAt
+}
+
+func (o *RegisteredDomain) GetRenewalFee() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.RenewalFee
 }
 
 type DomainSchema struct {

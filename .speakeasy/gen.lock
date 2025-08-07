@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: e1d54c2d1b48726f19fe6acc7db01d82
+  docChecksum: 01948bfd32dd0f2f5519a7d0cb3d4913
   docVersion: 0.0.1
-  speakeasyVersion: 1.596.1
-  generationVersion: 2.672.0
-  releaseVersion: 0.17.0
-  configChecksum: a52cc77d01a7d653b62397e5531ba363
+  speakeasyVersion: 1.598.3
+  generationVersion: 2.674.3
+  releaseVersion: 0.17.1
+  configChecksum: 8e2f530ce487a59ddb841a241bc1ae22
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -1066,7 +1066,7 @@ examples:
         application/json: {"slug": "acme.com", "expiredUrl": "https://acme.com/expired", "notFoundUrl": "https://acme.com/not-found", "archived": false, "placeholder": "https://dub.co/help/article/what-is-dub"}
       responses:
         "201":
-          application/json: {"id": "<id>", "slug": "acme.com", "verified": false, "primary": false, "archived": false, "placeholder": "https://dub.co/help/article/what-is-dub", "expiredUrl": "https://acme.com/expired", "notFoundUrl": "https://acme.com/not-found", "assetLinks": null, "appleAppSiteAssociation": null, "logo": "<value>", "createdAt": "1731942494521", "updatedAt": "1747534694663", "registeredDomain": {"id": "<id>", "createdAt": "1718626088140", "expiresAt": "1770609789917"}}
+          application/json: {"id": "<id>", "slug": "acme.com", "verified": false, "primary": false, "archived": false, "placeholder": "https://dub.co/help/article/what-is-dub", "expiredUrl": "https://acme.com/expired", "notFoundUrl": "https://acme.com/not-found", "assetLinks": null, "appleAppSiteAssociation": null, "logo": "<value>", "createdAt": "1731942494521", "updatedAt": "1747534694663", "registeredDomain": {"id": "<id>", "autoRenewalDisabledAt": "<value>", "createdAt": "1718626088140", "expiresAt": "1770609789917", "renewalFee": 1289.07}}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -1094,7 +1094,7 @@ examples:
           pageSize: 50
       responses:
         "200":
-          application/json: [{"id": "<id>", "slug": "acme.com", "verified": false, "primary": false, "archived": false, "placeholder": "https://dub.co/help/article/what-is-dub", "expiredUrl": "https://acme.com/expired", "notFoundUrl": "https://acme.com/not-found", "assetLinks": null, "appleAppSiteAssociation": null, "logo": "<value>", "createdAt": "1745215100264", "updatedAt": "1747576673623", "registeredDomain": {"id": "<id>", "createdAt": "1723832323873", "expiresAt": "1749463542666"}}]
+          application/json: [{"id": "<id>", "slug": "acme.com", "verified": false, "primary": false, "archived": false, "placeholder": "https://dub.co/help/article/what-is-dub", "expiredUrl": "https://acme.com/expired", "notFoundUrl": "https://acme.com/not-found", "assetLinks": null, "appleAppSiteAssociation": null, "logo": "<value>", "createdAt": "1745215100264", "updatedAt": "1747576673623", "registeredDomain": {"id": "<id>", "autoRenewalDisabledAt": "<value>", "createdAt": "1723832323873", "expiresAt": "1749463542666", "renewalFee": 9240.6}}]
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -1122,7 +1122,7 @@ examples:
         application/json: {"slug": "acme.com", "expiredUrl": "https://acme.com/expired", "notFoundUrl": "https://acme.com/not-found", "archived": false, "placeholder": "https://dub.co/help/article/what-is-dub"}
       responses:
         "200":
-          application/json: {"id": "<id>", "slug": "acme.com", "verified": false, "primary": false, "archived": false, "placeholder": "https://dub.co/help/article/what-is-dub", "expiredUrl": "https://acme.com/expired", "notFoundUrl": "https://acme.com/not-found", "assetLinks": null, "appleAppSiteAssociation": null, "logo": "<value>", "createdAt": "1740765870099", "updatedAt": "1747566453620", "registeredDomain": {"id": "<id>", "createdAt": "1732369408467", "expiresAt": "1760645363210"}}
+          application/json: {"id": "<id>", "slug": "acme.com", "verified": false, "primary": false, "archived": false, "placeholder": "https://dub.co/help/article/what-is-dub", "expiredUrl": "https://acme.com/expired", "notFoundUrl": "https://acme.com/not-found", "assetLinks": null, "appleAppSiteAssociation": null, "logo": "<value>", "createdAt": "1740765870099", "updatedAt": "1747566453620", "registeredDomain": {"id": "<id>", "autoRenewalDisabledAt": "<value>", "createdAt": "1732369408467", "expiresAt": "1760645363210", "renewalFee": 4964.92}}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
