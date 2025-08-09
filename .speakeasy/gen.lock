@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 01948bfd32dd0f2f5519a7d0cb3d4913
+  docChecksum: 71247e4773066fe5b0512bd32c035c6f
   docVersion: 0.0.1
-  speakeasyVersion: 1.598.3
-  generationVersion: 2.674.3
-  releaseVersion: 0.17.1
-  configChecksum: 8e2f530ce487a59ddb841a241bc1ae22
+  speakeasyVersion: 1.600.2
+  generationVersion: 2.677.3
+  releaseVersion: 0.17.2
+  configChecksum: cf8d567ec2ad8034a8829cb7bde7606b
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -30,7 +30,7 @@ features:
     nullables: 0.1.1
     pagination: 2.82.4
     responseFormat: 0.1.2
-    retries: 2.84.0
+    retries: 2.84.2
     sdkHooks: 0.2.0
     unions: 2.85.12
 generatedFiles:
@@ -1457,6 +1457,7 @@ examples:
           timezone: "America/New_York"
           groupBy: "count"
           programId: "<id>"
+          query: "metadata['key']:'value'"
       responses:
         "200":
           application/json: {"clicks": 0, "leads": 0, "sales": 0, "saleAmount": 0, "earnings": 0}
