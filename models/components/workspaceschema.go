@@ -187,6 +187,8 @@ type WorkspaceSchema struct {
 	FoldersUsage float64 `json:"foldersUsage"`
 	// The folders limit of the workspace.
 	FoldersLimit float64 `json:"foldersLimit"`
+	// The groups limit of the workspace.
+	GroupsLimit float64 `json:"groupsLimit"`
 	// The users limit of the workspace.
 	UsersLimit float64 `json:"usersLimit"`
 	// The AI usage of the workspace.
@@ -197,8 +199,6 @@ type WorkspaceSchema struct {
 	ConversionEnabled bool `json:"conversionEnabled"`
 	// Whether the workspace has claimed a free .link domain. (dub.link/free)
 	DotLinkClaimed bool `json:"dotLinkClaimed"`
-	// Whether the workspace has Dub Partners enabled.
-	PartnersEnabled bool `json:"partnersEnabled"`
 	// The date and time when the workspace was created.
 	CreatedAt string `json:"createdAt"`
 	// The role of the authenticated user in the workspace.
@@ -378,6 +378,13 @@ func (o *WorkspaceSchema) GetFoldersLimit() float64 {
 	return o.FoldersLimit
 }
 
+func (o *WorkspaceSchema) GetGroupsLimit() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.GroupsLimit
+}
+
 func (o *WorkspaceSchema) GetUsersLimit() float64 {
 	if o == nil {
 		return 0.0
@@ -411,13 +418,6 @@ func (o *WorkspaceSchema) GetDotLinkClaimed() bool {
 		return false
 	}
 	return o.DotLinkClaimed
-}
-
-func (o *WorkspaceSchema) GetPartnersEnabled() bool {
-	if o == nil {
-		return false
-	}
-	return o.PartnersEnabled
 }
 
 func (o *WorkspaceSchema) GetCreatedAt() string {
