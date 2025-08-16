@@ -297,7 +297,6 @@ type Discount struct {
 	CouponID      *string          `json:"couponId"`
 	CouponTestID  *string          `json:"couponTestId"`
 	PartnersCount *float64         `json:"partnersCount,omitempty"`
-	Default       bool             `json:"default"`
 }
 
 func (o *Discount) GetID() string {
@@ -354,13 +353,6 @@ func (o *Discount) GetPartnersCount() *float64 {
 		return nil
 	}
 	return o.PartnersCount
-}
-
-func (o *Discount) GetDefault() bool {
-	if o == nil {
-		return false
-	}
-	return o.Default
 }
 
 type GetCustomersResponseBody struct {

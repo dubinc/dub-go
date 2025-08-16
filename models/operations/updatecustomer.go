@@ -206,7 +206,6 @@ type UpdateCustomerDiscount struct {
 	CouponID      *string            `json:"couponId"`
 	CouponTestID  *string            `json:"couponTestId"`
 	PartnersCount *float64           `json:"partnersCount,omitempty"`
-	Default       bool               `json:"default"`
 }
 
 func (o *UpdateCustomerDiscount) GetID() string {
@@ -263,13 +262,6 @@ func (o *UpdateCustomerDiscount) GetPartnersCount() *float64 {
 		return nil
 	}
 	return o.PartnersCount
-}
-
-func (o *UpdateCustomerDiscount) GetDefault() bool {
-	if o == nil {
-		return false
-	}
-	return o.Default
 }
 
 // UpdateCustomerResponseBody - The customer was updated.

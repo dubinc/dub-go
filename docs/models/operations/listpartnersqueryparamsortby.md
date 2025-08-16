@@ -10,6 +10,7 @@ The field to sort the partners by. The default is `saleAmount`.
 | `ListPartnersQueryParamSortByCreatedAt`   | createdAt                                 |
 | `ListPartnersQueryParamSortByClicks`      | clicks                                    |
 | `ListPartnersQueryParamSortByLeads`       | leads                                     |
+| `ListPartnersQueryParamSortByConversions` | conversions                               |
 | `ListPartnersQueryParamSortBySales`       | sales                                     |
 | `ListPartnersQueryParamSortBySaleAmount`  | saleAmount                                |
 | `ListPartnersQueryParamSortByCommissions` | commissions                               |

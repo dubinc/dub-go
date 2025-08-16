@@ -192,6 +192,8 @@ type ListCommissionsRequest struct {
 	PayoutID *string `queryParam:"style=form,explode=true,name=payoutId"`
 	// Filter the list of commissions by the associated partner.
 	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
+	// Filter the list of commissions by the associated partner group.
+	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
 	// Filter the list of commissions by the associated invoice. Since invoiceId is unique on a per-program basis, this will only return one commission per invoice.
 	InvoiceID *string `queryParam:"style=form,explode=true,name=invoiceId"`
 	// Filter the list of commissions by their corresponding status.
@@ -249,6 +251,13 @@ func (o *ListCommissionsRequest) GetPartnerID() *string {
 		return nil
 	}
 	return o.PartnerID
+}
+
+func (o *ListCommissionsRequest) GetGroupID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GroupID
 }
 
 func (o *ListCommissionsRequest) GetInvoiceID() *string {
