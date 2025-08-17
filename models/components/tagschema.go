@@ -16,8 +16,8 @@ const (
 	ColorGreen  Color = "green"
 	ColorBlue   Color = "blue"
 	ColorPurple Color = "purple"
-	ColorPink   Color = "pink"
 	ColorBrown  Color = "brown"
+	ColorPink   Color = "pink"
 )
 
 func (e Color) ToPointer() *Color {
@@ -39,9 +39,9 @@ func (e *Color) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "purple":
 		fallthrough
-	case "pink":
-		fallthrough
 	case "brown":
+		fallthrough
+	case "pink":
 		*e = Color(v)
 		return nil
 	default:

@@ -328,8 +328,8 @@ type RetrieveAnalyticsRequest struct {
 	End *string `queryParam:"style=form,explode=true,name=end"`
 	// The IANA time zone code for aligning timeseries granularity (e.g. America/New_York). Defaults to UTC.
 	Timezone *string `default:"UTC" queryParam:"style=form,explode=true,name=timezone"`
-	// The country to retrieve analytics for. Must be passed as a 2-letter ISO 3166-1 country code. Learn more: https://d.to/geo
-	Country *components.CountryCode `queryParam:"style=form,explode=true,name=country"`
+	// The country to retrieve analytics for. Must be passed as a 2-letter ISO 3166-1 country code. See https://d.to/geo for more information.
+	Country *string `queryParam:"style=form,explode=true,name=country"`
 	// The city to retrieve analytics for.
 	City *string `queryParam:"style=form,explode=true,name=city"`
 	// The ISO 3166-2 region code to retrieve analytics for.
@@ -485,7 +485,7 @@ func (o *RetrieveAnalyticsRequest) GetTimezone() *string {
 	return o.Timezone
 }
 
-func (o *RetrieveAnalyticsRequest) GetCountry() *components.CountryCode {
+func (o *RetrieveAnalyticsRequest) GetCountry() *string {
 	if o == nil {
 		return nil
 	}

@@ -408,6 +408,7 @@ func main() {
 
     res, err := s.Partners.Analytics(ctx, operations.RetrievePartnerAnalyticsRequest{
         Timezone: dubgo.String("America/New_York"),
+        Query: dubgo.String("metadata['key']:'value'"),
     })
     if err != nil {
         log.Fatal(err)

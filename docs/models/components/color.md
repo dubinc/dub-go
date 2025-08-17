@@ -12,5 +12,5 @@ The color of the tag.
 | `ColorGreen`  | green         |
 | `ColorBlue`   | blue          |
 | `ColorPurple` | purple        |
-| `ColorPink`   | pink          |
 | `ColorBrown`  | brown         |
+| `ColorPink`   | pink          |
