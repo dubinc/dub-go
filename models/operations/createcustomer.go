@@ -177,7 +177,6 @@ type CreateCustomerDiscount struct {
 	CouponID      *string            `json:"couponId"`
 	CouponTestID  *string            `json:"couponTestId"`
 	PartnersCount *float64           `json:"partnersCount,omitempty"`
-	Default       bool               `json:"default"`
 }
 
 func (o *CreateCustomerDiscount) GetID() string {
@@ -234,13 +233,6 @@ func (o *CreateCustomerDiscount) GetPartnersCount() *float64 {
 		return nil
 	}
 	return o.PartnersCount
-}
-
-func (o *CreateCustomerDiscount) GetDefault() bool {
-	if o == nil {
-		return false
-	}
-	return o.Default
 }
 
 // CreateCustomerResponseBody - The customer was created.
