@@ -3,11 +3,10 @@
 package operations
 
 type UpdateWorkspaceRequestBody struct {
-	Name              *string  `json:"name,omitempty"`
-	Slug              *string  `json:"slug,omitempty"`
-	Logo              *string  `json:"logo,omitempty"`
-	ConversionEnabled *bool    `json:"conversionEnabled,omitempty"`
-	AllowedHostnames  []string `json:"allowedHostnames,omitempty"`
+	Name              *string `json:"name,omitempty"`
+	Slug              *string `json:"slug,omitempty"`
+	Logo              *string `json:"logo,omitempty"`
+	ConversionEnabled *bool   `json:"conversionEnabled,omitempty"`
 }
 
 func (o *UpdateWorkspaceRequestBody) GetName() *string {
@@ -36,13 +35,6 @@ func (o *UpdateWorkspaceRequestBody) GetConversionEnabled() *bool {
 		return nil
 	}
 	return o.ConversionEnabled
-}
-
-func (o *UpdateWorkspaceRequestBody) GetAllowedHostnames() []string {
-	if o == nil {
-		return nil
-	}
-	return o.AllowedHostnames
 }
 
 type UpdateWorkspaceRequest struct {
