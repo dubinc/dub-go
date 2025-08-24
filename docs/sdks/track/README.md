@@ -101,7 +101,6 @@ func main() {
         CustomerExternalID: "<id>",
         Amount: 594903,
         EventName: dubgo.String("Invoice paid"),
-        PaymentProcessor: operations.PaymentProcessorPolar,
         LeadEventName: dubgo.String("Cloned template 1481267"),
     })
     if err != nil {

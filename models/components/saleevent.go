@@ -76,7 +76,7 @@ type Sale struct {
 	// The invoice ID of the sale. Can be used as a idempotency key – only one sale event can be recorded for a given invoice ID.
 	InvoiceID *string `default:"null" json:"invoiceId"`
 	// The payment processor via which the sale was made.
-	PaymentProcessor PaymentProcessor `json:"paymentProcessor"`
+	PaymentProcessor *PaymentProcessor `default:"custom" json:"paymentProcessor"`
 }
 
 func (s Sale) MarshalJSON() ([]byte, error) {
@@ -104,9 +104,9 @@ func (o *Sale) GetInvoiceID() *string {
 	return o.InvoiceID
 }
 
-func (o *Sale) GetPaymentProcessor() PaymentProcessor {
+func (o *Sale) GetPaymentProcessor() *PaymentProcessor {
 	if o == nil {
-		return PaymentProcessor("")
+		return nil
 	}
 	return o.PaymentProcessor
 }

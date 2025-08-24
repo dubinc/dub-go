@@ -57,7 +57,7 @@ type TrackSaleRequestBody struct {
 	// The name of the sale event. Recommended format: `Invoice paid` or `Subscription created`.
 	EventName *string `default:"Purchase" json:"eventName"`
 	// The payment processor via which the sale was made.
-	PaymentProcessor PaymentProcessor `json:"paymentProcessor"`
+	PaymentProcessor *PaymentProcessor `default:"custom" json:"paymentProcessor"`
 	// The invoice ID of the sale. Can be used as a idempotency key – only one sale event can be recorded for a given invoice ID.
 	InvoiceID *string `default:"null" json:"invoiceId"`
 	// The name of the lead event that occurred before the sale (case-sensitive). This is used to associate the sale event with a particular lead event (instead of the latest lead event for a link-customer combination, which is the default behavior).
@@ -105,9 +105,9 @@ func (o *TrackSaleRequestBody) GetEventName() *string {
 	return o.EventName
 }
 
-func (o *TrackSaleRequestBody) GetPaymentProcessor() PaymentProcessor {
+func (o *TrackSaleRequestBody) GetPaymentProcessor() *PaymentProcessor {
 	if o == nil {
-		return PaymentProcessor("")
+		return nil
 	}
 	return o.PaymentProcessor
 }
