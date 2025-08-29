@@ -11,6 +11,17 @@ type TestVariants struct {
 	Percentage float64 `json:"percentage"`
 }
 
+func (t TestVariants) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TestVariants) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"url", "percentage"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *TestVariants) GetURL() string {
 	if o == nil {
 		return ""
@@ -137,7 +148,7 @@ func (l LinkSchema) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LinkSchema) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "externalId", "tenantId", "programId", "partnerId", "expiresAt", "expiredUrl", "password", "title", "description", "image", "video", "ios", "android", "geo", "tags", "folderId", "webhookIds", "comments", "shortLink", "qrCode", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "userId", "workspaceId", "lastClicked", "createdAt", "updatedAt", "tagId", "projectId"}); err != nil {
 		return err
 	}
 	return nil

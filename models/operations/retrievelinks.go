@@ -51,7 +51,7 @@ func (l Link) MarshalJSON() ([]byte, error) {
 }
 
 func (l *Link) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "shortLink", "url"}); err != nil {
 		return err
 	}
 	return nil

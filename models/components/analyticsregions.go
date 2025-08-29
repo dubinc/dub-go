@@ -52,7 +52,7 @@ func (a AnalyticsRegions) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AnalyticsRegions) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"country", "region"}); err != nil {
 		return err
 	}
 	return nil

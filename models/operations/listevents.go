@@ -157,14 +157,14 @@ func CreateListEventsQueryParamTagIdsArrayOfStr(arrayOfStr []string) ListEventsQ
 func (u *ListEventsQueryParamTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = ListEventsQueryParamTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = ListEventsQueryParamTagIdsTypeArrayOfStr
 		return nil
@@ -380,7 +380,7 @@ func (l ListEventsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListEventsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -739,7 +739,7 @@ func (u *ListEventsResponseBody) UnmarshalJSON(data []byte) error {
 	switch dis.Event {
 	case "click":
 		clickEvent := new(components.ClickEvent)
-		if err := utils.UnmarshalJSON(data, &clickEvent, "", true, false); err != nil {
+		if err := utils.UnmarshalJSON(data, &clickEvent, "", true, nil); err != nil {
 			return fmt.Errorf("could not unmarshal `%s` into expected (Event == click) type components.ClickEvent within ListEventsResponseBody: %w", string(data), err)
 		}
 
@@ -748,7 +748,7 @@ func (u *ListEventsResponseBody) UnmarshalJSON(data []byte) error {
 		return nil
 	case "lead":
 		leadEvent := new(components.LeadEvent)
-		if err := utils.UnmarshalJSON(data, &leadEvent, "", true, false); err != nil {
+		if err := utils.UnmarshalJSON(data, &leadEvent, "", true, nil); err != nil {
 			return fmt.Errorf("could not unmarshal `%s` into expected (Event == lead) type components.LeadEvent within ListEventsResponseBody: %w", string(data), err)
 		}
 
@@ -757,7 +757,7 @@ func (u *ListEventsResponseBody) UnmarshalJSON(data []byte) error {
 		return nil
 	case "sale":
 		saleEvent := new(components.SaleEvent)
-		if err := utils.UnmarshalJSON(data, &saleEvent, "", true, false); err != nil {
+		if err := utils.UnmarshalJSON(data, &saleEvent, "", true, nil); err != nil {
 			return fmt.Errorf("could not unmarshal `%s` into expected (Event == sale) type components.SaleEvent within ListEventsResponseBody: %w", string(data), err)
 		}
 

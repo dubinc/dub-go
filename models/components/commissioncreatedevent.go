@@ -5,6 +5,7 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/dubinc/dub-go/internal/utils"
 )
 
 type CommissionCreatedEventEvent string
@@ -115,7 +116,24 @@ type Partner struct {
 	// The date when the partner enabled payouts.
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
 	// The partner's country (required for tax purposes).
-	Country *string `json:"country"`
+	Country          *string `json:"country"`
+	TotalClicks      float64 `json:"totalClicks"`
+	TotalLeads       float64 `json:"totalLeads"`
+	TotalConversions float64 `json:"totalConversions"`
+	TotalSales       float64 `json:"totalSales"`
+	TotalSaleAmount  float64 `json:"totalSaleAmount"`
+	TotalCommissions float64 `json:"totalCommissions"`
+}
+
+func (p Partner) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *Partner) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "name", "email", "image", "payoutsEnabledAt", "country", "totalClicks", "totalLeads", "totalConversions", "totalSales", "totalSaleAmount", "totalCommissions"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Partner) GetID() string {
@@ -160,6 +178,48 @@ func (o *Partner) GetCountry() *string {
 	return o.Country
 }
 
+func (o *Partner) GetTotalClicks() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalClicks
+}
+
+func (o *Partner) GetTotalLeads() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalLeads
+}
+
+func (o *Partner) GetTotalConversions() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalConversions
+}
+
+func (o *Partner) GetTotalSales() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalSales
+}
+
+func (o *Partner) GetTotalSaleAmount() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalSaleAmount
+}
+
+func (o *Partner) GetTotalCommissions() float64 {
+	if o == nil {
+		return 0.0
+	}
+	return o.TotalCommissions
+}
+
 type CommissionCreatedEventCustomer struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
@@ -179,6 +239,17 @@ type CommissionCreatedEventCustomer struct {
 	SaleAmount *float64 `json:"saleAmount,omitempty"`
 	// The date the customer was created.
 	CreatedAt string `json:"createdAt"`
+}
+
+func (c CommissionCreatedEventCustomer) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CommissionCreatedEventCustomer) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "externalId", "name", "createdAt"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CommissionCreatedEventCustomer) GetID() string {
@@ -261,6 +332,17 @@ type CommissionCreatedEventData struct {
 	UpdatedAt string                          `json:"updatedAt"`
 	Partner   Partner                         `json:"partner"`
 	Customer  *CommissionCreatedEventCustomer `json:"customer,omitempty"`
+}
+
+func (c CommissionCreatedEventData) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CommissionCreatedEventData) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "amount", "earnings", "currency", "status", "invoiceId", "description", "quantity", "createdAt", "updatedAt", "partner"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CommissionCreatedEventData) GetID() string {
@@ -367,6 +449,17 @@ type CommissionCreatedEvent struct {
 	Event     CommissionCreatedEventEvent `json:"event"`
 	CreatedAt string                      `json:"createdAt"`
 	Data      CommissionCreatedEventData  `json:"data"`
+}
+
+func (c CommissionCreatedEvent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CommissionCreatedEvent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "event", "createdAt", "data"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *CommissionCreatedEvent) GetID() string {

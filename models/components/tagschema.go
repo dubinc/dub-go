@@ -5,6 +5,7 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/dubinc/dub-go/internal/utils"
 )
 
 // Color - The color of the tag.
@@ -56,6 +57,17 @@ type TagSchema struct {
 	Name string `json:"name"`
 	// The color of the tag.
 	Color Color `json:"color"`
+}
+
+func (t TagSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TagSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"id", "name", "color"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *TagSchema) GetID() string {

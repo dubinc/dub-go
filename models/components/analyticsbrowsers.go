@@ -24,7 +24,7 @@ func (a AnalyticsBrowsers) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AnalyticsBrowsers) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"browser"}); err != nil {
 		return err
 	}
 	return nil

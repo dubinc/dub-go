@@ -45,14 +45,14 @@ func CreateGetLinksCountQueryParamTagIdsArrayOfStr(arrayOfStr []string) GetLinks
 func (u *GetLinksCountQueryParamTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = GetLinksCountQueryParamTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = GetLinksCountQueryParamTagIdsTypeArrayOfStr
 		return nil
@@ -109,14 +109,14 @@ func CreateGetLinksCountQueryParamTagNamesArrayOfStr(arrayOfStr []string) GetLin
 func (u *GetLinksCountQueryParamTagNames) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = GetLinksCountQueryParamTagNamesTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = GetLinksCountQueryParamTagNamesTypeArrayOfStr
 		return nil
@@ -287,28 +287,28 @@ func CreateGroupByFour(four Four) GroupBy {
 func (u *GroupBy) UnmarshalJSON(data []byte) error {
 
 	var one One = One("")
-	if err := utils.UnmarshalJSON(data, &one, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &one, "", true, nil); err == nil {
 		u.One = &one
 		u.Type = GroupByTypeOne
 		return nil
 	}
 
 	var two Two = Two("")
-	if err := utils.UnmarshalJSON(data, &two, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &two, "", true, nil); err == nil {
 		u.Two = &two
 		u.Type = GroupByTypeTwo
 		return nil
 	}
 
 	var three Three = Three("")
-	if err := utils.UnmarshalJSON(data, &three, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &three, "", true, nil); err == nil {
 		u.Three = &three
 		u.Type = GroupByTypeThree
 		return nil
 	}
 
 	var four Four = Four("")
-	if err := utils.UnmarshalJSON(data, &four, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &four, "", true, nil); err == nil {
 		u.Four = &four
 		u.Type = GroupByTypeFour
 		return nil
@@ -367,7 +367,7 @@ func (g GetLinksCountRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetLinksCountRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil

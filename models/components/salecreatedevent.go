@@ -52,6 +52,17 @@ type SaleCreatedEventCustomer struct {
 	CreatedAt string `json:"createdAt"`
 }
 
+func (s SaleCreatedEventCustomer) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SaleCreatedEventCustomer) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "externalId", "name", "createdAt"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *SaleCreatedEventCustomer) GetID() string {
 	if o == nil {
 		return ""
@@ -131,6 +142,17 @@ type SaleCreatedEventClick struct {
 	RefererURL string  `json:"refererUrl"`
 	Qr         bool    `json:"qr"`
 	IP         string  `json:"ip"`
+}
+
+func (s SaleCreatedEventClick) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SaleCreatedEventClick) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "timestamp", "url", "country", "city", "region", "continent", "device", "browser", "os", "referer", "refererUrl", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SaleCreatedEventClick) GetID() string {
@@ -241,6 +263,17 @@ func (o *SaleCreatedEventClick) GetIP() string {
 type SaleCreatedEventTestVariants struct {
 	URL        string  `json:"url"`
 	Percentage float64 `json:"percentage"`
+}
+
+func (s SaleCreatedEventTestVariants) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SaleCreatedEventTestVariants) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"url", "percentage"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SaleCreatedEventTestVariants) GetURL() string {
@@ -354,7 +387,7 @@ func (s SaleCreatedEventLink) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SaleCreatedEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "domain", "key", "url", "trackConversion", "externalId", "tenantId", "programId", "partnerId", "archived", "expiresAt", "expiredUrl", "password", "proxy", "title", "description", "image", "video", "rewrite", "doIndex", "ios", "android", "geo", "publicStats", "tags", "folderId", "webhookIds", "comments", "shortLink", "qrCode", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "testStartedAt", "testCompletedAt", "userId", "workspaceId", "lastClicked", "createdAt", "updatedAt", "tagId", "projectId"}); err != nil {
 		return err
 	}
 	return nil
@@ -717,6 +750,17 @@ type SaleCreatedEventSale struct {
 	InvoiceID        *string `json:"invoiceId"`
 }
 
+func (s SaleCreatedEventSale) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SaleCreatedEventSale) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"amount", "currency", "paymentProcessor", "invoiceId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *SaleCreatedEventSale) GetAmount() float64 {
 	if o == nil {
 		return 0.0
@@ -751,6 +795,17 @@ type SaleCreatedEventData struct {
 	Click     SaleCreatedEventClick    `json:"click"`
 	Link      SaleCreatedEventLink     `json:"link"`
 	Sale      SaleCreatedEventSale     `json:"sale"`
+}
+
+func (s SaleCreatedEventData) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SaleCreatedEventData) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"eventName", "customer", "click", "link", "sale"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SaleCreatedEventData) GetEventName() string {
@@ -794,6 +849,17 @@ type SaleCreatedEvent struct {
 	Event     SaleCreatedEventEvent `json:"event"`
 	CreatedAt string                `json:"createdAt"`
 	Data      SaleCreatedEventData  `json:"data"`
+}
+
+func (s SaleCreatedEvent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SaleCreatedEvent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "event", "createdAt", "data"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SaleCreatedEvent) GetID() string {
