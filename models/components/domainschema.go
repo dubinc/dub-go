@@ -72,12 +72,12 @@ type DomainSchema struct {
 	ExpiredURL *string `json:"expiredUrl"`
 	// The URL to redirect to when a link under this domain doesn't exist.
 	NotFoundURL *string `json:"notFoundUrl"`
+	// The logo of the domain.
+	Logo *string `json:"logo"`
 	// assetLinks.json configuration file (for deep link support on Android).
 	AssetLinks *string `default:"null" json:"assetLinks"`
 	// apple-app-site-association configuration file (for deep link support on iOS).
 	AppleAppSiteAssociation *string `default:"null" json:"appleAppSiteAssociation"`
-	// The logo of the domain.
-	Logo *string `json:"logo"`
 	// The date the domain was created.
 	CreatedAt string `json:"createdAt"`
 	// The date the domain was last updated.
@@ -91,7 +91,7 @@ func (d DomainSchema) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DomainSchema) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id", "slug", "placeholder", "expiredUrl", "notFoundUrl", "logo", "createdAt", "updatedAt", "registeredDomain"}); err != nil {
 		return err
 	}
 	return nil
@@ -153,6 +153,13 @@ func (o *DomainSchema) GetNotFoundURL() *string {
 	return o.NotFoundURL
 }
 
+func (o *DomainSchema) GetLogo() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Logo
+}
+
 func (o *DomainSchema) GetAssetLinks() *string {
 	if o == nil {
 		return nil
@@ -165,13 +172,6 @@ func (o *DomainSchema) GetAppleAppSiteAssociation() *string {
 		return nil
 	}
 	return o.AppleAppSiteAssociation
-}
-
-func (o *DomainSchema) GetLogo() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Logo
 }
 
 func (o *DomainSchema) GetCreatedAt() string {

@@ -18,8 +18,8 @@ const (
 
 // CreatePartnerTagIds - The unique IDs of the tags assigned to the short link.
 type CreatePartnerTagIds struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagIds"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
 
 	Type CreatePartnerTagIdsType
 }
@@ -45,14 +45,14 @@ func CreateCreatePartnerTagIdsArrayOfStr(arrayOfStr []string) CreatePartnerTagId
 func (u *CreatePartnerTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = CreatePartnerTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = CreatePartnerTagIdsTypeArrayOfStr
 		return nil
@@ -82,8 +82,8 @@ const (
 
 // CreatePartnerTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type CreatePartnerTagNames struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagNames"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
 
 	Type CreatePartnerTagNamesType
 }
@@ -109,14 +109,14 @@ func CreateCreatePartnerTagNamesArrayOfStr(arrayOfStr []string) CreatePartnerTag
 func (u *CreatePartnerTagNames) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = CreatePartnerTagNamesTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = CreatePartnerTagNamesTypeArrayOfStr
 		return nil
@@ -582,7 +582,7 @@ func (c CreatePartnerLink) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreatePartnerLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "domain", "key", "shortLink", "url"}); err != nil {
 		return err
 	}
 	return nil
@@ -775,7 +775,7 @@ func (c CreatePartnerResponseBody) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreatePartnerResponseBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "name", "email", "image", "country", "paypalEmail", "stripeConnectId", "payoutsEnabledAt", "programId", "partnerId", "tenantId", "createdAt", "status", "links"}); err != nil {
 		return err
 	}
 	return nil

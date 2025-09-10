@@ -43,7 +43,7 @@ func (p PartnerAnalyticsTopLinks) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PartnerAnalyticsTopLinks) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"link", "id", "domain", "key", "shortLink", "url", "createdAt"}); err != nil {
 		return err
 	}
 	return nil

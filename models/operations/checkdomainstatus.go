@@ -17,8 +17,8 @@ const (
 
 // Domains - The domains to search. We only support .link domains for now.
 type Domains struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"domains"`
+	ArrayOfStr []string `queryParam:"inline" name:"domains"`
 
 	Type DomainsType
 }
@@ -44,14 +44,14 @@ func CreateDomainsArrayOfStr(arrayOfStr []string) Domains {
 func (u *Domains) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = DomainsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = DomainsTypeArrayOfStr
 		return nil

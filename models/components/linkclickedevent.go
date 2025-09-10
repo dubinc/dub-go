@@ -49,6 +49,17 @@ type LinkClickedEventClick struct {
 	IP         string  `json:"ip"`
 }
 
+func (l LinkClickedEventClick) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkClickedEventClick) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "timestamp", "url", "country", "city", "region", "continent", "device", "browser", "os", "referer", "refererUrl", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *LinkClickedEventClick) GetID() string {
 	if o == nil {
 		return ""
@@ -157,6 +168,17 @@ func (o *LinkClickedEventClick) GetIP() string {
 type LinkClickedEventTestVariants struct {
 	URL        string  `json:"url"`
 	Percentage float64 `json:"percentage"`
+}
+
+func (l LinkClickedEventTestVariants) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkClickedEventTestVariants) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"url", "percentage"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LinkClickedEventTestVariants) GetURL() string {
@@ -270,7 +292,7 @@ func (l LinkClickedEventLink) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LinkClickedEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "externalId", "tenantId", "programId", "partnerId", "archived", "expiresAt", "expiredUrl", "password", "proxy", "title", "description", "image", "video", "rewrite", "doIndex", "ios", "android", "geo", "publicStats", "tags", "folderId", "webhookIds", "comments", "shortLink", "qrCode", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "testStartedAt", "testCompletedAt", "userId", "workspaceId", "lastClicked", "createdAt", "updatedAt", "tagId", "projectId"}); err != nil {
 		return err
 	}
 	return nil
@@ -631,6 +653,17 @@ type Data struct {
 	Link  LinkClickedEventLink  `json:"link"`
 }
 
+func (d Data) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *Data) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"click", "link"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *Data) GetClick() LinkClickedEventClick {
 	if o == nil {
 		return LinkClickedEventClick{}
@@ -651,6 +684,17 @@ type LinkClickedEvent struct {
 	Event     LinkClickedEventEvent `json:"event"`
 	CreatedAt string                `json:"createdAt"`
 	Data      Data                  `json:"data"`
+}
+
+func (l LinkClickedEvent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkClickedEvent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "event", "createdAt", "data"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LinkClickedEvent) GetID() string {

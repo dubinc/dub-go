@@ -148,7 +148,7 @@ func (l ListPartnersRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListPartnersRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -285,7 +285,7 @@ func (l ListPartnersLink) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListPartnersLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "shortLink", "url"}); err != nil {
 		return err
 	}
 	return nil
@@ -477,7 +477,7 @@ func (l ListPartnersResponseBody) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListPartnersResponseBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "name", "email", "image", "country", "paypalEmail", "stripeConnectId", "payoutsEnabledAt", "programId", "partnerId", "tenantId", "createdAt", "status", "links"}); err != nil {
 		return err
 	}
 	return nil

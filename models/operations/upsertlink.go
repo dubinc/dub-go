@@ -17,8 +17,8 @@ const (
 
 // UpsertLinkTagIds - The unique IDs of the tags assigned to the short link.
 type UpsertLinkTagIds struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagIds"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
 
 	Type UpsertLinkTagIdsType
 }
@@ -44,14 +44,14 @@ func CreateUpsertLinkTagIdsArrayOfStr(arrayOfStr []string) UpsertLinkTagIds {
 func (u *UpsertLinkTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = UpsertLinkTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = UpsertLinkTagIdsTypeArrayOfStr
 		return nil
@@ -81,8 +81,8 @@ const (
 
 // UpsertLinkTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type UpsertLinkTagNames struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagNames"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
 
 	Type UpsertLinkTagNamesType
 }
@@ -108,14 +108,14 @@ func CreateUpsertLinkTagNamesArrayOfStr(arrayOfStr []string) UpsertLinkTagNames 
 func (u *UpsertLinkTagNames) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = UpsertLinkTagNamesTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = UpsertLinkTagNamesTypeArrayOfStr
 		return nil

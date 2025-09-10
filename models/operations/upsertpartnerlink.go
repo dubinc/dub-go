@@ -17,8 +17,8 @@ const (
 
 // UpsertPartnerLinkTagIds - The unique IDs of the tags assigned to the short link.
 type UpsertPartnerLinkTagIds struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagIds"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
 
 	Type UpsertPartnerLinkTagIdsType
 }
@@ -44,14 +44,14 @@ func CreateUpsertPartnerLinkTagIdsArrayOfStr(arrayOfStr []string) UpsertPartnerL
 func (u *UpsertPartnerLinkTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = UpsertPartnerLinkTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = UpsertPartnerLinkTagIdsTypeArrayOfStr
 		return nil
@@ -81,8 +81,8 @@ const (
 
 // UpsertPartnerLinkTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type UpsertPartnerLinkTagNames struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagNames"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
 
 	Type UpsertPartnerLinkTagNamesType
 }
@@ -108,14 +108,14 @@ func CreateUpsertPartnerLinkTagNamesArrayOfStr(arrayOfStr []string) UpsertPartne
 func (u *UpsertPartnerLinkTagNames) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = UpsertPartnerLinkTagNamesTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = UpsertPartnerLinkTagNamesTypeArrayOfStr
 		return nil

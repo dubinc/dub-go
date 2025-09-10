@@ -84,7 +84,7 @@ func (s Sale) MarshalJSON() ([]byte, error) {
 }
 
 func (s *Sale) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"amount"}); err != nil {
 		return err
 	}
 	return nil
@@ -114,6 +114,17 @@ func (o *Sale) GetPaymentProcessor() *PaymentProcessor {
 type SaleEventTestVariants struct {
 	URL        string  `json:"url"`
 	Percentage float64 `json:"percentage"`
+}
+
+func (s SaleEventTestVariants) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SaleEventTestVariants) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"url", "percentage"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SaleEventTestVariants) GetURL() string {
@@ -227,7 +238,7 @@ func (s SaleEventLink) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SaleEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "domain", "key", "url", "trackConversion", "externalId", "tenantId", "programId", "partnerId", "archived", "expiresAt", "expiredUrl", "password", "proxy", "title", "description", "image", "video", "rewrite", "doIndex", "ios", "android", "geo", "publicStats", "tags", "folderId", "webhookIds", "comments", "shortLink", "qrCode", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "testStartedAt", "testCompletedAt", "userId", "workspaceId", "lastClicked", "createdAt", "updatedAt", "tagId", "projectId"}); err != nil {
 		return err
 	}
 	return nil
@@ -601,6 +612,17 @@ type SaleEventClick struct {
 	IP         string  `json:"ip"`
 }
 
+func (s SaleEventClick) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SaleEventClick) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "timestamp", "url", "country", "city", "region", "continent", "device", "browser", "os", "referer", "refererUrl", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *SaleEventClick) GetID() string {
 	if o == nil {
 		return ""
@@ -725,6 +747,17 @@ type SaleEventCustomer struct {
 	SaleAmount *float64 `json:"saleAmount,omitempty"`
 	// The date the customer was created.
 	CreatedAt string `json:"createdAt"`
+}
+
+func (s SaleEventCustomer) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SaleEventCustomer) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "externalId", "name", "createdAt"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SaleEventCustomer) GetID() string {
@@ -864,6 +897,17 @@ type SaleEvent struct {
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	IP string `json:"ip"`
+}
+
+func (s SaleEvent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SaleEvent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"event", "timestamp", "eventId", "eventName", "sale", "link", "click", "customer", "saleAmount", "invoice_id", "payment_processor", "click_id", "link_id", "domain", "key", "url", "continent", "country", "city", "device", "browser", "os", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SaleEvent) GetEvent() SaleEventEvent {

@@ -24,7 +24,7 @@ func (a AnalyticsRefererUrls) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AnalyticsRefererUrls) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"refererUrl"}); err != nil {
 		return err
 	}
 	return nil
