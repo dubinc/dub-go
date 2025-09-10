@@ -5,6 +5,7 @@ package components
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/dubinc/dub-go/internal/utils"
 )
 
 // Code - The error code.
@@ -68,6 +69,17 @@ type LinkErrorSchema struct {
 	Error string `json:"error"`
 	// The error code.
 	Code Code `json:"code"`
+}
+
+func (l LinkErrorSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkErrorSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"error", "code"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LinkErrorSchema) GetLink() any {

@@ -18,8 +18,8 @@ const (
 
 // BulkCreateLinksTagIds - The unique IDs of the tags assigned to the short link.
 type BulkCreateLinksTagIds struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagIds"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
 
 	Type BulkCreateLinksTagIdsType
 }
@@ -45,14 +45,14 @@ func CreateBulkCreateLinksTagIdsArrayOfStr(arrayOfStr []string) BulkCreateLinksT
 func (u *BulkCreateLinksTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = BulkCreateLinksTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = BulkCreateLinksTagIdsTypeArrayOfStr
 		return nil
@@ -82,8 +82,8 @@ const (
 
 // BulkCreateLinksTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type BulkCreateLinksTagNames struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagNames"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
 
 	Type BulkCreateLinksTagNamesType
 }
@@ -109,14 +109,14 @@ func CreateBulkCreateLinksTagNamesArrayOfStr(arrayOfStr []string) BulkCreateLink
 func (u *BulkCreateLinksTagNames) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = BulkCreateLinksTagNamesTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = BulkCreateLinksTagNamesTypeArrayOfStr
 		return nil
@@ -531,8 +531,8 @@ const (
 )
 
 type ResponseBody struct {
-	LinkSchema      *components.LinkSchema      `queryParam:"inline"`
-	LinkErrorSchema *components.LinkErrorSchema `queryParam:"inline"`
+	LinkSchema      *components.LinkSchema      `queryParam:"inline" name:"responseBody"`
+	LinkErrorSchema *components.LinkErrorSchema `queryParam:"inline" name:"responseBody"`
 
 	Type ResponseBodyType
 }
@@ -557,17 +557,17 @@ func CreateResponseBodyLinkErrorSchema(linkErrorSchema components.LinkErrorSchem
 
 func (u *ResponseBody) UnmarshalJSON(data []byte) error {
 
-	var linkErrorSchema components.LinkErrorSchema = components.LinkErrorSchema{}
-	if err := utils.UnmarshalJSON(data, &linkErrorSchema, "", true, false); err == nil {
-		u.LinkErrorSchema = &linkErrorSchema
-		u.Type = ResponseBodyTypeLinkErrorSchema
+	var linkSchema components.LinkSchema = components.LinkSchema{}
+	if err := utils.UnmarshalJSON(data, &linkSchema, "", true, nil); err == nil {
+		u.LinkSchema = &linkSchema
+		u.Type = ResponseBodyTypeLinkSchema
 		return nil
 	}
 
-	var linkSchema components.LinkSchema = components.LinkSchema{}
-	if err := utils.UnmarshalJSON(data, &linkSchema, "", true, false); err == nil {
-		u.LinkSchema = &linkSchema
-		u.Type = ResponseBodyTypeLinkSchema
+	var linkErrorSchema components.LinkErrorSchema = components.LinkErrorSchema{}
+	if err := utils.UnmarshalJSON(data, &linkErrorSchema, "", true, nil); err == nil {
+		u.LinkErrorSchema = &linkErrorSchema
+		u.Type = ResponseBodyTypeLinkErrorSchema
 		return nil
 	}
 

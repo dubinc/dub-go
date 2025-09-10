@@ -24,7 +24,7 @@ func (a AnalyticsTimeseries) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AnalyticsTimeseries) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"start"}); err != nil {
 		return err
 	}
 	return nil

@@ -17,8 +17,8 @@ const (
 
 // CreateReferralsEmbedTokenTagIds - The unique IDs of the tags assigned to the short link.
 type CreateReferralsEmbedTokenTagIds struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagIds"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
 
 	Type CreateReferralsEmbedTokenTagIdsType
 }
@@ -44,14 +44,14 @@ func CreateCreateReferralsEmbedTokenTagIdsArrayOfStr(arrayOfStr []string) Create
 func (u *CreateReferralsEmbedTokenTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = CreateReferralsEmbedTokenTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = CreateReferralsEmbedTokenTagIdsTypeArrayOfStr
 		return nil
@@ -81,8 +81,8 @@ const (
 
 // CreateReferralsEmbedTokenTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type CreateReferralsEmbedTokenTagNames struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagNames"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
 
 	Type CreateReferralsEmbedTokenTagNamesType
 }
@@ -108,14 +108,14 @@ func CreateCreateReferralsEmbedTokenTagNamesArrayOfStr(arrayOfStr []string) Crea
 func (u *CreateReferralsEmbedTokenTagNames) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = CreateReferralsEmbedTokenTagNamesTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = CreateReferralsEmbedTokenTagNamesTypeArrayOfStr
 		return nil

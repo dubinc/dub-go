@@ -87,9 +87,9 @@ const (
 )
 
 type LinkWebhookEventEvent struct {
-	One   *One   `queryParam:"inline"`
-	Two   *Two   `queryParam:"inline"`
-	Three *Three `queryParam:"inline"`
+	One   *One   `queryParam:"inline" name:"event"`
+	Two   *Two   `queryParam:"inline" name:"event"`
+	Three *Three `queryParam:"inline" name:"event"`
 
 	Type LinkWebhookEventEventType
 }
@@ -124,21 +124,21 @@ func CreateLinkWebhookEventEventThree(three Three) LinkWebhookEventEvent {
 func (u *LinkWebhookEventEvent) UnmarshalJSON(data []byte) error {
 
 	var one One = One("")
-	if err := utils.UnmarshalJSON(data, &one, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &one, "", true, nil); err == nil {
 		u.One = &one
 		u.Type = LinkWebhookEventEventTypeOne
 		return nil
 	}
 
 	var two Two = Two("")
-	if err := utils.UnmarshalJSON(data, &two, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &two, "", true, nil); err == nil {
 		u.Two = &two
 		u.Type = LinkWebhookEventEventTypeTwo
 		return nil
 	}
 
 	var three Three = Three("")
-	if err := utils.UnmarshalJSON(data, &three, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &three, "", true, nil); err == nil {
 		u.Three = &three
 		u.Type = LinkWebhookEventEventTypeThree
 		return nil
@@ -166,6 +166,17 @@ func (u LinkWebhookEventEvent) MarshalJSON() ([]byte, error) {
 type LinkWebhookEventTestVariants struct {
 	URL        string  `json:"url"`
 	Percentage float64 `json:"percentage"`
+}
+
+func (l LinkWebhookEventTestVariants) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkWebhookEventTestVariants) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"url", "percentage"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LinkWebhookEventTestVariants) GetURL() string {
@@ -279,7 +290,7 @@ func (l LinkWebhookEventLink) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LinkWebhookEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "externalId", "tenantId", "programId", "partnerId", "archived", "expiresAt", "expiredUrl", "password", "proxy", "title", "description", "image", "video", "rewrite", "doIndex", "ios", "android", "geo", "publicStats", "tags", "folderId", "webhookIds", "comments", "shortLink", "qrCode", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "testStartedAt", "testCompletedAt", "userId", "workspaceId", "lastClicked", "createdAt", "updatedAt", "tagId", "projectId"}); err != nil {
 		return err
 	}
 	return nil
@@ -641,6 +652,17 @@ type LinkWebhookEvent struct {
 	Event     LinkWebhookEventEvent `json:"event"`
 	CreatedAt string                `json:"createdAt"`
 	Data      LinkWebhookEventLink  `json:"data"`
+}
+
+func (l LinkWebhookEvent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkWebhookEvent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "event", "createdAt", "data"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LinkWebhookEvent) GetID() string {

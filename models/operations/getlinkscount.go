@@ -18,8 +18,8 @@ const (
 
 // GetLinksCountQueryParamTagIds - The tag IDs to filter the links by.
 type GetLinksCountQueryParamTagIds struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagIds"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
 
 	Type GetLinksCountQueryParamTagIdsType
 }
@@ -45,14 +45,14 @@ func CreateGetLinksCountQueryParamTagIdsArrayOfStr(arrayOfStr []string) GetLinks
 func (u *GetLinksCountQueryParamTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = GetLinksCountQueryParamTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = GetLinksCountQueryParamTagIdsTypeArrayOfStr
 		return nil
@@ -82,8 +82,8 @@ const (
 
 // GetLinksCountQueryParamTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type GetLinksCountQueryParamTagNames struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagNames"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
 
 	Type GetLinksCountQueryParamTagNamesType
 }
@@ -109,14 +109,14 @@ func CreateGetLinksCountQueryParamTagNamesArrayOfStr(arrayOfStr []string) GetLin
 func (u *GetLinksCountQueryParamTagNames) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = GetLinksCountQueryParamTagNamesTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = GetLinksCountQueryParamTagNamesTypeArrayOfStr
 		return nil
@@ -240,10 +240,10 @@ const (
 
 // GroupBy - The field to group the links by.
 type GroupBy struct {
-	One   *One   `queryParam:"inline"`
-	Two   *Two   `queryParam:"inline"`
-	Three *Three `queryParam:"inline"`
-	Four  *Four  `queryParam:"inline"`
+	One   *One   `queryParam:"inline" name:"groupBy"`
+	Two   *Two   `queryParam:"inline" name:"groupBy"`
+	Three *Three `queryParam:"inline" name:"groupBy"`
+	Four  *Four  `queryParam:"inline" name:"groupBy"`
 
 	Type GroupByType
 }
@@ -287,28 +287,28 @@ func CreateGroupByFour(four Four) GroupBy {
 func (u *GroupBy) UnmarshalJSON(data []byte) error {
 
 	var one One = One("")
-	if err := utils.UnmarshalJSON(data, &one, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &one, "", true, nil); err == nil {
 		u.One = &one
 		u.Type = GroupByTypeOne
 		return nil
 	}
 
 	var two Two = Two("")
-	if err := utils.UnmarshalJSON(data, &two, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &two, "", true, nil); err == nil {
 		u.Two = &two
 		u.Type = GroupByTypeTwo
 		return nil
 	}
 
 	var three Three = Three("")
-	if err := utils.UnmarshalJSON(data, &three, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &three, "", true, nil); err == nil {
 		u.Three = &three
 		u.Type = GroupByTypeThree
 		return nil
 	}
 
 	var four Four = Four("")
-	if err := utils.UnmarshalJSON(data, &four, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &four, "", true, nil); err == nil {
 		u.Four = &four
 		u.Type = GroupByTypeFour
 		return nil
@@ -367,7 +367,7 @@ func (g GetLinksCountRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetLinksCountRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil

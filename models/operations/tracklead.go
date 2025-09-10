@@ -8,12 +8,13 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
-// Mode - The mode to use for tracking the lead event. `async` will not block the request; `wait` will block the request until the lead event is fully recorded in Dub.
+// Mode - The mode to use for tracking the lead event. `async` will not block the request; `wait` will block the request until the lead event is fully recorded in Dub; `deferred` will defer the lead event creation to a subsequent request.
 type Mode string
 
 const (
-	ModeAsync Mode = "async"
-	ModeWait  Mode = "wait"
+	ModeAsync    Mode = "async"
+	ModeWait     Mode = "wait"
+	ModeDeferred Mode = "deferred"
 )
 
 func (e Mode) ToPointer() *Mode {
@@ -28,6 +29,8 @@ func (e *Mode) UnmarshalJSON(data []byte) error {
 	case "async":
 		fallthrough
 	case "wait":
+		fallthrough
+	case "deferred":
 		*e = Mode(v)
 		return nil
 	default:
@@ -36,7 +39,7 @@ func (e *Mode) UnmarshalJSON(data []byte) error {
 }
 
 type TrackLeadRequestBody struct {
-	// The unique ID of the click that the lead conversion event is attributed to. You can read this value from `dub_id` cookie.
+	// The unique ID of the click that the lead conversion event is attributed to. You can read this value from `dub_id` cookie. If an empty string is provided, Dub will try to find an existing customer with the provided `customerExternalId` and use the `clickId` from the customer if found.
 	ClickID string `json:"clickId"`
 	// The name of the lead event to track. Can also be used as a unique identifier to associate a given lead event for a customer for a subsequent sale event (via the `leadEventName` prop in `/track/sale`).
 	EventName string `json:"eventName"`
@@ -48,10 +51,10 @@ type TrackLeadRequestBody struct {
 	CustomerEmail *string `default:"null" json:"customerEmail"`
 	// The avatar URL of the customer.
 	CustomerAvatar *string `default:"null" json:"customerAvatar"`
+	// The mode to use for tracking the lead event. `async` will not block the request; `wait` will block the request until the lead event is fully recorded in Dub; `deferred` will defer the lead event creation to a subsequent request.
+	Mode *Mode `default:"async" json:"mode"`
 	// The numerical value associated with this lead event (e.g., number of provisioned seats in a free trial). If defined as N, the lead event will be tracked N times.
 	EventQuantity *float64 `json:"eventQuantity,omitempty"`
-	// The mode to use for tracking the lead event. `async` will not block the request; `wait` will block the request until the lead event is fully recorded in Dub.
-	Mode *Mode `default:"async" json:"mode"`
 	// Additional metadata to be stored with the lead event. Max 10,000 characters.
 	Metadata map[string]any `json:"metadata,omitempty"`
 }
@@ -61,7 +64,7 @@ func (t TrackLeadRequestBody) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TrackLeadRequestBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"clickId", "eventName", "customerExternalId"}); err != nil {
 		return err
 	}
 	return nil
@@ -109,18 +112,18 @@ func (o *TrackLeadRequestBody) GetCustomerAvatar() *string {
 	return o.CustomerAvatar
 }
 
-func (o *TrackLeadRequestBody) GetEventQuantity() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.EventQuantity
-}
-
 func (o *TrackLeadRequestBody) GetMode() *Mode {
 	if o == nil {
 		return nil
 	}
 	return o.Mode
+}
+
+func (o *TrackLeadRequestBody) GetEventQuantity() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.EventQuantity
 }
 
 func (o *TrackLeadRequestBody) GetMetadata() map[string]any {

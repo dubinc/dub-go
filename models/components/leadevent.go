@@ -49,6 +49,17 @@ type LeadEventClick struct {
 	IP         string  `json:"ip"`
 }
 
+func (l LeadEventClick) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LeadEventClick) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "timestamp", "url", "country", "city", "region", "continent", "device", "browser", "os", "referer", "refererUrl", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *LeadEventClick) GetID() string {
 	if o == nil {
 		return ""
@@ -157,6 +168,17 @@ func (o *LeadEventClick) GetIP() string {
 type LeadEventTestVariants struct {
 	URL        string  `json:"url"`
 	Percentage float64 `json:"percentage"`
+}
+
+func (l LeadEventTestVariants) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LeadEventTestVariants) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"url", "percentage"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LeadEventTestVariants) GetURL() string {
@@ -270,7 +292,7 @@ func (l LeadEventLink) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LeadEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "externalId", "tenantId", "programId", "partnerId", "archived", "expiresAt", "expiredUrl", "password", "proxy", "title", "description", "image", "video", "rewrite", "doIndex", "ios", "android", "geo", "publicStats", "tags", "folderId", "webhookIds", "comments", "shortLink", "qrCode", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "testStartedAt", "testCompletedAt", "userId", "workspaceId", "lastClicked", "createdAt", "updatedAt", "tagId", "projectId"}); err != nil {
 		return err
 	}
 	return nil
@@ -647,6 +669,17 @@ type Customer struct {
 	CreatedAt string `json:"createdAt"`
 }
 
+func (c Customer) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *Customer) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "externalId", "name", "createdAt"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *Customer) GetID() string {
 	if o == nil {
 		return ""
@@ -771,6 +804,17 @@ type LeadEvent struct {
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	IP string `json:"ip"`
+}
+
+func (l LeadEvent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LeadEvent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"event", "timestamp", "eventId", "eventName", "click", "link", "customer", "click_id", "link_id", "domain", "key", "url", "continent", "country", "city", "device", "browser", "os", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *LeadEvent) GetEvent() LeadEventEvent {

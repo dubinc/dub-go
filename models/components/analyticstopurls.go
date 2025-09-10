@@ -24,7 +24,7 @@ func (a AnalyticsTopUrls) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AnalyticsTopUrls) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"url"}); err != nil {
 		return err
 	}
 	return nil

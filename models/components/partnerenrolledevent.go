@@ -99,7 +99,7 @@ func (p PartnerEnrolledEventLink) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PartnerEnrolledEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "domain", "key", "shortLink", "url"}); err != nil {
 		return err
 	}
 	return nil
@@ -291,7 +291,7 @@ func (p PartnerEnrolledEventData) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PartnerEnrolledEventData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "name", "email", "image", "country", "paypalEmail", "stripeConnectId", "payoutsEnabledAt", "programId", "partnerId", "tenantId", "createdAt", "status", "links"}); err != nil {
 		return err
 	}
 	return nil
@@ -618,6 +618,17 @@ type PartnerEnrolledEvent struct {
 	Event     PartnerEnrolledEventEvent `json:"event"`
 	CreatedAt string                    `json:"createdAt"`
 	Data      PartnerEnrolledEventData  `json:"data"`
+}
+
+func (p PartnerEnrolledEvent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PartnerEnrolledEvent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "event", "createdAt", "data"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *PartnerEnrolledEvent) GetID() string {

@@ -112,7 +112,7 @@ func (r RetrievePartnerAnalyticsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RetrievePartnerAnalyticsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -184,9 +184,9 @@ const (
 
 // RetrievePartnerAnalyticsResponseBody - Partner analytics data
 type RetrievePartnerAnalyticsResponseBody struct {
-	PartnerAnalyticsCount             *components.PartnerAnalyticsCount       `queryParam:"inline"`
-	ArrayOfPartnerAnalyticsTimeseries []components.PartnerAnalyticsTimeseries `queryParam:"inline"`
-	ArrayOfPartnerAnalyticsTopLinks   []components.PartnerAnalyticsTopLinks   `queryParam:"inline"`
+	PartnerAnalyticsCount             *components.PartnerAnalyticsCount       `queryParam:"inline" name:"responseBody"`
+	ArrayOfPartnerAnalyticsTimeseries []components.PartnerAnalyticsTimeseries `queryParam:"inline" name:"responseBody"`
+	ArrayOfPartnerAnalyticsTopLinks   []components.PartnerAnalyticsTopLinks   `queryParam:"inline" name:"responseBody"`
 
 	Type RetrievePartnerAnalyticsResponseBodyType
 }
@@ -221,21 +221,21 @@ func CreateRetrievePartnerAnalyticsResponseBodyArrayOfPartnerAnalyticsTopLinks(a
 func (u *RetrievePartnerAnalyticsResponseBody) UnmarshalJSON(data []byte) error {
 
 	var partnerAnalyticsCount components.PartnerAnalyticsCount = components.PartnerAnalyticsCount{}
-	if err := utils.UnmarshalJSON(data, &partnerAnalyticsCount, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &partnerAnalyticsCount, "", true, nil); err == nil {
 		u.PartnerAnalyticsCount = &partnerAnalyticsCount
 		u.Type = RetrievePartnerAnalyticsResponseBodyTypePartnerAnalyticsCount
 		return nil
 	}
 
 	var arrayOfPartnerAnalyticsTimeseries []components.PartnerAnalyticsTimeseries = []components.PartnerAnalyticsTimeseries{}
-	if err := utils.UnmarshalJSON(data, &arrayOfPartnerAnalyticsTimeseries, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfPartnerAnalyticsTimeseries, "", true, nil); err == nil {
 		u.ArrayOfPartnerAnalyticsTimeseries = arrayOfPartnerAnalyticsTimeseries
 		u.Type = RetrievePartnerAnalyticsResponseBodyTypeArrayOfPartnerAnalyticsTimeseries
 		return nil
 	}
 
 	var arrayOfPartnerAnalyticsTopLinks []components.PartnerAnalyticsTopLinks = []components.PartnerAnalyticsTopLinks{}
-	if err := utils.UnmarshalJSON(data, &arrayOfPartnerAnalyticsTopLinks, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfPartnerAnalyticsTopLinks, "", true, nil); err == nil {
 		u.ArrayOfPartnerAnalyticsTopLinks = arrayOfPartnerAnalyticsTopLinks
 		u.Type = RetrievePartnerAnalyticsResponseBodyTypeArrayOfPartnerAnalyticsTopLinks
 		return nil

@@ -60,10 +60,18 @@ type TrackSaleRequestBody struct {
 	PaymentProcessor *PaymentProcessor `default:"custom" json:"paymentProcessor"`
 	// The invoice ID of the sale. Can be used as a idempotency key – only one sale event can be recorded for a given invoice ID.
 	InvoiceID *string `default:"null" json:"invoiceId"`
-	// The name of the lead event that occurred before the sale (case-sensitive). This is used to associate the sale event with a particular lead event (instead of the latest lead event for a link-customer combination, which is the default behavior).
-	LeadEventName *string `default:"null" json:"leadEventName"`
 	// Additional metadata to be stored with the sale event. Max 10,000 characters when stringified.
 	Metadata map[string]any `json:"metadata,omitempty"`
+	// The name of the lead event that occurred before the sale (case-sensitive). This is used to associate the sale event with a particular lead event (instead of the latest lead event for a link-customer combination, which is the default behavior). For sale tracking without a pre-existing lead event, this field can also be used to specify the lead event name.
+	LeadEventName *string `default:"null" json:"leadEventName"`
+	// [For sale tracking without a pre-existing lead event]: The unique ID of the click that the sale conversion event is attributed to. You can read this value from `dub_id` cookie.
+	ClickID *string `json:"clickId,omitempty"`
+	// [For sale tracking without a pre-existing lead event]: The name of the customer. If not passed, a random name will be generated (e.g. “Big Red Caribou”).
+	CustomerName *string `default:"null" json:"customerName"`
+	// [For sale tracking without a pre-existing lead event]: The email address of the customer.
+	CustomerEmail *string `default:"null" json:"customerEmail"`
+	// [For sale tracking without a pre-existing lead event]: The avatar URL of the customer.
+	CustomerAvatar *string `default:"null" json:"customerAvatar"`
 }
 
 func (t TrackSaleRequestBody) MarshalJSON() ([]byte, error) {
@@ -71,7 +79,7 @@ func (t TrackSaleRequestBody) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TrackSaleRequestBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"customerExternalId", "amount"}); err != nil {
 		return err
 	}
 	return nil
@@ -119,6 +127,13 @@ func (o *TrackSaleRequestBody) GetInvoiceID() *string {
 	return o.InvoiceID
 }
 
+func (o *TrackSaleRequestBody) GetMetadata() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
 func (o *TrackSaleRequestBody) GetLeadEventName() *string {
 	if o == nil {
 		return nil
@@ -126,11 +141,32 @@ func (o *TrackSaleRequestBody) GetLeadEventName() *string {
 	return o.LeadEventName
 }
 
-func (o *TrackSaleRequestBody) GetMetadata() map[string]any {
+func (o *TrackSaleRequestBody) GetClickID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Metadata
+	return o.ClickID
+}
+
+func (o *TrackSaleRequestBody) GetCustomerName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerName
+}
+
+func (o *TrackSaleRequestBody) GetCustomerEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerEmail
+}
+
+func (o *TrackSaleRequestBody) GetCustomerAvatar() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CustomerAvatar
 }
 
 type TrackSaleCustomer struct {

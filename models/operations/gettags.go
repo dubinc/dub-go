@@ -72,8 +72,8 @@ const (
 
 // Ids - IDs of tags to filter by.
 type Ids struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"ids"`
+	ArrayOfStr []string `queryParam:"inline" name:"ids"`
 
 	Type IdsType
 }
@@ -99,14 +99,14 @@ func CreateIdsArrayOfStr(arrayOfStr []string) Ids {
 func (u *Ids) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = IdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = IdsTypeArrayOfStr
 		return nil
@@ -147,7 +147,7 @@ func (g GetTagsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetTagsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil

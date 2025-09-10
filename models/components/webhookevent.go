@@ -21,12 +21,12 @@ const (
 
 // WebhookEvent - Webhook event schema
 type WebhookEvent struct {
-	LinkWebhookEvent       *LinkWebhookEvent       `queryParam:"inline"`
-	LinkClickedEvent       *LinkClickedEvent       `queryParam:"inline"`
-	LeadCreatedEvent       *LeadCreatedEvent       `queryParam:"inline"`
-	SaleCreatedEvent       *SaleCreatedEvent       `queryParam:"inline"`
-	PartnerEnrolledEvent   *PartnerEnrolledEvent   `queryParam:"inline"`
-	CommissionCreatedEvent *CommissionCreatedEvent `queryParam:"inline"`
+	LinkWebhookEvent       *LinkWebhookEvent       `queryParam:"inline" name:"WebhookEvent"`
+	LinkClickedEvent       *LinkClickedEvent       `queryParam:"inline" name:"WebhookEvent"`
+	LeadCreatedEvent       *LeadCreatedEvent       `queryParam:"inline" name:"WebhookEvent"`
+	SaleCreatedEvent       *SaleCreatedEvent       `queryParam:"inline" name:"WebhookEvent"`
+	PartnerEnrolledEvent   *PartnerEnrolledEvent   `queryParam:"inline" name:"WebhookEvent"`
+	CommissionCreatedEvent *CommissionCreatedEvent `queryParam:"inline" name:"WebhookEvent"`
 
 	Type WebhookEventType
 }
@@ -88,42 +88,42 @@ func CreateWebhookEventCommissionCreatedEvent(commissionCreatedEvent CommissionC
 func (u *WebhookEvent) UnmarshalJSON(data []byte) error {
 
 	var linkWebhookEvent LinkWebhookEvent = LinkWebhookEvent{}
-	if err := utils.UnmarshalJSON(data, &linkWebhookEvent, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &linkWebhookEvent, "", true, nil); err == nil {
 		u.LinkWebhookEvent = &linkWebhookEvent
 		u.Type = WebhookEventTypeLinkWebhookEvent
 		return nil
 	}
 
 	var linkClickedEvent LinkClickedEvent = LinkClickedEvent{}
-	if err := utils.UnmarshalJSON(data, &linkClickedEvent, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &linkClickedEvent, "", true, nil); err == nil {
 		u.LinkClickedEvent = &linkClickedEvent
 		u.Type = WebhookEventTypeLinkClickedEvent
 		return nil
 	}
 
 	var leadCreatedEvent LeadCreatedEvent = LeadCreatedEvent{}
-	if err := utils.UnmarshalJSON(data, &leadCreatedEvent, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &leadCreatedEvent, "", true, nil); err == nil {
 		u.LeadCreatedEvent = &leadCreatedEvent
 		u.Type = WebhookEventTypeLeadCreatedEvent
 		return nil
 	}
 
 	var saleCreatedEvent SaleCreatedEvent = SaleCreatedEvent{}
-	if err := utils.UnmarshalJSON(data, &saleCreatedEvent, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &saleCreatedEvent, "", true, nil); err == nil {
 		u.SaleCreatedEvent = &saleCreatedEvent
 		u.Type = WebhookEventTypeSaleCreatedEvent
 		return nil
 	}
 
 	var partnerEnrolledEvent PartnerEnrolledEvent = PartnerEnrolledEvent{}
-	if err := utils.UnmarshalJSON(data, &partnerEnrolledEvent, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &partnerEnrolledEvent, "", true, nil); err == nil {
 		u.PartnerEnrolledEvent = &partnerEnrolledEvent
 		u.Type = WebhookEventTypePartnerEnrolledEvent
 		return nil
 	}
 
 	var commissionCreatedEvent CommissionCreatedEvent = CommissionCreatedEvent{}
-	if err := utils.UnmarshalJSON(data, &commissionCreatedEvent, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &commissionCreatedEvent, "", true, nil); err == nil {
 		u.CommissionCreatedEvent = &commissionCreatedEvent
 		u.Type = WebhookEventTypeCommissionCreatedEvent
 		return nil

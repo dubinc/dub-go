@@ -49,6 +49,17 @@ type Click struct {
 	IP         string  `json:"ip"`
 }
 
+func (c Click) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *Click) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "timestamp", "url", "country", "city", "region", "continent", "device", "browser", "os", "referer", "refererUrl", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *Click) GetID() string {
 	if o == nil {
 		return ""
@@ -157,6 +168,17 @@ func (o *Click) GetIP() string {
 type ClickEventTestVariants struct {
 	URL        string  `json:"url"`
 	Percentage float64 `json:"percentage"`
+}
+
+func (c ClickEventTestVariants) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ClickEventTestVariants) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"url", "percentage"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ClickEventTestVariants) GetURL() string {
@@ -270,7 +292,7 @@ func (l Link) MarshalJSON() ([]byte, error) {
 }
 
 func (l *Link) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "externalId", "tenantId", "programId", "partnerId", "archived", "expiresAt", "expiredUrl", "password", "proxy", "title", "description", "image", "video", "rewrite", "doIndex", "ios", "android", "geo", "publicStats", "tags", "folderId", "webhookIds", "comments", "shortLink", "qrCode", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "testStartedAt", "testCompletedAt", "userId", "workspaceId", "lastClicked", "createdAt", "updatedAt", "tagId", "projectId"}); err != nil {
 		return err
 	}
 	return nil
@@ -683,6 +705,17 @@ type ClickEvent struct {
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	IP string `json:"ip"`
+}
+
+func (c ClickEvent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ClickEvent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"event", "timestamp", "click", "link", "click_id", "link_id", "domain", "key", "url", "continent", "country", "city", "device", "browser", "os", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ClickEvent) GetEvent() Event {

@@ -17,8 +17,8 @@ const (
 
 // UpdateLinkTagIds - The unique IDs of the tags assigned to the short link.
 type UpdateLinkTagIds struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagIds"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
 
 	Type UpdateLinkTagIdsType
 }
@@ -44,14 +44,14 @@ func CreateUpdateLinkTagIdsArrayOfStr(arrayOfStr []string) UpdateLinkTagIds {
 func (u *UpdateLinkTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = UpdateLinkTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = UpdateLinkTagIdsTypeArrayOfStr
 		return nil
@@ -81,8 +81,8 @@ const (
 
 // UpdateLinkTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type UpdateLinkTagNames struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagNames"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
 
 	Type UpdateLinkTagNamesType
 }
@@ -108,14 +108,14 @@ func CreateUpdateLinkTagNamesArrayOfStr(arrayOfStr []string) UpdateLinkTagNames 
 func (u *UpdateLinkTagNames) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = UpdateLinkTagNamesTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = UpdateLinkTagNamesTypeArrayOfStr
 		return nil

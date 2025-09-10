@@ -17,8 +17,8 @@ const (
 
 // BulkUpdateLinksTagIds - The unique IDs of the tags assigned to the short link.
 type BulkUpdateLinksTagIds struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagIds"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
 
 	Type BulkUpdateLinksTagIdsType
 }
@@ -44,14 +44,14 @@ func CreateBulkUpdateLinksTagIdsArrayOfStr(arrayOfStr []string) BulkUpdateLinksT
 func (u *BulkUpdateLinksTagIds) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = BulkUpdateLinksTagIdsTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = BulkUpdateLinksTagIdsTypeArrayOfStr
 		return nil
@@ -81,8 +81,8 @@ const (
 
 // BulkUpdateLinksTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type BulkUpdateLinksTagNames struct {
-	Str        *string  `queryParam:"inline"`
-	ArrayOfStr []string `queryParam:"inline"`
+	Str        *string  `queryParam:"inline" name:"tagNames"`
+	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
 
 	Type BulkUpdateLinksTagNamesType
 }
@@ -108,14 +108,14 @@ func CreateBulkUpdateLinksTagNamesArrayOfStr(arrayOfStr []string) BulkUpdateLink
 func (u *BulkUpdateLinksTagNames) UnmarshalJSON(data []byte) error {
 
 	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		u.Str = &str
 		u.Type = BulkUpdateLinksTagNamesTypeStr
 		return nil
 	}
 
 	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, false); err == nil {
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		u.ArrayOfStr = arrayOfStr
 		u.Type = BulkUpdateLinksTagNamesTypeArrayOfStr
 		return nil
