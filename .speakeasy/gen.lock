@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 54c12f37004dd851733d9c6060b4addb
+  docChecksum: ca039d761420ae6bf30481214b90948f
   docVersion: 0.0.1
-  speakeasyVersion: 1.615.0
-  generationVersion: 2.698.0
-  releaseVersion: 0.18.2
-  configChecksum: 36c31ad232316f7447632d893317ce30
+  speakeasyVersion: 1.615.2
+  generationVersion: 2.698.4
+  releaseVersion: 0.18.3
+  configChecksum: f6d923e5a6e8b7b8f6565338270e5e6a
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
@@ -20,7 +20,7 @@ features:
     errors: 2.83.0
     examples: 2.81.5
     flattening: 2.81.1
-    globalSecurity: 2.82.11
+    globalSecurity: 2.82.12
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.3
@@ -380,6 +380,7 @@ generatedFiles:
   - docs/models/operations/tagnames.md
   - docs/models/operations/testvariants.md
   - docs/models/operations/three.md
+  - docs/models/operations/trackleadlink.md
   - docs/models/operations/trackleadrequestbody.md
   - docs/models/operations/trackleadresponsebody.md
   - docs/models/operations/tracksalecustomer.md
@@ -1160,7 +1161,7 @@ examples:
         application/json: {"clickId": "<id>", "eventName": "Sign up", "customerExternalId": "<id>", "customerName": null, "customerEmail": null, "customerAvatar": null, "mode": "async"}
       responses:
         "200":
-          application/json: {"click": {"id": "<id>"}, "customer": {"name": "<value>", "email": "Beaulah.Hamill78@gmail.com", "avatar": "https://picsum.photos/seed/4p2vQu6/2339/955", "externalId": "<id>"}}
+          application/json: {"click": {"id": "<id>"}, "link": {"id": "<id>", "domain": "caring-editor.biz", "key": "<key>", "shortLink": "https://spotless-airbus.name/", "url": "https://quarrelsome-incandescence.com/", "partnerId": "<id>", "programId": null, "tenantId": "<id>", "externalId": "<id>"}, "customer": {"name": "<value>", "email": "Beaulah.Hamill78@gmail.com", "avatar": "https://picsum.photos/seed/4p2vQu6/2339/955", "externalId": "<id>"}}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -1744,4 +1745,4 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Go SDK Changes Detected:
-  * `Dub.Track.Sale()`:  `request.Request` **Changed**
+  * `Dub.Track.Lead()`:  `response.Link` **Added**

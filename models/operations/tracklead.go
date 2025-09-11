@@ -144,6 +144,90 @@ func (o *Click) GetID() string {
 	return o.ID
 }
 
+type TrackLeadLink struct {
+	// The unique ID of the short link.
+	ID string `json:"id"`
+	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
+	Domain string `json:"domain"`
+	// The short link slug. If not provided, a random 7-character slug will be generated.
+	Key string `json:"key"`
+	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
+	ShortLink string `json:"shortLink"`
+	// The destination URL of the short link.
+	URL string `json:"url"`
+	// The ID of the partner the short link is associated with.
+	PartnerID *string `json:"partnerId"`
+	// The ID of the program the short link is associated with.
+	ProgramID *string `json:"programId"`
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	TenantID *string `json:"tenantId"`
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
+	ExternalID *string `json:"externalId"`
+}
+
+func (o *TrackLeadLink) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *TrackLeadLink) GetDomain() string {
+	if o == nil {
+		return ""
+	}
+	return o.Domain
+}
+
+func (o *TrackLeadLink) GetKey() string {
+	if o == nil {
+		return ""
+	}
+	return o.Key
+}
+
+func (o *TrackLeadLink) GetShortLink() string {
+	if o == nil {
+		return ""
+	}
+	return o.ShortLink
+}
+
+func (o *TrackLeadLink) GetURL() string {
+	if o == nil {
+		return ""
+	}
+	return o.URL
+}
+
+func (o *TrackLeadLink) GetPartnerID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PartnerID
+}
+
+func (o *TrackLeadLink) GetProgramID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProgramID
+}
+
+func (o *TrackLeadLink) GetTenantID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TenantID
+}
+
+func (o *TrackLeadLink) GetExternalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ExternalID
+}
+
 type Customer struct {
 	Name       *string `json:"name"`
 	Email      *string `json:"email"`
@@ -181,8 +265,9 @@ func (o *Customer) GetExternalID() *string {
 
 // TrackLeadResponseBody - A lead was tracked.
 type TrackLeadResponseBody struct {
-	Click    Click    `json:"click"`
-	Customer Customer `json:"customer"`
+	Click    Click          `json:"click"`
+	Link     *TrackLeadLink `json:"link"`
+	Customer Customer       `json:"customer"`
 }
 
 func (o *TrackLeadResponseBody) GetClick() Click {
@@ -190,6 +275,13 @@ func (o *TrackLeadResponseBody) GetClick() Click {
 		return Click{}
 	}
 	return o.Click
+}
+
+func (o *TrackLeadResponseBody) GetLink() *TrackLeadLink {
+	if o == nil {
+		return nil
+	}
+	return o.Link
 }
 
 func (o *TrackLeadResponseBody) GetCustomer() Customer {
