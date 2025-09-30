@@ -54,14 +54,14 @@ func (e *ListPartnersQueryParamStatus) UnmarshalJSON(data []byte) error {
 type ListPartnersQueryParamSortBy string
 
 const (
-	ListPartnersQueryParamSortByCreatedAt   ListPartnersQueryParamSortBy = "createdAt"
-	ListPartnersQueryParamSortByClicks      ListPartnersQueryParamSortBy = "clicks"
-	ListPartnersQueryParamSortByLeads       ListPartnersQueryParamSortBy = "leads"
-	ListPartnersQueryParamSortByConversions ListPartnersQueryParamSortBy = "conversions"
-	ListPartnersQueryParamSortBySales       ListPartnersQueryParamSortBy = "sales"
-	ListPartnersQueryParamSortBySaleAmount  ListPartnersQueryParamSortBy = "saleAmount"
-	ListPartnersQueryParamSortByCommissions ListPartnersQueryParamSortBy = "commissions"
-	ListPartnersQueryParamSortByNetRevenue  ListPartnersQueryParamSortBy = "netRevenue"
+	ListPartnersQueryParamSortByCreatedAt        ListPartnersQueryParamSortBy = "createdAt"
+	ListPartnersQueryParamSortByClicks           ListPartnersQueryParamSortBy = "clicks"
+	ListPartnersQueryParamSortByLeads            ListPartnersQueryParamSortBy = "leads"
+	ListPartnersQueryParamSortByConversions      ListPartnersQueryParamSortBy = "conversions"
+	ListPartnersQueryParamSortBySales            ListPartnersQueryParamSortBy = "sales"
+	ListPartnersQueryParamSortBySaleAmount       ListPartnersQueryParamSortBy = "saleAmount"
+	ListPartnersQueryParamSortByTotalCommissions ListPartnersQueryParamSortBy = "totalCommissions"
+	ListPartnersQueryParamSortByNetRevenue       ListPartnersQueryParamSortBy = "netRevenue"
 )
 
 func (e ListPartnersQueryParamSortBy) ToPointer() *ListPartnersQueryParamSortBy {
@@ -85,7 +85,7 @@ func (e *ListPartnersQueryParamSortBy) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "saleAmount":
 		fallthrough
-	case "commissions":
+	case "totalCommissions":
 		fallthrough
 	case "netRevenue":
 		*e = ListPartnersQueryParamSortBy(v)
@@ -131,12 +131,14 @@ type ListPartnersRequest struct {
 	SortBy *ListPartnersQueryParamSortBy `default:"saleAmount" queryParam:"style=form,explode=true,name=sortBy"`
 	// The sort order. The default is `desc`.
 	SortOrder *ListPartnersQueryParamSortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
-	// A case-sensitive filter on the list based on the partner's `tenantId` field. The value must be a string. Takes precedence over `search`.
+	// Filter the partner list based on the partner's `email`. The value must be a string. Takes precedence over `search`.
+	Email *string `queryParam:"style=form,explode=true,name=email"`
+	// Filter the partner list based on the partner's `tenantId`. The value must be a string. Takes precedence over `email` and `search`.
 	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
+	// A search query to filter partners by ID, name, email, or link.
+	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// Whether to include stats fields on the partner (`clicks`, `leads`, `conversions`, `sales`, `saleAmount`, `commissions`, `netRevenue`). If false, those fields will be returned as 0.
 	IncludeExpandedFields *bool `queryParam:"style=form,explode=true,name=includeExpandedFields"`
-	// A search query to filter partners by name, email, or tenantId.
-	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// The page number for pagination.
 	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
@@ -154,67 +156,74 @@ func (l *ListPartnersRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ListPartnersRequest) GetStatus() *ListPartnersQueryParamStatus {
-	if o == nil {
+func (l *ListPartnersRequest) GetStatus() *ListPartnersQueryParamStatus {
+	if l == nil {
 		return nil
 	}
-	return o.Status
+	return l.Status
 }
 
-func (o *ListPartnersRequest) GetCountry() *string {
-	if o == nil {
+func (l *ListPartnersRequest) GetCountry() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Country
+	return l.Country
 }
 
-func (o *ListPartnersRequest) GetSortBy() *ListPartnersQueryParamSortBy {
-	if o == nil {
+func (l *ListPartnersRequest) GetSortBy() *ListPartnersQueryParamSortBy {
+	if l == nil {
 		return nil
 	}
-	return o.SortBy
+	return l.SortBy
 }
 
-func (o *ListPartnersRequest) GetSortOrder() *ListPartnersQueryParamSortOrder {
-	if o == nil {
+func (l *ListPartnersRequest) GetSortOrder() *ListPartnersQueryParamSortOrder {
+	if l == nil {
 		return nil
 	}
-	return o.SortOrder
+	return l.SortOrder
 }
 
-func (o *ListPartnersRequest) GetTenantID() *string {
-	if o == nil {
+func (l *ListPartnersRequest) GetEmail() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TenantID
+	return l.Email
 }
 
-func (o *ListPartnersRequest) GetIncludeExpandedFields() *bool {
-	if o == nil {
+func (l *ListPartnersRequest) GetTenantID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.IncludeExpandedFields
+	return l.TenantID
 }
 
-func (o *ListPartnersRequest) GetSearch() *string {
-	if o == nil {
+func (l *ListPartnersRequest) GetSearch() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Search
+	return l.Search
 }
 
-func (o *ListPartnersRequest) GetPage() *float64 {
-	if o == nil {
+func (l *ListPartnersRequest) GetIncludeExpandedFields() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Page
+	return l.IncludeExpandedFields
 }
 
-func (o *ListPartnersRequest) GetPageSize() *float64 {
-	if o == nil {
+func (l *ListPartnersRequest) GetPage() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.PageSize
+	return l.Page
+}
+
+func (l *ListPartnersRequest) GetPageSize() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.PageSize
 }
 
 // ListPartnersStatus - The status of the partner's enrollment in the program.
@@ -274,6 +283,8 @@ type ListPartnersLink struct {
 	Clicks *float64 `default:"0" json:"clicks"`
 	// The number of leads the short link has generated.
 	Leads *float64 `default:"0" json:"leads"`
+	// The number of leads that converted to paying customers.
+	Conversions *float64 `default:"0" json:"conversions"`
 	// The total number of sales (includes recurring sales) generated by the short link.
 	Sales *float64 `default:"0" json:"sales"`
 	// The total dollar value of sales (in cents) generated by the short link.
@@ -291,67 +302,74 @@ func (l *ListPartnersLink) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ListPartnersLink) GetID() string {
-	if o == nil {
+func (l *ListPartnersLink) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ID
+	return l.ID
 }
 
-func (o *ListPartnersLink) GetDomain() string {
-	if o == nil {
+func (l *ListPartnersLink) GetDomain() string {
+	if l == nil {
 		return ""
 	}
-	return o.Domain
+	return l.Domain
 }
 
-func (o *ListPartnersLink) GetKey() string {
-	if o == nil {
+func (l *ListPartnersLink) GetKey() string {
+	if l == nil {
 		return ""
 	}
-	return o.Key
+	return l.Key
 }
 
-func (o *ListPartnersLink) GetShortLink() string {
-	if o == nil {
+func (l *ListPartnersLink) GetShortLink() string {
+	if l == nil {
 		return ""
 	}
-	return o.ShortLink
+	return l.ShortLink
 }
 
-func (o *ListPartnersLink) GetURL() string {
-	if o == nil {
+func (l *ListPartnersLink) GetURL() string {
+	if l == nil {
 		return ""
 	}
-	return o.URL
+	return l.URL
 }
 
-func (o *ListPartnersLink) GetClicks() *float64 {
-	if o == nil {
+func (l *ListPartnersLink) GetClicks() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Clicks
+	return l.Clicks
 }
 
-func (o *ListPartnersLink) GetLeads() *float64 {
-	if o == nil {
+func (l *ListPartnersLink) GetLeads() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Leads
+	return l.Leads
 }
 
-func (o *ListPartnersLink) GetSales() *float64 {
-	if o == nil {
+func (l *ListPartnersLink) GetConversions() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Sales
+	return l.Conversions
 }
 
-func (o *ListPartnersLink) GetSaleAmount() *float64 {
-	if o == nil {
+func (l *ListPartnersLink) GetSales() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return l.Sales
+}
+
+func (l *ListPartnersLink) GetSaleAmount() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.SaleAmount
 }
 
 // ListPartnersBannedReason - If the partner was banned from the program, this is the reason for the ban.
@@ -398,6 +416,8 @@ type ListPartnersResponseBody struct {
 	ID string `json:"id"`
 	// The partner's full legal name.
 	Name string `json:"name"`
+	// If the partner profile type is a company, this is the partner's legal company name.
+	CompanyName *string `json:"companyName"`
 	// The partner's email address. Should be a unique value across Dub.
 	Email *string `json:"email"`
 	// The partner's avatar image.
@@ -450,26 +470,17 @@ type ListPartnersResponseBody struct {
 	// The total net revenue generated by the partner. Defaults to 0 if `includeExpandedFields` is false.
 	NetRevenue *float64 `default:"0" json:"netRevenue"`
 	// The partner's website URL (including the https protocol).
-	Website           *string `json:"website,omitempty"`
-	WebsiteTxtRecord  *string `json:"websiteTxtRecord,omitempty"`
-	WebsiteVerifiedAt *string `json:"websiteVerifiedAt,omitempty"`
+	Website *string `json:"website,omitempty"`
 	// The partner's YouTube channel username (e.g. `johndoe`).
-	Youtube                *string  `json:"youtube,omitempty"`
-	YoutubeVerifiedAt      *string  `json:"youtubeVerifiedAt,omitempty"`
-	YoutubeSubscriberCount *float64 `json:"youtubeSubscriberCount,omitempty"`
-	YoutubeViewCount       *float64 `json:"youtubeViewCount,omitempty"`
+	Youtube *string `json:"youtube,omitempty"`
 	// The partner's Twitter username (e.g. `johndoe`).
-	Twitter           *string `json:"twitter,omitempty"`
-	TwitterVerifiedAt *string `json:"twitterVerifiedAt,omitempty"`
+	Twitter *string `json:"twitter,omitempty"`
 	// The partner's LinkedIn username (e.g. `johndoe`).
-	Linkedin           *string `json:"linkedin,omitempty"`
-	LinkedinVerifiedAt *string `json:"linkedinVerifiedAt,omitempty"`
+	Linkedin *string `json:"linkedin,omitempty"`
 	// The partner's Instagram username (e.g. `johndoe`).
-	Instagram           *string `json:"instagram,omitempty"`
-	InstagramVerifiedAt *string `json:"instagramVerifiedAt,omitempty"`
+	Instagram *string `json:"instagram,omitempty"`
 	// The partner's TikTok username (e.g. `johndoe`).
-	Tiktok           *string `json:"tiktok,omitempty"`
-	TiktokVerifiedAt *string `json:"tiktokVerifiedAt,omitempty"`
+	Tiktok *string `json:"tiktok,omitempty"`
 }
 
 func (l ListPartnersResponseBody) MarshalJSON() ([]byte, error) {
@@ -477,323 +488,267 @@ func (l ListPartnersResponseBody) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListPartnersResponseBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "name", "email", "image", "country", "paypalEmail", "stripeConnectId", "payoutsEnabledAt", "programId", "partnerId", "tenantId", "createdAt", "status", "links"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "name", "companyName", "email", "image", "country", "paypalEmail", "stripeConnectId", "payoutsEnabledAt", "programId", "partnerId", "tenantId", "createdAt", "status", "links"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ListPartnersResponseBody) GetID() string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ID
+	return l.ID
 }
 
-func (o *ListPartnersResponseBody) GetName() string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetName() string {
+	if l == nil {
 		return ""
 	}
-	return o.Name
+	return l.Name
 }
 
-func (o *ListPartnersResponseBody) GetEmail() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetCompanyName() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Email
+	return l.CompanyName
 }
 
-func (o *ListPartnersResponseBody) GetImage() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetEmail() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Image
+	return l.Email
 }
 
-func (o *ListPartnersResponseBody) GetDescription() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetImage() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Description
+	return l.Image
 }
 
-func (o *ListPartnersResponseBody) GetCountry() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetDescription() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Country
+	return l.Description
 }
 
-func (o *ListPartnersResponseBody) GetPaypalEmail() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetCountry() *string {
+	if l == nil {
 		return nil
 	}
-	return o.PaypalEmail
+	return l.Country
 }
 
-func (o *ListPartnersResponseBody) GetStripeConnectID() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetPaypalEmail() *string {
+	if l == nil {
 		return nil
 	}
-	return o.StripeConnectID
+	return l.PaypalEmail
 }
 
-func (o *ListPartnersResponseBody) GetPayoutsEnabledAt() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetStripeConnectID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.PayoutsEnabledAt
+	return l.StripeConnectID
 }
 
-func (o *ListPartnersResponseBody) GetProgramID() string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetPayoutsEnabledAt() *string {
+	if l == nil {
+		return nil
+	}
+	return l.PayoutsEnabledAt
+}
+
+func (l *ListPartnersResponseBody) GetProgramID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ProgramID
+	return l.ProgramID
 }
 
-func (o *ListPartnersResponseBody) GetGroupID() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetGroupID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.GroupID
+	return l.GroupID
 }
 
-func (o *ListPartnersResponseBody) GetPartnerID() string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetPartnerID() string {
+	if l == nil {
 		return ""
 	}
-	return o.PartnerID
+	return l.PartnerID
 }
 
-func (o *ListPartnersResponseBody) GetTenantID() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetTenantID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TenantID
+	return l.TenantID
 }
 
-func (o *ListPartnersResponseBody) GetCreatedAt() string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetCreatedAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return l.CreatedAt
 }
 
-func (o *ListPartnersResponseBody) GetStatus() ListPartnersStatus {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetStatus() ListPartnersStatus {
+	if l == nil {
 		return ListPartnersStatus("")
 	}
-	return o.Status
+	return l.Status
 }
 
-func (o *ListPartnersResponseBody) GetLinks() []ListPartnersLink {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetLinks() []ListPartnersLink {
+	if l == nil {
 		return nil
 	}
-	return o.Links
+	return l.Links
 }
 
-func (o *ListPartnersResponseBody) GetTotalCommissions() *float64 {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetTotalCommissions() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.TotalCommissions
+	return l.TotalCommissions
 }
 
-func (o *ListPartnersResponseBody) GetClickRewardID() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetClickRewardID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ClickRewardID
+	return l.ClickRewardID
 }
 
-func (o *ListPartnersResponseBody) GetLeadRewardID() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetLeadRewardID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.LeadRewardID
+	return l.LeadRewardID
 }
 
-func (o *ListPartnersResponseBody) GetSaleRewardID() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetSaleRewardID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.SaleRewardID
+	return l.SaleRewardID
 }
 
-func (o *ListPartnersResponseBody) GetDiscountID() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetDiscountID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.DiscountID
+	return l.DiscountID
 }
 
-func (o *ListPartnersResponseBody) GetApplicationID() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetApplicationID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ApplicationID
+	return l.ApplicationID
 }
 
-func (o *ListPartnersResponseBody) GetBannedAt() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetBannedAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.BannedAt
+	return l.BannedAt
 }
 
-func (o *ListPartnersResponseBody) GetBannedReason() *ListPartnersBannedReason {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetBannedReason() *ListPartnersBannedReason {
+	if l == nil {
 		return nil
 	}
-	return o.BannedReason
+	return l.BannedReason
 }
 
-func (o *ListPartnersResponseBody) GetClicks() *float64 {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetClicks() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Clicks
+	return l.Clicks
 }
 
-func (o *ListPartnersResponseBody) GetLeads() *float64 {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetLeads() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Leads
+	return l.Leads
 }
 
-func (o *ListPartnersResponseBody) GetConversions() *float64 {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetConversions() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Conversions
+	return l.Conversions
 }
 
-func (o *ListPartnersResponseBody) GetSales() *float64 {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetSales() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Sales
+	return l.Sales
 }
 
-func (o *ListPartnersResponseBody) GetSaleAmount() *float64 {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetSaleAmount() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return l.SaleAmount
 }
 
-func (o *ListPartnersResponseBody) GetNetRevenue() *float64 {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetNetRevenue() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.NetRevenue
+	return l.NetRevenue
 }
 
-func (o *ListPartnersResponseBody) GetWebsite() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetWebsite() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Website
+	return l.Website
 }
 
-func (o *ListPartnersResponseBody) GetWebsiteTxtRecord() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetYoutube() *string {
+	if l == nil {
 		return nil
 	}
-	return o.WebsiteTxtRecord
+	return l.Youtube
 }
 
-func (o *ListPartnersResponseBody) GetWebsiteVerifiedAt() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetTwitter() *string {
+	if l == nil {
 		return nil
 	}
-	return o.WebsiteVerifiedAt
+	return l.Twitter
 }
 
-func (o *ListPartnersResponseBody) GetYoutube() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetLinkedin() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Youtube
+	return l.Linkedin
 }
 
-func (o *ListPartnersResponseBody) GetYoutubeVerifiedAt() *string {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetInstagram() *string {
+	if l == nil {
 		return nil
 	}
-	return o.YoutubeVerifiedAt
+	return l.Instagram
 }
 
-func (o *ListPartnersResponseBody) GetYoutubeSubscriberCount() *float64 {
-	if o == nil {
+func (l *ListPartnersResponseBody) GetTiktok() *string {
+	if l == nil {
 		return nil
 	}
-	return o.YoutubeSubscriberCount
-}
-
-func (o *ListPartnersResponseBody) GetYoutubeViewCount() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.YoutubeViewCount
-}
-
-func (o *ListPartnersResponseBody) GetTwitter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Twitter
-}
-
-func (o *ListPartnersResponseBody) GetTwitterVerifiedAt() *string {
-	if o == nil {
-		return nil
-	}
-	return o.TwitterVerifiedAt
-}
-
-func (o *ListPartnersResponseBody) GetLinkedin() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Linkedin
-}
-
-func (o *ListPartnersResponseBody) GetLinkedinVerifiedAt() *string {
-	if o == nil {
-		return nil
-	}
-	return o.LinkedinVerifiedAt
-}
-
-func (o *ListPartnersResponseBody) GetInstagram() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Instagram
-}
-
-func (o *ListPartnersResponseBody) GetInstagramVerifiedAt() *string {
-	if o == nil {
-		return nil
-	}
-	return o.InstagramVerifiedAt
-}
-
-func (o *ListPartnersResponseBody) GetTiktok() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Tiktok
-}
-
-func (o *ListPartnersResponseBody) GetTiktokVerifiedAt() *string {
-	if o == nil {
-		return nil
-	}
-	return o.TiktokVerifiedAt
+	return l.Tiktok
 }

@@ -80,51 +80,51 @@ func (a *AnalyticsCountries) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AnalyticsCountries) GetCountry() string {
-	if o == nil {
+func (a *AnalyticsCountries) GetCountry() string {
+	if a == nil {
 		return ""
 	}
-	return o.Country
+	return a.Country
 }
 
-func (o *AnalyticsCountries) GetRegion() *Region {
-	if o == nil {
+func (a *AnalyticsCountries) GetRegion() *Region {
+	if a == nil {
 		return nil
 	}
-	return o.Region
+	return a.Region
 }
 
-func (o *AnalyticsCountries) GetCity() *City {
-	if o == nil {
+func (a *AnalyticsCountries) GetCity() *City {
+	if a == nil {
 		return nil
 	}
-	return o.City
+	return a.City
 }
 
-func (o *AnalyticsCountries) GetClicks() *float64 {
-	if o == nil {
+func (a *AnalyticsCountries) GetClicks() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Clicks
+	return a.Clicks
 }
 
-func (o *AnalyticsCountries) GetLeads() *float64 {
-	if o == nil {
+func (a *AnalyticsCountries) GetLeads() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Leads
+	return a.Leads
 }
 
-func (o *AnalyticsCountries) GetSales() *float64 {
-	if o == nil {
+func (a *AnalyticsCountries) GetSales() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Sales
+	return a.Sales
 }
 
-func (o *AnalyticsCountries) GetSaleAmount() *float64 {
-	if o == nil {
+func (a *AnalyticsCountries) GetSaleAmount() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return a.SaleAmount
 }

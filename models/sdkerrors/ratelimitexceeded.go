@@ -40,25 +40,25 @@ type RateLimitExceededError struct {
 	DocURL *string `json:"doc_url,omitempty"`
 }
 
-func (o *RateLimitExceededError) GetCode() RateLimitExceededCode {
-	if o == nil {
+func (r *RateLimitExceededError) GetCode() RateLimitExceededCode {
+	if r == nil {
 		return RateLimitExceededCode("")
 	}
-	return o.Code
+	return r.Code
 }
 
-func (o *RateLimitExceededError) GetMessage() string {
-	if o == nil {
+func (r *RateLimitExceededError) GetMessage() string {
+	if r == nil {
 		return ""
 	}
-	return o.Message
+	return r.Message
 }
 
-func (o *RateLimitExceededError) GetDocURL() *string {
-	if o == nil {
+func (r *RateLimitExceededError) GetDocURL() *string {
+	if r == nil {
 		return nil
 	}
-	return o.DocURL
+	return r.DocURL
 }
 
 // RateLimitExceeded - The user has sent too many requests in a given amount of time ("rate limiting")

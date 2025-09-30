@@ -40,25 +40,25 @@ type ConflictError struct {
 	DocURL *string `json:"doc_url,omitempty"`
 }
 
-func (o *ConflictError) GetCode() ConflictCode {
-	if o == nil {
+func (c *ConflictError) GetCode() ConflictCode {
+	if c == nil {
 		return ConflictCode("")
 	}
-	return o.Code
+	return c.Code
 }
 
-func (o *ConflictError) GetMessage() string {
-	if o == nil {
+func (c *ConflictError) GetMessage() string {
+	if c == nil {
 		return ""
 	}
-	return o.Message
+	return c.Message
 }
 
-func (o *ConflictError) GetDocURL() *string {
-	if o == nil {
+func (c *ConflictError) GetDocURL() *string {
+	if c == nil {
 		return nil
 	}
-	return o.DocURL
+	return c.DocURL
 }
 
 // Conflict - This response is sent when a request conflicts with the current state of the server.

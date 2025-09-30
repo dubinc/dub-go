@@ -22,18 +22,18 @@ func (t *TestVariants) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TestVariants) GetURL() string {
-	if o == nil {
+func (t *TestVariants) GetURL() string {
+	if t == nil {
 		return ""
 	}
-	return o.URL
+	return t.URL
 }
 
-func (o *TestVariants) GetPercentage() float64 {
-	if o == nil {
+func (t *TestVariants) GetPercentage() float64 {
+	if t == nil {
 		return 0.0
 	}
-	return o.Percentage
+	return t.Percentage
 }
 
 type LinkSchema struct {
@@ -154,352 +154,352 @@ func (l *LinkSchema) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *LinkSchema) GetID() string {
-	if o == nil {
+func (l *LinkSchema) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ID
+	return l.ID
 }
 
-func (o *LinkSchema) GetDomain() string {
-	if o == nil {
+func (l *LinkSchema) GetDomain() string {
+	if l == nil {
 		return ""
 	}
-	return o.Domain
+	return l.Domain
 }
 
-func (o *LinkSchema) GetKey() string {
-	if o == nil {
+func (l *LinkSchema) GetKey() string {
+	if l == nil {
 		return ""
 	}
-	return o.Key
+	return l.Key
 }
 
-func (o *LinkSchema) GetURL() string {
-	if o == nil {
+func (l *LinkSchema) GetURL() string {
+	if l == nil {
 		return ""
 	}
-	return o.URL
+	return l.URL
 }
 
-func (o *LinkSchema) GetTrackConversion() *bool {
-	if o == nil {
+func (l *LinkSchema) GetTrackConversion() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.TrackConversion
+	return l.TrackConversion
 }
 
-func (o *LinkSchema) GetExternalID() *string {
-	if o == nil {
+func (l *LinkSchema) GetExternalID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ExternalID
+	return l.ExternalID
 }
 
-func (o *LinkSchema) GetTenantID() *string {
-	if o == nil {
+func (l *LinkSchema) GetTenantID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TenantID
+	return l.TenantID
 }
 
-func (o *LinkSchema) GetProgramID() *string {
-	if o == nil {
+func (l *LinkSchema) GetProgramID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ProgramID
+	return l.ProgramID
 }
 
-func (o *LinkSchema) GetPartnerID() *string {
-	if o == nil {
+func (l *LinkSchema) GetPartnerID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.PartnerID
+	return l.PartnerID
 }
 
-func (o *LinkSchema) GetArchived() *bool {
-	if o == nil {
+func (l *LinkSchema) GetArchived() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Archived
+	return l.Archived
 }
 
-func (o *LinkSchema) GetExpiresAt() *string {
-	if o == nil {
+func (l *LinkSchema) GetExpiresAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ExpiresAt
+	return l.ExpiresAt
 }
 
-func (o *LinkSchema) GetExpiredURL() *string {
-	if o == nil {
+func (l *LinkSchema) GetExpiredURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return l.ExpiredURL
 }
 
-func (o *LinkSchema) GetPassword() *string {
-	if o == nil {
+func (l *LinkSchema) GetPassword() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Password
+	return l.Password
 }
 
-func (o *LinkSchema) GetProxy() *bool {
-	if o == nil {
+func (l *LinkSchema) GetProxy() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Proxy
+	return l.Proxy
 }
 
-func (o *LinkSchema) GetTitle() *string {
-	if o == nil {
+func (l *LinkSchema) GetTitle() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Title
+	return l.Title
 }
 
-func (o *LinkSchema) GetDescription() *string {
-	if o == nil {
+func (l *LinkSchema) GetDescription() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Description
+	return l.Description
 }
 
-func (o *LinkSchema) GetImage() *string {
-	if o == nil {
+func (l *LinkSchema) GetImage() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Image
+	return l.Image
 }
 
-func (o *LinkSchema) GetVideo() *string {
-	if o == nil {
+func (l *LinkSchema) GetVideo() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Video
+	return l.Video
 }
 
-func (o *LinkSchema) GetRewrite() *bool {
-	if o == nil {
+func (l *LinkSchema) GetRewrite() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Rewrite
+	return l.Rewrite
 }
 
-func (o *LinkSchema) GetDoIndex() *bool {
-	if o == nil {
+func (l *LinkSchema) GetDoIndex() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.DoIndex
+	return l.DoIndex
 }
 
-func (o *LinkSchema) GetIos() *string {
-	if o == nil {
+func (l *LinkSchema) GetIos() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Ios
+	return l.Ios
 }
 
-func (o *LinkSchema) GetAndroid() *string {
-	if o == nil {
+func (l *LinkSchema) GetAndroid() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Android
+	return l.Android
 }
 
-func (o *LinkSchema) GetGeo() map[string]string {
-	if o == nil {
+func (l *LinkSchema) GetGeo() map[string]string {
+	if l == nil {
 		return nil
 	}
-	return o.Geo
+	return l.Geo
 }
 
-func (o *LinkSchema) GetPublicStats() *bool {
-	if o == nil {
+func (l *LinkSchema) GetPublicStats() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.PublicStats
+	return l.PublicStats
 }
 
-func (o *LinkSchema) GetTags() []TagSchema {
-	if o == nil {
+func (l *LinkSchema) GetTags() []TagSchema {
+	if l == nil {
 		return nil
 	}
-	return o.Tags
+	return l.Tags
 }
 
-func (o *LinkSchema) GetFolderID() *string {
-	if o == nil {
+func (l *LinkSchema) GetFolderID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.FolderID
+	return l.FolderID
 }
 
-func (o *LinkSchema) GetWebhookIds() []string {
-	if o == nil {
+func (l *LinkSchema) GetWebhookIds() []string {
+	if l == nil {
 		return []string{}
 	}
-	return o.WebhookIds
+	return l.WebhookIds
 }
 
-func (o *LinkSchema) GetComments() *string {
-	if o == nil {
+func (l *LinkSchema) GetComments() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Comments
+	return l.Comments
 }
 
-func (o *LinkSchema) GetShortLink() string {
-	if o == nil {
+func (l *LinkSchema) GetShortLink() string {
+	if l == nil {
 		return ""
 	}
-	return o.ShortLink
+	return l.ShortLink
 }
 
-func (o *LinkSchema) GetQrCode() string {
-	if o == nil {
+func (l *LinkSchema) GetQrCode() string {
+	if l == nil {
 		return ""
 	}
-	return o.QrCode
+	return l.QrCode
 }
 
-func (o *LinkSchema) GetUtmSource() *string {
-	if o == nil {
+func (l *LinkSchema) GetUtmSource() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmSource
+	return l.UtmSource
 }
 
-func (o *LinkSchema) GetUtmMedium() *string {
-	if o == nil {
+func (l *LinkSchema) GetUtmMedium() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmMedium
+	return l.UtmMedium
 }
 
-func (o *LinkSchema) GetUtmCampaign() *string {
-	if o == nil {
+func (l *LinkSchema) GetUtmCampaign() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmCampaign
+	return l.UtmCampaign
 }
 
-func (o *LinkSchema) GetUtmTerm() *string {
-	if o == nil {
+func (l *LinkSchema) GetUtmTerm() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmTerm
+	return l.UtmTerm
 }
 
-func (o *LinkSchema) GetUtmContent() *string {
-	if o == nil {
+func (l *LinkSchema) GetUtmContent() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmContent
+	return l.UtmContent
 }
 
-func (o *LinkSchema) GetTestVariants() []TestVariants {
-	if o == nil {
+func (l *LinkSchema) GetTestVariants() []TestVariants {
+	if l == nil {
 		return nil
 	}
-	return o.TestVariants
+	return l.TestVariants
 }
 
-func (o *LinkSchema) GetTestStartedAt() *string {
-	if o == nil {
+func (l *LinkSchema) GetTestStartedAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TestStartedAt
+	return l.TestStartedAt
 }
 
-func (o *LinkSchema) GetTestCompletedAt() *string {
-	if o == nil {
+func (l *LinkSchema) GetTestCompletedAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TestCompletedAt
+	return l.TestCompletedAt
 }
 
-func (o *LinkSchema) GetUserID() *string {
-	if o == nil {
+func (l *LinkSchema) GetUserID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UserID
+	return l.UserID
 }
 
-func (o *LinkSchema) GetWorkspaceID() string {
-	if o == nil {
+func (l *LinkSchema) GetWorkspaceID() string {
+	if l == nil {
 		return ""
 	}
-	return o.WorkspaceID
+	return l.WorkspaceID
 }
 
-func (o *LinkSchema) GetClicks() *float64 {
-	if o == nil {
+func (l *LinkSchema) GetClicks() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Clicks
+	return l.Clicks
 }
 
-func (o *LinkSchema) GetLeads() *float64 {
-	if o == nil {
+func (l *LinkSchema) GetLeads() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Leads
+	return l.Leads
 }
 
-func (o *LinkSchema) GetConversions() *float64 {
-	if o == nil {
+func (l *LinkSchema) GetConversions() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Conversions
+	return l.Conversions
 }
 
-func (o *LinkSchema) GetSales() *float64 {
-	if o == nil {
+func (l *LinkSchema) GetSales() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Sales
+	return l.Sales
 }
 
-func (o *LinkSchema) GetSaleAmount() *float64 {
-	if o == nil {
+func (l *LinkSchema) GetSaleAmount() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return l.SaleAmount
 }
 
-func (o *LinkSchema) GetLastClicked() *string {
-	if o == nil {
+func (l *LinkSchema) GetLastClicked() *string {
+	if l == nil {
 		return nil
 	}
-	return o.LastClicked
+	return l.LastClicked
 }
 
-func (o *LinkSchema) GetCreatedAt() string {
-	if o == nil {
+func (l *LinkSchema) GetCreatedAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return l.CreatedAt
 }
 
-func (o *LinkSchema) GetUpdatedAt() string {
-	if o == nil {
+func (l *LinkSchema) GetUpdatedAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.UpdatedAt
+	return l.UpdatedAt
 }
 
-func (o *LinkSchema) GetTagID() *string {
-	if o == nil {
+func (l *LinkSchema) GetTagID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TagID
+	return l.TagID
 }
 
-func (o *LinkSchema) GetProjectID() string {
-	if o == nil {
+func (l *LinkSchema) GetProjectID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ProjectID
+	return l.ProjectID
 }

@@ -35,7 +35,7 @@ func main() {
         Partner: &operations.Partner{
             Email: "Letha_Wuckert2@yahoo.com",
             LinkProps: &operations.CreateReferralsEmbedTokenLinkProps{
-                ExternalID: dubgo.String("123456"),
+                ExternalID: dubgo.Pointer("123456"),
                 TagIds: dubgo.Pointer(operations.CreateCreateReferralsEmbedTokenTagIdsArrayOfStr(
                     []string{
                         "clux0rgak00011...",

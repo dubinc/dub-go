@@ -40,25 +40,25 @@ type UnprocessableEntityError struct {
 	DocURL *string `json:"doc_url,omitempty"`
 }
 
-func (o *UnprocessableEntityError) GetCode() UnprocessableEntityCode {
-	if o == nil {
+func (u *UnprocessableEntityError) GetCode() UnprocessableEntityCode {
+	if u == nil {
 		return UnprocessableEntityCode("")
 	}
-	return o.Code
+	return u.Code
 }
 
-func (o *UnprocessableEntityError) GetMessage() string {
-	if o == nil {
+func (u *UnprocessableEntityError) GetMessage() string {
+	if u == nil {
 		return ""
 	}
-	return o.Message
+	return u.Message
 }
 
-func (o *UnprocessableEntityError) GetDocURL() *string {
-	if o == nil {
+func (u *UnprocessableEntityError) GetDocURL() *string {
+	if u == nil {
 		return nil
 	}
-	return o.DocURL
+	return u.DocURL
 }
 
 // UnprocessableEntity - The request was well-formed but was unable to be followed due to semantic errors.

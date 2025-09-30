@@ -49,100 +49,100 @@ func (p *PartnerAnalyticsTopLinks) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PartnerAnalyticsTopLinks) GetLink() string {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetLink() string {
+	if p == nil {
 		return ""
 	}
-	return o.Link
+	return p.Link
 }
 
-func (o *PartnerAnalyticsTopLinks) GetID() string {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetID() string {
+	if p == nil {
 		return ""
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *PartnerAnalyticsTopLinks) GetDomain() string {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetDomain() string {
+	if p == nil {
 		return ""
 	}
-	return o.Domain
+	return p.Domain
 }
 
-func (o *PartnerAnalyticsTopLinks) GetKey() string {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetKey() string {
+	if p == nil {
 		return ""
 	}
-	return o.Key
+	return p.Key
 }
 
-func (o *PartnerAnalyticsTopLinks) GetShortLink() string {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetShortLink() string {
+	if p == nil {
 		return ""
 	}
-	return o.ShortLink
+	return p.ShortLink
 }
 
-func (o *PartnerAnalyticsTopLinks) GetURL() string {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetURL() string {
+	if p == nil {
 		return ""
 	}
-	return o.URL
+	return p.URL
 }
 
-func (o *PartnerAnalyticsTopLinks) GetComments() *string {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetComments() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Comments
+	return p.Comments
 }
 
-func (o *PartnerAnalyticsTopLinks) GetTitle() *string {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetTitle() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Title
+	return p.Title
 }
 
-func (o *PartnerAnalyticsTopLinks) GetCreatedAt() string {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetCreatedAt() string {
+	if p == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return p.CreatedAt
 }
 
-func (o *PartnerAnalyticsTopLinks) GetClicks() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetClicks() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Clicks
+	return p.Clicks
 }
 
-func (o *PartnerAnalyticsTopLinks) GetLeads() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetLeads() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Leads
+	return p.Leads
 }
 
-func (o *PartnerAnalyticsTopLinks) GetSales() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetSales() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Sales
+	return p.Sales
 }
 
-func (o *PartnerAnalyticsTopLinks) GetSaleAmount() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetSaleAmount() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return p.SaleAmount
 }
 
-func (o *PartnerAnalyticsTopLinks) GetEarnings() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsTopLinks) GetEarnings() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Earnings
+	return p.Earnings
 }

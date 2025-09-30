@@ -42,7 +42,7 @@ func main() {
 
     res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
         URL: "https://google.com",
-        ExternalID: dubgo.String("123456"),
+        ExternalID: dubgo.Pointer("123456"),
         TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
             []string{
                 "clux0rgak00011...",
@@ -120,7 +120,7 @@ func main() {
     )
 
     res, err := s.Links.List(ctx, operations.GetLinksRequest{
-        PageSize: dubgo.Float64(50),
+        PageSize: dubgo.Pointer[float64](50),
     })
     if err != nil {
         log.Fatal(err)
@@ -256,8 +256,8 @@ func main() {
     )
 
     res, err := s.Links.Get(ctx, operations.GetLinkInfoRequest{
-        LinkID: dubgo.String("clux0rgak00011..."),
-        ExternalID: dubgo.String("123456"),
+        LinkID: dubgo.Pointer("clux0rgak00011..."),
+        ExternalID: dubgo.Pointer("123456"),
     })
     if err != nil {
         log.Fatal(err)
@@ -320,8 +320,8 @@ func main() {
     )
 
     res, err := s.Links.Update(ctx, "<id>", &operations.UpdateLinkRequestBody{
-        URL: dubgo.String("https://google.com"),
-        ExternalID: dubgo.String("123456"),
+        URL: dubgo.Pointer("https://google.com"),
+        ExternalID: dubgo.Pointer("123456"),
         TagIds: dubgo.Pointer(operations.CreateUpdateLinkTagIdsArrayOfStr(
             []string{
                 "clux0rgak00011...",
@@ -462,7 +462,7 @@ func main() {
     res, err := s.Links.CreateMany(ctx, []operations.RequestBody{
         operations.RequestBody{
             URL: "https://google.com",
-            ExternalID: dubgo.String("123456"),
+            ExternalID: dubgo.Pointer("123456"),
             TagIds: dubgo.Pointer(operations.CreateBulkCreateLinksTagIdsArrayOfStr(
                 []string{
                     "clux0rgak00011...",
@@ -481,7 +481,7 @@ func main() {
         },
         operations.RequestBody{
             URL: "https://google.com",
-            ExternalID: dubgo.String("123456"),
+            ExternalID: dubgo.Pointer("123456"),
             TagIds: dubgo.Pointer(operations.CreateBulkCreateLinksTagIdsArrayOfStr(
                 []string{
                     "clux0rgak00011...",
@@ -561,7 +561,7 @@ func main() {
 
     res, err := s.Links.UpdateMany(ctx, &operations.BulkUpdateLinksRequestBody{
         Data: operations.Data{
-            URL: dubgo.String("https://google.com"),
+            URL: dubgo.Pointer("https://google.com"),
             TagIds: dubgo.Pointer(operations.CreateBulkUpdateLinksTagIdsArrayOfStr(
                 []string{
                     "clux0rgak00011...",
@@ -707,7 +707,7 @@ func main() {
 
     res, err := s.Links.Upsert(ctx, &operations.UpsertLinkRequestBody{
         URL: "https://google.com",
-        ExternalID: dubgo.String("123456"),
+        ExternalID: dubgo.Pointer("123456"),
         TagIds: dubgo.Pointer(operations.CreateUpsertLinkTagIdsArrayOfStr(
             []string{
                 "clux0rgak00011...",

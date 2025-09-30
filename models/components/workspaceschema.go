@@ -87,18 +87,18 @@ type Users struct {
 	DefaultFolderID *string `json:"defaultFolderId"`
 }
 
-func (o *Users) GetRole() Role {
-	if o == nil {
+func (u *Users) GetRole() Role {
+	if u == nil {
 		return Role("")
 	}
-	return o.Role
+	return u.Role
 }
 
-func (o *Users) GetDefaultFolderID() *string {
-	if o == nil {
+func (u *Users) GetDefaultFolderID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.DefaultFolderID
+	return u.DefaultFolderID
 }
 
 type Domains struct {
@@ -121,25 +121,25 @@ func (d *Domains) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Domains) GetSlug() string {
-	if o == nil {
+func (d *Domains) GetSlug() string {
+	if d == nil {
 		return ""
 	}
-	return o.Slug
+	return d.Slug
 }
 
-func (o *Domains) GetPrimary() *bool {
-	if o == nil {
+func (d *Domains) GetPrimary() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Primary
+	return d.Primary
 }
 
-func (o *Domains) GetVerified() *bool {
-	if o == nil {
+func (d *Domains) GetVerified() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Verified
+	return d.Verified
 }
 
 type WorkspaceSchema struct {
@@ -224,240 +224,240 @@ func (w *WorkspaceSchema) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *WorkspaceSchema) GetID() string {
-	if o == nil {
+func (w *WorkspaceSchema) GetID() string {
+	if w == nil {
 		return ""
 	}
-	return o.ID
+	return w.ID
 }
 
-func (o *WorkspaceSchema) GetName() string {
-	if o == nil {
+func (w *WorkspaceSchema) GetName() string {
+	if w == nil {
 		return ""
 	}
-	return o.Name
+	return w.Name
 }
 
-func (o *WorkspaceSchema) GetSlug() string {
-	if o == nil {
+func (w *WorkspaceSchema) GetSlug() string {
+	if w == nil {
 		return ""
 	}
-	return o.Slug
+	return w.Slug
 }
 
-func (o *WorkspaceSchema) GetLogo() *string {
-	if o == nil {
+func (w *WorkspaceSchema) GetLogo() *string {
+	if w == nil {
 		return nil
 	}
-	return o.Logo
+	return w.Logo
 }
 
-func (o *WorkspaceSchema) GetInviteCode() *string {
-	if o == nil {
+func (w *WorkspaceSchema) GetInviteCode() *string {
+	if w == nil {
 		return nil
 	}
-	return o.InviteCode
+	return w.InviteCode
 }
 
-func (o *WorkspaceSchema) GetPlan() Plan {
-	if o == nil {
+func (w *WorkspaceSchema) GetPlan() Plan {
+	if w == nil {
 		return Plan("")
 	}
-	return o.Plan
+	return w.Plan
 }
 
-func (o *WorkspaceSchema) GetStripeID() *string {
-	if o == nil {
+func (w *WorkspaceSchema) GetStripeID() *string {
+	if w == nil {
 		return nil
 	}
-	return o.StripeID
+	return w.StripeID
 }
 
-func (o *WorkspaceSchema) GetBillingCycleStart() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetBillingCycleStart() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.BillingCycleStart
+	return w.BillingCycleStart
 }
 
-func (o *WorkspaceSchema) GetPaymentFailedAt() *string {
-	if o == nil {
+func (w *WorkspaceSchema) GetPaymentFailedAt() *string {
+	if w == nil {
 		return nil
 	}
-	return o.PaymentFailedAt
+	return w.PaymentFailedAt
 }
 
-func (o *WorkspaceSchema) GetStripeConnectID() *string {
-	if o == nil {
+func (w *WorkspaceSchema) GetStripeConnectID() *string {
+	if w == nil {
 		return nil
 	}
-	return o.StripeConnectID
+	return w.StripeConnectID
 }
 
-func (o *WorkspaceSchema) GetTotalLinks() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetTotalLinks() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.TotalLinks
+	return w.TotalLinks
 }
 
-func (o *WorkspaceSchema) GetUsage() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetUsage() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.Usage
+	return w.Usage
 }
 
-func (o *WorkspaceSchema) GetUsageLimit() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetUsageLimit() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.UsageLimit
+	return w.UsageLimit
 }
 
-func (o *WorkspaceSchema) GetLinksUsage() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetLinksUsage() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.LinksUsage
+	return w.LinksUsage
 }
 
-func (o *WorkspaceSchema) GetLinksLimit() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetLinksLimit() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.LinksLimit
+	return w.LinksLimit
 }
 
-func (o *WorkspaceSchema) GetPayoutsUsage() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetPayoutsUsage() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.PayoutsUsage
+	return w.PayoutsUsage
 }
 
-func (o *WorkspaceSchema) GetPayoutsLimit() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetPayoutsLimit() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.PayoutsLimit
+	return w.PayoutsLimit
 }
 
-func (o *WorkspaceSchema) GetPayoutFee() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetPayoutFee() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.PayoutFee
+	return w.PayoutFee
 }
 
-func (o *WorkspaceSchema) GetDomainsLimit() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetDomainsLimit() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.DomainsLimit
+	return w.DomainsLimit
 }
 
-func (o *WorkspaceSchema) GetTagsLimit() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetTagsLimit() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.TagsLimit
+	return w.TagsLimit
 }
 
-func (o *WorkspaceSchema) GetFoldersUsage() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetFoldersUsage() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.FoldersUsage
+	return w.FoldersUsage
 }
 
-func (o *WorkspaceSchema) GetFoldersLimit() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetFoldersLimit() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.FoldersLimit
+	return w.FoldersLimit
 }
 
-func (o *WorkspaceSchema) GetGroupsLimit() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetGroupsLimit() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.GroupsLimit
+	return w.GroupsLimit
 }
 
-func (o *WorkspaceSchema) GetUsersLimit() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetUsersLimit() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.UsersLimit
+	return w.UsersLimit
 }
 
-func (o *WorkspaceSchema) GetAiUsage() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetAiUsage() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.AiUsage
+	return w.AiUsage
 }
 
-func (o *WorkspaceSchema) GetAiLimit() float64 {
-	if o == nil {
+func (w *WorkspaceSchema) GetAiLimit() float64 {
+	if w == nil {
 		return 0.0
 	}
-	return o.AiLimit
+	return w.AiLimit
 }
 
-func (o *WorkspaceSchema) GetConversionEnabled() bool {
-	if o == nil {
+func (w *WorkspaceSchema) GetConversionEnabled() bool {
+	if w == nil {
 		return false
 	}
-	return o.ConversionEnabled
+	return w.ConversionEnabled
 }
 
-func (o *WorkspaceSchema) GetDotLinkClaimed() bool {
-	if o == nil {
+func (w *WorkspaceSchema) GetDotLinkClaimed() bool {
+	if w == nil {
 		return false
 	}
-	return o.DotLinkClaimed
+	return w.DotLinkClaimed
 }
 
-func (o *WorkspaceSchema) GetCreatedAt() string {
-	if o == nil {
+func (w *WorkspaceSchema) GetCreatedAt() string {
+	if w == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return w.CreatedAt
 }
 
-func (o *WorkspaceSchema) GetUsers() []Users {
-	if o == nil {
+func (w *WorkspaceSchema) GetUsers() []Users {
+	if w == nil {
 		return []Users{}
 	}
-	return o.Users
+	return w.Users
 }
 
-func (o *WorkspaceSchema) GetDomains() []Domains {
-	if o == nil {
+func (w *WorkspaceSchema) GetDomains() []Domains {
+	if w == nil {
 		return []Domains{}
 	}
-	return o.Domains
+	return w.Domains
 }
 
-func (o *WorkspaceSchema) GetFlags() map[string]bool {
-	if o == nil {
+func (w *WorkspaceSchema) GetFlags() map[string]bool {
+	if w == nil {
 		return nil
 	}
-	return o.Flags
+	return w.Flags
 }
 
-func (o *WorkspaceSchema) GetStore() map[string]any {
-	if o == nil {
+func (w *WorkspaceSchema) GetStore() map[string]any {
+	if w == nil {
 		return nil
 	}
-	return o.Store
+	return w.Store
 }
 
-func (o *WorkspaceSchema) GetAllowedHostnames() []string {
-	if o == nil {
+func (w *WorkspaceSchema) GetAllowedHostnames() []string {
+	if w == nil {
 		return nil
 	}
-	return o.AllowedHostnames
+	return w.AllowedHostnames
 }

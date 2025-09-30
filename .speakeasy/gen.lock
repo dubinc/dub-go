@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: ca039d761420ae6bf30481214b90948f
+  docChecksum: 2e1136299e8788ffa141b33afd2f3cbc
   docVersion: 0.0.1
-  speakeasyVersion: 1.615.2
-  generationVersion: 2.698.4
-  releaseVersion: 0.18.3
-  configChecksum: f6d923e5a6e8b7b8f6565338270e5e6a
+  speakeasyVersion: 1.631.5
+  generationVersion: 2.716.16
+  releaseVersion: 0.19.0
+  configChecksum: 35da676b367f4c267e3806050539f781
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.9.6
+    core: 3.11.1
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     envVarSecurityUsage: 0.3.2
@@ -28,7 +28,7 @@ features:
     includes: 2.81.1
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
-    nullables: 0.1.1
+    nullables: 0.2.0
     pagination: 2.82.4
     responseFormat: 0.1.2
     retries: 2.84.2
@@ -156,6 +156,7 @@ generatedFiles:
   - docs/models/components/commissioncreatedeventcustomer.md
   - docs/models/components/commissioncreatedeventdata.md
   - docs/models/components/commissioncreatedeventevent.md
+  - docs/models/components/commissioncreatedeventpartner.md
   - docs/models/components/commissioncreatedeventstatus.md
   - docs/models/components/commissioncreatedeventtype.md
   - docs/models/components/continent.md
@@ -211,6 +212,7 @@ generatedFiles:
   - docs/models/components/salecreatedeventdata.md
   - docs/models/components/salecreatedeventevent.md
   - docs/models/components/salecreatedeventlink.md
+  - docs/models/components/salecreatedeventpartner.md
   - docs/models/components/salecreatedeventsale.md
   - docs/models/components/salecreatedeventtestvariants.md
   - docs/models/components/saleevent.md
@@ -490,6 +492,8 @@ generatedFiles:
   - links.go
   - models/operations/options.go
   - models/sdkerrors/sdkerror.go
+  - optionalnullable/optionalnullable.go
+  - optionalnullable/optionalnullable_test.go
   - partners.go
   - qrcodes.go
   - retry/config.go
@@ -498,7 +502,6 @@ generatedFiles:
   - types/bigint.go
   - types/date.go
   - types/datetime.go
-  - types/decimal.go
   - types/pointers.go
   - workspaces.go
 examples:
@@ -1343,7 +1346,7 @@ examples:
         application/json: {"email": "Summer50@yahoo.com", "linkProps": {"externalId": "123456", "tagIds": ["clux0rgak00011..."], "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}]}}
       responses:
         "201":
-          application/json: {"id": "<id>", "name": "<value>", "email": "Jan9@yahoo.com", "image": "https://loremflickr.com/2599/3934?lock=3607054824535492", "country": "Equatorial Guinea", "paypalEmail": "<value>", "stripeConnectId": "<id>", "payoutsEnabledAt": "<value>", "programId": "<id>", "partnerId": "<id>", "tenantId": "<id>", "createdAt": "1736363425056", "status": "banned", "links": [], "totalCommissions": 0, "clicks": 0, "leads": 0, "conversions": 0, "sales": 0, "saleAmount": 0, "netRevenue": 0}
+          application/json: {"id": "<id>", "name": "<value>", "companyName": "Schowalter, Hauck and Bradtke", "email": "Jan9@yahoo.com", "image": "https://loremflickr.com/2599/3934?lock=3607054824535492", "country": "Equatorial Guinea", "paypalEmail": "<value>", "stripeConnectId": "<id>", "payoutsEnabledAt": "<value>", "programId": "<id>", "partnerId": "<id>", "tenantId": "<id>", "createdAt": "1736363425056", "status": "banned", "links": [], "totalCommissions": 0, "clicks": 0, "leads": 0, "conversions": 0, "sales": 0, "saleAmount": 0, "netRevenue": 0}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -1394,7 +1397,7 @@ examples:
           programId: "<id>"
       responses:
         "200":
-          application/json: [{"id": "<id>", "domain": "another-granny.net", "key": "<key>", "shortLink": "https://scientific-duffel.com", "url": "https://old-fashioned-bug.name", "clicks": 0, "leads": 0, "sales": 0, "saleAmount": 0}, {"id": "<id>", "domain": "another-granny.net", "key": "<key>", "shortLink": "https://scientific-duffel.com", "url": "https://old-fashioned-bug.name", "clicks": 0, "leads": 0, "sales": 0, "saleAmount": 0}]
+          application/json: [{"id": "<id>", "domain": "another-granny.net", "key": "<key>", "shortLink": "https://scientific-duffel.com", "url": "https://old-fashioned-bug.name", "clicks": 0, "leads": 0, "conversions": 0, "sales": 0, "saleAmount": 0}, {"id": "<id>", "domain": "another-granny.net", "key": "<key>", "shortLink": "https://scientific-duffel.com", "url": "https://old-fashioned-bug.name", "clicks": 0, "leads": 0, "conversions": 0, "sales": 0, "saleAmount": 0}]
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -1720,9 +1723,10 @@ examples:
           search: "john"
           page: 1
           pageSize: 50
+          email: "panic@thedis.co"
       responses:
         "200":
-          application/json: [{"id": "<id>", "name": "<value>", "email": "Korey.Corkery26@hotmail.com", "image": "https://picsum.photos/seed/X7WjNI/969/1620", "country": "Paraguay", "paypalEmail": "<value>", "stripeConnectId": "<id>", "payoutsEnabledAt": "<value>", "programId": "<id>", "partnerId": "<id>", "tenantId": "<id>", "createdAt": "1715609832325", "status": "rejected", "links": [{"id": "<id>", "domain": "perky-tributary.biz", "key": "<key>", "shortLink": "https://neighboring-draft.biz/", "url": "https://unsightly-nectarine.biz/", "clicks": 0, "leads": 0, "sales": 0, "saleAmount": 0}], "totalCommissions": 0, "clicks": 0, "leads": 0, "conversions": 0, "sales": 0, "saleAmount": 0, "netRevenue": 0}]
+          application/json: [{"id": "<id>", "name": "<value>", "companyName": "Pacocha, McClure and Kuvalis", "email": "Korey.Corkery26@hotmail.com", "image": "https://picsum.photos/seed/X7WjNI/969/1620", "country": "Paraguay", "paypalEmail": "<value>", "stripeConnectId": "<id>", "payoutsEnabledAt": "<value>", "programId": "<id>", "partnerId": "<id>", "tenantId": "<id>", "createdAt": "1715609832325", "status": "rejected", "links": [{"id": "<id>", "domain": "perky-tributary.biz", "key": "<key>", "shortLink": "https://neighboring-draft.biz/", "url": "https://unsightly-nectarine.biz/", "clicks": 0, "leads": 0, "conversions": 0, "sales": 0, "saleAmount": 0}], "totalCommissions": 0, "clicks": 0, "leads": 0, "conversions": 0, "sales": 0, "saleAmount": 0, "netRevenue": 0}]
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -1743,6 +1747,4 @@ examples:
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Go SDK Changes Detected:
-  * `Dub.Track.Lead()`:  `response.Link` **Added**
+releaseNotes: "## Go SDK Changes Detected:\n* `Dub.Partners.List()`: \n  *  `request.Request` **Changed**\n  *  `response.[]` **Changed** **Breaking** :warning:\n* `Dub.Partners.Create()`:  `response` **Changed** **Breaking** :warning:\n* `Dub.Analytics.Retrieve()`: \n  *  `request.Request.Ref` **Added**\n* `Dub.Events.List()`: \n  *  `request.Request.Ref` **Added**\n* `Dub.Customers.Create()`: \n  *  `request.Request.StripeCustomerId` **Added**\n* `Dub.Customers.Update()`: \n  *  `request.Request.RequestBody.StripeCustomerId` **Added**\n* `Dub.Partners.RetrieveLinks()`:  `response.[].Conversions` **Added**\n* `Dub.Commissions.List()`: \n  *  `request.Request.TenantId` **Added**\n"

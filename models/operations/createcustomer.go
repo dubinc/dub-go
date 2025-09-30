@@ -16,34 +16,43 @@ type CreateCustomerRequestBody struct {
 	Avatar *string `json:"avatar,omitempty"`
 	// Unique identifier for the customer in the client's app.
 	ExternalID string `json:"externalId"`
+	// The customer's Stripe customer ID. Useful for attribution recurring sale events to the partner who referred the customer.
+	StripeCustomerID *string `json:"stripeCustomerId,omitempty"`
 }
 
-func (o *CreateCustomerRequestBody) GetEmail() *string {
-	if o == nil {
+func (c *CreateCustomerRequestBody) GetEmail() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Email
+	return c.Email
 }
 
-func (o *CreateCustomerRequestBody) GetName() *string {
-	if o == nil {
+func (c *CreateCustomerRequestBody) GetName() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *CreateCustomerRequestBody) GetAvatar() *string {
-	if o == nil {
+func (c *CreateCustomerRequestBody) GetAvatar() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Avatar
+	return c.Avatar
 }
 
-func (o *CreateCustomerRequestBody) GetExternalID() string {
-	if o == nil {
+func (c *CreateCustomerRequestBody) GetExternalID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ExternalID
+	return c.ExternalID
+}
+
+func (c *CreateCustomerRequestBody) GetStripeCustomerID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.StripeCustomerID
 }
 
 type CreateCustomerLink struct {
@@ -61,46 +70,46 @@ type CreateCustomerLink struct {
 	ProgramID *string `json:"programId"`
 }
 
-func (o *CreateCustomerLink) GetID() string {
-	if o == nil {
+func (c *CreateCustomerLink) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CreateCustomerLink) GetDomain() string {
-	if o == nil {
+func (c *CreateCustomerLink) GetDomain() string {
+	if c == nil {
 		return ""
 	}
-	return o.Domain
+	return c.Domain
 }
 
-func (o *CreateCustomerLink) GetKey() string {
-	if o == nil {
+func (c *CreateCustomerLink) GetKey() string {
+	if c == nil {
 		return ""
 	}
-	return o.Key
+	return c.Key
 }
 
-func (o *CreateCustomerLink) GetShortLink() string {
-	if o == nil {
+func (c *CreateCustomerLink) GetShortLink() string {
+	if c == nil {
 		return ""
 	}
-	return o.ShortLink
+	return c.ShortLink
 }
 
-func (o *CreateCustomerLink) GetURL() string {
-	if o == nil {
+func (c *CreateCustomerLink) GetURL() string {
+	if c == nil {
 		return ""
 	}
-	return o.URL
+	return c.URL
 }
 
-func (o *CreateCustomerLink) GetProgramID() *string {
-	if o == nil {
+func (c *CreateCustomerLink) GetProgramID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ProgramID
+	return c.ProgramID
 }
 
 type CreateCustomerPartner struct {
@@ -114,32 +123,32 @@ type CreateCustomerPartner struct {
 	Image *string `json:"image"`
 }
 
-func (o *CreateCustomerPartner) GetID() string {
-	if o == nil {
+func (c *CreateCustomerPartner) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CreateCustomerPartner) GetName() string {
-	if o == nil {
+func (c *CreateCustomerPartner) GetName() string {
+	if c == nil {
 		return ""
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *CreateCustomerPartner) GetEmail() *string {
-	if o == nil {
+func (c *CreateCustomerPartner) GetEmail() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Email
+	return c.Email
 }
 
-func (o *CreateCustomerPartner) GetImage() *string {
-	if o == nil {
+func (c *CreateCustomerPartner) GetImage() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Image
+	return c.Image
 }
 
 type CreateCustomerType string
@@ -179,60 +188,60 @@ type CreateCustomerDiscount struct {
 	PartnersCount *float64           `json:"partnersCount,omitempty"`
 }
 
-func (o *CreateCustomerDiscount) GetID() string {
-	if o == nil {
+func (c *CreateCustomerDiscount) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CreateCustomerDiscount) GetAmount() float64 {
-	if o == nil {
+func (c *CreateCustomerDiscount) GetAmount() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.Amount
+	return c.Amount
 }
 
-func (o *CreateCustomerDiscount) GetType() CreateCustomerType {
-	if o == nil {
+func (c *CreateCustomerDiscount) GetType() CreateCustomerType {
+	if c == nil {
 		return CreateCustomerType("")
 	}
-	return o.Type
+	return c.Type
 }
 
-func (o *CreateCustomerDiscount) GetMaxDuration() *float64 {
-	if o == nil {
+func (c *CreateCustomerDiscount) GetMaxDuration() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.MaxDuration
+	return c.MaxDuration
 }
 
-func (o *CreateCustomerDiscount) GetDescription() *string {
-	if o == nil {
+func (c *CreateCustomerDiscount) GetDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Description
+	return c.Description
 }
 
-func (o *CreateCustomerDiscount) GetCouponID() *string {
-	if o == nil {
+func (c *CreateCustomerDiscount) GetCouponID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CouponID
+	return c.CouponID
 }
 
-func (o *CreateCustomerDiscount) GetCouponTestID() *string {
-	if o == nil {
+func (c *CreateCustomerDiscount) GetCouponTestID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CouponTestID
+	return c.CouponTestID
 }
 
-func (o *CreateCustomerDiscount) GetPartnersCount() *float64 {
-	if o == nil {
+func (c *CreateCustomerDiscount) GetPartnersCount() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.PartnersCount
+	return c.PartnersCount
 }
 
 // CreateCustomerResponseBody - The customer was created.
@@ -261,93 +270,93 @@ type CreateCustomerResponseBody struct {
 	Discount  *CreateCustomerDiscount `json:"discount,omitempty"`
 }
 
-func (o *CreateCustomerResponseBody) GetID() string {
-	if o == nil {
+func (c *CreateCustomerResponseBody) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CreateCustomerResponseBody) GetExternalID() string {
-	if o == nil {
+func (c *CreateCustomerResponseBody) GetExternalID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ExternalID
+	return c.ExternalID
 }
 
-func (o *CreateCustomerResponseBody) GetName() string {
-	if o == nil {
+func (c *CreateCustomerResponseBody) GetName() string {
+	if c == nil {
 		return ""
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *CreateCustomerResponseBody) GetEmail() *string {
-	if o == nil {
+func (c *CreateCustomerResponseBody) GetEmail() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Email
+	return c.Email
 }
 
-func (o *CreateCustomerResponseBody) GetAvatar() *string {
-	if o == nil {
+func (c *CreateCustomerResponseBody) GetAvatar() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Avatar
+	return c.Avatar
 }
 
-func (o *CreateCustomerResponseBody) GetCountry() *string {
-	if o == nil {
+func (c *CreateCustomerResponseBody) GetCountry() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Country
+	return c.Country
 }
 
-func (o *CreateCustomerResponseBody) GetSales() *float64 {
-	if o == nil {
+func (c *CreateCustomerResponseBody) GetSales() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.Sales
+	return c.Sales
 }
 
-func (o *CreateCustomerResponseBody) GetSaleAmount() *float64 {
-	if o == nil {
+func (c *CreateCustomerResponseBody) GetSaleAmount() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return c.SaleAmount
 }
 
-func (o *CreateCustomerResponseBody) GetCreatedAt() string {
-	if o == nil {
+func (c *CreateCustomerResponseBody) GetCreatedAt() string {
+	if c == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return c.CreatedAt
 }
 
-func (o *CreateCustomerResponseBody) GetLink() *CreateCustomerLink {
-	if o == nil {
+func (c *CreateCustomerResponseBody) GetLink() *CreateCustomerLink {
+	if c == nil {
 		return nil
 	}
-	return o.Link
+	return c.Link
 }
 
-func (o *CreateCustomerResponseBody) GetProgramID() *string {
-	if o == nil {
+func (c *CreateCustomerResponseBody) GetProgramID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ProgramID
+	return c.ProgramID
 }
 
-func (o *CreateCustomerResponseBody) GetPartner() *CreateCustomerPartner {
-	if o == nil {
+func (c *CreateCustomerResponseBody) GetPartner() *CreateCustomerPartner {
+	if c == nil {
 		return nil
 	}
-	return o.Partner
+	return c.Partner
 }
 
-func (o *CreateCustomerResponseBody) GetDiscount() *CreateCustomerDiscount {
-	if o == nil {
+func (c *CreateCustomerResponseBody) GetDiscount() *CreateCustomerDiscount {
+	if c == nil {
 		return nil
 	}
-	return o.Discount
+	return c.Discount
 }

@@ -26,23 +26,23 @@ func (l *ListFoldersRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ListFoldersRequest) GetSearch() *string {
-	if o == nil {
+func (l *ListFoldersRequest) GetSearch() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Search
+	return l.Search
 }
 
-func (o *ListFoldersRequest) GetPage() *float64 {
-	if o == nil {
+func (l *ListFoldersRequest) GetPage() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Page
+	return l.Page
 }
 
-func (o *ListFoldersRequest) GetPageSize() *float64 {
-	if o == nil {
+func (l *ListFoldersRequest) GetPageSize() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.PageSize
+	return l.PageSize
 }

@@ -32,14 +32,14 @@ func main() {
     )
 
     res, err := s.Events.List(ctx, operations.ListEventsRequest{
-        Timezone: dubgo.String("America/New_York"),
-        City: dubgo.String("New York"),
-        Device: dubgo.String("Desktop"),
-        Browser: dubgo.String("Chrome"),
-        Os: dubgo.String("Windows"),
-        Referer: dubgo.String("google.com"),
-        RefererURL: dubgo.String("https://dub.co/blog"),
-        Query: dubgo.String("metadata['key']:'value'"),
+        Timezone: dubgo.Pointer("America/New_York"),
+        City: dubgo.Pointer("New York"),
+        Device: dubgo.Pointer("Desktop"),
+        Browser: dubgo.Pointer("Chrome"),
+        Os: dubgo.Pointer("Windows"),
+        Referer: dubgo.Pointer("google.com"),
+        RefererURL: dubgo.Pointer("https://dub.co/blog"),
+        Query: dubgo.Pointer("metadata['key']:'value'"),
     })
     if err != nil {
         log.Fatal(err)

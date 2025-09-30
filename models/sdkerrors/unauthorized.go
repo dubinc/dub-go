@@ -40,25 +40,25 @@ type UnauthorizedError struct {
 	DocURL *string `json:"doc_url,omitempty"`
 }
 
-func (o *UnauthorizedError) GetCode() UnauthorizedCode {
-	if o == nil {
+func (u *UnauthorizedError) GetCode() UnauthorizedCode {
+	if u == nil {
 		return UnauthorizedCode("")
 	}
-	return o.Code
+	return u.Code
 }
 
-func (o *UnauthorizedError) GetMessage() string {
-	if o == nil {
+func (u *UnauthorizedError) GetMessage() string {
+	if u == nil {
 		return ""
 	}
-	return o.Message
+	return u.Message
 }
 
-func (o *UnauthorizedError) GetDocURL() *string {
-	if o == nil {
+func (u *UnauthorizedError) GetDocURL() *string {
+	if u == nil {
 		return nil
 	}
-	return o.DocURL
+	return u.DocURL
 }
 
 // Unauthorized - Although the HTTP standard specifies "unauthorized", semantically this response means "unauthenticated". That is, the client must authenticate itself to get the requested response.

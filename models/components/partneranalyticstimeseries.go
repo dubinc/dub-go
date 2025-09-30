@@ -31,44 +31,44 @@ func (p *PartnerAnalyticsTimeseries) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PartnerAnalyticsTimeseries) GetStart() string {
-	if o == nil {
+func (p *PartnerAnalyticsTimeseries) GetStart() string {
+	if p == nil {
 		return ""
 	}
-	return o.Start
+	return p.Start
 }
 
-func (o *PartnerAnalyticsTimeseries) GetClicks() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsTimeseries) GetClicks() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Clicks
+	return p.Clicks
 }
 
-func (o *PartnerAnalyticsTimeseries) GetLeads() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsTimeseries) GetLeads() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Leads
+	return p.Leads
 }
 
-func (o *PartnerAnalyticsTimeseries) GetSales() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsTimeseries) GetSales() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Sales
+	return p.Sales
 }
 
-func (o *PartnerAnalyticsTimeseries) GetSaleAmount() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsTimeseries) GetSaleAmount() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return p.SaleAmount
 }
 
-func (o *PartnerAnalyticsTimeseries) GetEarnings() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsTimeseries) GetEarnings() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Earnings
+	return p.Earnings
 }

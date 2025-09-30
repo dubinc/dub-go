@@ -17,8 +17,8 @@ const (
 
 // UpsertLinkTagIds - The unique IDs of the tags assigned to the short link.
 type UpsertLinkTagIds struct {
-	Str        *string  `queryParam:"inline" name:"tagIds"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
+	Str        *string  `queryParam:"inline,name=tagIds"`
+	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
 
 	Type UpsertLinkTagIdsType
 }
@@ -81,8 +81,8 @@ const (
 
 // UpsertLinkTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type UpsertLinkTagNames struct {
-	Str        *string  `queryParam:"inline" name:"tagNames"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
+	Str        *string  `queryParam:"inline,name=tagNames"`
+	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
 
 	Type UpsertLinkTagNamesType
 }
@@ -141,18 +141,18 @@ type UpsertLinkTestVariants struct {
 	Percentage float64 `json:"percentage"`
 }
 
-func (o *UpsertLinkTestVariants) GetURL() string {
-	if o == nil {
+func (u *UpsertLinkTestVariants) GetURL() string {
+	if u == nil {
 		return ""
 	}
-	return o.URL
+	return u.URL
 }
 
-func (o *UpsertLinkTestVariants) GetPercentage() float64 {
-	if o == nil {
+func (u *UpsertLinkTestVariants) GetPercentage() float64 {
+	if u == nil {
 		return 0.0
 	}
-	return o.Percentage
+	return u.Percentage
 }
 
 type UpsertLinkRequestBody struct {
@@ -242,282 +242,282 @@ type UpsertLinkRequestBody struct {
 	TagID *string `json:"tagId,omitempty"`
 }
 
-func (o *UpsertLinkRequestBody) GetURL() string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetURL() string {
+	if u == nil {
 		return ""
 	}
-	return o.URL
+	return u.URL
 }
 
-func (o *UpsertLinkRequestBody) GetDomain() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetDomain() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Domain
+	return u.Domain
 }
 
-func (o *UpsertLinkRequestBody) GetKey() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetKey() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Key
+	return u.Key
 }
 
-func (o *UpsertLinkRequestBody) GetKeyLength() *float64 {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetKeyLength() *float64 {
+	if u == nil {
 		return nil
 	}
-	return o.KeyLength
+	return u.KeyLength
 }
 
-func (o *UpsertLinkRequestBody) GetExternalID() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetExternalID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.ExternalID
+	return u.ExternalID
 }
 
-func (o *UpsertLinkRequestBody) GetTenantID() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetTenantID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.TenantID
+	return u.TenantID
 }
 
-func (o *UpsertLinkRequestBody) GetProgramID() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetProgramID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.ProgramID
+	return u.ProgramID
 }
 
-func (o *UpsertLinkRequestBody) GetPartnerID() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetPartnerID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.PartnerID
+	return u.PartnerID
 }
 
-func (o *UpsertLinkRequestBody) GetPrefix() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetPrefix() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Prefix
+	return u.Prefix
 }
 
-func (o *UpsertLinkRequestBody) GetTrackConversion() *bool {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetTrackConversion() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.TrackConversion
+	return u.TrackConversion
 }
 
-func (o *UpsertLinkRequestBody) GetArchived() *bool {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetArchived() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Archived
+	return u.Archived
 }
 
-func (o *UpsertLinkRequestBody) GetTagIds() *UpsertLinkTagIds {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetTagIds() *UpsertLinkTagIds {
+	if u == nil {
 		return nil
 	}
-	return o.TagIds
+	return u.TagIds
 }
 
-func (o *UpsertLinkRequestBody) GetTagNames() *UpsertLinkTagNames {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetTagNames() *UpsertLinkTagNames {
+	if u == nil {
 		return nil
 	}
-	return o.TagNames
+	return u.TagNames
 }
 
-func (o *UpsertLinkRequestBody) GetFolderID() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetFolderID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.FolderID
+	return u.FolderID
 }
 
-func (o *UpsertLinkRequestBody) GetComments() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetComments() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Comments
+	return u.Comments
 }
 
-func (o *UpsertLinkRequestBody) GetExpiresAt() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetExpiresAt() *string {
+	if u == nil {
 		return nil
 	}
-	return o.ExpiresAt
+	return u.ExpiresAt
 }
 
-func (o *UpsertLinkRequestBody) GetExpiredURL() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetExpiredURL() *string {
+	if u == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return u.ExpiredURL
 }
 
-func (o *UpsertLinkRequestBody) GetPassword() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetPassword() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Password
+	return u.Password
 }
 
-func (o *UpsertLinkRequestBody) GetProxy() *bool {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetProxy() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Proxy
+	return u.Proxy
 }
 
-func (o *UpsertLinkRequestBody) GetTitle() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetTitle() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Title
+	return u.Title
 }
 
-func (o *UpsertLinkRequestBody) GetDescription() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetDescription() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Description
+	return u.Description
 }
 
-func (o *UpsertLinkRequestBody) GetImage() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetImage() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Image
+	return u.Image
 }
 
-func (o *UpsertLinkRequestBody) GetVideo() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetVideo() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Video
+	return u.Video
 }
 
-func (o *UpsertLinkRequestBody) GetRewrite() *bool {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetRewrite() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Rewrite
+	return u.Rewrite
 }
 
-func (o *UpsertLinkRequestBody) GetIos() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetIos() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Ios
+	return u.Ios
 }
 
-func (o *UpsertLinkRequestBody) GetAndroid() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetAndroid() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Android
+	return u.Android
 }
 
-func (o *UpsertLinkRequestBody) GetGeo() map[string]string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetGeo() map[string]string {
+	if u == nil {
 		return nil
 	}
-	return o.Geo
+	return u.Geo
 }
 
-func (o *UpsertLinkRequestBody) GetDoIndex() *bool {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetDoIndex() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.DoIndex
+	return u.DoIndex
 }
 
-func (o *UpsertLinkRequestBody) GetUtmSource() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetUtmSource() *string {
+	if u == nil {
 		return nil
 	}
-	return o.UtmSource
+	return u.UtmSource
 }
 
-func (o *UpsertLinkRequestBody) GetUtmMedium() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetUtmMedium() *string {
+	if u == nil {
 		return nil
 	}
-	return o.UtmMedium
+	return u.UtmMedium
 }
 
-func (o *UpsertLinkRequestBody) GetUtmCampaign() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetUtmCampaign() *string {
+	if u == nil {
 		return nil
 	}
-	return o.UtmCampaign
+	return u.UtmCampaign
 }
 
-func (o *UpsertLinkRequestBody) GetUtmTerm() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetUtmTerm() *string {
+	if u == nil {
 		return nil
 	}
-	return o.UtmTerm
+	return u.UtmTerm
 }
 
-func (o *UpsertLinkRequestBody) GetUtmContent() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetUtmContent() *string {
+	if u == nil {
 		return nil
 	}
-	return o.UtmContent
+	return u.UtmContent
 }
 
-func (o *UpsertLinkRequestBody) GetRef() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetRef() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Ref
+	return u.Ref
 }
 
-func (o *UpsertLinkRequestBody) GetWebhookIds() []string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetWebhookIds() []string {
+	if u == nil {
 		return nil
 	}
-	return o.WebhookIds
+	return u.WebhookIds
 }
 
-func (o *UpsertLinkRequestBody) GetTestVariants() []UpsertLinkTestVariants {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetTestVariants() []UpsertLinkTestVariants {
+	if u == nil {
 		return nil
 	}
-	return o.TestVariants
+	return u.TestVariants
 }
 
-func (o *UpsertLinkRequestBody) GetTestStartedAt() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetTestStartedAt() *string {
+	if u == nil {
 		return nil
 	}
-	return o.TestStartedAt
+	return u.TestStartedAt
 }
 
-func (o *UpsertLinkRequestBody) GetTestCompletedAt() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetTestCompletedAt() *string {
+	if u == nil {
 		return nil
 	}
-	return o.TestCompletedAt
+	return u.TestCompletedAt
 }
 
-func (o *UpsertLinkRequestBody) GetPublicStats() *bool {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetPublicStats() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.PublicStats
+	return u.PublicStats
 }
 
-func (o *UpsertLinkRequestBody) GetTagID() *string {
-	if o == nil {
+func (u *UpsertLinkRequestBody) GetTagID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.TagID
+	return u.TagID
 }

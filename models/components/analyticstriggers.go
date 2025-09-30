@@ -65,37 +65,37 @@ func (a *AnalyticsTriggers) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AnalyticsTriggers) GetTrigger() Trigger {
-	if o == nil {
+func (a *AnalyticsTriggers) GetTrigger() Trigger {
+	if a == nil {
 		return Trigger("")
 	}
-	return o.Trigger
+	return a.Trigger
 }
 
-func (o *AnalyticsTriggers) GetClicks() *float64 {
-	if o == nil {
+func (a *AnalyticsTriggers) GetClicks() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Clicks
+	return a.Clicks
 }
 
-func (o *AnalyticsTriggers) GetLeads() *float64 {
-	if o == nil {
+func (a *AnalyticsTriggers) GetLeads() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Leads
+	return a.Leads
 }
 
-func (o *AnalyticsTriggers) GetSales() *float64 {
-	if o == nil {
+func (a *AnalyticsTriggers) GetSales() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Sales
+	return a.Sales
 }
 
-func (o *AnalyticsTriggers) GetSaleAmount() *float64 {
-	if o == nil {
+func (a *AnalyticsTriggers) GetSaleAmount() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return a.SaleAmount
 }

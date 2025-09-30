@@ -12,30 +12,30 @@ type GetLinkInfoRequest struct {
 	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
 }
 
-func (o *GetLinkInfoRequest) GetDomain() *string {
-	if o == nil {
+func (g *GetLinkInfoRequest) GetDomain() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Domain
+	return g.Domain
 }
 
-func (o *GetLinkInfoRequest) GetKey() *string {
-	if o == nil {
+func (g *GetLinkInfoRequest) GetKey() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetLinkInfoRequest) GetLinkID() *string {
-	if o == nil {
+func (g *GetLinkInfoRequest) GetLinkID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.LinkID
+	return g.LinkID
 }
 
-func (o *GetLinkInfoRequest) GetExternalID() *string {
-	if o == nil {
+func (g *GetLinkInfoRequest) GetExternalID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ExternalID
+	return g.ExternalID
 }

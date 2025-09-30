@@ -217,8 +217,8 @@ const (
 
 // RetrieveAnalyticsQueryParamTagIds - The tag IDs to retrieve analytics for.
 type RetrieveAnalyticsQueryParamTagIds struct {
-	Str        *string  `queryParam:"inline" name:"tagIds"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
+	Str        *string  `queryParam:"inline,name=tagIds"`
+	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
 
 	Type RetrieveAnalyticsQueryParamTagIdsType
 }
@@ -374,6 +374,8 @@ type RetrieveAnalyticsRequest struct {
 	UtmTerm *string `queryParam:"style=form,explode=true,name=utm_term"`
 	// The UTM content of the short link.
 	UtmContent *string `queryParam:"style=form,explode=true,name=utm_content"`
+	// The ref of the short link.
+	Ref *string `queryParam:"style=form,explode=true,name=ref"`
 }
 
 func (r RetrieveAnalyticsRequest) MarshalJSON() ([]byte, error) {
@@ -387,263 +389,270 @@ func (r *RetrieveAnalyticsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *RetrieveAnalyticsRequest) GetEvent() *Event {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetEvent() *Event {
+	if r == nil {
 		return nil
 	}
-	return o.Event
+	return r.Event
 }
 
-func (o *RetrieveAnalyticsRequest) GetGroupBy() *QueryParamGroupBy {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetGroupBy() *QueryParamGroupBy {
+	if r == nil {
 		return nil
 	}
-	return o.GroupBy
+	return r.GroupBy
 }
 
-func (o *RetrieveAnalyticsRequest) GetDomain() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetDomain() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Domain
+	return r.Domain
 }
 
-func (o *RetrieveAnalyticsRequest) GetKey() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetKey() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Key
+	return r.Key
 }
 
-func (o *RetrieveAnalyticsRequest) GetLinkID() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetLinkID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.LinkID
+	return r.LinkID
 }
 
-func (o *RetrieveAnalyticsRequest) GetExternalID() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetExternalID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ExternalID
+	return r.ExternalID
 }
 
-func (o *RetrieveAnalyticsRequest) GetTenantID() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetTenantID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.TenantID
+	return r.TenantID
 }
 
-func (o *RetrieveAnalyticsRequest) GetProgramID() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetProgramID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ProgramID
+	return r.ProgramID
 }
 
-func (o *RetrieveAnalyticsRequest) GetPartnerID() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetPartnerID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PartnerID
+	return r.PartnerID
 }
 
-func (o *RetrieveAnalyticsRequest) GetCustomerID() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetCustomerID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.CustomerID
+	return r.CustomerID
 }
 
-func (o *RetrieveAnalyticsRequest) GetInterval() *Interval {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetInterval() *Interval {
+	if r == nil {
 		return nil
 	}
-	return o.Interval
+	return r.Interval
 }
 
-func (o *RetrieveAnalyticsRequest) GetStart() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetStart() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Start
+	return r.Start
 }
 
-func (o *RetrieveAnalyticsRequest) GetEnd() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetEnd() *string {
+	if r == nil {
 		return nil
 	}
-	return o.End
+	return r.End
 }
 
-func (o *RetrieveAnalyticsRequest) GetTimezone() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetTimezone() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Timezone
+	return r.Timezone
 }
 
-func (o *RetrieveAnalyticsRequest) GetCountry() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetCountry() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Country
+	return r.Country
 }
 
-func (o *RetrieveAnalyticsRequest) GetCity() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetCity() *string {
+	if r == nil {
 		return nil
 	}
-	return o.City
+	return r.City
 }
 
-func (o *RetrieveAnalyticsRequest) GetRegion() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetRegion() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Region
+	return r.Region
 }
 
-func (o *RetrieveAnalyticsRequest) GetContinent() *components.ContinentCode {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetContinent() *components.ContinentCode {
+	if r == nil {
 		return nil
 	}
-	return o.Continent
+	return r.Continent
 }
 
-func (o *RetrieveAnalyticsRequest) GetDevice() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetDevice() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Device
+	return r.Device
 }
 
-func (o *RetrieveAnalyticsRequest) GetBrowser() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetBrowser() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Browser
+	return r.Browser
 }
 
-func (o *RetrieveAnalyticsRequest) GetOs() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetOs() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Os
+	return r.Os
 }
 
-func (o *RetrieveAnalyticsRequest) GetTrigger() *Trigger {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetTrigger() *Trigger {
+	if r == nil {
 		return nil
 	}
-	return o.Trigger
+	return r.Trigger
 }
 
-func (o *RetrieveAnalyticsRequest) GetReferer() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetReferer() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Referer
+	return r.Referer
 }
 
-func (o *RetrieveAnalyticsRequest) GetRefererURL() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetRefererURL() *string {
+	if r == nil {
 		return nil
 	}
-	return o.RefererURL
+	return r.RefererURL
 }
 
-func (o *RetrieveAnalyticsRequest) GetURL() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetURL() *string {
+	if r == nil {
 		return nil
 	}
-	return o.URL
+	return r.URL
 }
 
-func (o *RetrieveAnalyticsRequest) GetTagIds() *RetrieveAnalyticsQueryParamTagIds {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetTagIds() *RetrieveAnalyticsQueryParamTagIds {
+	if r == nil {
 		return nil
 	}
-	return o.TagIds
+	return r.TagIds
 }
 
-func (o *RetrieveAnalyticsRequest) GetFolderID() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetFolderID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.FolderID
+	return r.FolderID
 }
 
-func (o *RetrieveAnalyticsRequest) GetRoot() *bool {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetRoot() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Root
+	return r.Root
 }
 
-func (o *RetrieveAnalyticsRequest) GetSaleType() *SaleType {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetSaleType() *SaleType {
+	if r == nil {
 		return nil
 	}
-	return o.SaleType
+	return r.SaleType
 }
 
-func (o *RetrieveAnalyticsRequest) GetQuery() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetQuery() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Query
+	return r.Query
 }
 
-func (o *RetrieveAnalyticsRequest) GetTagID() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetTagID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.TagID
+	return r.TagID
 }
 
-func (o *RetrieveAnalyticsRequest) GetQr() *bool {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetQr() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Qr
+	return r.Qr
 }
 
-func (o *RetrieveAnalyticsRequest) GetUtmSource() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetUtmSource() *string {
+	if r == nil {
 		return nil
 	}
-	return o.UtmSource
+	return r.UtmSource
 }
 
-func (o *RetrieveAnalyticsRequest) GetUtmMedium() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetUtmMedium() *string {
+	if r == nil {
 		return nil
 	}
-	return o.UtmMedium
+	return r.UtmMedium
 }
 
-func (o *RetrieveAnalyticsRequest) GetUtmCampaign() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetUtmCampaign() *string {
+	if r == nil {
 		return nil
 	}
-	return o.UtmCampaign
+	return r.UtmCampaign
 }
 
-func (o *RetrieveAnalyticsRequest) GetUtmTerm() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetUtmTerm() *string {
+	if r == nil {
 		return nil
 	}
-	return o.UtmTerm
+	return r.UtmTerm
 }
 
-func (o *RetrieveAnalyticsRequest) GetUtmContent() *string {
-	if o == nil {
+func (r *RetrieveAnalyticsRequest) GetUtmContent() *string {
+	if r == nil {
 		return nil
 	}
-	return o.UtmContent
+	return r.UtmContent
+}
+
+func (r *RetrieveAnalyticsRequest) GetRef() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Ref
 }
 
 type RetrieveAnalyticsResponseBodyType string
@@ -667,20 +676,20 @@ const (
 
 // RetrieveAnalyticsResponseBody - Analytics data
 type RetrieveAnalyticsResponseBody struct {
-	AnalyticsCount              *components.AnalyticsCount        `queryParam:"inline" name:"responseBody"`
-	ArrayOfAnalyticsTimeseries  []components.AnalyticsTimeseries  `queryParam:"inline" name:"responseBody"`
-	ArrayOfAnalyticsContinents  []components.AnalyticsContinents  `queryParam:"inline" name:"responseBody"`
-	ArrayOfAnalyticsCountries   []components.AnalyticsCountries   `queryParam:"inline" name:"responseBody"`
-	ArrayOfAnalyticsRegions     []components.AnalyticsRegions     `queryParam:"inline" name:"responseBody"`
-	ArrayOfAnalyticsCities      []components.AnalyticsCities      `queryParam:"inline" name:"responseBody"`
-	ArrayOfAnalyticsDevices     []components.AnalyticsDevices     `queryParam:"inline" name:"responseBody"`
-	ArrayOfAnalyticsBrowsers    []components.AnalyticsBrowsers    `queryParam:"inline" name:"responseBody"`
-	ArrayOfAnalyticsOS          []components.AnalyticsOS          `queryParam:"inline" name:"responseBody"`
-	ArrayOfAnalyticsTriggers    []components.AnalyticsTriggers    `queryParam:"inline" name:"responseBody"`
-	ArrayOfAnalyticsReferers    []components.AnalyticsReferers    `queryParam:"inline" name:"responseBody"`
-	ArrayOfAnalyticsRefererUrls []components.AnalyticsRefererUrls `queryParam:"inline" name:"responseBody"`
-	ArrayOfAnalyticsTopLinks    []components.AnalyticsTopLinks    `queryParam:"inline" name:"responseBody"`
-	ArrayOfAnalyticsTopUrls     []components.AnalyticsTopUrls     `queryParam:"inline" name:"responseBody"`
+	AnalyticsCount              *components.AnalyticsCount        `queryParam:"inline,name=responseBody"`
+	ArrayOfAnalyticsTimeseries  []components.AnalyticsTimeseries  `queryParam:"inline,name=responseBody"`
+	ArrayOfAnalyticsContinents  []components.AnalyticsContinents  `queryParam:"inline,name=responseBody"`
+	ArrayOfAnalyticsCountries   []components.AnalyticsCountries   `queryParam:"inline,name=responseBody"`
+	ArrayOfAnalyticsRegions     []components.AnalyticsRegions     `queryParam:"inline,name=responseBody"`
+	ArrayOfAnalyticsCities      []components.AnalyticsCities      `queryParam:"inline,name=responseBody"`
+	ArrayOfAnalyticsDevices     []components.AnalyticsDevices     `queryParam:"inline,name=responseBody"`
+	ArrayOfAnalyticsBrowsers    []components.AnalyticsBrowsers    `queryParam:"inline,name=responseBody"`
+	ArrayOfAnalyticsOS          []components.AnalyticsOS          `queryParam:"inline,name=responseBody"`
+	ArrayOfAnalyticsTriggers    []components.AnalyticsTriggers    `queryParam:"inline,name=responseBody"`
+	ArrayOfAnalyticsReferers    []components.AnalyticsReferers    `queryParam:"inline,name=responseBody"`
+	ArrayOfAnalyticsRefererUrls []components.AnalyticsRefererUrls `queryParam:"inline,name=responseBody"`
+	ArrayOfAnalyticsTopLinks    []components.AnalyticsTopLinks    `queryParam:"inline,name=responseBody"`
+	ArrayOfAnalyticsTopUrls     []components.AnalyticsTopUrls     `queryParam:"inline,name=responseBody"`
 
 	Type RetrieveAnalyticsResponseBodyType
 }

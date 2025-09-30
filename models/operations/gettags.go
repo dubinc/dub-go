@@ -72,8 +72,8 @@ const (
 
 // Ids - IDs of tags to filter by.
 type Ids struct {
-	Str        *string  `queryParam:"inline" name:"ids"`
-	ArrayOfStr []string `queryParam:"inline" name:"ids"`
+	Str        *string  `queryParam:"inline,name=ids"`
+	ArrayOfStr []string `queryParam:"inline,name=ids"`
 
 	Type IdsType
 }
@@ -153,44 +153,44 @@ func (g *GetTagsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetTagsRequest) GetSortBy() *GetTagsQueryParamSortBy {
-	if o == nil {
+func (g *GetTagsRequest) GetSortBy() *GetTagsQueryParamSortBy {
+	if g == nil {
 		return nil
 	}
-	return o.SortBy
+	return g.SortBy
 }
 
-func (o *GetTagsRequest) GetSortOrder() *GetTagsQueryParamSortOrder {
-	if o == nil {
+func (g *GetTagsRequest) GetSortOrder() *GetTagsQueryParamSortOrder {
+	if g == nil {
 		return nil
 	}
-	return o.SortOrder
+	return g.SortOrder
 }
 
-func (o *GetTagsRequest) GetSearch() *string {
-	if o == nil {
+func (g *GetTagsRequest) GetSearch() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Search
+	return g.Search
 }
 
-func (o *GetTagsRequest) GetIds() *Ids {
-	if o == nil {
+func (g *GetTagsRequest) GetIds() *Ids {
+	if g == nil {
 		return nil
 	}
-	return o.Ids
+	return g.Ids
 }
 
-func (o *GetTagsRequest) GetPage() *float64 {
-	if o == nil {
+func (g *GetTagsRequest) GetPage() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Page
+	return g.Page
 }
 
-func (o *GetTagsRequest) GetPageSize() *float64 {
-	if o == nil {
+func (g *GetTagsRequest) GetPageSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.PageSize
+	return g.PageSize
 }

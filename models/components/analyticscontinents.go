@@ -74,37 +74,37 @@ func (a *AnalyticsContinents) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AnalyticsContinents) GetContinent() Continent {
-	if o == nil {
+func (a *AnalyticsContinents) GetContinent() Continent {
+	if a == nil {
 		return Continent("")
 	}
-	return o.Continent
+	return a.Continent
 }
 
-func (o *AnalyticsContinents) GetClicks() *float64 {
-	if o == nil {
+func (a *AnalyticsContinents) GetClicks() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Clicks
+	return a.Clicks
 }
 
-func (o *AnalyticsContinents) GetLeads() *float64 {
-	if o == nil {
+func (a *AnalyticsContinents) GetLeads() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Leads
+	return a.Leads
 }
 
-func (o *AnalyticsContinents) GetSales() *float64 {
-	if o == nil {
+func (a *AnalyticsContinents) GetSales() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Sales
+	return a.Sales
 }
 
-func (o *AnalyticsContinents) GetSaleAmount() *float64 {
-	if o == nil {
+func (a *AnalyticsContinents) GetSaleAmount() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return a.SaleAmount
 }

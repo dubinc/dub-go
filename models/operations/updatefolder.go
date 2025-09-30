@@ -53,18 +53,18 @@ func (u *UpdateFolderRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *UpdateFolderRequestBody) GetName() *string {
-	if o == nil {
+func (u *UpdateFolderRequestBody) GetName() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Name
+	return u.Name
 }
 
-func (o *UpdateFolderRequestBody) GetAccessLevel() *UpdateFolderAccessLevel {
-	if o == nil {
+func (u *UpdateFolderRequestBody) GetAccessLevel() *UpdateFolderAccessLevel {
+	if u == nil {
 		return nil
 	}
-	return o.AccessLevel
+	return u.AccessLevel
 }
 
 type UpdateFolderRequest struct {
@@ -73,16 +73,16 @@ type UpdateFolderRequest struct {
 	RequestBody *UpdateFolderRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *UpdateFolderRequest) GetID() string {
-	if o == nil {
+func (u *UpdateFolderRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateFolderRequest) GetRequestBody() *UpdateFolderRequestBody {
-	if o == nil {
+func (u *UpdateFolderRequest) GetRequestBody() *UpdateFolderRequestBody {
+	if u == nil {
 		return nil
 	}
-	return o.RequestBody
+	return u.RequestBody
 }

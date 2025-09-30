@@ -17,8 +17,8 @@ const (
 
 // CreateReferralsEmbedTokenTagIds - The unique IDs of the tags assigned to the short link.
 type CreateReferralsEmbedTokenTagIds struct {
-	Str        *string  `queryParam:"inline" name:"tagIds"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
+	Str        *string  `queryParam:"inline,name=tagIds"`
+	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
 
 	Type CreateReferralsEmbedTokenTagIdsType
 }
@@ -81,8 +81,8 @@ const (
 
 // CreateReferralsEmbedTokenTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type CreateReferralsEmbedTokenTagNames struct {
-	Str        *string  `queryParam:"inline" name:"tagNames"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
+	Str        *string  `queryParam:"inline,name=tagNames"`
+	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
 
 	Type CreateReferralsEmbedTokenTagNamesType
 }
@@ -141,18 +141,18 @@ type CreateReferralsEmbedTokenTestVariants struct {
 	Percentage float64 `json:"percentage"`
 }
 
-func (o *CreateReferralsEmbedTokenTestVariants) GetURL() string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenTestVariants) GetURL() string {
+	if c == nil {
 		return ""
 	}
-	return o.URL
+	return c.URL
 }
 
-func (o *CreateReferralsEmbedTokenTestVariants) GetPercentage() float64 {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenTestVariants) GetPercentage() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.Percentage
+	return c.Percentage
 }
 
 // CreateReferralsEmbedTokenLinkProps - Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
@@ -219,214 +219,214 @@ type CreateReferralsEmbedTokenLinkProps struct {
 	TestCompletedAt *string `json:"testCompletedAt,omitempty"`
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetKeyLength() *float64 {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetKeyLength() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.KeyLength
+	return c.KeyLength
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetExternalID() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetExternalID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ExternalID
+	return c.ExternalID
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetTenantID() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetTenantID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TenantID
+	return c.TenantID
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetPrefix() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetPrefix() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Prefix
+	return c.Prefix
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetArchived() *bool {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetArchived() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Archived
+	return c.Archived
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetTagIds() *CreateReferralsEmbedTokenTagIds {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetTagIds() *CreateReferralsEmbedTokenTagIds {
+	if c == nil {
 		return nil
 	}
-	return o.TagIds
+	return c.TagIds
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetTagNames() *CreateReferralsEmbedTokenTagNames {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetTagNames() *CreateReferralsEmbedTokenTagNames {
+	if c == nil {
 		return nil
 	}
-	return o.TagNames
+	return c.TagNames
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetFolderID() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetFolderID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.FolderID
+	return c.FolderID
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetComments() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetComments() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Comments
+	return c.Comments
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetExpiresAt() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetExpiresAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ExpiresAt
+	return c.ExpiresAt
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetExpiredURL() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetExpiredURL() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return c.ExpiredURL
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetPassword() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetPassword() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Password
+	return c.Password
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetProxy() *bool {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetProxy() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Proxy
+	return c.Proxy
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetTitle() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetTitle() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Title
+	return c.Title
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetDescription() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Description
+	return c.Description
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetImage() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetImage() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Image
+	return c.Image
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetVideo() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetVideo() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Video
+	return c.Video
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetRewrite() *bool {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetRewrite() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Rewrite
+	return c.Rewrite
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetIos() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetIos() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Ios
+	return c.Ios
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetAndroid() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetAndroid() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Android
+	return c.Android
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetDoIndex() *bool {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetDoIndex() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.DoIndex
+	return c.DoIndex
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetUtmSource() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetUtmSource() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmSource
+	return c.UtmSource
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetUtmMedium() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetUtmMedium() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmMedium
+	return c.UtmMedium
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetUtmCampaign() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetUtmCampaign() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmCampaign
+	return c.UtmCampaign
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetUtmTerm() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetUtmTerm() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmTerm
+	return c.UtmTerm
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetUtmContent() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetUtmContent() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmContent
+	return c.UtmContent
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetRef() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetRef() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Ref
+	return c.Ref
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetTestVariants() []CreateReferralsEmbedTokenTestVariants {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetTestVariants() []CreateReferralsEmbedTokenTestVariants {
+	if c == nil {
 		return nil
 	}
-	return o.TestVariants
+	return c.TestVariants
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetTestStartedAt() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetTestStartedAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TestStartedAt
+	return c.TestStartedAt
 }
 
-func (o *CreateReferralsEmbedTokenLinkProps) GetTestCompletedAt() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenLinkProps) GetTestCompletedAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TestCompletedAt
+	return c.TestCompletedAt
 }
 
 type Partner struct {
@@ -450,67 +450,67 @@ type Partner struct {
 	LinkProps *CreateReferralsEmbedTokenLinkProps `json:"linkProps,omitempty"`
 }
 
-func (o *Partner) GetName() *string {
-	if o == nil {
+func (p *Partner) GetName() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Name
+	return p.Name
 }
 
-func (o *Partner) GetEmail() string {
-	if o == nil {
+func (p *Partner) GetEmail() string {
+	if p == nil {
 		return ""
 	}
-	return o.Email
+	return p.Email
 }
 
-func (o *Partner) GetUsername() *string {
-	if o == nil {
+func (p *Partner) GetUsername() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Username
+	return p.Username
 }
 
-func (o *Partner) GetImage() *string {
-	if o == nil {
+func (p *Partner) GetImage() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Image
+	return p.Image
 }
 
-func (o *Partner) GetTenantID() *string {
-	if o == nil {
+func (p *Partner) GetTenantID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.TenantID
+	return p.TenantID
 }
 
-func (o *Partner) GetGroupID() *string {
-	if o == nil {
+func (p *Partner) GetGroupID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.GroupID
+	return p.GroupID
 }
 
-func (o *Partner) GetCountry() *string {
-	if o == nil {
+func (p *Partner) GetCountry() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Country
+	return p.Country
 }
 
-func (o *Partner) GetDescription() *string {
-	if o == nil {
+func (p *Partner) GetDescription() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Description
+	return p.Description
 }
 
-func (o *Partner) GetLinkProps() *CreateReferralsEmbedTokenLinkProps {
-	if o == nil {
+func (p *Partner) GetLinkProps() *CreateReferralsEmbedTokenLinkProps {
+	if p == nil {
 		return nil
 	}
-	return o.LinkProps
+	return p.LinkProps
 }
 
 type CreateReferralsEmbedTokenRequestBody struct {
@@ -519,25 +519,25 @@ type CreateReferralsEmbedTokenRequestBody struct {
 	Partner   *Partner `json:"partner,omitempty"`
 }
 
-func (o *CreateReferralsEmbedTokenRequestBody) GetPartnerID() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenRequestBody) GetPartnerID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PartnerID
+	return c.PartnerID
 }
 
-func (o *CreateReferralsEmbedTokenRequestBody) GetTenantID() *string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenRequestBody) GetTenantID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TenantID
+	return c.TenantID
 }
 
-func (o *CreateReferralsEmbedTokenRequestBody) GetPartner() *Partner {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenRequestBody) GetPartner() *Partner {
+	if c == nil {
 		return nil
 	}
-	return o.Partner
+	return c.Partner
 }
 
 // CreateReferralsEmbedTokenResponseBody - The created public embed token.
@@ -546,16 +546,16 @@ type CreateReferralsEmbedTokenResponseBody struct {
 	Expires     string `json:"expires"`
 }
 
-func (o *CreateReferralsEmbedTokenResponseBody) GetPublicToken() string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenResponseBody) GetPublicToken() string {
+	if c == nil {
 		return ""
 	}
-	return o.PublicToken
+	return c.PublicToken
 }
 
-func (o *CreateReferralsEmbedTokenResponseBody) GetExpires() string {
-	if o == nil {
+func (c *CreateReferralsEmbedTokenResponseBody) GetExpires() string {
+	if c == nil {
 		return ""
 	}
-	return o.Expires
+	return c.Expires
 }

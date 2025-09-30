@@ -6,9 +6,9 @@ type Security struct {
 	Token string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
-func (o *Security) GetToken() string {
-	if o == nil {
+func (s *Security) GetToken() string {
+	if s == nil {
 		return ""
 	}
-	return o.Token
+	return s.Token
 }

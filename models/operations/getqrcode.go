@@ -73,65 +73,65 @@ func (g *GetQRCodeRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetQRCodeRequest) GetURL() string {
-	if o == nil {
+func (g *GetQRCodeRequest) GetURL() string {
+	if g == nil {
 		return ""
 	}
-	return o.URL
+	return g.URL
 }
 
-func (o *GetQRCodeRequest) GetLogo() *string {
-	if o == nil {
+func (g *GetQRCodeRequest) GetLogo() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Logo
+	return g.Logo
 }
 
-func (o *GetQRCodeRequest) GetSize() *float64 {
-	if o == nil {
+func (g *GetQRCodeRequest) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetQRCodeRequest) GetLevel() *Level {
-	if o == nil {
+func (g *GetQRCodeRequest) GetLevel() *Level {
+	if g == nil {
 		return nil
 	}
-	return o.Level
+	return g.Level
 }
 
-func (o *GetQRCodeRequest) GetFgColor() *string {
-	if o == nil {
+func (g *GetQRCodeRequest) GetFgColor() *string {
+	if g == nil {
 		return nil
 	}
-	return o.FgColor
+	return g.FgColor
 }
 
-func (o *GetQRCodeRequest) GetBgColor() *string {
-	if o == nil {
+func (g *GetQRCodeRequest) GetBgColor() *string {
+	if g == nil {
 		return nil
 	}
-	return o.BgColor
+	return g.BgColor
 }
 
-func (o *GetQRCodeRequest) GetHideLogo() *bool {
-	if o == nil {
+func (g *GetQRCodeRequest) GetHideLogo() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.HideLogo
+	return g.HideLogo
 }
 
-func (o *GetQRCodeRequest) GetMargin() *float64 {
-	if o == nil {
+func (g *GetQRCodeRequest) GetMargin() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Margin
+	return g.Margin
 }
 
-func (o *GetQRCodeRequest) GetIncludeMargin() *bool {
-	if o == nil {
+func (g *GetQRCodeRequest) GetIncludeMargin() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeMargin
+	return g.IncludeMargin
 }

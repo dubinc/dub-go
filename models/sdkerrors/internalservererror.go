@@ -40,25 +40,25 @@ type InternalServerErrorError struct {
 	DocURL *string `json:"doc_url,omitempty"`
 }
 
-func (o *InternalServerErrorError) GetCode() InternalServerErrorCode {
-	if o == nil {
+func (i *InternalServerErrorError) GetCode() InternalServerErrorCode {
+	if i == nil {
 		return InternalServerErrorCode("")
 	}
-	return o.Code
+	return i.Code
 }
 
-func (o *InternalServerErrorError) GetMessage() string {
-	if o == nil {
+func (i *InternalServerErrorError) GetMessage() string {
+	if i == nil {
 		return ""
 	}
-	return o.Message
+	return i.Message
 }
 
-func (o *InternalServerErrorError) GetDocURL() *string {
-	if o == nil {
+func (i *InternalServerErrorError) GetDocURL() *string {
+	if i == nil {
 		return nil
 	}
-	return o.DocURL
+	return i.DocURL
 }
 
 // InternalServerError - The server has encountered a situation it does not know how to handle.

@@ -17,8 +17,8 @@ const (
 
 // Domains - The domains to search. We only support .link domains for now.
 type Domains struct {
-	Str        *string  `queryParam:"inline" name:"domains"`
-	ArrayOfStr []string `queryParam:"inline" name:"domains"`
+	Str        *string  `queryParam:"inline,name=domains"`
+	ArrayOfStr []string `queryParam:"inline,name=domains"`
 
 	Type DomainsType
 }
@@ -77,11 +77,11 @@ type CheckDomainStatusRequest struct {
 	Domains Domains `queryParam:"style=form,explode=false,name=domains"`
 }
 
-func (o *CheckDomainStatusRequest) GetDomains() Domains {
-	if o == nil {
+func (c *CheckDomainStatusRequest) GetDomains() Domains {
+	if c == nil {
 		return Domains{}
 	}
-	return o.Domains
+	return c.Domains
 }
 
 type CheckDomainStatusResponseBody struct {
@@ -95,30 +95,30 @@ type CheckDomainStatusResponseBody struct {
 	Premium *bool `json:"premium"`
 }
 
-func (o *CheckDomainStatusResponseBody) GetDomain() string {
-	if o == nil {
+func (c *CheckDomainStatusResponseBody) GetDomain() string {
+	if c == nil {
 		return ""
 	}
-	return o.Domain
+	return c.Domain
 }
 
-func (o *CheckDomainStatusResponseBody) GetAvailable() bool {
-	if o == nil {
+func (c *CheckDomainStatusResponseBody) GetAvailable() bool {
+	if c == nil {
 		return false
 	}
-	return o.Available
+	return c.Available
 }
 
-func (o *CheckDomainStatusResponseBody) GetPrice() *string {
-	if o == nil {
+func (c *CheckDomainStatusResponseBody) GetPrice() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Price
+	return c.Price
 }
 
-func (o *CheckDomainStatusResponseBody) GetPremium() *bool {
-	if o == nil {
+func (c *CheckDomainStatusResponseBody) GetPremium() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Premium
+	return c.Premium
 }

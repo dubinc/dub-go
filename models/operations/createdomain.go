@@ -36,58 +36,58 @@ func (c *CreateDomainRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CreateDomainRequestBody) GetSlug() string {
-	if o == nil {
+func (c *CreateDomainRequestBody) GetSlug() string {
+	if c == nil {
 		return ""
 	}
-	return o.Slug
+	return c.Slug
 }
 
-func (o *CreateDomainRequestBody) GetExpiredURL() *string {
-	if o == nil {
+func (c *CreateDomainRequestBody) GetExpiredURL() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return c.ExpiredURL
 }
 
-func (o *CreateDomainRequestBody) GetNotFoundURL() *string {
-	if o == nil {
+func (c *CreateDomainRequestBody) GetNotFoundURL() *string {
+	if c == nil {
 		return nil
 	}
-	return o.NotFoundURL
+	return c.NotFoundURL
 }
 
-func (o *CreateDomainRequestBody) GetArchived() *bool {
-	if o == nil {
+func (c *CreateDomainRequestBody) GetArchived() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Archived
+	return c.Archived
 }
 
-func (o *CreateDomainRequestBody) GetPlaceholder() *string {
-	if o == nil {
+func (c *CreateDomainRequestBody) GetPlaceholder() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Placeholder
+	return c.Placeholder
 }
 
-func (o *CreateDomainRequestBody) GetLogo() *string {
-	if o == nil {
+func (c *CreateDomainRequestBody) GetLogo() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Logo
+	return c.Logo
 }
 
-func (o *CreateDomainRequestBody) GetAssetLinks() *string {
-	if o == nil {
+func (c *CreateDomainRequestBody) GetAssetLinks() *string {
+	if c == nil {
 		return nil
 	}
-	return o.AssetLinks
+	return c.AssetLinks
 }
 
-func (o *CreateDomainRequestBody) GetAppleAppSiteAssociation() *string {
-	if o == nil {
+func (c *CreateDomainRequestBody) GetAppleAppSiteAssociation() *string {
+	if c == nil {
 		return nil
 	}
-	return o.AppleAppSiteAssociation
+	return c.AppleAppSiteAssociation
 }

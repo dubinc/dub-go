@@ -36,7 +36,7 @@ func main() {
     )
 
     res, err := s.Customers.List(ctx, operations.GetCustomersRequest{
-        PageSize: dubgo.Float64(50),
+        PageSize: dubgo.Pointer[float64](50),
     })
     if err != nil {
         log.Fatal(err)

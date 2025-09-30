@@ -28,30 +28,30 @@ func (a *AnalyticsCount) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AnalyticsCount) GetClicks() *float64 {
-	if o == nil {
+func (a *AnalyticsCount) GetClicks() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Clicks
+	return a.Clicks
 }
 
-func (o *AnalyticsCount) GetLeads() *float64 {
-	if o == nil {
+func (a *AnalyticsCount) GetLeads() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Leads
+	return a.Leads
 }
 
-func (o *AnalyticsCount) GetSales() *float64 {
-	if o == nil {
+func (a *AnalyticsCount) GetSales() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Sales
+	return a.Sales
 }
 
-func (o *AnalyticsCount) GetSaleAmount() *float64 {
-	if o == nil {
+func (a *AnalyticsCount) GetSaleAmount() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return a.SaleAmount
 }

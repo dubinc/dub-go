@@ -30,37 +30,37 @@ func (a *AnalyticsBrowsers) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AnalyticsBrowsers) GetBrowser() string {
-	if o == nil {
+func (a *AnalyticsBrowsers) GetBrowser() string {
+	if a == nil {
 		return ""
 	}
-	return o.Browser
+	return a.Browser
 }
 
-func (o *AnalyticsBrowsers) GetClicks() *float64 {
-	if o == nil {
+func (a *AnalyticsBrowsers) GetClicks() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Clicks
+	return a.Clicks
 }
 
-func (o *AnalyticsBrowsers) GetLeads() *float64 {
-	if o == nil {
+func (a *AnalyticsBrowsers) GetLeads() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Leads
+	return a.Leads
 }
 
-func (o *AnalyticsBrowsers) GetSales() *float64 {
-	if o == nil {
+func (a *AnalyticsBrowsers) GetSales() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Sales
+	return a.Sales
 }
 
-func (o *AnalyticsBrowsers) GetSaleAmount() *float64 {
-	if o == nil {
+func (a *AnalyticsBrowsers) GetSaleAmount() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return a.SaleAmount
 }

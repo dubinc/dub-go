@@ -7,11 +7,11 @@ type DeleteFolderRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *DeleteFolderRequest) GetID() string {
-	if o == nil {
+func (d *DeleteFolderRequest) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
 // DeleteFolderResponseBody - The deleted folder ID.
@@ -20,9 +20,9 @@ type DeleteFolderResponseBody struct {
 	ID string `json:"id"`
 }
 
-func (o *DeleteFolderResponseBody) GetID() string {
-	if o == nil {
+func (d *DeleteFolderResponseBody) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }

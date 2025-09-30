@@ -190,8 +190,10 @@ type ListCommissionsRequest struct {
 	CustomerID *string `queryParam:"style=form,explode=true,name=customerId"`
 	// Filter the list of commissions by the associated payout.
 	PayoutID *string `queryParam:"style=form,explode=true,name=payoutId"`
-	// Filter the list of commissions by the associated partner.
+	// Filter the list of commissions by the associated partner. When specified, takes precedence over `tenantId`.
 	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
+	// Filter the list of commissions by the associated partner's `tenantId` (their unique ID within your database).
+	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
 	// Filter the list of commissions by the associated partner group.
 	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
 	// Filter the list of commissions by the associated invoice. Since invoiceId is unique on a per-program basis, this will only return one commission per invoice.
@@ -225,102 +227,109 @@ func (l *ListCommissionsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ListCommissionsRequest) GetType() *Type {
-	if o == nil {
+func (l *ListCommissionsRequest) GetType() *Type {
+	if l == nil {
 		return nil
 	}
-	return o.Type
+	return l.Type
 }
 
-func (o *ListCommissionsRequest) GetCustomerID() *string {
-	if o == nil {
+func (l *ListCommissionsRequest) GetCustomerID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.CustomerID
+	return l.CustomerID
 }
 
-func (o *ListCommissionsRequest) GetPayoutID() *string {
-	if o == nil {
+func (l *ListCommissionsRequest) GetPayoutID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.PayoutID
+	return l.PayoutID
 }
 
-func (o *ListCommissionsRequest) GetPartnerID() *string {
-	if o == nil {
+func (l *ListCommissionsRequest) GetPartnerID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.PartnerID
+	return l.PartnerID
 }
 
-func (o *ListCommissionsRequest) GetGroupID() *string {
-	if o == nil {
+func (l *ListCommissionsRequest) GetTenantID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.GroupID
+	return l.TenantID
 }
 
-func (o *ListCommissionsRequest) GetInvoiceID() *string {
-	if o == nil {
+func (l *ListCommissionsRequest) GetGroupID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.InvoiceID
+	return l.GroupID
 }
 
-func (o *ListCommissionsRequest) GetStatus() *QueryParamStatus {
-	if o == nil {
+func (l *ListCommissionsRequest) GetInvoiceID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Status
+	return l.InvoiceID
 }
 
-func (o *ListCommissionsRequest) GetSortBy() *ListCommissionsQueryParamSortBy {
-	if o == nil {
+func (l *ListCommissionsRequest) GetStatus() *QueryParamStatus {
+	if l == nil {
 		return nil
 	}
-	return o.SortBy
+	return l.Status
 }
 
-func (o *ListCommissionsRequest) GetSortOrder() *ListCommissionsQueryParamSortOrder {
-	if o == nil {
+func (l *ListCommissionsRequest) GetSortBy() *ListCommissionsQueryParamSortBy {
+	if l == nil {
 		return nil
 	}
-	return o.SortOrder
+	return l.SortBy
 }
 
-func (o *ListCommissionsRequest) GetInterval() *ListCommissionsQueryParamInterval {
-	if o == nil {
+func (l *ListCommissionsRequest) GetSortOrder() *ListCommissionsQueryParamSortOrder {
+	if l == nil {
 		return nil
 	}
-	return o.Interval
+	return l.SortOrder
 }
 
-func (o *ListCommissionsRequest) GetStart() *string {
-	if o == nil {
+func (l *ListCommissionsRequest) GetInterval() *ListCommissionsQueryParamInterval {
+	if l == nil {
 		return nil
 	}
-	return o.Start
+	return l.Interval
 }
 
-func (o *ListCommissionsRequest) GetEnd() *string {
-	if o == nil {
+func (l *ListCommissionsRequest) GetStart() *string {
+	if l == nil {
 		return nil
 	}
-	return o.End
+	return l.Start
 }
 
-func (o *ListCommissionsRequest) GetPage() *float64 {
-	if o == nil {
+func (l *ListCommissionsRequest) GetEnd() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Page
+	return l.End
 }
 
-func (o *ListCommissionsRequest) GetPageSize() *float64 {
-	if o == nil {
+func (l *ListCommissionsRequest) GetPage() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.PageSize
+	return l.Page
+}
+
+func (l *ListCommissionsRequest) GetPageSize() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.PageSize
 }
 
 type ListCommissionsType string
@@ -411,46 +420,46 @@ type ListCommissionsPartner struct {
 	Country *string `json:"country"`
 }
 
-func (o *ListCommissionsPartner) GetID() string {
-	if o == nil {
+func (l *ListCommissionsPartner) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ID
+	return l.ID
 }
 
-func (o *ListCommissionsPartner) GetName() string {
-	if o == nil {
+func (l *ListCommissionsPartner) GetName() string {
+	if l == nil {
 		return ""
 	}
-	return o.Name
+	return l.Name
 }
 
-func (o *ListCommissionsPartner) GetEmail() *string {
-	if o == nil {
+func (l *ListCommissionsPartner) GetEmail() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Email
+	return l.Email
 }
 
-func (o *ListCommissionsPartner) GetImage() *string {
-	if o == nil {
+func (l *ListCommissionsPartner) GetImage() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Image
+	return l.Image
 }
 
-func (o *ListCommissionsPartner) GetPayoutsEnabledAt() *string {
-	if o == nil {
+func (l *ListCommissionsPartner) GetPayoutsEnabledAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.PayoutsEnabledAt
+	return l.PayoutsEnabledAt
 }
 
-func (o *ListCommissionsPartner) GetCountry() *string {
-	if o == nil {
+func (l *ListCommissionsPartner) GetCountry() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Country
+	return l.Country
 }
 
 type ListCommissionsCustomer struct {
@@ -474,67 +483,67 @@ type ListCommissionsCustomer struct {
 	CreatedAt string `json:"createdAt"`
 }
 
-func (o *ListCommissionsCustomer) GetID() string {
-	if o == nil {
+func (l *ListCommissionsCustomer) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ID
+	return l.ID
 }
 
-func (o *ListCommissionsCustomer) GetExternalID() string {
-	if o == nil {
+func (l *ListCommissionsCustomer) GetExternalID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ExternalID
+	return l.ExternalID
 }
 
-func (o *ListCommissionsCustomer) GetName() string {
-	if o == nil {
+func (l *ListCommissionsCustomer) GetName() string {
+	if l == nil {
 		return ""
 	}
-	return o.Name
+	return l.Name
 }
 
-func (o *ListCommissionsCustomer) GetEmail() *string {
-	if o == nil {
+func (l *ListCommissionsCustomer) GetEmail() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Email
+	return l.Email
 }
 
-func (o *ListCommissionsCustomer) GetAvatar() *string {
-	if o == nil {
+func (l *ListCommissionsCustomer) GetAvatar() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Avatar
+	return l.Avatar
 }
 
-func (o *ListCommissionsCustomer) GetCountry() *string {
-	if o == nil {
+func (l *ListCommissionsCustomer) GetCountry() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Country
+	return l.Country
 }
 
-func (o *ListCommissionsCustomer) GetSales() *float64 {
-	if o == nil {
+func (l *ListCommissionsCustomer) GetSales() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Sales
+	return l.Sales
 }
 
-func (o *ListCommissionsCustomer) GetSaleAmount() *float64 {
-	if o == nil {
+func (l *ListCommissionsCustomer) GetSaleAmount() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return l.SaleAmount
 }
 
-func (o *ListCommissionsCustomer) GetCreatedAt() string {
-	if o == nil {
+func (l *ListCommissionsCustomer) GetCreatedAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return l.CreatedAt
 }
 
 type ListCommissionsResponseBody struct {
@@ -556,100 +565,100 @@ type ListCommissionsResponseBody struct {
 	Customer  *ListCommissionsCustomer `json:"customer,omitempty"`
 }
 
-func (o *ListCommissionsResponseBody) GetID() string {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ID
+	return l.ID
 }
 
-func (o *ListCommissionsResponseBody) GetType() *ListCommissionsType {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetType() *ListCommissionsType {
+	if l == nil {
 		return nil
 	}
-	return o.Type
+	return l.Type
 }
 
-func (o *ListCommissionsResponseBody) GetAmount() float64 {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetAmount() float64 {
+	if l == nil {
 		return 0.0
 	}
-	return o.Amount
+	return l.Amount
 }
 
-func (o *ListCommissionsResponseBody) GetEarnings() float64 {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetEarnings() float64 {
+	if l == nil {
 		return 0.0
 	}
-	return o.Earnings
+	return l.Earnings
 }
 
-func (o *ListCommissionsResponseBody) GetCurrency() string {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetCurrency() string {
+	if l == nil {
 		return ""
 	}
-	return o.Currency
+	return l.Currency
 }
 
-func (o *ListCommissionsResponseBody) GetStatus() ListCommissionsStatus {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetStatus() ListCommissionsStatus {
+	if l == nil {
 		return ListCommissionsStatus("")
 	}
-	return o.Status
+	return l.Status
 }
 
-func (o *ListCommissionsResponseBody) GetInvoiceID() *string {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetInvoiceID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.InvoiceID
+	return l.InvoiceID
 }
 
-func (o *ListCommissionsResponseBody) GetDescription() *string {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetDescription() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Description
+	return l.Description
 }
 
-func (o *ListCommissionsResponseBody) GetQuantity() float64 {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetQuantity() float64 {
+	if l == nil {
 		return 0.0
 	}
-	return o.Quantity
+	return l.Quantity
 }
 
-func (o *ListCommissionsResponseBody) GetUserID() *string {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetUserID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UserID
+	return l.UserID
 }
 
-func (o *ListCommissionsResponseBody) GetCreatedAt() string {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetCreatedAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return l.CreatedAt
 }
 
-func (o *ListCommissionsResponseBody) GetUpdatedAt() string {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetUpdatedAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.UpdatedAt
+	return l.UpdatedAt
 }
 
-func (o *ListCommissionsResponseBody) GetPartner() ListCommissionsPartner {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetPartner() ListCommissionsPartner {
+	if l == nil {
 		return ListCommissionsPartner{}
 	}
-	return o.Partner
+	return l.Partner
 }
 
-func (o *ListCommissionsResponseBody) GetCustomer() *ListCommissionsCustomer {
-	if o == nil {
+func (l *ListCommissionsResponseBody) GetCustomer() *ListCommissionsCustomer {
+	if l == nil {
 		return nil
 	}
-	return o.Customer
+	return l.Customer
 }

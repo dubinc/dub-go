@@ -20,39 +20,39 @@ type RegisteredDomain struct {
 	RenewalFee float64 `json:"renewalFee"`
 }
 
-func (o *RegisteredDomain) GetID() string {
-	if o == nil {
+func (r *RegisteredDomain) GetID() string {
+	if r == nil {
 		return ""
 	}
-	return o.ID
+	return r.ID
 }
 
-func (o *RegisteredDomain) GetAutoRenewalDisabledAt() *string {
-	if o == nil {
+func (r *RegisteredDomain) GetAutoRenewalDisabledAt() *string {
+	if r == nil {
 		return nil
 	}
-	return o.AutoRenewalDisabledAt
+	return r.AutoRenewalDisabledAt
 }
 
-func (o *RegisteredDomain) GetCreatedAt() string {
-	if o == nil {
+func (r *RegisteredDomain) GetCreatedAt() string {
+	if r == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return r.CreatedAt
 }
 
-func (o *RegisteredDomain) GetExpiresAt() string {
-	if o == nil {
+func (r *RegisteredDomain) GetExpiresAt() string {
+	if r == nil {
 		return ""
 	}
-	return o.ExpiresAt
+	return r.ExpiresAt
 }
 
-func (o *RegisteredDomain) GetRenewalFee() float64 {
-	if o == nil {
+func (r *RegisteredDomain) GetRenewalFee() float64 {
+	if r == nil {
 		return 0.0
 	}
-	return o.RenewalFee
+	return r.RenewalFee
 }
 
 type DomainSchema struct {
@@ -97,100 +97,100 @@ func (d *DomainSchema) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *DomainSchema) GetID() string {
-	if o == nil {
+func (d *DomainSchema) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
-func (o *DomainSchema) GetSlug() string {
-	if o == nil {
+func (d *DomainSchema) GetSlug() string {
+	if d == nil {
 		return ""
 	}
-	return o.Slug
+	return d.Slug
 }
 
-func (o *DomainSchema) GetVerified() *bool {
-	if o == nil {
+func (d *DomainSchema) GetVerified() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Verified
+	return d.Verified
 }
 
-func (o *DomainSchema) GetPrimary() *bool {
-	if o == nil {
+func (d *DomainSchema) GetPrimary() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Primary
+	return d.Primary
 }
 
-func (o *DomainSchema) GetArchived() *bool {
-	if o == nil {
+func (d *DomainSchema) GetArchived() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Archived
+	return d.Archived
 }
 
-func (o *DomainSchema) GetPlaceholder() *string {
-	if o == nil {
+func (d *DomainSchema) GetPlaceholder() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Placeholder
+	return d.Placeholder
 }
 
-func (o *DomainSchema) GetExpiredURL() *string {
-	if o == nil {
+func (d *DomainSchema) GetExpiredURL() *string {
+	if d == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return d.ExpiredURL
 }
 
-func (o *DomainSchema) GetNotFoundURL() *string {
-	if o == nil {
+func (d *DomainSchema) GetNotFoundURL() *string {
+	if d == nil {
 		return nil
 	}
-	return o.NotFoundURL
+	return d.NotFoundURL
 }
 
-func (o *DomainSchema) GetLogo() *string {
-	if o == nil {
+func (d *DomainSchema) GetLogo() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Logo
+	return d.Logo
 }
 
-func (o *DomainSchema) GetAssetLinks() *string {
-	if o == nil {
+func (d *DomainSchema) GetAssetLinks() *string {
+	if d == nil {
 		return nil
 	}
-	return o.AssetLinks
+	return d.AssetLinks
 }
 
-func (o *DomainSchema) GetAppleAppSiteAssociation() *string {
-	if o == nil {
+func (d *DomainSchema) GetAppleAppSiteAssociation() *string {
+	if d == nil {
 		return nil
 	}
-	return o.AppleAppSiteAssociation
+	return d.AppleAppSiteAssociation
 }
 
-func (o *DomainSchema) GetCreatedAt() string {
-	if o == nil {
+func (d *DomainSchema) GetCreatedAt() string {
+	if d == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return d.CreatedAt
 }
 
-func (o *DomainSchema) GetUpdatedAt() string {
-	if o == nil {
+func (d *DomainSchema) GetUpdatedAt() string {
+	if d == nil {
 		return ""
 	}
-	return o.UpdatedAt
+	return d.UpdatedAt
 }
 
-func (o *DomainSchema) GetRegisteredDomain() *RegisteredDomain {
-	if o == nil {
+func (d *DomainSchema) GetRegisteredDomain() *RegisteredDomain {
+	if d == nil {
 		return nil
 	}
-	return o.RegisteredDomain
+	return d.RegisteredDomain
 }
