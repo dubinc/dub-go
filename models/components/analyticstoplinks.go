@@ -48,93 +48,93 @@ func (a *AnalyticsTopLinks) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AnalyticsTopLinks) GetLink() string {
-	if o == nil {
+func (a *AnalyticsTopLinks) GetLink() string {
+	if a == nil {
 		return ""
 	}
-	return o.Link
+	return a.Link
 }
 
-func (o *AnalyticsTopLinks) GetID() string {
-	if o == nil {
+func (a *AnalyticsTopLinks) GetID() string {
+	if a == nil {
 		return ""
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *AnalyticsTopLinks) GetDomain() string {
-	if o == nil {
+func (a *AnalyticsTopLinks) GetDomain() string {
+	if a == nil {
 		return ""
 	}
-	return o.Domain
+	return a.Domain
 }
 
-func (o *AnalyticsTopLinks) GetKey() string {
-	if o == nil {
+func (a *AnalyticsTopLinks) GetKey() string {
+	if a == nil {
 		return ""
 	}
-	return o.Key
+	return a.Key
 }
 
-func (o *AnalyticsTopLinks) GetShortLink() string {
-	if o == nil {
+func (a *AnalyticsTopLinks) GetShortLink() string {
+	if a == nil {
 		return ""
 	}
-	return o.ShortLink
+	return a.ShortLink
 }
 
-func (o *AnalyticsTopLinks) GetURL() string {
-	if o == nil {
+func (a *AnalyticsTopLinks) GetURL() string {
+	if a == nil {
 		return ""
 	}
-	return o.URL
+	return a.URL
 }
 
-func (o *AnalyticsTopLinks) GetComments() *string {
-	if o == nil {
+func (a *AnalyticsTopLinks) GetComments() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Comments
+	return a.Comments
 }
 
-func (o *AnalyticsTopLinks) GetTitle() *string {
-	if o == nil {
+func (a *AnalyticsTopLinks) GetTitle() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Title
+	return a.Title
 }
 
-func (o *AnalyticsTopLinks) GetCreatedAt() string {
-	if o == nil {
+func (a *AnalyticsTopLinks) GetCreatedAt() string {
+	if a == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return a.CreatedAt
 }
 
-func (o *AnalyticsTopLinks) GetClicks() *float64 {
-	if o == nil {
+func (a *AnalyticsTopLinks) GetClicks() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Clicks
+	return a.Clicks
 }
 
-func (o *AnalyticsTopLinks) GetLeads() *float64 {
-	if o == nil {
+func (a *AnalyticsTopLinks) GetLeads() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Leads
+	return a.Leads
 }
 
-func (o *AnalyticsTopLinks) GetSales() *float64 {
-	if o == nil {
+func (a *AnalyticsTopLinks) GetSales() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Sales
+	return a.Sales
 }
 
-func (o *AnalyticsTopLinks) GetSaleAmount() *float64 {
-	if o == nil {
+func (a *AnalyticsTopLinks) GetSaleAmount() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return a.SaleAmount
 }

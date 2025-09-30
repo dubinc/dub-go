@@ -7,9 +7,9 @@ type GetWorkspaceRequest struct {
 	IDOrSlug string `pathParam:"style=simple,explode=false,name=idOrSlug"`
 }
 
-func (o *GetWorkspaceRequest) GetIDOrSlug() string {
-	if o == nil {
+func (g *GetWorkspaceRequest) GetIDOrSlug() string {
+	if g == nil {
 		return ""
 	}
-	return o.IDOrSlug
+	return g.IDOrSlug
 }

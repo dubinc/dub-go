@@ -16,34 +16,43 @@ type UpdateCustomerRequestBody struct {
 	Avatar *string `json:"avatar,omitempty"`
 	// Unique identifier for the customer in the client's app.
 	ExternalID *string `json:"externalId,omitempty"`
+	// The customer's Stripe customer ID. Useful for attribution recurring sale events to the partner who referred the customer.
+	StripeCustomerID *string `json:"stripeCustomerId,omitempty"`
 }
 
-func (o *UpdateCustomerRequestBody) GetEmail() *string {
-	if o == nil {
+func (u *UpdateCustomerRequestBody) GetEmail() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Email
+	return u.Email
 }
 
-func (o *UpdateCustomerRequestBody) GetName() *string {
-	if o == nil {
+func (u *UpdateCustomerRequestBody) GetName() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Name
+	return u.Name
 }
 
-func (o *UpdateCustomerRequestBody) GetAvatar() *string {
-	if o == nil {
+func (u *UpdateCustomerRequestBody) GetAvatar() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Avatar
+	return u.Avatar
 }
 
-func (o *UpdateCustomerRequestBody) GetExternalID() *string {
-	if o == nil {
+func (u *UpdateCustomerRequestBody) GetExternalID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.ExternalID
+	return u.ExternalID
+}
+
+func (u *UpdateCustomerRequestBody) GetStripeCustomerID() *string {
+	if u == nil {
+		return nil
+	}
+	return u.StripeCustomerID
 }
 
 type UpdateCustomerRequest struct {
@@ -54,25 +63,25 @@ type UpdateCustomerRequest struct {
 	RequestBody           *UpdateCustomerRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *UpdateCustomerRequest) GetID() string {
-	if o == nil {
+func (u *UpdateCustomerRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateCustomerRequest) GetIncludeExpandedFields() *bool {
-	if o == nil {
+func (u *UpdateCustomerRequest) GetIncludeExpandedFields() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.IncludeExpandedFields
+	return u.IncludeExpandedFields
 }
 
-func (o *UpdateCustomerRequest) GetRequestBody() *UpdateCustomerRequestBody {
-	if o == nil {
+func (u *UpdateCustomerRequest) GetRequestBody() *UpdateCustomerRequestBody {
+	if u == nil {
 		return nil
 	}
-	return o.RequestBody
+	return u.RequestBody
 }
 
 type UpdateCustomerLink struct {
@@ -90,46 +99,46 @@ type UpdateCustomerLink struct {
 	ProgramID *string `json:"programId"`
 }
 
-func (o *UpdateCustomerLink) GetID() string {
-	if o == nil {
+func (u *UpdateCustomerLink) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateCustomerLink) GetDomain() string {
-	if o == nil {
+func (u *UpdateCustomerLink) GetDomain() string {
+	if u == nil {
 		return ""
 	}
-	return o.Domain
+	return u.Domain
 }
 
-func (o *UpdateCustomerLink) GetKey() string {
-	if o == nil {
+func (u *UpdateCustomerLink) GetKey() string {
+	if u == nil {
 		return ""
 	}
-	return o.Key
+	return u.Key
 }
 
-func (o *UpdateCustomerLink) GetShortLink() string {
-	if o == nil {
+func (u *UpdateCustomerLink) GetShortLink() string {
+	if u == nil {
 		return ""
 	}
-	return o.ShortLink
+	return u.ShortLink
 }
 
-func (o *UpdateCustomerLink) GetURL() string {
-	if o == nil {
+func (u *UpdateCustomerLink) GetURL() string {
+	if u == nil {
 		return ""
 	}
-	return o.URL
+	return u.URL
 }
 
-func (o *UpdateCustomerLink) GetProgramID() *string {
-	if o == nil {
+func (u *UpdateCustomerLink) GetProgramID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.ProgramID
+	return u.ProgramID
 }
 
 type UpdateCustomerPartner struct {
@@ -143,32 +152,32 @@ type UpdateCustomerPartner struct {
 	Image *string `json:"image"`
 }
 
-func (o *UpdateCustomerPartner) GetID() string {
-	if o == nil {
+func (u *UpdateCustomerPartner) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateCustomerPartner) GetName() string {
-	if o == nil {
+func (u *UpdateCustomerPartner) GetName() string {
+	if u == nil {
 		return ""
 	}
-	return o.Name
+	return u.Name
 }
 
-func (o *UpdateCustomerPartner) GetEmail() *string {
-	if o == nil {
+func (u *UpdateCustomerPartner) GetEmail() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Email
+	return u.Email
 }
 
-func (o *UpdateCustomerPartner) GetImage() *string {
-	if o == nil {
+func (u *UpdateCustomerPartner) GetImage() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Image
+	return u.Image
 }
 
 type UpdateCustomerType string
@@ -208,60 +217,60 @@ type UpdateCustomerDiscount struct {
 	PartnersCount *float64           `json:"partnersCount,omitempty"`
 }
 
-func (o *UpdateCustomerDiscount) GetID() string {
-	if o == nil {
+func (u *UpdateCustomerDiscount) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateCustomerDiscount) GetAmount() float64 {
-	if o == nil {
+func (u *UpdateCustomerDiscount) GetAmount() float64 {
+	if u == nil {
 		return 0.0
 	}
-	return o.Amount
+	return u.Amount
 }
 
-func (o *UpdateCustomerDiscount) GetType() UpdateCustomerType {
-	if o == nil {
+func (u *UpdateCustomerDiscount) GetType() UpdateCustomerType {
+	if u == nil {
 		return UpdateCustomerType("")
 	}
-	return o.Type
+	return u.Type
 }
 
-func (o *UpdateCustomerDiscount) GetMaxDuration() *float64 {
-	if o == nil {
+func (u *UpdateCustomerDiscount) GetMaxDuration() *float64 {
+	if u == nil {
 		return nil
 	}
-	return o.MaxDuration
+	return u.MaxDuration
 }
 
-func (o *UpdateCustomerDiscount) GetDescription() *string {
-	if o == nil {
+func (u *UpdateCustomerDiscount) GetDescription() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Description
+	return u.Description
 }
 
-func (o *UpdateCustomerDiscount) GetCouponID() *string {
-	if o == nil {
+func (u *UpdateCustomerDiscount) GetCouponID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.CouponID
+	return u.CouponID
 }
 
-func (o *UpdateCustomerDiscount) GetCouponTestID() *string {
-	if o == nil {
+func (u *UpdateCustomerDiscount) GetCouponTestID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.CouponTestID
+	return u.CouponTestID
 }
 
-func (o *UpdateCustomerDiscount) GetPartnersCount() *float64 {
-	if o == nil {
+func (u *UpdateCustomerDiscount) GetPartnersCount() *float64 {
+	if u == nil {
 		return nil
 	}
-	return o.PartnersCount
+	return u.PartnersCount
 }
 
 // UpdateCustomerResponseBody - The customer was updated.
@@ -290,93 +299,93 @@ type UpdateCustomerResponseBody struct {
 	Discount  *UpdateCustomerDiscount `json:"discount,omitempty"`
 }
 
-func (o *UpdateCustomerResponseBody) GetID() string {
-	if o == nil {
+func (u *UpdateCustomerResponseBody) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateCustomerResponseBody) GetExternalID() string {
-	if o == nil {
+func (u *UpdateCustomerResponseBody) GetExternalID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ExternalID
+	return u.ExternalID
 }
 
-func (o *UpdateCustomerResponseBody) GetName() string {
-	if o == nil {
+func (u *UpdateCustomerResponseBody) GetName() string {
+	if u == nil {
 		return ""
 	}
-	return o.Name
+	return u.Name
 }
 
-func (o *UpdateCustomerResponseBody) GetEmail() *string {
-	if o == nil {
+func (u *UpdateCustomerResponseBody) GetEmail() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Email
+	return u.Email
 }
 
-func (o *UpdateCustomerResponseBody) GetAvatar() *string {
-	if o == nil {
+func (u *UpdateCustomerResponseBody) GetAvatar() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Avatar
+	return u.Avatar
 }
 
-func (o *UpdateCustomerResponseBody) GetCountry() *string {
-	if o == nil {
+func (u *UpdateCustomerResponseBody) GetCountry() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Country
+	return u.Country
 }
 
-func (o *UpdateCustomerResponseBody) GetSales() *float64 {
-	if o == nil {
+func (u *UpdateCustomerResponseBody) GetSales() *float64 {
+	if u == nil {
 		return nil
 	}
-	return o.Sales
+	return u.Sales
 }
 
-func (o *UpdateCustomerResponseBody) GetSaleAmount() *float64 {
-	if o == nil {
+func (u *UpdateCustomerResponseBody) GetSaleAmount() *float64 {
+	if u == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return u.SaleAmount
 }
 
-func (o *UpdateCustomerResponseBody) GetCreatedAt() string {
-	if o == nil {
+func (u *UpdateCustomerResponseBody) GetCreatedAt() string {
+	if u == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return u.CreatedAt
 }
 
-func (o *UpdateCustomerResponseBody) GetLink() *UpdateCustomerLink {
-	if o == nil {
+func (u *UpdateCustomerResponseBody) GetLink() *UpdateCustomerLink {
+	if u == nil {
 		return nil
 	}
-	return o.Link
+	return u.Link
 }
 
-func (o *UpdateCustomerResponseBody) GetProgramID() *string {
-	if o == nil {
+func (u *UpdateCustomerResponseBody) GetProgramID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.ProgramID
+	return u.ProgramID
 }
 
-func (o *UpdateCustomerResponseBody) GetPartner() *UpdateCustomerPartner {
-	if o == nil {
+func (u *UpdateCustomerResponseBody) GetPartner() *UpdateCustomerPartner {
+	if u == nil {
 		return nil
 	}
-	return o.Partner
+	return u.Partner
 }
 
-func (o *UpdateCustomerResponseBody) GetDiscount() *UpdateCustomerDiscount {
-	if o == nil {
+func (u *UpdateCustomerResponseBody) GetDiscount() *UpdateCustomerDiscount {
+	if u == nil {
 		return nil
 	}
-	return o.Discount
+	return u.Discount
 }

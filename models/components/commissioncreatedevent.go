@@ -104,7 +104,7 @@ func (e *CommissionCreatedEventStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type Partner struct {
+type CommissionCreatedEventPartner struct {
 	// The partner's unique ID on Dub.
 	ID string `json:"id"`
 	// The partner's full legal name.
@@ -125,99 +125,99 @@ type Partner struct {
 	TotalCommissions float64 `json:"totalCommissions"`
 }
 
-func (p Partner) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(p, "", false)
+func (c CommissionCreatedEventPartner) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (p *Partner) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "name", "email", "image", "payoutsEnabledAt", "country", "totalClicks", "totalLeads", "totalConversions", "totalSales", "totalSaleAmount", "totalCommissions"}); err != nil {
+func (c *CommissionCreatedEventPartner) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "name", "email", "image", "payoutsEnabledAt", "country", "totalClicks", "totalLeads", "totalConversions", "totalSales", "totalSaleAmount", "totalCommissions"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Partner) GetID() string {
-	if o == nil {
+func (c *CommissionCreatedEventPartner) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *Partner) GetName() string {
-	if o == nil {
+func (c *CommissionCreatedEventPartner) GetName() string {
+	if c == nil {
 		return ""
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *Partner) GetEmail() *string {
-	if o == nil {
+func (c *CommissionCreatedEventPartner) GetEmail() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Email
+	return c.Email
 }
 
-func (o *Partner) GetImage() *string {
-	if o == nil {
+func (c *CommissionCreatedEventPartner) GetImage() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Image
+	return c.Image
 }
 
-func (o *Partner) GetPayoutsEnabledAt() *string {
-	if o == nil {
+func (c *CommissionCreatedEventPartner) GetPayoutsEnabledAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PayoutsEnabledAt
+	return c.PayoutsEnabledAt
 }
 
-func (o *Partner) GetCountry() *string {
-	if o == nil {
+func (c *CommissionCreatedEventPartner) GetCountry() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Country
+	return c.Country
 }
 
-func (o *Partner) GetTotalClicks() float64 {
-	if o == nil {
+func (c *CommissionCreatedEventPartner) GetTotalClicks() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.TotalClicks
+	return c.TotalClicks
 }
 
-func (o *Partner) GetTotalLeads() float64 {
-	if o == nil {
+func (c *CommissionCreatedEventPartner) GetTotalLeads() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.TotalLeads
+	return c.TotalLeads
 }
 
-func (o *Partner) GetTotalConversions() float64 {
-	if o == nil {
+func (c *CommissionCreatedEventPartner) GetTotalConversions() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.TotalConversions
+	return c.TotalConversions
 }
 
-func (o *Partner) GetTotalSales() float64 {
-	if o == nil {
+func (c *CommissionCreatedEventPartner) GetTotalSales() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.TotalSales
+	return c.TotalSales
 }
 
-func (o *Partner) GetTotalSaleAmount() float64 {
-	if o == nil {
+func (c *CommissionCreatedEventPartner) GetTotalSaleAmount() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.TotalSaleAmount
+	return c.TotalSaleAmount
 }
 
-func (o *Partner) GetTotalCommissions() float64 {
-	if o == nil {
+func (c *CommissionCreatedEventPartner) GetTotalCommissions() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.TotalCommissions
+	return c.TotalCommissions
 }
 
 type CommissionCreatedEventCustomer struct {
@@ -252,67 +252,67 @@ func (c *CommissionCreatedEventCustomer) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CommissionCreatedEventCustomer) GetID() string {
-	if o == nil {
+func (c *CommissionCreatedEventCustomer) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CommissionCreatedEventCustomer) GetExternalID() string {
-	if o == nil {
+func (c *CommissionCreatedEventCustomer) GetExternalID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ExternalID
+	return c.ExternalID
 }
 
-func (o *CommissionCreatedEventCustomer) GetName() string {
-	if o == nil {
+func (c *CommissionCreatedEventCustomer) GetName() string {
+	if c == nil {
 		return ""
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *CommissionCreatedEventCustomer) GetEmail() *string {
-	if o == nil {
+func (c *CommissionCreatedEventCustomer) GetEmail() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Email
+	return c.Email
 }
 
-func (o *CommissionCreatedEventCustomer) GetAvatar() *string {
-	if o == nil {
+func (c *CommissionCreatedEventCustomer) GetAvatar() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Avatar
+	return c.Avatar
 }
 
-func (o *CommissionCreatedEventCustomer) GetCountry() *string {
-	if o == nil {
+func (c *CommissionCreatedEventCustomer) GetCountry() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Country
+	return c.Country
 }
 
-func (o *CommissionCreatedEventCustomer) GetSales() *float64 {
-	if o == nil {
+func (c *CommissionCreatedEventCustomer) GetSales() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.Sales
+	return c.Sales
 }
 
-func (o *CommissionCreatedEventCustomer) GetSaleAmount() *float64 {
-	if o == nil {
+func (c *CommissionCreatedEventCustomer) GetSaleAmount() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return c.SaleAmount
 }
 
-func (o *CommissionCreatedEventCustomer) GetCreatedAt() string {
-	if o == nil {
+func (c *CommissionCreatedEventCustomer) GetCreatedAt() string {
+	if c == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return c.CreatedAt
 }
 
 type CommissionCreatedEventData struct {
@@ -330,7 +330,7 @@ type CommissionCreatedEventData struct {
 	UserID    *string                         `json:"userId,omitempty"`
 	CreatedAt string                          `json:"createdAt"`
 	UpdatedAt string                          `json:"updatedAt"`
-	Partner   Partner                         `json:"partner"`
+	Partner   CommissionCreatedEventPartner   `json:"partner"`
 	Customer  *CommissionCreatedEventCustomer `json:"customer,omitempty"`
 }
 
@@ -345,102 +345,102 @@ func (c *CommissionCreatedEventData) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CommissionCreatedEventData) GetID() string {
-	if o == nil {
+func (c *CommissionCreatedEventData) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CommissionCreatedEventData) GetType() *CommissionCreatedEventType {
-	if o == nil {
+func (c *CommissionCreatedEventData) GetType() *CommissionCreatedEventType {
+	if c == nil {
 		return nil
 	}
-	return o.Type
+	return c.Type
 }
 
-func (o *CommissionCreatedEventData) GetAmount() float64 {
-	if o == nil {
+func (c *CommissionCreatedEventData) GetAmount() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.Amount
+	return c.Amount
 }
 
-func (o *CommissionCreatedEventData) GetEarnings() float64 {
-	if o == nil {
+func (c *CommissionCreatedEventData) GetEarnings() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.Earnings
+	return c.Earnings
 }
 
-func (o *CommissionCreatedEventData) GetCurrency() string {
-	if o == nil {
+func (c *CommissionCreatedEventData) GetCurrency() string {
+	if c == nil {
 		return ""
 	}
-	return o.Currency
+	return c.Currency
 }
 
-func (o *CommissionCreatedEventData) GetStatus() CommissionCreatedEventStatus {
-	if o == nil {
+func (c *CommissionCreatedEventData) GetStatus() CommissionCreatedEventStatus {
+	if c == nil {
 		return CommissionCreatedEventStatus("")
 	}
-	return o.Status
+	return c.Status
 }
 
-func (o *CommissionCreatedEventData) GetInvoiceID() *string {
-	if o == nil {
+func (c *CommissionCreatedEventData) GetInvoiceID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.InvoiceID
+	return c.InvoiceID
 }
 
-func (o *CommissionCreatedEventData) GetDescription() *string {
-	if o == nil {
+func (c *CommissionCreatedEventData) GetDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Description
+	return c.Description
 }
 
-func (o *CommissionCreatedEventData) GetQuantity() float64 {
-	if o == nil {
+func (c *CommissionCreatedEventData) GetQuantity() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.Quantity
+	return c.Quantity
 }
 
-func (o *CommissionCreatedEventData) GetUserID() *string {
-	if o == nil {
+func (c *CommissionCreatedEventData) GetUserID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UserID
+	return c.UserID
 }
 
-func (o *CommissionCreatedEventData) GetCreatedAt() string {
-	if o == nil {
+func (c *CommissionCreatedEventData) GetCreatedAt() string {
+	if c == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return c.CreatedAt
 }
 
-func (o *CommissionCreatedEventData) GetUpdatedAt() string {
-	if o == nil {
+func (c *CommissionCreatedEventData) GetUpdatedAt() string {
+	if c == nil {
 		return ""
 	}
-	return o.UpdatedAt
+	return c.UpdatedAt
 }
 
-func (o *CommissionCreatedEventData) GetPartner() Partner {
-	if o == nil {
-		return Partner{}
+func (c *CommissionCreatedEventData) GetPartner() CommissionCreatedEventPartner {
+	if c == nil {
+		return CommissionCreatedEventPartner{}
 	}
-	return o.Partner
+	return c.Partner
 }
 
-func (o *CommissionCreatedEventData) GetCustomer() *CommissionCreatedEventCustomer {
-	if o == nil {
+func (c *CommissionCreatedEventData) GetCustomer() *CommissionCreatedEventCustomer {
+	if c == nil {
 		return nil
 	}
-	return o.Customer
+	return c.Customer
 }
 
 // CommissionCreatedEvent - Triggered when a commission is created for a partner.
@@ -462,30 +462,30 @@ func (c *CommissionCreatedEvent) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CommissionCreatedEvent) GetID() string {
-	if o == nil {
+func (c *CommissionCreatedEvent) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CommissionCreatedEvent) GetEvent() CommissionCreatedEventEvent {
-	if o == nil {
+func (c *CommissionCreatedEvent) GetEvent() CommissionCreatedEventEvent {
+	if c == nil {
 		return CommissionCreatedEventEvent("")
 	}
-	return o.Event
+	return c.Event
 }
 
-func (o *CommissionCreatedEvent) GetCreatedAt() string {
-	if o == nil {
+func (c *CommissionCreatedEvent) GetCreatedAt() string {
+	if c == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return c.CreatedAt
 }
 
-func (o *CommissionCreatedEvent) GetData() CommissionCreatedEventData {
-	if o == nil {
+func (c *CommissionCreatedEvent) GetData() CommissionCreatedEventData {
+	if c == nil {
 		return CommissionCreatedEventData{}
 	}
-	return o.Data
+	return c.Data
 }

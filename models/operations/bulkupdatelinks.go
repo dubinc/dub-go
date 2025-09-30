@@ -17,8 +17,8 @@ const (
 
 // BulkUpdateLinksTagIds - The unique IDs of the tags assigned to the short link.
 type BulkUpdateLinksTagIds struct {
-	Str        *string  `queryParam:"inline" name:"tagIds"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
+	Str        *string  `queryParam:"inline,name=tagIds"`
+	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
 
 	Type BulkUpdateLinksTagIdsType
 }
@@ -81,8 +81,8 @@ const (
 
 // BulkUpdateLinksTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type BulkUpdateLinksTagNames struct {
-	Str        *string  `queryParam:"inline" name:"tagNames"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
+	Str        *string  `queryParam:"inline,name=tagNames"`
+	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
 
 	Type BulkUpdateLinksTagNamesType
 }
@@ -141,18 +141,18 @@ type BulkUpdateLinksTestVariants struct {
 	Percentage float64 `json:"percentage"`
 }
 
-func (o *BulkUpdateLinksTestVariants) GetURL() string {
-	if o == nil {
+func (b *BulkUpdateLinksTestVariants) GetURL() string {
+	if b == nil {
 		return ""
 	}
-	return o.URL
+	return b.URL
 }
 
-func (o *BulkUpdateLinksTestVariants) GetPercentage() float64 {
-	if o == nil {
+func (b *BulkUpdateLinksTestVariants) GetPercentage() float64 {
+	if b == nil {
 		return 0.0
 	}
-	return o.Percentage
+	return b.Percentage
 }
 
 type Data struct {
@@ -232,249 +232,249 @@ type Data struct {
 	TagID *string `json:"tagId,omitempty"`
 }
 
-func (o *Data) GetURL() *string {
-	if o == nil {
+func (d *Data) GetURL() *string {
+	if d == nil {
 		return nil
 	}
-	return o.URL
+	return d.URL
 }
 
-func (o *Data) GetTenantID() *string {
-	if o == nil {
+func (d *Data) GetTenantID() *string {
+	if d == nil {
 		return nil
 	}
-	return o.TenantID
+	return d.TenantID
 }
 
-func (o *Data) GetProgramID() *string {
-	if o == nil {
+func (d *Data) GetProgramID() *string {
+	if d == nil {
 		return nil
 	}
-	return o.ProgramID
+	return d.ProgramID
 }
 
-func (o *Data) GetPartnerID() *string {
-	if o == nil {
+func (d *Data) GetPartnerID() *string {
+	if d == nil {
 		return nil
 	}
-	return o.PartnerID
+	return d.PartnerID
 }
 
-func (o *Data) GetTrackConversion() *bool {
-	if o == nil {
+func (d *Data) GetTrackConversion() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.TrackConversion
+	return d.TrackConversion
 }
 
-func (o *Data) GetArchived() *bool {
-	if o == nil {
+func (d *Data) GetArchived() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Archived
+	return d.Archived
 }
 
-func (o *Data) GetTagIds() *BulkUpdateLinksTagIds {
-	if o == nil {
+func (d *Data) GetTagIds() *BulkUpdateLinksTagIds {
+	if d == nil {
 		return nil
 	}
-	return o.TagIds
+	return d.TagIds
 }
 
-func (o *Data) GetTagNames() *BulkUpdateLinksTagNames {
-	if o == nil {
+func (d *Data) GetTagNames() *BulkUpdateLinksTagNames {
+	if d == nil {
 		return nil
 	}
-	return o.TagNames
+	return d.TagNames
 }
 
-func (o *Data) GetFolderID() *string {
-	if o == nil {
+func (d *Data) GetFolderID() *string {
+	if d == nil {
 		return nil
 	}
-	return o.FolderID
+	return d.FolderID
 }
 
-func (o *Data) GetComments() *string {
-	if o == nil {
+func (d *Data) GetComments() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Comments
+	return d.Comments
 }
 
-func (o *Data) GetExpiresAt() *string {
-	if o == nil {
+func (d *Data) GetExpiresAt() *string {
+	if d == nil {
 		return nil
 	}
-	return o.ExpiresAt
+	return d.ExpiresAt
 }
 
-func (o *Data) GetExpiredURL() *string {
-	if o == nil {
+func (d *Data) GetExpiredURL() *string {
+	if d == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return d.ExpiredURL
 }
 
-func (o *Data) GetPassword() *string {
-	if o == nil {
+func (d *Data) GetPassword() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Password
+	return d.Password
 }
 
-func (o *Data) GetProxy() *bool {
-	if o == nil {
+func (d *Data) GetProxy() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Proxy
+	return d.Proxy
 }
 
-func (o *Data) GetTitle() *string {
-	if o == nil {
+func (d *Data) GetTitle() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Title
+	return d.Title
 }
 
-func (o *Data) GetDescription() *string {
-	if o == nil {
+func (d *Data) GetDescription() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Description
+	return d.Description
 }
 
-func (o *Data) GetImage() *string {
-	if o == nil {
+func (d *Data) GetImage() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Image
+	return d.Image
 }
 
-func (o *Data) GetVideo() *string {
-	if o == nil {
+func (d *Data) GetVideo() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Video
+	return d.Video
 }
 
-func (o *Data) GetRewrite() *bool {
-	if o == nil {
+func (d *Data) GetRewrite() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Rewrite
+	return d.Rewrite
 }
 
-func (o *Data) GetIos() *string {
-	if o == nil {
+func (d *Data) GetIos() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Ios
+	return d.Ios
 }
 
-func (o *Data) GetAndroid() *string {
-	if o == nil {
+func (d *Data) GetAndroid() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Android
+	return d.Android
 }
 
-func (o *Data) GetGeo() map[string]string {
-	if o == nil {
+func (d *Data) GetGeo() map[string]string {
+	if d == nil {
 		return nil
 	}
-	return o.Geo
+	return d.Geo
 }
 
-func (o *Data) GetDoIndex() *bool {
-	if o == nil {
+func (d *Data) GetDoIndex() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.DoIndex
+	return d.DoIndex
 }
 
-func (o *Data) GetUtmSource() *string {
-	if o == nil {
+func (d *Data) GetUtmSource() *string {
+	if d == nil {
 		return nil
 	}
-	return o.UtmSource
+	return d.UtmSource
 }
 
-func (o *Data) GetUtmMedium() *string {
-	if o == nil {
+func (d *Data) GetUtmMedium() *string {
+	if d == nil {
 		return nil
 	}
-	return o.UtmMedium
+	return d.UtmMedium
 }
 
-func (o *Data) GetUtmCampaign() *string {
-	if o == nil {
+func (d *Data) GetUtmCampaign() *string {
+	if d == nil {
 		return nil
 	}
-	return o.UtmCampaign
+	return d.UtmCampaign
 }
 
-func (o *Data) GetUtmTerm() *string {
-	if o == nil {
+func (d *Data) GetUtmTerm() *string {
+	if d == nil {
 		return nil
 	}
-	return o.UtmTerm
+	return d.UtmTerm
 }
 
-func (o *Data) GetUtmContent() *string {
-	if o == nil {
+func (d *Data) GetUtmContent() *string {
+	if d == nil {
 		return nil
 	}
-	return o.UtmContent
+	return d.UtmContent
 }
 
-func (o *Data) GetRef() *string {
-	if o == nil {
+func (d *Data) GetRef() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Ref
+	return d.Ref
 }
 
-func (o *Data) GetWebhookIds() []string {
-	if o == nil {
+func (d *Data) GetWebhookIds() []string {
+	if d == nil {
 		return nil
 	}
-	return o.WebhookIds
+	return d.WebhookIds
 }
 
-func (o *Data) GetTestVariants() []BulkUpdateLinksTestVariants {
-	if o == nil {
+func (d *Data) GetTestVariants() []BulkUpdateLinksTestVariants {
+	if d == nil {
 		return nil
 	}
-	return o.TestVariants
+	return d.TestVariants
 }
 
-func (o *Data) GetTestStartedAt() *string {
-	if o == nil {
+func (d *Data) GetTestStartedAt() *string {
+	if d == nil {
 		return nil
 	}
-	return o.TestStartedAt
+	return d.TestStartedAt
 }
 
-func (o *Data) GetTestCompletedAt() *string {
-	if o == nil {
+func (d *Data) GetTestCompletedAt() *string {
+	if d == nil {
 		return nil
 	}
-	return o.TestCompletedAt
+	return d.TestCompletedAt
 }
 
-func (o *Data) GetPublicStats() *bool {
-	if o == nil {
+func (d *Data) GetPublicStats() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.PublicStats
+	return d.PublicStats
 }
 
-func (o *Data) GetTagID() *string {
-	if o == nil {
+func (d *Data) GetTagID() *string {
+	if d == nil {
 		return nil
 	}
-	return o.TagID
+	return d.TagID
 }
 
 type BulkUpdateLinksRequestBody struct {
@@ -485,23 +485,23 @@ type BulkUpdateLinksRequestBody struct {
 	Data        Data     `json:"data"`
 }
 
-func (o *BulkUpdateLinksRequestBody) GetLinkIds() []string {
-	if o == nil {
+func (b *BulkUpdateLinksRequestBody) GetLinkIds() []string {
+	if b == nil {
 		return nil
 	}
-	return o.LinkIds
+	return b.LinkIds
 }
 
-func (o *BulkUpdateLinksRequestBody) GetExternalIds() []string {
-	if o == nil {
+func (b *BulkUpdateLinksRequestBody) GetExternalIds() []string {
+	if b == nil {
 		return nil
 	}
-	return o.ExternalIds
+	return b.ExternalIds
 }
 
-func (o *BulkUpdateLinksRequestBody) GetData() Data {
-	if o == nil {
+func (b *BulkUpdateLinksRequestBody) GetData() Data {
+	if b == nil {
 		return Data{}
 	}
-	return o.Data
+	return b.Data
 }

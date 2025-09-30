@@ -7,11 +7,11 @@ type DeleteTagRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *DeleteTagRequest) GetID() string {
-	if o == nil {
+func (d *DeleteTagRequest) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
 // DeleteTagResponseBody - The deleted tag ID.
@@ -20,9 +20,9 @@ type DeleteTagResponseBody struct {
 	ID string `json:"id"`
 }
 
-func (o *DeleteTagResponseBody) GetID() string {
-	if o == nil {
+func (d *DeleteTagResponseBody) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }

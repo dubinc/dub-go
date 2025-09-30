@@ -82,23 +82,23 @@ func (l *LinkErrorSchema) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *LinkErrorSchema) GetLink() any {
-	if o == nil {
+func (l *LinkErrorSchema) GetLink() any {
+	if l == nil {
 		return nil
 	}
-	return o.Link
+	return l.Link
 }
 
-func (o *LinkErrorSchema) GetError() string {
-	if o == nil {
+func (l *LinkErrorSchema) GetError() string {
+	if l == nil {
 		return ""
 	}
-	return o.Error
+	return l.Error
 }
 
-func (o *LinkErrorSchema) GetCode() Code {
-	if o == nil {
+func (l *LinkErrorSchema) GetCode() Code {
+	if l == nil {
 		return Code("")
 	}
-	return o.Code
+	return l.Code
 }

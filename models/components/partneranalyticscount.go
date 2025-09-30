@@ -29,37 +29,37 @@ func (p *PartnerAnalyticsCount) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *PartnerAnalyticsCount) GetClicks() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsCount) GetClicks() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Clicks
+	return p.Clicks
 }
 
-func (o *PartnerAnalyticsCount) GetLeads() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsCount) GetLeads() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Leads
+	return p.Leads
 }
 
-func (o *PartnerAnalyticsCount) GetSales() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsCount) GetSales() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Sales
+	return p.Sales
 }
 
-func (o *PartnerAnalyticsCount) GetSaleAmount() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsCount) GetSaleAmount() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return p.SaleAmount
 }
 
-func (o *PartnerAnalyticsCount) GetEarnings() *float64 {
-	if o == nil {
+func (p *PartnerAnalyticsCount) GetEarnings() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Earnings
+	return p.Earnings
 }

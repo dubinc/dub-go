@@ -40,25 +40,25 @@ type Error struct {
 	DocURL *string `json:"doc_url,omitempty"`
 }
 
-func (o *Error) GetCode() Code {
-	if o == nil {
+func (e *Error) GetCode() Code {
+	if e == nil {
 		return Code("")
 	}
-	return o.Code
+	return e.Code
 }
 
-func (o *Error) GetMessage() string {
-	if o == nil {
+func (e *Error) GetMessage() string {
+	if e == nil {
 		return ""
 	}
-	return o.Message
+	return e.Message
 }
 
-func (o *Error) GetDocURL() *string {
-	if o == nil {
+func (e *Error) GetDocURL() *string {
+	if e == nil {
 		return nil
 	}
-	return o.DocURL
+	return e.DocURL
 }
 
 // BadRequest - The server cannot or will not process the request due to something that is perceived to be a client error (e.g., malformed request syntax, invalid request message framing, or deceptive request routing).

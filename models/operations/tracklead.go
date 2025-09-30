@@ -70,78 +70,78 @@ func (t *TrackLeadRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TrackLeadRequestBody) GetClickID() string {
-	if o == nil {
+func (t *TrackLeadRequestBody) GetClickID() string {
+	if t == nil {
 		return ""
 	}
-	return o.ClickID
+	return t.ClickID
 }
 
-func (o *TrackLeadRequestBody) GetEventName() string {
-	if o == nil {
+func (t *TrackLeadRequestBody) GetEventName() string {
+	if t == nil {
 		return ""
 	}
-	return o.EventName
+	return t.EventName
 }
 
-func (o *TrackLeadRequestBody) GetCustomerExternalID() string {
-	if o == nil {
+func (t *TrackLeadRequestBody) GetCustomerExternalID() string {
+	if t == nil {
 		return ""
 	}
-	return o.CustomerExternalID
+	return t.CustomerExternalID
 }
 
-func (o *TrackLeadRequestBody) GetCustomerName() *string {
-	if o == nil {
+func (t *TrackLeadRequestBody) GetCustomerName() *string {
+	if t == nil {
 		return nil
 	}
-	return o.CustomerName
+	return t.CustomerName
 }
 
-func (o *TrackLeadRequestBody) GetCustomerEmail() *string {
-	if o == nil {
+func (t *TrackLeadRequestBody) GetCustomerEmail() *string {
+	if t == nil {
 		return nil
 	}
-	return o.CustomerEmail
+	return t.CustomerEmail
 }
 
-func (o *TrackLeadRequestBody) GetCustomerAvatar() *string {
-	if o == nil {
+func (t *TrackLeadRequestBody) GetCustomerAvatar() *string {
+	if t == nil {
 		return nil
 	}
-	return o.CustomerAvatar
+	return t.CustomerAvatar
 }
 
-func (o *TrackLeadRequestBody) GetMode() *Mode {
-	if o == nil {
+func (t *TrackLeadRequestBody) GetMode() *Mode {
+	if t == nil {
 		return nil
 	}
-	return o.Mode
+	return t.Mode
 }
 
-func (o *TrackLeadRequestBody) GetEventQuantity() *float64 {
-	if o == nil {
+func (t *TrackLeadRequestBody) GetEventQuantity() *float64 {
+	if t == nil {
 		return nil
 	}
-	return o.EventQuantity
+	return t.EventQuantity
 }
 
-func (o *TrackLeadRequestBody) GetMetadata() map[string]any {
-	if o == nil {
+func (t *TrackLeadRequestBody) GetMetadata() map[string]any {
+	if t == nil {
 		return nil
 	}
-	return o.Metadata
+	return t.Metadata
 }
 
 type Click struct {
 	ID string `json:"id"`
 }
 
-func (o *Click) GetID() string {
-	if o == nil {
+func (c *Click) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
 type TrackLeadLink struct {
@@ -165,67 +165,67 @@ type TrackLeadLink struct {
 	ExternalID *string `json:"externalId"`
 }
 
-func (o *TrackLeadLink) GetID() string {
-	if o == nil {
+func (t *TrackLeadLink) GetID() string {
+	if t == nil {
 		return ""
 	}
-	return o.ID
+	return t.ID
 }
 
-func (o *TrackLeadLink) GetDomain() string {
-	if o == nil {
+func (t *TrackLeadLink) GetDomain() string {
+	if t == nil {
 		return ""
 	}
-	return o.Domain
+	return t.Domain
 }
 
-func (o *TrackLeadLink) GetKey() string {
-	if o == nil {
+func (t *TrackLeadLink) GetKey() string {
+	if t == nil {
 		return ""
 	}
-	return o.Key
+	return t.Key
 }
 
-func (o *TrackLeadLink) GetShortLink() string {
-	if o == nil {
+func (t *TrackLeadLink) GetShortLink() string {
+	if t == nil {
 		return ""
 	}
-	return o.ShortLink
+	return t.ShortLink
 }
 
-func (o *TrackLeadLink) GetURL() string {
-	if o == nil {
+func (t *TrackLeadLink) GetURL() string {
+	if t == nil {
 		return ""
 	}
-	return o.URL
+	return t.URL
 }
 
-func (o *TrackLeadLink) GetPartnerID() *string {
-	if o == nil {
+func (t *TrackLeadLink) GetPartnerID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.PartnerID
+	return t.PartnerID
 }
 
-func (o *TrackLeadLink) GetProgramID() *string {
-	if o == nil {
+func (t *TrackLeadLink) GetProgramID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.ProgramID
+	return t.ProgramID
 }
 
-func (o *TrackLeadLink) GetTenantID() *string {
-	if o == nil {
+func (t *TrackLeadLink) GetTenantID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.TenantID
+	return t.TenantID
 }
 
-func (o *TrackLeadLink) GetExternalID() *string {
-	if o == nil {
+func (t *TrackLeadLink) GetExternalID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.ExternalID
+	return t.ExternalID
 }
 
 type Customer struct {
@@ -235,32 +235,32 @@ type Customer struct {
 	ExternalID *string `json:"externalId"`
 }
 
-func (o *Customer) GetName() *string {
-	if o == nil {
+func (c *Customer) GetName() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *Customer) GetEmail() *string {
-	if o == nil {
+func (c *Customer) GetEmail() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Email
+	return c.Email
 }
 
-func (o *Customer) GetAvatar() *string {
-	if o == nil {
+func (c *Customer) GetAvatar() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Avatar
+	return c.Avatar
 }
 
-func (o *Customer) GetExternalID() *string {
-	if o == nil {
+func (c *Customer) GetExternalID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ExternalID
+	return c.ExternalID
 }
 
 // TrackLeadResponseBody - A lead was tracked.
@@ -270,23 +270,23 @@ type TrackLeadResponseBody struct {
 	Customer Customer       `json:"customer"`
 }
 
-func (o *TrackLeadResponseBody) GetClick() Click {
-	if o == nil {
+func (t *TrackLeadResponseBody) GetClick() Click {
+	if t == nil {
 		return Click{}
 	}
-	return o.Click
+	return t.Click
 }
 
-func (o *TrackLeadResponseBody) GetLink() *TrackLeadLink {
-	if o == nil {
+func (t *TrackLeadResponseBody) GetLink() *TrackLeadLink {
+	if t == nil {
 		return nil
 	}
-	return o.Link
+	return t.Link
 }
 
-func (o *TrackLeadResponseBody) GetCustomer() Customer {
-	if o == nil {
+func (t *TrackLeadResponseBody) GetCustomer() Customer {
+	if t == nil {
 		return Customer{}
 	}
-	return o.Customer
+	return t.Customer
 }

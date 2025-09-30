@@ -18,8 +18,8 @@ const (
 
 // BulkCreateLinksTagIds - The unique IDs of the tags assigned to the short link.
 type BulkCreateLinksTagIds struct {
-	Str        *string  `queryParam:"inline" name:"tagIds"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
+	Str        *string  `queryParam:"inline,name=tagIds"`
+	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
 
 	Type BulkCreateLinksTagIdsType
 }
@@ -82,8 +82,8 @@ const (
 
 // BulkCreateLinksTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type BulkCreateLinksTagNames struct {
-	Str        *string  `queryParam:"inline" name:"tagNames"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
+	Str        *string  `queryParam:"inline,name=tagNames"`
+	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
 
 	Type BulkCreateLinksTagNamesType
 }
@@ -142,18 +142,18 @@ type BulkCreateLinksTestVariants struct {
 	Percentage float64 `json:"percentage"`
 }
 
-func (o *BulkCreateLinksTestVariants) GetURL() string {
-	if o == nil {
+func (b *BulkCreateLinksTestVariants) GetURL() string {
+	if b == nil {
 		return ""
 	}
-	return o.URL
+	return b.URL
 }
 
-func (o *BulkCreateLinksTestVariants) GetPercentage() float64 {
-	if o == nil {
+func (b *BulkCreateLinksTestVariants) GetPercentage() float64 {
+	if b == nil {
 		return 0.0
 	}
-	return o.Percentage
+	return b.Percentage
 }
 
 type RequestBody struct {
@@ -243,284 +243,284 @@ type RequestBody struct {
 	TagID *string `json:"tagId,omitempty"`
 }
 
-func (o *RequestBody) GetURL() string {
-	if o == nil {
+func (r *RequestBody) GetURL() string {
+	if r == nil {
 		return ""
 	}
-	return o.URL
+	return r.URL
 }
 
-func (o *RequestBody) GetDomain() *string {
-	if o == nil {
+func (r *RequestBody) GetDomain() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Domain
+	return r.Domain
 }
 
-func (o *RequestBody) GetKey() *string {
-	if o == nil {
+func (r *RequestBody) GetKey() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Key
+	return r.Key
 }
 
-func (o *RequestBody) GetKeyLength() *float64 {
-	if o == nil {
+func (r *RequestBody) GetKeyLength() *float64 {
+	if r == nil {
 		return nil
 	}
-	return o.KeyLength
+	return r.KeyLength
 }
 
-func (o *RequestBody) GetExternalID() *string {
-	if o == nil {
+func (r *RequestBody) GetExternalID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ExternalID
+	return r.ExternalID
 }
 
-func (o *RequestBody) GetTenantID() *string {
-	if o == nil {
+func (r *RequestBody) GetTenantID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.TenantID
+	return r.TenantID
 }
 
-func (o *RequestBody) GetProgramID() *string {
-	if o == nil {
+func (r *RequestBody) GetProgramID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ProgramID
+	return r.ProgramID
 }
 
-func (o *RequestBody) GetPartnerID() *string {
-	if o == nil {
+func (r *RequestBody) GetPartnerID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PartnerID
+	return r.PartnerID
 }
 
-func (o *RequestBody) GetPrefix() *string {
-	if o == nil {
+func (r *RequestBody) GetPrefix() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Prefix
+	return r.Prefix
 }
 
-func (o *RequestBody) GetTrackConversion() *bool {
-	if o == nil {
+func (r *RequestBody) GetTrackConversion() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.TrackConversion
+	return r.TrackConversion
 }
 
-func (o *RequestBody) GetArchived() *bool {
-	if o == nil {
+func (r *RequestBody) GetArchived() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Archived
+	return r.Archived
 }
 
-func (o *RequestBody) GetTagIds() *BulkCreateLinksTagIds {
-	if o == nil {
+func (r *RequestBody) GetTagIds() *BulkCreateLinksTagIds {
+	if r == nil {
 		return nil
 	}
-	return o.TagIds
+	return r.TagIds
 }
 
-func (o *RequestBody) GetTagNames() *BulkCreateLinksTagNames {
-	if o == nil {
+func (r *RequestBody) GetTagNames() *BulkCreateLinksTagNames {
+	if r == nil {
 		return nil
 	}
-	return o.TagNames
+	return r.TagNames
 }
 
-func (o *RequestBody) GetFolderID() *string {
-	if o == nil {
+func (r *RequestBody) GetFolderID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.FolderID
+	return r.FolderID
 }
 
-func (o *RequestBody) GetComments() *string {
-	if o == nil {
+func (r *RequestBody) GetComments() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Comments
+	return r.Comments
 }
 
-func (o *RequestBody) GetExpiresAt() *string {
-	if o == nil {
+func (r *RequestBody) GetExpiresAt() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ExpiresAt
+	return r.ExpiresAt
 }
 
-func (o *RequestBody) GetExpiredURL() *string {
-	if o == nil {
+func (r *RequestBody) GetExpiredURL() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return r.ExpiredURL
 }
 
-func (o *RequestBody) GetPassword() *string {
-	if o == nil {
+func (r *RequestBody) GetPassword() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Password
+	return r.Password
 }
 
-func (o *RequestBody) GetProxy() *bool {
-	if o == nil {
+func (r *RequestBody) GetProxy() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Proxy
+	return r.Proxy
 }
 
-func (o *RequestBody) GetTitle() *string {
-	if o == nil {
+func (r *RequestBody) GetTitle() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Title
+	return r.Title
 }
 
-func (o *RequestBody) GetDescription() *string {
-	if o == nil {
+func (r *RequestBody) GetDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Description
+	return r.Description
 }
 
-func (o *RequestBody) GetImage() *string {
-	if o == nil {
+func (r *RequestBody) GetImage() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Image
+	return r.Image
 }
 
-func (o *RequestBody) GetVideo() *string {
-	if o == nil {
+func (r *RequestBody) GetVideo() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Video
+	return r.Video
 }
 
-func (o *RequestBody) GetRewrite() *bool {
-	if o == nil {
+func (r *RequestBody) GetRewrite() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.Rewrite
+	return r.Rewrite
 }
 
-func (o *RequestBody) GetIos() *string {
-	if o == nil {
+func (r *RequestBody) GetIos() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Ios
+	return r.Ios
 }
 
-func (o *RequestBody) GetAndroid() *string {
-	if o == nil {
+func (r *RequestBody) GetAndroid() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Android
+	return r.Android
 }
 
-func (o *RequestBody) GetGeo() map[string]string {
-	if o == nil {
+func (r *RequestBody) GetGeo() map[string]string {
+	if r == nil {
 		return nil
 	}
-	return o.Geo
+	return r.Geo
 }
 
-func (o *RequestBody) GetDoIndex() *bool {
-	if o == nil {
+func (r *RequestBody) GetDoIndex() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.DoIndex
+	return r.DoIndex
 }
 
-func (o *RequestBody) GetUtmSource() *string {
-	if o == nil {
+func (r *RequestBody) GetUtmSource() *string {
+	if r == nil {
 		return nil
 	}
-	return o.UtmSource
+	return r.UtmSource
 }
 
-func (o *RequestBody) GetUtmMedium() *string {
-	if o == nil {
+func (r *RequestBody) GetUtmMedium() *string {
+	if r == nil {
 		return nil
 	}
-	return o.UtmMedium
+	return r.UtmMedium
 }
 
-func (o *RequestBody) GetUtmCampaign() *string {
-	if o == nil {
+func (r *RequestBody) GetUtmCampaign() *string {
+	if r == nil {
 		return nil
 	}
-	return o.UtmCampaign
+	return r.UtmCampaign
 }
 
-func (o *RequestBody) GetUtmTerm() *string {
-	if o == nil {
+func (r *RequestBody) GetUtmTerm() *string {
+	if r == nil {
 		return nil
 	}
-	return o.UtmTerm
+	return r.UtmTerm
 }
 
-func (o *RequestBody) GetUtmContent() *string {
-	if o == nil {
+func (r *RequestBody) GetUtmContent() *string {
+	if r == nil {
 		return nil
 	}
-	return o.UtmContent
+	return r.UtmContent
 }
 
-func (o *RequestBody) GetRef() *string {
-	if o == nil {
+func (r *RequestBody) GetRef() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Ref
+	return r.Ref
 }
 
-func (o *RequestBody) GetWebhookIds() []string {
-	if o == nil {
+func (r *RequestBody) GetWebhookIds() []string {
+	if r == nil {
 		return nil
 	}
-	return o.WebhookIds
+	return r.WebhookIds
 }
 
-func (o *RequestBody) GetTestVariants() []BulkCreateLinksTestVariants {
-	if o == nil {
+func (r *RequestBody) GetTestVariants() []BulkCreateLinksTestVariants {
+	if r == nil {
 		return nil
 	}
-	return o.TestVariants
+	return r.TestVariants
 }
 
-func (o *RequestBody) GetTestStartedAt() *string {
-	if o == nil {
+func (r *RequestBody) GetTestStartedAt() *string {
+	if r == nil {
 		return nil
 	}
-	return o.TestStartedAt
+	return r.TestStartedAt
 }
 
-func (o *RequestBody) GetTestCompletedAt() *string {
-	if o == nil {
+func (r *RequestBody) GetTestCompletedAt() *string {
+	if r == nil {
 		return nil
 	}
-	return o.TestCompletedAt
+	return r.TestCompletedAt
 }
 
-func (o *RequestBody) GetPublicStats() *bool {
-	if o == nil {
+func (r *RequestBody) GetPublicStats() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.PublicStats
+	return r.PublicStats
 }
 
-func (o *RequestBody) GetTagID() *string {
-	if o == nil {
+func (r *RequestBody) GetTagID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.TagID
+	return r.TagID
 }
 
 type ResponseBodyType string
@@ -531,8 +531,8 @@ const (
 )
 
 type ResponseBody struct {
-	LinkSchema      *components.LinkSchema      `queryParam:"inline" name:"responseBody"`
-	LinkErrorSchema *components.LinkErrorSchema `queryParam:"inline" name:"responseBody"`
+	LinkSchema      *components.LinkSchema      `queryParam:"inline,name=responseBody"`
+	LinkErrorSchema *components.LinkErrorSchema `queryParam:"inline,name=responseBody"`
 
 	Type ResponseBodyType
 }

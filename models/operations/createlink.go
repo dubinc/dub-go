@@ -17,8 +17,8 @@ const (
 
 // TagIds - The unique IDs of the tags assigned to the short link.
 type TagIds struct {
-	Str        *string  `queryParam:"inline" name:"tagIds"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
+	Str        *string  `queryParam:"inline,name=tagIds"`
+	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
 
 	Type TagIdsType
 }
@@ -81,8 +81,8 @@ const (
 
 // TagNames - The unique name of the tags assigned to the short link (case insensitive).
 type TagNames struct {
-	Str        *string  `queryParam:"inline" name:"tagNames"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
+	Str        *string  `queryParam:"inline,name=tagNames"`
+	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
 
 	Type TagNamesType
 }
@@ -141,18 +141,18 @@ type TestVariants struct {
 	Percentage float64 `json:"percentage"`
 }
 
-func (o *TestVariants) GetURL() string {
-	if o == nil {
+func (t *TestVariants) GetURL() string {
+	if t == nil {
 		return ""
 	}
-	return o.URL
+	return t.URL
 }
 
-func (o *TestVariants) GetPercentage() float64 {
-	if o == nil {
+func (t *TestVariants) GetPercentage() float64 {
+	if t == nil {
 		return 0.0
 	}
-	return o.Percentage
+	return t.Percentage
 }
 
 type CreateLinkRequestBody struct {
@@ -242,282 +242,282 @@ type CreateLinkRequestBody struct {
 	TagID *string `json:"tagId,omitempty"`
 }
 
-func (o *CreateLinkRequestBody) GetURL() string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetURL() string {
+	if c == nil {
 		return ""
 	}
-	return o.URL
+	return c.URL
 }
 
-func (o *CreateLinkRequestBody) GetDomain() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetDomain() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Domain
+	return c.Domain
 }
 
-func (o *CreateLinkRequestBody) GetKey() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Key
+	return c.Key
 }
 
-func (o *CreateLinkRequestBody) GetKeyLength() *float64 {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetKeyLength() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.KeyLength
+	return c.KeyLength
 }
 
-func (o *CreateLinkRequestBody) GetExternalID() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetExternalID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ExternalID
+	return c.ExternalID
 }
 
-func (o *CreateLinkRequestBody) GetTenantID() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetTenantID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TenantID
+	return c.TenantID
 }
 
-func (o *CreateLinkRequestBody) GetProgramID() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetProgramID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ProgramID
+	return c.ProgramID
 }
 
-func (o *CreateLinkRequestBody) GetPartnerID() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetPartnerID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PartnerID
+	return c.PartnerID
 }
 
-func (o *CreateLinkRequestBody) GetPrefix() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetPrefix() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Prefix
+	return c.Prefix
 }
 
-func (o *CreateLinkRequestBody) GetTrackConversion() *bool {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetTrackConversion() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.TrackConversion
+	return c.TrackConversion
 }
 
-func (o *CreateLinkRequestBody) GetArchived() *bool {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetArchived() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Archived
+	return c.Archived
 }
 
-func (o *CreateLinkRequestBody) GetTagIds() *TagIds {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetTagIds() *TagIds {
+	if c == nil {
 		return nil
 	}
-	return o.TagIds
+	return c.TagIds
 }
 
-func (o *CreateLinkRequestBody) GetTagNames() *TagNames {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetTagNames() *TagNames {
+	if c == nil {
 		return nil
 	}
-	return o.TagNames
+	return c.TagNames
 }
 
-func (o *CreateLinkRequestBody) GetFolderID() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetFolderID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.FolderID
+	return c.FolderID
 }
 
-func (o *CreateLinkRequestBody) GetComments() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetComments() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Comments
+	return c.Comments
 }
 
-func (o *CreateLinkRequestBody) GetExpiresAt() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetExpiresAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ExpiresAt
+	return c.ExpiresAt
 }
 
-func (o *CreateLinkRequestBody) GetExpiredURL() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetExpiredURL() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return c.ExpiredURL
 }
 
-func (o *CreateLinkRequestBody) GetPassword() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetPassword() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Password
+	return c.Password
 }
 
-func (o *CreateLinkRequestBody) GetProxy() *bool {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetProxy() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Proxy
+	return c.Proxy
 }
 
-func (o *CreateLinkRequestBody) GetTitle() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetTitle() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Title
+	return c.Title
 }
 
-func (o *CreateLinkRequestBody) GetDescription() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Description
+	return c.Description
 }
 
-func (o *CreateLinkRequestBody) GetImage() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetImage() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Image
+	return c.Image
 }
 
-func (o *CreateLinkRequestBody) GetVideo() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetVideo() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Video
+	return c.Video
 }
 
-func (o *CreateLinkRequestBody) GetRewrite() *bool {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetRewrite() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Rewrite
+	return c.Rewrite
 }
 
-func (o *CreateLinkRequestBody) GetIos() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetIos() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Ios
+	return c.Ios
 }
 
-func (o *CreateLinkRequestBody) GetAndroid() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetAndroid() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Android
+	return c.Android
 }
 
-func (o *CreateLinkRequestBody) GetGeo() map[string]string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetGeo() map[string]string {
+	if c == nil {
 		return nil
 	}
-	return o.Geo
+	return c.Geo
 }
 
-func (o *CreateLinkRequestBody) GetDoIndex() *bool {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetDoIndex() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.DoIndex
+	return c.DoIndex
 }
 
-func (o *CreateLinkRequestBody) GetUtmSource() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetUtmSource() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmSource
+	return c.UtmSource
 }
 
-func (o *CreateLinkRequestBody) GetUtmMedium() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetUtmMedium() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmMedium
+	return c.UtmMedium
 }
 
-func (o *CreateLinkRequestBody) GetUtmCampaign() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetUtmCampaign() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmCampaign
+	return c.UtmCampaign
 }
 
-func (o *CreateLinkRequestBody) GetUtmTerm() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetUtmTerm() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmTerm
+	return c.UtmTerm
 }
 
-func (o *CreateLinkRequestBody) GetUtmContent() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetUtmContent() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmContent
+	return c.UtmContent
 }
 
-func (o *CreateLinkRequestBody) GetRef() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetRef() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Ref
+	return c.Ref
 }
 
-func (o *CreateLinkRequestBody) GetWebhookIds() []string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetWebhookIds() []string {
+	if c == nil {
 		return nil
 	}
-	return o.WebhookIds
+	return c.WebhookIds
 }
 
-func (o *CreateLinkRequestBody) GetTestVariants() []TestVariants {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetTestVariants() []TestVariants {
+	if c == nil {
 		return nil
 	}
-	return o.TestVariants
+	return c.TestVariants
 }
 
-func (o *CreateLinkRequestBody) GetTestStartedAt() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetTestStartedAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TestStartedAt
+	return c.TestStartedAt
 }
 
-func (o *CreateLinkRequestBody) GetTestCompletedAt() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetTestCompletedAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TestCompletedAt
+	return c.TestCompletedAt
 }
 
-func (o *CreateLinkRequestBody) GetPublicStats() *bool {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetPublicStats() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.PublicStats
+	return c.PublicStats
 }
 
-func (o *CreateLinkRequestBody) GetTagID() *string {
-	if o == nil {
+func (c *CreateLinkRequestBody) GetTagID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TagID
+	return c.TagID
 }

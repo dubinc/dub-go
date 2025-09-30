@@ -40,25 +40,25 @@ type InviteExpiredError struct {
 	DocURL *string `json:"doc_url,omitempty"`
 }
 
-func (o *InviteExpiredError) GetCode() InviteExpiredCode {
-	if o == nil {
+func (i *InviteExpiredError) GetCode() InviteExpiredCode {
+	if i == nil {
 		return InviteExpiredCode("")
 	}
-	return o.Code
+	return i.Code
 }
 
-func (o *InviteExpiredError) GetMessage() string {
-	if o == nil {
+func (i *InviteExpiredError) GetMessage() string {
+	if i == nil {
 		return ""
 	}
-	return o.Message
+	return i.Message
 }
 
-func (o *InviteExpiredError) GetDocURL() *string {
-	if o == nil {
+func (i *InviteExpiredError) GetDocURL() *string {
+	if i == nil {
 		return nil
 	}
-	return o.DocURL
+	return i.DocURL
 }
 
 // InviteExpired - This response is sent when the requested content has been permanently deleted from server, with no forwarding address.

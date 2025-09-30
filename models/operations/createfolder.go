@@ -53,16 +53,16 @@ func (c *CreateFolderRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CreateFolderRequestBody) GetName() string {
-	if o == nil {
+func (c *CreateFolderRequestBody) GetName() string {
+	if c == nil {
 		return ""
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *CreateFolderRequestBody) GetAccessLevel() *AccessLevel {
-	if o == nil {
+func (c *CreateFolderRequestBody) GetAccessLevel() *AccessLevel {
+	if c == nil {
 		return nil
 	}
-	return o.AccessLevel
+	return c.AccessLevel
 }

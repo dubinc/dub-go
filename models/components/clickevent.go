@@ -60,109 +60,109 @@ func (c *Click) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Click) GetID() string {
-	if o == nil {
+func (c *Click) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *Click) GetTimestamp() string {
-	if o == nil {
+func (c *Click) GetTimestamp() string {
+	if c == nil {
 		return ""
 	}
-	return o.Timestamp
+	return c.Timestamp
 }
 
-func (o *Click) GetURL() string {
-	if o == nil {
+func (c *Click) GetURL() string {
+	if c == nil {
 		return ""
 	}
-	return o.URL
+	return c.URL
 }
 
-func (o *Click) GetCountry() string {
-	if o == nil {
+func (c *Click) GetCountry() string {
+	if c == nil {
 		return ""
 	}
-	return o.Country
+	return c.Country
 }
 
-func (o *Click) GetCity() string {
-	if o == nil {
+func (c *Click) GetCity() string {
+	if c == nil {
 		return ""
 	}
-	return o.City
+	return c.City
 }
 
-func (o *Click) GetRegion() string {
-	if o == nil {
+func (c *Click) GetRegion() string {
+	if c == nil {
 		return ""
 	}
-	return o.Region
+	return c.Region
 }
 
-func (o *Click) GetContinent() string {
-	if o == nil {
+func (c *Click) GetContinent() string {
+	if c == nil {
 		return ""
 	}
-	return o.Continent
+	return c.Continent
 }
 
-func (o *Click) GetDevice() string {
-	if o == nil {
+func (c *Click) GetDevice() string {
+	if c == nil {
 		return ""
 	}
-	return o.Device
+	return c.Device
 }
 
-func (o *Click) GetBrowser() string {
-	if o == nil {
+func (c *Click) GetBrowser() string {
+	if c == nil {
 		return ""
 	}
-	return o.Browser
+	return c.Browser
 }
 
-func (o *Click) GetOs() string {
-	if o == nil {
+func (c *Click) GetOs() string {
+	if c == nil {
 		return ""
 	}
-	return o.Os
+	return c.Os
 }
 
-func (o *Click) GetTrigger() *string {
-	if o == nil {
+func (c *Click) GetTrigger() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Trigger
+	return c.Trigger
 }
 
-func (o *Click) GetReferer() string {
-	if o == nil {
+func (c *Click) GetReferer() string {
+	if c == nil {
 		return ""
 	}
-	return o.Referer
+	return c.Referer
 }
 
-func (o *Click) GetRefererURL() string {
-	if o == nil {
+func (c *Click) GetRefererURL() string {
+	if c == nil {
 		return ""
 	}
-	return o.RefererURL
+	return c.RefererURL
 }
 
-func (o *Click) GetQr() bool {
-	if o == nil {
+func (c *Click) GetQr() bool {
+	if c == nil {
 		return false
 	}
-	return o.Qr
+	return c.Qr
 }
 
-func (o *Click) GetIP() string {
-	if o == nil {
+func (c *Click) GetIP() string {
+	if c == nil {
 		return ""
 	}
-	return o.IP
+	return c.IP
 }
 
 type ClickEventTestVariants struct {
@@ -181,18 +181,18 @@ func (c *ClickEventTestVariants) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ClickEventTestVariants) GetURL() string {
-	if o == nil {
+func (c *ClickEventTestVariants) GetURL() string {
+	if c == nil {
 		return ""
 	}
-	return o.URL
+	return c.URL
 }
 
-func (o *ClickEventTestVariants) GetPercentage() float64 {
-	if o == nil {
+func (c *ClickEventTestVariants) GetPercentage() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.Percentage
+	return c.Percentage
 }
 
 type Link struct {
@@ -298,354 +298,354 @@ func (l *Link) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Link) GetID() string {
-	if o == nil {
+func (l *Link) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ID
+	return l.ID
 }
 
-func (o *Link) GetDomain() string {
-	if o == nil {
+func (l *Link) GetDomain() string {
+	if l == nil {
 		return ""
 	}
-	return o.Domain
+	return l.Domain
 }
 
-func (o *Link) GetKey() string {
-	if o == nil {
+func (l *Link) GetKey() string {
+	if l == nil {
 		return ""
 	}
-	return o.Key
+	return l.Key
 }
 
-func (o *Link) GetURL() string {
-	if o == nil {
+func (l *Link) GetURL() string {
+	if l == nil {
 		return ""
 	}
-	return o.URL
+	return l.URL
 }
 
-func (o *Link) GetTrackConversion() bool {
-	if o == nil {
+func (l *Link) GetTrackConversion() bool {
+	if l == nil {
 		return false
 	}
-	return o.TrackConversion
+	return l.TrackConversion
 }
 
-func (o *Link) GetExternalID() *string {
-	if o == nil {
+func (l *Link) GetExternalID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ExternalID
+	return l.ExternalID
 }
 
-func (o *Link) GetTenantID() *string {
-	if o == nil {
+func (l *Link) GetTenantID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TenantID
+	return l.TenantID
 }
 
-func (o *Link) GetProgramID() *string {
-	if o == nil {
+func (l *Link) GetProgramID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ProgramID
+	return l.ProgramID
 }
 
-func (o *Link) GetPartnerID() *string {
-	if o == nil {
+func (l *Link) GetPartnerID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.PartnerID
+	return l.PartnerID
 }
 
-func (o *Link) GetArchived() bool {
-	if o == nil {
+func (l *Link) GetArchived() bool {
+	if l == nil {
 		return false
 	}
-	return o.Archived
+	return l.Archived
 }
 
-func (o *Link) GetExpiresAt() string {
-	if o == nil {
+func (l *Link) GetExpiresAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.ExpiresAt
+	return l.ExpiresAt
 }
 
-func (o *Link) GetExpiredURL() *string {
-	if o == nil {
+func (l *Link) GetExpiredURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return l.ExpiredURL
 }
 
-func (o *Link) GetPassword() *string {
-	if o == nil {
+func (l *Link) GetPassword() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Password
+	return l.Password
 }
 
-func (o *Link) GetProxy() bool {
-	if o == nil {
+func (l *Link) GetProxy() bool {
+	if l == nil {
 		return false
 	}
-	return o.Proxy
+	return l.Proxy
 }
 
-func (o *Link) GetTitle() *string {
-	if o == nil {
+func (l *Link) GetTitle() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Title
+	return l.Title
 }
 
-func (o *Link) GetDescription() *string {
-	if o == nil {
+func (l *Link) GetDescription() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Description
+	return l.Description
 }
 
-func (o *Link) GetImage() *string {
-	if o == nil {
+func (l *Link) GetImage() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Image
+	return l.Image
 }
 
-func (o *Link) GetVideo() *string {
-	if o == nil {
+func (l *Link) GetVideo() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Video
+	return l.Video
 }
 
-func (o *Link) GetRewrite() bool {
-	if o == nil {
+func (l *Link) GetRewrite() bool {
+	if l == nil {
 		return false
 	}
-	return o.Rewrite
+	return l.Rewrite
 }
 
-func (o *Link) GetDoIndex() bool {
-	if o == nil {
+func (l *Link) GetDoIndex() bool {
+	if l == nil {
 		return false
 	}
-	return o.DoIndex
+	return l.DoIndex
 }
 
-func (o *Link) GetIos() *string {
-	if o == nil {
+func (l *Link) GetIos() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Ios
+	return l.Ios
 }
 
-func (o *Link) GetAndroid() *string {
-	if o == nil {
+func (l *Link) GetAndroid() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Android
+	return l.Android
 }
 
-func (o *Link) GetGeo() map[string]string {
-	if o == nil {
+func (l *Link) GetGeo() map[string]string {
+	if l == nil {
 		return nil
 	}
-	return o.Geo
+	return l.Geo
 }
 
-func (o *Link) GetPublicStats() bool {
-	if o == nil {
+func (l *Link) GetPublicStats() bool {
+	if l == nil {
 		return false
 	}
-	return o.PublicStats
+	return l.PublicStats
 }
 
-func (o *Link) GetTags() []TagSchema {
-	if o == nil {
+func (l *Link) GetTags() []TagSchema {
+	if l == nil {
 		return nil
 	}
-	return o.Tags
+	return l.Tags
 }
 
-func (o *Link) GetFolderID() *string {
-	if o == nil {
+func (l *Link) GetFolderID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.FolderID
+	return l.FolderID
 }
 
-func (o *Link) GetWebhookIds() []string {
-	if o == nil {
+func (l *Link) GetWebhookIds() []string {
+	if l == nil {
 		return []string{}
 	}
-	return o.WebhookIds
+	return l.WebhookIds
 }
 
-func (o *Link) GetComments() *string {
-	if o == nil {
+func (l *Link) GetComments() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Comments
+	return l.Comments
 }
 
-func (o *Link) GetShortLink() string {
-	if o == nil {
+func (l *Link) GetShortLink() string {
+	if l == nil {
 		return ""
 	}
-	return o.ShortLink
+	return l.ShortLink
 }
 
-func (o *Link) GetQrCode() string {
-	if o == nil {
+func (l *Link) GetQrCode() string {
+	if l == nil {
 		return ""
 	}
-	return o.QrCode
+	return l.QrCode
 }
 
-func (o *Link) GetUtmSource() *string {
-	if o == nil {
+func (l *Link) GetUtmSource() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmSource
+	return l.UtmSource
 }
 
-func (o *Link) GetUtmMedium() *string {
-	if o == nil {
+func (l *Link) GetUtmMedium() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmMedium
+	return l.UtmMedium
 }
 
-func (o *Link) GetUtmCampaign() *string {
-	if o == nil {
+func (l *Link) GetUtmCampaign() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmCampaign
+	return l.UtmCampaign
 }
 
-func (o *Link) GetUtmTerm() *string {
-	if o == nil {
+func (l *Link) GetUtmTerm() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmTerm
+	return l.UtmTerm
 }
 
-func (o *Link) GetUtmContent() *string {
-	if o == nil {
+func (l *Link) GetUtmContent() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmContent
+	return l.UtmContent
 }
 
-func (o *Link) GetTestVariants() []ClickEventTestVariants {
-	if o == nil {
+func (l *Link) GetTestVariants() []ClickEventTestVariants {
+	if l == nil {
 		return nil
 	}
-	return o.TestVariants
+	return l.TestVariants
 }
 
-func (o *Link) GetTestStartedAt() *string {
-	if o == nil {
+func (l *Link) GetTestStartedAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TestStartedAt
+	return l.TestStartedAt
 }
 
-func (o *Link) GetTestCompletedAt() *string {
-	if o == nil {
+func (l *Link) GetTestCompletedAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TestCompletedAt
+	return l.TestCompletedAt
 }
 
-func (o *Link) GetUserID() *string {
-	if o == nil {
+func (l *Link) GetUserID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UserID
+	return l.UserID
 }
 
-func (o *Link) GetWorkspaceID() string {
-	if o == nil {
+func (l *Link) GetWorkspaceID() string {
+	if l == nil {
 		return ""
 	}
-	return o.WorkspaceID
+	return l.WorkspaceID
 }
 
-func (o *Link) GetClicks() *float64 {
-	if o == nil {
+func (l *Link) GetClicks() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Clicks
+	return l.Clicks
 }
 
-func (o *Link) GetLeads() *float64 {
-	if o == nil {
+func (l *Link) GetLeads() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Leads
+	return l.Leads
 }
 
-func (o *Link) GetConversions() *float64 {
-	if o == nil {
+func (l *Link) GetConversions() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Conversions
+	return l.Conversions
 }
 
-func (o *Link) GetSales() *float64 {
-	if o == nil {
+func (l *Link) GetSales() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Sales
+	return l.Sales
 }
 
-func (o *Link) GetSaleAmount() *float64 {
-	if o == nil {
+func (l *Link) GetSaleAmount() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return l.SaleAmount
 }
 
-func (o *Link) GetLastClicked() string {
-	if o == nil {
+func (l *Link) GetLastClicked() string {
+	if l == nil {
 		return ""
 	}
-	return o.LastClicked
+	return l.LastClicked
 }
 
-func (o *Link) GetCreatedAt() string {
-	if o == nil {
+func (l *Link) GetCreatedAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return l.CreatedAt
 }
 
-func (o *Link) GetUpdatedAt() string {
-	if o == nil {
+func (l *Link) GetUpdatedAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.UpdatedAt
+	return l.UpdatedAt
 }
 
-func (o *Link) GetTagID() *string {
-	if o == nil {
+func (l *Link) GetTagID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TagID
+	return l.TagID
 }
 
-func (o *Link) GetProjectID() string {
-	if o == nil {
+func (l *Link) GetProjectID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ProjectID
+	return l.ProjectID
 }
 
 type ClickEvent struct {
@@ -718,121 +718,121 @@ func (c *ClickEvent) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ClickEvent) GetEvent() Event {
-	if o == nil {
+func (c *ClickEvent) GetEvent() Event {
+	if c == nil {
 		return Event("")
 	}
-	return o.Event
+	return c.Event
 }
 
-func (o *ClickEvent) GetTimestamp() string {
-	if o == nil {
+func (c *ClickEvent) GetTimestamp() string {
+	if c == nil {
 		return ""
 	}
-	return o.Timestamp
+	return c.Timestamp
 }
 
-func (o *ClickEvent) GetClick() Click {
-	if o == nil {
+func (c *ClickEvent) GetClick() Click {
+	if c == nil {
 		return Click{}
 	}
-	return o.Click
+	return c.Click
 }
 
-func (o *ClickEvent) GetLink() Link {
-	if o == nil {
+func (c *ClickEvent) GetLink() Link {
+	if c == nil {
 		return Link{}
 	}
-	return o.Link
+	return c.Link
 }
 
-func (o *ClickEvent) GetClickID() string {
-	if o == nil {
+func (c *ClickEvent) GetClickID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ClickID
+	return c.ClickID
 }
 
-func (o *ClickEvent) GetLinkID() string {
-	if o == nil {
+func (c *ClickEvent) GetLinkID() string {
+	if c == nil {
 		return ""
 	}
-	return o.LinkID
+	return c.LinkID
 }
 
-func (o *ClickEvent) GetDomain() string {
-	if o == nil {
+func (c *ClickEvent) GetDomain() string {
+	if c == nil {
 		return ""
 	}
-	return o.Domain
+	return c.Domain
 }
 
-func (o *ClickEvent) GetKey() string {
-	if o == nil {
+func (c *ClickEvent) GetKey() string {
+	if c == nil {
 		return ""
 	}
-	return o.Key
+	return c.Key
 }
 
-func (o *ClickEvent) GetURL() string {
-	if o == nil {
+func (c *ClickEvent) GetURL() string {
+	if c == nil {
 		return ""
 	}
-	return o.URL
+	return c.URL
 }
 
-func (o *ClickEvent) GetContinent() string {
-	if o == nil {
+func (c *ClickEvent) GetContinent() string {
+	if c == nil {
 		return ""
 	}
-	return o.Continent
+	return c.Continent
 }
 
-func (o *ClickEvent) GetCountry() string {
-	if o == nil {
+func (c *ClickEvent) GetCountry() string {
+	if c == nil {
 		return ""
 	}
-	return o.Country
+	return c.Country
 }
 
-func (o *ClickEvent) GetCity() string {
-	if o == nil {
+func (c *ClickEvent) GetCity() string {
+	if c == nil {
 		return ""
 	}
-	return o.City
+	return c.City
 }
 
-func (o *ClickEvent) GetDevice() string {
-	if o == nil {
+func (c *ClickEvent) GetDevice() string {
+	if c == nil {
 		return ""
 	}
-	return o.Device
+	return c.Device
 }
 
-func (o *ClickEvent) GetBrowser() string {
-	if o == nil {
+func (c *ClickEvent) GetBrowser() string {
+	if c == nil {
 		return ""
 	}
-	return o.Browser
+	return c.Browser
 }
 
-func (o *ClickEvent) GetOs() string {
-	if o == nil {
+func (c *ClickEvent) GetOs() string {
+	if c == nil {
 		return ""
 	}
-	return o.Os
+	return c.Os
 }
 
-func (o *ClickEvent) GetQr() float64 {
-	if o == nil {
+func (c *ClickEvent) GetQr() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.Qr
+	return c.Qr
 }
 
-func (o *ClickEvent) GetIP() string {
-	if o == nil {
+func (c *ClickEvent) GetIP() string {
+	if c == nil {
 		return ""
 	}
-	return o.IP
+	return c.IP
 }

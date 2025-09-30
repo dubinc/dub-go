@@ -18,8 +18,8 @@ const (
 
 // CreatePartnerTagIds - The unique IDs of the tags assigned to the short link.
 type CreatePartnerTagIds struct {
-	Str        *string  `queryParam:"inline" name:"tagIds"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
+	Str        *string  `queryParam:"inline,name=tagIds"`
+	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
 
 	Type CreatePartnerTagIdsType
 }
@@ -82,8 +82,8 @@ const (
 
 // CreatePartnerTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type CreatePartnerTagNames struct {
-	Str        *string  `queryParam:"inline" name:"tagNames"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
+	Str        *string  `queryParam:"inline,name=tagNames"`
+	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
 
 	Type CreatePartnerTagNamesType
 }
@@ -142,18 +142,18 @@ type CreatePartnerTestVariants struct {
 	Percentage float64 `json:"percentage"`
 }
 
-func (o *CreatePartnerTestVariants) GetURL() string {
-	if o == nil {
+func (c *CreatePartnerTestVariants) GetURL() string {
+	if c == nil {
 		return ""
 	}
-	return o.URL
+	return c.URL
 }
 
-func (o *CreatePartnerTestVariants) GetPercentage() float64 {
-	if o == nil {
+func (c *CreatePartnerTestVariants) GetPercentage() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.Percentage
+	return c.Percentage
 }
 
 // LinkProps - Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
@@ -220,214 +220,214 @@ type LinkProps struct {
 	TestCompletedAt *string `json:"testCompletedAt,omitempty"`
 }
 
-func (o *LinkProps) GetKeyLength() *float64 {
-	if o == nil {
+func (l *LinkProps) GetKeyLength() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.KeyLength
+	return l.KeyLength
 }
 
-func (o *LinkProps) GetExternalID() *string {
-	if o == nil {
+func (l *LinkProps) GetExternalID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ExternalID
+	return l.ExternalID
 }
 
-func (o *LinkProps) GetTenantID() *string {
-	if o == nil {
+func (l *LinkProps) GetTenantID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TenantID
+	return l.TenantID
 }
 
-func (o *LinkProps) GetPrefix() *string {
-	if o == nil {
+func (l *LinkProps) GetPrefix() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Prefix
+	return l.Prefix
 }
 
-func (o *LinkProps) GetArchived() *bool {
-	if o == nil {
+func (l *LinkProps) GetArchived() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Archived
+	return l.Archived
 }
 
-func (o *LinkProps) GetTagIds() *CreatePartnerTagIds {
-	if o == nil {
+func (l *LinkProps) GetTagIds() *CreatePartnerTagIds {
+	if l == nil {
 		return nil
 	}
-	return o.TagIds
+	return l.TagIds
 }
 
-func (o *LinkProps) GetTagNames() *CreatePartnerTagNames {
-	if o == nil {
+func (l *LinkProps) GetTagNames() *CreatePartnerTagNames {
+	if l == nil {
 		return nil
 	}
-	return o.TagNames
+	return l.TagNames
 }
 
-func (o *LinkProps) GetFolderID() *string {
-	if o == nil {
+func (l *LinkProps) GetFolderID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.FolderID
+	return l.FolderID
 }
 
-func (o *LinkProps) GetComments() *string {
-	if o == nil {
+func (l *LinkProps) GetComments() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Comments
+	return l.Comments
 }
 
-func (o *LinkProps) GetExpiresAt() *string {
-	if o == nil {
+func (l *LinkProps) GetExpiresAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ExpiresAt
+	return l.ExpiresAt
 }
 
-func (o *LinkProps) GetExpiredURL() *string {
-	if o == nil {
+func (l *LinkProps) GetExpiredURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return l.ExpiredURL
 }
 
-func (o *LinkProps) GetPassword() *string {
-	if o == nil {
+func (l *LinkProps) GetPassword() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Password
+	return l.Password
 }
 
-func (o *LinkProps) GetProxy() *bool {
-	if o == nil {
+func (l *LinkProps) GetProxy() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Proxy
+	return l.Proxy
 }
 
-func (o *LinkProps) GetTitle() *string {
-	if o == nil {
+func (l *LinkProps) GetTitle() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Title
+	return l.Title
 }
 
-func (o *LinkProps) GetDescription() *string {
-	if o == nil {
+func (l *LinkProps) GetDescription() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Description
+	return l.Description
 }
 
-func (o *LinkProps) GetImage() *string {
-	if o == nil {
+func (l *LinkProps) GetImage() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Image
+	return l.Image
 }
 
-func (o *LinkProps) GetVideo() *string {
-	if o == nil {
+func (l *LinkProps) GetVideo() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Video
+	return l.Video
 }
 
-func (o *LinkProps) GetRewrite() *bool {
-	if o == nil {
+func (l *LinkProps) GetRewrite() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Rewrite
+	return l.Rewrite
 }
 
-func (o *LinkProps) GetIos() *string {
-	if o == nil {
+func (l *LinkProps) GetIos() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Ios
+	return l.Ios
 }
 
-func (o *LinkProps) GetAndroid() *string {
-	if o == nil {
+func (l *LinkProps) GetAndroid() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Android
+	return l.Android
 }
 
-func (o *LinkProps) GetDoIndex() *bool {
-	if o == nil {
+func (l *LinkProps) GetDoIndex() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.DoIndex
+	return l.DoIndex
 }
 
-func (o *LinkProps) GetUtmSource() *string {
-	if o == nil {
+func (l *LinkProps) GetUtmSource() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmSource
+	return l.UtmSource
 }
 
-func (o *LinkProps) GetUtmMedium() *string {
-	if o == nil {
+func (l *LinkProps) GetUtmMedium() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmMedium
+	return l.UtmMedium
 }
 
-func (o *LinkProps) GetUtmCampaign() *string {
-	if o == nil {
+func (l *LinkProps) GetUtmCampaign() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmCampaign
+	return l.UtmCampaign
 }
 
-func (o *LinkProps) GetUtmTerm() *string {
-	if o == nil {
+func (l *LinkProps) GetUtmTerm() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmTerm
+	return l.UtmTerm
 }
 
-func (o *LinkProps) GetUtmContent() *string {
-	if o == nil {
+func (l *LinkProps) GetUtmContent() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmContent
+	return l.UtmContent
 }
 
-func (o *LinkProps) GetRef() *string {
-	if o == nil {
+func (l *LinkProps) GetRef() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Ref
+	return l.Ref
 }
 
-func (o *LinkProps) GetTestVariants() []CreatePartnerTestVariants {
-	if o == nil {
+func (l *LinkProps) GetTestVariants() []CreatePartnerTestVariants {
+	if l == nil {
 		return nil
 	}
-	return o.TestVariants
+	return l.TestVariants
 }
 
-func (o *LinkProps) GetTestStartedAt() *string {
-	if o == nil {
+func (l *LinkProps) GetTestStartedAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TestStartedAt
+	return l.TestStartedAt
 }
 
-func (o *LinkProps) GetTestCompletedAt() *string {
-	if o == nil {
+func (l *LinkProps) GetTestCompletedAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TestCompletedAt
+	return l.TestCompletedAt
 }
 
 type CreatePartnerRequestBody struct {
@@ -451,67 +451,67 @@ type CreatePartnerRequestBody struct {
 	LinkProps *LinkProps `json:"linkProps,omitempty"`
 }
 
-func (o *CreatePartnerRequestBody) GetName() *string {
-	if o == nil {
+func (c *CreatePartnerRequestBody) GetName() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *CreatePartnerRequestBody) GetEmail() string {
-	if o == nil {
+func (c *CreatePartnerRequestBody) GetEmail() string {
+	if c == nil {
 		return ""
 	}
-	return o.Email
+	return c.Email
 }
 
-func (o *CreatePartnerRequestBody) GetUsername() *string {
-	if o == nil {
+func (c *CreatePartnerRequestBody) GetUsername() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Username
+	return c.Username
 }
 
-func (o *CreatePartnerRequestBody) GetImage() *string {
-	if o == nil {
+func (c *CreatePartnerRequestBody) GetImage() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Image
+	return c.Image
 }
 
-func (o *CreatePartnerRequestBody) GetTenantID() *string {
-	if o == nil {
+func (c *CreatePartnerRequestBody) GetTenantID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TenantID
+	return c.TenantID
 }
 
-func (o *CreatePartnerRequestBody) GetGroupID() *string {
-	if o == nil {
+func (c *CreatePartnerRequestBody) GetGroupID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.GroupID
+	return c.GroupID
 }
 
-func (o *CreatePartnerRequestBody) GetCountry() *string {
-	if o == nil {
+func (c *CreatePartnerRequestBody) GetCountry() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Country
+	return c.Country
 }
 
-func (o *CreatePartnerRequestBody) GetDescription() *string {
-	if o == nil {
+func (c *CreatePartnerRequestBody) GetDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Description
+	return c.Description
 }
 
-func (o *CreatePartnerRequestBody) GetLinkProps() *LinkProps {
-	if o == nil {
+func (c *CreatePartnerRequestBody) GetLinkProps() *LinkProps {
+	if c == nil {
 		return nil
 	}
-	return o.LinkProps
+	return c.LinkProps
 }
 
 // CreatePartnerStatus - The status of the partner's enrollment in the program.
@@ -571,6 +571,8 @@ type CreatePartnerLink struct {
 	Clicks *float64 `default:"0" json:"clicks"`
 	// The number of leads the short link has generated.
 	Leads *float64 `default:"0" json:"leads"`
+	// The number of leads that converted to paying customers.
+	Conversions *float64 `default:"0" json:"conversions"`
 	// The total number of sales (includes recurring sales) generated by the short link.
 	Sales *float64 `default:"0" json:"sales"`
 	// The total dollar value of sales (in cents) generated by the short link.
@@ -588,67 +590,74 @@ func (c *CreatePartnerLink) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CreatePartnerLink) GetID() string {
-	if o == nil {
+func (c *CreatePartnerLink) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CreatePartnerLink) GetDomain() string {
-	if o == nil {
+func (c *CreatePartnerLink) GetDomain() string {
+	if c == nil {
 		return ""
 	}
-	return o.Domain
+	return c.Domain
 }
 
-func (o *CreatePartnerLink) GetKey() string {
-	if o == nil {
+func (c *CreatePartnerLink) GetKey() string {
+	if c == nil {
 		return ""
 	}
-	return o.Key
+	return c.Key
 }
 
-func (o *CreatePartnerLink) GetShortLink() string {
-	if o == nil {
+func (c *CreatePartnerLink) GetShortLink() string {
+	if c == nil {
 		return ""
 	}
-	return o.ShortLink
+	return c.ShortLink
 }
 
-func (o *CreatePartnerLink) GetURL() string {
-	if o == nil {
+func (c *CreatePartnerLink) GetURL() string {
+	if c == nil {
 		return ""
 	}
-	return o.URL
+	return c.URL
 }
 
-func (o *CreatePartnerLink) GetClicks() *float64 {
-	if o == nil {
+func (c *CreatePartnerLink) GetClicks() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.Clicks
+	return c.Clicks
 }
 
-func (o *CreatePartnerLink) GetLeads() *float64 {
-	if o == nil {
+func (c *CreatePartnerLink) GetLeads() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.Leads
+	return c.Leads
 }
 
-func (o *CreatePartnerLink) GetSales() *float64 {
-	if o == nil {
+func (c *CreatePartnerLink) GetConversions() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.Sales
+	return c.Conversions
 }
 
-func (o *CreatePartnerLink) GetSaleAmount() *float64 {
-	if o == nil {
+func (c *CreatePartnerLink) GetSales() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return c.Sales
+}
+
+func (c *CreatePartnerLink) GetSaleAmount() *float64 {
+	if c == nil {
+		return nil
+	}
+	return c.SaleAmount
 }
 
 // BannedReason - If the partner was banned from the program, this is the reason for the ban.
@@ -696,6 +705,8 @@ type CreatePartnerResponseBody struct {
 	ID string `json:"id"`
 	// The partner's full legal name.
 	Name string `json:"name"`
+	// If the partner profile type is a company, this is the partner's legal company name.
+	CompanyName *string `json:"companyName"`
 	// The partner's email address. Should be a unique value across Dub.
 	Email *string `json:"email"`
 	// The partner's avatar image.
@@ -748,26 +759,17 @@ type CreatePartnerResponseBody struct {
 	// The total net revenue generated by the partner. Defaults to 0 if `includeExpandedFields` is false.
 	NetRevenue *float64 `default:"0" json:"netRevenue"`
 	// The partner's website URL (including the https protocol).
-	Website           *string `json:"website,omitempty"`
-	WebsiteTxtRecord  *string `json:"websiteTxtRecord,omitempty"`
-	WebsiteVerifiedAt *string `json:"websiteVerifiedAt,omitempty"`
+	Website *string `json:"website,omitempty"`
 	// The partner's YouTube channel username (e.g. `johndoe`).
-	Youtube                *string  `json:"youtube,omitempty"`
-	YoutubeVerifiedAt      *string  `json:"youtubeVerifiedAt,omitempty"`
-	YoutubeSubscriberCount *float64 `json:"youtubeSubscriberCount,omitempty"`
-	YoutubeViewCount       *float64 `json:"youtubeViewCount,omitempty"`
+	Youtube *string `json:"youtube,omitempty"`
 	// The partner's Twitter username (e.g. `johndoe`).
-	Twitter           *string `json:"twitter,omitempty"`
-	TwitterVerifiedAt *string `json:"twitterVerifiedAt,omitempty"`
+	Twitter *string `json:"twitter,omitempty"`
 	// The partner's LinkedIn username (e.g. `johndoe`).
-	Linkedin           *string `json:"linkedin,omitempty"`
-	LinkedinVerifiedAt *string `json:"linkedinVerifiedAt,omitempty"`
+	Linkedin *string `json:"linkedin,omitempty"`
 	// The partner's Instagram username (e.g. `johndoe`).
-	Instagram           *string `json:"instagram,omitempty"`
-	InstagramVerifiedAt *string `json:"instagramVerifiedAt,omitempty"`
+	Instagram *string `json:"instagram,omitempty"`
 	// The partner's TikTok username (e.g. `johndoe`).
-	Tiktok           *string `json:"tiktok,omitempty"`
-	TiktokVerifiedAt *string `json:"tiktokVerifiedAt,omitempty"`
+	Tiktok *string `json:"tiktok,omitempty"`
 }
 
 func (c CreatePartnerResponseBody) MarshalJSON() ([]byte, error) {
@@ -775,323 +777,267 @@ func (c CreatePartnerResponseBody) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreatePartnerResponseBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "name", "email", "image", "country", "paypalEmail", "stripeConnectId", "payoutsEnabledAt", "programId", "partnerId", "tenantId", "createdAt", "status", "links"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "name", "companyName", "email", "image", "country", "paypalEmail", "stripeConnectId", "payoutsEnabledAt", "programId", "partnerId", "tenantId", "createdAt", "status", "links"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *CreatePartnerResponseBody) GetID() string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CreatePartnerResponseBody) GetName() string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetName() string {
+	if c == nil {
 		return ""
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *CreatePartnerResponseBody) GetEmail() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetCompanyName() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Email
+	return c.CompanyName
 }
 
-func (o *CreatePartnerResponseBody) GetImage() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetEmail() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Image
+	return c.Email
 }
 
-func (o *CreatePartnerResponseBody) GetDescription() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetImage() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Description
+	return c.Image
 }
 
-func (o *CreatePartnerResponseBody) GetCountry() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Country
+	return c.Description
 }
 
-func (o *CreatePartnerResponseBody) GetPaypalEmail() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetCountry() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PaypalEmail
+	return c.Country
 }
 
-func (o *CreatePartnerResponseBody) GetStripeConnectID() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetPaypalEmail() *string {
+	if c == nil {
 		return nil
 	}
-	return o.StripeConnectID
+	return c.PaypalEmail
 }
 
-func (o *CreatePartnerResponseBody) GetPayoutsEnabledAt() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetStripeConnectID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PayoutsEnabledAt
+	return c.StripeConnectID
 }
 
-func (o *CreatePartnerResponseBody) GetProgramID() string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetPayoutsEnabledAt() *string {
+	if c == nil {
+		return nil
+	}
+	return c.PayoutsEnabledAt
+}
+
+func (c *CreatePartnerResponseBody) GetProgramID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ProgramID
+	return c.ProgramID
 }
 
-func (o *CreatePartnerResponseBody) GetGroupID() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetGroupID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.GroupID
+	return c.GroupID
 }
 
-func (o *CreatePartnerResponseBody) GetPartnerID() string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetPartnerID() string {
+	if c == nil {
 		return ""
 	}
-	return o.PartnerID
+	return c.PartnerID
 }
 
-func (o *CreatePartnerResponseBody) GetTenantID() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetTenantID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TenantID
+	return c.TenantID
 }
 
-func (o *CreatePartnerResponseBody) GetCreatedAt() string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetCreatedAt() string {
+	if c == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return c.CreatedAt
 }
 
-func (o *CreatePartnerResponseBody) GetStatus() CreatePartnerStatus {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetStatus() CreatePartnerStatus {
+	if c == nil {
 		return CreatePartnerStatus("")
 	}
-	return o.Status
+	return c.Status
 }
 
-func (o *CreatePartnerResponseBody) GetLinks() []CreatePartnerLink {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetLinks() []CreatePartnerLink {
+	if c == nil {
 		return nil
 	}
-	return o.Links
+	return c.Links
 }
 
-func (o *CreatePartnerResponseBody) GetTotalCommissions() *float64 {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetTotalCommissions() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.TotalCommissions
+	return c.TotalCommissions
 }
 
-func (o *CreatePartnerResponseBody) GetClickRewardID() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetClickRewardID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ClickRewardID
+	return c.ClickRewardID
 }
 
-func (o *CreatePartnerResponseBody) GetLeadRewardID() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetLeadRewardID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.LeadRewardID
+	return c.LeadRewardID
 }
 
-func (o *CreatePartnerResponseBody) GetSaleRewardID() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetSaleRewardID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.SaleRewardID
+	return c.SaleRewardID
 }
 
-func (o *CreatePartnerResponseBody) GetDiscountID() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetDiscountID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.DiscountID
+	return c.DiscountID
 }
 
-func (o *CreatePartnerResponseBody) GetApplicationID() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetApplicationID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ApplicationID
+	return c.ApplicationID
 }
 
-func (o *CreatePartnerResponseBody) GetBannedAt() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetBannedAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.BannedAt
+	return c.BannedAt
 }
 
-func (o *CreatePartnerResponseBody) GetBannedReason() *BannedReason {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetBannedReason() *BannedReason {
+	if c == nil {
 		return nil
 	}
-	return o.BannedReason
+	return c.BannedReason
 }
 
-func (o *CreatePartnerResponseBody) GetClicks() *float64 {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetClicks() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.Clicks
+	return c.Clicks
 }
 
-func (o *CreatePartnerResponseBody) GetLeads() *float64 {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetLeads() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.Leads
+	return c.Leads
 }
 
-func (o *CreatePartnerResponseBody) GetConversions() *float64 {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetConversions() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.Conversions
+	return c.Conversions
 }
 
-func (o *CreatePartnerResponseBody) GetSales() *float64 {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetSales() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.Sales
+	return c.Sales
 }
 
-func (o *CreatePartnerResponseBody) GetSaleAmount() *float64 {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetSaleAmount() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return c.SaleAmount
 }
 
-func (o *CreatePartnerResponseBody) GetNetRevenue() *float64 {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetNetRevenue() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.NetRevenue
+	return c.NetRevenue
 }
 
-func (o *CreatePartnerResponseBody) GetWebsite() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetWebsite() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Website
+	return c.Website
 }
 
-func (o *CreatePartnerResponseBody) GetWebsiteTxtRecord() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetYoutube() *string {
+	if c == nil {
 		return nil
 	}
-	return o.WebsiteTxtRecord
+	return c.Youtube
 }
 
-func (o *CreatePartnerResponseBody) GetWebsiteVerifiedAt() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetTwitter() *string {
+	if c == nil {
 		return nil
 	}
-	return o.WebsiteVerifiedAt
+	return c.Twitter
 }
 
-func (o *CreatePartnerResponseBody) GetYoutube() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetLinkedin() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Youtube
+	return c.Linkedin
 }
 
-func (o *CreatePartnerResponseBody) GetYoutubeVerifiedAt() *string {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetInstagram() *string {
+	if c == nil {
 		return nil
 	}
-	return o.YoutubeVerifiedAt
+	return c.Instagram
 }
 
-func (o *CreatePartnerResponseBody) GetYoutubeSubscriberCount() *float64 {
-	if o == nil {
+func (c *CreatePartnerResponseBody) GetTiktok() *string {
+	if c == nil {
 		return nil
 	}
-	return o.YoutubeSubscriberCount
-}
-
-func (o *CreatePartnerResponseBody) GetYoutubeViewCount() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.YoutubeViewCount
-}
-
-func (o *CreatePartnerResponseBody) GetTwitter() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Twitter
-}
-
-func (o *CreatePartnerResponseBody) GetTwitterVerifiedAt() *string {
-	if o == nil {
-		return nil
-	}
-	return o.TwitterVerifiedAt
-}
-
-func (o *CreatePartnerResponseBody) GetLinkedin() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Linkedin
-}
-
-func (o *CreatePartnerResponseBody) GetLinkedinVerifiedAt() *string {
-	if o == nil {
-		return nil
-	}
-	return o.LinkedinVerifiedAt
-}
-
-func (o *CreatePartnerResponseBody) GetInstagram() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Instagram
-}
-
-func (o *CreatePartnerResponseBody) GetInstagramVerifiedAt() *string {
-	if o == nil {
-		return nil
-	}
-	return o.InstagramVerifiedAt
-}
-
-func (o *CreatePartnerResponseBody) GetTiktok() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Tiktok
-}
-
-func (o *CreatePartnerResponseBody) GetTiktokVerifiedAt() *string {
-	if o == nil {
-		return nil
-	}
-	return o.TiktokVerifiedAt
+	return c.Tiktok
 }

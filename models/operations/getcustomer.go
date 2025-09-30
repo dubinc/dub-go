@@ -14,18 +14,18 @@ type GetCustomerRequest struct {
 	IncludeExpandedFields *bool `queryParam:"style=form,explode=true,name=includeExpandedFields"`
 }
 
-func (o *GetCustomerRequest) GetID() string {
-	if o == nil {
+func (g *GetCustomerRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetCustomerRequest) GetIncludeExpandedFields() *bool {
-	if o == nil {
+func (g *GetCustomerRequest) GetIncludeExpandedFields() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IncludeExpandedFields
+	return g.IncludeExpandedFields
 }
 
 type GetCustomerLink struct {
@@ -43,46 +43,46 @@ type GetCustomerLink struct {
 	ProgramID *string `json:"programId"`
 }
 
-func (o *GetCustomerLink) GetID() string {
-	if o == nil {
+func (g *GetCustomerLink) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetCustomerLink) GetDomain() string {
-	if o == nil {
+func (g *GetCustomerLink) GetDomain() string {
+	if g == nil {
 		return ""
 	}
-	return o.Domain
+	return g.Domain
 }
 
-func (o *GetCustomerLink) GetKey() string {
-	if o == nil {
+func (g *GetCustomerLink) GetKey() string {
+	if g == nil {
 		return ""
 	}
-	return o.Key
+	return g.Key
 }
 
-func (o *GetCustomerLink) GetShortLink() string {
-	if o == nil {
+func (g *GetCustomerLink) GetShortLink() string {
+	if g == nil {
 		return ""
 	}
-	return o.ShortLink
+	return g.ShortLink
 }
 
-func (o *GetCustomerLink) GetURL() string {
-	if o == nil {
+func (g *GetCustomerLink) GetURL() string {
+	if g == nil {
 		return ""
 	}
-	return o.URL
+	return g.URL
 }
 
-func (o *GetCustomerLink) GetProgramID() *string {
-	if o == nil {
+func (g *GetCustomerLink) GetProgramID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ProgramID
+	return g.ProgramID
 }
 
 type GetCustomerPartner struct {
@@ -96,32 +96,32 @@ type GetCustomerPartner struct {
 	Image *string `json:"image"`
 }
 
-func (o *GetCustomerPartner) GetID() string {
-	if o == nil {
+func (g *GetCustomerPartner) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetCustomerPartner) GetName() string {
-	if o == nil {
+func (g *GetCustomerPartner) GetName() string {
+	if g == nil {
 		return ""
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GetCustomerPartner) GetEmail() *string {
-	if o == nil {
+func (g *GetCustomerPartner) GetEmail() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Email
+	return g.Email
 }
 
-func (o *GetCustomerPartner) GetImage() *string {
-	if o == nil {
+func (g *GetCustomerPartner) GetImage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Image
+	return g.Image
 }
 
 type GetCustomerType string
@@ -161,60 +161,60 @@ type GetCustomerDiscount struct {
 	PartnersCount *float64        `json:"partnersCount,omitempty"`
 }
 
-func (o *GetCustomerDiscount) GetID() string {
-	if o == nil {
+func (g *GetCustomerDiscount) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetCustomerDiscount) GetAmount() float64 {
-	if o == nil {
+func (g *GetCustomerDiscount) GetAmount() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.Amount
+	return g.Amount
 }
 
-func (o *GetCustomerDiscount) GetType() GetCustomerType {
-	if o == nil {
+func (g *GetCustomerDiscount) GetType() GetCustomerType {
+	if g == nil {
 		return GetCustomerType("")
 	}
-	return o.Type
+	return g.Type
 }
 
-func (o *GetCustomerDiscount) GetMaxDuration() *float64 {
-	if o == nil {
+func (g *GetCustomerDiscount) GetMaxDuration() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.MaxDuration
+	return g.MaxDuration
 }
 
-func (o *GetCustomerDiscount) GetDescription() *string {
-	if o == nil {
+func (g *GetCustomerDiscount) GetDescription() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Description
+	return g.Description
 }
 
-func (o *GetCustomerDiscount) GetCouponID() *string {
-	if o == nil {
+func (g *GetCustomerDiscount) GetCouponID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.CouponID
+	return g.CouponID
 }
 
-func (o *GetCustomerDiscount) GetCouponTestID() *string {
-	if o == nil {
+func (g *GetCustomerDiscount) GetCouponTestID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.CouponTestID
+	return g.CouponTestID
 }
 
-func (o *GetCustomerDiscount) GetPartnersCount() *float64 {
-	if o == nil {
+func (g *GetCustomerDiscount) GetPartnersCount() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.PartnersCount
+	return g.PartnersCount
 }
 
 // GetCustomerResponseBody - The customer object.
@@ -243,93 +243,93 @@ type GetCustomerResponseBody struct {
 	Discount  *GetCustomerDiscount `json:"discount,omitempty"`
 }
 
-func (o *GetCustomerResponseBody) GetID() string {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetCustomerResponseBody) GetExternalID() string {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetExternalID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ExternalID
+	return g.ExternalID
 }
 
-func (o *GetCustomerResponseBody) GetName() string {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetName() string {
+	if g == nil {
 		return ""
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GetCustomerResponseBody) GetEmail() *string {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetEmail() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Email
+	return g.Email
 }
 
-func (o *GetCustomerResponseBody) GetAvatar() *string {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetAvatar() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Avatar
+	return g.Avatar
 }
 
-func (o *GetCustomerResponseBody) GetCountry() *string {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetCountry() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Country
+	return g.Country
 }
 
-func (o *GetCustomerResponseBody) GetSales() *float64 {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetSales() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Sales
+	return g.Sales
 }
 
-func (o *GetCustomerResponseBody) GetSaleAmount() *float64 {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetSaleAmount() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return g.SaleAmount
 }
 
-func (o *GetCustomerResponseBody) GetCreatedAt() string {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetCreatedAt() string {
+	if g == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return g.CreatedAt
 }
 
-func (o *GetCustomerResponseBody) GetLink() *GetCustomerLink {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetLink() *GetCustomerLink {
+	if g == nil {
 		return nil
 	}
-	return o.Link
+	return g.Link
 }
 
-func (o *GetCustomerResponseBody) GetProgramID() *string {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetProgramID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ProgramID
+	return g.ProgramID
 }
 
-func (o *GetCustomerResponseBody) GetPartner() *GetCustomerPartner {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetPartner() *GetCustomerPartner {
+	if g == nil {
 		return nil
 	}
-	return o.Partner
+	return g.Partner
 }
 
-func (o *GetCustomerResponseBody) GetDiscount() *GetCustomerDiscount {
-	if o == nil {
+func (g *GetCustomerResponseBody) GetDiscount() *GetCustomerDiscount {
+	if g == nil {
 		return nil
 	}
-	return o.Discount
+	return g.Discount
 }

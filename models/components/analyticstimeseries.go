@@ -30,37 +30,37 @@ func (a *AnalyticsTimeseries) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AnalyticsTimeseries) GetStart() string {
-	if o == nil {
+func (a *AnalyticsTimeseries) GetStart() string {
+	if a == nil {
 		return ""
 	}
-	return o.Start
+	return a.Start
 }
 
-func (o *AnalyticsTimeseries) GetClicks() *float64 {
-	if o == nil {
+func (a *AnalyticsTimeseries) GetClicks() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Clicks
+	return a.Clicks
 }
 
-func (o *AnalyticsTimeseries) GetLeads() *float64 {
-	if o == nil {
+func (a *AnalyticsTimeseries) GetLeads() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Leads
+	return a.Leads
 }
 
-func (o *AnalyticsTimeseries) GetSales() *float64 {
-	if o == nil {
+func (a *AnalyticsTimeseries) GetSales() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Sales
+	return a.Sales
 }
 
-func (o *AnalyticsTimeseries) GetSaleAmount() *float64 {
-	if o == nil {
+func (a *AnalyticsTimeseries) GetSaleAmount() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return a.SaleAmount
 }

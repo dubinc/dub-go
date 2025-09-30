@@ -86,44 +86,44 @@ func (f *FolderSchema) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *FolderSchema) GetID() string {
-	if o == nil {
+func (f *FolderSchema) GetID() string {
+	if f == nil {
 		return ""
 	}
-	return o.ID
+	return f.ID
 }
 
-func (o *FolderSchema) GetName() string {
-	if o == nil {
+func (f *FolderSchema) GetName() string {
+	if f == nil {
 		return ""
 	}
-	return o.Name
+	return f.Name
 }
 
-func (o *FolderSchema) GetType() Type {
-	if o == nil {
+func (f *FolderSchema) GetType() Type {
+	if f == nil {
 		return Type("")
 	}
-	return o.Type
+	return f.Type
 }
 
-func (o *FolderSchema) GetAccessLevel() *AccessLevel {
-	if o == nil {
+func (f *FolderSchema) GetAccessLevel() *AccessLevel {
+	if f == nil {
 		return nil
 	}
-	return o.AccessLevel
+	return f.AccessLevel
 }
 
-func (o *FolderSchema) GetCreatedAt() string {
-	if o == nil {
+func (f *FolderSchema) GetCreatedAt() string {
+	if f == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return f.CreatedAt
 }
 
-func (o *FolderSchema) GetUpdatedAt() string {
-	if o == nil {
+func (f *FolderSchema) GetUpdatedAt() string {
+	if f == nil {
 		return ""
 	}
-	return o.UpdatedAt
+	return f.UpdatedAt
 }

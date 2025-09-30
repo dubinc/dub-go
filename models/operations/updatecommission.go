@@ -63,32 +63,32 @@ func (u *UpdateCommissionRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *UpdateCommissionRequestBody) GetAmount() *float64 {
-	if o == nil {
+func (u *UpdateCommissionRequestBody) GetAmount() *float64 {
+	if u == nil {
 		return nil
 	}
-	return o.Amount
+	return u.Amount
 }
 
-func (o *UpdateCommissionRequestBody) GetModifyAmount() *float64 {
-	if o == nil {
+func (u *UpdateCommissionRequestBody) GetModifyAmount() *float64 {
+	if u == nil {
 		return nil
 	}
-	return o.ModifyAmount
+	return u.ModifyAmount
 }
 
-func (o *UpdateCommissionRequestBody) GetCurrency() *string {
-	if o == nil {
+func (u *UpdateCommissionRequestBody) GetCurrency() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Currency
+	return u.Currency
 }
 
-func (o *UpdateCommissionRequestBody) GetStatus() *Status {
-	if o == nil {
+func (u *UpdateCommissionRequestBody) GetStatus() *Status {
+	if u == nil {
 		return nil
 	}
-	return o.Status
+	return u.Status
 }
 
 type UpdateCommissionRequest struct {
@@ -97,18 +97,18 @@ type UpdateCommissionRequest struct {
 	RequestBody *UpdateCommissionRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *UpdateCommissionRequest) GetID() string {
-	if o == nil {
+func (u *UpdateCommissionRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateCommissionRequest) GetRequestBody() *UpdateCommissionRequestBody {
-	if o == nil {
+func (u *UpdateCommissionRequest) GetRequestBody() *UpdateCommissionRequestBody {
+	if u == nil {
 		return nil
 	}
-	return o.RequestBody
+	return u.RequestBody
 }
 
 type UpdateCommissionType string
@@ -199,46 +199,46 @@ type UpdateCommissionPartner struct {
 	Country *string `json:"country"`
 }
 
-func (o *UpdateCommissionPartner) GetID() string {
-	if o == nil {
+func (u *UpdateCommissionPartner) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateCommissionPartner) GetName() string {
-	if o == nil {
+func (u *UpdateCommissionPartner) GetName() string {
+	if u == nil {
 		return ""
 	}
-	return o.Name
+	return u.Name
 }
 
-func (o *UpdateCommissionPartner) GetEmail() *string {
-	if o == nil {
+func (u *UpdateCommissionPartner) GetEmail() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Email
+	return u.Email
 }
 
-func (o *UpdateCommissionPartner) GetImage() *string {
-	if o == nil {
+func (u *UpdateCommissionPartner) GetImage() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Image
+	return u.Image
 }
 
-func (o *UpdateCommissionPartner) GetPayoutsEnabledAt() *string {
-	if o == nil {
+func (u *UpdateCommissionPartner) GetPayoutsEnabledAt() *string {
+	if u == nil {
 		return nil
 	}
-	return o.PayoutsEnabledAt
+	return u.PayoutsEnabledAt
 }
 
-func (o *UpdateCommissionPartner) GetCountry() *string {
-	if o == nil {
+func (u *UpdateCommissionPartner) GetCountry() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Country
+	return u.Country
 }
 
 type UpdateCommissionCustomer struct {
@@ -262,67 +262,67 @@ type UpdateCommissionCustomer struct {
 	CreatedAt string `json:"createdAt"`
 }
 
-func (o *UpdateCommissionCustomer) GetID() string {
-	if o == nil {
+func (u *UpdateCommissionCustomer) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateCommissionCustomer) GetExternalID() string {
-	if o == nil {
+func (u *UpdateCommissionCustomer) GetExternalID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ExternalID
+	return u.ExternalID
 }
 
-func (o *UpdateCommissionCustomer) GetName() string {
-	if o == nil {
+func (u *UpdateCommissionCustomer) GetName() string {
+	if u == nil {
 		return ""
 	}
-	return o.Name
+	return u.Name
 }
 
-func (o *UpdateCommissionCustomer) GetEmail() *string {
-	if o == nil {
+func (u *UpdateCommissionCustomer) GetEmail() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Email
+	return u.Email
 }
 
-func (o *UpdateCommissionCustomer) GetAvatar() *string {
-	if o == nil {
+func (u *UpdateCommissionCustomer) GetAvatar() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Avatar
+	return u.Avatar
 }
 
-func (o *UpdateCommissionCustomer) GetCountry() *string {
-	if o == nil {
+func (u *UpdateCommissionCustomer) GetCountry() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Country
+	return u.Country
 }
 
-func (o *UpdateCommissionCustomer) GetSales() *float64 {
-	if o == nil {
+func (u *UpdateCommissionCustomer) GetSales() *float64 {
+	if u == nil {
 		return nil
 	}
-	return o.Sales
+	return u.Sales
 }
 
-func (o *UpdateCommissionCustomer) GetSaleAmount() *float64 {
-	if o == nil {
+func (u *UpdateCommissionCustomer) GetSaleAmount() *float64 {
+	if u == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return u.SaleAmount
 }
 
-func (o *UpdateCommissionCustomer) GetCreatedAt() string {
-	if o == nil {
+func (u *UpdateCommissionCustomer) GetCreatedAt() string {
+	if u == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return u.CreatedAt
 }
 
 // UpdateCommissionResponseBody - The updated commission.
@@ -345,100 +345,100 @@ type UpdateCommissionResponseBody struct {
 	Customer  *UpdateCommissionCustomer `json:"customer,omitempty"`
 }
 
-func (o *UpdateCommissionResponseBody) GetID() string {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateCommissionResponseBody) GetType() *UpdateCommissionType {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetType() *UpdateCommissionType {
+	if u == nil {
 		return nil
 	}
-	return o.Type
+	return u.Type
 }
 
-func (o *UpdateCommissionResponseBody) GetAmount() float64 {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetAmount() float64 {
+	if u == nil {
 		return 0.0
 	}
-	return o.Amount
+	return u.Amount
 }
 
-func (o *UpdateCommissionResponseBody) GetEarnings() float64 {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetEarnings() float64 {
+	if u == nil {
 		return 0.0
 	}
-	return o.Earnings
+	return u.Earnings
 }
 
-func (o *UpdateCommissionResponseBody) GetCurrency() string {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetCurrency() string {
+	if u == nil {
 		return ""
 	}
-	return o.Currency
+	return u.Currency
 }
 
-func (o *UpdateCommissionResponseBody) GetStatus() UpdateCommissionStatus {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetStatus() UpdateCommissionStatus {
+	if u == nil {
 		return UpdateCommissionStatus("")
 	}
-	return o.Status
+	return u.Status
 }
 
-func (o *UpdateCommissionResponseBody) GetInvoiceID() *string {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetInvoiceID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.InvoiceID
+	return u.InvoiceID
 }
 
-func (o *UpdateCommissionResponseBody) GetDescription() *string {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetDescription() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Description
+	return u.Description
 }
 
-func (o *UpdateCommissionResponseBody) GetQuantity() float64 {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetQuantity() float64 {
+	if u == nil {
 		return 0.0
 	}
-	return o.Quantity
+	return u.Quantity
 }
 
-func (o *UpdateCommissionResponseBody) GetUserID() *string {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetUserID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.UserID
+	return u.UserID
 }
 
-func (o *UpdateCommissionResponseBody) GetCreatedAt() string {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetCreatedAt() string {
+	if u == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return u.CreatedAt
 }
 
-func (o *UpdateCommissionResponseBody) GetUpdatedAt() string {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetUpdatedAt() string {
+	if u == nil {
 		return ""
 	}
-	return o.UpdatedAt
+	return u.UpdatedAt
 }
 
-func (o *UpdateCommissionResponseBody) GetPartner() UpdateCommissionPartner {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetPartner() UpdateCommissionPartner {
+	if u == nil {
 		return UpdateCommissionPartner{}
 	}
-	return o.Partner
+	return u.Partner
 }
 
-func (o *UpdateCommissionResponseBody) GetCustomer() *UpdateCommissionCustomer {
-	if o == nil {
+func (u *UpdateCommissionResponseBody) GetCustomer() *UpdateCommissionCustomer {
+	if u == nil {
 		return nil
 	}
-	return o.Customer
+	return u.Customer
 }

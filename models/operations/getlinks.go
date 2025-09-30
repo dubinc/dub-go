@@ -19,8 +19,8 @@ const (
 
 // QueryParamTagIds - The tag IDs to filter the links by.
 type QueryParamTagIds struct {
-	Str        *string  `queryParam:"inline" name:"tagIds"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
+	Str        *string  `queryParam:"inline,name=tagIds"`
+	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
 
 	Type QueryParamTagIdsType
 }
@@ -83,8 +83,8 @@ const (
 
 // QueryParamTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type QueryParamTagNames struct {
-	Str        *string  `queryParam:"inline" name:"tagNames"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
+	Str        *string  `queryParam:"inline,name=tagNames"`
+	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
 
 	Type QueryParamTagNamesType
 }
@@ -277,109 +277,109 @@ func (g *GetLinksRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetLinksRequest) GetDomain() *string {
-	if o == nil {
+func (g *GetLinksRequest) GetDomain() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Domain
+	return g.Domain
 }
 
-func (o *GetLinksRequest) GetTagID() *string {
-	if o == nil {
+func (g *GetLinksRequest) GetTagID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TagID
+	return g.TagID
 }
 
-func (o *GetLinksRequest) GetTagIds() *QueryParamTagIds {
-	if o == nil {
+func (g *GetLinksRequest) GetTagIds() *QueryParamTagIds {
+	if g == nil {
 		return nil
 	}
-	return o.TagIds
+	return g.TagIds
 }
 
-func (o *GetLinksRequest) GetTagNames() *QueryParamTagNames {
-	if o == nil {
+func (g *GetLinksRequest) GetTagNames() *QueryParamTagNames {
+	if g == nil {
 		return nil
 	}
-	return o.TagNames
+	return g.TagNames
 }
 
-func (o *GetLinksRequest) GetFolderID() *string {
-	if o == nil {
+func (g *GetLinksRequest) GetFolderID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.FolderID
+	return g.FolderID
 }
 
-func (o *GetLinksRequest) GetSearch() *string {
-	if o == nil {
+func (g *GetLinksRequest) GetSearch() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Search
+	return g.Search
 }
 
-func (o *GetLinksRequest) GetUserID() *string {
-	if o == nil {
+func (g *GetLinksRequest) GetUserID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.UserID
+	return g.UserID
 }
 
-func (o *GetLinksRequest) GetTenantID() *string {
-	if o == nil {
+func (g *GetLinksRequest) GetTenantID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TenantID
+	return g.TenantID
 }
 
-func (o *GetLinksRequest) GetShowArchived() *bool {
-	if o == nil {
+func (g *GetLinksRequest) GetShowArchived() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.ShowArchived
+	return g.ShowArchived
 }
 
-func (o *GetLinksRequest) GetWithTags() *bool {
-	if o == nil {
+func (g *GetLinksRequest) GetWithTags() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.WithTags
+	return g.WithTags
 }
 
-func (o *GetLinksRequest) GetSortBy() *SortBy {
-	if o == nil {
+func (g *GetLinksRequest) GetSortBy() *SortBy {
+	if g == nil {
 		return nil
 	}
-	return o.SortBy
+	return g.SortBy
 }
 
-func (o *GetLinksRequest) GetSortOrder() *SortOrder {
-	if o == nil {
+func (g *GetLinksRequest) GetSortOrder() *SortOrder {
+	if g == nil {
 		return nil
 	}
-	return o.SortOrder
+	return g.SortOrder
 }
 
-func (o *GetLinksRequest) GetSort() *Sort {
-	if o == nil {
+func (g *GetLinksRequest) GetSort() *Sort {
+	if g == nil {
 		return nil
 	}
-	return o.Sort
+	return g.Sort
 }
 
-func (o *GetLinksRequest) GetPage() *float64 {
-	if o == nil {
+func (g *GetLinksRequest) GetPage() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Page
+	return g.Page
 }
 
-func (o *GetLinksRequest) GetPageSize() *float64 {
-	if o == nil {
+func (g *GetLinksRequest) GetPageSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.PageSize
+	return g.PageSize
 }
 
 type GetLinksResponse struct {
@@ -388,9 +388,9 @@ type GetLinksResponse struct {
 	Next func() (*GetLinksResponse, error)
 }
 
-func (o *GetLinksResponse) GetResult() []components.LinkSchema {
-	if o == nil {
+func (g *GetLinksResponse) GetResult() []components.LinkSchema {
+	if g == nil {
 		return []components.LinkSchema{}
 	}
-	return o.Result
+	return g.Result
 }

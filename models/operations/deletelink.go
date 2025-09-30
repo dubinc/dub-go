@@ -7,11 +7,11 @@ type DeleteLinkRequest struct {
 	LinkID string `pathParam:"style=simple,explode=false,name=linkId"`
 }
 
-func (o *DeleteLinkRequest) GetLinkID() string {
-	if o == nil {
+func (d *DeleteLinkRequest) GetLinkID() string {
+	if d == nil {
 		return ""
 	}
-	return o.LinkID
+	return d.LinkID
 }
 
 // DeleteLinkResponseBody - The deleted link ID.
@@ -20,9 +20,9 @@ type DeleteLinkResponseBody struct {
 	ID string `json:"id"`
 }
 
-func (o *DeleteLinkResponseBody) GetID() string {
-	if o == nil {
+func (d *DeleteLinkResponseBody) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }

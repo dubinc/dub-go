@@ -60,25 +60,25 @@ type UpdateTagRequestBody struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-func (o *UpdateTagRequestBody) GetName() *string {
-	if o == nil {
+func (u *UpdateTagRequestBody) GetName() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Name
+	return u.Name
 }
 
-func (o *UpdateTagRequestBody) GetColor() *UpdateTagColor {
-	if o == nil {
+func (u *UpdateTagRequestBody) GetColor() *UpdateTagColor {
+	if u == nil {
 		return nil
 	}
-	return o.Color
+	return u.Color
 }
 
-func (o *UpdateTagRequestBody) GetTag() *string {
-	if o == nil {
+func (u *UpdateTagRequestBody) GetTag() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Tag
+	return u.Tag
 }
 
 type UpdateTagRequest struct {
@@ -87,16 +87,16 @@ type UpdateTagRequest struct {
 	RequestBody *UpdateTagRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *UpdateTagRequest) GetID() string {
-	if o == nil {
+func (u *UpdateTagRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
-func (o *UpdateTagRequest) GetRequestBody() *UpdateTagRequestBody {
-	if o == nil {
+func (u *UpdateTagRequest) GetRequestBody() *UpdateTagRequestBody {
+	if u == nil {
 		return nil
 	}
-	return o.RequestBody
+	return u.RequestBody
 }

@@ -130,8 +130,8 @@ const (
 
 // ListEventsQueryParamTagIds - The tag IDs to retrieve analytics for.
 type ListEventsQueryParamTagIds struct {
-	Str        *string  `queryParam:"inline" name:"tagIds"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
+	Str        *string  `queryParam:"inline,name=tagIds"`
+	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
 
 	Type ListEventsQueryParamTagIdsType
 }
@@ -364,9 +364,11 @@ type ListEventsRequest struct {
 	// The UTM term of the short link.
 	UtmTerm *string `queryParam:"style=form,explode=true,name=utm_term"`
 	// The UTM content of the short link.
-	UtmContent *string  `queryParam:"style=form,explode=true,name=utm_content"`
-	Page       *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
-	Limit      *float64 `default:"100" queryParam:"style=form,explode=true,name=limit"`
+	UtmContent *string `queryParam:"style=form,explode=true,name=utm_content"`
+	// The ref of the short link.
+	Ref   *string  `queryParam:"style=form,explode=true,name=ref"`
+	Page  *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	Limit *float64 `default:"100" queryParam:"style=form,explode=true,name=limit"`
 	// The sort order. The default is `desc`.
 	SortOrder *QueryParamSortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
 	// The field to sort the events by. The default is `timestamp`.
@@ -386,291 +388,298 @@ func (l *ListEventsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ListEventsRequest) GetEvent() *QueryParamEvent {
-	if o == nil {
+func (l *ListEventsRequest) GetEvent() *QueryParamEvent {
+	if l == nil {
 		return nil
 	}
-	return o.Event
+	return l.Event
 }
 
-func (o *ListEventsRequest) GetDomain() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetDomain() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Domain
+	return l.Domain
 }
 
-func (o *ListEventsRequest) GetKey() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetKey() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Key
+	return l.Key
 }
 
-func (o *ListEventsRequest) GetLinkID() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetLinkID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.LinkID
+	return l.LinkID
 }
 
-func (o *ListEventsRequest) GetExternalID() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetExternalID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ExternalID
+	return l.ExternalID
 }
 
-func (o *ListEventsRequest) GetTenantID() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetTenantID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TenantID
+	return l.TenantID
 }
 
-func (o *ListEventsRequest) GetProgramID() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetProgramID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ProgramID
+	return l.ProgramID
 }
 
-func (o *ListEventsRequest) GetPartnerID() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetPartnerID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.PartnerID
+	return l.PartnerID
 }
 
-func (o *ListEventsRequest) GetCustomerID() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetCustomerID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.CustomerID
+	return l.CustomerID
 }
 
-func (o *ListEventsRequest) GetInterval() *QueryParamInterval {
-	if o == nil {
+func (l *ListEventsRequest) GetInterval() *QueryParamInterval {
+	if l == nil {
 		return nil
 	}
-	return o.Interval
+	return l.Interval
 }
 
-func (o *ListEventsRequest) GetStart() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetStart() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Start
+	return l.Start
 }
 
-func (o *ListEventsRequest) GetEnd() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetEnd() *string {
+	if l == nil {
 		return nil
 	}
-	return o.End
+	return l.End
 }
 
-func (o *ListEventsRequest) GetTimezone() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetTimezone() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Timezone
+	return l.Timezone
 }
 
-func (o *ListEventsRequest) GetCountry() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetCountry() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Country
+	return l.Country
 }
 
-func (o *ListEventsRequest) GetCity() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetCity() *string {
+	if l == nil {
 		return nil
 	}
-	return o.City
+	return l.City
 }
 
-func (o *ListEventsRequest) GetRegion() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetRegion() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Region
+	return l.Region
 }
 
-func (o *ListEventsRequest) GetContinent() *components.ContinentCode {
-	if o == nil {
+func (l *ListEventsRequest) GetContinent() *components.ContinentCode {
+	if l == nil {
 		return nil
 	}
-	return o.Continent
+	return l.Continent
 }
 
-func (o *ListEventsRequest) GetDevice() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetDevice() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Device
+	return l.Device
 }
 
-func (o *ListEventsRequest) GetBrowser() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetBrowser() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Browser
+	return l.Browser
 }
 
-func (o *ListEventsRequest) GetOs() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetOs() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Os
+	return l.Os
 }
 
-func (o *ListEventsRequest) GetTrigger() *QueryParamTrigger {
-	if o == nil {
+func (l *ListEventsRequest) GetTrigger() *QueryParamTrigger {
+	if l == nil {
 		return nil
 	}
-	return o.Trigger
+	return l.Trigger
 }
 
-func (o *ListEventsRequest) GetReferer() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetReferer() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Referer
+	return l.Referer
 }
 
-func (o *ListEventsRequest) GetRefererURL() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetRefererURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.RefererURL
+	return l.RefererURL
 }
 
-func (o *ListEventsRequest) GetURL() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.URL
+	return l.URL
 }
 
-func (o *ListEventsRequest) GetTagIds() *ListEventsQueryParamTagIds {
-	if o == nil {
+func (l *ListEventsRequest) GetTagIds() *ListEventsQueryParamTagIds {
+	if l == nil {
 		return nil
 	}
-	return o.TagIds
+	return l.TagIds
 }
 
-func (o *ListEventsRequest) GetFolderID() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetFolderID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.FolderID
+	return l.FolderID
 }
 
-func (o *ListEventsRequest) GetRoot() *bool {
-	if o == nil {
+func (l *ListEventsRequest) GetRoot() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Root
+	return l.Root
 }
 
-func (o *ListEventsRequest) GetSaleType() *QueryParamSaleType {
-	if o == nil {
+func (l *ListEventsRequest) GetSaleType() *QueryParamSaleType {
+	if l == nil {
 		return nil
 	}
-	return o.SaleType
+	return l.SaleType
 }
 
-func (o *ListEventsRequest) GetQuery() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetQuery() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Query
+	return l.Query
 }
 
-func (o *ListEventsRequest) GetTagID() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetTagID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TagID
+	return l.TagID
 }
 
-func (o *ListEventsRequest) GetQr() *bool {
-	if o == nil {
+func (l *ListEventsRequest) GetQr() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Qr
+	return l.Qr
 }
 
-func (o *ListEventsRequest) GetUtmSource() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetUtmSource() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmSource
+	return l.UtmSource
 }
 
-func (o *ListEventsRequest) GetUtmMedium() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetUtmMedium() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmMedium
+	return l.UtmMedium
 }
 
-func (o *ListEventsRequest) GetUtmCampaign() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetUtmCampaign() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmCampaign
+	return l.UtmCampaign
 }
 
-func (o *ListEventsRequest) GetUtmTerm() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetUtmTerm() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmTerm
+	return l.UtmTerm
 }
 
-func (o *ListEventsRequest) GetUtmContent() *string {
-	if o == nil {
+func (l *ListEventsRequest) GetUtmContent() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmContent
+	return l.UtmContent
 }
 
-func (o *ListEventsRequest) GetPage() *float64 {
-	if o == nil {
+func (l *ListEventsRequest) GetRef() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Page
+	return l.Ref
 }
 
-func (o *ListEventsRequest) GetLimit() *float64 {
-	if o == nil {
+func (l *ListEventsRequest) GetPage() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Limit
+	return l.Page
 }
 
-func (o *ListEventsRequest) GetSortOrder() *QueryParamSortOrder {
-	if o == nil {
+func (l *ListEventsRequest) GetLimit() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.SortOrder
+	return l.Limit
 }
 
-func (o *ListEventsRequest) GetSortBy() *QueryParamSortBy {
-	if o == nil {
+func (l *ListEventsRequest) GetSortOrder() *QueryParamSortOrder {
+	if l == nil {
 		return nil
 	}
-	return o.SortBy
+	return l.SortOrder
 }
 
-func (o *ListEventsRequest) GetOrder() *Order {
-	if o == nil {
+func (l *ListEventsRequest) GetSortBy() *QueryParamSortBy {
+	if l == nil {
 		return nil
 	}
-	return o.Order
+	return l.SortBy
+}
+
+func (l *ListEventsRequest) GetOrder() *Order {
+	if l == nil {
+		return nil
+	}
+	return l.Order
 }
 
 type ListEventsResponseBodyType string
@@ -682,9 +691,9 @@ const (
 )
 
 type ListEventsResponseBody struct {
-	ClickEvent *components.ClickEvent `queryParam:"inline" name:"responseBody"`
-	LeadEvent  *components.LeadEvent  `queryParam:"inline" name:"responseBody"`
-	SaleEvent  *components.SaleEvent  `queryParam:"inline" name:"responseBody"`
+	ClickEvent *components.ClickEvent `queryParam:"inline,name=responseBody"`
+	LeadEvent  *components.LeadEvent  `queryParam:"inline,name=responseBody"`
+	SaleEvent  *components.SaleEvent  `queryParam:"inline,name=responseBody"`
 
 	Type ListEventsResponseBodyType
 }

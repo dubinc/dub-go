@@ -40,25 +40,25 @@ type ForbiddenError struct {
 	DocURL *string `json:"doc_url,omitempty"`
 }
 
-func (o *ForbiddenError) GetCode() ForbiddenCode {
-	if o == nil {
+func (f *ForbiddenError) GetCode() ForbiddenCode {
+	if f == nil {
 		return ForbiddenCode("")
 	}
-	return o.Code
+	return f.Code
 }
 
-func (o *ForbiddenError) GetMessage() string {
-	if o == nil {
+func (f *ForbiddenError) GetMessage() string {
+	if f == nil {
 		return ""
 	}
-	return o.Message
+	return f.Message
 }
 
-func (o *ForbiddenError) GetDocURL() *string {
-	if o == nil {
+func (f *ForbiddenError) GetDocURL() *string {
+	if f == nil {
 		return nil
 	}
-	return o.DocURL
+	return f.DocURL
 }
 
 // Forbidden - The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401 Unauthorized, the client's identity is known to the server.

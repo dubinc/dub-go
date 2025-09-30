@@ -17,8 +17,8 @@ const (
 
 // CreatePartnerLinkTagIds - The unique IDs of the tags assigned to the short link.
 type CreatePartnerLinkTagIds struct {
-	Str        *string  `queryParam:"inline" name:"tagIds"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
+	Str        *string  `queryParam:"inline,name=tagIds"`
+	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
 
 	Type CreatePartnerLinkTagIdsType
 }
@@ -81,8 +81,8 @@ const (
 
 // CreatePartnerLinkTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type CreatePartnerLinkTagNames struct {
-	Str        *string  `queryParam:"inline" name:"tagNames"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
+	Str        *string  `queryParam:"inline,name=tagNames"`
+	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
 
 	Type CreatePartnerLinkTagNamesType
 }
@@ -141,18 +141,18 @@ type CreatePartnerLinkTestVariants struct {
 	Percentage float64 `json:"percentage"`
 }
 
-func (o *CreatePartnerLinkTestVariants) GetURL() string {
-	if o == nil {
+func (c *CreatePartnerLinkTestVariants) GetURL() string {
+	if c == nil {
 		return ""
 	}
-	return o.URL
+	return c.URL
 }
 
-func (o *CreatePartnerLinkTestVariants) GetPercentage() float64 {
-	if o == nil {
+func (c *CreatePartnerLinkTestVariants) GetPercentage() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.Percentage
+	return c.Percentage
 }
 
 // CreatePartnerLinkLinkProps - Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
@@ -219,214 +219,214 @@ type CreatePartnerLinkLinkProps struct {
 	TestCompletedAt *string `json:"testCompletedAt,omitempty"`
 }
 
-func (o *CreatePartnerLinkLinkProps) GetKeyLength() *float64 {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetKeyLength() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.KeyLength
+	return c.KeyLength
 }
 
-func (o *CreatePartnerLinkLinkProps) GetExternalID() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetExternalID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ExternalID
+	return c.ExternalID
 }
 
-func (o *CreatePartnerLinkLinkProps) GetTenantID() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetTenantID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TenantID
+	return c.TenantID
 }
 
-func (o *CreatePartnerLinkLinkProps) GetPrefix() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetPrefix() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Prefix
+	return c.Prefix
 }
 
-func (o *CreatePartnerLinkLinkProps) GetArchived() *bool {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetArchived() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Archived
+	return c.Archived
 }
 
-func (o *CreatePartnerLinkLinkProps) GetTagIds() *CreatePartnerLinkTagIds {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetTagIds() *CreatePartnerLinkTagIds {
+	if c == nil {
 		return nil
 	}
-	return o.TagIds
+	return c.TagIds
 }
 
-func (o *CreatePartnerLinkLinkProps) GetTagNames() *CreatePartnerLinkTagNames {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetTagNames() *CreatePartnerLinkTagNames {
+	if c == nil {
 		return nil
 	}
-	return o.TagNames
+	return c.TagNames
 }
 
-func (o *CreatePartnerLinkLinkProps) GetFolderID() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetFolderID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.FolderID
+	return c.FolderID
 }
 
-func (o *CreatePartnerLinkLinkProps) GetComments() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetComments() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Comments
+	return c.Comments
 }
 
-func (o *CreatePartnerLinkLinkProps) GetExpiresAt() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetExpiresAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ExpiresAt
+	return c.ExpiresAt
 }
 
-func (o *CreatePartnerLinkLinkProps) GetExpiredURL() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetExpiredURL() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return c.ExpiredURL
 }
 
-func (o *CreatePartnerLinkLinkProps) GetPassword() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetPassword() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Password
+	return c.Password
 }
 
-func (o *CreatePartnerLinkLinkProps) GetProxy() *bool {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetProxy() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Proxy
+	return c.Proxy
 }
 
-func (o *CreatePartnerLinkLinkProps) GetTitle() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetTitle() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Title
+	return c.Title
 }
 
-func (o *CreatePartnerLinkLinkProps) GetDescription() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Description
+	return c.Description
 }
 
-func (o *CreatePartnerLinkLinkProps) GetImage() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetImage() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Image
+	return c.Image
 }
 
-func (o *CreatePartnerLinkLinkProps) GetVideo() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetVideo() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Video
+	return c.Video
 }
 
-func (o *CreatePartnerLinkLinkProps) GetRewrite() *bool {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetRewrite() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Rewrite
+	return c.Rewrite
 }
 
-func (o *CreatePartnerLinkLinkProps) GetIos() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetIos() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Ios
+	return c.Ios
 }
 
-func (o *CreatePartnerLinkLinkProps) GetAndroid() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetAndroid() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Android
+	return c.Android
 }
 
-func (o *CreatePartnerLinkLinkProps) GetDoIndex() *bool {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetDoIndex() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.DoIndex
+	return c.DoIndex
 }
 
-func (o *CreatePartnerLinkLinkProps) GetUtmSource() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetUtmSource() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmSource
+	return c.UtmSource
 }
 
-func (o *CreatePartnerLinkLinkProps) GetUtmMedium() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetUtmMedium() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmMedium
+	return c.UtmMedium
 }
 
-func (o *CreatePartnerLinkLinkProps) GetUtmCampaign() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetUtmCampaign() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmCampaign
+	return c.UtmCampaign
 }
 
-func (o *CreatePartnerLinkLinkProps) GetUtmTerm() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetUtmTerm() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmTerm
+	return c.UtmTerm
 }
 
-func (o *CreatePartnerLinkLinkProps) GetUtmContent() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetUtmContent() *string {
+	if c == nil {
 		return nil
 	}
-	return o.UtmContent
+	return c.UtmContent
 }
 
-func (o *CreatePartnerLinkLinkProps) GetRef() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetRef() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Ref
+	return c.Ref
 }
 
-func (o *CreatePartnerLinkLinkProps) GetTestVariants() []CreatePartnerLinkTestVariants {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetTestVariants() []CreatePartnerLinkTestVariants {
+	if c == nil {
 		return nil
 	}
-	return o.TestVariants
+	return c.TestVariants
 }
 
-func (o *CreatePartnerLinkLinkProps) GetTestStartedAt() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetTestStartedAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TestStartedAt
+	return c.TestStartedAt
 }
 
-func (o *CreatePartnerLinkLinkProps) GetTestCompletedAt() *string {
-	if o == nil {
+func (c *CreatePartnerLinkLinkProps) GetTestCompletedAt() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TestCompletedAt
+	return c.TestCompletedAt
 }
 
 type CreatePartnerLinkRequestBody struct {
@@ -444,44 +444,44 @@ type CreatePartnerLinkRequestBody struct {
 	LinkProps *CreatePartnerLinkLinkProps `json:"linkProps,omitempty"`
 }
 
-func (o *CreatePartnerLinkRequestBody) GetPartnerID() *string {
-	if o == nil {
+func (c *CreatePartnerLinkRequestBody) GetPartnerID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.PartnerID
+	return c.PartnerID
 }
 
-func (o *CreatePartnerLinkRequestBody) GetTenantID() *string {
-	if o == nil {
+func (c *CreatePartnerLinkRequestBody) GetTenantID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TenantID
+	return c.TenantID
 }
 
-func (o *CreatePartnerLinkRequestBody) GetURL() *string {
-	if o == nil {
+func (c *CreatePartnerLinkRequestBody) GetURL() *string {
+	if c == nil {
 		return nil
 	}
-	return o.URL
+	return c.URL
 }
 
-func (o *CreatePartnerLinkRequestBody) GetKey() *string {
-	if o == nil {
+func (c *CreatePartnerLinkRequestBody) GetKey() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Key
+	return c.Key
 }
 
-func (o *CreatePartnerLinkRequestBody) GetComments() *string {
-	if o == nil {
+func (c *CreatePartnerLinkRequestBody) GetComments() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Comments
+	return c.Comments
 }
 
-func (o *CreatePartnerLinkRequestBody) GetLinkProps() *CreatePartnerLinkLinkProps {
-	if o == nil {
+func (c *CreatePartnerLinkRequestBody) GetLinkProps() *CreatePartnerLinkLinkProps {
+	if c == nil {
 		return nil
 	}
-	return o.LinkProps
+	return c.LinkProps
 }

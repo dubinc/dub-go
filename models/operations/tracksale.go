@@ -85,88 +85,88 @@ func (t *TrackSaleRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TrackSaleRequestBody) GetCustomerExternalID() string {
-	if o == nil {
+func (t *TrackSaleRequestBody) GetCustomerExternalID() string {
+	if t == nil {
 		return ""
 	}
-	return o.CustomerExternalID
+	return t.CustomerExternalID
 }
 
-func (o *TrackSaleRequestBody) GetAmount() int64 {
-	if o == nil {
+func (t *TrackSaleRequestBody) GetAmount() int64 {
+	if t == nil {
 		return 0
 	}
-	return o.Amount
+	return t.Amount
 }
 
-func (o *TrackSaleRequestBody) GetCurrency() *string {
-	if o == nil {
+func (t *TrackSaleRequestBody) GetCurrency() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Currency
+	return t.Currency
 }
 
-func (o *TrackSaleRequestBody) GetEventName() *string {
-	if o == nil {
+func (t *TrackSaleRequestBody) GetEventName() *string {
+	if t == nil {
 		return nil
 	}
-	return o.EventName
+	return t.EventName
 }
 
-func (o *TrackSaleRequestBody) GetPaymentProcessor() *PaymentProcessor {
-	if o == nil {
+func (t *TrackSaleRequestBody) GetPaymentProcessor() *PaymentProcessor {
+	if t == nil {
 		return nil
 	}
-	return o.PaymentProcessor
+	return t.PaymentProcessor
 }
 
-func (o *TrackSaleRequestBody) GetInvoiceID() *string {
-	if o == nil {
+func (t *TrackSaleRequestBody) GetInvoiceID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.InvoiceID
+	return t.InvoiceID
 }
 
-func (o *TrackSaleRequestBody) GetMetadata() map[string]any {
-	if o == nil {
+func (t *TrackSaleRequestBody) GetMetadata() map[string]any {
+	if t == nil {
 		return nil
 	}
-	return o.Metadata
+	return t.Metadata
 }
 
-func (o *TrackSaleRequestBody) GetLeadEventName() *string {
-	if o == nil {
+func (t *TrackSaleRequestBody) GetLeadEventName() *string {
+	if t == nil {
 		return nil
 	}
-	return o.LeadEventName
+	return t.LeadEventName
 }
 
-func (o *TrackSaleRequestBody) GetClickID() *string {
-	if o == nil {
+func (t *TrackSaleRequestBody) GetClickID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.ClickID
+	return t.ClickID
 }
 
-func (o *TrackSaleRequestBody) GetCustomerName() *string {
-	if o == nil {
+func (t *TrackSaleRequestBody) GetCustomerName() *string {
+	if t == nil {
 		return nil
 	}
-	return o.CustomerName
+	return t.CustomerName
 }
 
-func (o *TrackSaleRequestBody) GetCustomerEmail() *string {
-	if o == nil {
+func (t *TrackSaleRequestBody) GetCustomerEmail() *string {
+	if t == nil {
 		return nil
 	}
-	return o.CustomerEmail
+	return t.CustomerEmail
 }
 
-func (o *TrackSaleRequestBody) GetCustomerAvatar() *string {
-	if o == nil {
+func (t *TrackSaleRequestBody) GetCustomerAvatar() *string {
+	if t == nil {
 		return nil
 	}
-	return o.CustomerAvatar
+	return t.CustomerAvatar
 }
 
 type TrackSaleCustomer struct {
@@ -177,39 +177,39 @@ type TrackSaleCustomer struct {
 	ExternalID *string `json:"externalId"`
 }
 
-func (o *TrackSaleCustomer) GetID() string {
-	if o == nil {
+func (t *TrackSaleCustomer) GetID() string {
+	if t == nil {
 		return ""
 	}
-	return o.ID
+	return t.ID
 }
 
-func (o *TrackSaleCustomer) GetName() *string {
-	if o == nil {
+func (t *TrackSaleCustomer) GetName() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Name
+	return t.Name
 }
 
-func (o *TrackSaleCustomer) GetEmail() *string {
-	if o == nil {
+func (t *TrackSaleCustomer) GetEmail() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Email
+	return t.Email
 }
 
-func (o *TrackSaleCustomer) GetAvatar() *string {
-	if o == nil {
+func (t *TrackSaleCustomer) GetAvatar() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Avatar
+	return t.Avatar
 }
 
-func (o *TrackSaleCustomer) GetExternalID() *string {
-	if o == nil {
+func (t *TrackSaleCustomer) GetExternalID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.ExternalID
+	return t.ExternalID
 }
 
 type Sale struct {
@@ -220,39 +220,39 @@ type Sale struct {
 	Metadata         map[string]any `json:"metadata"`
 }
 
-func (o *Sale) GetAmount() float64 {
-	if o == nil {
+func (s *Sale) GetAmount() float64 {
+	if s == nil {
 		return 0.0
 	}
-	return o.Amount
+	return s.Amount
 }
 
-func (o *Sale) GetCurrency() string {
-	if o == nil {
+func (s *Sale) GetCurrency() string {
+	if s == nil {
 		return ""
 	}
-	return o.Currency
+	return s.Currency
 }
 
-func (o *Sale) GetPaymentProcessor() string {
-	if o == nil {
+func (s *Sale) GetPaymentProcessor() string {
+	if s == nil {
 		return ""
 	}
-	return o.PaymentProcessor
+	return s.PaymentProcessor
 }
 
-func (o *Sale) GetInvoiceID() *string {
-	if o == nil {
+func (s *Sale) GetInvoiceID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.InvoiceID
+	return s.InvoiceID
 }
 
-func (o *Sale) GetMetadata() map[string]any {
-	if o == nil {
+func (s *Sale) GetMetadata() map[string]any {
+	if s == nil {
 		return nil
 	}
-	return o.Metadata
+	return s.Metadata
 }
 
 // TrackSaleResponseBody - A sale was tracked.
@@ -262,23 +262,23 @@ type TrackSaleResponseBody struct {
 	Sale      *Sale              `json:"sale"`
 }
 
-func (o *TrackSaleResponseBody) GetEventName() string {
-	if o == nil {
+func (t *TrackSaleResponseBody) GetEventName() string {
+	if t == nil {
 		return ""
 	}
-	return o.EventName
+	return t.EventName
 }
 
-func (o *TrackSaleResponseBody) GetCustomer() *TrackSaleCustomer {
-	if o == nil {
+func (t *TrackSaleResponseBody) GetCustomer() *TrackSaleCustomer {
+	if t == nil {
 		return nil
 	}
-	return o.Customer
+	return t.Customer
 }
 
-func (o *TrackSaleResponseBody) GetSale() *Sale {
-	if o == nil {
+func (t *TrackSaleResponseBody) GetSale() *Sale {
+	if t == nil {
 		return nil
 	}
-	return o.Sale
+	return t.Sale
 }

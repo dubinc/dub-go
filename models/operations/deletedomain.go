@@ -7,11 +7,11 @@ type DeleteDomainRequest struct {
 	Slug string `pathParam:"style=simple,explode=false,name=slug"`
 }
 
-func (o *DeleteDomainRequest) GetSlug() string {
-	if o == nil {
+func (d *DeleteDomainRequest) GetSlug() string {
+	if d == nil {
 		return ""
 	}
-	return o.Slug
+	return d.Slug
 }
 
 // DeleteDomainResponseBody - The domain was deleted.
@@ -20,9 +20,9 @@ type DeleteDomainResponseBody struct {
 	Slug string `json:"slug"`
 }
 
-func (o *DeleteDomainResponseBody) GetSlug() string {
-	if o == nil {
+func (d *DeleteDomainResponseBody) GetSlug() string {
+	if d == nil {
 		return ""
 	}
-	return o.Slug
+	return d.Slug
 }

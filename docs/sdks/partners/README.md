@@ -39,7 +39,7 @@ func main() {
     res, err := s.Partners.Create(ctx, &operations.CreatePartnerRequestBody{
         Email: "Summer50@yahoo.com",
         LinkProps: &operations.LinkProps{
-            ExternalID: dubgo.String("123456"),
+            ExternalID: dubgo.Pointer("123456"),
             TagIds: dubgo.Pointer(operations.CreateCreatePartnerTagIdsArrayOfStr(
                 []string{
                     "clux0rgak00011...",
@@ -119,11 +119,12 @@ func main() {
 
     res, err := s.Partners.List(ctx, operations.ListPartnersRequest{
         Status: operations.ListPartnersQueryParamStatusApproved.ToPointer(),
-        Country: dubgo.String("US"),
-        TenantID: dubgo.String("1K0NM7HCN944PEMZ3CQPH43H8"),
-        IncludeExpandedFields: dubgo.Bool(false),
-        Search: dubgo.String("john"),
-        PageSize: dubgo.Float64(50),
+        Country: dubgo.Pointer("US"),
+        Email: dubgo.Pointer("panic@thedis.co"),
+        TenantID: dubgo.Pointer("1K0NM7HCN944PEMZ3CQPH43H8"),
+        Search: dubgo.Pointer("john"),
+        IncludeExpandedFields: dubgo.Pointer(false),
+        PageSize: dubgo.Pointer[float64](50),
     })
     if err != nil {
         log.Fatal(err)
@@ -187,7 +188,7 @@ func main() {
 
     res, err := s.Partners.CreateLink(ctx, &operations.CreatePartnerLinkRequestBody{
         LinkProps: &operations.CreatePartnerLinkLinkProps{
-            ExternalID: dubgo.String("123456"),
+            ExternalID: dubgo.Pointer("123456"),
             TagIds: dubgo.Pointer(operations.CreateCreatePartnerLinkTagIdsArrayOfStr(
                 []string{
                     "clux0rgak00011...",
@@ -328,7 +329,7 @@ func main() {
 
     res, err := s.Partners.UpsertLink(ctx, &operations.UpsertPartnerLinkRequestBody{
         LinkProps: &operations.UpsertPartnerLinkLinkProps{
-            ExternalID: dubgo.String("123456"),
+            ExternalID: dubgo.Pointer("123456"),
             TagIds: dubgo.Pointer(operations.CreateUpsertPartnerLinkTagIdsArrayOfStr(
                 []string{
                     "clux0rgak00011...",
@@ -407,8 +408,8 @@ func main() {
     )
 
     res, err := s.Partners.Analytics(ctx, operations.RetrievePartnerAnalyticsRequest{
-        Timezone: dubgo.String("America/New_York"),
-        Query: dubgo.String("metadata['key']:'value'"),
+        Timezone: dubgo.Pointer("America/New_York"),
+        Query: dubgo.Pointer("metadata['key']:'value'"),
     })
     if err != nil {
         log.Fatal(err)

@@ -36,60 +36,60 @@ func (u *UpdateDomainRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *UpdateDomainRequestBody) GetSlug() *string {
-	if o == nil {
+func (u *UpdateDomainRequestBody) GetSlug() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Slug
+	return u.Slug
 }
 
-func (o *UpdateDomainRequestBody) GetExpiredURL() *string {
-	if o == nil {
+func (u *UpdateDomainRequestBody) GetExpiredURL() *string {
+	if u == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return u.ExpiredURL
 }
 
-func (o *UpdateDomainRequestBody) GetNotFoundURL() *string {
-	if o == nil {
+func (u *UpdateDomainRequestBody) GetNotFoundURL() *string {
+	if u == nil {
 		return nil
 	}
-	return o.NotFoundURL
+	return u.NotFoundURL
 }
 
-func (o *UpdateDomainRequestBody) GetArchived() *bool {
-	if o == nil {
+func (u *UpdateDomainRequestBody) GetArchived() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Archived
+	return u.Archived
 }
 
-func (o *UpdateDomainRequestBody) GetPlaceholder() *string {
-	if o == nil {
+func (u *UpdateDomainRequestBody) GetPlaceholder() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Placeholder
+	return u.Placeholder
 }
 
-func (o *UpdateDomainRequestBody) GetLogo() *string {
-	if o == nil {
+func (u *UpdateDomainRequestBody) GetLogo() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Logo
+	return u.Logo
 }
 
-func (o *UpdateDomainRequestBody) GetAssetLinks() *string {
-	if o == nil {
+func (u *UpdateDomainRequestBody) GetAssetLinks() *string {
+	if u == nil {
 		return nil
 	}
-	return o.AssetLinks
+	return u.AssetLinks
 }
 
-func (o *UpdateDomainRequestBody) GetAppleAppSiteAssociation() *string {
-	if o == nil {
+func (u *UpdateDomainRequestBody) GetAppleAppSiteAssociation() *string {
+	if u == nil {
 		return nil
 	}
-	return o.AppleAppSiteAssociation
+	return u.AppleAppSiteAssociation
 }
 
 type UpdateDomainRequest struct {
@@ -98,16 +98,16 @@ type UpdateDomainRequest struct {
 	RequestBody *UpdateDomainRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *UpdateDomainRequest) GetSlug() string {
-	if o == nil {
+func (u *UpdateDomainRequest) GetSlug() string {
+	if u == nil {
 		return ""
 	}
-	return o.Slug
+	return u.Slug
 }
 
-func (o *UpdateDomainRequest) GetRequestBody() *UpdateDomainRequestBody {
-	if o == nil {
+func (u *UpdateDomainRequest) GetRequestBody() *UpdateDomainRequestBody {
+	if u == nil {
 		return nil
 	}
-	return o.RequestBody
+	return u.RequestBody
 }

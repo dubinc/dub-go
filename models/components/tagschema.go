@@ -70,23 +70,23 @@ func (t *TagSchema) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TagSchema) GetID() string {
-	if o == nil {
+func (t *TagSchema) GetID() string {
+	if t == nil {
 		return ""
 	}
-	return o.ID
+	return t.ID
 }
 
-func (o *TagSchema) GetName() string {
-	if o == nil {
+func (t *TagSchema) GetName() string {
+	if t == nil {
 		return ""
 	}
-	return o.Name
+	return t.Name
 }
 
-func (o *TagSchema) GetColor() Color {
-	if o == nil {
+func (t *TagSchema) GetColor() Color {
+	if t == nil {
 		return Color("")
 	}
-	return o.Color
+	return t.Color
 }

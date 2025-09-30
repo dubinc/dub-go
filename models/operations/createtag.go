@@ -60,23 +60,23 @@ type CreateTagRequestBody struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-func (o *CreateTagRequestBody) GetName() *string {
-	if o == nil {
+func (c *CreateTagRequestBody) GetName() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *CreateTagRequestBody) GetColor() *Color {
-	if o == nil {
+func (c *CreateTagRequestBody) GetColor() *Color {
+	if c == nil {
 		return nil
 	}
-	return o.Color
+	return c.Color
 }
 
-func (o *CreateTagRequestBody) GetTag() *string {
-	if o == nil {
+func (c *CreateTagRequestBody) GetTag() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Tag
+	return c.Tag
 }

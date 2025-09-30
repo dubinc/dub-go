@@ -100,8 +100,8 @@ func main() {
     res, err := s.Track.Sale(ctx, &operations.TrackSaleRequestBody{
         CustomerExternalID: "<id>",
         Amount: 594903,
-        EventName: dubgo.String("Invoice paid"),
-        LeadEventName: dubgo.String("Cloned template 1481267"),
+        EventName: dubgo.Pointer("Invoice paid"),
+        LeadEventName: dubgo.Pointer("Cloned template 1481267"),
     })
     if err != nil {
         log.Fatal(err)

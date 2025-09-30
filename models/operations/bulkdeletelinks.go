@@ -7,11 +7,11 @@ type BulkDeleteLinksRequest struct {
 	LinkIds []string `queryParam:"style=form,explode=false,name=linkIds"`
 }
 
-func (o *BulkDeleteLinksRequest) GetLinkIds() []string {
-	if o == nil {
+func (b *BulkDeleteLinksRequest) GetLinkIds() []string {
+	if b == nil {
 		return []string{}
 	}
-	return o.LinkIds
+	return b.LinkIds
 }
 
 // BulkDeleteLinksResponseBody - The deleted links count.
@@ -20,9 +20,9 @@ type BulkDeleteLinksResponseBody struct {
 	DeletedCount float64 `json:"deletedCount"`
 }
 
-func (o *BulkDeleteLinksResponseBody) GetDeletedCount() float64 {
-	if o == nil {
+func (b *BulkDeleteLinksResponseBody) GetDeletedCount() float64 {
+	if b == nil {
 		return 0.0
 	}
-	return o.DeletedCount
+	return b.DeletedCount
 }

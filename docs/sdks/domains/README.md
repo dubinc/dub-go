@@ -38,9 +38,9 @@ func main() {
 
     res, err := s.Domains.Create(ctx, &operations.CreateDomainRequestBody{
         Slug: "acme.com",
-        ExpiredURL: dubgo.String("https://acme.com/expired"),
-        NotFoundURL: dubgo.String("https://acme.com/not-found"),
-        Placeholder: dubgo.String("https://dub.co/help/article/what-is-dub"),
+        ExpiredURL: dubgo.Pointer("https://acme.com/expired"),
+        NotFoundURL: dubgo.Pointer("https://acme.com/not-found"),
+        Placeholder: dubgo.Pointer("https://dub.co/help/article/what-is-dub"),
     })
     if err != nil {
         log.Fatal(err)
@@ -176,10 +176,10 @@ func main() {
     )
 
     res, err := s.Domains.Update(ctx, "acme.com", &operations.UpdateDomainRequestBody{
-        Slug: dubgo.String("acme.com"),
-        ExpiredURL: dubgo.String("https://acme.com/expired"),
-        NotFoundURL: dubgo.String("https://acme.com/not-found"),
-        Placeholder: dubgo.String("https://dub.co/help/article/what-is-dub"),
+        Slug: dubgo.Pointer("acme.com"),
+        ExpiredURL: dubgo.Pointer("https://acme.com/expired"),
+        NotFoundURL: dubgo.Pointer("https://acme.com/not-found"),
+        Placeholder: dubgo.Pointer("https://dub.co/help/article/what-is-dub"),
     })
     if err != nil {
         log.Fatal(err)

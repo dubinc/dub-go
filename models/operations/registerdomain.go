@@ -7,11 +7,11 @@ type RegisterDomainRequestBody struct {
 	Domain string `json:"domain"`
 }
 
-func (o *RegisterDomainRequestBody) GetDomain() string {
-	if o == nil {
+func (r *RegisterDomainRequestBody) GetDomain() string {
+	if r == nil {
 		return ""
 	}
-	return o.Domain
+	return r.Domain
 }
 
 // RegisterDomainResponseBody - The domain was registered.
@@ -24,23 +24,23 @@ type RegisterDomainResponseBody struct {
 	Expiration *float64 `json:"expiration"`
 }
 
-func (o *RegisterDomainResponseBody) GetDomain() string {
-	if o == nil {
+func (r *RegisterDomainResponseBody) GetDomain() string {
+	if r == nil {
 		return ""
 	}
-	return o.Domain
+	return r.Domain
 }
 
-func (o *RegisterDomainResponseBody) GetStatus() string {
-	if o == nil {
+func (r *RegisterDomainResponseBody) GetStatus() string {
+	if r == nil {
 		return ""
 	}
-	return o.Status
+	return r.Status
 }
 
-func (o *RegisterDomainResponseBody) GetExpiration() *float64 {
-	if o == nil {
+func (r *RegisterDomainResponseBody) GetExpiration() *float64 {
+	if r == nil {
 		return nil
 	}
-	return o.Expiration
+	return r.Expiration
 }

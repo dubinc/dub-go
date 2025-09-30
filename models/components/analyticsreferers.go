@@ -30,37 +30,37 @@ func (a *AnalyticsReferers) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AnalyticsReferers) GetReferer() string {
-	if o == nil {
+func (a *AnalyticsReferers) GetReferer() string {
+	if a == nil {
 		return ""
 	}
-	return o.Referer
+	return a.Referer
 }
 
-func (o *AnalyticsReferers) GetClicks() *float64 {
-	if o == nil {
+func (a *AnalyticsReferers) GetClicks() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Clicks
+	return a.Clicks
 }
 
-func (o *AnalyticsReferers) GetLeads() *float64 {
-	if o == nil {
+func (a *AnalyticsReferers) GetLeads() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Leads
+	return a.Leads
 }
 
-func (o *AnalyticsReferers) GetSales() *float64 {
-	if o == nil {
+func (a *AnalyticsReferers) GetSales() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.Sales
+	return a.Sales
 }
 
-func (o *AnalyticsReferers) GetSaleAmount() *float64 {
-	if o == nil {
+func (a *AnalyticsReferers) GetSaleAmount() *float64 {
+	if a == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return a.SaleAmount
 }

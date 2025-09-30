@@ -90,25 +90,25 @@ func (s *Sale) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Sale) GetAmount() int64 {
-	if o == nil {
+func (s *Sale) GetAmount() int64 {
+	if s == nil {
 		return 0
 	}
-	return o.Amount
+	return s.Amount
 }
 
-func (o *Sale) GetInvoiceID() *string {
-	if o == nil {
+func (s *Sale) GetInvoiceID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.InvoiceID
+	return s.InvoiceID
 }
 
-func (o *Sale) GetPaymentProcessor() *PaymentProcessor {
-	if o == nil {
+func (s *Sale) GetPaymentProcessor() *PaymentProcessor {
+	if s == nil {
 		return nil
 	}
-	return o.PaymentProcessor
+	return s.PaymentProcessor
 }
 
 type SaleEventTestVariants struct {
@@ -127,18 +127,18 @@ func (s *SaleEventTestVariants) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SaleEventTestVariants) GetURL() string {
-	if o == nil {
+func (s *SaleEventTestVariants) GetURL() string {
+	if s == nil {
 		return ""
 	}
-	return o.URL
+	return s.URL
 }
 
-func (o *SaleEventTestVariants) GetPercentage() float64 {
-	if o == nil {
+func (s *SaleEventTestVariants) GetPercentage() float64 {
+	if s == nil {
 		return 0.0
 	}
-	return o.Percentage
+	return s.Percentage
 }
 
 type SaleEventLink struct {
@@ -244,354 +244,354 @@ func (s *SaleEventLink) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SaleEventLink) GetID() string {
-	if o == nil {
+func (s *SaleEventLink) GetID() string {
+	if s == nil {
 		return ""
 	}
-	return o.ID
+	return s.ID
 }
 
-func (o *SaleEventLink) GetDomain() string {
-	if o == nil {
+func (s *SaleEventLink) GetDomain() string {
+	if s == nil {
 		return ""
 	}
-	return o.Domain
+	return s.Domain
 }
 
-func (o *SaleEventLink) GetKey() string {
-	if o == nil {
+func (s *SaleEventLink) GetKey() string {
+	if s == nil {
 		return ""
 	}
-	return o.Key
+	return s.Key
 }
 
-func (o *SaleEventLink) GetURL() string {
-	if o == nil {
+func (s *SaleEventLink) GetURL() string {
+	if s == nil {
 		return ""
 	}
-	return o.URL
+	return s.URL
 }
 
-func (o *SaleEventLink) GetTrackConversion() bool {
-	if o == nil {
+func (s *SaleEventLink) GetTrackConversion() bool {
+	if s == nil {
 		return false
 	}
-	return o.TrackConversion
+	return s.TrackConversion
 }
 
-func (o *SaleEventLink) GetExternalID() *string {
-	if o == nil {
+func (s *SaleEventLink) GetExternalID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ExternalID
+	return s.ExternalID
 }
 
-func (o *SaleEventLink) GetTenantID() *string {
-	if o == nil {
+func (s *SaleEventLink) GetTenantID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.TenantID
+	return s.TenantID
 }
 
-func (o *SaleEventLink) GetProgramID() *string {
-	if o == nil {
+func (s *SaleEventLink) GetProgramID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ProgramID
+	return s.ProgramID
 }
 
-func (o *SaleEventLink) GetPartnerID() *string {
-	if o == nil {
+func (s *SaleEventLink) GetPartnerID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.PartnerID
+	return s.PartnerID
 }
 
-func (o *SaleEventLink) GetArchived() bool {
-	if o == nil {
+func (s *SaleEventLink) GetArchived() bool {
+	if s == nil {
 		return false
 	}
-	return o.Archived
+	return s.Archived
 }
 
-func (o *SaleEventLink) GetExpiresAt() string {
-	if o == nil {
+func (s *SaleEventLink) GetExpiresAt() string {
+	if s == nil {
 		return ""
 	}
-	return o.ExpiresAt
+	return s.ExpiresAt
 }
 
-func (o *SaleEventLink) GetExpiredURL() *string {
-	if o == nil {
+func (s *SaleEventLink) GetExpiredURL() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return s.ExpiredURL
 }
 
-func (o *SaleEventLink) GetPassword() *string {
-	if o == nil {
+func (s *SaleEventLink) GetPassword() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Password
+	return s.Password
 }
 
-func (o *SaleEventLink) GetProxy() bool {
-	if o == nil {
+func (s *SaleEventLink) GetProxy() bool {
+	if s == nil {
 		return false
 	}
-	return o.Proxy
+	return s.Proxy
 }
 
-func (o *SaleEventLink) GetTitle() *string {
-	if o == nil {
+func (s *SaleEventLink) GetTitle() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Title
+	return s.Title
 }
 
-func (o *SaleEventLink) GetDescription() *string {
-	if o == nil {
+func (s *SaleEventLink) GetDescription() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Description
+	return s.Description
 }
 
-func (o *SaleEventLink) GetImage() *string {
-	if o == nil {
+func (s *SaleEventLink) GetImage() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Image
+	return s.Image
 }
 
-func (o *SaleEventLink) GetVideo() *string {
-	if o == nil {
+func (s *SaleEventLink) GetVideo() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Video
+	return s.Video
 }
 
-func (o *SaleEventLink) GetRewrite() bool {
-	if o == nil {
+func (s *SaleEventLink) GetRewrite() bool {
+	if s == nil {
 		return false
 	}
-	return o.Rewrite
+	return s.Rewrite
 }
 
-func (o *SaleEventLink) GetDoIndex() bool {
-	if o == nil {
+func (s *SaleEventLink) GetDoIndex() bool {
+	if s == nil {
 		return false
 	}
-	return o.DoIndex
+	return s.DoIndex
 }
 
-func (o *SaleEventLink) GetIos() *string {
-	if o == nil {
+func (s *SaleEventLink) GetIos() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Ios
+	return s.Ios
 }
 
-func (o *SaleEventLink) GetAndroid() *string {
-	if o == nil {
+func (s *SaleEventLink) GetAndroid() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Android
+	return s.Android
 }
 
-func (o *SaleEventLink) GetGeo() map[string]string {
-	if o == nil {
+func (s *SaleEventLink) GetGeo() map[string]string {
+	if s == nil {
 		return nil
 	}
-	return o.Geo
+	return s.Geo
 }
 
-func (o *SaleEventLink) GetPublicStats() bool {
-	if o == nil {
+func (s *SaleEventLink) GetPublicStats() bool {
+	if s == nil {
 		return false
 	}
-	return o.PublicStats
+	return s.PublicStats
 }
 
-func (o *SaleEventLink) GetTags() []TagSchema {
-	if o == nil {
+func (s *SaleEventLink) GetTags() []TagSchema {
+	if s == nil {
 		return nil
 	}
-	return o.Tags
+	return s.Tags
 }
 
-func (o *SaleEventLink) GetFolderID() *string {
-	if o == nil {
+func (s *SaleEventLink) GetFolderID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.FolderID
+	return s.FolderID
 }
 
-func (o *SaleEventLink) GetWebhookIds() []string {
-	if o == nil {
+func (s *SaleEventLink) GetWebhookIds() []string {
+	if s == nil {
 		return []string{}
 	}
-	return o.WebhookIds
+	return s.WebhookIds
 }
 
-func (o *SaleEventLink) GetComments() *string {
-	if o == nil {
+func (s *SaleEventLink) GetComments() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Comments
+	return s.Comments
 }
 
-func (o *SaleEventLink) GetShortLink() string {
-	if o == nil {
+func (s *SaleEventLink) GetShortLink() string {
+	if s == nil {
 		return ""
 	}
-	return o.ShortLink
+	return s.ShortLink
 }
 
-func (o *SaleEventLink) GetQrCode() string {
-	if o == nil {
+func (s *SaleEventLink) GetQrCode() string {
+	if s == nil {
 		return ""
 	}
-	return o.QrCode
+	return s.QrCode
 }
 
-func (o *SaleEventLink) GetUtmSource() *string {
-	if o == nil {
+func (s *SaleEventLink) GetUtmSource() *string {
+	if s == nil {
 		return nil
 	}
-	return o.UtmSource
+	return s.UtmSource
 }
 
-func (o *SaleEventLink) GetUtmMedium() *string {
-	if o == nil {
+func (s *SaleEventLink) GetUtmMedium() *string {
+	if s == nil {
 		return nil
 	}
-	return o.UtmMedium
+	return s.UtmMedium
 }
 
-func (o *SaleEventLink) GetUtmCampaign() *string {
-	if o == nil {
+func (s *SaleEventLink) GetUtmCampaign() *string {
+	if s == nil {
 		return nil
 	}
-	return o.UtmCampaign
+	return s.UtmCampaign
 }
 
-func (o *SaleEventLink) GetUtmTerm() *string {
-	if o == nil {
+func (s *SaleEventLink) GetUtmTerm() *string {
+	if s == nil {
 		return nil
 	}
-	return o.UtmTerm
+	return s.UtmTerm
 }
 
-func (o *SaleEventLink) GetUtmContent() *string {
-	if o == nil {
+func (s *SaleEventLink) GetUtmContent() *string {
+	if s == nil {
 		return nil
 	}
-	return o.UtmContent
+	return s.UtmContent
 }
 
-func (o *SaleEventLink) GetTestVariants() []SaleEventTestVariants {
-	if o == nil {
+func (s *SaleEventLink) GetTestVariants() []SaleEventTestVariants {
+	if s == nil {
 		return nil
 	}
-	return o.TestVariants
+	return s.TestVariants
 }
 
-func (o *SaleEventLink) GetTestStartedAt() *string {
-	if o == nil {
+func (s *SaleEventLink) GetTestStartedAt() *string {
+	if s == nil {
 		return nil
 	}
-	return o.TestStartedAt
+	return s.TestStartedAt
 }
 
-func (o *SaleEventLink) GetTestCompletedAt() *string {
-	if o == nil {
+func (s *SaleEventLink) GetTestCompletedAt() *string {
+	if s == nil {
 		return nil
 	}
-	return o.TestCompletedAt
+	return s.TestCompletedAt
 }
 
-func (o *SaleEventLink) GetUserID() *string {
-	if o == nil {
+func (s *SaleEventLink) GetUserID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.UserID
+	return s.UserID
 }
 
-func (o *SaleEventLink) GetWorkspaceID() string {
-	if o == nil {
+func (s *SaleEventLink) GetWorkspaceID() string {
+	if s == nil {
 		return ""
 	}
-	return o.WorkspaceID
+	return s.WorkspaceID
 }
 
-func (o *SaleEventLink) GetClicks() *float64 {
-	if o == nil {
+func (s *SaleEventLink) GetClicks() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.Clicks
+	return s.Clicks
 }
 
-func (o *SaleEventLink) GetLeads() *float64 {
-	if o == nil {
+func (s *SaleEventLink) GetLeads() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.Leads
+	return s.Leads
 }
 
-func (o *SaleEventLink) GetConversions() *float64 {
-	if o == nil {
+func (s *SaleEventLink) GetConversions() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.Conversions
+	return s.Conversions
 }
 
-func (o *SaleEventLink) GetSales() *float64 {
-	if o == nil {
+func (s *SaleEventLink) GetSales() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.Sales
+	return s.Sales
 }
 
-func (o *SaleEventLink) GetSaleAmount() *float64 {
-	if o == nil {
+func (s *SaleEventLink) GetSaleAmount() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return s.SaleAmount
 }
 
-func (o *SaleEventLink) GetLastClicked() string {
-	if o == nil {
+func (s *SaleEventLink) GetLastClicked() string {
+	if s == nil {
 		return ""
 	}
-	return o.LastClicked
+	return s.LastClicked
 }
 
-func (o *SaleEventLink) GetCreatedAt() string {
-	if o == nil {
+func (s *SaleEventLink) GetCreatedAt() string {
+	if s == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return s.CreatedAt
 }
 
-func (o *SaleEventLink) GetUpdatedAt() string {
-	if o == nil {
+func (s *SaleEventLink) GetUpdatedAt() string {
+	if s == nil {
 		return ""
 	}
-	return o.UpdatedAt
+	return s.UpdatedAt
 }
 
-func (o *SaleEventLink) GetTagID() *string {
-	if o == nil {
+func (s *SaleEventLink) GetTagID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.TagID
+	return s.TagID
 }
 
-func (o *SaleEventLink) GetProjectID() string {
-	if o == nil {
+func (s *SaleEventLink) GetProjectID() string {
+	if s == nil {
 		return ""
 	}
-	return o.ProjectID
+	return s.ProjectID
 }
 
 type SaleEventClick struct {
@@ -623,109 +623,109 @@ func (s *SaleEventClick) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SaleEventClick) GetID() string {
-	if o == nil {
+func (s *SaleEventClick) GetID() string {
+	if s == nil {
 		return ""
 	}
-	return o.ID
+	return s.ID
 }
 
-func (o *SaleEventClick) GetTimestamp() string {
-	if o == nil {
+func (s *SaleEventClick) GetTimestamp() string {
+	if s == nil {
 		return ""
 	}
-	return o.Timestamp
+	return s.Timestamp
 }
 
-func (o *SaleEventClick) GetURL() string {
-	if o == nil {
+func (s *SaleEventClick) GetURL() string {
+	if s == nil {
 		return ""
 	}
-	return o.URL
+	return s.URL
 }
 
-func (o *SaleEventClick) GetCountry() string {
-	if o == nil {
+func (s *SaleEventClick) GetCountry() string {
+	if s == nil {
 		return ""
 	}
-	return o.Country
+	return s.Country
 }
 
-func (o *SaleEventClick) GetCity() string {
-	if o == nil {
+func (s *SaleEventClick) GetCity() string {
+	if s == nil {
 		return ""
 	}
-	return o.City
+	return s.City
 }
 
-func (o *SaleEventClick) GetRegion() string {
-	if o == nil {
+func (s *SaleEventClick) GetRegion() string {
+	if s == nil {
 		return ""
 	}
-	return o.Region
+	return s.Region
 }
 
-func (o *SaleEventClick) GetContinent() string {
-	if o == nil {
+func (s *SaleEventClick) GetContinent() string {
+	if s == nil {
 		return ""
 	}
-	return o.Continent
+	return s.Continent
 }
 
-func (o *SaleEventClick) GetDevice() string {
-	if o == nil {
+func (s *SaleEventClick) GetDevice() string {
+	if s == nil {
 		return ""
 	}
-	return o.Device
+	return s.Device
 }
 
-func (o *SaleEventClick) GetBrowser() string {
-	if o == nil {
+func (s *SaleEventClick) GetBrowser() string {
+	if s == nil {
 		return ""
 	}
-	return o.Browser
+	return s.Browser
 }
 
-func (o *SaleEventClick) GetOs() string {
-	if o == nil {
+func (s *SaleEventClick) GetOs() string {
+	if s == nil {
 		return ""
 	}
-	return o.Os
+	return s.Os
 }
 
-func (o *SaleEventClick) GetTrigger() *string {
-	if o == nil {
+func (s *SaleEventClick) GetTrigger() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Trigger
+	return s.Trigger
 }
 
-func (o *SaleEventClick) GetReferer() string {
-	if o == nil {
+func (s *SaleEventClick) GetReferer() string {
+	if s == nil {
 		return ""
 	}
-	return o.Referer
+	return s.Referer
 }
 
-func (o *SaleEventClick) GetRefererURL() string {
-	if o == nil {
+func (s *SaleEventClick) GetRefererURL() string {
+	if s == nil {
 		return ""
 	}
-	return o.RefererURL
+	return s.RefererURL
 }
 
-func (o *SaleEventClick) GetQr() bool {
-	if o == nil {
+func (s *SaleEventClick) GetQr() bool {
+	if s == nil {
 		return false
 	}
-	return o.Qr
+	return s.Qr
 }
 
-func (o *SaleEventClick) GetIP() string {
-	if o == nil {
+func (s *SaleEventClick) GetIP() string {
+	if s == nil {
 		return ""
 	}
-	return o.IP
+	return s.IP
 }
 
 type SaleEventCustomer struct {
@@ -760,67 +760,67 @@ func (s *SaleEventCustomer) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SaleEventCustomer) GetID() string {
-	if o == nil {
+func (s *SaleEventCustomer) GetID() string {
+	if s == nil {
 		return ""
 	}
-	return o.ID
+	return s.ID
 }
 
-func (o *SaleEventCustomer) GetExternalID() string {
-	if o == nil {
+func (s *SaleEventCustomer) GetExternalID() string {
+	if s == nil {
 		return ""
 	}
-	return o.ExternalID
+	return s.ExternalID
 }
 
-func (o *SaleEventCustomer) GetName() string {
-	if o == nil {
+func (s *SaleEventCustomer) GetName() string {
+	if s == nil {
 		return ""
 	}
-	return o.Name
+	return s.Name
 }
 
-func (o *SaleEventCustomer) GetEmail() *string {
-	if o == nil {
+func (s *SaleEventCustomer) GetEmail() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Email
+	return s.Email
 }
 
-func (o *SaleEventCustomer) GetAvatar() *string {
-	if o == nil {
+func (s *SaleEventCustomer) GetAvatar() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Avatar
+	return s.Avatar
 }
 
-func (o *SaleEventCustomer) GetCountry() *string {
-	if o == nil {
+func (s *SaleEventCustomer) GetCountry() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Country
+	return s.Country
 }
 
-func (o *SaleEventCustomer) GetSales() *float64 {
-	if o == nil {
+func (s *SaleEventCustomer) GetSales() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.Sales
+	return s.Sales
 }
 
-func (o *SaleEventCustomer) GetSaleAmount() *float64 {
-	if o == nil {
+func (s *SaleEventCustomer) GetSaleAmount() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return s.SaleAmount
 }
 
-func (o *SaleEventCustomer) GetCreatedAt() string {
-	if o == nil {
+func (s *SaleEventCustomer) GetCreatedAt() string {
+	if s == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return s.CreatedAt
 }
 
 type SaleEvent struct {
@@ -910,177 +910,177 @@ func (s *SaleEvent) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SaleEvent) GetEvent() SaleEventEvent {
-	if o == nil {
+func (s *SaleEvent) GetEvent() SaleEventEvent {
+	if s == nil {
 		return SaleEventEvent("")
 	}
-	return o.Event
+	return s.Event
 }
 
-func (o *SaleEvent) GetTimestamp() string {
-	if o == nil {
+func (s *SaleEvent) GetTimestamp() string {
+	if s == nil {
 		return ""
 	}
-	return o.Timestamp
+	return s.Timestamp
 }
 
-func (o *SaleEvent) GetEventID() string {
-	if o == nil {
+func (s *SaleEvent) GetEventID() string {
+	if s == nil {
 		return ""
 	}
-	return o.EventID
+	return s.EventID
 }
 
-func (o *SaleEvent) GetEventName() string {
-	if o == nil {
+func (s *SaleEvent) GetEventName() string {
+	if s == nil {
 		return ""
 	}
-	return o.EventName
+	return s.EventName
 }
 
-func (o *SaleEvent) GetSale() Sale {
-	if o == nil {
+func (s *SaleEvent) GetSale() Sale {
+	if s == nil {
 		return Sale{}
 	}
-	return o.Sale
+	return s.Sale
 }
 
-func (o *SaleEvent) GetMetadata() any {
-	if o == nil {
+func (s *SaleEvent) GetMetadata() any {
+	if s == nil {
 		return nil
 	}
-	return o.Metadata
+	return s.Metadata
 }
 
-func (o *SaleEvent) GetLink() SaleEventLink {
-	if o == nil {
+func (s *SaleEvent) GetLink() SaleEventLink {
+	if s == nil {
 		return SaleEventLink{}
 	}
-	return o.Link
+	return s.Link
 }
 
-func (o *SaleEvent) GetClick() SaleEventClick {
-	if o == nil {
+func (s *SaleEvent) GetClick() SaleEventClick {
+	if s == nil {
 		return SaleEventClick{}
 	}
-	return o.Click
+	return s.Click
 }
 
-func (o *SaleEvent) GetCustomer() SaleEventCustomer {
-	if o == nil {
+func (s *SaleEvent) GetCustomer() SaleEventCustomer {
+	if s == nil {
 		return SaleEventCustomer{}
 	}
-	return o.Customer
+	return s.Customer
 }
 
-func (o *SaleEvent) GetSaleAmount() float64 {
-	if o == nil {
+func (s *SaleEvent) GetSaleAmount() float64 {
+	if s == nil {
 		return 0.0
 	}
-	return o.SaleAmount
+	return s.SaleAmount
 }
 
-func (o *SaleEvent) GetInvoiceID() string {
-	if o == nil {
+func (s *SaleEvent) GetInvoiceID() string {
+	if s == nil {
 		return ""
 	}
-	return o.InvoiceID
+	return s.InvoiceID
 }
 
-func (o *SaleEvent) GetPaymentProcessor() string {
-	if o == nil {
+func (s *SaleEvent) GetPaymentProcessor() string {
+	if s == nil {
 		return ""
 	}
-	return o.PaymentProcessor
+	return s.PaymentProcessor
 }
 
-func (o *SaleEvent) GetClickID() string {
-	if o == nil {
+func (s *SaleEvent) GetClickID() string {
+	if s == nil {
 		return ""
 	}
-	return o.ClickID
+	return s.ClickID
 }
 
-func (o *SaleEvent) GetLinkID() string {
-	if o == nil {
+func (s *SaleEvent) GetLinkID() string {
+	if s == nil {
 		return ""
 	}
-	return o.LinkID
+	return s.LinkID
 }
 
-func (o *SaleEvent) GetDomain() string {
-	if o == nil {
+func (s *SaleEvent) GetDomain() string {
+	if s == nil {
 		return ""
 	}
-	return o.Domain
+	return s.Domain
 }
 
-func (o *SaleEvent) GetKey() string {
-	if o == nil {
+func (s *SaleEvent) GetKey() string {
+	if s == nil {
 		return ""
 	}
-	return o.Key
+	return s.Key
 }
 
-func (o *SaleEvent) GetURL() string {
-	if o == nil {
+func (s *SaleEvent) GetURL() string {
+	if s == nil {
 		return ""
 	}
-	return o.URL
+	return s.URL
 }
 
-func (o *SaleEvent) GetContinent() string {
-	if o == nil {
+func (s *SaleEvent) GetContinent() string {
+	if s == nil {
 		return ""
 	}
-	return o.Continent
+	return s.Continent
 }
 
-func (o *SaleEvent) GetCountry() string {
-	if o == nil {
+func (s *SaleEvent) GetCountry() string {
+	if s == nil {
 		return ""
 	}
-	return o.Country
+	return s.Country
 }
 
-func (o *SaleEvent) GetCity() string {
-	if o == nil {
+func (s *SaleEvent) GetCity() string {
+	if s == nil {
 		return ""
 	}
-	return o.City
+	return s.City
 }
 
-func (o *SaleEvent) GetDevice() string {
-	if o == nil {
+func (s *SaleEvent) GetDevice() string {
+	if s == nil {
 		return ""
 	}
-	return o.Device
+	return s.Device
 }
 
-func (o *SaleEvent) GetBrowser() string {
-	if o == nil {
+func (s *SaleEvent) GetBrowser() string {
+	if s == nil {
 		return ""
 	}
-	return o.Browser
+	return s.Browser
 }
 
-func (o *SaleEvent) GetOs() string {
-	if o == nil {
+func (s *SaleEvent) GetOs() string {
+	if s == nil {
 		return ""
 	}
-	return o.Os
+	return s.Os
 }
 
-func (o *SaleEvent) GetQr() float64 {
-	if o == nil {
+func (s *SaleEvent) GetQr() float64 {
+	if s == nil {
 		return 0.0
 	}
-	return o.Qr
+	return s.Qr
 }
 
-func (o *SaleEvent) GetIP() string {
-	if o == nil {
+func (s *SaleEvent) GetIP() string {
+	if s == nil {
 		return ""
 	}
-	return o.IP
+	return s.IP
 }

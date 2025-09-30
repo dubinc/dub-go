@@ -9,32 +9,32 @@ type UpdateWorkspaceRequestBody struct {
 	ConversionEnabled *bool   `json:"conversionEnabled,omitempty"`
 }
 
-func (o *UpdateWorkspaceRequestBody) GetName() *string {
-	if o == nil {
+func (u *UpdateWorkspaceRequestBody) GetName() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Name
+	return u.Name
 }
 
-func (o *UpdateWorkspaceRequestBody) GetSlug() *string {
-	if o == nil {
+func (u *UpdateWorkspaceRequestBody) GetSlug() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Slug
+	return u.Slug
 }
 
-func (o *UpdateWorkspaceRequestBody) GetLogo() *string {
-	if o == nil {
+func (u *UpdateWorkspaceRequestBody) GetLogo() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Logo
+	return u.Logo
 }
 
-func (o *UpdateWorkspaceRequestBody) GetConversionEnabled() *bool {
-	if o == nil {
+func (u *UpdateWorkspaceRequestBody) GetConversionEnabled() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.ConversionEnabled
+	return u.ConversionEnabled
 }
 
 type UpdateWorkspaceRequest struct {
@@ -43,16 +43,16 @@ type UpdateWorkspaceRequest struct {
 	RequestBody *UpdateWorkspaceRequestBody `request:"mediaType=application/json"`
 }
 
-func (o *UpdateWorkspaceRequest) GetIDOrSlug() string {
-	if o == nil {
+func (u *UpdateWorkspaceRequest) GetIDOrSlug() string {
+	if u == nil {
 		return ""
 	}
-	return o.IDOrSlug
+	return u.IDOrSlug
 }
 
-func (o *UpdateWorkspaceRequest) GetRequestBody() *UpdateWorkspaceRequestBody {
-	if o == nil {
+func (u *UpdateWorkspaceRequest) GetRequestBody() *UpdateWorkspaceRequestBody {
+	if u == nil {
 		return nil
 	}
-	return o.RequestBody
+	return u.RequestBody
 }

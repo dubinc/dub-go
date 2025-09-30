@@ -118,60 +118,60 @@ func (r *RetrievePartnerAnalyticsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *RetrievePartnerAnalyticsRequest) GetPartnerID() *string {
-	if o == nil {
+func (r *RetrievePartnerAnalyticsRequest) GetPartnerID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.PartnerID
+	return r.PartnerID
 }
 
-func (o *RetrievePartnerAnalyticsRequest) GetTenantID() *string {
-	if o == nil {
+func (r *RetrievePartnerAnalyticsRequest) GetTenantID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.TenantID
+	return r.TenantID
 }
 
-func (o *RetrievePartnerAnalyticsRequest) GetInterval() *RetrievePartnerAnalyticsQueryParamInterval {
-	if o == nil {
+func (r *RetrievePartnerAnalyticsRequest) GetInterval() *RetrievePartnerAnalyticsQueryParamInterval {
+	if r == nil {
 		return nil
 	}
-	return o.Interval
+	return r.Interval
 }
 
-func (o *RetrievePartnerAnalyticsRequest) GetStart() *string {
-	if o == nil {
+func (r *RetrievePartnerAnalyticsRequest) GetStart() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Start
+	return r.Start
 }
 
-func (o *RetrievePartnerAnalyticsRequest) GetEnd() *string {
-	if o == nil {
+func (r *RetrievePartnerAnalyticsRequest) GetEnd() *string {
+	if r == nil {
 		return nil
 	}
-	return o.End
+	return r.End
 }
 
-func (o *RetrievePartnerAnalyticsRequest) GetTimezone() *string {
-	if o == nil {
+func (r *RetrievePartnerAnalyticsRequest) GetTimezone() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Timezone
+	return r.Timezone
 }
 
-func (o *RetrievePartnerAnalyticsRequest) GetQuery() *string {
-	if o == nil {
+func (r *RetrievePartnerAnalyticsRequest) GetQuery() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Query
+	return r.Query
 }
 
-func (o *RetrievePartnerAnalyticsRequest) GetGroupBy() *RetrievePartnerAnalyticsQueryParamGroupBy {
-	if o == nil {
+func (r *RetrievePartnerAnalyticsRequest) GetGroupBy() *RetrievePartnerAnalyticsQueryParamGroupBy {
+	if r == nil {
 		return nil
 	}
-	return o.GroupBy
+	return r.GroupBy
 }
 
 type RetrievePartnerAnalyticsResponseBodyType string
@@ -184,9 +184,9 @@ const (
 
 // RetrievePartnerAnalyticsResponseBody - Partner analytics data
 type RetrievePartnerAnalyticsResponseBody struct {
-	PartnerAnalyticsCount             *components.PartnerAnalyticsCount       `queryParam:"inline" name:"responseBody"`
-	ArrayOfPartnerAnalyticsTimeseries []components.PartnerAnalyticsTimeseries `queryParam:"inline" name:"responseBody"`
-	ArrayOfPartnerAnalyticsTopLinks   []components.PartnerAnalyticsTopLinks   `queryParam:"inline" name:"responseBody"`
+	PartnerAnalyticsCount             *components.PartnerAnalyticsCount       `queryParam:"inline,name=responseBody"`
+	ArrayOfPartnerAnalyticsTimeseries []components.PartnerAnalyticsTimeseries `queryParam:"inline,name=responseBody"`
+	ArrayOfPartnerAnalyticsTopLinks   []components.PartnerAnalyticsTopLinks   `queryParam:"inline,name=responseBody"`
 
 	Type RetrievePartnerAnalyticsResponseBodyType
 }

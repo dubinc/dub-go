@@ -63,67 +63,67 @@ func (l *LeadCreatedEventCustomer) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *LeadCreatedEventCustomer) GetID() string {
-	if o == nil {
+func (l *LeadCreatedEventCustomer) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ID
+	return l.ID
 }
 
-func (o *LeadCreatedEventCustomer) GetExternalID() string {
-	if o == nil {
+func (l *LeadCreatedEventCustomer) GetExternalID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ExternalID
+	return l.ExternalID
 }
 
-func (o *LeadCreatedEventCustomer) GetName() string {
-	if o == nil {
+func (l *LeadCreatedEventCustomer) GetName() string {
+	if l == nil {
 		return ""
 	}
-	return o.Name
+	return l.Name
 }
 
-func (o *LeadCreatedEventCustomer) GetEmail() *string {
-	if o == nil {
+func (l *LeadCreatedEventCustomer) GetEmail() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Email
+	return l.Email
 }
 
-func (o *LeadCreatedEventCustomer) GetAvatar() *string {
-	if o == nil {
+func (l *LeadCreatedEventCustomer) GetAvatar() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Avatar
+	return l.Avatar
 }
 
-func (o *LeadCreatedEventCustomer) GetCountry() *string {
-	if o == nil {
+func (l *LeadCreatedEventCustomer) GetCountry() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Country
+	return l.Country
 }
 
-func (o *LeadCreatedEventCustomer) GetSales() *float64 {
-	if o == nil {
+func (l *LeadCreatedEventCustomer) GetSales() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Sales
+	return l.Sales
 }
 
-func (o *LeadCreatedEventCustomer) GetSaleAmount() *float64 {
-	if o == nil {
+func (l *LeadCreatedEventCustomer) GetSaleAmount() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return l.SaleAmount
 }
 
-func (o *LeadCreatedEventCustomer) GetCreatedAt() string {
-	if o == nil {
+func (l *LeadCreatedEventCustomer) GetCreatedAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return l.CreatedAt
 }
 
 type LeadCreatedEventClick struct {
@@ -155,109 +155,109 @@ func (l *LeadCreatedEventClick) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *LeadCreatedEventClick) GetID() string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ID
+	return l.ID
 }
 
-func (o *LeadCreatedEventClick) GetTimestamp() string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetTimestamp() string {
+	if l == nil {
 		return ""
 	}
-	return o.Timestamp
+	return l.Timestamp
 }
 
-func (o *LeadCreatedEventClick) GetURL() string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetURL() string {
+	if l == nil {
 		return ""
 	}
-	return o.URL
+	return l.URL
 }
 
-func (o *LeadCreatedEventClick) GetCountry() string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetCountry() string {
+	if l == nil {
 		return ""
 	}
-	return o.Country
+	return l.Country
 }
 
-func (o *LeadCreatedEventClick) GetCity() string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetCity() string {
+	if l == nil {
 		return ""
 	}
-	return o.City
+	return l.City
 }
 
-func (o *LeadCreatedEventClick) GetRegion() string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetRegion() string {
+	if l == nil {
 		return ""
 	}
-	return o.Region
+	return l.Region
 }
 
-func (o *LeadCreatedEventClick) GetContinent() string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetContinent() string {
+	if l == nil {
 		return ""
 	}
-	return o.Continent
+	return l.Continent
 }
 
-func (o *LeadCreatedEventClick) GetDevice() string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetDevice() string {
+	if l == nil {
 		return ""
 	}
-	return o.Device
+	return l.Device
 }
 
-func (o *LeadCreatedEventClick) GetBrowser() string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetBrowser() string {
+	if l == nil {
 		return ""
 	}
-	return o.Browser
+	return l.Browser
 }
 
-func (o *LeadCreatedEventClick) GetOs() string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetOs() string {
+	if l == nil {
 		return ""
 	}
-	return o.Os
+	return l.Os
 }
 
-func (o *LeadCreatedEventClick) GetTrigger() *string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetTrigger() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Trigger
+	return l.Trigger
 }
 
-func (o *LeadCreatedEventClick) GetReferer() string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetReferer() string {
+	if l == nil {
 		return ""
 	}
-	return o.Referer
+	return l.Referer
 }
 
-func (o *LeadCreatedEventClick) GetRefererURL() string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetRefererURL() string {
+	if l == nil {
 		return ""
 	}
-	return o.RefererURL
+	return l.RefererURL
 }
 
-func (o *LeadCreatedEventClick) GetQr() bool {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetQr() bool {
+	if l == nil {
 		return false
 	}
-	return o.Qr
+	return l.Qr
 }
 
-func (o *LeadCreatedEventClick) GetIP() string {
-	if o == nil {
+func (l *LeadCreatedEventClick) GetIP() string {
+	if l == nil {
 		return ""
 	}
-	return o.IP
+	return l.IP
 }
 
 type LeadCreatedEventTestVariants struct {
@@ -276,18 +276,18 @@ func (l *LeadCreatedEventTestVariants) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *LeadCreatedEventTestVariants) GetURL() string {
-	if o == nil {
+func (l *LeadCreatedEventTestVariants) GetURL() string {
+	if l == nil {
 		return ""
 	}
-	return o.URL
+	return l.URL
 }
 
-func (o *LeadCreatedEventTestVariants) GetPercentage() float64 {
-	if o == nil {
+func (l *LeadCreatedEventTestVariants) GetPercentage() float64 {
+	if l == nil {
 		return 0.0
 	}
-	return o.Percentage
+	return l.Percentage
 }
 
 type LeadCreatedEventLink struct {
@@ -393,354 +393,470 @@ func (l *LeadCreatedEventLink) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *LeadCreatedEventLink) GetID() string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ID
+	return l.ID
 }
 
-func (o *LeadCreatedEventLink) GetDomain() string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetDomain() string {
+	if l == nil {
 		return ""
 	}
-	return o.Domain
+	return l.Domain
 }
 
-func (o *LeadCreatedEventLink) GetKey() string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetKey() string {
+	if l == nil {
 		return ""
 	}
-	return o.Key
+	return l.Key
 }
 
-func (o *LeadCreatedEventLink) GetURL() string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetURL() string {
+	if l == nil {
 		return ""
 	}
-	return o.URL
+	return l.URL
 }
 
-func (o *LeadCreatedEventLink) GetTrackConversion() bool {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetTrackConversion() bool {
+	if l == nil {
 		return false
 	}
-	return o.TrackConversion
+	return l.TrackConversion
 }
 
-func (o *LeadCreatedEventLink) GetExternalID() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetExternalID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ExternalID
+	return l.ExternalID
 }
 
-func (o *LeadCreatedEventLink) GetTenantID() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetTenantID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TenantID
+	return l.TenantID
 }
 
-func (o *LeadCreatedEventLink) GetProgramID() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetProgramID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ProgramID
+	return l.ProgramID
 }
 
-func (o *LeadCreatedEventLink) GetPartnerID() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetPartnerID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.PartnerID
+	return l.PartnerID
 }
 
-func (o *LeadCreatedEventLink) GetArchived() bool {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetArchived() bool {
+	if l == nil {
 		return false
 	}
-	return o.Archived
+	return l.Archived
 }
 
-func (o *LeadCreatedEventLink) GetExpiresAt() string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetExpiresAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.ExpiresAt
+	return l.ExpiresAt
 }
 
-func (o *LeadCreatedEventLink) GetExpiredURL() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetExpiredURL() *string {
+	if l == nil {
 		return nil
 	}
-	return o.ExpiredURL
+	return l.ExpiredURL
 }
 
-func (o *LeadCreatedEventLink) GetPassword() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetPassword() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Password
+	return l.Password
 }
 
-func (o *LeadCreatedEventLink) GetProxy() bool {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetProxy() bool {
+	if l == nil {
 		return false
 	}
-	return o.Proxy
+	return l.Proxy
 }
 
-func (o *LeadCreatedEventLink) GetTitle() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetTitle() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Title
+	return l.Title
 }
 
-func (o *LeadCreatedEventLink) GetDescription() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetDescription() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Description
+	return l.Description
 }
 
-func (o *LeadCreatedEventLink) GetImage() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetImage() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Image
+	return l.Image
 }
 
-func (o *LeadCreatedEventLink) GetVideo() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetVideo() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Video
+	return l.Video
 }
 
-func (o *LeadCreatedEventLink) GetRewrite() bool {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetRewrite() bool {
+	if l == nil {
 		return false
 	}
-	return o.Rewrite
+	return l.Rewrite
 }
 
-func (o *LeadCreatedEventLink) GetDoIndex() bool {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetDoIndex() bool {
+	if l == nil {
 		return false
 	}
-	return o.DoIndex
+	return l.DoIndex
 }
 
-func (o *LeadCreatedEventLink) GetIos() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetIos() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Ios
+	return l.Ios
 }
 
-func (o *LeadCreatedEventLink) GetAndroid() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetAndroid() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Android
+	return l.Android
 }
 
-func (o *LeadCreatedEventLink) GetGeo() map[string]string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetGeo() map[string]string {
+	if l == nil {
 		return nil
 	}
-	return o.Geo
+	return l.Geo
 }
 
-func (o *LeadCreatedEventLink) GetPublicStats() bool {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetPublicStats() bool {
+	if l == nil {
 		return false
 	}
-	return o.PublicStats
+	return l.PublicStats
 }
 
-func (o *LeadCreatedEventLink) GetTags() []TagSchema {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetTags() []TagSchema {
+	if l == nil {
 		return nil
 	}
-	return o.Tags
+	return l.Tags
 }
 
-func (o *LeadCreatedEventLink) GetFolderID() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetFolderID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.FolderID
+	return l.FolderID
 }
 
-func (o *LeadCreatedEventLink) GetWebhookIds() []string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetWebhookIds() []string {
+	if l == nil {
 		return []string{}
 	}
-	return o.WebhookIds
+	return l.WebhookIds
 }
 
-func (o *LeadCreatedEventLink) GetComments() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetComments() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Comments
+	return l.Comments
 }
 
-func (o *LeadCreatedEventLink) GetShortLink() string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetShortLink() string {
+	if l == nil {
 		return ""
 	}
-	return o.ShortLink
+	return l.ShortLink
 }
 
-func (o *LeadCreatedEventLink) GetQrCode() string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetQrCode() string {
+	if l == nil {
 		return ""
 	}
-	return o.QrCode
+	return l.QrCode
 }
 
-func (o *LeadCreatedEventLink) GetUtmSource() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetUtmSource() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmSource
+	return l.UtmSource
 }
 
-func (o *LeadCreatedEventLink) GetUtmMedium() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetUtmMedium() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmMedium
+	return l.UtmMedium
 }
 
-func (o *LeadCreatedEventLink) GetUtmCampaign() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetUtmCampaign() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmCampaign
+	return l.UtmCampaign
 }
 
-func (o *LeadCreatedEventLink) GetUtmTerm() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetUtmTerm() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmTerm
+	return l.UtmTerm
 }
 
-func (o *LeadCreatedEventLink) GetUtmContent() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetUtmContent() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UtmContent
+	return l.UtmContent
 }
 
-func (o *LeadCreatedEventLink) GetTestVariants() []LeadCreatedEventTestVariants {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetTestVariants() []LeadCreatedEventTestVariants {
+	if l == nil {
 		return nil
 	}
-	return o.TestVariants
+	return l.TestVariants
 }
 
-func (o *LeadCreatedEventLink) GetTestStartedAt() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetTestStartedAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TestStartedAt
+	return l.TestStartedAt
 }
 
-func (o *LeadCreatedEventLink) GetTestCompletedAt() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetTestCompletedAt() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TestCompletedAt
+	return l.TestCompletedAt
 }
 
-func (o *LeadCreatedEventLink) GetUserID() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetUserID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.UserID
+	return l.UserID
 }
 
-func (o *LeadCreatedEventLink) GetWorkspaceID() string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetWorkspaceID() string {
+	if l == nil {
 		return ""
 	}
-	return o.WorkspaceID
+	return l.WorkspaceID
 }
 
-func (o *LeadCreatedEventLink) GetClicks() *float64 {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetClicks() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Clicks
+	return l.Clicks
 }
 
-func (o *LeadCreatedEventLink) GetLeads() *float64 {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetLeads() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Leads
+	return l.Leads
 }
 
-func (o *LeadCreatedEventLink) GetConversions() *float64 {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetConversions() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Conversions
+	return l.Conversions
 }
 
-func (o *LeadCreatedEventLink) GetSales() *float64 {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetSales() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Sales
+	return l.Sales
 }
 
-func (o *LeadCreatedEventLink) GetSaleAmount() *float64 {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetSaleAmount() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.SaleAmount
+	return l.SaleAmount
 }
 
-func (o *LeadCreatedEventLink) GetLastClicked() string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetLastClicked() string {
+	if l == nil {
 		return ""
 	}
-	return o.LastClicked
+	return l.LastClicked
 }
 
-func (o *LeadCreatedEventLink) GetCreatedAt() string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetCreatedAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return l.CreatedAt
 }
 
-func (o *LeadCreatedEventLink) GetUpdatedAt() string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetUpdatedAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.UpdatedAt
+	return l.UpdatedAt
 }
 
-func (o *LeadCreatedEventLink) GetTagID() *string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetTagID() *string {
+	if l == nil {
 		return nil
 	}
-	return o.TagID
+	return l.TagID
 }
 
-func (o *LeadCreatedEventLink) GetProjectID() string {
-	if o == nil {
+func (l *LeadCreatedEventLink) GetProjectID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ProjectID
+	return l.ProjectID
+}
+
+type Partner struct {
+	// The partner's unique ID on Dub.
+	ID string `json:"id"`
+	// The partner's full legal name.
+	Name string `json:"name"`
+	// The partner's email address. Should be a unique value across Dub.
+	Email *string `json:"email"`
+	// The partner's avatar image.
+	Image *string `json:"image"`
+	// The date when the partner enabled payouts.
+	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
+	// The partner's country (required for tax purposes).
+	Country          *string `json:"country"`
+	TotalClicks      float64 `json:"totalClicks"`
+	TotalLeads       float64 `json:"totalLeads"`
+	TotalConversions float64 `json:"totalConversions"`
+	TotalSales       float64 `json:"totalSales"`
+	TotalSaleAmount  float64 `json:"totalSaleAmount"`
+	TotalCommissions float64 `json:"totalCommissions"`
+}
+
+func (p Partner) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *Partner) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "name", "email", "image", "payoutsEnabledAt", "country", "totalClicks", "totalLeads", "totalConversions", "totalSales", "totalSaleAmount", "totalCommissions"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *Partner) GetID() string {
+	if p == nil {
+		return ""
+	}
+	return p.ID
+}
+
+func (p *Partner) GetName() string {
+	if p == nil {
+		return ""
+	}
+	return p.Name
+}
+
+func (p *Partner) GetEmail() *string {
+	if p == nil {
+		return nil
+	}
+	return p.Email
+}
+
+func (p *Partner) GetImage() *string {
+	if p == nil {
+		return nil
+	}
+	return p.Image
+}
+
+func (p *Partner) GetPayoutsEnabledAt() *string {
+	if p == nil {
+		return nil
+	}
+	return p.PayoutsEnabledAt
+}
+
+func (p *Partner) GetCountry() *string {
+	if p == nil {
+		return nil
+	}
+	return p.Country
+}
+
+func (p *Partner) GetTotalClicks() float64 {
+	if p == nil {
+		return 0.0
+	}
+	return p.TotalClicks
+}
+
+func (p *Partner) GetTotalLeads() float64 {
+	if p == nil {
+		return 0.0
+	}
+	return p.TotalLeads
+}
+
+func (p *Partner) GetTotalConversions() float64 {
+	if p == nil {
+		return 0.0
+	}
+	return p.TotalConversions
+}
+
+func (p *Partner) GetTotalSales() float64 {
+	if p == nil {
+		return 0.0
+	}
+	return p.TotalSales
+}
+
+func (p *Partner) GetTotalSaleAmount() float64 {
+	if p == nil {
+		return 0.0
+	}
+	return p.TotalSaleAmount
+}
+
+func (p *Partner) GetTotalCommissions() float64 {
+	if p == nil {
+		return 0.0
+	}
+	return p.TotalCommissions
 }
 
 type LeadCreatedEventData struct {
@@ -748,6 +864,8 @@ type LeadCreatedEventData struct {
 	Customer  LeadCreatedEventCustomer `json:"customer"`
 	Click     LeadCreatedEventClick    `json:"click"`
 	Link      LeadCreatedEventLink     `json:"link"`
+	Partner   *Partner                 `json:"partner,omitempty"`
+	Metadata  map[string]any           `json:"metadata"`
 }
 
 func (l LeadCreatedEventData) MarshalJSON() ([]byte, error) {
@@ -755,38 +873,52 @@ func (l LeadCreatedEventData) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LeadCreatedEventData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"eventName", "customer", "click", "link"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"eventName", "customer", "click", "link", "metadata"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *LeadCreatedEventData) GetEventName() string {
-	if o == nil {
+func (l *LeadCreatedEventData) GetEventName() string {
+	if l == nil {
 		return ""
 	}
-	return o.EventName
+	return l.EventName
 }
 
-func (o *LeadCreatedEventData) GetCustomer() LeadCreatedEventCustomer {
-	if o == nil {
+func (l *LeadCreatedEventData) GetCustomer() LeadCreatedEventCustomer {
+	if l == nil {
 		return LeadCreatedEventCustomer{}
 	}
-	return o.Customer
+	return l.Customer
 }
 
-func (o *LeadCreatedEventData) GetClick() LeadCreatedEventClick {
-	if o == nil {
+func (l *LeadCreatedEventData) GetClick() LeadCreatedEventClick {
+	if l == nil {
 		return LeadCreatedEventClick{}
 	}
-	return o.Click
+	return l.Click
 }
 
-func (o *LeadCreatedEventData) GetLink() LeadCreatedEventLink {
-	if o == nil {
+func (l *LeadCreatedEventData) GetLink() LeadCreatedEventLink {
+	if l == nil {
 		return LeadCreatedEventLink{}
 	}
-	return o.Link
+	return l.Link
+}
+
+func (l *LeadCreatedEventData) GetPartner() *Partner {
+	if l == nil {
+		return nil
+	}
+	return l.Partner
+}
+
+func (l *LeadCreatedEventData) GetMetadata() map[string]any {
+	if l == nil {
+		return nil
+	}
+	return l.Metadata
 }
 
 // LeadCreatedEvent - Triggered when a lead is created.
@@ -808,30 +940,30 @@ func (l *LeadCreatedEvent) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *LeadCreatedEvent) GetID() string {
-	if o == nil {
+func (l *LeadCreatedEvent) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return o.ID
+	return l.ID
 }
 
-func (o *LeadCreatedEvent) GetEvent() LeadCreatedEventEvent {
-	if o == nil {
+func (l *LeadCreatedEvent) GetEvent() LeadCreatedEventEvent {
+	if l == nil {
 		return LeadCreatedEventEvent("")
 	}
-	return o.Event
+	return l.Event
 }
 
-func (o *LeadCreatedEvent) GetCreatedAt() string {
-	if o == nil {
+func (l *LeadCreatedEvent) GetCreatedAt() string {
+	if l == nil {
 		return ""
 	}
-	return o.CreatedAt
+	return l.CreatedAt
 }
 
-func (o *LeadCreatedEvent) GetData() LeadCreatedEventData {
-	if o == nil {
+func (l *LeadCreatedEvent) GetData() LeadCreatedEventData {
+	if l == nil {
 		return LeadCreatedEventData{}
 	}
-	return o.Data
+	return l.Data
 }

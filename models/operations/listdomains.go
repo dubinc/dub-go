@@ -29,32 +29,32 @@ func (l *ListDomainsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ListDomainsRequest) GetArchived() *bool {
-	if o == nil {
+func (l *ListDomainsRequest) GetArchived() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Archived
+	return l.Archived
 }
 
-func (o *ListDomainsRequest) GetSearch() *string {
-	if o == nil {
+func (l *ListDomainsRequest) GetSearch() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Search
+	return l.Search
 }
 
-func (o *ListDomainsRequest) GetPage() *float64 {
-	if o == nil {
+func (l *ListDomainsRequest) GetPage() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Page
+	return l.Page
 }
 
-func (o *ListDomainsRequest) GetPageSize() *float64 {
-	if o == nil {
+func (l *ListDomainsRequest) GetPageSize() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.PageSize
+	return l.PageSize
 }
 
 type ListDomainsResponse struct {
@@ -63,9 +63,9 @@ type ListDomainsResponse struct {
 	Next func() (*ListDomainsResponse, error)
 }
 
-func (o *ListDomainsResponse) GetResult() []components.DomainSchema {
-	if o == nil {
+func (l *ListDomainsResponse) GetResult() []components.DomainSchema {
+	if l == nil {
 		return []components.DomainSchema{}
 	}
-	return o.Result
+	return l.Result
 }

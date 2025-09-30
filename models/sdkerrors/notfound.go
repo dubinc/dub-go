@@ -40,25 +40,25 @@ type NotFoundError struct {
 	DocURL *string `json:"doc_url,omitempty"`
 }
 
-func (o *NotFoundError) GetCode() NotFoundCode {
-	if o == nil {
+func (n *NotFoundError) GetCode() NotFoundCode {
+	if n == nil {
 		return NotFoundCode("")
 	}
-	return o.Code
+	return n.Code
 }
 
-func (o *NotFoundError) GetMessage() string {
-	if o == nil {
+func (n *NotFoundError) GetMessage() string {
+	if n == nil {
 		return ""
 	}
-	return o.Message
+	return n.Message
 }
 
-func (o *NotFoundError) GetDocURL() *string {
-	if o == nil {
+func (n *NotFoundError) GetDocURL() *string {
+	if n == nil {
 		return nil
 	}
-	return o.DocURL
+	return n.DocURL
 }
 
 // NotFound - The server cannot find the requested resource.

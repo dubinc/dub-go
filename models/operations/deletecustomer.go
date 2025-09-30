@@ -7,11 +7,11 @@ type DeleteCustomerRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *DeleteCustomerRequest) GetID() string {
-	if o == nil {
+func (d *DeleteCustomerRequest) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
 // DeleteCustomerResponseBody - The customer was deleted.
@@ -20,9 +20,9 @@ type DeleteCustomerResponseBody struct {
 	ID string `json:"id"`
 }
 
-func (o *DeleteCustomerResponseBody) GetID() string {
-	if o == nil {
+func (d *DeleteCustomerResponseBody) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }

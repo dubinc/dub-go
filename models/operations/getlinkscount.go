@@ -18,8 +18,8 @@ const (
 
 // GetLinksCountQueryParamTagIds - The tag IDs to filter the links by.
 type GetLinksCountQueryParamTagIds struct {
-	Str        *string  `queryParam:"inline" name:"tagIds"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagIds"`
+	Str        *string  `queryParam:"inline,name=tagIds"`
+	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
 
 	Type GetLinksCountQueryParamTagIdsType
 }
@@ -82,8 +82,8 @@ const (
 
 // GetLinksCountQueryParamTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type GetLinksCountQueryParamTagNames struct {
-	Str        *string  `queryParam:"inline" name:"tagNames"`
-	ArrayOfStr []string `queryParam:"inline" name:"tagNames"`
+	Str        *string  `queryParam:"inline,name=tagNames"`
+	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
 
 	Type GetLinksCountQueryParamTagNamesType
 }
@@ -240,10 +240,10 @@ const (
 
 // GroupBy - The field to group the links by.
 type GroupBy struct {
-	One   *One   `queryParam:"inline" name:"groupBy"`
-	Two   *Two   `queryParam:"inline" name:"groupBy"`
-	Three *Three `queryParam:"inline" name:"groupBy"`
-	Four  *Four  `queryParam:"inline" name:"groupBy"`
+	One   *One   `queryParam:"inline,name=groupBy"`
+	Two   *Two   `queryParam:"inline,name=groupBy"`
+	Three *Three `queryParam:"inline,name=groupBy"`
+	Four  *Four  `queryParam:"inline,name=groupBy"`
 
 	Type GroupByType
 }
@@ -373,79 +373,79 @@ func (g *GetLinksCountRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetLinksCountRequest) GetDomain() *string {
-	if o == nil {
+func (g *GetLinksCountRequest) GetDomain() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Domain
+	return g.Domain
 }
 
-func (o *GetLinksCountRequest) GetTagID() *string {
-	if o == nil {
+func (g *GetLinksCountRequest) GetTagID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TagID
+	return g.TagID
 }
 
-func (o *GetLinksCountRequest) GetTagIds() *GetLinksCountQueryParamTagIds {
-	if o == nil {
+func (g *GetLinksCountRequest) GetTagIds() *GetLinksCountQueryParamTagIds {
+	if g == nil {
 		return nil
 	}
-	return o.TagIds
+	return g.TagIds
 }
 
-func (o *GetLinksCountRequest) GetTagNames() *GetLinksCountQueryParamTagNames {
-	if o == nil {
+func (g *GetLinksCountRequest) GetTagNames() *GetLinksCountQueryParamTagNames {
+	if g == nil {
 		return nil
 	}
-	return o.TagNames
+	return g.TagNames
 }
 
-func (o *GetLinksCountRequest) GetFolderID() *string {
-	if o == nil {
+func (g *GetLinksCountRequest) GetFolderID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.FolderID
+	return g.FolderID
 }
 
-func (o *GetLinksCountRequest) GetSearch() *string {
-	if o == nil {
+func (g *GetLinksCountRequest) GetSearch() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Search
+	return g.Search
 }
 
-func (o *GetLinksCountRequest) GetUserID() *string {
-	if o == nil {
+func (g *GetLinksCountRequest) GetUserID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.UserID
+	return g.UserID
 }
 
-func (o *GetLinksCountRequest) GetTenantID() *string {
-	if o == nil {
+func (g *GetLinksCountRequest) GetTenantID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TenantID
+	return g.TenantID
 }
 
-func (o *GetLinksCountRequest) GetShowArchived() *bool {
-	if o == nil {
+func (g *GetLinksCountRequest) GetShowArchived() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.ShowArchived
+	return g.ShowArchived
 }
 
-func (o *GetLinksCountRequest) GetWithTags() *bool {
-	if o == nil {
+func (g *GetLinksCountRequest) GetWithTags() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.WithTags
+	return g.WithTags
 }
 
-func (o *GetLinksCountRequest) GetGroupBy() *GroupBy {
-	if o == nil {
+func (g *GetLinksCountRequest) GetGroupBy() *GroupBy {
+	if g == nil {
 		return nil
 	}
-	return o.GroupBy
+	return g.GroupBy
 }
