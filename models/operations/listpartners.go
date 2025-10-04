@@ -12,13 +12,14 @@ import (
 type ListPartnersQueryParamStatus string
 
 const (
-	ListPartnersQueryParamStatusPending  ListPartnersQueryParamStatus = "pending"
-	ListPartnersQueryParamStatusApproved ListPartnersQueryParamStatus = "approved"
-	ListPartnersQueryParamStatusRejected ListPartnersQueryParamStatus = "rejected"
-	ListPartnersQueryParamStatusInvited  ListPartnersQueryParamStatus = "invited"
-	ListPartnersQueryParamStatusDeclined ListPartnersQueryParamStatus = "declined"
-	ListPartnersQueryParamStatusBanned   ListPartnersQueryParamStatus = "banned"
-	ListPartnersQueryParamStatusArchived ListPartnersQueryParamStatus = "archived"
+	ListPartnersQueryParamStatusPending     ListPartnersQueryParamStatus = "pending"
+	ListPartnersQueryParamStatusApproved    ListPartnersQueryParamStatus = "approved"
+	ListPartnersQueryParamStatusRejected    ListPartnersQueryParamStatus = "rejected"
+	ListPartnersQueryParamStatusInvited     ListPartnersQueryParamStatus = "invited"
+	ListPartnersQueryParamStatusDeclined    ListPartnersQueryParamStatus = "declined"
+	ListPartnersQueryParamStatusDeactivated ListPartnersQueryParamStatus = "deactivated"
+	ListPartnersQueryParamStatusBanned      ListPartnersQueryParamStatus = "banned"
+	ListPartnersQueryParamStatusArchived    ListPartnersQueryParamStatus = "archived"
 )
 
 func (e ListPartnersQueryParamStatus) ToPointer() *ListPartnersQueryParamStatus {
@@ -39,6 +40,8 @@ func (e *ListPartnersQueryParamStatus) UnmarshalJSON(data []byte) error {
 	case "invited":
 		fallthrough
 	case "declined":
+		fallthrough
+	case "deactivated":
 		fallthrough
 	case "banned":
 		fallthrough
@@ -230,13 +233,14 @@ func (l *ListPartnersRequest) GetPageSize() *float64 {
 type ListPartnersStatus string
 
 const (
-	ListPartnersStatusPending  ListPartnersStatus = "pending"
-	ListPartnersStatusApproved ListPartnersStatus = "approved"
-	ListPartnersStatusRejected ListPartnersStatus = "rejected"
-	ListPartnersStatusInvited  ListPartnersStatus = "invited"
-	ListPartnersStatusDeclined ListPartnersStatus = "declined"
-	ListPartnersStatusBanned   ListPartnersStatus = "banned"
-	ListPartnersStatusArchived ListPartnersStatus = "archived"
+	ListPartnersStatusPending     ListPartnersStatus = "pending"
+	ListPartnersStatusApproved    ListPartnersStatus = "approved"
+	ListPartnersStatusRejected    ListPartnersStatus = "rejected"
+	ListPartnersStatusInvited     ListPartnersStatus = "invited"
+	ListPartnersStatusDeclined    ListPartnersStatus = "declined"
+	ListPartnersStatusDeactivated ListPartnersStatus = "deactivated"
+	ListPartnersStatusBanned      ListPartnersStatus = "banned"
+	ListPartnersStatusArchived    ListPartnersStatus = "archived"
 )
 
 func (e ListPartnersStatus) ToPointer() *ListPartnersStatus {
@@ -257,6 +261,8 @@ func (e *ListPartnersStatus) UnmarshalJSON(data []byte) error {
 	case "invited":
 		fallthrough
 	case "declined":
+		fallthrough
+	case "deactivated":
 		fallthrough
 	case "banned":
 		fallthrough
