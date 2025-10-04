@@ -518,13 +518,14 @@ func (c *CreatePartnerRequestBody) GetLinkProps() *LinkProps {
 type CreatePartnerStatus string
 
 const (
-	CreatePartnerStatusPending  CreatePartnerStatus = "pending"
-	CreatePartnerStatusApproved CreatePartnerStatus = "approved"
-	CreatePartnerStatusRejected CreatePartnerStatus = "rejected"
-	CreatePartnerStatusInvited  CreatePartnerStatus = "invited"
-	CreatePartnerStatusDeclined CreatePartnerStatus = "declined"
-	CreatePartnerStatusBanned   CreatePartnerStatus = "banned"
-	CreatePartnerStatusArchived CreatePartnerStatus = "archived"
+	CreatePartnerStatusPending     CreatePartnerStatus = "pending"
+	CreatePartnerStatusApproved    CreatePartnerStatus = "approved"
+	CreatePartnerStatusRejected    CreatePartnerStatus = "rejected"
+	CreatePartnerStatusInvited     CreatePartnerStatus = "invited"
+	CreatePartnerStatusDeclined    CreatePartnerStatus = "declined"
+	CreatePartnerStatusDeactivated CreatePartnerStatus = "deactivated"
+	CreatePartnerStatusBanned      CreatePartnerStatus = "banned"
+	CreatePartnerStatusArchived    CreatePartnerStatus = "archived"
 )
 
 func (e CreatePartnerStatus) ToPointer() *CreatePartnerStatus {
@@ -545,6 +546,8 @@ func (e *CreatePartnerStatus) UnmarshalJSON(data []byte) error {
 	case "invited":
 		fallthrough
 	case "declined":
+		fallthrough
+	case "deactivated":
 		fallthrough
 	case "banned":
 		fallthrough
