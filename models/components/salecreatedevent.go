@@ -387,7 +387,7 @@ func (s SaleCreatedEventLink) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SaleCreatedEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "domain", "key", "url", "trackConversion", "externalId", "tenantId", "programId", "partnerId", "archived", "expiresAt", "expiredUrl", "password", "proxy", "title", "description", "image", "video", "rewrite", "doIndex", "ios", "android", "geo", "publicStats", "tags", "folderId", "webhookIds", "comments", "shortLink", "qrCode", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "testStartedAt", "testCompletedAt", "userId", "workspaceId", "lastClicked", "createdAt", "updatedAt", "tagId", "projectId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
 		return err
 	}
 	return nil
@@ -755,7 +755,7 @@ func (s SaleCreatedEventSale) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SaleCreatedEventSale) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"amount", "currency", "paymentProcessor", "invoiceId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"amount", "currency", "paymentProcessor"}); err != nil {
 		return err
 	}
 	return nil
@@ -815,7 +815,7 @@ func (s SaleCreatedEventPartner) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SaleCreatedEventPartner) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "name", "email", "image", "payoutsEnabledAt", "country", "totalClicks", "totalLeads", "totalConversions", "totalSales", "totalSaleAmount", "totalCommissions"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "name", "totalClicks", "totalLeads", "totalConversions", "totalSales", "totalSaleAmount", "totalCommissions"}); err != nil {
 		return err
 	}
 	return nil
@@ -920,7 +920,7 @@ func (s SaleCreatedEventData) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SaleCreatedEventData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"eventName", "customer", "click", "link", "sale", "metadata"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"eventName", "customer", "click", "link", "sale"}); err != nil {
 		return err
 	}
 	return nil

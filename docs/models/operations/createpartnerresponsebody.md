@@ -1,6 +1,6 @@
 # CreatePartnerResponseBody
 
-The created partner
+The created or updated partner
 
 
 ## Fields

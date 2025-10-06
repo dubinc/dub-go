@@ -148,7 +148,7 @@ func (l LinkSchema) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LinkSchema) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "externalId", "tenantId", "programId", "partnerId", "expiresAt", "expiredUrl", "password", "title", "description", "image", "video", "ios", "android", "geo", "tags", "folderId", "webhookIds", "comments", "shortLink", "qrCode", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "userId", "workspaceId", "lastClicked", "createdAt", "updatedAt", "tagId", "projectId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "webhookIds", "shortLink", "qrCode", "workspaceId", "createdAt", "updatedAt", "projectId"}); err != nil {
 		return err
 	}
 	return nil

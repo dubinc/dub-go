@@ -387,7 +387,7 @@ func (l LeadCreatedEventLink) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LeadCreatedEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "externalId", "tenantId", "programId", "partnerId", "archived", "expiresAt", "expiredUrl", "password", "proxy", "title", "description", "image", "video", "rewrite", "doIndex", "ios", "android", "geo", "publicStats", "tags", "folderId", "webhookIds", "comments", "shortLink", "qrCode", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "testStartedAt", "testCompletedAt", "userId", "workspaceId", "lastClicked", "createdAt", "updatedAt", "tagId", "projectId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
 		return err
 	}
 	return nil
@@ -769,7 +769,7 @@ func (p Partner) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Partner) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "name", "email", "image", "payoutsEnabledAt", "country", "totalClicks", "totalLeads", "totalConversions", "totalSales", "totalSaleAmount", "totalCommissions"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "name", "totalClicks", "totalLeads", "totalConversions", "totalSales", "totalSaleAmount", "totalCommissions"}); err != nil {
 		return err
 	}
 	return nil
@@ -873,7 +873,7 @@ func (l LeadCreatedEventData) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LeadCreatedEventData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"eventName", "customer", "click", "link", "metadata"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"eventName", "customer", "click", "link"}); err != nil {
 		return err
 	}
 	return nil
