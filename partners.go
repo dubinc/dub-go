@@ -31,8 +31,8 @@ func newPartners(rootSDK *Dub, sdkConfig config.SDKConfiguration, hooks *hooks.H
 	}
 }
 
-// Create a partner
-// Create a partner for a program. If partner exists, automatically enrolls them.
+// Create or update a partner
+// Creates or updates a partner record (upsert behavior). If a partner with the same email already exists, their program enrollment will be updated with the provided tenantId. If no existing partner is found, a new partner will be created using the supplied information.
 func (s *Partners) Create(ctx context.Context, request *operations.CreatePartnerRequestBody, opts ...operations.Option) (*operations.CreatePartnerResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

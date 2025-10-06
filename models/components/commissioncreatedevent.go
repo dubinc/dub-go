@@ -130,7 +130,7 @@ func (c CommissionCreatedEventPartner) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CommissionCreatedEventPartner) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "name", "email", "image", "payoutsEnabledAt", "country", "totalClicks", "totalLeads", "totalConversions", "totalSales", "totalSaleAmount", "totalCommissions"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "name", "totalClicks", "totalLeads", "totalConversions", "totalSales", "totalSaleAmount", "totalCommissions"}); err != nil {
 		return err
 	}
 	return nil
@@ -339,7 +339,7 @@ func (c CommissionCreatedEventData) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CommissionCreatedEventData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "amount", "earnings", "currency", "status", "invoiceId", "description", "quantity", "createdAt", "updatedAt", "partner"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "amount", "earnings", "currency", "status", "quantity", "createdAt", "updatedAt", "partner"}); err != nil {
 		return err
 	}
 	return nil

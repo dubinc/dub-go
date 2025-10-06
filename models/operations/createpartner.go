@@ -518,13 +518,14 @@ func (c *CreatePartnerRequestBody) GetLinkProps() *LinkProps {
 type CreatePartnerStatus string
 
 const (
-	CreatePartnerStatusPending  CreatePartnerStatus = "pending"
-	CreatePartnerStatusApproved CreatePartnerStatus = "approved"
-	CreatePartnerStatusRejected CreatePartnerStatus = "rejected"
-	CreatePartnerStatusInvited  CreatePartnerStatus = "invited"
-	CreatePartnerStatusDeclined CreatePartnerStatus = "declined"
-	CreatePartnerStatusBanned   CreatePartnerStatus = "banned"
-	CreatePartnerStatusArchived CreatePartnerStatus = "archived"
+	CreatePartnerStatusPending     CreatePartnerStatus = "pending"
+	CreatePartnerStatusApproved    CreatePartnerStatus = "approved"
+	CreatePartnerStatusRejected    CreatePartnerStatus = "rejected"
+	CreatePartnerStatusInvited     CreatePartnerStatus = "invited"
+	CreatePartnerStatusDeclined    CreatePartnerStatus = "declined"
+	CreatePartnerStatusDeactivated CreatePartnerStatus = "deactivated"
+	CreatePartnerStatusBanned      CreatePartnerStatus = "banned"
+	CreatePartnerStatusArchived    CreatePartnerStatus = "archived"
 )
 
 func (e CreatePartnerStatus) ToPointer() *CreatePartnerStatus {
@@ -545,6 +546,8 @@ func (e *CreatePartnerStatus) UnmarshalJSON(data []byte) error {
 	case "invited":
 		fallthrough
 	case "declined":
+		fallthrough
+	case "deactivated":
 		fallthrough
 	case "banned":
 		fallthrough
@@ -699,7 +702,7 @@ func (e *BannedReason) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// CreatePartnerResponseBody - The created partner
+// CreatePartnerResponseBody - The created or updated partner
 type CreatePartnerResponseBody struct {
 	// The partner's unique ID on Dub.
 	ID string `json:"id"`
@@ -777,7 +780,7 @@ func (c CreatePartnerResponseBody) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreatePartnerResponseBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "name", "companyName", "email", "image", "country", "paypalEmail", "stripeConnectId", "payoutsEnabledAt", "programId", "partnerId", "tenantId", "createdAt", "status", "links"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "name", "programId", "partnerId", "createdAt", "status"}); err != nil {
 		return err
 	}
 	return nil

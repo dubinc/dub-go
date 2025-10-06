@@ -292,7 +292,7 @@ func (l LinkClickedEventLink) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LinkClickedEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "externalId", "tenantId", "programId", "partnerId", "archived", "expiresAt", "expiredUrl", "password", "proxy", "title", "description", "image", "video", "rewrite", "doIndex", "ios", "android", "geo", "publicStats", "tags", "folderId", "webhookIds", "comments", "shortLink", "qrCode", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "testStartedAt", "testCompletedAt", "userId", "workspaceId", "lastClicked", "createdAt", "updatedAt", "tagId", "projectId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
 		return err
 	}
 	return nil

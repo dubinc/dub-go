@@ -211,6 +211,8 @@ type WorkspaceSchema struct {
 	Store map[string]any `json:"store"`
 	// Specifies hostnames permitted for client-side click tracking.
 	AllowedHostnames []string `json:"allowedHostnames"`
+	SsoEmailDomain   *string  `json:"ssoEmailDomain"`
+	SsoEnforcedAt    *string  `json:"ssoEnforcedAt"`
 }
 
 func (w WorkspaceSchema) MarshalJSON() ([]byte, error) {
@@ -218,7 +220,7 @@ func (w WorkspaceSchema) MarshalJSON() ([]byte, error) {
 }
 
 func (w *WorkspaceSchema) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &w, "", false, []string{"id", "name", "slug", "inviteCode", "plan", "stripeId", "billingCycleStart", "paymentFailedAt", "stripeConnectId", "totalLinks", "usage", "usageLimit", "linksUsage", "linksLimit", "payoutsUsage", "payoutsLimit", "payoutFee", "domainsLimit", "tagsLimit", "foldersUsage", "foldersLimit", "groupsLimit", "usersLimit", "aiUsage", "aiLimit", "conversionEnabled", "dotLinkClaimed", "createdAt", "users", "domains", "store", "allowedHostnames"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &w, "", false, []string{"id", "name", "slug", "plan", "billingCycleStart", "totalLinks", "usage", "usageLimit", "linksUsage", "linksLimit", "payoutsUsage", "payoutsLimit", "payoutFee", "domainsLimit", "tagsLimit", "foldersUsage", "foldersLimit", "groupsLimit", "usersLimit", "aiUsage", "aiLimit", "conversionEnabled", "dotLinkClaimed", "createdAt", "users", "domains"}); err != nil {
 		return err
 	}
 	return nil
@@ -460,4 +462,18 @@ func (w *WorkspaceSchema) GetAllowedHostnames() []string {
 		return nil
 	}
 	return w.AllowedHostnames
+}
+
+func (w *WorkspaceSchema) GetSsoEmailDomain() *string {
+	if w == nil {
+		return nil
+	}
+	return w.SsoEmailDomain
+}
+
+func (w *WorkspaceSchema) GetSsoEnforcedAt() *string {
+	if w == nil {
+		return nil
+	}
+	return w.SsoEnforcedAt
 }

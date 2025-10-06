@@ -35,13 +35,14 @@ func (e *PartnerEnrolledEventEvent) UnmarshalJSON(data []byte) error {
 type Status string
 
 const (
-	StatusPending  Status = "pending"
-	StatusApproved Status = "approved"
-	StatusRejected Status = "rejected"
-	StatusInvited  Status = "invited"
-	StatusDeclined Status = "declined"
-	StatusBanned   Status = "banned"
-	StatusArchived Status = "archived"
+	StatusPending     Status = "pending"
+	StatusApproved    Status = "approved"
+	StatusRejected    Status = "rejected"
+	StatusInvited     Status = "invited"
+	StatusDeclined    Status = "declined"
+	StatusDeactivated Status = "deactivated"
+	StatusBanned      Status = "banned"
+	StatusArchived    Status = "archived"
 )
 
 func (e Status) ToPointer() *Status {
@@ -62,6 +63,8 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 	case "invited":
 		fallthrough
 	case "declined":
+		fallthrough
+	case "deactivated":
 		fallthrough
 	case "banned":
 		fallthrough
@@ -293,7 +296,7 @@ func (p PartnerEnrolledEventData) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PartnerEnrolledEventData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "name", "companyName", "email", "image", "country", "paypalEmail", "stripeConnectId", "payoutsEnabledAt", "programId", "partnerId", "tenantId", "createdAt", "status", "links"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "name", "programId", "partnerId", "createdAt", "status"}); err != nil {
 		return err
 	}
 	return nil
