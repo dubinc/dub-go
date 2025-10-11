@@ -756,6 +756,7 @@ type Partner struct {
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
 	// The partner's country (required for tax purposes).
 	Country          *string `json:"country"`
+	GroupID          *string `json:"groupId,omitempty"`
 	TotalClicks      float64 `json:"totalClicks"`
 	TotalLeads       float64 `json:"totalLeads"`
 	TotalConversions float64 `json:"totalConversions"`
@@ -815,6 +816,13 @@ func (p *Partner) GetCountry() *string {
 		return nil
 	}
 	return p.Country
+}
+
+func (p *Partner) GetGroupID() *string {
+	if p == nil {
+		return nil
+	}
+	return p.GroupID
 }
 
 func (p *Partner) GetTotalClicks() float64 {

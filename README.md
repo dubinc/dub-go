@@ -172,7 +172,6 @@ func main() {
 * [Register](docs/sdks/domains/README.md#register) - Register a domain
 * [CheckStatus](docs/sdks/domains/README.md#checkstatus) - Check the availability of one or more domains
 
-
 ### [EmbedTokens](docs/sdks/embedtokens/README.md)
 
 * [Referrals](docs/sdks/embedtokens/README.md#referrals) - Create a referrals embed token
