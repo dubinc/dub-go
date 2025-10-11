@@ -189,6 +189,8 @@ type WorkspaceSchema struct {
 	FoldersLimit float64 `json:"foldersLimit"`
 	// The groups limit of the workspace.
 	GroupsLimit float64 `json:"groupsLimit"`
+	// The weekly network invites limit of the workspace.
+	NetworkInvitesLimit float64 `json:"networkInvitesLimit"`
 	// The users limit of the workspace.
 	UsersLimit float64 `json:"usersLimit"`
 	// The AI usage of the workspace.
@@ -220,7 +222,7 @@ func (w WorkspaceSchema) MarshalJSON() ([]byte, error) {
 }
 
 func (w *WorkspaceSchema) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &w, "", false, []string{"id", "name", "slug", "plan", "billingCycleStart", "totalLinks", "usage", "usageLimit", "linksUsage", "linksLimit", "payoutsUsage", "payoutsLimit", "payoutFee", "domainsLimit", "tagsLimit", "foldersUsage", "foldersLimit", "groupsLimit", "usersLimit", "aiUsage", "aiLimit", "conversionEnabled", "dotLinkClaimed", "createdAt", "users", "domains"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &w, "", false, []string{"id", "name", "slug", "plan", "billingCycleStart", "totalLinks", "usage", "usageLimit", "linksUsage", "linksLimit", "payoutsUsage", "payoutsLimit", "payoutFee", "domainsLimit", "tagsLimit", "foldersUsage", "foldersLimit", "groupsLimit", "networkInvitesLimit", "usersLimit", "aiUsage", "aiLimit", "conversionEnabled", "dotLinkClaimed", "createdAt", "users", "domains"}); err != nil {
 		return err
 	}
 	return nil
@@ -385,6 +387,13 @@ func (w *WorkspaceSchema) GetGroupsLimit() float64 {
 		return 0.0
 	}
 	return w.GroupsLimit
+}
+
+func (w *WorkspaceSchema) GetNetworkInvitesLimit() float64 {
+	if w == nil {
+		return 0.0
+	}
+	return w.NetworkInvitesLimit
 }
 
 func (w *WorkspaceSchema) GetUsersLimit() float64 {
