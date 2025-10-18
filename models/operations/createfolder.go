@@ -38,6 +38,8 @@ func (e *AccessLevel) UnmarshalJSON(data []byte) error {
 type CreateFolderRequestBody struct {
 	// The name of the folder.
 	Name string `json:"name"`
+	// The description of the folder.
+	Description *string `json:"description,omitempty"`
 	// The access level of the folder within the workspace.
 	AccessLevel *AccessLevel `default:"null" json:"accessLevel"`
 }
@@ -58,6 +60,13 @@ func (c *CreateFolderRequestBody) GetName() string {
 		return ""
 	}
 	return c.Name
+}
+
+func (c *CreateFolderRequestBody) GetDescription() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Description
 }
 
 func (c *CreateFolderRequestBody) GetAccessLevel() *AccessLevel {

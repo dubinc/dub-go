@@ -62,7 +62,7 @@ func (s *Analytics) Retrieve(ctx context.Context, request operations.RetrieveAna
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "retrieveAnalytics",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
