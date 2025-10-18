@@ -123,7 +123,6 @@ func main() {
         Email: dubgo.Pointer("panic@thedis.co"),
         TenantID: dubgo.Pointer("1K0NM7HCN944PEMZ3CQPH43H8"),
         Search: dubgo.Pointer("john"),
-        IncludeExpandedFields: dubgo.Pointer(false),
         PageSize: dubgo.Pointer[float64](50),
     })
     if err != nil {

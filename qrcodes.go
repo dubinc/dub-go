@@ -62,7 +62,7 @@ func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest, 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getQRCode",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

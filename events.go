@@ -62,7 +62,7 @@ func (s *Events) List(ctx context.Context, request operations.ListEventsRequest,
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listEvents",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
