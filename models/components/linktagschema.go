@@ -50,7 +50,7 @@ func (e *Color) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type TagSchema struct {
+type LinkTagSchema struct {
 	// The unique ID of the tag.
 	ID string `json:"id"`
 	// The name of the tag.
@@ -59,34 +59,34 @@ type TagSchema struct {
 	Color Color `json:"color"`
 }
 
-func (t TagSchema) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(t, "", false)
+func (l LinkTagSchema) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
 }
 
-func (t *TagSchema) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"id", "name", "color"}); err != nil {
+func (l *LinkTagSchema) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "name", "color"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (t *TagSchema) GetID() string {
-	if t == nil {
+func (l *LinkTagSchema) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return t.ID
+	return l.ID
 }
 
-func (t *TagSchema) GetName() string {
-	if t == nil {
+func (l *LinkTagSchema) GetName() string {
+	if l == nil {
 		return ""
 	}
-	return t.Name
+	return l.Name
 }
 
-func (t *TagSchema) GetColor() Color {
-	if t == nil {
+func (l *LinkTagSchema) GetColor() Color {
+	if l == nil {
 		return Color("")
 	}
-	return t.Color
+	return l.Color
 }

@@ -17,12 +17,14 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
     hoistGlobalSecurity: true
+  schemas:
+    allOfMergeStrategy: shallowMerge
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 go:
-  version: 0.20.0
+  version: 0.21.0
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: true
   baseErrorName: DubError
@@ -47,3 +49,4 @@ go:
   respectRequiredFields: false
   responseFormat: flat
   sdkPackageName: ""
+  unionDeserializationStrategy: left-to-right

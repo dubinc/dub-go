@@ -63,7 +63,7 @@ func (s *Folders) Create(ctx context.Context, request *operations.CreateFolderRe
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "createFolder",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -458,7 +458,7 @@ func (s *Folders) List(ctx context.Context, request operations.ListFoldersReques
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listFolders",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -855,7 +855,7 @@ func (s *Folders) Update(ctx context.Context, id string, requestBody *operations
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "updateFolder",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -1254,7 +1254,7 @@ func (s *Folders) Delete(ctx context.Context, id string, opts ...operations.Opti
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "deleteFolder",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

@@ -66,7 +66,9 @@ type FolderSchema struct {
 	ID string `json:"id"`
 	// The name of the folder.
 	Name string `json:"name"`
-	Type Type   `json:"type"`
+	// The description of the folder.
+	Description *string `json:"description"`
+	Type        Type    `json:"type"`
 	// The access level of the folder within the workspace.
 	AccessLevel *AccessLevel `default:"null" json:"accessLevel"`
 	// The date the folder was created.
@@ -98,6 +100,13 @@ func (f *FolderSchema) GetName() string {
 		return ""
 	}
 	return f.Name
+}
+
+func (f *FolderSchema) GetDescription() *string {
+	if f == nil {
+		return nil
+	}
+	return f.Description
 }
 
 func (f *FolderSchema) GetType() Type {

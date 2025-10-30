@@ -331,7 +331,7 @@ type LeadCreatedEventLink struct {
 	Geo         map[string]string `json:"geo"`
 	PublicStats bool              `json:"publicStats"`
 	// The tags assigned to the short link.
-	Tags []TagSchema `json:"tags"`
+	Tags []LinkTagSchema `json:"tags"`
 	// The unique ID of the folder assigned to the short link.
 	FolderID *string `json:"folderId"`
 	// The IDs of the webhooks that the short link is associated with.
@@ -561,7 +561,7 @@ func (l *LeadCreatedEventLink) GetPublicStats() bool {
 	return l.PublicStats
 }
 
-func (l *LeadCreatedEventLink) GetTags() []TagSchema {
+func (l *LeadCreatedEventLink) GetTags() []LinkTagSchema {
 	if l == nil {
 		return nil
 	}
@@ -756,6 +756,7 @@ type Partner struct {
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
 	// The partner's country (required for tax purposes).
 	Country          *string `json:"country"`
+	GroupID          *string `json:"groupId,omitempty"`
 	TotalClicks      float64 `json:"totalClicks"`
 	TotalLeads       float64 `json:"totalLeads"`
 	TotalConversions float64 `json:"totalConversions"`
@@ -815,6 +816,13 @@ func (p *Partner) GetCountry() *string {
 		return nil
 	}
 	return p.Country
+}
+
+func (p *Partner) GetGroupID() *string {
+	if p == nil {
+		return nil
+	}
+	return p.GroupID
 }
 
 func (p *Partner) GetTotalClicks() float64 {
