@@ -117,6 +117,7 @@ type CommissionCreatedEventPartner struct {
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
 	// The partner's country (required for tax purposes).
 	Country          *string `json:"country"`
+	GroupID          *string `json:"groupId,omitempty"`
 	TotalClicks      float64 `json:"totalClicks"`
 	TotalLeads       float64 `json:"totalLeads"`
 	TotalConversions float64 `json:"totalConversions"`
@@ -176,6 +177,13 @@ func (c *CommissionCreatedEventPartner) GetCountry() *string {
 		return nil
 	}
 	return c.Country
+}
+
+func (c *CommissionCreatedEventPartner) GetGroupID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.GroupID
 }
 
 func (c *CommissionCreatedEventPartner) GetTotalClicks() float64 {

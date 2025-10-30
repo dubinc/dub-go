@@ -62,7 +62,7 @@ func (s *Commissions) List(ctx context.Context, request operations.ListCommissio
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listCommissions",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -454,7 +454,7 @@ func (s *Commissions) Update(ctx context.Context, request operations.UpdateCommi
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "updateCommission",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)

@@ -53,18 +53,16 @@ func (e *ListPartnersQueryParamStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// ListPartnersQueryParamSortBy - The field to sort the partners by. The default is `saleAmount`.
+// ListPartnersQueryParamSortBy - The field to sort the partners by. The default is `totalSaleAmount`.
 type ListPartnersQueryParamSortBy string
 
 const (
 	ListPartnersQueryParamSortByCreatedAt        ListPartnersQueryParamSortBy = "createdAt"
-	ListPartnersQueryParamSortByClicks           ListPartnersQueryParamSortBy = "clicks"
-	ListPartnersQueryParamSortByLeads            ListPartnersQueryParamSortBy = "leads"
-	ListPartnersQueryParamSortByConversions      ListPartnersQueryParamSortBy = "conversions"
-	ListPartnersQueryParamSortBySales            ListPartnersQueryParamSortBy = "sales"
-	ListPartnersQueryParamSortBySaleAmount       ListPartnersQueryParamSortBy = "saleAmount"
+	ListPartnersQueryParamSortByTotalClicks      ListPartnersQueryParamSortBy = "totalClicks"
+	ListPartnersQueryParamSortByTotalLeads       ListPartnersQueryParamSortBy = "totalLeads"
+	ListPartnersQueryParamSortByTotalConversions ListPartnersQueryParamSortBy = "totalConversions"
+	ListPartnersQueryParamSortByTotalSaleAmount  ListPartnersQueryParamSortBy = "totalSaleAmount"
 	ListPartnersQueryParamSortByTotalCommissions ListPartnersQueryParamSortBy = "totalCommissions"
-	ListPartnersQueryParamSortByNetRevenue       ListPartnersQueryParamSortBy = "netRevenue"
 )
 
 func (e ListPartnersQueryParamSortBy) ToPointer() *ListPartnersQueryParamSortBy {
@@ -78,19 +76,15 @@ func (e *ListPartnersQueryParamSortBy) UnmarshalJSON(data []byte) error {
 	switch v {
 	case "createdAt":
 		fallthrough
-	case "clicks":
+	case "totalClicks":
 		fallthrough
-	case "leads":
+	case "totalLeads":
 		fallthrough
-	case "conversions":
+	case "totalConversions":
 		fallthrough
-	case "sales":
-		fallthrough
-	case "saleAmount":
+	case "totalSaleAmount":
 		fallthrough
 	case "totalCommissions":
-		fallthrough
-	case "netRevenue":
 		*e = ListPartnersQueryParamSortBy(v)
 		return nil
 	default:
@@ -130,8 +124,8 @@ type ListPartnersRequest struct {
 	Status *ListPartnersQueryParamStatus `queryParam:"style=form,explode=true,name=status"`
 	// A filter on the list based on the partner's `country` field.
 	Country *string `queryParam:"style=form,explode=true,name=country"`
-	// The field to sort the partners by. The default is `saleAmount`.
-	SortBy *ListPartnersQueryParamSortBy `default:"saleAmount" queryParam:"style=form,explode=true,name=sortBy"`
+	// The field to sort the partners by. The default is `totalSaleAmount`.
+	SortBy *ListPartnersQueryParamSortBy `default:"totalSaleAmount" queryParam:"style=form,explode=true,name=sortBy"`
 	// The sort order. The default is `desc`.
 	SortOrder *ListPartnersQueryParamSortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
 	// Filter the partner list based on the partner's `email`. The value must be a string. Takes precedence over `search`.
@@ -140,8 +134,6 @@ type ListPartnersRequest struct {
 	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
 	// A search query to filter partners by ID, name, email, or link.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
-	// Whether to include stats fields on the partner (`clicks`, `leads`, `conversions`, `sales`, `saleAmount`, `commissions`, `netRevenue`). If false, those fields will be returned as 0.
-	IncludeExpandedFields *bool `queryParam:"style=form,explode=true,name=includeExpandedFields"`
 	// The page number for pagination.
 	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
@@ -206,13 +198,6 @@ func (l *ListPartnersRequest) GetSearch() *string {
 		return nil
 	}
 	return l.Search
-}
-
-func (l *ListPartnersRequest) GetIncludeExpandedFields() *bool {
-	if l == nil {
-		return nil
-	}
-	return l.IncludeExpandedFields
 }
 
 func (l *ListPartnersRequest) GetPage() *float64 {
@@ -451,7 +436,7 @@ type ListPartnersResponseBody struct {
 	Status ListPartnersStatus `json:"status"`
 	// The partner's referral links in this program.
 	Links []ListPartnersLink `json:"links"`
-	// The total commissions paid to the partner for their referrals. Defaults to 0 if `includeExpandedFields` is false.
+	// The total commissions paid to the partner for their referrals
 	TotalCommissions *float64 `default:"0" json:"totalCommissions"`
 	ClickRewardID    *string  `json:"clickRewardId,omitempty"`
 	LeadRewardID     *string  `json:"leadRewardId,omitempty"`
@@ -463,17 +448,17 @@ type ListPartnersResponseBody struct {
 	BannedAt *string `json:"bannedAt,omitempty"`
 	// If the partner was banned from the program, this is the reason for the ban.
 	BannedReason *ListPartnersBannedReason `json:"bannedReason,omitempty"`
-	// The total number of clicks on the partner's links. Defaults to 0 if `includeExpandedFields` is false.
-	Clicks *float64 `default:"0" json:"clicks"`
-	// The total number of leads generated by the partner's links. Defaults to 0 if `includeExpandedFields` is false.
-	Leads *float64 `default:"0" json:"leads"`
-	// The total number of leads that converted to paying customers. Defaults to 0 if `includeExpandedFields` is false.
-	Conversions *float64 `default:"0" json:"conversions"`
-	// The total number of sales generated by the partner's links (includes recurring sales). Defaults to 0 if `includeExpandedFields` is false.
-	Sales *float64 `default:"0" json:"sales"`
-	// The total amount of sales (in cents) generated by the partner's links. Defaults to 0 if `includeExpandedFields` is false.
-	SaleAmount *float64 `default:"0" json:"saleAmount"`
-	// The total net revenue generated by the partner. Defaults to 0 if `includeExpandedFields` is false.
+	// The total number of clicks on the partner's links
+	TotalClicks *float64 `default:"0" json:"totalClicks"`
+	// The total number of leads generated by the partner's links
+	TotalLeads *float64 `default:"0" json:"totalLeads"`
+	// The total number of leads that converted to paying customers
+	TotalConversions *float64 `default:"0" json:"totalConversions"`
+	// The total number of sales generated by the partner's links (includes recurring sales)
+	TotalSales *float64 `default:"0" json:"totalSales"`
+	// The total amount of sales (in cents) generated by the partner's links
+	TotalSaleAmount *float64 `default:"0" json:"totalSaleAmount"`
+	// The total net revenue generated by the partner
 	NetRevenue *float64 `default:"0" json:"netRevenue"`
 	// The partner's website URL (including the https protocol).
 	Website *string `json:"website,omitempty"`
@@ -675,39 +660,39 @@ func (l *ListPartnersResponseBody) GetBannedReason() *ListPartnersBannedReason {
 	return l.BannedReason
 }
 
-func (l *ListPartnersResponseBody) GetClicks() *float64 {
+func (l *ListPartnersResponseBody) GetTotalClicks() *float64 {
 	if l == nil {
 		return nil
 	}
-	return l.Clicks
+	return l.TotalClicks
 }
 
-func (l *ListPartnersResponseBody) GetLeads() *float64 {
+func (l *ListPartnersResponseBody) GetTotalLeads() *float64 {
 	if l == nil {
 		return nil
 	}
-	return l.Leads
+	return l.TotalLeads
 }
 
-func (l *ListPartnersResponseBody) GetConversions() *float64 {
+func (l *ListPartnersResponseBody) GetTotalConversions() *float64 {
 	if l == nil {
 		return nil
 	}
-	return l.Conversions
+	return l.TotalConversions
 }
 
-func (l *ListPartnersResponseBody) GetSales() *float64 {
+func (l *ListPartnersResponseBody) GetTotalSales() *float64 {
 	if l == nil {
 		return nil
 	}
-	return l.Sales
+	return l.TotalSales
 }
 
-func (l *ListPartnersResponseBody) GetSaleAmount() *float64 {
+func (l *ListPartnersResponseBody) GetTotalSaleAmount() *float64 {
 	if l == nil {
 		return nil
 	}
-	return l.SaleAmount
+	return l.TotalSaleAmount
 }
 
 func (l *ListPartnersResponseBody) GetNetRevenue() *float64 {

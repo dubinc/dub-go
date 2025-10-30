@@ -158,7 +158,7 @@ func (u *UpsertLinkTestVariants) GetPercentage() float64 {
 type UpsertLinkRequestBody struct {
 	// The destination URL of the short link.
 	URL string `json:"url"`
-	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
+	// The domain of the short link (without protocol). If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
 	Domain *string `json:"domain,omitempty"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key *string `json:"key,omitempty"`

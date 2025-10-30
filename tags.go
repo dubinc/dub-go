@@ -33,7 +33,7 @@ func newTags(rootSDK *Dub, sdkConfig config.SDKConfiguration, hooks *hooks.Hooks
 
 // Create a tag
 // Create a tag for the authenticated workspace.
-func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestBody, opts ...operations.Option) (*components.TagSchema, error) {
+func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestBody, opts ...operations.Option) (*components.LinkTagSchema, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -63,7 +63,7 @@ func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestB
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "createTag",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -200,7 +200,7 @@ func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestB
 				return nil, err
 			}
 
-			var out components.TagSchema
+			var out components.LinkTagSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -428,7 +428,7 @@ func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestB
 
 // List - Retrieve a list of tags
 // Retrieve a list of tags for the authenticated workspace.
-func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest, opts ...operations.Option) ([]components.TagSchema, error) {
+func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest, opts ...operations.Option) ([]components.LinkTagSchema, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -458,7 +458,7 @@ func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest, opts
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getTags",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -592,7 +592,7 @@ func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest, opts
 				return nil, err
 			}
 
-			var out []components.TagSchema
+			var out []components.LinkTagSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -820,7 +820,7 @@ func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest, opts
 
 // Update a tag
 // Update a tag in the workspace.
-func (s *Tags) Update(ctx context.Context, id string, requestBody *operations.UpdateTagRequestBody, opts ...operations.Option) (*components.TagSchema, error) {
+func (s *Tags) Update(ctx context.Context, id string, requestBody *operations.UpdateTagRequestBody, opts ...operations.Option) (*components.LinkTagSchema, error) {
 	request := operations.UpdateTagRequest{
 		ID:          id,
 		RequestBody: requestBody,
@@ -855,7 +855,7 @@ func (s *Tags) Update(ctx context.Context, id string, requestBody *operations.Up
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "updateTag",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -992,7 +992,7 @@ func (s *Tags) Update(ctx context.Context, id string, requestBody *operations.Up
 				return nil, err
 			}
 
-			var out components.TagSchema
+			var out components.LinkTagSchema
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1254,7 +1254,7 @@ func (s *Tags) Delete(ctx context.Context, id string, opts ...operations.Option)
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "deleteTag",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

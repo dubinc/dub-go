@@ -182,7 +182,7 @@ type SaleEventLink struct {
 	Geo         map[string]string `json:"geo"`
 	PublicStats bool              `json:"publicStats"`
 	// The tags assigned to the short link.
-	Tags []TagSchema `json:"tags"`
+	Tags []LinkTagSchema `json:"tags"`
 	// The unique ID of the folder assigned to the short link.
 	FolderID *string `json:"folderId"`
 	// The IDs of the webhooks that the short link is associated with.
@@ -412,7 +412,7 @@ func (s *SaleEventLink) GetPublicStats() bool {
 	return s.PublicStats
 }
 
-func (s *SaleEventLink) GetTags() []TagSchema {
+func (s *SaleEventLink) GetTags() []LinkTagSchema {
 	if s == nil {
 		return nil
 	}

@@ -1,4 +1,4 @@
-# TagSchema
+# LinkTagSchema
 
 
 ## Fields

@@ -20,9 +20,12 @@ The parameter to group the analytics data points by. Defaults to `count` if unde
 | `QueryParamGroupByTriggers`     | triggers                        |
 | `QueryParamGroupByReferers`     | referers                        |
 | `QueryParamGroupByRefererUrls`  | referer_urls                    |
-| `QueryParamGroupByTopPartners`  | top_partners                    |
+| `QueryParamGroupByTopFolders`   | top_folders                     |
+| `QueryParamGroupByTopLinkTags`  | top_link_tags                   |
+| `QueryParamGroupByTopDomains`   | top_domains                     |
 | `QueryParamGroupByTopLinks`     | top_links                       |
 | `QueryParamGroupByTopUrls`      | top_urls                        |
+| `QueryParamGroupByTopPartners`  | top_partners                    |
 | `QueryParamGroupByUtmSources`   | utm_sources                     |
 | `QueryParamGroupByUtmMediums`   | utm_mediums                     |
 | `QueryParamGroupByUtmCampaigns` | utm_campaigns                   |

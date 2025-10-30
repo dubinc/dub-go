@@ -64,7 +64,7 @@ func (s *Domains) Create(ctx context.Context, request *operations.CreateDomainRe
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "createDomain",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -459,7 +459,7 @@ func (s *Domains) List(ctx context.Context, request operations.ListDomainsReques
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listDomains",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -907,7 +907,7 @@ func (s *Domains) Update(ctx context.Context, slug string, requestBody *operatio
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "updateDomain",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -1306,7 +1306,7 @@ func (s *Domains) Delete(ctx context.Context, slug string, opts ...operations.Op
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "deleteDomain",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1694,7 +1694,7 @@ func (s *Domains) Register(ctx context.Context, request *operations.RegisterDoma
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "registerDomain",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -2089,7 +2089,7 @@ func (s *Domains) CheckStatus(ctx context.Context, request operations.CheckDomai
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "checkDomainStatus",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

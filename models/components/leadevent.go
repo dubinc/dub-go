@@ -236,7 +236,7 @@ type LeadEventLink struct {
 	Geo         map[string]string `json:"geo"`
 	PublicStats bool              `json:"publicStats"`
 	// The tags assigned to the short link.
-	Tags []TagSchema `json:"tags"`
+	Tags []LinkTagSchema `json:"tags"`
 	// The unique ID of the folder assigned to the short link.
 	FolderID *string `json:"folderId"`
 	// The IDs of the webhooks that the short link is associated with.
@@ -466,7 +466,7 @@ func (l *LeadEventLink) GetPublicStats() bool {
 	return l.PublicStats
 }
 
-func (l *LeadEventLink) GetTags() []TagSchema {
+func (l *LeadEventLink) GetTags() []LinkTagSchema {
 	if l == nil {
 		return nil
 	}

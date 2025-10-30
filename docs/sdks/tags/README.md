@@ -53,7 +53,7 @@ func main() {
 
 ### Response
 
-**[*components.TagSchema](../../models/components/tagschema.md), error**
+**[*components.LinkTagSchema](../../models/components/linktagschema.md), error**
 
 ### Errors
 
@@ -116,7 +116,7 @@ func main() {
 
 ### Response
 
-**[[]components.TagSchema](../../.md), error**
+**[[]components.LinkTagSchema](../../.md), error**
 
 ### Errors
 
@@ -177,7 +177,7 @@ func main() {
 
 ### Response
 
-**[*components.TagSchema](../../models/components/tagschema.md), error**
+**[*components.LinkTagSchema](../../models/components/linktagschema.md), error**
 
 ### Errors
 
