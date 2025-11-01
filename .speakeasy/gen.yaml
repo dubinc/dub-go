@@ -24,7 +24,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 go:
-  version: 0.21.0
+  version: 0.22.0
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: true
   baseErrorName: DubError
@@ -39,6 +39,7 @@ go:
       operations: models/operations
       shared: models/components
       webhooks: models/webhooks
+  includeEmptyObjects: false
   inputModelSuffix: input
   maxMethodParams: 0
   methodArguments: require-security-and-request
