@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 550d25461426e3d9e04178a3fbb08a6c
+  docChecksum: d99625cdbe43df98d3759164056d86aa
   docVersion: 0.0.1
-  speakeasyVersion: 1.642.2
-  generationVersion: 2.731.6
-  releaseVersion: 0.21.0
-  configChecksum: 701e282c1b4cf4d48ca6f16571902705
+  speakeasyVersion: 1.645.1
+  generationVersion: 2.735.1
+  releaseVersion: 0.22.0
+  configChecksum: 2628e3da1c9d9ed3cca722e0a162bce9
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.12.0
+    core: 3.13.0
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     envVarSecurityUsage: 0.3.2
@@ -23,7 +23,7 @@ features:
     globalSecurity: 2.82.12
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
-    globalServerURLs: 2.82.3
+    globalServerURLs: 2.83.0
     ignores: 2.81.1
     includes: 2.81.1
     intellisenseMarkdownSupport: 0.1.0
@@ -1746,4 +1746,4 @@ examples:
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Go SDK Changes Detected:\n* `Dub.Partners.List()`: \n  *  `request.Request` **Changed** **Breaking** :warning:\n  *  `response.[]` **Changed** **Breaking** :warning:\n* `Dub.Partners.Create()`:  `response` **Changed** **Breaking** :warning:\n* `Dub.Analytics.Retrieve()`: \n  *  `request.Request.GroupBy` **Changed**\n* `Dub.Folders.List()`:  `response.[].Description` **Added**\n* `Dub.Folders.Create()`: \n  *  `request.Request.Description` **Added**\n  *  `response.Description` **Added**\n* `Dub.Folders.Update()`: \n  *  `request.RequestBody.Description` **Added**\n  *  `response.Description` **Added**\n* `Dub.Workspaces.Get()`:  `response.NetworkInvitesLimit` **Added**\n* `Dub.Workspaces.Update()`:  `response.NetworkInvitesLimit` **Added**\n"
+releaseNotes: "## Go SDK Changes Detected:\n* `Dub.Commissions.List()`: \n  *  `request.Request.Timezone` **Added**\n"
