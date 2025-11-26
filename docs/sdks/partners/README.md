@@ -11,6 +11,7 @@
 * [RetrieveLinks](#retrievelinks) - Retrieve a partner's links.
 * [UpsertLink](#upsertlink) - Upsert a link for a partner
 * [Analytics](#analytics) - Retrieve analytics for a partner
+* [Ban](#ban) - Ban a partner
 
 ## Create
 
@@ -430,6 +431,66 @@ func main() {
 ### Response
 
 **[*operations.RetrievePartnerAnalyticsResponseBody](../../models/operations/retrievepartneranalyticsresponsebody.md), error**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+
+## Ban
+
+Ban a partner from your program. This will disable all links and mark all commissions as canceled.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="banPartner" method="post" path="/partners/ban" -->
+```go
+package main
+
+import(
+	"context"
+	dubgo "github.com/dubinc/dub-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+
+    res, err := s.Partners.Ban(ctx, nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [operations.BanPartnerRequestBody](../../models/operations/banpartnerrequestbody.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+
+### Response
+
+**[*operations.BanPartnerResponseBody](../../models/operations/banpartnerresponsebody.md), error**
 
 ### Errors
 

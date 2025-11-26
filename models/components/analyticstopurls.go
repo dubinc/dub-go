@@ -7,7 +7,7 @@ import (
 )
 
 type AnalyticsTopUrls struct {
-	// The destination URL
+	// The full destination URL (including query parameters)
 	URL string `json:"url"`
 	// The number of clicks from this URL
 	Clicks *float64 `default:"0" json:"clicks"`

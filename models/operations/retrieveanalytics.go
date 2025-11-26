@@ -65,7 +65,9 @@ const (
 	QueryParamGroupByTopDomains   QueryParamGroupBy = "top_domains"
 	QueryParamGroupByTopLinks     QueryParamGroupBy = "top_links"
 	QueryParamGroupByTopUrls      QueryParamGroupBy = "top_urls"
+	QueryParamGroupByTopBaseUrls  QueryParamGroupBy = "top_base_urls"
 	QueryParamGroupByTopPartners  QueryParamGroupBy = "top_partners"
+	QueryParamGroupByTopGroups    QueryParamGroupBy = "top_groups"
 	QueryParamGroupByUtmSources   QueryParamGroupBy = "utm_sources"
 	QueryParamGroupByUtmMediums   QueryParamGroupBy = "utm_mediums"
 	QueryParamGroupByUtmCampaigns QueryParamGroupBy = "utm_campaigns"
@@ -118,7 +120,11 @@ func (e *QueryParamGroupBy) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "top_urls":
 		fallthrough
+	case "top_base_urls":
+		fallthrough
 	case "top_partners":
+		fallthrough
+	case "top_groups":
 		fallthrough
 	case "utm_sources":
 		fallthrough
@@ -363,6 +369,8 @@ type RetrieveAnalyticsRequest struct {
 	TagIds *RetrieveAnalyticsQueryParamTagIds `queryParam:"style=form,explode=true,name=tagIds"`
 	// The folder ID to retrieve analytics for. If not provided, return analytics for unsorted links.
 	FolderID *string `queryParam:"style=form,explode=true,name=folderId"`
+	// The group ID to retrieve analytics for.
+	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
 	Root *bool `queryParam:"style=form,explode=true,name=root"`
 	// Filter sales by type: 'new' for first-time purchases, 'recurring' for repeat purchases. If undefined, returns both.
@@ -585,6 +593,13 @@ func (r *RetrieveAnalyticsRequest) GetFolderID() *string {
 		return nil
 	}
 	return r.FolderID
+}
+
+func (r *RetrieveAnalyticsRequest) GetGroupID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.GroupID
 }
 
 func (r *RetrieveAnalyticsRequest) GetRoot() *bool {

@@ -310,6 +310,7 @@ type SaleCreatedEventLink struct {
 	Archived   bool    `json:"archived"`
 	ExpiresAt  string  `json:"expiresAt"`
 	ExpiredURL *string `json:"expiredUrl"`
+	DisabledAt string  `json:"disabledAt"`
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password"`
 	Proxy    bool    `json:"proxy"`
@@ -354,8 +355,8 @@ type SaleCreatedEventLink struct {
 	UtmContent *string `json:"utm_content"`
 	// An array of A/B test URLs and the percentage of traffic to send to each URL.
 	TestVariants    []SaleCreatedEventTestVariants `json:"testVariants,omitempty"`
-	TestStartedAt   *string                        `json:"testStartedAt"`
-	TestCompletedAt *string                        `json:"testCompletedAt"`
+	TestStartedAt   string                         `json:"testStartedAt"`
+	TestCompletedAt string                         `json:"testCompletedAt"`
 	UserID          *string                        `json:"userId"`
 	// The workspace ID of the short link.
 	WorkspaceID string `json:"workspaceId"`
@@ -387,7 +388,7 @@ func (s SaleCreatedEventLink) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SaleCreatedEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
 		return err
 	}
 	return nil
@@ -475,6 +476,13 @@ func (s *SaleCreatedEventLink) GetExpiredURL() *string {
 		return nil
 	}
 	return s.ExpiredURL
+}
+
+func (s *SaleCreatedEventLink) GetDisabledAt() string {
+	if s == nil {
+		return ""
+	}
+	return s.DisabledAt
 }
 
 func (s *SaleCreatedEventLink) GetPassword() *string {
@@ -645,16 +653,16 @@ func (s *SaleCreatedEventLink) GetTestVariants() []SaleCreatedEventTestVariants 
 	return s.TestVariants
 }
 
-func (s *SaleCreatedEventLink) GetTestStartedAt() *string {
+func (s *SaleCreatedEventLink) GetTestStartedAt() string {
 	if s == nil {
-		return nil
+		return ""
 	}
 	return s.TestStartedAt
 }
 
-func (s *SaleCreatedEventLink) GetTestCompletedAt() *string {
+func (s *SaleCreatedEventLink) GetTestCompletedAt() string {
 	if s == nil {
-		return nil
+		return ""
 	}
 	return s.TestCompletedAt
 }

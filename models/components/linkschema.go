@@ -61,6 +61,8 @@ type LinkSchema struct {
 	ExpiresAt *string `json:"expiresAt"`
 	// The URL to redirect to when the short link has expired.
 	ExpiredURL *string `json:"expiredUrl"`
+	// The date and time when the short link was disabled. When a short link is disabled, it will redirect to its domain's not found URL, and its stats will be excluded from your overall stats.
+	DisabledAt *string `json:"disabledAt"`
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password"`
 	// Whether the short link uses Custom Link Previews feature.
@@ -236,6 +238,13 @@ func (l *LinkSchema) GetExpiredURL() *string {
 		return nil
 	}
 	return l.ExpiredURL
+}
+
+func (l *LinkSchema) GetDisabledAt() *string {
+	if l == nil {
+		return nil
+	}
+	return l.DisabledAt
 }
 
 func (l *LinkSchema) GetPassword() *string {

@@ -11,22 +11,24 @@ import (
 type WebhookEventType string
 
 const (
-	WebhookEventTypeLinkWebhookEvent       WebhookEventType = "LinkWebhookEvent"
-	WebhookEventTypeLinkClickedEvent       WebhookEventType = "LinkClickedEvent"
-	WebhookEventTypeLeadCreatedEvent       WebhookEventType = "LeadCreatedEvent"
-	WebhookEventTypeSaleCreatedEvent       WebhookEventType = "SaleCreatedEvent"
-	WebhookEventTypePartnerEnrolledEvent   WebhookEventType = "PartnerEnrolledEvent"
-	WebhookEventTypeCommissionCreatedEvent WebhookEventType = "CommissionCreatedEvent"
+	WebhookEventTypeLinkWebhookEvent                 WebhookEventType = "LinkWebhookEvent"
+	WebhookEventTypeLinkClickedEvent                 WebhookEventType = "LinkClickedEvent"
+	WebhookEventTypeLeadCreatedEvent                 WebhookEventType = "LeadCreatedEvent"
+	WebhookEventTypeSaleCreatedEvent                 WebhookEventType = "SaleCreatedEvent"
+	WebhookEventTypePartnerEnrolledEvent             WebhookEventType = "PartnerEnrolledEvent"
+	WebhookEventTypePartnerApplicationSubmittedEvent WebhookEventType = "PartnerApplicationSubmittedEvent"
+	WebhookEventTypeCommissionCreatedEvent           WebhookEventType = "CommissionCreatedEvent"
 )
 
 // WebhookEvent - Webhook event schema
 type WebhookEvent struct {
-	LinkWebhookEvent       *LinkWebhookEvent       `queryParam:"inline,name=WebhookEvent"`
-	LinkClickedEvent       *LinkClickedEvent       `queryParam:"inline,name=WebhookEvent"`
-	LeadCreatedEvent       *LeadCreatedEvent       `queryParam:"inline,name=WebhookEvent"`
-	SaleCreatedEvent       *SaleCreatedEvent       `queryParam:"inline,name=WebhookEvent"`
-	PartnerEnrolledEvent   *PartnerEnrolledEvent   `queryParam:"inline,name=WebhookEvent"`
-	CommissionCreatedEvent *CommissionCreatedEvent `queryParam:"inline,name=WebhookEvent"`
+	LinkWebhookEvent                 *LinkWebhookEvent                 `queryParam:"inline,name=WebhookEvent"`
+	LinkClickedEvent                 *LinkClickedEvent                 `queryParam:"inline,name=WebhookEvent"`
+	LeadCreatedEvent                 *LeadCreatedEvent                 `queryParam:"inline,name=WebhookEvent"`
+	SaleCreatedEvent                 *SaleCreatedEvent                 `queryParam:"inline,name=WebhookEvent"`
+	PartnerEnrolledEvent             *PartnerEnrolledEvent             `queryParam:"inline,name=WebhookEvent"`
+	PartnerApplicationSubmittedEvent *PartnerApplicationSubmittedEvent `queryParam:"inline,name=WebhookEvent"`
+	CommissionCreatedEvent           *CommissionCreatedEvent           `queryParam:"inline,name=WebhookEvent"`
 
 	Type WebhookEventType
 }
@@ -76,6 +78,15 @@ func CreateWebhookEventPartnerEnrolledEvent(partnerEnrolledEvent PartnerEnrolled
 	}
 }
 
+func CreateWebhookEventPartnerApplicationSubmittedEvent(partnerApplicationSubmittedEvent PartnerApplicationSubmittedEvent) WebhookEvent {
+	typ := WebhookEventTypePartnerApplicationSubmittedEvent
+
+	return WebhookEvent{
+		PartnerApplicationSubmittedEvent: &partnerApplicationSubmittedEvent,
+		Type:                             typ,
+	}
+}
+
 func CreateWebhookEventCommissionCreatedEvent(commissionCreatedEvent CommissionCreatedEvent) WebhookEvent {
 	typ := WebhookEventTypeCommissionCreatedEvent
 
@@ -122,6 +133,13 @@ func (u *WebhookEvent) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var partnerApplicationSubmittedEvent PartnerApplicationSubmittedEvent = PartnerApplicationSubmittedEvent{}
+	if err := utils.UnmarshalJSON(data, &partnerApplicationSubmittedEvent, "", true, nil); err == nil {
+		u.PartnerApplicationSubmittedEvent = &partnerApplicationSubmittedEvent
+		u.Type = WebhookEventTypePartnerApplicationSubmittedEvent
+		return nil
+	}
+
 	var commissionCreatedEvent CommissionCreatedEvent = CommissionCreatedEvent{}
 	if err := utils.UnmarshalJSON(data, &commissionCreatedEvent, "", true, nil); err == nil {
 		u.CommissionCreatedEvent = &commissionCreatedEvent
@@ -151,6 +169,10 @@ func (u WebhookEvent) MarshalJSON() ([]byte, error) {
 
 	if u.PartnerEnrolledEvent != nil {
 		return utils.MarshalJSON(u.PartnerEnrolledEvent, "", true)
+	}
+
+	if u.PartnerApplicationSubmittedEvent != nil {
+		return utils.MarshalJSON(u.PartnerApplicationSubmittedEvent, "", true)
 	}
 
 	if u.CommissionCreatedEvent != nil {

@@ -89,9 +89,9 @@ func (e *RetrievePartnerAnalyticsQueryParamGroupBy) UnmarshalJSON(data []byte) e
 }
 
 type RetrievePartnerAnalyticsRequest struct {
-	// The ID of the partner to retrieve analytics for.
+	// The ID of the partner to create a link for. Will take precedence over `tenantId` if provided.
 	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
-	// The ID of the tenant that created the link inside your system.
+	// The ID of the partner in your system. If both `partnerId` and `tenantId` are not provided, an error will be thrown.
 	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
 	// The interval to retrieve analytics for. If undefined, defaults to 24h.
 	Interval *RetrievePartnerAnalyticsQueryParamInterval `queryParam:"style=form,explode=true,name=interval"`

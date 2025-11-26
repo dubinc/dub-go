@@ -155,6 +155,8 @@ type WorkspaceSchema struct {
 	InviteCode *string `json:"inviteCode"`
 	// The plan of the workspace.
 	Plan Plan `json:"plan"`
+	// The tier of the workspace's plan.
+	PlanTier *float64 `json:"planTier"`
 	// The Stripe ID of the workspace.
 	StripeID *string `json:"stripeId"`
 	// The date and time when the billing cycle starts for the workspace.
@@ -268,6 +270,13 @@ func (w *WorkspaceSchema) GetPlan() Plan {
 		return Plan("")
 	}
 	return w.Plan
+}
+
+func (w *WorkspaceSchema) GetPlanTier() *float64 {
+	if w == nil {
+		return nil
+	}
+	return w.PlanTier
 }
 
 func (w *WorkspaceSchema) GetStripeID() *string {

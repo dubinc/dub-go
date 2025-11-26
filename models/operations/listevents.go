@@ -345,6 +345,8 @@ type ListEventsRequest struct {
 	TagIds *ListEventsQueryParamTagIds `queryParam:"style=form,explode=true,name=tagIds"`
 	// The folder ID to retrieve analytics for. If not provided, return analytics for unsorted links.
 	FolderID *string `queryParam:"style=form,explode=true,name=folderId"`
+	// The group ID to retrieve analytics for.
+	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
 	Root *bool `queryParam:"style=form,explode=true,name=root"`
 	// Filter sales by type: 'new' for first-time purchases, 'recurring' for repeat purchases. If undefined, returns both.
@@ -568,6 +570,13 @@ func (l *ListEventsRequest) GetFolderID() *string {
 		return nil
 	}
 	return l.FolderID
+}
+
+func (l *ListEventsRequest) GetGroupID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.GroupID
 }
 
 func (l *ListEventsRequest) GetRoot() *bool {
