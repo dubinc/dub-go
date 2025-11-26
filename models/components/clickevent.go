@@ -215,6 +215,7 @@ type Link struct {
 	Archived   bool    `json:"archived"`
 	ExpiresAt  string  `json:"expiresAt"`
 	ExpiredURL *string `json:"expiredUrl"`
+	DisabledAt string  `json:"disabledAt"`
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password"`
 	Proxy    bool    `json:"proxy"`
@@ -259,8 +260,8 @@ type Link struct {
 	UtmContent *string `json:"utm_content"`
 	// An array of A/B test URLs and the percentage of traffic to send to each URL.
 	TestVariants    []ClickEventTestVariants `json:"testVariants,omitempty"`
-	TestStartedAt   *string                  `json:"testStartedAt"`
-	TestCompletedAt *string                  `json:"testCompletedAt"`
+	TestStartedAt   string                   `json:"testStartedAt"`
+	TestCompletedAt string                   `json:"testCompletedAt"`
 	UserID          *string                  `json:"userId"`
 	// The workspace ID of the short link.
 	WorkspaceID string `json:"workspaceId"`
@@ -292,7 +293,7 @@ func (l Link) MarshalJSON() ([]byte, error) {
 }
 
 func (l *Link) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
 		return err
 	}
 	return nil
@@ -380,6 +381,13 @@ func (l *Link) GetExpiredURL() *string {
 		return nil
 	}
 	return l.ExpiredURL
+}
+
+func (l *Link) GetDisabledAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.DisabledAt
 }
 
 func (l *Link) GetPassword() *string {
@@ -550,16 +558,16 @@ func (l *Link) GetTestVariants() []ClickEventTestVariants {
 	return l.TestVariants
 }
 
-func (l *Link) GetTestStartedAt() *string {
+func (l *Link) GetTestStartedAt() string {
 	if l == nil {
-		return nil
+		return ""
 	}
 	return l.TestStartedAt
 }
 
-func (l *Link) GetTestCompletedAt() *string {
+func (l *Link) GetTestCompletedAt() string {
 	if l == nil {
-		return nil
+		return ""
 	}
 	return l.TestCompletedAt
 }

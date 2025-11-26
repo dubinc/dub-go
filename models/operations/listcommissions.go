@@ -209,7 +209,8 @@ type ListCommissionsRequest struct {
 	// The start date of the date range to filter the commissions by.
 	Start *string `queryParam:"style=form,explode=true,name=start"`
 	// The end date of the date range to filter the commissions by.
-	End *string `queryParam:"style=form,explode=true,name=end"`
+	End      *string `queryParam:"style=form,explode=true,name=end"`
+	Timezone *string `queryParam:"style=form,explode=true,name=timezone"`
 	// The page number for pagination.
 	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
@@ -318,6 +319,13 @@ func (l *ListCommissionsRequest) GetEnd() *string {
 	return l.End
 }
 
+func (l *ListCommissionsRequest) GetTimezone() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Timezone
+}
+
 func (l *ListCommissionsRequest) GetPage() *float64 {
 	if l == nil {
 		return nil
@@ -418,6 +426,8 @@ type ListCommissionsPartner struct {
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
 	// The partner's country (required for tax purposes).
 	Country *string `json:"country"`
+	// The partner's group ID on Dub.
+	GroupID *string `json:"groupId,omitempty"`
 }
 
 func (l *ListCommissionsPartner) GetID() string {
@@ -460,6 +470,13 @@ func (l *ListCommissionsPartner) GetCountry() *string {
 		return nil
 	}
 	return l.Country
+}
+
+func (l *ListCommissionsPartner) GetGroupID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.GroupID
 }
 
 type ListCommissionsCustomer struct {

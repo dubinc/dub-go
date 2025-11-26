@@ -7,8 +7,10 @@ import (
 )
 
 type RetrieveLinksRequest struct {
+	// The ID of the partner to create a link for. Will take precedence over `tenantId` if provided.
 	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
-	TenantID  *string `queryParam:"style=form,explode=true,name=tenantId"`
+	// The ID of the partner in your system. If both `partnerId` and `tenantId` are not provided, an error will be thrown.
+	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
 }
 
 func (r *RetrieveLinksRequest) GetPartnerID() *string {

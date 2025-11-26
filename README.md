@@ -158,7 +158,6 @@ func main() {
 ### [Customers](docs/sdks/customers/README.md)
 
 * [List](docs/sdks/customers/README.md#list) - Retrieve a list of customers
-* [~~Create~~](docs/sdks/customers/README.md#create) - Create a customer :warning: **Deprecated**
 * [Get](docs/sdks/customers/README.md#get) - Retrieve a customer
 * [Update](docs/sdks/customers/README.md#update) - Update a customer
 * [Delete](docs/sdks/customers/README.md#delete) - Delete a customer
@@ -208,6 +207,7 @@ func main() {
 * [RetrieveLinks](docs/sdks/partners/README.md#retrievelinks) - Retrieve a partner's links.
 * [UpsertLink](docs/sdks/partners/README.md#upsertlink) - Upsert a link for a partner
 * [Analytics](docs/sdks/partners/README.md#analytics) - Retrieve analytics for a partner
+* [Ban](docs/sdks/partners/README.md#ban) - Ban a partner
 
 ### [QRCodes](docs/sdks/qrcodes/README.md)
 

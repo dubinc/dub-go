@@ -197,6 +197,8 @@ type UpdateCommissionPartner struct {
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
 	// The partner's country (required for tax purposes).
 	Country *string `json:"country"`
+	// The partner's group ID on Dub.
+	GroupID *string `json:"groupId,omitempty"`
 }
 
 func (u *UpdateCommissionPartner) GetID() string {
@@ -239,6 +241,13 @@ func (u *UpdateCommissionPartner) GetCountry() *string {
 		return nil
 	}
 	return u.Country
+}
+
+func (u *UpdateCommissionPartner) GetGroupID() *string {
+	if u == nil {
+		return nil
+	}
+	return u.GroupID
 }
 
 type UpdateCommissionCustomer struct {

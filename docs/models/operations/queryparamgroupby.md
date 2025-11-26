@@ -25,7 +25,9 @@ The parameter to group the analytics data points by. Defaults to `count` if unde
 | `QueryParamGroupByTopDomains`   | top_domains                     |
 | `QueryParamGroupByTopLinks`     | top_links                       |
 | `QueryParamGroupByTopUrls`      | top_urls                        |
+| `QueryParamGroupByTopBaseUrls`  | top_base_urls                   |
 | `QueryParamGroupByTopPartners`  | top_partners                    |
+| `QueryParamGroupByTopGroups`    | top_groups                      |
 | `QueryParamGroupByUtmSources`   | utm_sources                     |
 | `QueryParamGroupByUtmMediums`   | utm_mediums                     |
 | `QueryParamGroupByUtmCampaigns` | utm_campaigns                   |

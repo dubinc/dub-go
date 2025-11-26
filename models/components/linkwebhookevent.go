@@ -213,6 +213,7 @@ type LinkWebhookEventLink struct {
 	Archived   bool    `json:"archived"`
 	ExpiresAt  string  `json:"expiresAt"`
 	ExpiredURL *string `json:"expiredUrl"`
+	DisabledAt string  `json:"disabledAt"`
 	// The password required to access the destination URL of the short link.
 	Password *string `json:"password"`
 	Proxy    bool    `json:"proxy"`
@@ -257,8 +258,8 @@ type LinkWebhookEventLink struct {
 	UtmContent *string `json:"utm_content"`
 	// An array of A/B test URLs and the percentage of traffic to send to each URL.
 	TestVariants    []LinkWebhookEventTestVariants `json:"testVariants,omitempty"`
-	TestStartedAt   *string                        `json:"testStartedAt"`
-	TestCompletedAt *string                        `json:"testCompletedAt"`
+	TestStartedAt   string                         `json:"testStartedAt"`
+	TestCompletedAt string                         `json:"testCompletedAt"`
 	UserID          *string                        `json:"userId"`
 	// The workspace ID of the short link.
 	WorkspaceID string `json:"workspaceId"`
@@ -290,7 +291,7 @@ func (l LinkWebhookEventLink) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LinkWebhookEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
 		return err
 	}
 	return nil
@@ -378,6 +379,13 @@ func (l *LinkWebhookEventLink) GetExpiredURL() *string {
 		return nil
 	}
 	return l.ExpiredURL
+}
+
+func (l *LinkWebhookEventLink) GetDisabledAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.DisabledAt
 }
 
 func (l *LinkWebhookEventLink) GetPassword() *string {
@@ -548,16 +556,16 @@ func (l *LinkWebhookEventLink) GetTestVariants() []LinkWebhookEventTestVariants 
 	return l.TestVariants
 }
 
-func (l *LinkWebhookEventLink) GetTestStartedAt() *string {
+func (l *LinkWebhookEventLink) GetTestStartedAt() string {
 	if l == nil {
-		return nil
+		return ""
 	}
 	return l.TestStartedAt
 }
 
-func (l *LinkWebhookEventLink) GetTestCompletedAt() *string {
+func (l *LinkWebhookEventLink) GetTestCompletedAt() string {
 	if l == nil {
-		return nil
+		return ""
 	}
 	return l.TestCompletedAt
 }
