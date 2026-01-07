@@ -79,7 +79,7 @@ func (t TrackSaleRequestBody) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TrackSaleRequestBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"customerExternalId", "amount"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
 		return err
 	}
 	return nil

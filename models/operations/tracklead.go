@@ -64,7 +64,7 @@ func (t TrackLeadRequestBody) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TrackLeadRequestBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"clickId", "eventName", "customerExternalId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
 		return err
 	}
 	return nil

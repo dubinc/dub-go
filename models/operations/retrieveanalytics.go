@@ -232,8 +232,8 @@ const (
 
 // RetrieveAnalyticsQueryParamTagIds - The tag IDs to retrieve analytics for.
 type RetrieveAnalyticsQueryParamTagIds struct {
-	Str        *string  `queryParam:"inline,name=tagIds"`
-	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type RetrieveAnalyticsQueryParamTagIdsType
 }
@@ -359,7 +359,7 @@ type RetrieveAnalyticsRequest struct {
 	Os *string `queryParam:"style=form,explode=true,name=os"`
 	// The trigger to retrieve analytics for. If undefined, returns all trigger types.
 	Trigger *Trigger `queryParam:"style=form,explode=true,name=trigger"`
-	// The referer to retrieve analytics for.
+	// The referer hostname to retrieve analytics for.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`
 	// The full referer URL to retrieve analytics for.
 	RefererURL *string `queryParam:"style=form,explode=true,name=refererUrl"`
@@ -700,20 +700,20 @@ const (
 
 // RetrieveAnalyticsResponseBody - Analytics data
 type RetrieveAnalyticsResponseBody struct {
-	AnalyticsCount              *components.AnalyticsCount        `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsTimeseries  []components.AnalyticsTimeseries  `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsContinents  []components.AnalyticsContinents  `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsCountries   []components.AnalyticsCountries   `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsRegions     []components.AnalyticsRegions     `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsCities      []components.AnalyticsCities      `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsDevices     []components.AnalyticsDevices     `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsBrowsers    []components.AnalyticsBrowsers    `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsOS          []components.AnalyticsOS          `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsTriggers    []components.AnalyticsTriggers    `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsReferers    []components.AnalyticsReferers    `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsRefererUrls []components.AnalyticsRefererUrls `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsTopLinks    []components.AnalyticsTopLinks    `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsTopUrls     []components.AnalyticsTopUrls     `queryParam:"inline,name=responseBody"`
+	AnalyticsCount              *components.AnalyticsCount        `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsTimeseries  []components.AnalyticsTimeseries  `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsContinents  []components.AnalyticsContinents  `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsCountries   []components.AnalyticsCountries   `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsRegions     []components.AnalyticsRegions     `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsCities      []components.AnalyticsCities      `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsDevices     []components.AnalyticsDevices     `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsBrowsers    []components.AnalyticsBrowsers    `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsOS          []components.AnalyticsOS          `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsTriggers    []components.AnalyticsTriggers    `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsReferers    []components.AnalyticsReferers    `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsRefererUrls []components.AnalyticsRefererUrls `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsTopLinks    []components.AnalyticsTopLinks    `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsTopUrls     []components.AnalyticsTopUrls     `queryParam:"inline" union:"member"`
 
 	Type RetrieveAnalyticsResponseBodyType
 }

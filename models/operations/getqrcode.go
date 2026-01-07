@@ -67,7 +67,7 @@ func (g GetQRCodeRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetQRCodeRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"url"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil

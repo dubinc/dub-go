@@ -115,7 +115,7 @@ func (d Domains) MarshalJSON() ([]byte, error) {
 }
 
 func (d *Domains) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"slug"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -224,7 +224,7 @@ func (w WorkspaceSchema) MarshalJSON() ([]byte, error) {
 }
 
 func (w *WorkspaceSchema) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &w, "", false, []string{"id", "name", "slug", "plan", "billingCycleStart", "totalLinks", "usage", "usageLimit", "linksUsage", "linksLimit", "payoutsUsage", "payoutsLimit", "payoutFee", "domainsLimit", "tagsLimit", "foldersUsage", "foldersLimit", "groupsLimit", "networkInvitesLimit", "usersLimit", "aiUsage", "aiLimit", "conversionEnabled", "dotLinkClaimed", "createdAt", "users", "domains"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
 		return err
 	}
 	return nil

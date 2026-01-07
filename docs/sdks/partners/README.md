@@ -1,5 +1,4 @@
 # Partners
-(*Partners*)
 
 ## Overview
 

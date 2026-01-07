@@ -308,7 +308,7 @@ func (l ListPartnersLink) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListPartnersLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "shortLink", "url"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -514,7 +514,7 @@ func (l ListPartnersResponseBody) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListPartnersResponseBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "name", "programId", "partnerId", "createdAt", "status"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
 		return err
 	}
 	return nil

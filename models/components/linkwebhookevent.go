@@ -87,9 +87,9 @@ const (
 )
 
 type LinkWebhookEventEvent struct {
-	One   *One   `queryParam:"inline,name=event"`
-	Two   *Two   `queryParam:"inline,name=event"`
-	Three *Three `queryParam:"inline,name=event"`
+	One   *One   `queryParam:"inline" union:"member"`
+	Two   *Two   `queryParam:"inline" union:"member"`
+	Three *Three `queryParam:"inline" union:"member"`
 
 	Type LinkWebhookEventEventType
 }

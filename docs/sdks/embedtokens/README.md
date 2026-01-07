@@ -1,5 +1,4 @@
 # EmbedTokens
-(*EmbedTokens*)
 
 ## Overview
 

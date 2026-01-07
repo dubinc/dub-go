@@ -130,8 +130,8 @@ const (
 
 // ListEventsQueryParamTagIds - The tag IDs to retrieve analytics for.
 type ListEventsQueryParamTagIds struct {
-	Str        *string  `queryParam:"inline,name=tagIds"`
-	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type ListEventsQueryParamTagIdsType
 }
@@ -335,7 +335,7 @@ type ListEventsRequest struct {
 	Os *string `queryParam:"style=form,explode=true,name=os"`
 	// The trigger to retrieve analytics for. If undefined, returns all trigger types.
 	Trigger *QueryParamTrigger `queryParam:"style=form,explode=true,name=trigger"`
-	// The referer to retrieve analytics for.
+	// The referer hostname to retrieve analytics for.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`
 	// The full referer URL to retrieve analytics for.
 	RefererURL *string `queryParam:"style=form,explode=true,name=refererUrl"`
@@ -700,9 +700,9 @@ const (
 )
 
 type ListEventsResponseBody struct {
-	ClickEvent *components.ClickEvent `queryParam:"inline,name=responseBody"`
-	LeadEvent  *components.LeadEvent  `queryParam:"inline,name=responseBody"`
-	SaleEvent  *components.SaleEvent  `queryParam:"inline,name=responseBody"`
+	ClickEvent *components.ClickEvent `queryParam:"inline" union:"member"`
+	LeadEvent  *components.LeadEvent  `queryParam:"inline" union:"member"`
+	SaleEvent  *components.SaleEvent  `queryParam:"inline" union:"member"`
 
 	Type ListEventsResponseBodyType
 }

@@ -17,8 +17,8 @@ const (
 
 // CreateReferralsEmbedTokenTagIds - The unique IDs of the tags assigned to the short link.
 type CreateReferralsEmbedTokenTagIds struct {
-	Str        *string  `queryParam:"inline,name=tagIds"`
-	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type CreateReferralsEmbedTokenTagIdsType
 }
@@ -81,8 +81,8 @@ const (
 
 // CreateReferralsEmbedTokenTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type CreateReferralsEmbedTokenTagNames struct {
-	Str        *string  `queryParam:"inline,name=tagNames"`
-	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type CreateReferralsEmbedTokenTagNamesType
 }
@@ -171,8 +171,6 @@ type CreateReferralsEmbedTokenLinkProps struct {
 	TagIds *CreateReferralsEmbedTokenTagIds `json:"tagIds,omitempty"`
 	// The unique name of the tags assigned to the short link (case insensitive).
 	TagNames *CreateReferralsEmbedTokenTagNames `json:"tagNames,omitempty"`
-	// The unique ID existing folder to assign the short link to.
-	FolderID *string `json:"folderId,omitempty"`
 	// The comments for the short link.
 	Comments *string `json:"comments,omitempty"`
 	// The date and time when the short link will expire at.
@@ -199,18 +197,6 @@ type CreateReferralsEmbedTokenLinkProps struct {
 	Android *string `json:"android,omitempty"`
 	// Allow search engines to index your short link. Defaults to `false` if not provided. Learn more: https://d.to/noindex
 	DoIndex *bool `json:"doIndex,omitempty"`
-	// The UTM source of the short link. If set, this will populate or override the UTM source in the destination URL.
-	UtmSource *string `json:"utm_source,omitempty"`
-	// The UTM medium of the short link. If set, this will populate or override the UTM medium in the destination URL.
-	UtmMedium *string `json:"utm_medium,omitempty"`
-	// The UTM campaign of the short link. If set, this will populate or override the UTM campaign in the destination URL.
-	UtmCampaign *string `json:"utm_campaign,omitempty"`
-	// The UTM term of the short link. If set, this will populate or override the UTM term in the destination URL.
-	UtmTerm *string `json:"utm_term,omitempty"`
-	// The UTM content of the short link. If set, this will populate or override the UTM content in the destination URL.
-	UtmContent *string `json:"utm_content,omitempty"`
-	// The referral tag of the short link. If set, this will populate or override the `ref` query parameter in the destination URL.
-	Ref *string `json:"ref,omitempty"`
 	// An array of A/B test URLs and the percentage of traffic to send to each URL.
 	TestVariants []CreateReferralsEmbedTokenTestVariants `json:"testVariants,omitempty"`
 	// The date and time when the tests started.
@@ -266,13 +252,6 @@ func (c *CreateReferralsEmbedTokenLinkProps) GetTagNames() *CreateReferralsEmbed
 		return nil
 	}
 	return c.TagNames
-}
-
-func (c *CreateReferralsEmbedTokenLinkProps) GetFolderID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.FolderID
 }
 
 func (c *CreateReferralsEmbedTokenLinkProps) GetComments() *string {
@@ -364,48 +343,6 @@ func (c *CreateReferralsEmbedTokenLinkProps) GetDoIndex() *bool {
 		return nil
 	}
 	return c.DoIndex
-}
-
-func (c *CreateReferralsEmbedTokenLinkProps) GetUtmSource() *string {
-	if c == nil {
-		return nil
-	}
-	return c.UtmSource
-}
-
-func (c *CreateReferralsEmbedTokenLinkProps) GetUtmMedium() *string {
-	if c == nil {
-		return nil
-	}
-	return c.UtmMedium
-}
-
-func (c *CreateReferralsEmbedTokenLinkProps) GetUtmCampaign() *string {
-	if c == nil {
-		return nil
-	}
-	return c.UtmCampaign
-}
-
-func (c *CreateReferralsEmbedTokenLinkProps) GetUtmTerm() *string {
-	if c == nil {
-		return nil
-	}
-	return c.UtmTerm
-}
-
-func (c *CreateReferralsEmbedTokenLinkProps) GetUtmContent() *string {
-	if c == nil {
-		return nil
-	}
-	return c.UtmContent
-}
-
-func (c *CreateReferralsEmbedTokenLinkProps) GetRef() *string {
-	if c == nil {
-		return nil
-	}
-	return c.Ref
 }
 
 func (c *CreateReferralsEmbedTokenLinkProps) GetTestVariants() []CreateReferralsEmbedTokenTestVariants {

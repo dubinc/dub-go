@@ -18,8 +18,8 @@ const (
 
 // CreatePartnerTagIds - The unique IDs of the tags assigned to the short link.
 type CreatePartnerTagIds struct {
-	Str        *string  `queryParam:"inline,name=tagIds"`
-	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type CreatePartnerTagIdsType
 }
@@ -82,8 +82,8 @@ const (
 
 // CreatePartnerTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type CreatePartnerTagNames struct {
-	Str        *string  `queryParam:"inline,name=tagNames"`
-	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type CreatePartnerTagNamesType
 }
@@ -172,8 +172,6 @@ type LinkProps struct {
 	TagIds *CreatePartnerTagIds `json:"tagIds,omitempty"`
 	// The unique name of the tags assigned to the short link (case insensitive).
 	TagNames *CreatePartnerTagNames `json:"tagNames,omitempty"`
-	// The unique ID existing folder to assign the short link to.
-	FolderID *string `json:"folderId,omitempty"`
 	// The comments for the short link.
 	Comments *string `json:"comments,omitempty"`
 	// The date and time when the short link will expire at.
@@ -200,18 +198,6 @@ type LinkProps struct {
 	Android *string `json:"android,omitempty"`
 	// Allow search engines to index your short link. Defaults to `false` if not provided. Learn more: https://d.to/noindex
 	DoIndex *bool `json:"doIndex,omitempty"`
-	// The UTM source of the short link. If set, this will populate or override the UTM source in the destination URL.
-	UtmSource *string `json:"utm_source,omitempty"`
-	// The UTM medium of the short link. If set, this will populate or override the UTM medium in the destination URL.
-	UtmMedium *string `json:"utm_medium,omitempty"`
-	// The UTM campaign of the short link. If set, this will populate or override the UTM campaign in the destination URL.
-	UtmCampaign *string `json:"utm_campaign,omitempty"`
-	// The UTM term of the short link. If set, this will populate or override the UTM term in the destination URL.
-	UtmTerm *string `json:"utm_term,omitempty"`
-	// The UTM content of the short link. If set, this will populate or override the UTM content in the destination URL.
-	UtmContent *string `json:"utm_content,omitempty"`
-	// The referral tag of the short link. If set, this will populate or override the `ref` query parameter in the destination URL.
-	Ref *string `json:"ref,omitempty"`
 	// An array of A/B test URLs and the percentage of traffic to send to each URL.
 	TestVariants []CreatePartnerTestVariants `json:"testVariants,omitempty"`
 	// The date and time when the tests started.
@@ -267,13 +253,6 @@ func (l *LinkProps) GetTagNames() *CreatePartnerTagNames {
 		return nil
 	}
 	return l.TagNames
-}
-
-func (l *LinkProps) GetFolderID() *string {
-	if l == nil {
-		return nil
-	}
-	return l.FolderID
 }
 
 func (l *LinkProps) GetComments() *string {
@@ -365,48 +344,6 @@ func (l *LinkProps) GetDoIndex() *bool {
 		return nil
 	}
 	return l.DoIndex
-}
-
-func (l *LinkProps) GetUtmSource() *string {
-	if l == nil {
-		return nil
-	}
-	return l.UtmSource
-}
-
-func (l *LinkProps) GetUtmMedium() *string {
-	if l == nil {
-		return nil
-	}
-	return l.UtmMedium
-}
-
-func (l *LinkProps) GetUtmCampaign() *string {
-	if l == nil {
-		return nil
-	}
-	return l.UtmCampaign
-}
-
-func (l *LinkProps) GetUtmTerm() *string {
-	if l == nil {
-		return nil
-	}
-	return l.UtmTerm
-}
-
-func (l *LinkProps) GetUtmContent() *string {
-	if l == nil {
-		return nil
-	}
-	return l.UtmContent
-}
-
-func (l *LinkProps) GetRef() *string {
-	if l == nil {
-		return nil
-	}
-	return l.Ref
 }
 
 func (l *LinkProps) GetTestVariants() []CreatePartnerTestVariants {
@@ -587,7 +524,7 @@ func (c CreatePartnerLink) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreatePartnerLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "domain", "key", "shortLink", "url"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -794,7 +731,7 @@ func (c CreatePartnerResponseBody) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreatePartnerResponseBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "name", "programId", "partnerId", "createdAt", "status"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil

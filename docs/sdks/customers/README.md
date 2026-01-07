@@ -1,5 +1,4 @@
 # Customers
-(*Customers*)
 
 ## Overview
 

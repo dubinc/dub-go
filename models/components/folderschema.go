@@ -82,7 +82,7 @@ func (f FolderSchema) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FolderSchema) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"id", "name", "type", "createdAt", "updatedAt"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
 		return err
 	}
 	return nil

@@ -8,16 +8,18 @@ import (
 )
 
 type UpdateCustomerRequestBody struct {
-	// Email of the customer in the client's app.
+	// The customer's email address.
 	Email *string `json:"email,omitempty"`
-	// Name of the customer in the client's app. If not provided, a random name will be generated.
+	// The customer's name. If not provided, the email address will be used, and if email is not provided, a random name will be generated.
 	Name *string `json:"name,omitempty"`
-	// Avatar URL of the customer in the client's app.
+	// The customer's avatar URL. If not provided, a random avatar will be generated.
 	Avatar *string `json:"avatar,omitempty"`
-	// Unique identifier for the customer in the client's app.
+	// The customer's unique identifier your database. This is useful for associating subsequent conversion events from Dub's API to your internal systems.
 	ExternalID *string `json:"externalId,omitempty"`
-	// The customer's Stripe customer ID. Useful for attribution recurring sale events to the partner who referred the customer.
+	// The customer's Stripe customer ID. This is useful for attributing recurring sale events to the partner who referred the customer.
 	StripeCustomerID *string `json:"stripeCustomerId,omitempty"`
+	// The customer's country in ISO 3166-1 alpha-2 format. Updating this field will only affect the customer's country in Dub's system (and has no effect on existing conversion events).
+	Country *string `json:"country,omitempty"`
 }
 
 func (u *UpdateCustomerRequestBody) GetEmail() *string {
@@ -53,6 +55,13 @@ func (u *UpdateCustomerRequestBody) GetStripeCustomerID() *string {
 		return nil
 	}
 	return u.StripeCustomerID
+}
+
+func (u *UpdateCustomerRequestBody) GetCountry() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Country
 }
 
 type UpdateCustomerRequest struct {
