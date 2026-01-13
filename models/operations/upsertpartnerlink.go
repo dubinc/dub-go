@@ -17,8 +17,8 @@ const (
 
 // UpsertPartnerLinkTagIds - The unique IDs of the tags assigned to the short link.
 type UpsertPartnerLinkTagIds struct {
-	Str        *string  `queryParam:"inline,name=tagIds"`
-	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type UpsertPartnerLinkTagIdsType
 }
@@ -81,8 +81,8 @@ const (
 
 // UpsertPartnerLinkTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type UpsertPartnerLinkTagNames struct {
-	Str        *string  `queryParam:"inline,name=tagNames"`
-	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type UpsertPartnerLinkTagNamesType
 }
@@ -171,8 +171,6 @@ type UpsertPartnerLinkLinkProps struct {
 	TagIds *UpsertPartnerLinkTagIds `json:"tagIds,omitempty"`
 	// The unique name of the tags assigned to the short link (case insensitive).
 	TagNames *UpsertPartnerLinkTagNames `json:"tagNames,omitempty"`
-	// The unique ID existing folder to assign the short link to.
-	FolderID *string `json:"folderId,omitempty"`
 	// The comments for the short link.
 	Comments *string `json:"comments,omitempty"`
 	// The date and time when the short link will expire at.
@@ -199,18 +197,6 @@ type UpsertPartnerLinkLinkProps struct {
 	Android *string `json:"android,omitempty"`
 	// Allow search engines to index your short link. Defaults to `false` if not provided. Learn more: https://d.to/noindex
 	DoIndex *bool `json:"doIndex,omitempty"`
-	// The UTM source of the short link. If set, this will populate or override the UTM source in the destination URL.
-	UtmSource *string `json:"utm_source,omitempty"`
-	// The UTM medium of the short link. If set, this will populate or override the UTM medium in the destination URL.
-	UtmMedium *string `json:"utm_medium,omitempty"`
-	// The UTM campaign of the short link. If set, this will populate or override the UTM campaign in the destination URL.
-	UtmCampaign *string `json:"utm_campaign,omitempty"`
-	// The UTM term of the short link. If set, this will populate or override the UTM term in the destination URL.
-	UtmTerm *string `json:"utm_term,omitempty"`
-	// The UTM content of the short link. If set, this will populate or override the UTM content in the destination URL.
-	UtmContent *string `json:"utm_content,omitempty"`
-	// The referral tag of the short link. If set, this will populate or override the `ref` query parameter in the destination URL.
-	Ref *string `json:"ref,omitempty"`
 	// An array of A/B test URLs and the percentage of traffic to send to each URL.
 	TestVariants []UpsertPartnerLinkTestVariants `json:"testVariants,omitempty"`
 	// The date and time when the tests started.
@@ -266,13 +252,6 @@ func (u *UpsertPartnerLinkLinkProps) GetTagNames() *UpsertPartnerLinkTagNames {
 		return nil
 	}
 	return u.TagNames
-}
-
-func (u *UpsertPartnerLinkLinkProps) GetFolderID() *string {
-	if u == nil {
-		return nil
-	}
-	return u.FolderID
 }
 
 func (u *UpsertPartnerLinkLinkProps) GetComments() *string {
@@ -364,48 +343,6 @@ func (u *UpsertPartnerLinkLinkProps) GetDoIndex() *bool {
 		return nil
 	}
 	return u.DoIndex
-}
-
-func (u *UpsertPartnerLinkLinkProps) GetUtmSource() *string {
-	if u == nil {
-		return nil
-	}
-	return u.UtmSource
-}
-
-func (u *UpsertPartnerLinkLinkProps) GetUtmMedium() *string {
-	if u == nil {
-		return nil
-	}
-	return u.UtmMedium
-}
-
-func (u *UpsertPartnerLinkLinkProps) GetUtmCampaign() *string {
-	if u == nil {
-		return nil
-	}
-	return u.UtmCampaign
-}
-
-func (u *UpsertPartnerLinkLinkProps) GetUtmTerm() *string {
-	if u == nil {
-		return nil
-	}
-	return u.UtmTerm
-}
-
-func (u *UpsertPartnerLinkLinkProps) GetUtmContent() *string {
-	if u == nil {
-		return nil
-	}
-	return u.UtmContent
-}
-
-func (u *UpsertPartnerLinkLinkProps) GetRef() *string {
-	if u == nil {
-		return nil
-	}
-	return u.Ref
 }
 
 func (u *UpsertPartnerLinkLinkProps) GetTestVariants() []UpsertPartnerLinkTestVariants {

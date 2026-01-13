@@ -78,76 +78,76 @@ func (e *One) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type LinkWebhookEventEventType string
+type EventType string
 
 const (
-	LinkWebhookEventEventTypeOne   LinkWebhookEventEventType = "1"
-	LinkWebhookEventEventTypeTwo   LinkWebhookEventEventType = "2"
-	LinkWebhookEventEventTypeThree LinkWebhookEventEventType = "3"
+	EventTypeOne   EventType = "1"
+	EventTypeTwo   EventType = "2"
+	EventTypeThree EventType = "3"
 )
 
-type LinkWebhookEventEvent struct {
-	One   *One   `queryParam:"inline,name=event"`
-	Two   *Two   `queryParam:"inline,name=event"`
-	Three *Three `queryParam:"inline,name=event"`
+type Event struct {
+	One   *One   `queryParam:"inline" union:"member"`
+	Two   *Two   `queryParam:"inline" union:"member"`
+	Three *Three `queryParam:"inline" union:"member"`
 
-	Type LinkWebhookEventEventType
+	Type EventType
 }
 
-func CreateLinkWebhookEventEventOne(one One) LinkWebhookEventEvent {
-	typ := LinkWebhookEventEventTypeOne
+func CreateEventOne(one One) Event {
+	typ := EventTypeOne
 
-	return LinkWebhookEventEvent{
+	return Event{
 		One:  &one,
 		Type: typ,
 	}
 }
 
-func CreateLinkWebhookEventEventTwo(two Two) LinkWebhookEventEvent {
-	typ := LinkWebhookEventEventTypeTwo
+func CreateEventTwo(two Two) Event {
+	typ := EventTypeTwo
 
-	return LinkWebhookEventEvent{
+	return Event{
 		Two:  &two,
 		Type: typ,
 	}
 }
 
-func CreateLinkWebhookEventEventThree(three Three) LinkWebhookEventEvent {
-	typ := LinkWebhookEventEventTypeThree
+func CreateEventThree(three Three) Event {
+	typ := EventTypeThree
 
-	return LinkWebhookEventEvent{
+	return Event{
 		Three: &three,
 		Type:  typ,
 	}
 }
 
-func (u *LinkWebhookEventEvent) UnmarshalJSON(data []byte) error {
+func (u *Event) UnmarshalJSON(data []byte) error {
 
 	var one One = One("")
 	if err := utils.UnmarshalJSON(data, &one, "", true, nil); err == nil {
 		u.One = &one
-		u.Type = LinkWebhookEventEventTypeOne
+		u.Type = EventTypeOne
 		return nil
 	}
 
 	var two Two = Two("")
 	if err := utils.UnmarshalJSON(data, &two, "", true, nil); err == nil {
 		u.Two = &two
-		u.Type = LinkWebhookEventEventTypeTwo
+		u.Type = EventTypeTwo
 		return nil
 	}
 
 	var three Three = Three("")
 	if err := utils.UnmarshalJSON(data, &three, "", true, nil); err == nil {
 		u.Three = &three
-		u.Type = LinkWebhookEventEventTypeThree
+		u.Type = EventTypeThree
 		return nil
 	}
 
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for LinkWebhookEventEvent", string(data))
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Event", string(data))
 }
 
-func (u LinkWebhookEventEvent) MarshalJSON() ([]byte, error) {
+func (u Event) MarshalJSON() ([]byte, error) {
 	if u.One != nil {
 		return utils.MarshalJSON(u.One, "", true)
 	}
@@ -160,7 +160,7 @@ func (u LinkWebhookEventEvent) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.Three, "", true)
 	}
 
-	return nil, errors.New("could not marshal union type LinkWebhookEventEvent: all fields are null")
+	return nil, errors.New("could not marshal union type Event: all fields are null")
 }
 
 type LinkWebhookEventTestVariants struct {
@@ -193,7 +193,7 @@ func (l *LinkWebhookEventTestVariants) GetPercentage() float64 {
 	return l.Percentage
 }
 
-type LinkWebhookEventLink struct {
+type Data struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
@@ -286,380 +286,380 @@ type LinkWebhookEventLink struct {
 	ProjectID string `json:"projectId"`
 }
 
-func (l LinkWebhookEventLink) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
+func (d Data) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
 }
 
-func (l *LinkWebhookEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
+func (d *Data) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *LinkWebhookEventLink) GetID() string {
-	if l == nil {
+func (d *Data) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return l.ID
+	return d.ID
 }
 
-func (l *LinkWebhookEventLink) GetDomain() string {
-	if l == nil {
+func (d *Data) GetDomain() string {
+	if d == nil {
 		return ""
 	}
-	return l.Domain
+	return d.Domain
 }
 
-func (l *LinkWebhookEventLink) GetKey() string {
-	if l == nil {
+func (d *Data) GetKey() string {
+	if d == nil {
 		return ""
 	}
-	return l.Key
+	return d.Key
 }
 
-func (l *LinkWebhookEventLink) GetURL() string {
-	if l == nil {
+func (d *Data) GetURL() string {
+	if d == nil {
 		return ""
 	}
-	return l.URL
+	return d.URL
 }
 
-func (l *LinkWebhookEventLink) GetTrackConversion() bool {
-	if l == nil {
+func (d *Data) GetTrackConversion() bool {
+	if d == nil {
 		return false
 	}
-	return l.TrackConversion
+	return d.TrackConversion
 }
 
-func (l *LinkWebhookEventLink) GetExternalID() *string {
-	if l == nil {
+func (d *Data) GetExternalID() *string {
+	if d == nil {
 		return nil
 	}
-	return l.ExternalID
+	return d.ExternalID
 }
 
-func (l *LinkWebhookEventLink) GetTenantID() *string {
-	if l == nil {
+func (d *Data) GetTenantID() *string {
+	if d == nil {
 		return nil
 	}
-	return l.TenantID
+	return d.TenantID
 }
 
-func (l *LinkWebhookEventLink) GetProgramID() *string {
-	if l == nil {
+func (d *Data) GetProgramID() *string {
+	if d == nil {
 		return nil
 	}
-	return l.ProgramID
+	return d.ProgramID
 }
 
-func (l *LinkWebhookEventLink) GetPartnerID() *string {
-	if l == nil {
+func (d *Data) GetPartnerID() *string {
+	if d == nil {
 		return nil
 	}
-	return l.PartnerID
+	return d.PartnerID
 }
 
-func (l *LinkWebhookEventLink) GetArchived() bool {
-	if l == nil {
+func (d *Data) GetArchived() bool {
+	if d == nil {
 		return false
 	}
-	return l.Archived
+	return d.Archived
 }
 
-func (l *LinkWebhookEventLink) GetExpiresAt() string {
-	if l == nil {
+func (d *Data) GetExpiresAt() string {
+	if d == nil {
 		return ""
 	}
-	return l.ExpiresAt
+	return d.ExpiresAt
 }
 
-func (l *LinkWebhookEventLink) GetExpiredURL() *string {
-	if l == nil {
+func (d *Data) GetExpiredURL() *string {
+	if d == nil {
 		return nil
 	}
-	return l.ExpiredURL
+	return d.ExpiredURL
 }
 
-func (l *LinkWebhookEventLink) GetDisabledAt() string {
-	if l == nil {
+func (d *Data) GetDisabledAt() string {
+	if d == nil {
 		return ""
 	}
-	return l.DisabledAt
+	return d.DisabledAt
 }
 
-func (l *LinkWebhookEventLink) GetPassword() *string {
-	if l == nil {
+func (d *Data) GetPassword() *string {
+	if d == nil {
 		return nil
 	}
-	return l.Password
+	return d.Password
 }
 
-func (l *LinkWebhookEventLink) GetProxy() bool {
-	if l == nil {
+func (d *Data) GetProxy() bool {
+	if d == nil {
 		return false
 	}
-	return l.Proxy
+	return d.Proxy
 }
 
-func (l *LinkWebhookEventLink) GetTitle() *string {
-	if l == nil {
+func (d *Data) GetTitle() *string {
+	if d == nil {
 		return nil
 	}
-	return l.Title
+	return d.Title
 }
 
-func (l *LinkWebhookEventLink) GetDescription() *string {
-	if l == nil {
+func (d *Data) GetDescription() *string {
+	if d == nil {
 		return nil
 	}
-	return l.Description
+	return d.Description
 }
 
-func (l *LinkWebhookEventLink) GetImage() *string {
-	if l == nil {
+func (d *Data) GetImage() *string {
+	if d == nil {
 		return nil
 	}
-	return l.Image
+	return d.Image
 }
 
-func (l *LinkWebhookEventLink) GetVideo() *string {
-	if l == nil {
+func (d *Data) GetVideo() *string {
+	if d == nil {
 		return nil
 	}
-	return l.Video
+	return d.Video
 }
 
-func (l *LinkWebhookEventLink) GetRewrite() bool {
-	if l == nil {
+func (d *Data) GetRewrite() bool {
+	if d == nil {
 		return false
 	}
-	return l.Rewrite
+	return d.Rewrite
 }
 
-func (l *LinkWebhookEventLink) GetDoIndex() bool {
-	if l == nil {
+func (d *Data) GetDoIndex() bool {
+	if d == nil {
 		return false
 	}
-	return l.DoIndex
+	return d.DoIndex
 }
 
-func (l *LinkWebhookEventLink) GetIos() *string {
-	if l == nil {
+func (d *Data) GetIos() *string {
+	if d == nil {
 		return nil
 	}
-	return l.Ios
+	return d.Ios
 }
 
-func (l *LinkWebhookEventLink) GetAndroid() *string {
-	if l == nil {
+func (d *Data) GetAndroid() *string {
+	if d == nil {
 		return nil
 	}
-	return l.Android
+	return d.Android
 }
 
-func (l *LinkWebhookEventLink) GetGeo() map[string]string {
-	if l == nil {
+func (d *Data) GetGeo() map[string]string {
+	if d == nil {
 		return nil
 	}
-	return l.Geo
+	return d.Geo
 }
 
-func (l *LinkWebhookEventLink) GetPublicStats() bool {
-	if l == nil {
+func (d *Data) GetPublicStats() bool {
+	if d == nil {
 		return false
 	}
-	return l.PublicStats
+	return d.PublicStats
 }
 
-func (l *LinkWebhookEventLink) GetTags() []LinkTagSchema {
-	if l == nil {
+func (d *Data) GetTags() []LinkTagSchema {
+	if d == nil {
 		return nil
 	}
-	return l.Tags
+	return d.Tags
 }
 
-func (l *LinkWebhookEventLink) GetFolderID() *string {
-	if l == nil {
+func (d *Data) GetFolderID() *string {
+	if d == nil {
 		return nil
 	}
-	return l.FolderID
+	return d.FolderID
 }
 
-func (l *LinkWebhookEventLink) GetWebhookIds() []string {
-	if l == nil {
+func (d *Data) GetWebhookIds() []string {
+	if d == nil {
 		return []string{}
 	}
-	return l.WebhookIds
+	return d.WebhookIds
 }
 
-func (l *LinkWebhookEventLink) GetComments() *string {
-	if l == nil {
+func (d *Data) GetComments() *string {
+	if d == nil {
 		return nil
 	}
-	return l.Comments
+	return d.Comments
 }
 
-func (l *LinkWebhookEventLink) GetShortLink() string {
-	if l == nil {
+func (d *Data) GetShortLink() string {
+	if d == nil {
 		return ""
 	}
-	return l.ShortLink
+	return d.ShortLink
 }
 
-func (l *LinkWebhookEventLink) GetQrCode() string {
-	if l == nil {
+func (d *Data) GetQrCode() string {
+	if d == nil {
 		return ""
 	}
-	return l.QrCode
+	return d.QrCode
 }
 
-func (l *LinkWebhookEventLink) GetUtmSource() *string {
-	if l == nil {
+func (d *Data) GetUtmSource() *string {
+	if d == nil {
 		return nil
 	}
-	return l.UtmSource
+	return d.UtmSource
 }
 
-func (l *LinkWebhookEventLink) GetUtmMedium() *string {
-	if l == nil {
+func (d *Data) GetUtmMedium() *string {
+	if d == nil {
 		return nil
 	}
-	return l.UtmMedium
+	return d.UtmMedium
 }
 
-func (l *LinkWebhookEventLink) GetUtmCampaign() *string {
-	if l == nil {
+func (d *Data) GetUtmCampaign() *string {
+	if d == nil {
 		return nil
 	}
-	return l.UtmCampaign
+	return d.UtmCampaign
 }
 
-func (l *LinkWebhookEventLink) GetUtmTerm() *string {
-	if l == nil {
+func (d *Data) GetUtmTerm() *string {
+	if d == nil {
 		return nil
 	}
-	return l.UtmTerm
+	return d.UtmTerm
 }
 
-func (l *LinkWebhookEventLink) GetUtmContent() *string {
-	if l == nil {
+func (d *Data) GetUtmContent() *string {
+	if d == nil {
 		return nil
 	}
-	return l.UtmContent
+	return d.UtmContent
 }
 
-func (l *LinkWebhookEventLink) GetTestVariants() []LinkWebhookEventTestVariants {
-	if l == nil {
+func (d *Data) GetTestVariants() []LinkWebhookEventTestVariants {
+	if d == nil {
 		return nil
 	}
-	return l.TestVariants
+	return d.TestVariants
 }
 
-func (l *LinkWebhookEventLink) GetTestStartedAt() string {
-	if l == nil {
+func (d *Data) GetTestStartedAt() string {
+	if d == nil {
 		return ""
 	}
-	return l.TestStartedAt
+	return d.TestStartedAt
 }
 
-func (l *LinkWebhookEventLink) GetTestCompletedAt() string {
-	if l == nil {
+func (d *Data) GetTestCompletedAt() string {
+	if d == nil {
 		return ""
 	}
-	return l.TestCompletedAt
+	return d.TestCompletedAt
 }
 
-func (l *LinkWebhookEventLink) GetUserID() *string {
-	if l == nil {
+func (d *Data) GetUserID() *string {
+	if d == nil {
 		return nil
 	}
-	return l.UserID
+	return d.UserID
 }
 
-func (l *LinkWebhookEventLink) GetWorkspaceID() string {
-	if l == nil {
+func (d *Data) GetWorkspaceID() string {
+	if d == nil {
 		return ""
 	}
-	return l.WorkspaceID
+	return d.WorkspaceID
 }
 
-func (l *LinkWebhookEventLink) GetClicks() *float64 {
-	if l == nil {
+func (d *Data) GetClicks() *float64 {
+	if d == nil {
 		return nil
 	}
-	return l.Clicks
+	return d.Clicks
 }
 
-func (l *LinkWebhookEventLink) GetLeads() *float64 {
-	if l == nil {
+func (d *Data) GetLeads() *float64 {
+	if d == nil {
 		return nil
 	}
-	return l.Leads
+	return d.Leads
 }
 
-func (l *LinkWebhookEventLink) GetConversions() *float64 {
-	if l == nil {
+func (d *Data) GetConversions() *float64 {
+	if d == nil {
 		return nil
 	}
-	return l.Conversions
+	return d.Conversions
 }
 
-func (l *LinkWebhookEventLink) GetSales() *float64 {
-	if l == nil {
+func (d *Data) GetSales() *float64 {
+	if d == nil {
 		return nil
 	}
-	return l.Sales
+	return d.Sales
 }
 
-func (l *LinkWebhookEventLink) GetSaleAmount() *float64 {
-	if l == nil {
+func (d *Data) GetSaleAmount() *float64 {
+	if d == nil {
 		return nil
 	}
-	return l.SaleAmount
+	return d.SaleAmount
 }
 
-func (l *LinkWebhookEventLink) GetLastClicked() string {
-	if l == nil {
+func (d *Data) GetLastClicked() string {
+	if d == nil {
 		return ""
 	}
-	return l.LastClicked
+	return d.LastClicked
 }
 
-func (l *LinkWebhookEventLink) GetCreatedAt() string {
-	if l == nil {
+func (d *Data) GetCreatedAt() string {
+	if d == nil {
 		return ""
 	}
-	return l.CreatedAt
+	return d.CreatedAt
 }
 
-func (l *LinkWebhookEventLink) GetUpdatedAt() string {
-	if l == nil {
+func (d *Data) GetUpdatedAt() string {
+	if d == nil {
 		return ""
 	}
-	return l.UpdatedAt
+	return d.UpdatedAt
 }
 
-func (l *LinkWebhookEventLink) GetTagID() *string {
-	if l == nil {
+func (d *Data) GetTagID() *string {
+	if d == nil {
 		return nil
 	}
-	return l.TagID
+	return d.TagID
 }
 
-func (l *LinkWebhookEventLink) GetProjectID() string {
-	if l == nil {
+func (d *Data) GetProjectID() string {
+	if d == nil {
 		return ""
 	}
-	return l.ProjectID
+	return d.ProjectID
 }
 
 // LinkWebhookEvent - Triggered when a link is created, updated, or deleted.
 type LinkWebhookEvent struct {
-	ID        string                `json:"id"`
-	Event     LinkWebhookEventEvent `json:"event"`
-	CreatedAt string                `json:"createdAt"`
-	Data      LinkWebhookEventLink  `json:"data"`
+	ID        string `json:"id"`
+	Event     Event  `json:"event"`
+	CreatedAt string `json:"createdAt"`
+	Data      Data   `json:"data"`
 }
 
 func (l LinkWebhookEvent) MarshalJSON() ([]byte, error) {
@@ -680,9 +680,9 @@ func (l *LinkWebhookEvent) GetID() string {
 	return l.ID
 }
 
-func (l *LinkWebhookEvent) GetEvent() LinkWebhookEventEvent {
+func (l *LinkWebhookEvent) GetEvent() Event {
 	if l == nil {
-		return LinkWebhookEventEvent{}
+		return Event{}
 	}
 	return l.Event
 }
@@ -694,9 +694,9 @@ func (l *LinkWebhookEvent) GetCreatedAt() string {
 	return l.CreatedAt
 }
 
-func (l *LinkWebhookEvent) GetData() LinkWebhookEventLink {
+func (l *LinkWebhookEvent) GetData() Data {
 	if l == nil {
-		return LinkWebhookEventLink{}
+		return Data{}
 	}
 	return l.Data
 }

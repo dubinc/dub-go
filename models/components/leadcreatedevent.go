@@ -31,7 +31,7 @@ func (e *LeadCreatedEventEvent) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type LeadCreatedEventCustomer struct {
+type Customer struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
 	// Unique identifier for the customer in the client's app.
@@ -52,78 +52,78 @@ type LeadCreatedEventCustomer struct {
 	CreatedAt string `json:"createdAt"`
 }
 
-func (l LeadCreatedEventCustomer) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
+func (c Customer) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (l *LeadCreatedEventCustomer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "externalId", "name", "createdAt"}); err != nil {
+func (c *Customer) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "externalId", "name", "createdAt"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *LeadCreatedEventCustomer) GetID() string {
-	if l == nil {
+func (c *Customer) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return l.ID
+	return c.ID
 }
 
-func (l *LeadCreatedEventCustomer) GetExternalID() string {
-	if l == nil {
+func (c *Customer) GetExternalID() string {
+	if c == nil {
 		return ""
 	}
-	return l.ExternalID
+	return c.ExternalID
 }
 
-func (l *LeadCreatedEventCustomer) GetName() string {
-	if l == nil {
+func (c *Customer) GetName() string {
+	if c == nil {
 		return ""
 	}
-	return l.Name
+	return c.Name
 }
 
-func (l *LeadCreatedEventCustomer) GetEmail() *string {
-	if l == nil {
+func (c *Customer) GetEmail() *string {
+	if c == nil {
 		return nil
 	}
-	return l.Email
+	return c.Email
 }
 
-func (l *LeadCreatedEventCustomer) GetAvatar() *string {
-	if l == nil {
+func (c *Customer) GetAvatar() *string {
+	if c == nil {
 		return nil
 	}
-	return l.Avatar
+	return c.Avatar
 }
 
-func (l *LeadCreatedEventCustomer) GetCountry() *string {
-	if l == nil {
+func (c *Customer) GetCountry() *string {
+	if c == nil {
 		return nil
 	}
-	return l.Country
+	return c.Country
 }
 
-func (l *LeadCreatedEventCustomer) GetSales() *float64 {
-	if l == nil {
+func (c *Customer) GetSales() *float64 {
+	if c == nil {
 		return nil
 	}
-	return l.Sales
+	return c.Sales
 }
 
-func (l *LeadCreatedEventCustomer) GetSaleAmount() *float64 {
-	if l == nil {
+func (c *Customer) GetSaleAmount() *float64 {
+	if c == nil {
 		return nil
 	}
-	return l.SaleAmount
+	return c.SaleAmount
 }
 
-func (l *LeadCreatedEventCustomer) GetCreatedAt() string {
-	if l == nil {
+func (c *Customer) GetCreatedAt() string {
+	if c == nil {
 		return ""
 	}
-	return l.CreatedAt
+	return c.CreatedAt
 }
 
 type LeadCreatedEventClick struct {
@@ -876,12 +876,12 @@ func (p *Partner) GetTotalCommissions() float64 {
 }
 
 type LeadCreatedEventData struct {
-	EventName string                   `json:"eventName"`
-	Customer  LeadCreatedEventCustomer `json:"customer"`
-	Click     LeadCreatedEventClick    `json:"click"`
-	Link      LeadCreatedEventLink     `json:"link"`
-	Partner   *Partner                 `json:"partner,omitempty"`
-	Metadata  map[string]any           `json:"metadata"`
+	EventName string                `json:"eventName"`
+	Customer  Customer              `json:"customer"`
+	Click     LeadCreatedEventClick `json:"click"`
+	Link      LeadCreatedEventLink  `json:"link"`
+	Partner   *Partner              `json:"partner,omitempty"`
+	Metadata  map[string]any        `json:"metadata,omitempty"`
 }
 
 func (l LeadCreatedEventData) MarshalJSON() ([]byte, error) {
@@ -902,9 +902,9 @@ func (l *LeadCreatedEventData) GetEventName() string {
 	return l.EventName
 }
 
-func (l *LeadCreatedEventData) GetCustomer() LeadCreatedEventCustomer {
+func (l *LeadCreatedEventData) GetCustomer() Customer {
 	if l == nil {
-		return LeadCreatedEventCustomer{}
+		return Customer{}
 	}
 	return l.Customer
 }

@@ -6,18 +6,18 @@
 ### ClickEvent
 
 ```go
-listEventsResponseBody := operations.CreateListEventsResponseBodyClick(components.ClickEvent{/* values here */})
+listEventsResponseBody := operations.CreateListEventsResponseBodyClickEvent(operations.ClickEvent{/* values here */})
 ```
 
 ### LeadEvent
 
 ```go
-listEventsResponseBody := operations.CreateListEventsResponseBodyLead(components.LeadEvent{/* values here */})
+listEventsResponseBody := operations.CreateListEventsResponseBodyLeadEvent(operations.LeadEvent{/* values here */})
 ```
 
 ### SaleEvent
 
 ```go
-listEventsResponseBody := operations.CreateListEventsResponseBodySale(components.SaleEvent{/* values here */})
+listEventsResponseBody := operations.CreateListEventsResponseBodySaleEvent(operations.SaleEvent{/* values here */})
 ```
 

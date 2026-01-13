@@ -1,5 +1,4 @@
 # Tags
-(*Tags*)
 
 ## Overview
 
@@ -53,7 +52,7 @@ func main() {
 
 ### Response
 
-**[*components.LinkTagSchema](../../models/components/linktagschema.md), error**
+**[*components.LinkTagSchemaOutput](../../models/components/linktagschemaoutput.md), error**
 
 ### Errors
 
@@ -116,7 +115,7 @@ func main() {
 
 ### Response
 
-**[[]components.LinkTagSchema](../../.md), error**
+**[[]components.LinkTagSchemaOutput](../../.md), error**
 
 ### Errors
 
@@ -177,7 +176,7 @@ func main() {
 
 ### Response
 
-**[*components.LinkTagSchema](../../models/components/linktagschema.md), error**
+**[*components.LinkTagSchemaOutput](../../models/components/linktagschemaoutput.md), error**
 
 ### Errors
 

@@ -17,8 +17,8 @@ const (
 
 // UpdateLinkTagIds - The unique IDs of the tags assigned to the short link.
 type UpdateLinkTagIds struct {
-	Str        *string  `queryParam:"inline,name=tagIds"`
-	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type UpdateLinkTagIdsType
 }
@@ -81,8 +81,8 @@ const (
 
 // UpdateLinkTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type UpdateLinkTagNames struct {
-	Str        *string  `queryParam:"inline,name=tagNames"`
-	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type UpdateLinkTagNamesType
 }
@@ -202,9 +202,8 @@ type UpdateLinkRequestBody struct {
 	// The iOS destination URL for the short link for iOS device targeting.
 	Ios *string `json:"ios,omitempty"`
 	// The Android destination URL for the short link for Android device targeting.
-	Android *string `json:"android,omitempty"`
-	// Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`. See https://d.to/geo for more information.
-	Geo map[string]string `json:"geo,omitempty"`
+	Android *string           `json:"android,omitempty"`
+	Geo     map[string]string `json:"geo,omitempty"`
 	// Allow search engines to index your short link. Defaults to `false` if not provided. Learn more: https://d.to/noindex
 	DoIndex *bool `json:"doIndex,omitempty"`
 	// The UTM source of the short link. If set, this will populate or override the UTM source in the destination URL.

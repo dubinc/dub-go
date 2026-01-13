@@ -1,4 +1,4 @@
-# SaleEventCustomer
+# ListEventsResponseBodyCustomer
 
 
 ## Fields

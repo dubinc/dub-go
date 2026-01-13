@@ -27,7 +27,7 @@ func (r *RetrieveLinksRequest) GetTenantID() *string {
 	return r.TenantID
 }
 
-type Link struct {
+type RetrieveLinksResponseBody struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
@@ -50,83 +50,83 @@ type Link struct {
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 
-func (l Link) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
+func (r RetrieveLinksResponseBody) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
 }
 
-func (l *Link) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "shortLink", "url"}); err != nil {
+func (r *RetrieveLinksResponseBody) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *Link) GetID() string {
-	if l == nil {
+func (r *RetrieveLinksResponseBody) GetID() string {
+	if r == nil {
 		return ""
 	}
-	return l.ID
+	return r.ID
 }
 
-func (l *Link) GetDomain() string {
-	if l == nil {
+func (r *RetrieveLinksResponseBody) GetDomain() string {
+	if r == nil {
 		return ""
 	}
-	return l.Domain
+	return r.Domain
 }
 
-func (l *Link) GetKey() string {
-	if l == nil {
+func (r *RetrieveLinksResponseBody) GetKey() string {
+	if r == nil {
 		return ""
 	}
-	return l.Key
+	return r.Key
 }
 
-func (l *Link) GetShortLink() string {
-	if l == nil {
+func (r *RetrieveLinksResponseBody) GetShortLink() string {
+	if r == nil {
 		return ""
 	}
-	return l.ShortLink
+	return r.ShortLink
 }
 
-func (l *Link) GetURL() string {
-	if l == nil {
+func (r *RetrieveLinksResponseBody) GetURL() string {
+	if r == nil {
 		return ""
 	}
-	return l.URL
+	return r.URL
 }
 
-func (l *Link) GetClicks() *float64 {
-	if l == nil {
+func (r *RetrieveLinksResponseBody) GetClicks() *float64 {
+	if r == nil {
 		return nil
 	}
-	return l.Clicks
+	return r.Clicks
 }
 
-func (l *Link) GetLeads() *float64 {
-	if l == nil {
+func (r *RetrieveLinksResponseBody) GetLeads() *float64 {
+	if r == nil {
 		return nil
 	}
-	return l.Leads
+	return r.Leads
 }
 
-func (l *Link) GetConversions() *float64 {
-	if l == nil {
+func (r *RetrieveLinksResponseBody) GetConversions() *float64 {
+	if r == nil {
 		return nil
 	}
-	return l.Conversions
+	return r.Conversions
 }
 
-func (l *Link) GetSales() *float64 {
-	if l == nil {
+func (r *RetrieveLinksResponseBody) GetSales() *float64 {
+	if r == nil {
 		return nil
 	}
-	return l.Sales
+	return r.Sales
 }
 
-func (l *Link) GetSaleAmount() *float64 {
-	if l == nil {
+func (r *RetrieveLinksResponseBody) GetSaleAmount() *float64 {
+	if r == nil {
 		return nil
 	}
-	return l.SaleAmount
+	return r.SaleAmount
 }

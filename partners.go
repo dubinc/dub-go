@@ -480,7 +480,7 @@ func (s *Partners) List(ctx context.Context, request operations.ListPartnersRequ
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1215,7 +1215,7 @@ func (s *Partners) CreateLink(ctx context.Context, request *operations.CreatePar
 
 // RetrieveLinks - Retrieve a partner's links.
 // Retrieve a partner's links by their partner ID or tenant ID.
-func (s *Partners) RetrieveLinks(ctx context.Context, request operations.RetrieveLinksRequest, opts ...operations.Option) ([]operations.Link, error) {
+func (s *Partners) RetrieveLinks(ctx context.Context, request operations.RetrieveLinksRequest, opts ...operations.Option) ([]operations.RetrieveLinksResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1267,7 +1267,7 @@ func (s *Partners) RetrieveLinks(ctx context.Context, request operations.Retriev
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1379,7 +1379,7 @@ func (s *Partners) RetrieveLinks(ctx context.Context, request operations.Retriev
 				return nil, err
 			}
 
-			var out []operations.Link
+			var out []operations.RetrieveLinksResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2054,7 +2054,7 @@ func (s *Partners) Analytics(ctx context.Context, request operations.RetrievePar
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

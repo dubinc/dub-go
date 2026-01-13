@@ -184,9 +184,9 @@ const (
 
 // RetrievePartnerAnalyticsResponseBody - Partner analytics data
 type RetrievePartnerAnalyticsResponseBody struct {
-	PartnerAnalyticsCount             *components.PartnerAnalyticsCount       `queryParam:"inline,name=responseBody"`
-	ArrayOfPartnerAnalyticsTimeseries []components.PartnerAnalyticsTimeseries `queryParam:"inline,name=responseBody"`
-	ArrayOfPartnerAnalyticsTopLinks   []components.PartnerAnalyticsTopLinks   `queryParam:"inline,name=responseBody"`
+	PartnerAnalyticsCount             *components.PartnerAnalyticsCount       `queryParam:"inline" union:"member"`
+	ArrayOfPartnerAnalyticsTimeseries []components.PartnerAnalyticsTimeseries `queryParam:"inline" union:"member"`
+	ArrayOfPartnerAnalyticsTopLinks   []components.PartnerAnalyticsTopLinks   `queryParam:"inline" union:"member"`
 
 	Type RetrievePartnerAnalyticsResponseBodyType
 }

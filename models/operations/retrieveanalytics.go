@@ -190,6 +190,48 @@ func (e *Interval) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// Continent - The continent to retrieve analytics for.
+type Continent string
+
+const (
+	ContinentAf Continent = "AF"
+	ContinentAn Continent = "AN"
+	ContinentAs Continent = "AS"
+	ContinentEu Continent = "EU"
+	ContinentNa Continent = "NA"
+	ContinentOc Continent = "OC"
+	ContinentSa Continent = "SA"
+)
+
+func (e Continent) ToPointer() *Continent {
+	return &e
+}
+func (e *Continent) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "AF":
+		fallthrough
+	case "AN":
+		fallthrough
+	case "AS":
+		fallthrough
+	case "EU":
+		fallthrough
+	case "NA":
+		fallthrough
+	case "OC":
+		fallthrough
+	case "SA":
+		*e = Continent(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Continent: %v", v)
+	}
+}
+
 // Trigger - The trigger to retrieve analytics for. If undefined, returns all trigger types.
 type Trigger string
 
@@ -232,8 +274,8 @@ const (
 
 // RetrieveAnalyticsQueryParamTagIds - The tag IDs to retrieve analytics for.
 type RetrieveAnalyticsQueryParamTagIds struct {
-	Str        *string  `queryParam:"inline,name=tagIds"`
-	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type RetrieveAnalyticsQueryParamTagIdsType
 }
@@ -350,7 +392,7 @@ type RetrieveAnalyticsRequest struct {
 	// The ISO 3166-2 region code to retrieve analytics for.
 	Region *string `queryParam:"style=form,explode=true,name=region"`
 	// The continent to retrieve analytics for.
-	Continent *components.ContinentCode `queryParam:"style=form,explode=true,name=continent"`
+	Continent *Continent `queryParam:"style=form,explode=true,name=continent"`
 	// The device to retrieve analytics for.
 	Device *string `queryParam:"style=form,explode=true,name=device"`
 	// The browser to retrieve analytics for.
@@ -359,7 +401,7 @@ type RetrieveAnalyticsRequest struct {
 	Os *string `queryParam:"style=form,explode=true,name=os"`
 	// The trigger to retrieve analytics for. If undefined, returns all trigger types.
 	Trigger *Trigger `queryParam:"style=form,explode=true,name=trigger"`
-	// The referer to retrieve analytics for.
+	// The referer hostname to retrieve analytics for.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`
 	// The full referer URL to retrieve analytics for.
 	RefererURL *string `queryParam:"style=form,explode=true,name=refererUrl"`
@@ -525,7 +567,7 @@ func (r *RetrieveAnalyticsRequest) GetRegion() *string {
 	return r.Region
 }
 
-func (r *RetrieveAnalyticsRequest) GetContinent() *components.ContinentCode {
+func (r *RetrieveAnalyticsRequest) GetContinent() *Continent {
 	if r == nil {
 		return nil
 	}
@@ -700,20 +742,20 @@ const (
 
 // RetrieveAnalyticsResponseBody - Analytics data
 type RetrieveAnalyticsResponseBody struct {
-	AnalyticsCount              *components.AnalyticsCount        `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsTimeseries  []components.AnalyticsTimeseries  `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsContinents  []components.AnalyticsContinents  `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsCountries   []components.AnalyticsCountries   `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsRegions     []components.AnalyticsRegions     `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsCities      []components.AnalyticsCities      `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsDevices     []components.AnalyticsDevices     `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsBrowsers    []components.AnalyticsBrowsers    `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsOS          []components.AnalyticsOS          `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsTriggers    []components.AnalyticsTriggers    `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsReferers    []components.AnalyticsReferers    `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsRefererUrls []components.AnalyticsRefererUrls `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsTopLinks    []components.AnalyticsTopLinks    `queryParam:"inline,name=responseBody"`
-	ArrayOfAnalyticsTopUrls     []components.AnalyticsTopUrls     `queryParam:"inline,name=responseBody"`
+	AnalyticsCount              *components.AnalyticsCount        `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsTimeseries  []components.AnalyticsTimeseries  `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsContinents  []components.AnalyticsContinents  `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsCountries   []components.AnalyticsCountries   `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsRegions     []components.AnalyticsRegions     `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsCities      []components.AnalyticsCities      `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsDevices     []components.AnalyticsDevices     `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsBrowsers    []components.AnalyticsBrowsers    `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsOS          []components.AnalyticsOS          `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsTriggers    []components.AnalyticsTriggers    `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsReferers    []components.AnalyticsReferers    `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsRefererUrls []components.AnalyticsRefererUrls `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsTopLinks    []components.AnalyticsTopLinks    `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsTopUrls     []components.AnalyticsTopUrls     `queryParam:"inline" union:"member"`
 
 	Type RetrieveAnalyticsResponseBodyType
 }

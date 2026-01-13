@@ -280,7 +280,7 @@ func (e *ListPartnersStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type ListPartnersLink struct {
+type ListPartnersLinks struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
@@ -303,81 +303,81 @@ type ListPartnersLink struct {
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 
-func (l ListPartnersLink) MarshalJSON() ([]byte, error) {
+func (l ListPartnersLinks) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(l, "", false)
 }
 
-func (l *ListPartnersLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "shortLink", "url"}); err != nil {
+func (l *ListPartnersLinks) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *ListPartnersLink) GetID() string {
+func (l *ListPartnersLinks) GetID() string {
 	if l == nil {
 		return ""
 	}
 	return l.ID
 }
 
-func (l *ListPartnersLink) GetDomain() string {
+func (l *ListPartnersLinks) GetDomain() string {
 	if l == nil {
 		return ""
 	}
 	return l.Domain
 }
 
-func (l *ListPartnersLink) GetKey() string {
+func (l *ListPartnersLinks) GetKey() string {
 	if l == nil {
 		return ""
 	}
 	return l.Key
 }
 
-func (l *ListPartnersLink) GetShortLink() string {
+func (l *ListPartnersLinks) GetShortLink() string {
 	if l == nil {
 		return ""
 	}
 	return l.ShortLink
 }
 
-func (l *ListPartnersLink) GetURL() string {
+func (l *ListPartnersLinks) GetURL() string {
 	if l == nil {
 		return ""
 	}
 	return l.URL
 }
 
-func (l *ListPartnersLink) GetClicks() *float64 {
+func (l *ListPartnersLinks) GetClicks() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.Clicks
 }
 
-func (l *ListPartnersLink) GetLeads() *float64 {
+func (l *ListPartnersLinks) GetLeads() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.Leads
 }
 
-func (l *ListPartnersLink) GetConversions() *float64 {
+func (l *ListPartnersLinks) GetConversions() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.Conversions
 }
 
-func (l *ListPartnersLink) GetSales() *float64 {
+func (l *ListPartnersLinks) GetSales() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.Sales
 }
 
-func (l *ListPartnersLink) GetSaleAmount() *float64 {
+func (l *ListPartnersLinks) GetSaleAmount() *float64 {
 	if l == nil {
 		return nil
 	}
@@ -458,7 +458,7 @@ type ListPartnersResponseBody struct {
 	// The status of the partner's enrollment in the program.
 	Status ListPartnersStatus `json:"status"`
 	// The partner's referral links in this program.
-	Links []ListPartnersLink `json:"links"`
+	Links []ListPartnersLinks `json:"links"`
 	// The total commissions paid to the partner for their referrals
 	TotalCommissions *float64 `default:"0" json:"totalCommissions"`
 	ClickRewardID    *string  `json:"clickRewardId,omitempty"`
@@ -514,7 +514,7 @@ func (l ListPartnersResponseBody) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListPartnersResponseBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "name", "programId", "partnerId", "createdAt", "status"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -639,7 +639,7 @@ func (l *ListPartnersResponseBody) GetStatus() ListPartnersStatus {
 	return l.Status
 }
 
-func (l *ListPartnersResponseBody) GetLinks() []ListPartnersLink {
+func (l *ListPartnersResponseBody) GetLinks() []ListPartnersLinks {
 	if l == nil {
 		return nil
 	}

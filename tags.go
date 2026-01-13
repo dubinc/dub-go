@@ -33,7 +33,7 @@ func newTags(rootSDK *Dub, sdkConfig config.SDKConfiguration, hooks *hooks.Hooks
 
 // Create a tag
 // Create a tag for the authenticated workspace.
-func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestBody, opts ...operations.Option) (*components.LinkTagSchema, error) {
+func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestBody, opts ...operations.Option) (*components.LinkTagSchemaOutput, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -200,7 +200,7 @@ func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestB
 				return nil, err
 			}
 
-			var out components.LinkTagSchema
+			var out components.LinkTagSchemaOutput
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -428,7 +428,7 @@ func (s *Tags) Create(ctx context.Context, request *operations.CreateTagRequestB
 
 // List - Retrieve a list of tags
 // Retrieve a list of tags for the authenticated workspace.
-func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest, opts ...operations.Option) ([]components.LinkTagSchema, error) {
+func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest, opts ...operations.Option) ([]components.LinkTagSchemaOutput, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -480,7 +480,7 @@ func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest, opts
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -592,7 +592,7 @@ func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest, opts
 				return nil, err
 			}
 
-			var out []components.LinkTagSchema
+			var out []components.LinkTagSchemaOutput
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -820,7 +820,7 @@ func (s *Tags) List(ctx context.Context, request operations.GetTagsRequest, opts
 
 // Update a tag
 // Update a tag in the workspace.
-func (s *Tags) Update(ctx context.Context, id string, requestBody *operations.UpdateTagRequestBody, opts ...operations.Option) (*components.LinkTagSchema, error) {
+func (s *Tags) Update(ctx context.Context, id string, requestBody *operations.UpdateTagRequestBody, opts ...operations.Option) (*components.LinkTagSchemaOutput, error) {
 	request := operations.UpdateTagRequest{
 		ID:          id,
 		RequestBody: requestBody,
@@ -992,7 +992,7 @@ func (s *Tags) Update(ctx context.Context, id string, requestBody *operations.Up
 				return nil, err
 			}
 
-			var out components.LinkTagSchema
+			var out components.LinkTagSchemaOutput
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

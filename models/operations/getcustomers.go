@@ -73,6 +73,10 @@ type GetCustomersRequest struct {
 	Country *string `queryParam:"style=form,explode=true,name=country"`
 	// A filter on the list based on the customer's `linkId` field (the referral link ID).
 	LinkID *string `queryParam:"style=form,explode=true,name=linkId"`
+	// Program ID to filter by.
+	ProgramID *string `queryParam:"style=form,explode=true,name=programId"`
+	// Partner ID to filter by.
+	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
 	// Whether to include expanded fields on the customer (`link`, `partner`, `discount`).
 	IncludeExpandedFields *bool `queryParam:"style=form,explode=true,name=includeExpandedFields"`
 	// The field to sort the customers by. The default is `createdAt`.
@@ -129,6 +133,20 @@ func (g *GetCustomersRequest) GetLinkID() *string {
 		return nil
 	}
 	return g.LinkID
+}
+
+func (g *GetCustomersRequest) GetProgramID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.ProgramID
+}
+
+func (g *GetCustomersRequest) GetPartnerID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.PartnerID
 }
 
 func (g *GetCustomersRequest) GetIncludeExpandedFields() *bool {

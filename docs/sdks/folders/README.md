@@ -1,5 +1,4 @@
 # Folders
-(*Folders*)
 
 ## Overview
 

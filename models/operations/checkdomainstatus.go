@@ -17,8 +17,8 @@ const (
 
 // Domains - The domains to search. We only support .link domains for now.
 type Domains struct {
-	Str        *string  `queryParam:"inline,name=domains"`
-	ArrayOfStr []string `queryParam:"inline,name=domains"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type DomainsType
 }

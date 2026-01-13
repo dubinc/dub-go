@@ -76,7 +76,7 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type PartnerEnrolledEventLink struct {
+type Links struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
@@ -99,85 +99,85 @@ type PartnerEnrolledEventLink struct {
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 
-func (p PartnerEnrolledEventLink) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(p, "", false)
+func (l Links) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
 }
 
-func (p *PartnerEnrolledEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "domain", "key", "shortLink", "url"}); err != nil {
+func (l *Links) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "shortLink", "url"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *PartnerEnrolledEventLink) GetID() string {
-	if p == nil {
+func (l *Links) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return p.ID
+	return l.ID
 }
 
-func (p *PartnerEnrolledEventLink) GetDomain() string {
-	if p == nil {
+func (l *Links) GetDomain() string {
+	if l == nil {
 		return ""
 	}
-	return p.Domain
+	return l.Domain
 }
 
-func (p *PartnerEnrolledEventLink) GetKey() string {
-	if p == nil {
+func (l *Links) GetKey() string {
+	if l == nil {
 		return ""
 	}
-	return p.Key
+	return l.Key
 }
 
-func (p *PartnerEnrolledEventLink) GetShortLink() string {
-	if p == nil {
+func (l *Links) GetShortLink() string {
+	if l == nil {
 		return ""
 	}
-	return p.ShortLink
+	return l.ShortLink
 }
 
-func (p *PartnerEnrolledEventLink) GetURL() string {
-	if p == nil {
+func (l *Links) GetURL() string {
+	if l == nil {
 		return ""
 	}
-	return p.URL
+	return l.URL
 }
 
-func (p *PartnerEnrolledEventLink) GetClicks() *float64 {
-	if p == nil {
+func (l *Links) GetClicks() *float64 {
+	if l == nil {
 		return nil
 	}
-	return p.Clicks
+	return l.Clicks
 }
 
-func (p *PartnerEnrolledEventLink) GetLeads() *float64 {
-	if p == nil {
+func (l *Links) GetLeads() *float64 {
+	if l == nil {
 		return nil
 	}
-	return p.Leads
+	return l.Leads
 }
 
-func (p *PartnerEnrolledEventLink) GetConversions() *float64 {
-	if p == nil {
+func (l *Links) GetConversions() *float64 {
+	if l == nil {
 		return nil
 	}
-	return p.Conversions
+	return l.Conversions
 }
 
-func (p *PartnerEnrolledEventLink) GetSales() *float64 {
-	if p == nil {
+func (l *Links) GetSales() *float64 {
+	if l == nil {
 		return nil
 	}
-	return p.Sales
+	return l.Sales
 }
 
-func (p *PartnerEnrolledEventLink) GetSaleAmount() *float64 {
-	if p == nil {
+func (l *Links) GetSaleAmount() *float64 {
+	if l == nil {
 		return nil
 	}
-	return p.SaleAmount
+	return l.SaleAmount
 }
 
 // BannedReason - If the partner was banned from the program, this is the reason for the ban.
@@ -254,7 +254,7 @@ type PartnerEnrolledEventData struct {
 	// The status of the partner's enrollment in the program.
 	Status Status `json:"status"`
 	// The partner's referral links in this program.
-	Links []PartnerEnrolledEventLink `json:"links"`
+	Links []Links `json:"links"`
 	// The total commissions paid to the partner for their referrals
 	TotalCommissions *float64 `default:"0" json:"totalCommissions"`
 	ClickRewardID    *string  `json:"clickRewardId,omitempty"`
@@ -435,7 +435,7 @@ func (p *PartnerEnrolledEventData) GetStatus() Status {
 	return p.Status
 }
 
-func (p *PartnerEnrolledEventData) GetLinks() []PartnerEnrolledEventLink {
+func (p *PartnerEnrolledEventData) GetLinks() []Links {
 	if p == nil {
 		return nil
 	}
