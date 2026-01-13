@@ -751,46 +751,46 @@ func (s *SaleCreatedEventLink) GetProjectID() string {
 	return s.ProjectID
 }
 
-type SaleCreatedEventSale struct {
+type Sale struct {
 	Amount           float64 `json:"amount"`
 	Currency         string  `json:"currency"`
 	PaymentProcessor string  `json:"paymentProcessor"`
 	InvoiceID        *string `json:"invoiceId"`
 }
 
-func (s SaleCreatedEventSale) MarshalJSON() ([]byte, error) {
+func (s Sale) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(s, "", false)
 }
 
-func (s *SaleCreatedEventSale) UnmarshalJSON(data []byte) error {
+func (s *Sale) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"amount", "currency", "paymentProcessor"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *SaleCreatedEventSale) GetAmount() float64 {
+func (s *Sale) GetAmount() float64 {
 	if s == nil {
 		return 0.0
 	}
 	return s.Amount
 }
 
-func (s *SaleCreatedEventSale) GetCurrency() string {
+func (s *Sale) GetCurrency() string {
 	if s == nil {
 		return ""
 	}
 	return s.Currency
 }
 
-func (s *SaleCreatedEventSale) GetPaymentProcessor() string {
+func (s *Sale) GetPaymentProcessor() string {
 	if s == nil {
 		return ""
 	}
 	return s.PaymentProcessor
 }
 
-func (s *SaleCreatedEventSale) GetInvoiceID() *string {
+func (s *Sale) GetInvoiceID() *string {
 	if s == nil {
 		return nil
 	}
@@ -926,9 +926,9 @@ type SaleCreatedEventData struct {
 	Customer  SaleCreatedEventCustomer `json:"customer"`
 	Click     SaleCreatedEventClick    `json:"click"`
 	Link      SaleCreatedEventLink     `json:"link"`
-	Sale      SaleCreatedEventSale     `json:"sale"`
+	Sale      Sale                     `json:"sale"`
 	Partner   *SaleCreatedEventPartner `json:"partner,omitempty"`
-	Metadata  map[string]any           `json:"metadata"`
+	Metadata  map[string]any           `json:"metadata,omitempty"`
 }
 
 func (s SaleCreatedEventData) MarshalJSON() ([]byte, error) {
@@ -970,9 +970,9 @@ func (s *SaleCreatedEventData) GetLink() SaleCreatedEventLink {
 	return s.Link
 }
 
-func (s *SaleCreatedEventData) GetSale() SaleCreatedEventSale {
+func (s *SaleCreatedEventData) GetSale() Sale {
 	if s == nil {
-		return SaleCreatedEventSale{}
+		return Sale{}
 	}
 	return s.Sale
 }

@@ -19,8 +19,8 @@ const (
 
 // QueryParamTagIds - The tag IDs to filter the links by.
 type QueryParamTagIds struct {
-	Str        *string  `queryParam:"inline,name=tagIds"`
-	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type QueryParamTagIdsType
 }
@@ -83,8 +83,8 @@ const (
 
 // QueryParamTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type QueryParamTagNames struct {
-	Str        *string  `queryParam:"inline,name=tagNames"`
-	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type QueryParamTagNamesType
 }

@@ -88,7 +88,7 @@ type LinkSchema struct {
 	// Whether the short link's stats are publicly accessible.
 	PublicStats *bool `default:"false" json:"publicStats"`
 	// The tags assigned to the short link.
-	Tags []LinkTagSchema `json:"tags"`
+	Tags []LinkTagSchemaOutput `json:"tags"`
 	// The unique ID of the folder assigned to the short link.
 	FolderID *string `json:"folderId"`
 	// The IDs of the webhooks that the short link is associated with.
@@ -331,7 +331,7 @@ func (l *LinkSchema) GetPublicStats() *bool {
 	return l.PublicStats
 }
 
-func (l *LinkSchema) GetTags() []LinkTagSchema {
+func (l *LinkSchema) GetTags() []LinkTagSchemaOutput {
 	if l == nil {
 		return nil
 	}

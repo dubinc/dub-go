@@ -88,6 +88,48 @@ func (e *QueryParamInterval) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// QueryParamContinent - The continent to retrieve analytics for.
+type QueryParamContinent string
+
+const (
+	QueryParamContinentAf QueryParamContinent = "AF"
+	QueryParamContinentAn QueryParamContinent = "AN"
+	QueryParamContinentAs QueryParamContinent = "AS"
+	QueryParamContinentEu QueryParamContinent = "EU"
+	QueryParamContinentNa QueryParamContinent = "NA"
+	QueryParamContinentOc QueryParamContinent = "OC"
+	QueryParamContinentSa QueryParamContinent = "SA"
+)
+
+func (e QueryParamContinent) ToPointer() *QueryParamContinent {
+	return &e
+}
+func (e *QueryParamContinent) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "AF":
+		fallthrough
+	case "AN":
+		fallthrough
+	case "AS":
+		fallthrough
+	case "EU":
+		fallthrough
+	case "NA":
+		fallthrough
+	case "OC":
+		fallthrough
+	case "SA":
+		*e = QueryParamContinent(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for QueryParamContinent: %v", v)
+	}
+}
+
 // QueryParamTrigger - The trigger to retrieve analytics for. If undefined, returns all trigger types.
 type QueryParamTrigger string
 
@@ -130,8 +172,8 @@ const (
 
 // ListEventsQueryParamTagIds - The tag IDs to retrieve analytics for.
 type ListEventsQueryParamTagIds struct {
-	Str        *string  `queryParam:"inline,name=tagIds"`
-	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type ListEventsQueryParamTagIdsType
 }
@@ -326,7 +368,7 @@ type ListEventsRequest struct {
 	// The ISO 3166-2 region code to retrieve analytics for.
 	Region *string `queryParam:"style=form,explode=true,name=region"`
 	// The continent to retrieve analytics for.
-	Continent *components.ContinentCode `queryParam:"style=form,explode=true,name=continent"`
+	Continent *QueryParamContinent `queryParam:"style=form,explode=true,name=continent"`
 	// The device to retrieve analytics for.
 	Device *string `queryParam:"style=form,explode=true,name=device"`
 	// The browser to retrieve analytics for.
@@ -335,7 +377,7 @@ type ListEventsRequest struct {
 	Os *string `queryParam:"style=form,explode=true,name=os"`
 	// The trigger to retrieve analytics for. If undefined, returns all trigger types.
 	Trigger *QueryParamTrigger `queryParam:"style=form,explode=true,name=trigger"`
-	// The referer to retrieve analytics for.
+	// The referer hostname to retrieve analytics for.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`
 	// The full referer URL to retrieve analytics for.
 	RefererURL *string `queryParam:"style=form,explode=true,name=refererUrl"`
@@ -502,7 +544,7 @@ func (l *ListEventsRequest) GetRegion() *string {
 	return l.Region
 }
 
-func (l *ListEventsRequest) GetContinent() *components.ContinentCode {
+func (l *ListEventsRequest) GetContinent() *QueryParamContinent {
 	if l == nil {
 		return nil
 	}
@@ -691,96 +733,2955 @@ func (l *ListEventsRequest) GetOrder() *Order {
 	return l.Order
 }
 
+type ListEventsResponseBodyEventsEvent string
+
+const (
+	ListEventsResponseBodyEventsEventSale ListEventsResponseBodyEventsEvent = "sale"
+)
+
+func (e ListEventsResponseBodyEventsEvent) ToPointer() *ListEventsResponseBodyEventsEvent {
+	return &e
+}
+func (e *ListEventsResponseBodyEventsEvent) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "sale":
+		*e = ListEventsResponseBodyEventsEvent(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListEventsResponseBodyEventsEvent: %v", v)
+	}
+}
+
+// ResponseBodyPaymentProcessor - The payment processor via which the sale was made.
+type ResponseBodyPaymentProcessor string
+
+const (
+	ResponseBodyPaymentProcessorStripe     ResponseBodyPaymentProcessor = "stripe"
+	ResponseBodyPaymentProcessorShopify    ResponseBodyPaymentProcessor = "shopify"
+	ResponseBodyPaymentProcessorPolar      ResponseBodyPaymentProcessor = "polar"
+	ResponseBodyPaymentProcessorPaddle     ResponseBodyPaymentProcessor = "paddle"
+	ResponseBodyPaymentProcessorRevenuecat ResponseBodyPaymentProcessor = "revenuecat"
+	ResponseBodyPaymentProcessorCustom     ResponseBodyPaymentProcessor = "custom"
+)
+
+func (e ResponseBodyPaymentProcessor) ToPointer() *ResponseBodyPaymentProcessor {
+	return &e
+}
+func (e *ResponseBodyPaymentProcessor) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "stripe":
+		fallthrough
+	case "shopify":
+		fallthrough
+	case "polar":
+		fallthrough
+	case "paddle":
+		fallthrough
+	case "revenuecat":
+		fallthrough
+	case "custom":
+		*e = ResponseBodyPaymentProcessor(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ResponseBodyPaymentProcessor: %v", v)
+	}
+}
+
+type ResponseBodySale struct {
+	// The amount of the sale in cents (for all two-decimal currencies). If the sale is in a zero-decimal currency, pass the full integer value (e.g. `1437` JPY). Learn more: https://d.to/currency
+	Amount int64 `json:"amount"`
+	// The invoice ID of the sale. Can be used as a idempotency key – only one sale event can be recorded for a given invoice ID.
+	InvoiceID *string `default:"null" json:"invoiceId"`
+	// The payment processor via which the sale was made.
+	PaymentProcessor *ResponseBodyPaymentProcessor `default:"custom" json:"paymentProcessor"`
+}
+
+func (r ResponseBodySale) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *ResponseBodySale) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"amount"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *ResponseBodySale) GetAmount() int64 {
+	if r == nil {
+		return 0
+	}
+	return r.Amount
+}
+
+func (r *ResponseBodySale) GetInvoiceID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.InvoiceID
+}
+
+func (r *ResponseBodySale) GetPaymentProcessor() *ResponseBodyPaymentProcessor {
+	if r == nil {
+		return nil
+	}
+	return r.PaymentProcessor
+}
+
+type ListEventsResponseBodyEventsTestVariants struct {
+	URL        string  `json:"url"`
+	Percentage float64 `json:"percentage"`
+}
+
+func (l ListEventsResponseBodyEventsTestVariants) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListEventsResponseBodyEventsTestVariants) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"url", "percentage"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListEventsResponseBodyEventsTestVariants) GetURL() string {
+	if l == nil {
+		return ""
+	}
+	return l.URL
+}
+
+func (l *ListEventsResponseBodyEventsTestVariants) GetPercentage() float64 {
+	if l == nil {
+		return 0.0
+	}
+	return l.Percentage
+}
+
+type ListEventsResponseBodyLink struct {
+	// The unique ID of the short link.
+	ID string `json:"id"`
+	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
+	Domain string `json:"domain"`
+	// The short link slug. If not provided, a random 7-character slug will be generated.
+	Key             string `json:"key"`
+	URL             string `json:"url"`
+	TrackConversion bool   `json:"trackConversion"`
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
+	ExternalID *string `json:"externalId"`
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	TenantID *string `json:"tenantId"`
+	// The ID of the program the short link is associated with.
+	ProgramID *string `json:"programId"`
+	// The ID of the partner the short link is associated with.
+	PartnerID  *string `json:"partnerId"`
+	Archived   bool    `json:"archived"`
+	ExpiresAt  string  `json:"expiresAt"`
+	ExpiredURL *string `json:"expiredUrl"`
+	DisabledAt string  `json:"disabledAt"`
+	// The password required to access the destination URL of the short link.
+	Password *string `json:"password"`
+	Proxy    bool    `json:"proxy"`
+	// The title of the short link. Will be used for Custom Link Previews if `proxy` is true.
+	Title *string `json:"title"`
+	// The description of the short link. Will be used for Custom Link Previews if `proxy` is true.
+	Description *string `json:"description"`
+	// The image of the short link. Will be used for Custom Link Previews if `proxy` is true.
+	Image *string `json:"image"`
+	// The custom link preview video (og:video). Will be used for Custom Link Previews if `proxy` is true. Learn more: https://d.to/og
+	Video   *string `json:"video"`
+	Rewrite bool    `json:"rewrite"`
+	DoIndex bool    `json:"doIndex"`
+	// The iOS destination URL for the short link for iOS device targeting.
+	Ios *string `json:"ios"`
+	// The Android destination URL for the short link for Android device targeting.
+	Android *string `json:"android"`
+	// Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`. See https://d.to/geo for more information.
+	Geo         map[string]string `json:"geo"`
+	PublicStats bool              `json:"publicStats"`
+	// The tags assigned to the short link.
+	Tags []components.LinkTagSchemaOutput `json:"tags"`
+	// The unique ID of the folder assigned to the short link.
+	FolderID *string `json:"folderId"`
+	// The IDs of the webhooks that the short link is associated with.
+	WebhookIds []string `json:"webhookIds"`
+	// The comments for the short link.
+	Comments *string `json:"comments"`
+	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
+	ShortLink string `json:"shortLink"`
+	// The full URL of the QR code for the short link (e.g. `https://api.dub.co/qr?url=https://dub.sh/try`).
+	QrCode string `json:"qrCode"`
+	// The UTM source of the short link.
+	UtmSource *string `json:"utm_source"`
+	// The UTM medium of the short link.
+	UtmMedium *string `json:"utm_medium"`
+	// The UTM campaign of the short link.
+	UtmCampaign *string `json:"utm_campaign"`
+	// The UTM term of the short link.
+	UtmTerm *string `json:"utm_term"`
+	// The UTM content of the short link.
+	UtmContent *string `json:"utm_content"`
+	// An array of A/B test URLs and the percentage of traffic to send to each URL.
+	TestVariants    []ListEventsResponseBodyEventsTestVariants `json:"testVariants,omitempty"`
+	TestStartedAt   string                                     `json:"testStartedAt"`
+	TestCompletedAt string                                     `json:"testCompletedAt"`
+	UserID          *string                                    `json:"userId"`
+	// The workspace ID of the short link.
+	WorkspaceID string `json:"workspaceId"`
+	// The number of clicks on the short link.
+	Clicks *float64 `default:"0" json:"clicks"`
+	// The number of leads the short link has generated.
+	Leads *float64 `default:"0" json:"leads"`
+	// The number of leads that converted to paying customers.
+	Conversions *float64 `default:"0" json:"conversions"`
+	// The total number of sales (includes recurring sales) generated by the short link.
+	Sales *float64 `default:"0" json:"sales"`
+	// The total dollar value of sales (in cents) generated by the short link.
+	SaleAmount  *float64 `default:"0" json:"saleAmount"`
+	LastClicked string   `json:"lastClicked"`
+	CreatedAt   string   `json:"createdAt"`
+	UpdatedAt   string   `json:"updatedAt"`
+	// Deprecated: Use `tags` instead. The unique ID of the tag assigned to the short link.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	TagID *string `json:"tagId"`
+	// Deprecated: Use `workspaceId` instead. The project ID of the short link.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	ProjectID string `json:"projectId"`
+}
+
+func (l ListEventsResponseBodyLink) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListEventsResponseBodyLink) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListEventsResponseBodyLink) GetID() string {
+	if l == nil {
+		return ""
+	}
+	return l.ID
+}
+
+func (l *ListEventsResponseBodyLink) GetDomain() string {
+	if l == nil {
+		return ""
+	}
+	return l.Domain
+}
+
+func (l *ListEventsResponseBodyLink) GetKey() string {
+	if l == nil {
+		return ""
+	}
+	return l.Key
+}
+
+func (l *ListEventsResponseBodyLink) GetURL() string {
+	if l == nil {
+		return ""
+	}
+	return l.URL
+}
+
+func (l *ListEventsResponseBodyLink) GetTrackConversion() bool {
+	if l == nil {
+		return false
+	}
+	return l.TrackConversion
+}
+
+func (l *ListEventsResponseBodyLink) GetExternalID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.ExternalID
+}
+
+func (l *ListEventsResponseBodyLink) GetTenantID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.TenantID
+}
+
+func (l *ListEventsResponseBodyLink) GetProgramID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.ProgramID
+}
+
+func (l *ListEventsResponseBodyLink) GetPartnerID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.PartnerID
+}
+
+func (l *ListEventsResponseBodyLink) GetArchived() bool {
+	if l == nil {
+		return false
+	}
+	return l.Archived
+}
+
+func (l *ListEventsResponseBodyLink) GetExpiresAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.ExpiresAt
+}
+
+func (l *ListEventsResponseBodyLink) GetExpiredURL() *string {
+	if l == nil {
+		return nil
+	}
+	return l.ExpiredURL
+}
+
+func (l *ListEventsResponseBodyLink) GetDisabledAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.DisabledAt
+}
+
+func (l *ListEventsResponseBodyLink) GetPassword() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Password
+}
+
+func (l *ListEventsResponseBodyLink) GetProxy() bool {
+	if l == nil {
+		return false
+	}
+	return l.Proxy
+}
+
+func (l *ListEventsResponseBodyLink) GetTitle() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Title
+}
+
+func (l *ListEventsResponseBodyLink) GetDescription() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Description
+}
+
+func (l *ListEventsResponseBodyLink) GetImage() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Image
+}
+
+func (l *ListEventsResponseBodyLink) GetVideo() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Video
+}
+
+func (l *ListEventsResponseBodyLink) GetRewrite() bool {
+	if l == nil {
+		return false
+	}
+	return l.Rewrite
+}
+
+func (l *ListEventsResponseBodyLink) GetDoIndex() bool {
+	if l == nil {
+		return false
+	}
+	return l.DoIndex
+}
+
+func (l *ListEventsResponseBodyLink) GetIos() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Ios
+}
+
+func (l *ListEventsResponseBodyLink) GetAndroid() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Android
+}
+
+func (l *ListEventsResponseBodyLink) GetGeo() map[string]string {
+	if l == nil {
+		return nil
+	}
+	return l.Geo
+}
+
+func (l *ListEventsResponseBodyLink) GetPublicStats() bool {
+	if l == nil {
+		return false
+	}
+	return l.PublicStats
+}
+
+func (l *ListEventsResponseBodyLink) GetTags() []components.LinkTagSchemaOutput {
+	if l == nil {
+		return nil
+	}
+	return l.Tags
+}
+
+func (l *ListEventsResponseBodyLink) GetFolderID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.FolderID
+}
+
+func (l *ListEventsResponseBodyLink) GetWebhookIds() []string {
+	if l == nil {
+		return []string{}
+	}
+	return l.WebhookIds
+}
+
+func (l *ListEventsResponseBodyLink) GetComments() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Comments
+}
+
+func (l *ListEventsResponseBodyLink) GetShortLink() string {
+	if l == nil {
+		return ""
+	}
+	return l.ShortLink
+}
+
+func (l *ListEventsResponseBodyLink) GetQrCode() string {
+	if l == nil {
+		return ""
+	}
+	return l.QrCode
+}
+
+func (l *ListEventsResponseBodyLink) GetUtmSource() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UtmSource
+}
+
+func (l *ListEventsResponseBodyLink) GetUtmMedium() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UtmMedium
+}
+
+func (l *ListEventsResponseBodyLink) GetUtmCampaign() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UtmCampaign
+}
+
+func (l *ListEventsResponseBodyLink) GetUtmTerm() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UtmTerm
+}
+
+func (l *ListEventsResponseBodyLink) GetUtmContent() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UtmContent
+}
+
+func (l *ListEventsResponseBodyLink) GetTestVariants() []ListEventsResponseBodyEventsTestVariants {
+	if l == nil {
+		return nil
+	}
+	return l.TestVariants
+}
+
+func (l *ListEventsResponseBodyLink) GetTestStartedAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.TestStartedAt
+}
+
+func (l *ListEventsResponseBodyLink) GetTestCompletedAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.TestCompletedAt
+}
+
+func (l *ListEventsResponseBodyLink) GetUserID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UserID
+}
+
+func (l *ListEventsResponseBodyLink) GetWorkspaceID() string {
+	if l == nil {
+		return ""
+	}
+	return l.WorkspaceID
+}
+
+func (l *ListEventsResponseBodyLink) GetClicks() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.Clicks
+}
+
+func (l *ListEventsResponseBodyLink) GetLeads() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.Leads
+}
+
+func (l *ListEventsResponseBodyLink) GetConversions() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.Conversions
+}
+
+func (l *ListEventsResponseBodyLink) GetSales() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.Sales
+}
+
+func (l *ListEventsResponseBodyLink) GetSaleAmount() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.SaleAmount
+}
+
+func (l *ListEventsResponseBodyLink) GetLastClicked() string {
+	if l == nil {
+		return ""
+	}
+	return l.LastClicked
+}
+
+func (l *ListEventsResponseBodyLink) GetCreatedAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.CreatedAt
+}
+
+func (l *ListEventsResponseBodyLink) GetUpdatedAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.UpdatedAt
+}
+
+func (l *ListEventsResponseBodyLink) GetTagID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.TagID
+}
+
+func (l *ListEventsResponseBodyLink) GetProjectID() string {
+	if l == nil {
+		return ""
+	}
+	return l.ProjectID
+}
+
+type ListEventsResponseBodyClick struct {
+	ID         string  `json:"id"`
+	Timestamp  string  `json:"timestamp"`
+	URL        string  `json:"url"`
+	Country    string  `json:"country"`
+	City       string  `json:"city"`
+	Region     string  `json:"region"`
+	Continent  string  `json:"continent"`
+	Device     string  `json:"device"`
+	Browser    string  `json:"browser"`
+	Os         string  `json:"os"`
+	Trigger    *string `json:"trigger,omitempty"`
+	Referer    string  `json:"referer"`
+	RefererURL string  `json:"refererUrl"`
+	Qr         bool    `json:"qr"`
+	IP         string  `json:"ip"`
+}
+
+func (l ListEventsResponseBodyClick) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListEventsResponseBodyClick) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "timestamp", "url", "country", "city", "region", "continent", "device", "browser", "os", "referer", "refererUrl", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListEventsResponseBodyClick) GetID() string {
+	if l == nil {
+		return ""
+	}
+	return l.ID
+}
+
+func (l *ListEventsResponseBodyClick) GetTimestamp() string {
+	if l == nil {
+		return ""
+	}
+	return l.Timestamp
+}
+
+func (l *ListEventsResponseBodyClick) GetURL() string {
+	if l == nil {
+		return ""
+	}
+	return l.URL
+}
+
+func (l *ListEventsResponseBodyClick) GetCountry() string {
+	if l == nil {
+		return ""
+	}
+	return l.Country
+}
+
+func (l *ListEventsResponseBodyClick) GetCity() string {
+	if l == nil {
+		return ""
+	}
+	return l.City
+}
+
+func (l *ListEventsResponseBodyClick) GetRegion() string {
+	if l == nil {
+		return ""
+	}
+	return l.Region
+}
+
+func (l *ListEventsResponseBodyClick) GetContinent() string {
+	if l == nil {
+		return ""
+	}
+	return l.Continent
+}
+
+func (l *ListEventsResponseBodyClick) GetDevice() string {
+	if l == nil {
+		return ""
+	}
+	return l.Device
+}
+
+func (l *ListEventsResponseBodyClick) GetBrowser() string {
+	if l == nil {
+		return ""
+	}
+	return l.Browser
+}
+
+func (l *ListEventsResponseBodyClick) GetOs() string {
+	if l == nil {
+		return ""
+	}
+	return l.Os
+}
+
+func (l *ListEventsResponseBodyClick) GetTrigger() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Trigger
+}
+
+func (l *ListEventsResponseBodyClick) GetReferer() string {
+	if l == nil {
+		return ""
+	}
+	return l.Referer
+}
+
+func (l *ListEventsResponseBodyClick) GetRefererURL() string {
+	if l == nil {
+		return ""
+	}
+	return l.RefererURL
+}
+
+func (l *ListEventsResponseBodyClick) GetQr() bool {
+	if l == nil {
+		return false
+	}
+	return l.Qr
+}
+
+func (l *ListEventsResponseBodyClick) GetIP() string {
+	if l == nil {
+		return ""
+	}
+	return l.IP
+}
+
+type ResponseBodyCustomer struct {
+	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
+	ID string `json:"id"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// Name of the customer.
+	Name string `json:"name"`
+	// Email of the customer.
+	Email *string `json:"email,omitempty"`
+	// Avatar URL of the customer.
+	Avatar *string `json:"avatar,omitempty"`
+	// Country of the customer.
+	Country *string `json:"country,omitempty"`
+	// Total number of sales for the customer.
+	Sales *float64 `json:"sales,omitempty"`
+	// Total amount of sales for the customer.
+	SaleAmount *float64 `json:"saleAmount,omitempty"`
+	// The date the customer was created.
+	CreatedAt string `json:"createdAt"`
+}
+
+func (r ResponseBodyCustomer) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *ResponseBodyCustomer) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"id", "externalId", "name", "createdAt"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *ResponseBodyCustomer) GetID() string {
+	if r == nil {
+		return ""
+	}
+	return r.ID
+}
+
+func (r *ResponseBodyCustomer) GetExternalID() string {
+	if r == nil {
+		return ""
+	}
+	return r.ExternalID
+}
+
+func (r *ResponseBodyCustomer) GetName() string {
+	if r == nil {
+		return ""
+	}
+	return r.Name
+}
+
+func (r *ResponseBodyCustomer) GetEmail() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Email
+}
+
+func (r *ResponseBodyCustomer) GetAvatar() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Avatar
+}
+
+func (r *ResponseBodyCustomer) GetCountry() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Country
+}
+
+func (r *ResponseBodyCustomer) GetSales() *float64 {
+	if r == nil {
+		return nil
+	}
+	return r.Sales
+}
+
+func (r *ResponseBodyCustomer) GetSaleAmount() *float64 {
+	if r == nil {
+		return nil
+	}
+	return r.SaleAmount
+}
+
+func (r *ResponseBodyCustomer) GetCreatedAt() string {
+	if r == nil {
+		return ""
+	}
+	return r.CreatedAt
+}
+
+type SaleEvent struct {
+	Event     ListEventsResponseBodyEventsEvent `json:"event"`
+	Timestamp string                            `json:"timestamp"`
+	EventID   string                            `json:"eventId"`
+	EventName string                            `json:"eventName"`
+	Sale      ResponseBodySale                  `json:"sale"`
+	Metadata  any                               `json:"metadata,omitempty"`
+	Link      ListEventsResponseBodyLink        `json:"link"`
+	Click     ListEventsResponseBodyClick       `json:"click"`
+	Customer  ResponseBodyCustomer              `json:"customer"`
+	// Deprecated: Use `sale.amount` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	SaleAmount float64 `json:"saleAmount"`
+	// Deprecated: Use `sale.invoiceId` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	InvoiceID string `json:"invoice_id"`
+	// Deprecated: Use `sale.paymentProcessor` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	PaymentProcessor string `json:"payment_processor"`
+	// Deprecated: Use `click.id` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	ClickID string `json:"click_id"`
+	// Deprecated: Use `link.id` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	LinkID string `json:"link_id"`
+	// Deprecated: Use `link.domain` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Domain string `json:"domain"`
+	// Deprecated: Use `link.key` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Key string `json:"key"`
+	// Deprecated: Use `click.url` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	URL string `json:"url"`
+	// Deprecated: Use `click.continent` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Continent string `json:"continent"`
+	// Deprecated: Use `click.country` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Country string `json:"country"`
+	// Deprecated: Use `click.city` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	City string `json:"city"`
+	// Deprecated: Use `click.device` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Device string `json:"device"`
+	// Deprecated: Use `click.browser` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Browser string `json:"browser"`
+	// Deprecated: Use `click.os` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Os string `json:"os"`
+	// Deprecated: Use `click.qr` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Qr float64 `json:"qr"`
+	// Deprecated: Use `click.ip` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	IP string `json:"ip"`
+}
+
+func (s SaleEvent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SaleEvent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"event", "timestamp", "eventId", "eventName", "sale", "link", "click", "customer", "saleAmount", "invoice_id", "payment_processor", "click_id", "link_id", "domain", "key", "url", "continent", "country", "city", "device", "browser", "os", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SaleEvent) GetEvent() ListEventsResponseBodyEventsEvent {
+	if s == nil {
+		return ListEventsResponseBodyEventsEvent("")
+	}
+	return s.Event
+}
+
+func (s *SaleEvent) GetTimestamp() string {
+	if s == nil {
+		return ""
+	}
+	return s.Timestamp
+}
+
+func (s *SaleEvent) GetEventID() string {
+	if s == nil {
+		return ""
+	}
+	return s.EventID
+}
+
+func (s *SaleEvent) GetEventName() string {
+	if s == nil {
+		return ""
+	}
+	return s.EventName
+}
+
+func (s *SaleEvent) GetSale() ResponseBodySale {
+	if s == nil {
+		return ResponseBodySale{}
+	}
+	return s.Sale
+}
+
+func (s *SaleEvent) GetMetadata() any {
+	if s == nil {
+		return nil
+	}
+	return s.Metadata
+}
+
+func (s *SaleEvent) GetLink() ListEventsResponseBodyLink {
+	if s == nil {
+		return ListEventsResponseBodyLink{}
+	}
+	return s.Link
+}
+
+func (s *SaleEvent) GetClick() ListEventsResponseBodyClick {
+	if s == nil {
+		return ListEventsResponseBodyClick{}
+	}
+	return s.Click
+}
+
+func (s *SaleEvent) GetCustomer() ResponseBodyCustomer {
+	if s == nil {
+		return ResponseBodyCustomer{}
+	}
+	return s.Customer
+}
+
+func (s *SaleEvent) GetSaleAmount() float64 {
+	if s == nil {
+		return 0.0
+	}
+	return s.SaleAmount
+}
+
+func (s *SaleEvent) GetInvoiceID() string {
+	if s == nil {
+		return ""
+	}
+	return s.InvoiceID
+}
+
+func (s *SaleEvent) GetPaymentProcessor() string {
+	if s == nil {
+		return ""
+	}
+	return s.PaymentProcessor
+}
+
+func (s *SaleEvent) GetClickID() string {
+	if s == nil {
+		return ""
+	}
+	return s.ClickID
+}
+
+func (s *SaleEvent) GetLinkID() string {
+	if s == nil {
+		return ""
+	}
+	return s.LinkID
+}
+
+func (s *SaleEvent) GetDomain() string {
+	if s == nil {
+		return ""
+	}
+	return s.Domain
+}
+
+func (s *SaleEvent) GetKey() string {
+	if s == nil {
+		return ""
+	}
+	return s.Key
+}
+
+func (s *SaleEvent) GetURL() string {
+	if s == nil {
+		return ""
+	}
+	return s.URL
+}
+
+func (s *SaleEvent) GetContinent() string {
+	if s == nil {
+		return ""
+	}
+	return s.Continent
+}
+
+func (s *SaleEvent) GetCountry() string {
+	if s == nil {
+		return ""
+	}
+	return s.Country
+}
+
+func (s *SaleEvent) GetCity() string {
+	if s == nil {
+		return ""
+	}
+	return s.City
+}
+
+func (s *SaleEvent) GetDevice() string {
+	if s == nil {
+		return ""
+	}
+	return s.Device
+}
+
+func (s *SaleEvent) GetBrowser() string {
+	if s == nil {
+		return ""
+	}
+	return s.Browser
+}
+
+func (s *SaleEvent) GetOs() string {
+	if s == nil {
+		return ""
+	}
+	return s.Os
+}
+
+func (s *SaleEvent) GetQr() float64 {
+	if s == nil {
+		return 0.0
+	}
+	return s.Qr
+}
+
+func (s *SaleEvent) GetIP() string {
+	if s == nil {
+		return ""
+	}
+	return s.IP
+}
+
+type ListEventsResponseBodyEvent string
+
+const (
+	ListEventsResponseBodyEventLead ListEventsResponseBodyEvent = "lead"
+)
+
+func (e ListEventsResponseBodyEvent) ToPointer() *ListEventsResponseBodyEvent {
+	return &e
+}
+func (e *ListEventsResponseBodyEvent) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "lead":
+		*e = ListEventsResponseBodyEvent(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListEventsResponseBodyEvent: %v", v)
+	}
+}
+
+type ResponseBodyClick struct {
+	ID         string  `json:"id"`
+	Timestamp  string  `json:"timestamp"`
+	URL        string  `json:"url"`
+	Country    string  `json:"country"`
+	City       string  `json:"city"`
+	Region     string  `json:"region"`
+	Continent  string  `json:"continent"`
+	Device     string  `json:"device"`
+	Browser    string  `json:"browser"`
+	Os         string  `json:"os"`
+	Trigger    *string `json:"trigger,omitempty"`
+	Referer    string  `json:"referer"`
+	RefererURL string  `json:"refererUrl"`
+	Qr         bool    `json:"qr"`
+	IP         string  `json:"ip"`
+}
+
+func (r ResponseBodyClick) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *ResponseBodyClick) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"id", "timestamp", "url", "country", "city", "region", "continent", "device", "browser", "os", "referer", "refererUrl", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *ResponseBodyClick) GetID() string {
+	if r == nil {
+		return ""
+	}
+	return r.ID
+}
+
+func (r *ResponseBodyClick) GetTimestamp() string {
+	if r == nil {
+		return ""
+	}
+	return r.Timestamp
+}
+
+func (r *ResponseBodyClick) GetURL() string {
+	if r == nil {
+		return ""
+	}
+	return r.URL
+}
+
+func (r *ResponseBodyClick) GetCountry() string {
+	if r == nil {
+		return ""
+	}
+	return r.Country
+}
+
+func (r *ResponseBodyClick) GetCity() string {
+	if r == nil {
+		return ""
+	}
+	return r.City
+}
+
+func (r *ResponseBodyClick) GetRegion() string {
+	if r == nil {
+		return ""
+	}
+	return r.Region
+}
+
+func (r *ResponseBodyClick) GetContinent() string {
+	if r == nil {
+		return ""
+	}
+	return r.Continent
+}
+
+func (r *ResponseBodyClick) GetDevice() string {
+	if r == nil {
+		return ""
+	}
+	return r.Device
+}
+
+func (r *ResponseBodyClick) GetBrowser() string {
+	if r == nil {
+		return ""
+	}
+	return r.Browser
+}
+
+func (r *ResponseBodyClick) GetOs() string {
+	if r == nil {
+		return ""
+	}
+	return r.Os
+}
+
+func (r *ResponseBodyClick) GetTrigger() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Trigger
+}
+
+func (r *ResponseBodyClick) GetReferer() string {
+	if r == nil {
+		return ""
+	}
+	return r.Referer
+}
+
+func (r *ResponseBodyClick) GetRefererURL() string {
+	if r == nil {
+		return ""
+	}
+	return r.RefererURL
+}
+
+func (r *ResponseBodyClick) GetQr() bool {
+	if r == nil {
+		return false
+	}
+	return r.Qr
+}
+
+func (r *ResponseBodyClick) GetIP() string {
+	if r == nil {
+		return ""
+	}
+	return r.IP
+}
+
+type ListEventsResponseBodyTestVariants struct {
+	URL        string  `json:"url"`
+	Percentage float64 `json:"percentage"`
+}
+
+func (l ListEventsResponseBodyTestVariants) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListEventsResponseBodyTestVariants) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"url", "percentage"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListEventsResponseBodyTestVariants) GetURL() string {
+	if l == nil {
+		return ""
+	}
+	return l.URL
+}
+
+func (l *ListEventsResponseBodyTestVariants) GetPercentage() float64 {
+	if l == nil {
+		return 0.0
+	}
+	return l.Percentage
+}
+
+type ResponseBodyLink struct {
+	// The unique ID of the short link.
+	ID string `json:"id"`
+	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
+	Domain string `json:"domain"`
+	// The short link slug. If not provided, a random 7-character slug will be generated.
+	Key             string `json:"key"`
+	URL             string `json:"url"`
+	TrackConversion bool   `json:"trackConversion"`
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
+	ExternalID *string `json:"externalId"`
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	TenantID *string `json:"tenantId"`
+	// The ID of the program the short link is associated with.
+	ProgramID *string `json:"programId"`
+	// The ID of the partner the short link is associated with.
+	PartnerID  *string `json:"partnerId"`
+	Archived   bool    `json:"archived"`
+	ExpiresAt  string  `json:"expiresAt"`
+	ExpiredURL *string `json:"expiredUrl"`
+	DisabledAt string  `json:"disabledAt"`
+	// The password required to access the destination URL of the short link.
+	Password *string `json:"password"`
+	Proxy    bool    `json:"proxy"`
+	// The title of the short link. Will be used for Custom Link Previews if `proxy` is true.
+	Title *string `json:"title"`
+	// The description of the short link. Will be used for Custom Link Previews if `proxy` is true.
+	Description *string `json:"description"`
+	// The image of the short link. Will be used for Custom Link Previews if `proxy` is true.
+	Image *string `json:"image"`
+	// The custom link preview video (og:video). Will be used for Custom Link Previews if `proxy` is true. Learn more: https://d.to/og
+	Video   *string `json:"video"`
+	Rewrite bool    `json:"rewrite"`
+	DoIndex bool    `json:"doIndex"`
+	// The iOS destination URL for the short link for iOS device targeting.
+	Ios *string `json:"ios"`
+	// The Android destination URL for the short link for Android device targeting.
+	Android *string `json:"android"`
+	// Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`. See https://d.to/geo for more information.
+	Geo         map[string]string `json:"geo"`
+	PublicStats bool              `json:"publicStats"`
+	// The tags assigned to the short link.
+	Tags []components.LinkTagSchemaOutput `json:"tags"`
+	// The unique ID of the folder assigned to the short link.
+	FolderID *string `json:"folderId"`
+	// The IDs of the webhooks that the short link is associated with.
+	WebhookIds []string `json:"webhookIds"`
+	// The comments for the short link.
+	Comments *string `json:"comments"`
+	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
+	ShortLink string `json:"shortLink"`
+	// The full URL of the QR code for the short link (e.g. `https://api.dub.co/qr?url=https://dub.sh/try`).
+	QrCode string `json:"qrCode"`
+	// The UTM source of the short link.
+	UtmSource *string `json:"utm_source"`
+	// The UTM medium of the short link.
+	UtmMedium *string `json:"utm_medium"`
+	// The UTM campaign of the short link.
+	UtmCampaign *string `json:"utm_campaign"`
+	// The UTM term of the short link.
+	UtmTerm *string `json:"utm_term"`
+	// The UTM content of the short link.
+	UtmContent *string `json:"utm_content"`
+	// An array of A/B test URLs and the percentage of traffic to send to each URL.
+	TestVariants    []ListEventsResponseBodyTestVariants `json:"testVariants,omitempty"`
+	TestStartedAt   string                               `json:"testStartedAt"`
+	TestCompletedAt string                               `json:"testCompletedAt"`
+	UserID          *string                              `json:"userId"`
+	// The workspace ID of the short link.
+	WorkspaceID string `json:"workspaceId"`
+	// The number of clicks on the short link.
+	Clicks *float64 `default:"0" json:"clicks"`
+	// The number of leads the short link has generated.
+	Leads *float64 `default:"0" json:"leads"`
+	// The number of leads that converted to paying customers.
+	Conversions *float64 `default:"0" json:"conversions"`
+	// The total number of sales (includes recurring sales) generated by the short link.
+	Sales *float64 `default:"0" json:"sales"`
+	// The total dollar value of sales (in cents) generated by the short link.
+	SaleAmount  *float64 `default:"0" json:"saleAmount"`
+	LastClicked string   `json:"lastClicked"`
+	CreatedAt   string   `json:"createdAt"`
+	UpdatedAt   string   `json:"updatedAt"`
+	// Deprecated: Use `tags` instead. The unique ID of the tag assigned to the short link.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	TagID *string `json:"tagId"`
+	// Deprecated: Use `workspaceId` instead. The project ID of the short link.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	ProjectID string `json:"projectId"`
+}
+
+func (r ResponseBodyLink) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *ResponseBodyLink) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *ResponseBodyLink) GetID() string {
+	if r == nil {
+		return ""
+	}
+	return r.ID
+}
+
+func (r *ResponseBodyLink) GetDomain() string {
+	if r == nil {
+		return ""
+	}
+	return r.Domain
+}
+
+func (r *ResponseBodyLink) GetKey() string {
+	if r == nil {
+		return ""
+	}
+	return r.Key
+}
+
+func (r *ResponseBodyLink) GetURL() string {
+	if r == nil {
+		return ""
+	}
+	return r.URL
+}
+
+func (r *ResponseBodyLink) GetTrackConversion() bool {
+	if r == nil {
+		return false
+	}
+	return r.TrackConversion
+}
+
+func (r *ResponseBodyLink) GetExternalID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.ExternalID
+}
+
+func (r *ResponseBodyLink) GetTenantID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.TenantID
+}
+
+func (r *ResponseBodyLink) GetProgramID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.ProgramID
+}
+
+func (r *ResponseBodyLink) GetPartnerID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.PartnerID
+}
+
+func (r *ResponseBodyLink) GetArchived() bool {
+	if r == nil {
+		return false
+	}
+	return r.Archived
+}
+
+func (r *ResponseBodyLink) GetExpiresAt() string {
+	if r == nil {
+		return ""
+	}
+	return r.ExpiresAt
+}
+
+func (r *ResponseBodyLink) GetExpiredURL() *string {
+	if r == nil {
+		return nil
+	}
+	return r.ExpiredURL
+}
+
+func (r *ResponseBodyLink) GetDisabledAt() string {
+	if r == nil {
+		return ""
+	}
+	return r.DisabledAt
+}
+
+func (r *ResponseBodyLink) GetPassword() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Password
+}
+
+func (r *ResponseBodyLink) GetProxy() bool {
+	if r == nil {
+		return false
+	}
+	return r.Proxy
+}
+
+func (r *ResponseBodyLink) GetTitle() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Title
+}
+
+func (r *ResponseBodyLink) GetDescription() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Description
+}
+
+func (r *ResponseBodyLink) GetImage() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Image
+}
+
+func (r *ResponseBodyLink) GetVideo() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Video
+}
+
+func (r *ResponseBodyLink) GetRewrite() bool {
+	if r == nil {
+		return false
+	}
+	return r.Rewrite
+}
+
+func (r *ResponseBodyLink) GetDoIndex() bool {
+	if r == nil {
+		return false
+	}
+	return r.DoIndex
+}
+
+func (r *ResponseBodyLink) GetIos() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Ios
+}
+
+func (r *ResponseBodyLink) GetAndroid() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Android
+}
+
+func (r *ResponseBodyLink) GetGeo() map[string]string {
+	if r == nil {
+		return nil
+	}
+	return r.Geo
+}
+
+func (r *ResponseBodyLink) GetPublicStats() bool {
+	if r == nil {
+		return false
+	}
+	return r.PublicStats
+}
+
+func (r *ResponseBodyLink) GetTags() []components.LinkTagSchemaOutput {
+	if r == nil {
+		return nil
+	}
+	return r.Tags
+}
+
+func (r *ResponseBodyLink) GetFolderID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.FolderID
+}
+
+func (r *ResponseBodyLink) GetWebhookIds() []string {
+	if r == nil {
+		return []string{}
+	}
+	return r.WebhookIds
+}
+
+func (r *ResponseBodyLink) GetComments() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Comments
+}
+
+func (r *ResponseBodyLink) GetShortLink() string {
+	if r == nil {
+		return ""
+	}
+	return r.ShortLink
+}
+
+func (r *ResponseBodyLink) GetQrCode() string {
+	if r == nil {
+		return ""
+	}
+	return r.QrCode
+}
+
+func (r *ResponseBodyLink) GetUtmSource() *string {
+	if r == nil {
+		return nil
+	}
+	return r.UtmSource
+}
+
+func (r *ResponseBodyLink) GetUtmMedium() *string {
+	if r == nil {
+		return nil
+	}
+	return r.UtmMedium
+}
+
+func (r *ResponseBodyLink) GetUtmCampaign() *string {
+	if r == nil {
+		return nil
+	}
+	return r.UtmCampaign
+}
+
+func (r *ResponseBodyLink) GetUtmTerm() *string {
+	if r == nil {
+		return nil
+	}
+	return r.UtmTerm
+}
+
+func (r *ResponseBodyLink) GetUtmContent() *string {
+	if r == nil {
+		return nil
+	}
+	return r.UtmContent
+}
+
+func (r *ResponseBodyLink) GetTestVariants() []ListEventsResponseBodyTestVariants {
+	if r == nil {
+		return nil
+	}
+	return r.TestVariants
+}
+
+func (r *ResponseBodyLink) GetTestStartedAt() string {
+	if r == nil {
+		return ""
+	}
+	return r.TestStartedAt
+}
+
+func (r *ResponseBodyLink) GetTestCompletedAt() string {
+	if r == nil {
+		return ""
+	}
+	return r.TestCompletedAt
+}
+
+func (r *ResponseBodyLink) GetUserID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.UserID
+}
+
+func (r *ResponseBodyLink) GetWorkspaceID() string {
+	if r == nil {
+		return ""
+	}
+	return r.WorkspaceID
+}
+
+func (r *ResponseBodyLink) GetClicks() *float64 {
+	if r == nil {
+		return nil
+	}
+	return r.Clicks
+}
+
+func (r *ResponseBodyLink) GetLeads() *float64 {
+	if r == nil {
+		return nil
+	}
+	return r.Leads
+}
+
+func (r *ResponseBodyLink) GetConversions() *float64 {
+	if r == nil {
+		return nil
+	}
+	return r.Conversions
+}
+
+func (r *ResponseBodyLink) GetSales() *float64 {
+	if r == nil {
+		return nil
+	}
+	return r.Sales
+}
+
+func (r *ResponseBodyLink) GetSaleAmount() *float64 {
+	if r == nil {
+		return nil
+	}
+	return r.SaleAmount
+}
+
+func (r *ResponseBodyLink) GetLastClicked() string {
+	if r == nil {
+		return ""
+	}
+	return r.LastClicked
+}
+
+func (r *ResponseBodyLink) GetCreatedAt() string {
+	if r == nil {
+		return ""
+	}
+	return r.CreatedAt
+}
+
+func (r *ResponseBodyLink) GetUpdatedAt() string {
+	if r == nil {
+		return ""
+	}
+	return r.UpdatedAt
+}
+
+func (r *ResponseBodyLink) GetTagID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.TagID
+}
+
+func (r *ResponseBodyLink) GetProjectID() string {
+	if r == nil {
+		return ""
+	}
+	return r.ProjectID
+}
+
+type ListEventsResponseBodyCustomer struct {
+	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
+	ID string `json:"id"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// Name of the customer.
+	Name string `json:"name"`
+	// Email of the customer.
+	Email *string `json:"email,omitempty"`
+	// Avatar URL of the customer.
+	Avatar *string `json:"avatar,omitempty"`
+	// Country of the customer.
+	Country *string `json:"country,omitempty"`
+	// Total number of sales for the customer.
+	Sales *float64 `json:"sales,omitempty"`
+	// Total amount of sales for the customer.
+	SaleAmount *float64 `json:"saleAmount,omitempty"`
+	// The date the customer was created.
+	CreatedAt string `json:"createdAt"`
+}
+
+func (l ListEventsResponseBodyCustomer) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListEventsResponseBodyCustomer) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "externalId", "name", "createdAt"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListEventsResponseBodyCustomer) GetID() string {
+	if l == nil {
+		return ""
+	}
+	return l.ID
+}
+
+func (l *ListEventsResponseBodyCustomer) GetExternalID() string {
+	if l == nil {
+		return ""
+	}
+	return l.ExternalID
+}
+
+func (l *ListEventsResponseBodyCustomer) GetName() string {
+	if l == nil {
+		return ""
+	}
+	return l.Name
+}
+
+func (l *ListEventsResponseBodyCustomer) GetEmail() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Email
+}
+
+func (l *ListEventsResponseBodyCustomer) GetAvatar() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Avatar
+}
+
+func (l *ListEventsResponseBodyCustomer) GetCountry() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Country
+}
+
+func (l *ListEventsResponseBodyCustomer) GetSales() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.Sales
+}
+
+func (l *ListEventsResponseBodyCustomer) GetSaleAmount() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.SaleAmount
+}
+
+func (l *ListEventsResponseBodyCustomer) GetCreatedAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.CreatedAt
+}
+
+type LeadEvent struct {
+	Event     ListEventsResponseBodyEvent    `json:"event"`
+	Timestamp string                         `json:"timestamp"`
+	EventID   string                         `json:"eventId"`
+	EventName string                         `json:"eventName"`
+	Metadata  any                            `json:"metadata,omitempty"`
+	Click     ResponseBodyClick              `json:"click"`
+	Link      ResponseBodyLink               `json:"link"`
+	Customer  ListEventsResponseBodyCustomer `json:"customer"`
+	// Deprecated: Use `click.id` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	ClickID string `json:"click_id"`
+	// Deprecated: Use `link.id` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	LinkID string `json:"link_id"`
+	// Deprecated: Use `link.domain` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Domain string `json:"domain"`
+	// Deprecated: Use `link.key` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Key string `json:"key"`
+	// Deprecated: Use `click.url` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	URL string `json:"url"`
+	// Deprecated: Use `click.continent` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Continent string `json:"continent"`
+	// Deprecated: Use `click.country` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Country string `json:"country"`
+	// Deprecated: Use `click.city` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	City string `json:"city"`
+	// Deprecated: Use `click.device` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Device string `json:"device"`
+	// Deprecated: Use `click.browser` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Browser string `json:"browser"`
+	// Deprecated: Use `click.os` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Os string `json:"os"`
+	// Deprecated: Use `click.qr` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Qr float64 `json:"qr"`
+	// Deprecated: Use `click.ip` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	IP string `json:"ip"`
+}
+
+func (l LeadEvent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LeadEvent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"event", "timestamp", "eventId", "eventName", "click", "link", "customer", "click_id", "link_id", "domain", "key", "url", "continent", "country", "city", "device", "browser", "os", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *LeadEvent) GetEvent() ListEventsResponseBodyEvent {
+	if l == nil {
+		return ListEventsResponseBodyEvent("")
+	}
+	return l.Event
+}
+
+func (l *LeadEvent) GetTimestamp() string {
+	if l == nil {
+		return ""
+	}
+	return l.Timestamp
+}
+
+func (l *LeadEvent) GetEventID() string {
+	if l == nil {
+		return ""
+	}
+	return l.EventID
+}
+
+func (l *LeadEvent) GetEventName() string {
+	if l == nil {
+		return ""
+	}
+	return l.EventName
+}
+
+func (l *LeadEvent) GetMetadata() any {
+	if l == nil {
+		return nil
+	}
+	return l.Metadata
+}
+
+func (l *LeadEvent) GetClick() ResponseBodyClick {
+	if l == nil {
+		return ResponseBodyClick{}
+	}
+	return l.Click
+}
+
+func (l *LeadEvent) GetLink() ResponseBodyLink {
+	if l == nil {
+		return ResponseBodyLink{}
+	}
+	return l.Link
+}
+
+func (l *LeadEvent) GetCustomer() ListEventsResponseBodyCustomer {
+	if l == nil {
+		return ListEventsResponseBodyCustomer{}
+	}
+	return l.Customer
+}
+
+func (l *LeadEvent) GetClickID() string {
+	if l == nil {
+		return ""
+	}
+	return l.ClickID
+}
+
+func (l *LeadEvent) GetLinkID() string {
+	if l == nil {
+		return ""
+	}
+	return l.LinkID
+}
+
+func (l *LeadEvent) GetDomain() string {
+	if l == nil {
+		return ""
+	}
+	return l.Domain
+}
+
+func (l *LeadEvent) GetKey() string {
+	if l == nil {
+		return ""
+	}
+	return l.Key
+}
+
+func (l *LeadEvent) GetURL() string {
+	if l == nil {
+		return ""
+	}
+	return l.URL
+}
+
+func (l *LeadEvent) GetContinent() string {
+	if l == nil {
+		return ""
+	}
+	return l.Continent
+}
+
+func (l *LeadEvent) GetCountry() string {
+	if l == nil {
+		return ""
+	}
+	return l.Country
+}
+
+func (l *LeadEvent) GetCity() string {
+	if l == nil {
+		return ""
+	}
+	return l.City
+}
+
+func (l *LeadEvent) GetDevice() string {
+	if l == nil {
+		return ""
+	}
+	return l.Device
+}
+
+func (l *LeadEvent) GetBrowser() string {
+	if l == nil {
+		return ""
+	}
+	return l.Browser
+}
+
+func (l *LeadEvent) GetOs() string {
+	if l == nil {
+		return ""
+	}
+	return l.Os
+}
+
+func (l *LeadEvent) GetQr() float64 {
+	if l == nil {
+		return 0.0
+	}
+	return l.Qr
+}
+
+func (l *LeadEvent) GetIP() string {
+	if l == nil {
+		return ""
+	}
+	return l.IP
+}
+
+type ResponseBodyEvent string
+
+const (
+	ResponseBodyEventClick ResponseBodyEvent = "click"
+)
+
+func (e ResponseBodyEvent) ToPointer() *ResponseBodyEvent {
+	return &e
+}
+func (e *ResponseBodyEvent) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "click":
+		*e = ResponseBodyEvent(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ResponseBodyEvent: %v", v)
+	}
+}
+
+type ListEventsResponseBodyEventsClick struct {
+	ID         string  `json:"id"`
+	Timestamp  string  `json:"timestamp"`
+	URL        string  `json:"url"`
+	Country    string  `json:"country"`
+	City       string  `json:"city"`
+	Region     string  `json:"region"`
+	Continent  string  `json:"continent"`
+	Device     string  `json:"device"`
+	Browser    string  `json:"browser"`
+	Os         string  `json:"os"`
+	Trigger    *string `json:"trigger,omitempty"`
+	Referer    string  `json:"referer"`
+	RefererURL string  `json:"refererUrl"`
+	Qr         bool    `json:"qr"`
+	IP         string  `json:"ip"`
+}
+
+func (l ListEventsResponseBodyEventsClick) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListEventsResponseBodyEventsClick) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "timestamp", "url", "country", "city", "region", "continent", "device", "browser", "os", "referer", "refererUrl", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetID() string {
+	if l == nil {
+		return ""
+	}
+	return l.ID
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetTimestamp() string {
+	if l == nil {
+		return ""
+	}
+	return l.Timestamp
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetURL() string {
+	if l == nil {
+		return ""
+	}
+	return l.URL
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetCountry() string {
+	if l == nil {
+		return ""
+	}
+	return l.Country
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetCity() string {
+	if l == nil {
+		return ""
+	}
+	return l.City
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetRegion() string {
+	if l == nil {
+		return ""
+	}
+	return l.Region
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetContinent() string {
+	if l == nil {
+		return ""
+	}
+	return l.Continent
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetDevice() string {
+	if l == nil {
+		return ""
+	}
+	return l.Device
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetBrowser() string {
+	if l == nil {
+		return ""
+	}
+	return l.Browser
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetOs() string {
+	if l == nil {
+		return ""
+	}
+	return l.Os
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetTrigger() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Trigger
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetReferer() string {
+	if l == nil {
+		return ""
+	}
+	return l.Referer
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetRefererURL() string {
+	if l == nil {
+		return ""
+	}
+	return l.RefererURL
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetQr() bool {
+	if l == nil {
+		return false
+	}
+	return l.Qr
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetIP() string {
+	if l == nil {
+		return ""
+	}
+	return l.IP
+}
+
+type ResponseBodyTestVariants struct {
+	URL        string  `json:"url"`
+	Percentage float64 `json:"percentage"`
+}
+
+func (r ResponseBodyTestVariants) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *ResponseBodyTestVariants) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"url", "percentage"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *ResponseBodyTestVariants) GetURL() string {
+	if r == nil {
+		return ""
+	}
+	return r.URL
+}
+
+func (r *ResponseBodyTestVariants) GetPercentage() float64 {
+	if r == nil {
+		return 0.0
+	}
+	return r.Percentage
+}
+
+type ListEventsResponseBodyEventsLink struct {
+	// The unique ID of the short link.
+	ID string `json:"id"`
+	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
+	Domain string `json:"domain"`
+	// The short link slug. If not provided, a random 7-character slug will be generated.
+	Key             string `json:"key"`
+	URL             string `json:"url"`
+	TrackConversion bool   `json:"trackConversion"`
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
+	ExternalID *string `json:"externalId"`
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	TenantID *string `json:"tenantId"`
+	// The ID of the program the short link is associated with.
+	ProgramID *string `json:"programId"`
+	// The ID of the partner the short link is associated with.
+	PartnerID  *string `json:"partnerId"`
+	Archived   bool    `json:"archived"`
+	ExpiresAt  string  `json:"expiresAt"`
+	ExpiredURL *string `json:"expiredUrl"`
+	DisabledAt string  `json:"disabledAt"`
+	// The password required to access the destination URL of the short link.
+	Password *string `json:"password"`
+	Proxy    bool    `json:"proxy"`
+	// The title of the short link. Will be used for Custom Link Previews if `proxy` is true.
+	Title *string `json:"title"`
+	// The description of the short link. Will be used for Custom Link Previews if `proxy` is true.
+	Description *string `json:"description"`
+	// The image of the short link. Will be used for Custom Link Previews if `proxy` is true.
+	Image *string `json:"image"`
+	// The custom link preview video (og:video). Will be used for Custom Link Previews if `proxy` is true. Learn more: https://d.to/og
+	Video   *string `json:"video"`
+	Rewrite bool    `json:"rewrite"`
+	DoIndex bool    `json:"doIndex"`
+	// The iOS destination URL for the short link for iOS device targeting.
+	Ios *string `json:"ios"`
+	// The Android destination URL for the short link for Android device targeting.
+	Android *string `json:"android"`
+	// Geo targeting information for the short link in JSON format `{[COUNTRY]: https://example.com }`. See https://d.to/geo for more information.
+	Geo         map[string]string `json:"geo"`
+	PublicStats bool              `json:"publicStats"`
+	// The tags assigned to the short link.
+	Tags []components.LinkTagSchemaOutput `json:"tags"`
+	// The unique ID of the folder assigned to the short link.
+	FolderID *string `json:"folderId"`
+	// The IDs of the webhooks that the short link is associated with.
+	WebhookIds []string `json:"webhookIds"`
+	// The comments for the short link.
+	Comments *string `json:"comments"`
+	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
+	ShortLink string `json:"shortLink"`
+	// The full URL of the QR code for the short link (e.g. `https://api.dub.co/qr?url=https://dub.sh/try`).
+	QrCode string `json:"qrCode"`
+	// The UTM source of the short link.
+	UtmSource *string `json:"utm_source"`
+	// The UTM medium of the short link.
+	UtmMedium *string `json:"utm_medium"`
+	// The UTM campaign of the short link.
+	UtmCampaign *string `json:"utm_campaign"`
+	// The UTM term of the short link.
+	UtmTerm *string `json:"utm_term"`
+	// The UTM content of the short link.
+	UtmContent *string `json:"utm_content"`
+	// An array of A/B test URLs and the percentage of traffic to send to each URL.
+	TestVariants    []ResponseBodyTestVariants `json:"testVariants,omitempty"`
+	TestStartedAt   string                     `json:"testStartedAt"`
+	TestCompletedAt string                     `json:"testCompletedAt"`
+	UserID          *string                    `json:"userId"`
+	// The workspace ID of the short link.
+	WorkspaceID string `json:"workspaceId"`
+	// The number of clicks on the short link.
+	Clicks *float64 `default:"0" json:"clicks"`
+	// The number of leads the short link has generated.
+	Leads *float64 `default:"0" json:"leads"`
+	// The number of leads that converted to paying customers.
+	Conversions *float64 `default:"0" json:"conversions"`
+	// The total number of sales (includes recurring sales) generated by the short link.
+	Sales *float64 `default:"0" json:"sales"`
+	// The total dollar value of sales (in cents) generated by the short link.
+	SaleAmount  *float64 `default:"0" json:"saleAmount"`
+	LastClicked string   `json:"lastClicked"`
+	CreatedAt   string   `json:"createdAt"`
+	UpdatedAt   string   `json:"updatedAt"`
+	// Deprecated: Use `tags` instead. The unique ID of the tag assigned to the short link.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	TagID *string `json:"tagId"`
+	// Deprecated: Use `workspaceId` instead. The project ID of the short link.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	ProjectID string `json:"projectId"`
+}
+
+func (l ListEventsResponseBodyEventsLink) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListEventsResponseBodyEventsLink) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetID() string {
+	if l == nil {
+		return ""
+	}
+	return l.ID
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetDomain() string {
+	if l == nil {
+		return ""
+	}
+	return l.Domain
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetKey() string {
+	if l == nil {
+		return ""
+	}
+	return l.Key
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetURL() string {
+	if l == nil {
+		return ""
+	}
+	return l.URL
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetTrackConversion() bool {
+	if l == nil {
+		return false
+	}
+	return l.TrackConversion
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetExternalID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.ExternalID
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetTenantID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.TenantID
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetProgramID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.ProgramID
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetPartnerID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.PartnerID
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetArchived() bool {
+	if l == nil {
+		return false
+	}
+	return l.Archived
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetExpiresAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.ExpiresAt
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetExpiredURL() *string {
+	if l == nil {
+		return nil
+	}
+	return l.ExpiredURL
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetDisabledAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.DisabledAt
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetPassword() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Password
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetProxy() bool {
+	if l == nil {
+		return false
+	}
+	return l.Proxy
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetTitle() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Title
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetDescription() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Description
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetImage() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Image
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetVideo() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Video
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetRewrite() bool {
+	if l == nil {
+		return false
+	}
+	return l.Rewrite
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetDoIndex() bool {
+	if l == nil {
+		return false
+	}
+	return l.DoIndex
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetIos() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Ios
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetAndroid() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Android
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetGeo() map[string]string {
+	if l == nil {
+		return nil
+	}
+	return l.Geo
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetPublicStats() bool {
+	if l == nil {
+		return false
+	}
+	return l.PublicStats
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetTags() []components.LinkTagSchemaOutput {
+	if l == nil {
+		return nil
+	}
+	return l.Tags
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetFolderID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.FolderID
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetWebhookIds() []string {
+	if l == nil {
+		return []string{}
+	}
+	return l.WebhookIds
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetComments() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Comments
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetShortLink() string {
+	if l == nil {
+		return ""
+	}
+	return l.ShortLink
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetQrCode() string {
+	if l == nil {
+		return ""
+	}
+	return l.QrCode
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetUtmSource() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UtmSource
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetUtmMedium() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UtmMedium
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetUtmCampaign() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UtmCampaign
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetUtmTerm() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UtmTerm
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetUtmContent() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UtmContent
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetTestVariants() []ResponseBodyTestVariants {
+	if l == nil {
+		return nil
+	}
+	return l.TestVariants
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetTestStartedAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.TestStartedAt
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetTestCompletedAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.TestCompletedAt
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetUserID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UserID
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetWorkspaceID() string {
+	if l == nil {
+		return ""
+	}
+	return l.WorkspaceID
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetClicks() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.Clicks
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetLeads() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.Leads
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetConversions() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.Conversions
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetSales() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.Sales
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetSaleAmount() *float64 {
+	if l == nil {
+		return nil
+	}
+	return l.SaleAmount
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetLastClicked() string {
+	if l == nil {
+		return ""
+	}
+	return l.LastClicked
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetCreatedAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.CreatedAt
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetUpdatedAt() string {
+	if l == nil {
+		return ""
+	}
+	return l.UpdatedAt
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetTagID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.TagID
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetProjectID() string {
+	if l == nil {
+		return ""
+	}
+	return l.ProjectID
+}
+
+type ClickEvent struct {
+	Event     ResponseBodyEvent                 `json:"event"`
+	Timestamp string                            `json:"timestamp"`
+	Click     ListEventsResponseBodyEventsClick `json:"click"`
+	Link      ListEventsResponseBodyEventsLink  `json:"link"`
+	// Deprecated: Use `click.id` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	ClickID string `json:"click_id"`
+	// Deprecated: Use `link.id` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	LinkID string `json:"link_id"`
+	// Deprecated: Use `link.domain` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Domain string `json:"domain"`
+	// Deprecated: Use `link.key` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Key string `json:"key"`
+	// Deprecated: Use `click.url` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	URL string `json:"url"`
+	// Deprecated: Use `click.continent` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Continent string `json:"continent"`
+	// Deprecated: Use `click.country` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Country string `json:"country"`
+	// Deprecated: Use `click.city` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	City string `json:"city"`
+	// Deprecated: Use `click.device` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Device string `json:"device"`
+	// Deprecated: Use `click.browser` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Browser string `json:"browser"`
+	// Deprecated: Use `click.os` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Os string `json:"os"`
+	// Deprecated: Use `click.qr` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Qr float64 `json:"qr"`
+	// Deprecated: Use `click.ip` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	IP string `json:"ip"`
+}
+
+func (c ClickEvent) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ClickEvent) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"event", "timestamp", "click", "link", "click_id", "link_id", "domain", "key", "url", "continent", "country", "city", "device", "browser", "os", "qr", "ip"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *ClickEvent) GetEvent() ResponseBodyEvent {
+	if c == nil {
+		return ResponseBodyEvent("")
+	}
+	return c.Event
+}
+
+func (c *ClickEvent) GetTimestamp() string {
+	if c == nil {
+		return ""
+	}
+	return c.Timestamp
+}
+
+func (c *ClickEvent) GetClick() ListEventsResponseBodyEventsClick {
+	if c == nil {
+		return ListEventsResponseBodyEventsClick{}
+	}
+	return c.Click
+}
+
+func (c *ClickEvent) GetLink() ListEventsResponseBodyEventsLink {
+	if c == nil {
+		return ListEventsResponseBodyEventsLink{}
+	}
+	return c.Link
+}
+
+func (c *ClickEvent) GetClickID() string {
+	if c == nil {
+		return ""
+	}
+	return c.ClickID
+}
+
+func (c *ClickEvent) GetLinkID() string {
+	if c == nil {
+		return ""
+	}
+	return c.LinkID
+}
+
+func (c *ClickEvent) GetDomain() string {
+	if c == nil {
+		return ""
+	}
+	return c.Domain
+}
+
+func (c *ClickEvent) GetKey() string {
+	if c == nil {
+		return ""
+	}
+	return c.Key
+}
+
+func (c *ClickEvent) GetURL() string {
+	if c == nil {
+		return ""
+	}
+	return c.URL
+}
+
+func (c *ClickEvent) GetContinent() string {
+	if c == nil {
+		return ""
+	}
+	return c.Continent
+}
+
+func (c *ClickEvent) GetCountry() string {
+	if c == nil {
+		return ""
+	}
+	return c.Country
+}
+
+func (c *ClickEvent) GetCity() string {
+	if c == nil {
+		return ""
+	}
+	return c.City
+}
+
+func (c *ClickEvent) GetDevice() string {
+	if c == nil {
+		return ""
+	}
+	return c.Device
+}
+
+func (c *ClickEvent) GetBrowser() string {
+	if c == nil {
+		return ""
+	}
+	return c.Browser
+}
+
+func (c *ClickEvent) GetOs() string {
+	if c == nil {
+		return ""
+	}
+	return c.Os
+}
+
+func (c *ClickEvent) GetQr() float64 {
+	if c == nil {
+		return 0.0
+	}
+	return c.Qr
+}
+
+func (c *ClickEvent) GetIP() string {
+	if c == nil {
+		return ""
+	}
+	return c.IP
+}
+
 type ListEventsResponseBodyType string
 
 const (
-	ListEventsResponseBodyTypeClick ListEventsResponseBodyType = "click"
-	ListEventsResponseBodyTypeLead  ListEventsResponseBodyType = "lead"
-	ListEventsResponseBodyTypeSale  ListEventsResponseBodyType = "sale"
+	ListEventsResponseBodyTypeClickEvent ListEventsResponseBodyType = "ClickEvent"
+	ListEventsResponseBodyTypeLeadEvent  ListEventsResponseBodyType = "LeadEvent"
+	ListEventsResponseBodyTypeSaleEvent  ListEventsResponseBodyType = "SaleEvent"
 )
 
 type ListEventsResponseBody struct {
-	ClickEvent *components.ClickEvent `queryParam:"inline,name=responseBody"`
-	LeadEvent  *components.LeadEvent  `queryParam:"inline,name=responseBody"`
-	SaleEvent  *components.SaleEvent  `queryParam:"inline,name=responseBody"`
+	ClickEvent *ClickEvent `queryParam:"inline" union:"member"`
+	LeadEvent  *LeadEvent  `queryParam:"inline" union:"member"`
+	SaleEvent  *SaleEvent  `queryParam:"inline" union:"member"`
 
 	Type ListEventsResponseBodyType
 }
 
-func CreateListEventsResponseBodyClick(click components.ClickEvent) ListEventsResponseBody {
-	typ := ListEventsResponseBodyTypeClick
-
-	typStr := components.Event(typ)
-	click.Event = typStr
+func CreateListEventsResponseBodyClickEvent(clickEvent ClickEvent) ListEventsResponseBody {
+	typ := ListEventsResponseBodyTypeClickEvent
 
 	return ListEventsResponseBody{
-		ClickEvent: &click,
+		ClickEvent: &clickEvent,
 		Type:       typ,
 	}
 }
 
-func CreateListEventsResponseBodyLead(lead components.LeadEvent) ListEventsResponseBody {
-	typ := ListEventsResponseBodyTypeLead
-
-	typStr := components.LeadEventEvent(typ)
-	lead.Event = typStr
+func CreateListEventsResponseBodyLeadEvent(leadEvent LeadEvent) ListEventsResponseBody {
+	typ := ListEventsResponseBodyTypeLeadEvent
 
 	return ListEventsResponseBody{
-		LeadEvent: &lead,
+		LeadEvent: &leadEvent,
 		Type:      typ,
 	}
 }
 
-func CreateListEventsResponseBodySale(sale components.SaleEvent) ListEventsResponseBody {
-	typ := ListEventsResponseBodyTypeSale
-
-	typStr := components.SaleEventEvent(typ)
-	sale.Event = typStr
+func CreateListEventsResponseBodySaleEvent(saleEvent SaleEvent) ListEventsResponseBody {
+	typ := ListEventsResponseBodyTypeSaleEvent
 
 	return ListEventsResponseBody{
-		SaleEvent: &sale,
+		SaleEvent: &saleEvent,
 		Type:      typ,
 	}
 }
 
 func (u *ListEventsResponseBody) UnmarshalJSON(data []byte) error {
 
-	type discriminator struct {
-		Event string `json:"event"`
+	var saleEvent SaleEvent = SaleEvent{}
+	if err := utils.UnmarshalJSON(data, &saleEvent, "", true, nil); err == nil {
+		u.SaleEvent = &saleEvent
+		u.Type = ListEventsResponseBodyTypeSaleEvent
+		return nil
 	}
 
-	dis := new(discriminator)
-	if err := json.Unmarshal(data, &dis); err != nil {
-		return fmt.Errorf("could not unmarshal discriminator: %w", err)
+	var leadEvent LeadEvent = LeadEvent{}
+	if err := utils.UnmarshalJSON(data, &leadEvent, "", true, nil); err == nil {
+		u.LeadEvent = &leadEvent
+		u.Type = ListEventsResponseBodyTypeLeadEvent
+		return nil
 	}
 
-	switch dis.Event {
-	case "click":
-		clickEvent := new(components.ClickEvent)
-		if err := utils.UnmarshalJSON(data, &clickEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == click) type components.ClickEvent within ListEventsResponseBody: %w", string(data), err)
-		}
-
-		u.ClickEvent = clickEvent
-		u.Type = ListEventsResponseBodyTypeClick
-		return nil
-	case "lead":
-		leadEvent := new(components.LeadEvent)
-		if err := utils.UnmarshalJSON(data, &leadEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == lead) type components.LeadEvent within ListEventsResponseBody: %w", string(data), err)
-		}
-
-		u.LeadEvent = leadEvent
-		u.Type = ListEventsResponseBodyTypeLead
-		return nil
-	case "sale":
-		saleEvent := new(components.SaleEvent)
-		if err := utils.UnmarshalJSON(data, &saleEvent, "", true, nil); err != nil {
-			return fmt.Errorf("could not unmarshal `%s` into expected (Event == sale) type components.SaleEvent within ListEventsResponseBody: %w", string(data), err)
-		}
-
-		u.SaleEvent = saleEvent
-		u.Type = ListEventsResponseBodyTypeSale
+	var clickEvent ClickEvent = ClickEvent{}
+	if err := utils.UnmarshalJSON(data, &clickEvent, "", true, nil); err == nil {
+		u.ClickEvent = &clickEvent
+		u.Type = ListEventsResponseBodyTypeClickEvent
 		return nil
 	}
 

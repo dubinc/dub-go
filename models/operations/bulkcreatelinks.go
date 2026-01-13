@@ -18,8 +18,8 @@ const (
 
 // BulkCreateLinksTagIds - The unique IDs of the tags assigned to the short link.
 type BulkCreateLinksTagIds struct {
-	Str        *string  `queryParam:"inline,name=tagIds"`
-	ArrayOfStr []string `queryParam:"inline,name=tagIds"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type BulkCreateLinksTagIdsType
 }
@@ -82,8 +82,8 @@ const (
 
 // BulkCreateLinksTagNames - The unique name of the tags assigned to the short link (case insensitive).
 type BulkCreateLinksTagNames struct {
-	Str        *string  `queryParam:"inline,name=tagNames"`
-	ArrayOfStr []string `queryParam:"inline,name=tagNames"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type BulkCreateLinksTagNamesType
 }
@@ -531,8 +531,8 @@ const (
 )
 
 type ResponseBody struct {
-	LinkSchema      *components.LinkSchema      `queryParam:"inline,name=responseBody"`
-	LinkErrorSchema *components.LinkErrorSchema `queryParam:"inline,name=responseBody"`
+	LinkSchema      *components.LinkSchema      `queryParam:"inline" union:"member"`
+	LinkErrorSchema *components.LinkErrorSchema `queryParam:"inline" union:"member"`
 
 	Type ResponseBodyType
 }

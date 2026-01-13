@@ -13,16 +13,16 @@ type Code string
 
 const (
 	CodeBadRequest          Code = "bad_request"
-	CodeNotFound            Code = "not_found"
-	CodeInternalServerError Code = "internal_server_error"
 	CodeUnauthorized        Code = "unauthorized"
 	CodeForbidden           Code = "forbidden"
-	CodeRateLimitExceeded   Code = "rate_limit_exceeded"
-	CodeInviteExpired       Code = "invite_expired"
-	CodeInvitePending       Code = "invite_pending"
 	CodeExceededLimit       Code = "exceeded_limit"
+	CodeNotFound            Code = "not_found"
 	CodeConflict            Code = "conflict"
+	CodeInvitePending       Code = "invite_pending"
+	CodeInviteExpired       Code = "invite_expired"
 	CodeUnprocessableEntity Code = "unprocessable_entity"
+	CodeRateLimitExceeded   Code = "rate_limit_exceeded"
+	CodeInternalServerError Code = "internal_server_error"
 )
 
 func (e Code) ToPointer() *Code {
@@ -36,25 +36,25 @@ func (e *Code) UnmarshalJSON(data []byte) error {
 	switch v {
 	case "bad_request":
 		fallthrough
-	case "not_found":
-		fallthrough
-	case "internal_server_error":
-		fallthrough
 	case "unauthorized":
 		fallthrough
 	case "forbidden":
 		fallthrough
-	case "rate_limit_exceeded":
-		fallthrough
-	case "invite_expired":
-		fallthrough
-	case "invite_pending":
-		fallthrough
 	case "exceeded_limit":
+		fallthrough
+	case "not_found":
 		fallthrough
 	case "conflict":
 		fallthrough
+	case "invite_pending":
+		fallthrough
+	case "invite_expired":
+		fallthrough
 	case "unprocessable_entity":
+		fallthrough
+	case "rate_limit_exceeded":
+		fallthrough
+	case "internal_server_error":
 		*e = Code(v)
 		return nil
 	default:
@@ -64,7 +64,7 @@ func (e *Code) UnmarshalJSON(data []byte) error {
 
 type LinkErrorSchema struct {
 	// The link that caused the error.
-	Link any `json:"link,omitempty"`
+	Link any `json:"link"`
 	// The error message.
 	Error string `json:"error"`
 	// The error code.
@@ -76,7 +76,7 @@ func (l LinkErrorSchema) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LinkErrorSchema) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"error", "code"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"link", "error", "code"}); err != nil {
 		return err
 	}
 	return nil

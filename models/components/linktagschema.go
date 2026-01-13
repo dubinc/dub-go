@@ -8,23 +8,23 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
-// Color - The color of the tag.
-type Color string
+// LinkTagSchemaColor - The color of the tag.
+type LinkTagSchemaColor string
 
 const (
-	ColorRed    Color = "red"
-	ColorYellow Color = "yellow"
-	ColorGreen  Color = "green"
-	ColorBlue   Color = "blue"
-	ColorPurple Color = "purple"
-	ColorBrown  Color = "brown"
-	ColorPink   Color = "pink"
+	LinkTagSchemaColorRed    LinkTagSchemaColor = "red"
+	LinkTagSchemaColorYellow LinkTagSchemaColor = "yellow"
+	LinkTagSchemaColorGreen  LinkTagSchemaColor = "green"
+	LinkTagSchemaColorBlue   LinkTagSchemaColor = "blue"
+	LinkTagSchemaColorPurple LinkTagSchemaColor = "purple"
+	LinkTagSchemaColorBrown  LinkTagSchemaColor = "brown"
+	LinkTagSchemaColorPink   LinkTagSchemaColor = "pink"
 )
 
-func (e Color) ToPointer() *Color {
+func (e LinkTagSchemaColor) ToPointer() *LinkTagSchemaColor {
 	return &e
 }
-func (e *Color) UnmarshalJSON(data []byte) error {
+func (e *LinkTagSchemaColor) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -43,10 +43,10 @@ func (e *Color) UnmarshalJSON(data []byte) error {
 	case "brown":
 		fallthrough
 	case "pink":
-		*e = Color(v)
+		*e = LinkTagSchemaColor(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Color: %v", v)
+		return fmt.Errorf("invalid value for LinkTagSchemaColor: %v", v)
 	}
 }
 
@@ -56,7 +56,7 @@ type LinkTagSchema struct {
 	// The name of the tag.
 	Name string `json:"name"`
 	// The color of the tag.
-	Color Color `json:"color"`
+	Color LinkTagSchemaColor `json:"color"`
 }
 
 func (l LinkTagSchema) MarshalJSON() ([]byte, error) {
@@ -84,9 +84,9 @@ func (l *LinkTagSchema) GetName() string {
 	return l.Name
 }
 
-func (l *LinkTagSchema) GetColor() Color {
+func (l *LinkTagSchema) GetColor() LinkTagSchemaColor {
 	if l == nil {
-		return Color("")
+		return LinkTagSchemaColor("")
 	}
 	return l.Color
 }

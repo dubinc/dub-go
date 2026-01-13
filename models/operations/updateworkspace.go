@@ -5,7 +5,7 @@ package operations
 type UpdateWorkspaceRequestBody struct {
 	Name              *string `json:"name,omitempty"`
 	Slug              *string `json:"slug,omitempty"`
-	Logo              *string `json:"logo,omitempty"`
+	Logo              any     `json:"logo,omitempty"`
 	ConversionEnabled *bool   `json:"conversionEnabled,omitempty"`
 }
 
@@ -23,7 +23,7 @@ func (u *UpdateWorkspaceRequestBody) GetSlug() *string {
 	return u.Slug
 }
 
-func (u *UpdateWorkspaceRequestBody) GetLogo() *string {
+func (u *UpdateWorkspaceRequestBody) GetLogo() any {
 	if u == nil {
 		return nil
 	}

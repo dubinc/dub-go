@@ -64,7 +64,7 @@ func (t TrackLeadRequestBody) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TrackLeadRequestBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"clickId", "eventName", "customerExternalId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -144,7 +144,7 @@ func (c *Click) GetID() string {
 	return c.ID
 }
 
-type TrackLeadLink struct {
+type Link struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
@@ -165,67 +165,67 @@ type TrackLeadLink struct {
 	ExternalID *string `json:"externalId"`
 }
 
-func (t *TrackLeadLink) GetID() string {
-	if t == nil {
+func (l *Link) GetID() string {
+	if l == nil {
 		return ""
 	}
-	return t.ID
+	return l.ID
 }
 
-func (t *TrackLeadLink) GetDomain() string {
-	if t == nil {
+func (l *Link) GetDomain() string {
+	if l == nil {
 		return ""
 	}
-	return t.Domain
+	return l.Domain
 }
 
-func (t *TrackLeadLink) GetKey() string {
-	if t == nil {
+func (l *Link) GetKey() string {
+	if l == nil {
 		return ""
 	}
-	return t.Key
+	return l.Key
 }
 
-func (t *TrackLeadLink) GetShortLink() string {
-	if t == nil {
+func (l *Link) GetShortLink() string {
+	if l == nil {
 		return ""
 	}
-	return t.ShortLink
+	return l.ShortLink
 }
 
-func (t *TrackLeadLink) GetURL() string {
-	if t == nil {
+func (l *Link) GetURL() string {
+	if l == nil {
 		return ""
 	}
-	return t.URL
+	return l.URL
 }
 
-func (t *TrackLeadLink) GetPartnerID() *string {
-	if t == nil {
+func (l *Link) GetPartnerID() *string {
+	if l == nil {
 		return nil
 	}
-	return t.PartnerID
+	return l.PartnerID
 }
 
-func (t *TrackLeadLink) GetProgramID() *string {
-	if t == nil {
+func (l *Link) GetProgramID() *string {
+	if l == nil {
 		return nil
 	}
-	return t.ProgramID
+	return l.ProgramID
 }
 
-func (t *TrackLeadLink) GetTenantID() *string {
-	if t == nil {
+func (l *Link) GetTenantID() *string {
+	if l == nil {
 		return nil
 	}
-	return t.TenantID
+	return l.TenantID
 }
 
-func (t *TrackLeadLink) GetExternalID() *string {
-	if t == nil {
+func (l *Link) GetExternalID() *string {
+	if l == nil {
 		return nil
 	}
-	return t.ExternalID
+	return l.ExternalID
 }
 
 type Customer struct {
@@ -265,9 +265,9 @@ func (c *Customer) GetExternalID() *string {
 
 // TrackLeadResponseBody - A lead was tracked.
 type TrackLeadResponseBody struct {
-	Click    Click          `json:"click"`
-	Link     *TrackLeadLink `json:"link"`
-	Customer Customer       `json:"customer"`
+	Click    Click    `json:"click"`
+	Link     *Link    `json:"link"`
+	Customer Customer `json:"customer"`
 }
 
 func (t *TrackLeadResponseBody) GetClick() Click {
@@ -277,7 +277,7 @@ func (t *TrackLeadResponseBody) GetClick() Click {
 	return t.Click
 }
 
-func (t *TrackLeadResponseBody) GetLink() *TrackLeadLink {
+func (t *TrackLeadResponseBody) GetLink() *Link {
 	if t == nil {
 		return nil
 	}

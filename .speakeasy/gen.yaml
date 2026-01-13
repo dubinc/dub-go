@@ -20,18 +20,20 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
+  persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 go:
-  version: 0.22.0
+  version: 0.23.0
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: true
   baseErrorName: DubError
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKError
   flattenGlobalSecurity: true
+  forwardCompatibleEnumsByDefault: false
   imports:
     option: openapi
     paths:
@@ -46,6 +48,7 @@ go:
   maxMethodParams: 0
   methodArguments: require-security-and-request
   modulePath: ""
+  multipartArrayFormat: legacy
   nullableOptionalWrapper: false
   outputModelSuffix: output
   packageName: github.com/dubinc/dub-go

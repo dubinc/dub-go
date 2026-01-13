@@ -1,4 +1,4 @@
-# LinkClickedEventClick
+# ResponseBodyClick
 
 
 ## Fields

@@ -4,8 +4,7 @@ package operations
 
 type GetLinkInfoRequest struct {
 	Domain *string `queryParam:"style=form,explode=true,name=domain"`
-	// The key of the link to retrieve. E.g. for `d.to/github`, the key is `github`.
-	Key *string `queryParam:"style=form,explode=true,name=key"`
+	Key    *string `queryParam:"style=form,explode=true,name=key"`
 	// The unique ID of the short link.
 	LinkID *string `queryParam:"style=form,explode=true,name=linkId"`
 	// This is the ID of the link in the your database.

@@ -72,8 +72,8 @@ const (
 
 // Ids - IDs of tags to filter by.
 type Ids struct {
-	Str        *string  `queryParam:"inline,name=ids"`
-	ArrayOfStr []string `queryParam:"inline,name=ids"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type IdsType
 }

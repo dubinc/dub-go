@@ -1,5 +1,4 @@
 # Analytics
-(*Analytics*)
 
 ## Overview
 
@@ -32,6 +31,7 @@ func main() {
     )
 
     res, err := s.Analytics.Retrieve(ctx, operations.RetrieveAnalyticsRequest{
+        Event: operations.EventLeads.ToPointer(),
         Timezone: dubgo.Pointer("America/New_York"),
         City: dubgo.Pointer("New York"),
         Device: dubgo.Pointer("Desktop"),

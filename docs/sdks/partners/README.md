@@ -1,5 +1,4 @@
 # Partners
-(*Partners*)
 
 ## Overview
 
@@ -286,7 +285,7 @@ func main() {
 
 ### Response
 
-**[[]operations.Link](../../.md), error**
+**[[]operations.RetrieveLinksResponseBody](../../.md), error**
 
 ### Errors
 

@@ -31,7 +31,7 @@ func (e *LinkClickedEventEvent) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type LinkClickedEventClick struct {
+type Click struct {
 	ID         string  `json:"id"`
 	Timestamp  string  `json:"timestamp"`
 	URL        string  `json:"url"`
@@ -49,120 +49,120 @@ type LinkClickedEventClick struct {
 	IP         string  `json:"ip"`
 }
 
-func (l LinkClickedEventClick) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
+func (c Click) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (l *LinkClickedEventClick) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "timestamp", "url", "country", "city", "region", "continent", "device", "browser", "os", "referer", "refererUrl", "qr", "ip"}); err != nil {
+func (c *Click) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "timestamp", "url", "country", "city", "region", "continent", "device", "browser", "os", "referer", "refererUrl", "qr", "ip"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *LinkClickedEventClick) GetID() string {
-	if l == nil {
+func (c *Click) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return l.ID
+	return c.ID
 }
 
-func (l *LinkClickedEventClick) GetTimestamp() string {
-	if l == nil {
+func (c *Click) GetTimestamp() string {
+	if c == nil {
 		return ""
 	}
-	return l.Timestamp
+	return c.Timestamp
 }
 
-func (l *LinkClickedEventClick) GetURL() string {
-	if l == nil {
+func (c *Click) GetURL() string {
+	if c == nil {
 		return ""
 	}
-	return l.URL
+	return c.URL
 }
 
-func (l *LinkClickedEventClick) GetCountry() string {
-	if l == nil {
+func (c *Click) GetCountry() string {
+	if c == nil {
 		return ""
 	}
-	return l.Country
+	return c.Country
 }
 
-func (l *LinkClickedEventClick) GetCity() string {
-	if l == nil {
+func (c *Click) GetCity() string {
+	if c == nil {
 		return ""
 	}
-	return l.City
+	return c.City
 }
 
-func (l *LinkClickedEventClick) GetRegion() string {
-	if l == nil {
+func (c *Click) GetRegion() string {
+	if c == nil {
 		return ""
 	}
-	return l.Region
+	return c.Region
 }
 
-func (l *LinkClickedEventClick) GetContinent() string {
-	if l == nil {
+func (c *Click) GetContinent() string {
+	if c == nil {
 		return ""
 	}
-	return l.Continent
+	return c.Continent
 }
 
-func (l *LinkClickedEventClick) GetDevice() string {
-	if l == nil {
+func (c *Click) GetDevice() string {
+	if c == nil {
 		return ""
 	}
-	return l.Device
+	return c.Device
 }
 
-func (l *LinkClickedEventClick) GetBrowser() string {
-	if l == nil {
+func (c *Click) GetBrowser() string {
+	if c == nil {
 		return ""
 	}
-	return l.Browser
+	return c.Browser
 }
 
-func (l *LinkClickedEventClick) GetOs() string {
-	if l == nil {
+func (c *Click) GetOs() string {
+	if c == nil {
 		return ""
 	}
-	return l.Os
+	return c.Os
 }
 
-func (l *LinkClickedEventClick) GetTrigger() *string {
-	if l == nil {
+func (c *Click) GetTrigger() *string {
+	if c == nil {
 		return nil
 	}
-	return l.Trigger
+	return c.Trigger
 }
 
-func (l *LinkClickedEventClick) GetReferer() string {
-	if l == nil {
+func (c *Click) GetReferer() string {
+	if c == nil {
 		return ""
 	}
-	return l.Referer
+	return c.Referer
 }
 
-func (l *LinkClickedEventClick) GetRefererURL() string {
-	if l == nil {
+func (c *Click) GetRefererURL() string {
+	if c == nil {
 		return ""
 	}
-	return l.RefererURL
+	return c.RefererURL
 }
 
-func (l *LinkClickedEventClick) GetQr() bool {
-	if l == nil {
+func (c *Click) GetQr() bool {
+	if c == nil {
 		return false
 	}
-	return l.Qr
+	return c.Qr
 }
 
-func (l *LinkClickedEventClick) GetIP() string {
-	if l == nil {
+func (c *Click) GetIP() string {
+	if c == nil {
 		return ""
 	}
-	return l.IP
+	return c.IP
 }
 
 type LinkClickedEventTestVariants struct {
@@ -195,7 +195,7 @@ func (l *LinkClickedEventTestVariants) GetPercentage() float64 {
 	return l.Percentage
 }
 
-type LinkClickedEventLink struct {
+type Link struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
@@ -288,402 +288,402 @@ type LinkClickedEventLink struct {
 	ProjectID string `json:"projectId"`
 }
 
-func (l LinkClickedEventLink) MarshalJSON() ([]byte, error) {
+func (l Link) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(l, "", false)
 }
 
-func (l *LinkClickedEventLink) UnmarshalJSON(data []byte) error {
+func (l *Link) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *LinkClickedEventLink) GetID() string {
+func (l *Link) GetID() string {
 	if l == nil {
 		return ""
 	}
 	return l.ID
 }
 
-func (l *LinkClickedEventLink) GetDomain() string {
+func (l *Link) GetDomain() string {
 	if l == nil {
 		return ""
 	}
 	return l.Domain
 }
 
-func (l *LinkClickedEventLink) GetKey() string {
+func (l *Link) GetKey() string {
 	if l == nil {
 		return ""
 	}
 	return l.Key
 }
 
-func (l *LinkClickedEventLink) GetURL() string {
+func (l *Link) GetURL() string {
 	if l == nil {
 		return ""
 	}
 	return l.URL
 }
 
-func (l *LinkClickedEventLink) GetTrackConversion() bool {
+func (l *Link) GetTrackConversion() bool {
 	if l == nil {
 		return false
 	}
 	return l.TrackConversion
 }
 
-func (l *LinkClickedEventLink) GetExternalID() *string {
+func (l *Link) GetExternalID() *string {
 	if l == nil {
 		return nil
 	}
 	return l.ExternalID
 }
 
-func (l *LinkClickedEventLink) GetTenantID() *string {
+func (l *Link) GetTenantID() *string {
 	if l == nil {
 		return nil
 	}
 	return l.TenantID
 }
 
-func (l *LinkClickedEventLink) GetProgramID() *string {
+func (l *Link) GetProgramID() *string {
 	if l == nil {
 		return nil
 	}
 	return l.ProgramID
 }
 
-func (l *LinkClickedEventLink) GetPartnerID() *string {
+func (l *Link) GetPartnerID() *string {
 	if l == nil {
 		return nil
 	}
 	return l.PartnerID
 }
 
-func (l *LinkClickedEventLink) GetArchived() bool {
+func (l *Link) GetArchived() bool {
 	if l == nil {
 		return false
 	}
 	return l.Archived
 }
 
-func (l *LinkClickedEventLink) GetExpiresAt() string {
+func (l *Link) GetExpiresAt() string {
 	if l == nil {
 		return ""
 	}
 	return l.ExpiresAt
 }
 
-func (l *LinkClickedEventLink) GetExpiredURL() *string {
+func (l *Link) GetExpiredURL() *string {
 	if l == nil {
 		return nil
 	}
 	return l.ExpiredURL
 }
 
-func (l *LinkClickedEventLink) GetDisabledAt() string {
+func (l *Link) GetDisabledAt() string {
 	if l == nil {
 		return ""
 	}
 	return l.DisabledAt
 }
 
-func (l *LinkClickedEventLink) GetPassword() *string {
+func (l *Link) GetPassword() *string {
 	if l == nil {
 		return nil
 	}
 	return l.Password
 }
 
-func (l *LinkClickedEventLink) GetProxy() bool {
+func (l *Link) GetProxy() bool {
 	if l == nil {
 		return false
 	}
 	return l.Proxy
 }
 
-func (l *LinkClickedEventLink) GetTitle() *string {
+func (l *Link) GetTitle() *string {
 	if l == nil {
 		return nil
 	}
 	return l.Title
 }
 
-func (l *LinkClickedEventLink) GetDescription() *string {
+func (l *Link) GetDescription() *string {
 	if l == nil {
 		return nil
 	}
 	return l.Description
 }
 
-func (l *LinkClickedEventLink) GetImage() *string {
+func (l *Link) GetImage() *string {
 	if l == nil {
 		return nil
 	}
 	return l.Image
 }
 
-func (l *LinkClickedEventLink) GetVideo() *string {
+func (l *Link) GetVideo() *string {
 	if l == nil {
 		return nil
 	}
 	return l.Video
 }
 
-func (l *LinkClickedEventLink) GetRewrite() bool {
+func (l *Link) GetRewrite() bool {
 	if l == nil {
 		return false
 	}
 	return l.Rewrite
 }
 
-func (l *LinkClickedEventLink) GetDoIndex() bool {
+func (l *Link) GetDoIndex() bool {
 	if l == nil {
 		return false
 	}
 	return l.DoIndex
 }
 
-func (l *LinkClickedEventLink) GetIos() *string {
+func (l *Link) GetIos() *string {
 	if l == nil {
 		return nil
 	}
 	return l.Ios
 }
 
-func (l *LinkClickedEventLink) GetAndroid() *string {
+func (l *Link) GetAndroid() *string {
 	if l == nil {
 		return nil
 	}
 	return l.Android
 }
 
-func (l *LinkClickedEventLink) GetGeo() map[string]string {
+func (l *Link) GetGeo() map[string]string {
 	if l == nil {
 		return nil
 	}
 	return l.Geo
 }
 
-func (l *LinkClickedEventLink) GetPublicStats() bool {
+func (l *Link) GetPublicStats() bool {
 	if l == nil {
 		return false
 	}
 	return l.PublicStats
 }
 
-func (l *LinkClickedEventLink) GetTags() []LinkTagSchema {
+func (l *Link) GetTags() []LinkTagSchema {
 	if l == nil {
 		return nil
 	}
 	return l.Tags
 }
 
-func (l *LinkClickedEventLink) GetFolderID() *string {
+func (l *Link) GetFolderID() *string {
 	if l == nil {
 		return nil
 	}
 	return l.FolderID
 }
 
-func (l *LinkClickedEventLink) GetWebhookIds() []string {
+func (l *Link) GetWebhookIds() []string {
 	if l == nil {
 		return []string{}
 	}
 	return l.WebhookIds
 }
 
-func (l *LinkClickedEventLink) GetComments() *string {
+func (l *Link) GetComments() *string {
 	if l == nil {
 		return nil
 	}
 	return l.Comments
 }
 
-func (l *LinkClickedEventLink) GetShortLink() string {
+func (l *Link) GetShortLink() string {
 	if l == nil {
 		return ""
 	}
 	return l.ShortLink
 }
 
-func (l *LinkClickedEventLink) GetQrCode() string {
+func (l *Link) GetQrCode() string {
 	if l == nil {
 		return ""
 	}
 	return l.QrCode
 }
 
-func (l *LinkClickedEventLink) GetUtmSource() *string {
+func (l *Link) GetUtmSource() *string {
 	if l == nil {
 		return nil
 	}
 	return l.UtmSource
 }
 
-func (l *LinkClickedEventLink) GetUtmMedium() *string {
+func (l *Link) GetUtmMedium() *string {
 	if l == nil {
 		return nil
 	}
 	return l.UtmMedium
 }
 
-func (l *LinkClickedEventLink) GetUtmCampaign() *string {
+func (l *Link) GetUtmCampaign() *string {
 	if l == nil {
 		return nil
 	}
 	return l.UtmCampaign
 }
 
-func (l *LinkClickedEventLink) GetUtmTerm() *string {
+func (l *Link) GetUtmTerm() *string {
 	if l == nil {
 		return nil
 	}
 	return l.UtmTerm
 }
 
-func (l *LinkClickedEventLink) GetUtmContent() *string {
+func (l *Link) GetUtmContent() *string {
 	if l == nil {
 		return nil
 	}
 	return l.UtmContent
 }
 
-func (l *LinkClickedEventLink) GetTestVariants() []LinkClickedEventTestVariants {
+func (l *Link) GetTestVariants() []LinkClickedEventTestVariants {
 	if l == nil {
 		return nil
 	}
 	return l.TestVariants
 }
 
-func (l *LinkClickedEventLink) GetTestStartedAt() string {
+func (l *Link) GetTestStartedAt() string {
 	if l == nil {
 		return ""
 	}
 	return l.TestStartedAt
 }
 
-func (l *LinkClickedEventLink) GetTestCompletedAt() string {
+func (l *Link) GetTestCompletedAt() string {
 	if l == nil {
 		return ""
 	}
 	return l.TestCompletedAt
 }
 
-func (l *LinkClickedEventLink) GetUserID() *string {
+func (l *Link) GetUserID() *string {
 	if l == nil {
 		return nil
 	}
 	return l.UserID
 }
 
-func (l *LinkClickedEventLink) GetWorkspaceID() string {
+func (l *Link) GetWorkspaceID() string {
 	if l == nil {
 		return ""
 	}
 	return l.WorkspaceID
 }
 
-func (l *LinkClickedEventLink) GetClicks() *float64 {
+func (l *Link) GetClicks() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.Clicks
 }
 
-func (l *LinkClickedEventLink) GetLeads() *float64 {
+func (l *Link) GetLeads() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.Leads
 }
 
-func (l *LinkClickedEventLink) GetConversions() *float64 {
+func (l *Link) GetConversions() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.Conversions
 }
 
-func (l *LinkClickedEventLink) GetSales() *float64 {
+func (l *Link) GetSales() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.Sales
 }
 
-func (l *LinkClickedEventLink) GetSaleAmount() *float64 {
+func (l *Link) GetSaleAmount() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.SaleAmount
 }
 
-func (l *LinkClickedEventLink) GetLastClicked() string {
+func (l *Link) GetLastClicked() string {
 	if l == nil {
 		return ""
 	}
 	return l.LastClicked
 }
 
-func (l *LinkClickedEventLink) GetCreatedAt() string {
+func (l *Link) GetCreatedAt() string {
 	if l == nil {
 		return ""
 	}
 	return l.CreatedAt
 }
 
-func (l *LinkClickedEventLink) GetUpdatedAt() string {
+func (l *Link) GetUpdatedAt() string {
 	if l == nil {
 		return ""
 	}
 	return l.UpdatedAt
 }
 
-func (l *LinkClickedEventLink) GetTagID() *string {
+func (l *Link) GetTagID() *string {
 	if l == nil {
 		return nil
 	}
 	return l.TagID
 }
 
-func (l *LinkClickedEventLink) GetProjectID() string {
+func (l *Link) GetProjectID() string {
 	if l == nil {
 		return ""
 	}
 	return l.ProjectID
 }
 
-type Data struct {
-	Click LinkClickedEventClick `json:"click"`
-	Link  LinkClickedEventLink  `json:"link"`
+type LinkClickedEventData struct {
+	Click Click `json:"click"`
+	Link  Link  `json:"link"`
 }
 
-func (d Data) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(d, "", false)
+func (l LinkClickedEventData) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
 }
 
-func (d *Data) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"click", "link"}); err != nil {
+func (l *LinkClickedEventData) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"click", "link"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (d *Data) GetClick() LinkClickedEventClick {
-	if d == nil {
-		return LinkClickedEventClick{}
+func (l *LinkClickedEventData) GetClick() Click {
+	if l == nil {
+		return Click{}
 	}
-	return d.Click
+	return l.Click
 }
 
-func (d *Data) GetLink() LinkClickedEventLink {
-	if d == nil {
-		return LinkClickedEventLink{}
+func (l *LinkClickedEventData) GetLink() Link {
+	if l == nil {
+		return Link{}
 	}
-	return d.Link
+	return l.Link
 }
 
 // LinkClickedEvent - Triggered when a link is clicked.
@@ -691,7 +691,7 @@ type LinkClickedEvent struct {
 	ID        string                `json:"id"`
 	Event     LinkClickedEventEvent `json:"event"`
 	CreatedAt string                `json:"createdAt"`
-	Data      Data                  `json:"data"`
+	Data      LinkClickedEventData  `json:"data"`
 }
 
 func (l LinkClickedEvent) MarshalJSON() ([]byte, error) {
@@ -726,9 +726,9 @@ func (l *LinkClickedEvent) GetCreatedAt() string {
 	return l.CreatedAt
 }
 
-func (l *LinkClickedEvent) GetData() Data {
+func (l *LinkClickedEvent) GetData() LinkClickedEventData {
 	if l == nil {
-		return Data{}
+		return LinkClickedEventData{}
 	}
 	return l.Data
 }
