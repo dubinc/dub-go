@@ -9,6 +9,24 @@ actions:
         - "lang": "go"
           "label": "retrieveAnalytics"
           "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Analytics.Retrieve(ctx, operations.RetrieveAnalyticsRequest{\n        Event: operations.EventLeads.ToPointer(),\n        Timezone: dubgo.Pointer(\"America/New_York\"),\n        City: dubgo.Pointer(\"New York\"),\n        Device: dubgo.Pointer(\"Desktop\"),\n        Browser: dubgo.Pointer(\"Chrome\"),\n        Os: dubgo.Pointer(\"Windows\"),\n        Referer: dubgo.Pointer(\"google.com\"),\n        RefererURL: dubgo.Pointer(\"https://dub.co/blog\"),\n        Query: dubgo.Pointer(\"metadata['key']:'value'\"),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/bounties/{bountyId}/submissions"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "listBountySubmissions"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Bounties.ListSubmissions(ctx, operations.ListBountySubmissionsRequest{\n        BountyID: \"<id>\",\n        PageSize: dubgo.Pointer[float64](50),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/bounties/{bountyId}/submissions/{submissionId}/approve"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "approveBountySubmission"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Bounties.ApproveSubmission(ctx, operations.ApproveBountySubmissionRequest{\n        BountyID: \"<id>\",\n        SubmissionID: \"<id>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/bounties/{bountyId}/submissions/{submissionId}/reject"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "rejectBountySubmission"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Bounties.RejectSubmission(ctx, operations.RejectBountySubmissionRequest{\n        BountyID: \"<id>\",\n        SubmissionID: \"<id>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/commissions"]["get"]
     update:
       "x-codeSamples":
@@ -212,7 +230,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "upsertPartnerLink"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.UpsertLink(ctx, &operations.UpsertPartnerLinkRequestBody{\n        LinkProps: &operations.UpsertPartnerLinkLinkProps{\n            ExternalID: dubgo.Pointer(\"123456\"),\n            TagIds: dubgo.Pointer(operations.CreateUpsertPartnerLinkTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n            )),\n            TestVariants: []operations.UpsertPartnerLinkTestVariants{\n                operations.UpsertPartnerLinkTestVariants{\n                    URL: \"https://example.com/variant-1\",\n                    Percentage: 50,\n                },\n                operations.UpsertPartnerLinkTestVariants{\n                    URL: \"https://example.com/variant-2\",\n                    Percentage: 50,\n                },\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.UpsertLink(ctx, &operations.UpsertPartnerLinkRequestBody{\n        URL: \"https://bad-intent.org/\",\n        LinkProps: &operations.UpsertPartnerLinkLinkProps{\n            ExternalID: dubgo.Pointer(\"123456\"),\n            TagIds: dubgo.Pointer(operations.CreateUpsertPartnerLinkTagIdsArrayOfStr(\n                []string{\n                    \"clux0rgak00011...\",\n                },\n            )),\n            TestVariants: []operations.UpsertPartnerLinkTestVariants{\n                operations.UpsertPartnerLinkTestVariants{\n                    URL: \"https://example.com/variant-1\",\n                    Percentage: 50,\n                },\n                operations.UpsertPartnerLinkTestVariants{\n                    URL: \"https://example.com/variant-2\",\n                    Percentage: 50,\n                },\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/qr"]["get"]
     update:
       "x-codeSamples":

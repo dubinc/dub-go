@@ -371,8 +371,8 @@ type UpsertPartnerLinkRequestBody struct {
 	PartnerID *string `json:"partnerId,omitempty"`
 	// The ID of the partner in your system. If both `partnerId` and `tenantId` are not provided, an error will be thrown.
 	TenantID *string `json:"tenantId,omitempty"`
-	// The URL to shorten (if not provided, the program's default URL will be used). Will throw an error if the domain doesn't match the program's default URL domain.
-	URL *string `json:"url,omitempty"`
+	// The URL to upsert for. Will throw an error if the domain doesn't match the program's default URL domain.
+	URL string `json:"url"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key *string `json:"key,omitempty"`
 	// The comments for the short link.
@@ -395,9 +395,9 @@ func (u *UpsertPartnerLinkRequestBody) GetTenantID() *string {
 	return u.TenantID
 }
 
-func (u *UpsertPartnerLinkRequestBody) GetURL() *string {
+func (u *UpsertPartnerLinkRequestBody) GetURL() string {
 	if u == nil {
-		return nil
+		return ""
 	}
 	return u.URL
 }

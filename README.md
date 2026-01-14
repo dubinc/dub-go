@@ -150,6 +150,12 @@ func main() {
 
 * [Retrieve](docs/sdks/analytics/README.md#retrieve) - Retrieve analytics for a link, a domain, or the authenticated workspace.
 
+### [Bounties](docs/sdks/bounties/README.md)
+
+* [ListSubmissions](docs/sdks/bounties/README.md#listsubmissions) - List bounty submissions
+* [ApproveSubmission](docs/sdks/bounties/README.md#approvesubmission) - Approve a bounty submission
+* [RejectSubmission](docs/sdks/bounties/README.md#rejectsubmission) - Reject a bounty submission
+
 ### [Commissions](docs/sdks/commissions/README.md)
 
 * [List](docs/sdks/commissions/README.md#list) - Get commissions for a program.

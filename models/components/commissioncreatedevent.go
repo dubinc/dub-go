@@ -323,6 +323,56 @@ func (c *CommissionCreatedEventCustomer) GetCreatedAt() string {
 	return c.CreatedAt
 }
 
+type CommissionCreatedEventLink struct {
+	// The unique ID of the short link.
+	ID string `json:"id"`
+	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
+	ShortLink string `json:"shortLink"`
+	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
+	Domain string `json:"domain"`
+	// The short link slug. If not provided, a random 7-character slug will be generated.
+	Key string `json:"key"`
+}
+
+func (c CommissionCreatedEventLink) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CommissionCreatedEventLink) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "shortLink", "domain", "key"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CommissionCreatedEventLink) GetID() string {
+	if c == nil {
+		return ""
+	}
+	return c.ID
+}
+
+func (c *CommissionCreatedEventLink) GetShortLink() string {
+	if c == nil {
+		return ""
+	}
+	return c.ShortLink
+}
+
+func (c *CommissionCreatedEventLink) GetDomain() string {
+	if c == nil {
+		return ""
+	}
+	return c.Domain
+}
+
+func (c *CommissionCreatedEventLink) GetKey() string {
+	if c == nil {
+		return ""
+	}
+	return c.Key
+}
+
 type CommissionCreatedEventData struct {
 	// The commission's unique ID on Dub.
 	ID          string                       `json:"id"`
@@ -340,6 +390,7 @@ type CommissionCreatedEventData struct {
 	UpdatedAt string                          `json:"updatedAt"`
 	Partner   CommissionCreatedEventPartner   `json:"partner"`
 	Customer  *CommissionCreatedEventCustomer `json:"customer,omitempty"`
+	Link      *CommissionCreatedEventLink     `json:"link"`
 }
 
 func (c CommissionCreatedEventData) MarshalJSON() ([]byte, error) {
@@ -449,6 +500,13 @@ func (c *CommissionCreatedEventData) GetCustomer() *CommissionCreatedEventCustom
 		return nil
 	}
 	return c.Customer
+}
+
+func (c *CommissionCreatedEventData) GetLink() *CommissionCreatedEventLink {
+	if c == nil {
+		return nil
+	}
+	return c.Link
 }
 
 // CommissionCreatedEvent - Triggered when a commission is created for a partner.

@@ -327,6 +327,7 @@ func main() {
     )
 
     res, err := s.Partners.UpsertLink(ctx, &operations.UpsertPartnerLinkRequestBody{
+        URL: "https://bad-intent.org/",
         LinkProps: &operations.UpsertPartnerLinkLinkProps{
             ExternalID: dubgo.Pointer("123456"),
             TagIds: dubgo.Pointer(operations.CreateUpsertPartnerLinkTagIdsArrayOfStr(
