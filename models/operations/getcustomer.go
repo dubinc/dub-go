@@ -221,14 +221,16 @@ func (g *GetCustomerDiscount) GetPartnersCount() *float64 {
 type GetCustomerResponseBody struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
-	// Unique identifier for the customer in the client's app.
-	ExternalID string `json:"externalId"`
 	// Name of the customer.
 	Name string `json:"name"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
 	Avatar *string `json:"avatar,omitempty"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// The customer's Stripe customer ID. This is useful for attributing recurring sale events to the partner who referred the customer.
+	StripeCustomerID *string `json:"stripeCustomerId,omitempty"`
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
 	// Total number of sales for the customer.
@@ -250,13 +252,6 @@ func (g *GetCustomerResponseBody) GetID() string {
 	return g.ID
 }
 
-func (g *GetCustomerResponseBody) GetExternalID() string {
-	if g == nil {
-		return ""
-	}
-	return g.ExternalID
-}
-
 func (g *GetCustomerResponseBody) GetName() string {
 	if g == nil {
 		return ""
@@ -276,6 +271,20 @@ func (g *GetCustomerResponseBody) GetAvatar() *string {
 		return nil
 	}
 	return g.Avatar
+}
+
+func (g *GetCustomerResponseBody) GetExternalID() string {
+	if g == nil {
+		return ""
+	}
+	return g.ExternalID
+}
+
+func (g *GetCustomerResponseBody) GetStripeCustomerID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.StripeCustomerID
 }
 
 func (g *GetCustomerResponseBody) GetCountry() *string {

@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 1dfd58e77751ca1d1443d50d088508ad
+  docChecksum: fc5c0def49651ec035c6a0d4876588a6
   docVersion: 0.0.1
-  speakeasyVersion: 1.685.0
-  generationVersion: 2.794.1
-  releaseVersion: 0.23.1
-  configChecksum: a6dfd2d9d2116d8dd1a80c82cd84b29f
+  speakeasyVersion: 1.687.1
+  generationVersion: 2.796.1
+  releaseVersion: 0.23.2
+  configChecksum: 5fb1b50807207c2f5fa9f0bd732a8177
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 persistentEdits:
-  generation_id: 1a13118c-4295-4567-8ac7-fcbd1b119d9f
-  pristine_commit_hash: 972663515cc16b38dd0166cdf478c898fc84030e
-  pristine_tree_hash: b8c1cdcb264a23f8432f027aa909fa0c1f133cb9
+  generation_id: 690314db-c794-4d9d-9f39-69fd08743397
+  pristine_commit_hash: 5c68df6e654544ecf835f46b2959a2addee2f472
+  pristine_tree_hash: e42b14587865be677550b0f7369bfb2da0e6712e
 features:
   go:
     additionalDependencies: 0.1.0
@@ -157,8 +157,8 @@ trackedFiles:
     pristine_git_object: 6fa27a58ad8675f5af010aba34bf8d119fc71bb7
   docs/models/components/commissioncreatedeventcustomer.md:
     id: af161f029be1
-    last_write_checksum: sha1:d1f1416d1531eaa234b835a08b7cae8029cf864d
-    pristine_git_object: 022bc21e94032928a95ef8561cbe421b060eeb24
+    last_write_checksum: sha1:02f6893ecae3aec88dd6ef98fc32591bbf13848f
+    pristine_git_object: 19a7e44bc7d536447b15d048eef4f0558a1311db
   docs/models/components/commissioncreatedeventdata.md:
     id: 3354f5392594
     last_write_checksum: sha1:2d3a255b195c669a4d02e0a65afcfcdd82ee106e
@@ -189,8 +189,8 @@ trackedFiles:
     pristine_git_object: 0fb2eae53f5c371283adc0cc2666185d52ac33b8
   docs/models/components/customer.md:
     id: c4a50385ed0c
-    last_write_checksum: sha1:2e7e2c7c6aae2251ded5d715b09d7494b4e03a47
-    pristine_git_object: f398682d5601d9b9ac47a4aff223e409e8bf314a
+    last_write_checksum: sha1:87a795a856ee4d97bac8f70699dba2dd619cdd7c
+    pristine_git_object: 7c0cfd67517621e98367308041caf8b149c2feb4
   docs/models/components/data.md:
     id: 3f89c52c2b17
     last_write_checksum: sha1:f1ea484224d22c97d17c671de158b4e5ac92f874
@@ -353,8 +353,8 @@ trackedFiles:
     pristine_git_object: e60bf3d75bed2d58a6040baf47d9e2cb6d025b1e
   docs/models/components/role.md:
     id: ab26d0e394ad
-    last_write_checksum: sha1:ab6338054bf1f37a04c7ae2cdbb6f9edd559c720
-    pristine_git_object: 0370f19a993b0c9c009ac4f99912605491b6681c
+    last_write_checksum: sha1:30a97f6b26438b9184ce9cbbf43178cf01953f0b
+    pristine_git_object: c7446ef99ba28b71140b80790e7cbcff76bff249
   docs/models/components/sale.md:
     id: 0f13fc3f2149
     last_write_checksum: sha1:0e2eb3f5da8c6c4b96b3712b0d6701c9435891c4
@@ -369,8 +369,8 @@ trackedFiles:
     pristine_git_object: 008e923f2bd69de1c3fa3fe509ffe2bd2f524579
   docs/models/components/salecreatedeventcustomer.md:
     id: be9a6e06038c
-    last_write_checksum: sha1:5d1d6fd87ead54c71069d8db700515835989b0ec
-    pristine_git_object: d0e6388a60271029f6ec8bc65dbc25e78d9d59a5
+    last_write_checksum: sha1:658ef4bf772085da89eba6f09ef5f7496707368b
+    pristine_git_object: c38e51e243f7ef265f207e586144252439bcd848
   docs/models/components/salecreatedeventdata.md:
     id: 7403a768df51
     last_write_checksum: sha1:561f1ee41b5a51dc421d67384c5d1c3cdcf38c86
@@ -697,8 +697,8 @@ trackedFiles:
     pristine_git_object: 596261e487ccaecd1d3deb305dfb5969f28c6d0f
   docs/models/operations/getcustomerresponsebody.md:
     id: 820c22a83313
-    last_write_checksum: sha1:7b0884706fd890fa4beaea91c6014b933d7f2eaf
-    pristine_git_object: 74a4f6e6fa34161a7486b7521e565f6022dfcd5c
+    last_write_checksum: sha1:d06e77e855a2dc15acf963bdb55a2f759b5f1cb8
+    pristine_git_object: 937ddf119dddad6588ca1b655402605a18f411fa
   docs/models/operations/getcustomerslink.md:
     id: b8b844a588c0
     last_write_checksum: sha1:22cd87f47a5ad612b90661dbad2bd3d10d0b27a7
@@ -721,8 +721,8 @@ trackedFiles:
     pristine_git_object: 21f7b3b9427328befc2f2fc06f845204489c1062
   docs/models/operations/getcustomersresponsebody.md:
     id: 4849cbd8acb5
-    last_write_checksum: sha1:f769f83825ab04a9c9016621bc0d6cd9d5979a41
-    pristine_git_object: eb43b998100dccfba9645155d984322b0725efd6
+    last_write_checksum: sha1:28244f2636b980592984fe0ab90b0aaae27cc3a4
+    pristine_git_object: aef3263ae635db548740ebba386462cd205c09c1
   docs/models/operations/getcustomerstype.md:
     id: 1ba3780b8fd7
     last_write_checksum: sha1:dc03bfb6f3236f711f5a919070b3fa4e523b5e65
@@ -833,8 +833,8 @@ trackedFiles:
     pristine_git_object: da388ef6990ef13610c32ae7d3ffb85b0eac0c78
   docs/models/operations/listcommissionscustomer.md:
     id: 1a5ccf443dee
-    last_write_checksum: sha1:d30c3eb6408d0c715383ff115ff51de246857710
-    pristine_git_object: c53c1b118bfa8b582d4dc8b8b0cab0bc3e733c55
+    last_write_checksum: sha1:52bf1c31c2b20911e6aa1d2409407603ae59dfb9
+    pristine_git_object: d495dad91ba4ef921bc5d1c331d98d144718a57f
   docs/models/operations/listcommissionspartner.md:
     id: 1cc4c46fe115
     last_write_checksum: sha1:247a3aa13a145682af5d8dee4ee712944ebec7b7
@@ -893,8 +893,8 @@ trackedFiles:
     pristine_git_object: 6f7036079d300e09ecaf33f8e1948692fe51e366
   docs/models/operations/listeventsresponsebodycustomer.md:
     id: c8beca8d3e0e
-    last_write_checksum: sha1:76201a17a432f0f32c884a6c949b075badc529d8
-    pristine_git_object: 07da614febc55fd6cd8d93c83387c624030227c0
+    last_write_checksum: sha1:3bbb0cc91595201ee6d4f6ef0d02a33fd09d72e1
+    pristine_git_object: 7a3810bb553e97a32d741d37161035acbeec4a21
   docs/models/operations/listeventsresponsebodyevent.md:
     id: 9a9e3491698c
     last_write_checksum: sha1:660c71942ccaf7548dc3c444944cd26c9d205c90
@@ -1077,8 +1077,8 @@ trackedFiles:
     pristine_git_object: 3f60123c9555eefca7d567bad025b4cbcb6e388b
   docs/models/operations/responsebodycustomer.md:
     id: ee19c88144b4
-    last_write_checksum: sha1:6afc29bcf047a73fcbdcf5356728c03e456c3b92
-    pristine_git_object: 037ebd9ad5924702d44d2a063299c488ac3d3ace
+    last_write_checksum: sha1:e984de79d084a7a9f18fbca92eb65f0635fcf51d
+    pristine_git_object: abd13ae816f179d90b3a1b84a288b873828af384
   docs/models/operations/responsebodyevent.md:
     id: ba7abc68c854
     last_write_checksum: sha1:913583d4c98ac6164e889ff083597ecead32d127
@@ -1213,8 +1213,8 @@ trackedFiles:
     pristine_git_object: 172126bb768e0bb06a6c1494395588d1cac987d9
   docs/models/operations/updatecommissioncustomer.md:
     id: 19d4c8993860
-    last_write_checksum: sha1:15d137f33be6c30fddb0dea5ad5669372da41a26
-    pristine_git_object: 2db15a9fdfd098c0ea2b1f1ac7cd775a3c5e3c9f
+    last_write_checksum: sha1:be97a3e3af7de7d55a6f96c1c7617321da741c20
+    pristine_git_object: 94f9fa07d8cd3e17b63a3fa07ed78043ae236d67
   docs/models/operations/updatecommissionpartner.md:
     id: 3ef877e32079
     last_write_checksum: sha1:0fc67a39421d1b66db9625f35ccd3560cf4c2bbb
@@ -1261,8 +1261,8 @@ trackedFiles:
     pristine_git_object: c1a6b5d41581ce88706756ed653958e6a363e5ea
   docs/models/operations/updatecustomerresponsebody.md:
     id: 2239ad02e19c
-    last_write_checksum: sha1:ef0c6d03d2d2222e591d1a0280097ec97406543d
-    pristine_git_object: 83e0ea79fb2c8335d073506566b8b243ec452bc5
+    last_write_checksum: sha1:0b053fcd2450f617413c040fb68f6c9a3a10371f
+    pristine_git_object: 62f641e70e51c2c49c5d6c2b6f8075a6ea06cdcf
   docs/models/operations/updatecustomertype.md:
     id: 17574970c8c7
     last_write_checksum: sha1:ee1b244d824b226da84a91cdee8e6dee027b169b
@@ -1533,8 +1533,8 @@ trackedFiles:
     pristine_git_object: 84da031ebb63e9066987c93b175acb60a45b3a47
   dub.go:
     id: 9bba8aa9ce0f
-    last_write_checksum: sha1:751a1323aa1b557c8ec8e50624889b15f473031f
-    pristine_git_object: 1ab3b8c48d50ae61e46db071e1eccd1038567181
+    last_write_checksum: sha1:836734cb8d4b4a97a1e0797e828a26017272cee0
+    pristine_git_object: 7d75dcd037cbf7aeebd2e14bf628447876503d38
   embedtokens.go:
     id: 0fc16a550ef5
     last_write_checksum: sha1:e50a614f2d8b0421797c6377187ed37393199041
@@ -1673,8 +1673,8 @@ trackedFiles:
     pristine_git_object: 90aafe9f921ac86399f42beb4b3e4885b6c8167c
   models/components/commissioncreatedevent.go:
     id: a5d48971a707
-    last_write_checksum: sha1:9de1baa8ab731567ef8f33c13c26dede80c02da8
-    pristine_git_object: d91aae1487822278c83e2941c273b8142a8e0f38
+    last_write_checksum: sha1:8a144e77c17a0aecb25e22ced429a54007d122ea
+    pristine_git_object: e2991d64a9f7e60b23b53bd7af53b272af48e428
   models/components/domainschema.go:
     id: 7f9790bf6b88
     last_write_checksum: sha1:f224ea76bf03b36b976ba674d3a9499e3b1cff6d
@@ -1685,8 +1685,8 @@ trackedFiles:
     pristine_git_object: 819bcc054b38dc347b7fd5b7300c70ca51111122
   models/components/leadcreatedevent.go:
     id: 8f0c71eab65f
-    last_write_checksum: sha1:8b639401936af8ea48af84ec97f068d48b2228ce
-    pristine_git_object: 70117cd12520625b60bdfa54e8d42949c22c73bc
+    last_write_checksum: sha1:c57d75f796f6568466a6a2f9a2f86f168a07757f
+    pristine_git_object: f7d7fd7d762e74a58d126cffd2e078c5e80eeea8
   models/components/linkclickedevent.go:
     id: 98c57c48d0ac
     last_write_checksum: sha1:b5420a62aef279a445171310ab854f07f46b2bb7
@@ -1733,8 +1733,8 @@ trackedFiles:
     pristine_git_object: 780e390c4b47ef33fba71e91cfb44cfea9716cc5
   models/components/salecreatedevent.go:
     id: fc879a3e58f5
-    last_write_checksum: sha1:066b5ea89da3e0d2d08d5c707e163db85dff1b1f
-    pristine_git_object: eb8f1da2b05e47e2b5ba93443db908f99463f8e6
+    last_write_checksum: sha1:d1806792d3b9949a932af02e06f03605b5fb6a54
+    pristine_git_object: 789fafd55b383667133b2989d14fd316e0fa4686
   models/components/security.go:
     id: 3a5eba5fe9e0
     last_write_checksum: sha1:afa8db162e63aa24d0a89faab7e52c3a8db582b9
@@ -1745,8 +1745,8 @@ trackedFiles:
     pristine_git_object: abe423832c4af0212ccf6471caeb146744c541bd
   models/components/workspaceschema.go:
     id: 976c411a8567
-    last_write_checksum: sha1:6036782805505ac3782e251cd18e68e4e0f821b3
-    pristine_git_object: 2068f7587c97b472a10ae0b178a74fa62e429f9c
+    last_write_checksum: sha1:cbe5f3fcc65ef877b92982e22f165610f5cc812a
+    pristine_git_object: 2f3aac780eb039c46c63eb748264457ca633fa56
   models/operations/approvebountysubmission.go:
     id: 42e69ab4c481
     last_write_checksum: sha1:1c5c8be061139286fda3fc5d12f69d049e9b65bf
@@ -1821,12 +1821,12 @@ trackedFiles:
     pristine_git_object: eca6e8ffb5804ab5763009094cbb36e0ce78ce72
   models/operations/getcustomer.go:
     id: f1805cdcb0aa
-    last_write_checksum: sha1:54946c55d5b8b776b3bcffa6e80876550f323cf2
-    pristine_git_object: ce72e2e70e9681e0bbfeaa62d8c3f3bf4a7a3bf8
+    last_write_checksum: sha1:a9f530d792bc4bd6cf69816b723dba5194885cf1
+    pristine_git_object: 53bead10628b2ee8ab57ec3570d912ee216774c2
   models/operations/getcustomers.go:
     id: 9766d2b3c8e4
-    last_write_checksum: sha1:d0f86940ad9a8f9f49725ba1c5413f57714adcf1
-    pristine_git_object: ff4b97e595cfd2a4a3e27c2428e48ad576b8e904
+    last_write_checksum: sha1:711b30975c8c1f6333d41c489e48a0598552f9fe
+    pristine_git_object: 20857bf3d1f0d72702a96b4692712ec939e6c024
   models/operations/getlinkinfo.go:
     id: 34279bf78084
     last_write_checksum: sha1:96c02b2e9440de8c28f0b92e7677ce0170991c90
@@ -1857,16 +1857,16 @@ trackedFiles:
     pristine_git_object: 80576f0d6a036152f442f78a5607de30fc1837eb
   models/operations/listcommissions.go:
     id: 4ddaec57f8c7
-    last_write_checksum: sha1:fca6a2018e33945035df2ac92b18f85deb679212
-    pristine_git_object: 550ed01df09122d917eff5bc77922bfbdb654bb0
+    last_write_checksum: sha1:1500acb84ec4c68f75c1ab13accd65b50f7519ae
+    pristine_git_object: c06f1380621d4fe5bb5b37464282e2ed190c925a
   models/operations/listdomains.go:
     id: 7a6f378d3843
     last_write_checksum: sha1:55934291bebabd7eb7e112add52636057af8fb47
     pristine_git_object: da245b9c553f7e3ed7a14699978cae124a4eaec0
   models/operations/listevents.go:
     id: 798ff0fb0954
-    last_write_checksum: sha1:d552673cf3ccfead2bc37dc67431aa236dddcd31
-    pristine_git_object: e9e7b8b33251e661de5b0deaec400b9aa34512d3
+    last_write_checksum: sha1:a14d82bfe6a5848ecf4252583c0ad677fc45e02c
+    pristine_git_object: 17854a28c241e0186f2acde810fa5004964244fd
   models/operations/listfolders.go:
     id: c987dce8d406
     last_write_checksum: sha1:dbf28ede879e1a33577e90b848a455f2475a3078
@@ -1909,12 +1909,12 @@ trackedFiles:
     pristine_git_object: 30601a0368621f2d96bb11a4517824f3da02ab2b
   models/operations/updatecommission.go:
     id: f7bd6beca8f9
-    last_write_checksum: sha1:4089bdd97ccda532f815095b85274c9a725fb02e
-    pristine_git_object: 3624c90504af9d6cead82fc54f4d5472c8371dda
+    last_write_checksum: sha1:dd85523a373044c3fd32c8a5592ad29d174bb33d
+    pristine_git_object: c2e1fdf2c70bd29987544f4ccd95fe5125dfe092
   models/operations/updatecustomer.go:
     id: 9f2e6852960d
-    last_write_checksum: sha1:1e941cd896cfc2813075aa8a226d575136719df8
-    pristine_git_object: 0cfa68ab615f292171d7717d47c4363df005b8fc
+    last_write_checksum: sha1:d487d428b22a8bc4607232223004dc2a5fd15b56
+    pristine_git_object: 8eb28f5c86017065ac1bff5adb6233679d63a4d5
   models/operations/updatedomain.go:
     id: d1898d2e92db
     last_write_checksum: sha1:7b1c1d14d118d60a042153577c82a3bbe88ec8ee
@@ -2353,7 +2353,7 @@ examples:
           query: "metadata['key']:'value'"
       responses:
         "200":
-          application/json: [{"event": "lead", "timestamp": "<value>", "eventId": "<id>", "eventName": "<value>", "click": {"id": "<id>", "timestamp": "<value>", "url": "https://meager-advancement.org/", "country": "Saint Kitts and Nevis", "city": "Pfannerstillborough", "region": "<value>", "continent": "Asia", "device": "Mobile", "browser": "Firefox", "os": "Windows", "referer": "wide-vision.org", "refererUrl": "https://accomplished-final.net", "qr": false, "ip": "cc7a:df7a:b6dc:bdb1:0394:d55c:f23c:96f8"}, "link": {"id": "<id>", "domain": "unwelcome-gown.biz", "key": "<key>", "url": "https://victorious-characterization.name", "trackConversion": true, "externalId": "<id>", "tenantId": "<id>", "programId": "<id>", "partnerId": "<id>", "archived": false, "expiresAt": "1760341898549", "expiredUrl": "https://unripe-fork.org", "disabledAt": "<value>", "password": "wgPQMpAKj7qM_9Q", "proxy": false, "title": "<value>", "description": "coil frankly violent yahoo and shoddy", "image": "https://loremflickr.com/143/3646?lock=1138692876108126", "video": "https://picsum.videos/seed/iEUe8/3542/320", "rewrite": true, "doIndex": true, "ios": "<value>", "android": "<id>", "geo": {}, "publicStats": false, "tags": [{"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}], "folderId": "<id>", "webhookIds": ["<value 1>", "<value 2>", "<value 3>"], "comments": "in-joke whose roundabout tricky that feline ack upbeat rarely given nor throughout", "shortLink": "https://impossible-meal.biz/", "qrCode": "https://pushy-hundred.net", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}], "testStartedAt": "<value>", "testCompletedAt": "<value>", "userId": "<id>", "workspaceId": "<id>", "clicks": 0, "leads": 0, "conversions": 0, "sales": 0, "saleAmount": 0, "lastClicked": "<value>", "createdAt": "1738268944498", "updatedAt": "1747557867669", "tagId": "<id>", "projectId": "<id>"}, "customer": {"id": "<id>", "externalId": "<id>", "name": "<value>", "createdAt": "1737747075565"}, "click_id": "<id>", "link_id": "<id>", "domain": "frequent-embarrassment.biz", "key": "<key>", "url": "https://perfumed-shipper.name/", "continent": "Asia", "country": "Hong Kong", "city": "Waltham", "device": "Mobile", "browser": "Firefox", "os": "WebOS", "qr": 723.73, "ip": "c2f8:81ec:f3e6:fe30:2bb1:84c7:1500:7edc"}, {"event": "lead", "timestamp": "<value>", "eventId": "<id>", "eventName": "<value>", "click": {"id": "<id>", "timestamp": "<value>", "url": "https://meager-advancement.org/", "country": "Saint Kitts and Nevis", "city": "Pfannerstillborough", "region": "<value>", "continent": "Asia", "device": "Mobile", "browser": "Firefox", "os": "Windows", "referer": "wide-vision.org", "refererUrl": "https://accomplished-final.net", "qr": false, "ip": "cc7a:df7a:b6dc:bdb1:0394:d55c:f23c:96f8"}, "link": {"id": "<id>", "domain": "unwelcome-gown.biz", "key": "<key>", "url": "https://victorious-characterization.name", "trackConversion": true, "externalId": "<id>", "tenantId": "<id>", "programId": "<id>", "partnerId": "<id>", "archived": false, "expiresAt": "1760341898549", "expiredUrl": "https://unripe-fork.org", "disabledAt": "<value>", "password": "wgPQMpAKj7qM_9Q", "proxy": false, "title": "<value>", "description": "coil frankly violent yahoo and shoddy", "image": "https://loremflickr.com/143/3646?lock=1138692876108126", "video": "https://picsum.videos/seed/iEUe8/3542/320", "rewrite": true, "doIndex": true, "ios": "<value>", "android": "<id>", "geo": {}, "publicStats": false, "tags": [{"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}], "folderId": "<id>", "webhookIds": ["<value 1>", "<value 2>", "<value 3>"], "comments": "in-joke whose roundabout tricky that feline ack upbeat rarely given nor throughout", "shortLink": "https://impossible-meal.biz/", "qrCode": "https://pushy-hundred.net", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}], "testStartedAt": "<value>", "testCompletedAt": "<value>", "userId": "<id>", "workspaceId": "<id>", "clicks": 0, "leads": 0, "conversions": 0, "sales": 0, "saleAmount": 0, "lastClicked": "<value>", "createdAt": "1738268944498", "updatedAt": "1747557867669", "tagId": "<id>", "projectId": "<id>"}, "customer": {"id": "<id>", "externalId": "<id>", "name": "<value>", "createdAt": "1737747075565"}, "click_id": "<id>", "link_id": "<id>", "domain": "frequent-embarrassment.biz", "key": "<key>", "url": "https://perfumed-shipper.name/", "continent": "Asia", "country": "Hong Kong", "city": "Waltham", "device": "Mobile", "browser": "Firefox", "os": "WebOS", "qr": 723.73, "ip": "c2f8:81ec:f3e6:fe30:2bb1:84c7:1500:7edc"}, {"event": "click", "timestamp": "<value>", "click": {"id": "<id>", "timestamp": "<value>", "url": "https://puzzled-remark.com", "country": "Spain", "city": "Kiannaville", "region": "<value>", "continent": "Africa", "device": "Desktop", "browser": "Safari", "os": "Linux", "referer": "twin-phrase.net", "refererUrl": "https://right-travel.biz", "qr": false, "ip": "0510:cb0c:5eb9:add1:af1e:4f0c:6aba:8e1f"}, "link": {"id": "<id>", "domain": "favorable-conversation.org", "key": "<key>", "url": "https://definitive-slide.biz", "trackConversion": false, "externalId": "<id>", "tenantId": "<id>", "programId": "<id>", "partnerId": "<id>", "archived": true, "expiresAt": "1766088600492", "expiredUrl": "https://suburban-providence.com/", "disabledAt": "<value>", "password": "cSyr9N9Comz95cd", "proxy": true, "title": "<value>", "description": "up reiterate than someplace ordinary thunderbolt", "image": "https://loremflickr.com/1709/681?lock=3577114032181318", "video": "https://loremflickr.com/3785/1135?lock=4672271138596177", "rewrite": true, "doIndex": true, "ios": "<value>", "android": "<id>", "geo": {}, "publicStats": false, "tags": [{"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}], "folderId": "<id>", "webhookIds": ["<value 1>", "<value 2>"], "comments": "fatally slipper lumpy tempting monthly astride", "shortLink": "https://wretched-essence.name", "qrCode": "https://messy-godparent.org", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}], "testStartedAt": "<value>", "testCompletedAt": "<value>", "userId": "<id>", "workspaceId": "<id>", "clicks": 0, "leads": 0, "conversions": 0, "sales": 0, "saleAmount": 0, "lastClicked": "<value>", "createdAt": "1722653474289", "updatedAt": "1747531351908", "tagId": "<id>", "projectId": "<id>"}, "click_id": "<id>", "link_id": "<id>", "domain": "instructive-overheard.net", "key": "<key>", "url": "https://flashy-ruin.com/", "continent": "Asia", "country": "Guyana", "city": "Lake Isaiahhaven", "device": "Desktop", "browser": "Firefox", "os": "iOS", "qr": 5044.97, "ip": "bdfd:5567:37f7:d6ac:bf9f:b6ad:e9fe:aea8"}]
+          application/json: [{"event": "lead", "timestamp": "<value>", "eventId": "<id>", "eventName": "<value>", "click": {"id": "<id>", "timestamp": "<value>", "url": "https://meager-advancement.org/", "country": "Saint Kitts and Nevis", "city": "Pfannerstillborough", "region": "<value>", "continent": "Asia", "device": "Mobile", "browser": "Firefox", "os": "Windows", "referer": "wide-vision.org", "refererUrl": "https://accomplished-final.net", "qr": false, "ip": "cc7a:df7a:b6dc:bdb1:0394:d55c:f23c:96f8"}, "link": {"id": "<id>", "domain": "unwelcome-gown.biz", "key": "<key>", "url": "https://victorious-characterization.name", "trackConversion": true, "externalId": "<id>", "tenantId": "<id>", "programId": "<id>", "partnerId": "<id>", "archived": false, "expiresAt": "1760341898549", "expiredUrl": "https://unripe-fork.org", "disabledAt": "<value>", "password": "wgPQMpAKj7qM_9Q", "proxy": false, "title": "<value>", "description": "coil frankly violent yahoo and shoddy", "image": "https://loremflickr.com/143/3646?lock=1138692876108126", "video": "https://picsum.videos/seed/iEUe8/3542/320", "rewrite": true, "doIndex": true, "ios": "<value>", "android": "<id>", "geo": {}, "publicStats": false, "tags": [{"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}], "folderId": "<id>", "webhookIds": ["<value 1>", "<value 2>", "<value 3>"], "comments": "in-joke whose roundabout tricky that feline ack upbeat rarely given nor throughout", "shortLink": "https://impossible-meal.biz/", "qrCode": "https://pushy-hundred.net", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}], "testStartedAt": "<value>", "testCompletedAt": "<value>", "userId": "<id>", "workspaceId": "<id>", "clicks": 0, "leads": 0, "conversions": 0, "sales": 0, "saleAmount": 0, "lastClicked": "<value>", "createdAt": "1738268944498", "updatedAt": "1747557867669", "tagId": "<id>", "projectId": "<id>"}, "customer": {"id": "<id>", "name": "<value>", "externalId": "<id>", "createdAt": "1737747075565"}, "click_id": "<id>", "link_id": "<id>", "domain": "frequent-embarrassment.biz", "key": "<key>", "url": "https://perfumed-shipper.name/", "continent": "Asia", "country": "Hong Kong", "city": "Waltham", "device": "Mobile", "browser": "Firefox", "os": "WebOS", "qr": 723.73, "ip": "c2f8:81ec:f3e6:fe30:2bb1:84c7:1500:7edc"}, {"event": "lead", "timestamp": "<value>", "eventId": "<id>", "eventName": "<value>", "click": {"id": "<id>", "timestamp": "<value>", "url": "https://meager-advancement.org/", "country": "Saint Kitts and Nevis", "city": "Pfannerstillborough", "region": "<value>", "continent": "Asia", "device": "Mobile", "browser": "Firefox", "os": "Windows", "referer": "wide-vision.org", "refererUrl": "https://accomplished-final.net", "qr": false, "ip": "cc7a:df7a:b6dc:bdb1:0394:d55c:f23c:96f8"}, "link": {"id": "<id>", "domain": "unwelcome-gown.biz", "key": "<key>", "url": "https://victorious-characterization.name", "trackConversion": true, "externalId": "<id>", "tenantId": "<id>", "programId": "<id>", "partnerId": "<id>", "archived": false, "expiresAt": "1760341898549", "expiredUrl": "https://unripe-fork.org", "disabledAt": "<value>", "password": "wgPQMpAKj7qM_9Q", "proxy": false, "title": "<value>", "description": "coil frankly violent yahoo and shoddy", "image": "https://loremflickr.com/143/3646?lock=1138692876108126", "video": "https://picsum.videos/seed/iEUe8/3542/320", "rewrite": true, "doIndex": true, "ios": "<value>", "android": "<id>", "geo": {}, "publicStats": false, "tags": [{"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}], "folderId": "<id>", "webhookIds": ["<value 1>", "<value 2>", "<value 3>"], "comments": "in-joke whose roundabout tricky that feline ack upbeat rarely given nor throughout", "shortLink": "https://impossible-meal.biz/", "qrCode": "https://pushy-hundred.net", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}], "testStartedAt": "<value>", "testCompletedAt": "<value>", "userId": "<id>", "workspaceId": "<id>", "clicks": 0, "leads": 0, "conversions": 0, "sales": 0, "saleAmount": 0, "lastClicked": "<value>", "createdAt": "1738268944498", "updatedAt": "1747557867669", "tagId": "<id>", "projectId": "<id>"}, "customer": {"id": "<id>", "name": "<value>", "externalId": "<id>", "createdAt": "1737747075565"}, "click_id": "<id>", "link_id": "<id>", "domain": "frequent-embarrassment.biz", "key": "<key>", "url": "https://perfumed-shipper.name/", "continent": "Asia", "country": "Hong Kong", "city": "Waltham", "device": "Mobile", "browser": "Firefox", "os": "WebOS", "qr": 723.73, "ip": "c2f8:81ec:f3e6:fe30:2bb1:84c7:1500:7edc"}, {"event": "click", "timestamp": "<value>", "click": {"id": "<id>", "timestamp": "<value>", "url": "https://puzzled-remark.com", "country": "Spain", "city": "Kiannaville", "region": "<value>", "continent": "Africa", "device": "Desktop", "browser": "Safari", "os": "Linux", "referer": "twin-phrase.net", "refererUrl": "https://right-travel.biz", "qr": false, "ip": "0510:cb0c:5eb9:add1:af1e:4f0c:6aba:8e1f"}, "link": {"id": "<id>", "domain": "favorable-conversation.org", "key": "<key>", "url": "https://definitive-slide.biz", "trackConversion": false, "externalId": "<id>", "tenantId": "<id>", "programId": "<id>", "partnerId": "<id>", "archived": true, "expiresAt": "1766088600492", "expiredUrl": "https://suburban-providence.com/", "disabledAt": "<value>", "password": "cSyr9N9Comz95cd", "proxy": true, "title": "<value>", "description": "up reiterate than someplace ordinary thunderbolt", "image": "https://loremflickr.com/1709/681?lock=3577114032181318", "video": "https://loremflickr.com/3785/1135?lock=4672271138596177", "rewrite": true, "doIndex": true, "ios": "<value>", "android": "<id>", "geo": {}, "publicStats": false, "tags": [{"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}, {"id": "<id>", "name": "<value>", "color": "yellow"}], "folderId": "<id>", "webhookIds": ["<value 1>", "<value 2>"], "comments": "fatally slipper lumpy tempting monthly astride", "shortLink": "https://wretched-essence.name", "qrCode": "https://messy-godparent.org", "utm_source": "<value>", "utm_medium": "<value>", "utm_campaign": "<value>", "utm_term": "<value>", "utm_content": "<value>", "testVariants": [{"url": "https://example.com/variant-1", "percentage": 50}, {"url": "https://example.com/variant-2", "percentage": 50}], "testStartedAt": "<value>", "testCompletedAt": "<value>", "userId": "<id>", "workspaceId": "<id>", "clicks": 0, "leads": 0, "conversions": 0, "sales": 0, "saleAmount": 0, "lastClicked": "<value>", "createdAt": "1722653474289", "updatedAt": "1747531351908", "tagId": "<id>", "projectId": "<id>"}, "click_id": "<id>", "link_id": "<id>", "domain": "instructive-overheard.net", "key": "<key>", "url": "https://flashy-ruin.com/", "continent": "Asia", "country": "Guyana", "city": "Lake Isaiahhaven", "device": "Desktop", "browser": "Firefox", "os": "iOS", "qr": 5044.97, "ip": "bdfd:5567:37f7:d6ac:bf9f:b6ad:e9fe:aea8"}]
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -2745,7 +2745,7 @@ examples:
           pageSize: 50
       responses:
         "200":
-          application/json: [{"id": "<id>", "externalId": "<id>", "name": "<value>", "createdAt": "1718742442588"}]
+          application/json: [{"id": "<id>", "name": "<value>", "externalId": "<id>", "createdAt": "1718742442588"}]
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -2795,7 +2795,7 @@ examples:
         query: {}
       responses:
         "200":
-          application/json: {"id": "<id>", "externalId": "<id>", "name": "<value>", "createdAt": "1720980752432"}
+          application/json: {"id": "<id>", "name": "<value>", "externalId": "<id>", "createdAt": "1720980752432"}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -2822,7 +2822,7 @@ examples:
         query: {}
       responses:
         "200":
-          application/json: {"id": "<id>", "externalId": "<id>", "name": "<value>", "createdAt": "1722072763495"}
+          application/json: {"id": "<id>", "name": "<value>", "externalId": "<id>", "createdAt": "1722072763495"}
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -3382,7 +3382,14 @@ examples:
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Go SDK Changes:\n* `Dub.Partners.UpsertLink()`: \n  *  `request.Request.Url` **Changed** **Breaking** :warning:\n* `Dub.Bounties.ListSubmissions()`: **Added**\n* `Dub.Bounties.ApproveSubmission()`: **Added**\n* `Dub.Bounties.RejectSubmission()`: **Added**\n"
+releaseNotes: |
+  ## Go SDK Changes:
+  * `Dub.Events.List()`:  `response.[]` **Changed**
+  * `Dub.Customers.List()`:  `response.[].StripeCustomerId` **Added**
+  * `Dub.Customers.Get()`:  `response.StripeCustomerId` **Added**
+  * `Dub.Customers.Update()`:  `response.StripeCustomerId` **Added**
+  * `Dub.Commissions.List()`:  `response.[].Customer.StripeCustomerId` **Added**
+  * `Dub.Commissions.Update()`:  `response.Customer.StripeCustomerId` **Added**
 generatedFiles:
   - .gitattributes
   - /models/components/analyticsbrowsers.go

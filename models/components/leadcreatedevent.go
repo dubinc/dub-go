@@ -34,14 +34,16 @@ func (e *LeadCreatedEventEvent) UnmarshalJSON(data []byte) error {
 type Customer struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
-	// Unique identifier for the customer in the client's app.
-	ExternalID string `json:"externalId"`
 	// Name of the customer.
 	Name string `json:"name"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
 	Avatar *string `json:"avatar,omitempty"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// The customer's Stripe customer ID. This is useful for attributing recurring sale events to the partner who referred the customer.
+	StripeCustomerID *string `json:"stripeCustomerId,omitempty"`
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
 	// Total number of sales for the customer.
@@ -57,7 +59,7 @@ func (c Customer) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Customer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "externalId", "name", "createdAt"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "name", "externalId", "createdAt"}); err != nil {
 		return err
 	}
 	return nil
@@ -68,13 +70,6 @@ func (c *Customer) GetID() string {
 		return ""
 	}
 	return c.ID
-}
-
-func (c *Customer) GetExternalID() string {
-	if c == nil {
-		return ""
-	}
-	return c.ExternalID
 }
 
 func (c *Customer) GetName() string {
@@ -96,6 +91,20 @@ func (c *Customer) GetAvatar() *string {
 		return nil
 	}
 	return c.Avatar
+}
+
+func (c *Customer) GetExternalID() string {
+	if c == nil {
+		return ""
+	}
+	return c.ExternalID
+}
+
+func (c *Customer) GetStripeCustomerID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.StripeCustomerID
 }
 
 func (c *Customer) GetCountry() *string {
