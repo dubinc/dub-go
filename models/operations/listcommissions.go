@@ -482,14 +482,16 @@ func (l *ListCommissionsPartner) GetGroupID() *string {
 type ListCommissionsCustomer struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
-	// Unique identifier for the customer in the client's app.
-	ExternalID string `json:"externalId"`
 	// Name of the customer.
 	Name string `json:"name"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
 	Avatar *string `json:"avatar,omitempty"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// The customer's Stripe customer ID. This is useful for attributing recurring sale events to the partner who referred the customer.
+	StripeCustomerID *string `json:"stripeCustomerId,omitempty"`
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
 	// Total number of sales for the customer.
@@ -505,13 +507,6 @@ func (l *ListCommissionsCustomer) GetID() string {
 		return ""
 	}
 	return l.ID
-}
-
-func (l *ListCommissionsCustomer) GetExternalID() string {
-	if l == nil {
-		return ""
-	}
-	return l.ExternalID
 }
 
 func (l *ListCommissionsCustomer) GetName() string {
@@ -533,6 +528,20 @@ func (l *ListCommissionsCustomer) GetAvatar() *string {
 		return nil
 	}
 	return l.Avatar
+}
+
+func (l *ListCommissionsCustomer) GetExternalID() string {
+	if l == nil {
+		return ""
+	}
+	return l.ExternalID
+}
+
+func (l *ListCommissionsCustomer) GetStripeCustomerID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.StripeCustomerID
 }
 
 func (l *ListCommissionsCustomer) GetCountry() *string {

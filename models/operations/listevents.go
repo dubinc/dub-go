@@ -1464,14 +1464,16 @@ func (l *ListEventsResponseBodyClick) GetIP() string {
 type ResponseBodyCustomer struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
-	// Unique identifier for the customer in the client's app.
-	ExternalID string `json:"externalId"`
 	// Name of the customer.
 	Name string `json:"name"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
 	Avatar *string `json:"avatar,omitempty"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// The customer's Stripe customer ID. This is useful for attributing recurring sale events to the partner who referred the customer.
+	StripeCustomerID *string `json:"stripeCustomerId,omitempty"`
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
 	// Total number of sales for the customer.
@@ -1487,7 +1489,7 @@ func (r ResponseBodyCustomer) MarshalJSON() ([]byte, error) {
 }
 
 func (r *ResponseBodyCustomer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"id", "externalId", "name", "createdAt"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"id", "name", "externalId", "createdAt"}); err != nil {
 		return err
 	}
 	return nil
@@ -1498,13 +1500,6 @@ func (r *ResponseBodyCustomer) GetID() string {
 		return ""
 	}
 	return r.ID
-}
-
-func (r *ResponseBodyCustomer) GetExternalID() string {
-	if r == nil {
-		return ""
-	}
-	return r.ExternalID
 }
 
 func (r *ResponseBodyCustomer) GetName() string {
@@ -1526,6 +1521,20 @@ func (r *ResponseBodyCustomer) GetAvatar() *string {
 		return nil
 	}
 	return r.Avatar
+}
+
+func (r *ResponseBodyCustomer) GetExternalID() string {
+	if r == nil {
+		return ""
+	}
+	return r.ExternalID
+}
+
+func (r *ResponseBodyCustomer) GetStripeCustomerID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.StripeCustomerID
 }
 
 func (r *ResponseBodyCustomer) GetCountry() *string {
@@ -2469,14 +2478,16 @@ func (r *ResponseBodyLink) GetProjectID() string {
 type ListEventsResponseBodyCustomer struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
-	// Unique identifier for the customer in the client's app.
-	ExternalID string `json:"externalId"`
 	// Name of the customer.
 	Name string `json:"name"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
 	Avatar *string `json:"avatar,omitempty"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// The customer's Stripe customer ID. This is useful for attributing recurring sale events to the partner who referred the customer.
+	StripeCustomerID *string `json:"stripeCustomerId,omitempty"`
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
 	// Total number of sales for the customer.
@@ -2492,7 +2503,7 @@ func (l ListEventsResponseBodyCustomer) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListEventsResponseBodyCustomer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "externalId", "name", "createdAt"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "name", "externalId", "createdAt"}); err != nil {
 		return err
 	}
 	return nil
@@ -2503,13 +2514,6 @@ func (l *ListEventsResponseBodyCustomer) GetID() string {
 		return ""
 	}
 	return l.ID
-}
-
-func (l *ListEventsResponseBodyCustomer) GetExternalID() string {
-	if l == nil {
-		return ""
-	}
-	return l.ExternalID
 }
 
 func (l *ListEventsResponseBodyCustomer) GetName() string {
@@ -2531,6 +2535,20 @@ func (l *ListEventsResponseBodyCustomer) GetAvatar() *string {
 		return nil
 	}
 	return l.Avatar
+}
+
+func (l *ListEventsResponseBodyCustomer) GetExternalID() string {
+	if l == nil {
+		return ""
+	}
+	return l.ExternalID
+}
+
+func (l *ListEventsResponseBodyCustomer) GetStripeCustomerID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.StripeCustomerID
 }
 
 func (l *ListEventsResponseBodyCustomer) GetCountry() *string {
