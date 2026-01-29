@@ -1,5 +1,7 @@
 # ApproveBountySubmissionStatus
 
+The status of the submission
+
 
 ## Values
 

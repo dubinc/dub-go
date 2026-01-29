@@ -57,8 +57,10 @@ func (e *Plan) UnmarshalJSON(data []byte) error {
 type Role string
 
 const (
-	RoleOwner  Role = "owner"
-	RoleMember Role = "member"
+	RoleOwner   Role = "owner"
+	RoleMember  Role = "member"
+	RoleViewer  Role = "viewer"
+	RoleBilling Role = "billing"
 )
 
 func (e Role) ToPointer() *Role {
@@ -73,6 +75,10 @@ func (e *Role) UnmarshalJSON(data []byte) error {
 	case "owner":
 		fallthrough
 	case "member":
+		fallthrough
+	case "viewer":
+		fallthrough
+	case "billing":
 		*e = Role(v)
 		return nil
 	default:
