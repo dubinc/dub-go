@@ -8,6 +8,7 @@ import (
 )
 
 type ApproveBountySubmissionRequestBody struct {
+	// The reward amount for the performance-based bounty. Applicable if the bounty reward amount is not set.
 	RewardAmount *float64 `json:"rewardAmount,omitempty"`
 }
 
@@ -19,7 +20,9 @@ func (a *ApproveBountySubmissionRequestBody) GetRewardAmount() *float64 {
 }
 
 type ApproveBountySubmissionRequest struct {
-	BountyID     string                              `pathParam:"style=simple,explode=false,name=bountyId"`
+	// The ID of the bounty
+	BountyID string `pathParam:"style=simple,explode=false,name=bountyId"`
+	// The ID of the bounty submission
 	SubmissionID string                              `pathParam:"style=simple,explode=false,name=submissionId"`
 	RequestBody  *ApproveBountySubmissionRequestBody `request:"mediaType=application/json"`
 }
@@ -46,9 +49,12 @@ func (a *ApproveBountySubmissionRequest) GetRequestBody() *ApproveBountySubmissi
 }
 
 type ApproveBountySubmissionFiles struct {
-	URL      string  `json:"url"`
-	FileName string  `json:"fileName"`
-	Size     float64 `json:"size"`
+	// The URL of the uploaded file.
+	URL string `json:"url"`
+	// The original file name.
+	FileName string `json:"fileName"`
+	// The file size in bytes.
+	Size float64 `json:"size"`
 }
 
 func (a *ApproveBountySubmissionFiles) GetURL() string {
@@ -72,6 +78,7 @@ func (a *ApproveBountySubmissionFiles) GetSize() float64 {
 	return a.Size
 }
 
+// ApproveBountySubmissionStatus - The status of the submission
 type ApproveBountySubmissionStatus string
 
 const (
@@ -106,19 +113,32 @@ func (e *ApproveBountySubmissionStatus) UnmarshalJSON(data []byte) error {
 
 // ApproveBountySubmissionResponseBody - The approved bounty submission.
 type ApproveBountySubmissionResponseBody struct {
-	ID               string                         `json:"id"`
-	BountyID         string                         `json:"bountyId"`
-	PartnerID        string                         `json:"partnerId"`
-	Description      *string                        `json:"description"`
-	Urls             []string                       `json:"urls"`
-	Files            []ApproveBountySubmissionFiles `json:"files"`
-	Status           ApproveBountySubmissionStatus  `json:"status"`
-	PerformanceCount *float64                       `json:"performanceCount"`
-	CreatedAt        string                         `json:"createdAt"`
-	CompletedAt      *string                        `json:"completedAt"`
-	ReviewedAt       *string                        `json:"reviewedAt"`
-	RejectionReason  *string                        `json:"rejectionReason"`
-	RejectionNote    *string                        `json:"rejectionNote"`
+	// The ID of the bounty submission
+	ID string `json:"id"`
+	// The ID of the bounty
+	BountyID string `json:"bountyId"`
+	// The ID of the partner
+	PartnerID string `json:"partnerId"`
+	// The description of the submission
+	Description *string `json:"description"`
+	// The URLs submitted for the submission
+	Urls []string `json:"urls"`
+	// The files uploaded for the submission
+	Files []ApproveBountySubmissionFiles `json:"files"`
+	// The status of the submission
+	Status ApproveBountySubmissionStatus `json:"status"`
+	// The performance count of the submission
+	PerformanceCount *float64 `json:"performanceCount"`
+	// The date and time the submission was created
+	CreatedAt string `json:"createdAt"`
+	// The date and time the submission was completed
+	CompletedAt *string `json:"completedAt"`
+	// The date and time the submission was reviewed
+	ReviewedAt *string `json:"reviewedAt"`
+	// The reason for rejecting the submission
+	RejectionReason *string `json:"rejectionReason"`
+	// The note for rejecting the submission
+	RejectionNote *string `json:"rejectionNote"`
 }
 
 func (a *ApproveBountySubmissionResponseBody) GetID() string {

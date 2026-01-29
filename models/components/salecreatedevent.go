@@ -34,22 +34,28 @@ func (e *SaleCreatedEventEvent) UnmarshalJSON(data []byte) error {
 type SaleCreatedEventCustomer struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
-	// Unique identifier for the customer in the client's app.
-	ExternalID string `json:"externalId"`
 	// Name of the customer.
 	Name string `json:"name"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
 	Avatar *string `json:"avatar,omitempty"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// The customer's Stripe customer ID. This is useful for attributing recurring sale events to the partner who referred the customer.
+	StripeCustomerID *string `json:"stripeCustomerId,omitempty"`
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
 	// Total number of sales for the customer.
 	Sales *float64 `json:"sales,omitempty"`
 	// Total amount of sales for the customer.
 	SaleAmount *float64 `json:"saleAmount,omitempty"`
-	// The date the customer was created.
+	// The date the customer was created (usually the signup date or trial start date).
 	CreatedAt string `json:"createdAt"`
+	// The date the customer made their first sale. Useful for calculating the time to first sale and LTV.
+	FirstSaleAt *string `json:"firstSaleAt,omitempty"`
+	// The date the customer canceled their subscription. Useful for calculating LTV and churn rate.
+	SubscriptionCanceledAt *string `json:"subscriptionCanceledAt,omitempty"`
 }
 
 func (s SaleCreatedEventCustomer) MarshalJSON() ([]byte, error) {
@@ -57,7 +63,7 @@ func (s SaleCreatedEventCustomer) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SaleCreatedEventCustomer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "externalId", "name", "createdAt"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "name", "externalId", "createdAt"}); err != nil {
 		return err
 	}
 	return nil
@@ -68,13 +74,6 @@ func (s *SaleCreatedEventCustomer) GetID() string {
 		return ""
 	}
 	return s.ID
-}
-
-func (s *SaleCreatedEventCustomer) GetExternalID() string {
-	if s == nil {
-		return ""
-	}
-	return s.ExternalID
 }
 
 func (s *SaleCreatedEventCustomer) GetName() string {
@@ -96,6 +95,20 @@ func (s *SaleCreatedEventCustomer) GetAvatar() *string {
 		return nil
 	}
 	return s.Avatar
+}
+
+func (s *SaleCreatedEventCustomer) GetExternalID() string {
+	if s == nil {
+		return ""
+	}
+	return s.ExternalID
+}
+
+func (s *SaleCreatedEventCustomer) GetStripeCustomerID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.StripeCustomerID
 }
 
 func (s *SaleCreatedEventCustomer) GetCountry() *string {
@@ -124,6 +137,20 @@ func (s *SaleCreatedEventCustomer) GetCreatedAt() string {
 		return ""
 	}
 	return s.CreatedAt
+}
+
+func (s *SaleCreatedEventCustomer) GetFirstSaleAt() *string {
+	if s == nil {
+		return nil
+	}
+	return s.FirstSaleAt
+}
+
+func (s *SaleCreatedEventCustomer) GetSubscriptionCanceledAt() *string {
+	if s == nil {
+		return nil
+	}
+	return s.SubscriptionCanceledAt
 }
 
 type SaleCreatedEventClick struct {

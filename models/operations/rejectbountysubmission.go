@@ -65,7 +65,9 @@ func (r *RejectBountySubmissionRequestBody) GetRejectionNote() *string {
 }
 
 type RejectBountySubmissionRequest struct {
-	BountyID     string                             `pathParam:"style=simple,explode=false,name=bountyId"`
+	// The ID of the bounty
+	BountyID string `pathParam:"style=simple,explode=false,name=bountyId"`
+	// The ID of the bounty submission
 	SubmissionID string                             `pathParam:"style=simple,explode=false,name=submissionId"`
 	RequestBody  *RejectBountySubmissionRequestBody `request:"mediaType=application/json"`
 }
@@ -92,9 +94,12 @@ func (r *RejectBountySubmissionRequest) GetRequestBody() *RejectBountySubmission
 }
 
 type RejectBountySubmissionFiles struct {
-	URL      string  `json:"url"`
-	FileName string  `json:"fileName"`
-	Size     float64 `json:"size"`
+	// The URL of the uploaded file.
+	URL string `json:"url"`
+	// The original file name.
+	FileName string `json:"fileName"`
+	// The file size in bytes.
+	Size float64 `json:"size"`
 }
 
 func (r *RejectBountySubmissionFiles) GetURL() string {
@@ -118,6 +123,7 @@ func (r *RejectBountySubmissionFiles) GetSize() float64 {
 	return r.Size
 }
 
+// RejectBountySubmissionStatus - The status of the submission
 type RejectBountySubmissionStatus string
 
 const (
@@ -152,19 +158,32 @@ func (e *RejectBountySubmissionStatus) UnmarshalJSON(data []byte) error {
 
 // RejectBountySubmissionResponseBody - The rejected bounty submission.
 type RejectBountySubmissionResponseBody struct {
-	ID               string                        `json:"id"`
-	BountyID         string                        `json:"bountyId"`
-	PartnerID        string                        `json:"partnerId"`
-	Description      *string                       `json:"description"`
-	Urls             []string                      `json:"urls"`
-	Files            []RejectBountySubmissionFiles `json:"files"`
-	Status           RejectBountySubmissionStatus  `json:"status"`
-	PerformanceCount *float64                      `json:"performanceCount"`
-	CreatedAt        string                        `json:"createdAt"`
-	CompletedAt      *string                       `json:"completedAt"`
-	ReviewedAt       *string                       `json:"reviewedAt"`
-	RejectionReason  *string                       `json:"rejectionReason"`
-	RejectionNote    *string                       `json:"rejectionNote"`
+	// The ID of the bounty submission
+	ID string `json:"id"`
+	// The ID of the bounty
+	BountyID string `json:"bountyId"`
+	// The ID of the partner
+	PartnerID string `json:"partnerId"`
+	// The description of the submission
+	Description *string `json:"description"`
+	// The URLs submitted for the submission
+	Urls []string `json:"urls"`
+	// The files uploaded for the submission
+	Files []RejectBountySubmissionFiles `json:"files"`
+	// The status of the submission
+	Status RejectBountySubmissionStatus `json:"status"`
+	// The performance count of the submission
+	PerformanceCount *float64 `json:"performanceCount"`
+	// The date and time the submission was created
+	CreatedAt string `json:"createdAt"`
+	// The date and time the submission was completed
+	CompletedAt *string `json:"completedAt"`
+	// The date and time the submission was reviewed
+	ReviewedAt *string `json:"reviewedAt"`
+	// The reason for rejecting the submission
+	RejectionReason *string `json:"rejectionReason"`
+	// The note for rejecting the submission
+	RejectionNote *string `json:"rejectionNote"`
 }
 
 func (r *RejectBountySubmissionResponseBody) GetID() string {
