@@ -214,6 +214,7 @@ func main() {
 * [UpsertLink](docs/sdks/partners/README.md#upsertlink) - Upsert a link for a partner
 * [Analytics](docs/sdks/partners/README.md#analytics) - Retrieve analytics for a partner
 * [Ban](docs/sdks/partners/README.md#ban) - Ban a partner
+* [Deactivate](docs/sdks/partners/README.md#deactivate) - Deactivate a partner
 
 ### [QRCodes](docs/sdks/qrcodes/README.md)
 
@@ -230,11 +231,6 @@ func main() {
 
 * [Lead](docs/sdks/track/README.md#lead) - Track a lead
 * [Sale](docs/sdks/track/README.md#sale) - Track a sale
-
-### [Workspaces](docs/sdks/workspaces/README.md)
-
-* [Get](docs/sdks/workspaces/README.md#get) - Retrieve a workspace
-* [Update](docs/sdks/workspaces/README.md#update) - Update a workspace
 
 </details>
 <!-- End Available Resources and Operations [operations] -->

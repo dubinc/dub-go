@@ -12,8 +12,10 @@ import (
 type GetCustomersQueryParamSortBy string
 
 const (
-	GetCustomersQueryParamSortByCreatedAt  GetCustomersQueryParamSortBy = "createdAt"
-	GetCustomersQueryParamSortBySaleAmount GetCustomersQueryParamSortBy = "saleAmount"
+	GetCustomersQueryParamSortByCreatedAt              GetCustomersQueryParamSortBy = "createdAt"
+	GetCustomersQueryParamSortBySaleAmount             GetCustomersQueryParamSortBy = "saleAmount"
+	GetCustomersQueryParamSortByFirstSaleAt            GetCustomersQueryParamSortBy = "firstSaleAt"
+	GetCustomersQueryParamSortBySubscriptionCanceledAt GetCustomersQueryParamSortBy = "subscriptionCanceledAt"
 )
 
 func (e GetCustomersQueryParamSortBy) ToPointer() *GetCustomersQueryParamSortBy {
@@ -28,6 +30,10 @@ func (e *GetCustomersQueryParamSortBy) UnmarshalJSON(data []byte) error {
 	case "createdAt":
 		fallthrough
 	case "saleAmount":
+		fallthrough
+	case "firstSaleAt":
+		fallthrough
+	case "subscriptionCanceledAt":
 		*e = GetCustomersQueryParamSortBy(v)
 		return nil
 	default:
@@ -376,26 +382,32 @@ func (d *Discount) GetPartnersCount() *float64 {
 type GetCustomersResponseBody struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
-	// Unique identifier for the customer in the client's app.
-	ExternalID string `json:"externalId"`
 	// Name of the customer.
 	Name string `json:"name"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
 	Avatar *string `json:"avatar,omitempty"`
+	// Unique identifier for the customer in the client's app.
+	ExternalID string `json:"externalId"`
+	// The customer's Stripe customer ID. This is useful for attributing recurring sale events to the partner who referred the customer.
+	StripeCustomerID *string `json:"stripeCustomerId,omitempty"`
 	// Country of the customer.
 	Country *string `json:"country,omitempty"`
 	// Total number of sales for the customer.
 	Sales *float64 `json:"sales,omitempty"`
 	// Total amount of sales for the customer.
 	SaleAmount *float64 `json:"saleAmount,omitempty"`
-	// The date the customer was created.
-	CreatedAt string               `json:"createdAt"`
-	Link      *GetCustomersLink    `json:"link,omitempty"`
-	ProgramID *string              `json:"programId,omitempty"`
-	Partner   *GetCustomersPartner `json:"partner,omitempty"`
-	Discount  *Discount            `json:"discount,omitempty"`
+	// The date the customer was created (usually the signup date or trial start date).
+	CreatedAt string `json:"createdAt"`
+	// The date the customer made their first sale. Useful for calculating the time to first sale and LTV.
+	FirstSaleAt *string `json:"firstSaleAt,omitempty"`
+	// The date the customer canceled their subscription. Useful for calculating LTV and churn rate.
+	SubscriptionCanceledAt *string              `json:"subscriptionCanceledAt,omitempty"`
+	Link                   *GetCustomersLink    `json:"link,omitempty"`
+	ProgramID              *string              `json:"programId,omitempty"`
+	Partner                *GetCustomersPartner `json:"partner,omitempty"`
+	Discount               *Discount            `json:"discount,omitempty"`
 }
 
 func (g *GetCustomersResponseBody) GetID() string {
@@ -403,13 +415,6 @@ func (g *GetCustomersResponseBody) GetID() string {
 		return ""
 	}
 	return g.ID
-}
-
-func (g *GetCustomersResponseBody) GetExternalID() string {
-	if g == nil {
-		return ""
-	}
-	return g.ExternalID
 }
 
 func (g *GetCustomersResponseBody) GetName() string {
@@ -431,6 +436,20 @@ func (g *GetCustomersResponseBody) GetAvatar() *string {
 		return nil
 	}
 	return g.Avatar
+}
+
+func (g *GetCustomersResponseBody) GetExternalID() string {
+	if g == nil {
+		return ""
+	}
+	return g.ExternalID
+}
+
+func (g *GetCustomersResponseBody) GetStripeCustomerID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.StripeCustomerID
 }
 
 func (g *GetCustomersResponseBody) GetCountry() *string {
@@ -459,6 +478,20 @@ func (g *GetCustomersResponseBody) GetCreatedAt() string {
 		return ""
 	}
 	return g.CreatedAt
+}
+
+func (g *GetCustomersResponseBody) GetFirstSaleAt() *string {
+	if g == nil {
+		return nil
+	}
+	return g.FirstSaleAt
+}
+
+func (g *GetCustomersResponseBody) GetSubscriptionCanceledAt() *string {
+	if g == nil {
+		return nil
+	}
+	return g.SubscriptionCanceledAt
 }
 
 func (g *GetCustomersResponseBody) GetLink() *GetCustomersLink {
