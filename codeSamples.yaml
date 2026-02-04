@@ -213,6 +213,12 @@ actions:
         - "lang": "go"
           "label": "banPartner"
           "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.Ban(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/partners/deactivate"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "deactivatePartner"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.Deactivate(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/partners/links"]["get"]
     update:
       "x-codeSamples":
@@ -279,15 +285,3 @@ actions:
         - "lang": "go"
           "label": "trackSale"
           "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Track.Sale(ctx, &operations.TrackSaleRequestBody{\n        CustomerExternalID: \"<id>\",\n        Amount: 594903,\n        EventName: dubgo.Pointer(\"Invoice paid\"),\n        LeadEventName: dubgo.Pointer(\"Cloned template 1481267\"),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/workspaces/{idOrSlug}"]["get"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "getWorkspace"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Workspaces.Get(ctx, operations.GetWorkspaceRequest{\n        IDOrSlug: \"<value>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
-  - target: $["paths"]["/workspaces/{idOrSlug}"]["patch"]
-    update:
-      "x-codeSamples":
-        - "lang": "go"
-          "label": "updateWorkspace"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Workspaces.Update(ctx, \"<value>\", nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"

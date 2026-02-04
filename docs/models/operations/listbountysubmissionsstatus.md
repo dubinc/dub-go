@@ -1,5 +1,7 @@
 # ListBountySubmissionsStatus
 
+The status of the submission
+
 
 ## Values
 
