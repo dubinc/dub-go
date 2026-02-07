@@ -1,30 +1,30 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: c35c18530a194176ebe59456f71ff3f9
+  docChecksum: de77e4883e59f4bf3144a43856a5b587
   docVersion: 0.0.1
-  speakeasyVersion: 1.703.0
-  generationVersion: 2.803.3
-  releaseVersion: 0.23.2
-  configChecksum: 8d7b218746fa5e4ac876edc6b1fae684
+  speakeasyVersion: 1.708.2
+  generationVersion: 2.811.4
+  releaseVersion: 0.23.3
+  configChecksum: 5ec567e65637788d5c80533ec3848b3f
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 persistentEdits:
-  generation_id: b08a3e9f-a9f1-4247-b8dc-0532727d7190
-  pristine_commit_hash: a200e75c81ebf1e1d09634e676cd5717b908d914
-  pristine_tree_hash: c2bde7cf7837ee4fcfbdf64d4205594227e4898e
+  generation_id: 81a62080-fea6-4102-8929-3372b530074b
+  pristine_commit_hash: 8400c924def66d6acd3f92596d36795d32217734
+  pristine_tree_hash: 97b64aca9527409de61a369fc027d26dede94053
 features:
   go:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.12
-    core: 3.13.10
+    constsAndDefaults: 0.1.13
+    core: 3.13.12
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.3
     envVarSecurityUsage: 0.3.2
     errors: 2.83.0
     examples: 2.81.5
     flattening: 2.81.1
-    globalSecurity: 2.82.12
+    globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.83.0
@@ -37,7 +37,7 @@ features:
     responseFormat: 0.1.2
     retries: 2.84.2
     sdkHooks: 0.3.0
-    unions: 2.87.2
+    unions: 2.87.3
 trackedFiles:
   .gitattributes:
     id: 24139dae6567
@@ -769,8 +769,8 @@ trackedFiles:
     pristine_git_object: 1ec19c925d4408b66776bcf8c024789bb6eb2307
   docs/models/operations/discount.md:
     id: 6d655f19310a
-    last_write_checksum: sha1:a50446a200e9b1516cc145f0288a5ea00d21eae1
-    pristine_git_object: c369e4a47367176a940c8409d2956bed110605ec
+    last_write_checksum: sha1:03c70751acfcbbb917665e1dac91e14a51ff3730
+    pristine_git_object: 9be6c18e9ee6044d0bbae88c76f34870e0150f17
   docs/models/operations/domains.md:
     id: d62ed094e067
     last_write_checksum: sha1:ce3d942242f652e20f6714b5f357b591bb55ac70
@@ -845,8 +845,8 @@ trackedFiles:
     pristine_git_object: 859fed514d0aff9b2c733f42f5bff20907cc7f2b
   docs/models/operations/getcustomerdiscount.md:
     id: 8d1fd93b24a1
-    last_write_checksum: sha1:d4f4237557f502af6cf4aa6b1bec0dd548e91ba1
-    pristine_git_object: df55f606685a563a41eb0652a4fd16ff4fa5a192
+    last_write_checksum: sha1:085056c7d2ebeae87356b1891568ce29783775f9
+    pristine_git_object: b4c88cf38739027f5e0d8a1139e61849732d92be
   docs/models/operations/getcustomerlink.md:
     id: 87cc6ecc2c7e
     last_write_checksum: sha1:33ba2d0555c26ba9881691bef10433ce46272d9a
@@ -1489,8 +1489,8 @@ trackedFiles:
     pristine_git_object: cf1dd37abba23bcf709ea3c871fa72e1f7061947
   docs/models/operations/updatecustomerdiscount.md:
     id: 03e62b20b568
-    last_write_checksum: sha1:e9212652f89075a08ddf6c9e3ed13a2fe42cf004
-    pristine_git_object: a74ed6860d5431b2766740897668bb6396671282
+    last_write_checksum: sha1:812a2fc58e9089e6ce211a2854156972de24de7a
+    pristine_git_object: 2fed4322679611585c2d90b1449bfc92bc189bfb
   docs/models/operations/updatecustomerlink.md:
     id: 49b7a72095ec
     last_write_checksum: sha1:b10755da9e6502e5f3ce656b949ba7cfa6e0093f
@@ -1769,8 +1769,8 @@ trackedFiles:
     pristine_git_object: 84da031ebb63e9066987c93b175acb60a45b3a47
   dub.go:
     id: 9bba8aa9ce0f
-    last_write_checksum: sha1:8867c2d29399388fce498b52fa8c8bae4e5c89ca
-    pristine_git_object: 9110df51d5369bdb85d012c15a62e3aaa011f06f
+    last_write_checksum: sha1:140eedbab8dc6f950d287efe717f5d4d91fd293e
+    pristine_git_object: 804672050f964a3907284829d0c08f2d643607ef
   embedtokens.go:
     id: 0fc16a550ef5
     last_write_checksum: sha1:e50a614f2d8b0421797c6377187ed37393199041
@@ -1833,8 +1833,8 @@ trackedFiles:
     pristine_git_object: 8deabfaf4d8d1fd0b62bd7218ce9b58ed008dee5
   internal/utils/security.go:
     id: eeb54c55241b
-    last_write_checksum: sha1:bb9cc1870101f6d2a990766f3eb0ea37292f7507
-    pristine_git_object: 19dfa6f4607dea64b1dd61c211e072212e7a3cb2
+    last_write_checksum: sha1:573140faaff017cb3bd31e579c6b3949f3d8365b
+    pristine_git_object: 77566aa2c1127569d9de4a1782b58f852d926d0a
   internal/utils/union.go:
     id: db86c85746b6
     last_write_checksum: sha1:21357356fa91e84a95ad279ff3e849f5993db023
@@ -2057,12 +2057,12 @@ trackedFiles:
     pristine_git_object: eca6e8ffb5804ab5763009094cbb36e0ce78ce72
   models/operations/getcustomer.go:
     id: f1805cdcb0aa
-    last_write_checksum: sha1:52b361c96897affa9f6b3b84aa70f907dc4bd76f
-    pristine_git_object: 9bc4e772f7ececa6a14512ad8baf0f323feee21f
+    last_write_checksum: sha1:97953a6e1dce325fd7c459cd832c6682aaaf373c
+    pristine_git_object: eaf527b5e5037c1f66963f7d0d67384b8c5521c0
   models/operations/getcustomers.go:
     id: 9766d2b3c8e4
-    last_write_checksum: sha1:89c525ff259aa744c1b1f3bbde2ac6917c4997ff
-    pristine_git_object: 272ea6b3cb7fc2c1381601b642934c72565878e6
+    last_write_checksum: sha1:88facfbb80dcbbb3cbb94fd14630746304c1242a
+    pristine_git_object: 6d3fbf1ffd4bf8ea0e591b99023b3d650df0c662
   models/operations/getlinkinfo.go:
     id: 34279bf78084
     last_write_checksum: sha1:96c02b2e9440de8c28f0b92e7677ce0170991c90
@@ -2145,8 +2145,8 @@ trackedFiles:
     pristine_git_object: 95a4dad7cf2e5792aa9dac91705eb0417c4c26b7
   models/operations/updatecustomer.go:
     id: 9f2e6852960d
-    last_write_checksum: sha1:c90e167134fe88cc7ebe3d7b03f7aeeb8e87da4d
-    pristine_git_object: 4f8c1ede9f26a96ddf43008cda670d711ead9ce1
+    last_write_checksum: sha1:614096c94a2caf99ba9b619e340a8bf566fa0457
+    pristine_git_object: 5f0a25814148da4e8cf1d7bd47c791fedcf79fb1
   models/operations/updatedomain.go:
     id: d1898d2e92db
     last_write_checksum: sha1:7b1c1d14d118d60a042153577c82a3bbe88ec8ee
@@ -3629,7 +3629,11 @@ examples:
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Go SDK Changes:\n* `Dub.Partners.Deactivate()`: **Added**\n* `Dub.Workspaces.Get()`: **Removed** **Breaking** ⚠️\n* `Dub.Workspaces.Update()`: **Removed** **Breaking** ⚠️\n* `Dub.Events.List()`:  `response.[]` **Changed**\n* `Dub.Customers.List()`: \n  *  `request.Request.SortBy` **Changed**\n  *  `response.[]` **Changed**\n* `Dub.Customers.Get()`:  `response` **Changed**\n* `Dub.Customers.Update()`:  `response` **Changed**\n* `Dub.Partners.List()`:  `response.[].ReferralFormData` **Added**\n* `Dub.Partners.Create()`:  `response.ReferralFormData` **Added**\n* `Dub.Commissions.List()`:  `response.[].Customer` **Changed**\n* `Dub.Commissions.Update()`:  `response.Customer` **Changed**\n"
+releaseNotes: |
+  ## Go SDK Changes:
+  * `Dub.Customers.List()`:  `response.[].Discount.AutoProvisionEnabledAt` **Added**
+  * `Dub.Customers.Get()`:  `response.Discount.AutoProvisionEnabledAt` **Added**
+  * `Dub.Customers.Update()`:  `response.Discount.AutoProvisionEnabledAt` **Added**
 generatedFiles:
   - .gitattributes
   - /models/components/analyticsbrowsers.go

@@ -216,14 +216,15 @@ func (e *UpdateCustomerType) UnmarshalJSON(data []byte) error {
 }
 
 type UpdateCustomerDiscount struct {
-	ID            string             `json:"id"`
-	Amount        float64            `json:"amount"`
-	Type          UpdateCustomerType `json:"type"`
-	MaxDuration   *float64           `json:"maxDuration"`
-	CouponID      *string            `json:"couponId"`
-	CouponTestID  *string            `json:"couponTestId"`
-	Description   *string            `json:"description,omitempty"`
-	PartnersCount *float64           `json:"partnersCount,omitempty"`
+	ID                     string             `json:"id"`
+	Amount                 float64            `json:"amount"`
+	Type                   UpdateCustomerType `json:"type"`
+	MaxDuration            *float64           `json:"maxDuration"`
+	CouponID               *string            `json:"couponId"`
+	CouponTestID           *string            `json:"couponTestId"`
+	Description            *string            `json:"description,omitempty"`
+	PartnersCount          *float64           `json:"partnersCount,omitempty"`
+	AutoProvisionEnabledAt *string            `json:"autoProvisionEnabledAt,omitempty"`
 }
 
 func (u *UpdateCustomerDiscount) GetID() string {
@@ -280,6 +281,13 @@ func (u *UpdateCustomerDiscount) GetPartnersCount() *float64 {
 		return nil
 	}
 	return u.PartnersCount
+}
+
+func (u *UpdateCustomerDiscount) GetAutoProvisionEnabledAt() *string {
+	if u == nil {
+		return nil
+	}
+	return u.AutoProvisionEnabledAt
 }
 
 // UpdateCustomerResponseBody - The customer was updated.
