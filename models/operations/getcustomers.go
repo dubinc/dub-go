@@ -313,14 +313,15 @@ func (e *GetCustomersType) UnmarshalJSON(data []byte) error {
 }
 
 type Discount struct {
-	ID            string           `json:"id"`
-	Amount        float64          `json:"amount"`
-	Type          GetCustomersType `json:"type"`
-	MaxDuration   *float64         `json:"maxDuration"`
-	CouponID      *string          `json:"couponId"`
-	CouponTestID  *string          `json:"couponTestId"`
-	Description   *string          `json:"description,omitempty"`
-	PartnersCount *float64         `json:"partnersCount,omitempty"`
+	ID                     string           `json:"id"`
+	Amount                 float64          `json:"amount"`
+	Type                   GetCustomersType `json:"type"`
+	MaxDuration            *float64         `json:"maxDuration"`
+	CouponID               *string          `json:"couponId"`
+	CouponTestID           *string          `json:"couponTestId"`
+	Description            *string          `json:"description,omitempty"`
+	PartnersCount          *float64         `json:"partnersCount,omitempty"`
+	AutoProvisionEnabledAt *string          `json:"autoProvisionEnabledAt,omitempty"`
 }
 
 func (d *Discount) GetID() string {
@@ -377,6 +378,13 @@ func (d *Discount) GetPartnersCount() *float64 {
 		return nil
 	}
 	return d.PartnersCount
+}
+
+func (d *Discount) GetAutoProvisionEnabledAt() *string {
+	if d == nil {
+		return nil
+	}
+	return d.AutoProvisionEnabledAt
 }
 
 type GetCustomersResponseBody struct {

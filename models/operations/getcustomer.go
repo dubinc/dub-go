@@ -151,14 +151,15 @@ func (e *GetCustomerType) UnmarshalJSON(data []byte) error {
 }
 
 type GetCustomerDiscount struct {
-	ID            string          `json:"id"`
-	Amount        float64         `json:"amount"`
-	Type          GetCustomerType `json:"type"`
-	MaxDuration   *float64        `json:"maxDuration"`
-	CouponID      *string         `json:"couponId"`
-	CouponTestID  *string         `json:"couponTestId"`
-	Description   *string         `json:"description,omitempty"`
-	PartnersCount *float64        `json:"partnersCount,omitempty"`
+	ID                     string          `json:"id"`
+	Amount                 float64         `json:"amount"`
+	Type                   GetCustomerType `json:"type"`
+	MaxDuration            *float64        `json:"maxDuration"`
+	CouponID               *string         `json:"couponId"`
+	CouponTestID           *string         `json:"couponTestId"`
+	Description            *string         `json:"description,omitempty"`
+	PartnersCount          *float64        `json:"partnersCount,omitempty"`
+	AutoProvisionEnabledAt *string         `json:"autoProvisionEnabledAt,omitempty"`
 }
 
 func (g *GetCustomerDiscount) GetID() string {
@@ -215,6 +216,13 @@ func (g *GetCustomerDiscount) GetPartnersCount() *float64 {
 		return nil
 	}
 	return g.PartnersCount
+}
+
+func (g *GetCustomerDiscount) GetAutoProvisionEnabledAt() *string {
+	if g == nil {
+		return nil
+	}
+	return g.AutoProvisionEnabledAt
 }
 
 // GetCustomerResponseBody - The customer object.

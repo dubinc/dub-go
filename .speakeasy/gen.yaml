@@ -28,7 +28,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 go:
-  version: 0.23.2
+  version: 0.23.3
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: true
   baseErrorName: DubError
@@ -55,6 +55,7 @@ go:
   outputModelSuffix: output
   packageName: github.com/dubinc/dub-go
   respectRequiredFields: false
+  respectTitlesForPrimitiveUnionMembers: false
   responseFormat: flat
   sdkPackageName: ""
   unionStrategy: left-to-right
