@@ -2,7 +2,7 @@
 
 package dubgo
 
-// Generated from OpenAPI doc version 0.0.1 and generator version 2.803.3
+// Generated from OpenAPI doc version 0.0.1 and generator version 2.812.2
 
 import (
 	"context"
@@ -61,6 +61,7 @@ type Dub struct {
 	Customers   *Customers
 	Partners    *Partners
 	Commissions *Commissions
+	Payouts     *Payouts
 	EmbedTokens *EmbedTokens
 	QRCodes     *QRCodes
 	Bounties    *Bounties
@@ -140,9 +141,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Dub {
 	sdk := &Dub{
-		SDKVersion: "0.23.2",
+		SDKVersion: "0.23.3",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.23.2 2.803.3 0.0.1 github.com/dubinc/dub-go",
+			UserAgent:  "speakeasy-sdk/go 0.23.3 2.812.2 0.0.1 github.com/dubinc/dub-go",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -173,6 +174,7 @@ func New(opts ...SDKOption) *Dub {
 	sdk.Customers = newCustomers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Partners = newPartners(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Commissions = newCommissions(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Payouts = newPayouts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.EmbedTokens = newEmbedTokens(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.QRCodes = newQRCodes(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Bounties = newBounties(sdk, sdk.sdkConfiguration, sdk.hooks)

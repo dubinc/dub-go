@@ -158,7 +158,7 @@ func main() {
 
 ### [Commissions](docs/sdks/commissions/README.md)
 
-* [List](docs/sdks/commissions/README.md#list) - Get commissions for a program.
+* [List](docs/sdks/commissions/README.md#list) - List all commissions
 * [Update](docs/sdks/commissions/README.md#update) - Update a commission.
 
 ### [Customers](docs/sdks/customers/README.md)
@@ -215,6 +215,10 @@ func main() {
 * [Analytics](docs/sdks/partners/README.md#analytics) - Retrieve analytics for a partner
 * [Ban](docs/sdks/partners/README.md#ban) - Ban a partner
 * [Deactivate](docs/sdks/partners/README.md#deactivate) - Deactivate a partner
+
+### [Payouts](docs/sdks/payouts/README.md)
+
+* [List](docs/sdks/payouts/README.md#list) - List all payouts
 
 ### [QRCodes](docs/sdks/qrcodes/README.md)
 

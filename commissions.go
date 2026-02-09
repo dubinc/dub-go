@@ -30,8 +30,8 @@ func newCommissions(rootSDK *Dub, sdkConfig config.SDKConfiguration, hooks *hook
 	}
 }
 
-// List - Get commissions for a program.
-// Retrieve a list of commissions for a program.
+// List all commissions
+// Retrieve a list of commissions for your partner program.
 func (s *Commissions) List(ctx context.Context, request operations.ListCommissionsRequest, opts ...operations.Option) ([]operations.ListCommissionsResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
