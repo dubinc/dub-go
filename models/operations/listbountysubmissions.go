@@ -96,7 +96,7 @@ func (e *ListBountySubmissionsQueryParamSortOrder) UnmarshalJSON(data []byte) er
 }
 
 type ListBountySubmissionsRequest struct {
-	// The ID of the bounty
+	// The unique ID of the bounty on Dub. Can be found in the URL of the bounty page, prefixed with `bnty_`.
 	BountyID string `pathParam:"style=simple,explode=false,name=bountyId"`
 	// The status of the submissions to list.
 	Status *ListBountySubmissionsQueryParamStatus `queryParam:"style=form,explode=true,name=status"`

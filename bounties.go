@@ -30,7 +30,7 @@ func newBounties(rootSDK *Dub, sdkConfig config.SDKConfiguration, hooks *hooks.H
 }
 
 // ListSubmissions - List bounty submissions
-// List all submissions for a specific bounty.
+// List all submissions for a specific bounty in your partner program.
 func (s *Bounties) ListSubmissions(ctx context.Context, request operations.ListBountySubmissionsRequest, opts ...operations.Option) ([]operations.ListBountySubmissionsResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
