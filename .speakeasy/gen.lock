@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 716865eb78da95f7bc2b85f69843cc93
+  docChecksum: 499427575e3915942e9c43152df915ad
   docVersion: 0.0.1
-  speakeasyVersion: 1.709.1
-  generationVersion: 2.812.2
-  releaseVersion: 0.23.3
-  configChecksum: 5ec567e65637788d5c80533ec3848b3f
+  speakeasyVersion: 1.709.2
+  generationVersion: 2.814.0
+  releaseVersion: 0.23.4
+  configChecksum: 7c24d071fbe8ef48645fc58bc6bb8b92
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 persistentEdits:
-  generation_id: f7b66d86-6cf5-4675-b91c-f6c81ae8234a
-  pristine_commit_hash: d2cb27b8b7f916b4f4313e736a4deb2fedf1fa77
-  pristine_tree_hash: c9e75d03c59849625e62107e937c9fd00bcb6d30
+  generation_id: 18c00ecb-f694-4a35-abc7-2b63b0c56a09
+  pristine_commit_hash: c50331d17a2ecbf53fa67772057059ebe97dfdf7
+  pristine_tree_hash: 75117f8ef62fb05f9147af3f2b119baeb1bc5022
 features:
   go:
     additionalDependencies: 0.1.0
@@ -49,8 +49,8 @@ trackedFiles:
     pristine_git_object: 5e7b3d55b97853606856eab3e2c0fb168d4ece99
   analytics.go:
     id: c71afdf2c49d
-    last_write_checksum: sha1:19513008041ea64b6112f77d127e8bb4cff66686
-    pristine_git_object: fb5e7f21eb89f387e2a57af3f33fdb241c197050
+    last_write_checksum: sha1:368d4be8137f87386a257add80761650e24b990d
+    pristine_git_object: fc3df562c0b9b8251b65299fbba66978cc270f80
   bounties.go:
     id: 5b3aed6eba66
     last_write_checksum: sha1:7a3881bfc0cbb45d09d35a7592af1c9f5aad45b5
@@ -943,18 +943,10 @@ trackedFiles:
     id: c795fade684a
     last_write_checksum: sha1:ca26f8e2fa52a59a334e45062e5d25df588930e4
     pristine_git_object: 529accf1e97ce364d41f846474fd95639d7862b9
-  docs/models/operations/industryinterests.md:
-    id: bbead9fd5c04
-    last_write_checksum: sha1:989722477f7016ac9e8599a51a36bee195a890a2
-    pristine_git_object: 329a3708b38d74b5b47a60062d1195ad2116de94
   docs/models/operations/interval.md:
     id: 3d404d276931
     last_write_checksum: sha1:25681633d3b5c55ff3ad88c7f3b16b4de7e69222
     pristine_git_object: 29d53070edb6f7572e16850e3a551867ed5659e4
-  docs/models/operations/invoicesettings.md:
-    id: 242f1066ef75
-    last_write_checksum: sha1:d918657a394aff4770be74ddb7147ce956124b8a
-    pristine_git_object: f128d2dd570a876eb5afdf103bbdb0f4318f8ed8
   docs/models/operations/leadevent.md:
     id: 2ca8315ab66a
     last_write_checksum: sha1:c50466d22e4fffc502451c22b61d9264992617b9
@@ -1205,8 +1197,8 @@ trackedFiles:
     pristine_git_object: dec57b3a1372dfdbbd7b01c884aca01e93aaa727
   docs/models/operations/listpayoutspartner.md:
     id: 2a55f44938e9
-    last_write_checksum: sha1:3ab6a1ef91e89f188690b8ba9b105ddd9938ff97
-    pristine_git_object: 6b6fa051a00ad459a4f274113219aac0cb9a354d
+    last_write_checksum: sha1:d60abf7f6c309c3a0e5568d7298feaf66f37ee4b
+    pristine_git_object: 73660cc35a2c321128dc58de5a5d9e4d166a73ef
   docs/models/operations/listpayoutsqueryparamsortby.md:
     id: 26611954ae0d
     last_write_checksum: sha1:9379e0782823eca9a2b6a6366c68db3f66323824
@@ -1235,10 +1227,6 @@ trackedFiles:
     id: 5895da0fc5be
     last_write_checksum: sha1:b402eacf4d67b0908465623ea62aa0f085a8c515
     pristine_git_object: 481c9829df6839a336732d310f377bfb1065a99c
-  docs/models/operations/monthlytraffic.md:
-    id: ab56b9793c0f
-    last_write_checksum: sha1:2b29d86a7c305c0fccd597ef9aa48e86b5390f6d
-    pristine_git_object: fb8b8a1015fb8a316818563bc1717d612f663fb1
   docs/models/operations/one.md:
     id: b4b6bf675469
     last_write_checksum: sha1:1c6df36c142410522182c03dcf376d175101ec3d
@@ -1263,14 +1251,6 @@ trackedFiles:
     id: 9aa57ef1a35a
     last_write_checksum: sha1:bb285a5fa9fb0f99317edec8029b998f7efa9f4c
     pristine_git_object: 1bcc1b8e62c052c24153a74e81ca1ba4d6dcb2b4
-  docs/models/operations/preferredearningstructures.md:
-    id: 871e4d33c25c
-    last_write_checksum: sha1:b0785262d4a4d5b932074d632188f3a66b96f826
-    pristine_git_object: c016dfa64d11694014a740a5c3cbe626b9509a27
-  docs/models/operations/profiletype.md:
-    id: 28b56f4a5d9c
-    last_write_checksum: sha1:fca77898856abf8f314c117086f1e2bbdd43b774
-    pristine_git_object: b8c7e740dfcc381344e337ad3f2acd2db5217fb7
   docs/models/operations/queryparamcontinent.md:
     id: 61b8d4020ae1
     last_write_checksum: sha1:125c4e05c95a62ae01458b7810c08ec6757cb1e7
@@ -1435,10 +1415,6 @@ trackedFiles:
     id: e47af8f74c23
     last_write_checksum: sha1:60cb7ea7d64181cb0acb4e06225df44462bce2d9
     pristine_git_object: 01466506b325bfcbb81a0fddba17b554f9629fba
-  docs/models/operations/saleschannels.md:
-    id: 5e18a07b79c2
-    last_write_checksum: sha1:f7d67b6fdd9fb56a6f8d4c227e17e83e5cf3e6a6
-    pristine_git_object: 14f71967ecf73baf617bf5f98df252295bfd328a
   docs/models/operations/saletype.md:
     id: 7634b0449fcd
     last_write_checksum: sha1:ecfa41bc49149fcd5a60a91184a46ff9d1e5d438
@@ -1833,8 +1809,8 @@ trackedFiles:
     pristine_git_object: 84da031ebb63e9066987c93b175acb60a45b3a47
   dub.go:
     id: 9bba8aa9ce0f
-    last_write_checksum: sha1:7928dd5aa06c44feefc3502dae532f4e1afaa5f6
-    pristine_git_object: 06be179f15ed0c1ffb993c9ca095478d8e439104
+    last_write_checksum: sha1:90c423bad0da81b7f63e8578595e238ce24df84d
+    pristine_git_object: c205f2886b96e43ef3f4a46ecd6c82df240ed9f6
   embedtokens.go:
     id: 0fc16a550ef5
     last_write_checksum: sha1:e50a614f2d8b0421797c6377187ed37393199041
@@ -2173,8 +2149,8 @@ trackedFiles:
     pristine_git_object: 2f216d8820d173ae2ecc714edfdebfe5d1d83824
   models/operations/listpayouts.go:
     id: 6b67a6a6bb87
-    last_write_checksum: sha1:755e7ce409bb2797a0292782d5ca172497546e4b
-    pristine_git_object: facfffff145cb003dc7d4ff97ffb50460800265b
+    last_write_checksum: sha1:1ebe273533ba21ff52906940700924e48b302ad0
+    pristine_git_object: ffaa3cec2e1518034fb225955b73f6776a73e808
   models/operations/options.go:
     id: d20dd4db9865
     last_write_checksum: sha1:dfd6786cef0a70457aa2712e2c22ea1be87b1e7e
@@ -3709,7 +3685,7 @@ examples:
           pageSize: 50
       responses:
         "200":
-          application/json: [{"id": "<id>", "invoiceId": "<id>", "amount": 8380.38, "currency": "Vatu", "status": "failed", "periodStart": "<value>", "periodEnd": "<value>", "createdAt": "1726484173323", "initiatedAt": "<value>", "paidAt": "<value>", "mode": "external", "partner": {"id": "<id>", "name": "<value>", "companyName": "Metz Inc", "profileType": "individual", "email": "Nadia.Witting@hotmail.com", "image": "https://loremflickr.com/1570/1793?lock=8489777555645461", "country": "Kenya", "stripeConnectId": null, "paypalEmail": "<value>", "payoutsEnabledAt": "<value>", "invoiceSettings": {}, "createdAt": "1722823404981", "discoverableAt": "<value>", "trustedAt": "<value>", "tenantId": "<id>"}}]
+          application/json: [{"id": "<id>", "invoiceId": "<id>", "amount": 8380.38, "currency": "Vatu", "status": "failed", "periodStart": "<value>", "periodEnd": "<value>", "createdAt": "1726484173323", "initiatedAt": "<value>", "paidAt": "<value>", "mode": "external", "partner": {"id": "<id>", "name": "<value>", "email": "Nadia.Witting@hotmail.com", "image": "https://loremflickr.com/1570/1793?lock=8489777555645461", "payoutsEnabledAt": "<value>", "country": "Kenya", "tenantId": "<id>"}}]
         "400":
           application/json: {"error": {"code": "bad_request", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#bad-request"}}
         "401":
@@ -3732,7 +3708,7 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Go SDK Changes:
-  * `Dub.Payouts.List()`: **Added**
+  * `Dub.Payouts.List()`:  `response.[].Partner` **Changed** (Breaking ⚠️)
 generatedFiles:
   - .gitattributes
   - /models/components/analyticsbrowsers.go
