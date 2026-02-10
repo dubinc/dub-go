@@ -260,309 +260,23 @@ func (e *ListPayoutsMode) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// ProfileType - The partner's profile type on Dub.
-type ProfileType string
-
-const (
-	ProfileTypeIndividual ProfileType = "individual"
-	ProfileTypeCompany    ProfileType = "company"
-)
-
-func (e ProfileType) ToPointer() *ProfileType {
-	return &e
-}
-func (e *ProfileType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "individual":
-		fallthrough
-	case "company":
-		*e = ProfileType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ProfileType: %v", v)
-	}
-}
-
-// InvoiceSettings - The partner's invoice settings.
-type InvoiceSettings struct {
-	Address *string `json:"address,omitempty"`
-	TaxID   *string `json:"taxId,omitempty"`
-}
-
-func (i *InvoiceSettings) GetAddress() *string {
-	if i == nil {
-		return nil
-	}
-	return i.Address
-}
-
-func (i *InvoiceSettings) GetTaxID() *string {
-	if i == nil {
-		return nil
-	}
-	return i.TaxID
-}
-
-// MonthlyTraffic - The partner's monthly traffic.
-type MonthlyTraffic string
-
-const (
-	MonthlyTrafficZeroToOneThousand                 MonthlyTraffic = "ZeroToOneThousand"
-	MonthlyTrafficOneThousandToTenThousand          MonthlyTraffic = "OneThousandToTenThousand"
-	MonthlyTrafficTenThousandToFiftyThousand        MonthlyTraffic = "TenThousandToFiftyThousand"
-	MonthlyTrafficFiftyThousandToOneHundredThousand MonthlyTraffic = "FiftyThousandToOneHundredThousand"
-	MonthlyTrafficOneHundredThousandPlus            MonthlyTraffic = "OneHundredThousandPlus"
-)
-
-func (e MonthlyTraffic) ToPointer() *MonthlyTraffic {
-	return &e
-}
-func (e *MonthlyTraffic) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "ZeroToOneThousand":
-		fallthrough
-	case "OneThousandToTenThousand":
-		fallthrough
-	case "TenThousandToFiftyThousand":
-		fallthrough
-	case "FiftyThousandToOneHundredThousand":
-		fallthrough
-	case "OneHundredThousandPlus":
-		*e = MonthlyTraffic(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for MonthlyTraffic: %v", v)
-	}
-}
-
-type IndustryInterests string
-
-const (
-	IndustryInterestsSaaS                      IndustryInterests = "SaaS"
-	IndustryInterestsDevTool                   IndustryInterests = "DevTool"
-	IndustryInterestsAi                        IndustryInterests = "AI"
-	IndustryInterestsCreativeAndDesign         IndustryInterests = "Creative_And_Design"
-	IndustryInterestsProductivitySoftware      IndustryInterests = "Productivity_Software"
-	IndustryInterestsMarketing                 IndustryInterests = "Marketing"
-	IndustryInterestsGaming                    IndustryInterests = "Gaming"
-	IndustryInterestsFinance                   IndustryInterests = "Finance"
-	IndustryInterestsSales                     IndustryInterests = "Sales"
-	IndustryInterestsEcommerce                 IndustryInterests = "Ecommerce"
-	IndustryInterestsCustomerServiceAndSupport IndustryInterests = "Customer_Service_And_Support"
-	IndustryInterestsContentManagement         IndustryInterests = "Content_Management"
-	IndustryInterestsHumanResources            IndustryInterests = "Human_Resources"
-	IndustryInterestsSecurity                  IndustryInterests = "Security"
-	IndustryInterestsAnalyticsAndData          IndustryInterests = "Analytics_And_Data"
-	IndustryInterestsSocialMedia               IndustryInterests = "Social_Media"
-	IndustryInterestsConsumerTech              IndustryInterests = "Consumer_Tech"
-	IndustryInterestsEducationAndLearning      IndustryInterests = "Education_And_Learning"
-	IndustryInterestsHealthAndFitness          IndustryInterests = "Health_And_Fitness"
-	IndustryInterestsFoodAndBeverage           IndustryInterests = "Food_And_Beverage"
-	IndustryInterestsTravelAndLifestyle        IndustryInterests = "Travel_And_Lifestyle"
-	IndustryInterestsEntertainmentAndMedia     IndustryInterests = "Entertainment_And_Media"
-	IndustryInterestsSports                    IndustryInterests = "Sports"
-	IndustryInterestsScienceAndEngineering     IndustryInterests = "Science_And_Engineering"
-)
-
-func (e IndustryInterests) ToPointer() *IndustryInterests {
-	return &e
-}
-func (e *IndustryInterests) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "SaaS":
-		fallthrough
-	case "DevTool":
-		fallthrough
-	case "AI":
-		fallthrough
-	case "Creative_And_Design":
-		fallthrough
-	case "Productivity_Software":
-		fallthrough
-	case "Marketing":
-		fallthrough
-	case "Gaming":
-		fallthrough
-	case "Finance":
-		fallthrough
-	case "Sales":
-		fallthrough
-	case "Ecommerce":
-		fallthrough
-	case "Customer_Service_And_Support":
-		fallthrough
-	case "Content_Management":
-		fallthrough
-	case "Human_Resources":
-		fallthrough
-	case "Security":
-		fallthrough
-	case "Analytics_And_Data":
-		fallthrough
-	case "Social_Media":
-		fallthrough
-	case "Consumer_Tech":
-		fallthrough
-	case "Education_And_Learning":
-		fallthrough
-	case "Health_And_Fitness":
-		fallthrough
-	case "Food_And_Beverage":
-		fallthrough
-	case "Travel_And_Lifestyle":
-		fallthrough
-	case "Entertainment_And_Media":
-		fallthrough
-	case "Sports":
-		fallthrough
-	case "Science_And_Engineering":
-		*e = IndustryInterests(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for IndustryInterests: %v", v)
-	}
-}
-
-type PreferredEarningStructures string
-
-const (
-	PreferredEarningStructuresRevenueShare   PreferredEarningStructures = "Revenue_Share"
-	PreferredEarningStructuresPerLead        PreferredEarningStructures = "Per_Lead"
-	PreferredEarningStructuresPerSale        PreferredEarningStructures = "Per_Sale"
-	PreferredEarningStructuresPerClick       PreferredEarningStructures = "Per_Click"
-	PreferredEarningStructuresOneTimePayment PreferredEarningStructures = "One_Time_Payment"
-)
-
-func (e PreferredEarningStructures) ToPointer() *PreferredEarningStructures {
-	return &e
-}
-func (e *PreferredEarningStructures) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Revenue_Share":
-		fallthrough
-	case "Per_Lead":
-		fallthrough
-	case "Per_Sale":
-		fallthrough
-	case "Per_Click":
-		fallthrough
-	case "One_Time_Payment":
-		*e = PreferredEarningStructures(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PreferredEarningStructures: %v", v)
-	}
-}
-
-type SalesChannels string
-
-const (
-	SalesChannelsBlogs            SalesChannels = "Blogs"
-	SalesChannelsCoupons          SalesChannels = "Coupons"
-	SalesChannelsDirectReselling  SalesChannels = "Direct_Reselling"
-	SalesChannelsNewsletters      SalesChannels = "Newsletters"
-	SalesChannelsSocialMedia      SalesChannels = "Social_Media"
-	SalesChannelsEvents           SalesChannels = "Events"
-	SalesChannelsCompanyReferrals SalesChannels = "Company_Referrals"
-)
-
-func (e SalesChannels) ToPointer() *SalesChannels {
-	return &e
-}
-func (e *SalesChannels) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Blogs":
-		fallthrough
-	case "Coupons":
-		fallthrough
-	case "Direct_Reselling":
-		fallthrough
-	case "Newsletters":
-		fallthrough
-	case "Social_Media":
-		fallthrough
-	case "Events":
-		fallthrough
-	case "Company_Referrals":
-		*e = SalesChannels(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SalesChannels: %v", v)
-	}
-}
-
 type ListPayoutsPartner struct {
 	// The partner's unique ID on Dub.
 	ID string `json:"id"`
 	// The partner's full legal name.
 	Name string `json:"name"`
-	// If the partner profile type is a company, this is the partner's legal company name.
-	CompanyName *string `json:"companyName"`
-	// The partner's profile type on Dub.
-	ProfileType ProfileType `json:"profileType"`
 	// The partner's email address. Should be a unique value across Dub.
 	Email *string `json:"email"`
 	// The partner's avatar image.
 	Image *string `json:"image"`
-	// A brief description of the partner and their background.
-	Description *string `json:"description,omitempty"`
-	// The partner's country (required for tax purposes).
-	Country *string `json:"country"`
-	// The partner's Stripe Connect ID (for receiving payouts via Stripe).
-	StripeConnectID *string `json:"stripeConnectId"`
-	// The partner's PayPal email (for receiving payouts via PayPal).
-	PaypalEmail *string `json:"paypalEmail"`
 	// The date when the partner enabled payouts.
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
-	// The partner's invoice settings.
-	InvoiceSettings *InvoiceSettings `json:"invoiceSettings"`
-	// The date when the partner was created on Dub.
-	CreatedAt string `json:"createdAt"`
-	// The date when the partner was added to the partner network.
-	DiscoverableAt *string `json:"discoverableAt"`
-	// The date when the partner received the trusted badge in the partner network.
-	TrustedAt *string `json:"trustedAt"`
-	// The partner's website URL (including the https protocol).
-	Website *string `json:"website,omitempty"`
-	// The partner's YouTube channel username (e.g. `johndoe`).
-	Youtube *string `json:"youtube,omitempty"`
-	// The partner's Twitter username (e.g. `johndoe`).
-	Twitter *string `json:"twitter,omitempty"`
-	// The partner's LinkedIn username (e.g. `johndoe`).
-	Linkedin *string `json:"linkedin,omitempty"`
-	// The partner's Instagram username (e.g. `johndoe`).
-	Instagram *string `json:"instagram,omitempty"`
-	// The partner's TikTok username (e.g. `johndoe`).
-	Tiktok *string `json:"tiktok,omitempty"`
-	// The partner's monthly traffic.
-	MonthlyTraffic *MonthlyTraffic `json:"monthlyTraffic,omitempty"`
-	// The partner's industry interests.
-	IndustryInterests []IndustryInterests `json:"industryInterests,omitempty"`
-	// The partner's preferred earning structures.
-	PreferredEarningStructures []PreferredEarningStructures `json:"preferredEarningStructures,omitempty"`
-	// The partner's sales channels.
-	SalesChannels []SalesChannels `json:"salesChannels,omitempty"`
-	TenantID      *string         `json:"tenantId"`
+	// The partner's country (required for tax purposes).
+	Country *string `json:"country"`
+	// The partner's group ID on Dub.
+	GroupID *string `json:"groupId,omitempty"`
+	// The partner's unique ID within your database. Can be useful for associating the partner with a user in your database and retrieving/update their data in the future.
+	TenantID *string `json:"tenantId"`
 }
 
 func (l *ListPayoutsPartner) GetID() string {
@@ -579,20 +293,6 @@ func (l *ListPayoutsPartner) GetName() string {
 	return l.Name
 }
 
-func (l *ListPayoutsPartner) GetCompanyName() *string {
-	if l == nil {
-		return nil
-	}
-	return l.CompanyName
-}
-
-func (l *ListPayoutsPartner) GetProfileType() ProfileType {
-	if l == nil {
-		return ProfileType("")
-	}
-	return l.ProfileType
-}
-
 func (l *ListPayoutsPartner) GetEmail() *string {
 	if l == nil {
 		return nil
@@ -607,11 +307,11 @@ func (l *ListPayoutsPartner) GetImage() *string {
 	return l.Image
 }
 
-func (l *ListPayoutsPartner) GetDescription() *string {
+func (l *ListPayoutsPartner) GetPayoutsEnabledAt() *string {
 	if l == nil {
 		return nil
 	}
-	return l.Description
+	return l.PayoutsEnabledAt
 }
 
 func (l *ListPayoutsPartner) GetCountry() *string {
@@ -621,123 +321,11 @@ func (l *ListPayoutsPartner) GetCountry() *string {
 	return l.Country
 }
 
-func (l *ListPayoutsPartner) GetStripeConnectID() *string {
+func (l *ListPayoutsPartner) GetGroupID() *string {
 	if l == nil {
 		return nil
 	}
-	return l.StripeConnectID
-}
-
-func (l *ListPayoutsPartner) GetPaypalEmail() *string {
-	if l == nil {
-		return nil
-	}
-	return l.PaypalEmail
-}
-
-func (l *ListPayoutsPartner) GetPayoutsEnabledAt() *string {
-	if l == nil {
-		return nil
-	}
-	return l.PayoutsEnabledAt
-}
-
-func (l *ListPayoutsPartner) GetInvoiceSettings() *InvoiceSettings {
-	if l == nil {
-		return nil
-	}
-	return l.InvoiceSettings
-}
-
-func (l *ListPayoutsPartner) GetCreatedAt() string {
-	if l == nil {
-		return ""
-	}
-	return l.CreatedAt
-}
-
-func (l *ListPayoutsPartner) GetDiscoverableAt() *string {
-	if l == nil {
-		return nil
-	}
-	return l.DiscoverableAt
-}
-
-func (l *ListPayoutsPartner) GetTrustedAt() *string {
-	if l == nil {
-		return nil
-	}
-	return l.TrustedAt
-}
-
-func (l *ListPayoutsPartner) GetWebsite() *string {
-	if l == nil {
-		return nil
-	}
-	return l.Website
-}
-
-func (l *ListPayoutsPartner) GetYoutube() *string {
-	if l == nil {
-		return nil
-	}
-	return l.Youtube
-}
-
-func (l *ListPayoutsPartner) GetTwitter() *string {
-	if l == nil {
-		return nil
-	}
-	return l.Twitter
-}
-
-func (l *ListPayoutsPartner) GetLinkedin() *string {
-	if l == nil {
-		return nil
-	}
-	return l.Linkedin
-}
-
-func (l *ListPayoutsPartner) GetInstagram() *string {
-	if l == nil {
-		return nil
-	}
-	return l.Instagram
-}
-
-func (l *ListPayoutsPartner) GetTiktok() *string {
-	if l == nil {
-		return nil
-	}
-	return l.Tiktok
-}
-
-func (l *ListPayoutsPartner) GetMonthlyTraffic() *MonthlyTraffic {
-	if l == nil {
-		return nil
-	}
-	return l.MonthlyTraffic
-}
-
-func (l *ListPayoutsPartner) GetIndustryInterests() []IndustryInterests {
-	if l == nil {
-		return nil
-	}
-	return l.IndustryInterests
-}
-
-func (l *ListPayoutsPartner) GetPreferredEarningStructures() []PreferredEarningStructures {
-	if l == nil {
-		return nil
-	}
-	return l.PreferredEarningStructures
-}
-
-func (l *ListPayoutsPartner) GetSalesChannels() []SalesChannels {
-	if l == nil {
-		return nil
-	}
-	return l.SalesChannels
+	return l.GroupID
 }
 
 func (l *ListPayoutsPartner) GetTenantID() *string {

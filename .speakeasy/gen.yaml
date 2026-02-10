@@ -28,7 +28,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 go:
-  version: 0.23.3
+  version: 0.23.4
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: true
   baseErrorName: DubError
