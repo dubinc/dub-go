@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                                             | Value                                            |
-| ------------------------------------------------ | ------------------------------------------------ |
-| `CreatePartnerFieldsPartnersResponseTypeCountry` | country                                          |
+| Name                                            | Value                                           |
+| ----------------------------------------------- | ----------------------------------------------- |
+| `CreatePartnerFieldsPartnersResponseTypeSelect` | select                                          |

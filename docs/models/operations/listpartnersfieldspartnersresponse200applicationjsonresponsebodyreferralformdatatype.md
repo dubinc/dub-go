@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                                                                                         | Value                                                                                        |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataTypeNumber` | number                                                                                       |
+| Name                                                                                        | Value                                                                                       |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataTypePhone` | phone                                                                                       |

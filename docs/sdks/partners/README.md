@@ -4,14 +4,82 @@
 
 ### Available Operations
 
-* [Create](#create) - Create or update a partner
 * [List](#list) - List all partners
-* [CreateLink](#createlink) - Create a link for a partner
+* [Create](#create) - Create or update a partner
 * [RetrieveLinks](#retrievelinks) - Retrieve a partner's links.
+* [CreateLink](#createlink) - Create a link for a partner
 * [UpsertLink](#upsertlink) - Upsert a link for a partner
 * [Analytics](#analytics) - Retrieve analytics for a partner
 * [Ban](#ban) - Ban a partner
 * [Deactivate](#deactivate) - Deactivate a partner
+
+## List
+
+List all partners for a partner program.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="listPartners" method="get" path="/partners" -->
+```go
+package main
+
+import(
+	"context"
+	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+
+    res, err := s.Partners.List(ctx, operations.ListPartnersRequest{
+        Status: operations.ListPartnersQueryParamStatusApproved.ToPointer(),
+        Country: dubgo.Pointer("US"),
+        Email: dubgo.Pointer("panic@thedis.co"),
+        TenantID: dubgo.Pointer("1K0NM7HCN944PEMZ3CQPH43H8"),
+        Search: dubgo.Pointer("john"),
+        PageSize: dubgo.Pointer[float64](50),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.ListPartnersRequest](../../models/operations/listpartnersrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+
+### Response
+
+**[[]operations.ListPartnersResponseBody](../../.md), error**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
 ## Create
 
@@ -94,13 +162,13 @@ func main() {
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
-## List
+## RetrieveLinks
 
-List all partners for a partner program.
+Retrieve a partner's links by their partner ID or tenant ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="listPartners" method="get" path="/partners" -->
+<!-- UsageSnippet language="go" operationID="retrieveLinks" method="get" path="/partners/links" -->
 ```go
 package main
 
@@ -118,14 +186,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.Partners.List(ctx, operations.ListPartnersRequest{
-        Status: operations.ListPartnersQueryParamStatusApproved.ToPointer(),
-        Country: dubgo.Pointer("US"),
-        Email: dubgo.Pointer("panic@thedis.co"),
-        TenantID: dubgo.Pointer("1K0NM7HCN944PEMZ3CQPH43H8"),
-        Search: dubgo.Pointer("john"),
-        PageSize: dubgo.Pointer[float64](50),
-    })
+    res, err := s.Partners.RetrieveLinks(ctx, operations.RetrieveLinksRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -137,15 +198,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `request`                                                                        | [operations.ListPartnersRequest](../../models/operations/listpartnersrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `opts`                                                                           | [][operations.Option](../../models/operations/option.md)                         | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.RetrieveLinksRequest](../../models/operations/retrievelinksrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
-**[[]operations.ListPartnersResponseBody](../../.md), error**
+**[[]operations.RetrieveLinksResponseBody](../../.md), error**
 
 ### Errors
 
@@ -226,67 +287,6 @@ func main() {
 ### Response
 
 **[*components.LinkSchema](../../models/components/linkschema.md), error**
-
-### Errors
-
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| sdkerrors.BadRequest          | 400                           | application/json              |
-| sdkerrors.Unauthorized        | 401                           | application/json              |
-| sdkerrors.Forbidden           | 403                           | application/json              |
-| sdkerrors.NotFound            | 404                           | application/json              |
-| sdkerrors.Conflict            | 409                           | application/json              |
-| sdkerrors.InviteExpired       | 410                           | application/json              |
-| sdkerrors.UnprocessableEntity | 422                           | application/json              |
-| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
-| sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
-
-## RetrieveLinks
-
-Retrieve a partner's links by their partner ID or tenant ID.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="retrieveLinks" method="get" path="/partners/links" -->
-```go
-package main
-
-import(
-	"context"
-	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := dubgo.New(
-        dubgo.WithSecurity("DUB_API_KEY"),
-    )
-
-    res, err := s.Partners.RetrieveLinks(ctx, operations.RetrieveLinksRequest{})
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.RetrieveLinksRequest](../../models/operations/retrievelinksrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
-
-### Response
-
-**[[]operations.RetrieveLinksResponseBody](../../.md), error**
 
 ### Errors
 

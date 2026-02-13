@@ -281,7 +281,7 @@ func (e *ListPartnersStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type ListPartnersLinks struct {
+type Links struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
@@ -304,103 +304,103 @@ type ListPartnersLinks struct {
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 
-func (l ListPartnersLinks) MarshalJSON() ([]byte, error) {
+func (l Links) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(l, "", false)
 }
 
-func (l *ListPartnersLinks) UnmarshalJSON(data []byte) error {
+func (l *Links) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *ListPartnersLinks) GetID() string {
+func (l *Links) GetID() string {
 	if l == nil {
 		return ""
 	}
 	return l.ID
 }
 
-func (l *ListPartnersLinks) GetDomain() string {
+func (l *Links) GetDomain() string {
 	if l == nil {
 		return ""
 	}
 	return l.Domain
 }
 
-func (l *ListPartnersLinks) GetKey() string {
+func (l *Links) GetKey() string {
 	if l == nil {
 		return ""
 	}
 	return l.Key
 }
 
-func (l *ListPartnersLinks) GetShortLink() string {
+func (l *Links) GetShortLink() string {
 	if l == nil {
 		return ""
 	}
 	return l.ShortLink
 }
 
-func (l *ListPartnersLinks) GetURL() string {
+func (l *Links) GetURL() string {
 	if l == nil {
 		return ""
 	}
 	return l.URL
 }
 
-func (l *ListPartnersLinks) GetClicks() *float64 {
+func (l *Links) GetClicks() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.Clicks
 }
 
-func (l *ListPartnersLinks) GetLeads() *float64 {
+func (l *Links) GetLeads() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.Leads
 }
 
-func (l *ListPartnersLinks) GetConversions() *float64 {
+func (l *Links) GetConversions() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.Conversions
 }
 
-func (l *ListPartnersLinks) GetSales() *float64 {
+func (l *Links) GetSales() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.Sales
 }
 
-func (l *ListPartnersLinks) GetSaleAmount() *float64 {
+func (l *Links) GetSaleAmount() *float64 {
 	if l == nil {
 		return nil
 	}
 	return l.SaleAmount
 }
 
-// ListPartnersBannedReason - If the partner was banned from the program, this is the reason for the ban.
-type ListPartnersBannedReason string
+// BannedReason - If the partner was banned from the program, this is the reason for the ban.
+type BannedReason string
 
 const (
-	ListPartnersBannedReasonTosViolation         ListPartnersBannedReason = "tos_violation"
-	ListPartnersBannedReasonInappropriateContent ListPartnersBannedReason = "inappropriate_content"
-	ListPartnersBannedReasonFakeTraffic          ListPartnersBannedReason = "fake_traffic"
-	ListPartnersBannedReasonFraud                ListPartnersBannedReason = "fraud"
-	ListPartnersBannedReasonSpam                 ListPartnersBannedReason = "spam"
-	ListPartnersBannedReasonBrandAbuse           ListPartnersBannedReason = "brand_abuse"
+	BannedReasonTosViolation         BannedReason = "tos_violation"
+	BannedReasonInappropriateContent BannedReason = "inappropriate_content"
+	BannedReasonFakeTraffic          BannedReason = "fake_traffic"
+	BannedReasonFraud                BannedReason = "fraud"
+	BannedReasonSpam                 BannedReason = "spam"
+	BannedReasonBrandAbuse           BannedReason = "brand_abuse"
 )
 
-func (e ListPartnersBannedReason) ToPointer() *ListPartnersBannedReason {
+func (e BannedReason) ToPointer() *BannedReason {
 	return &e
 }
-func (e *ListPartnersBannedReason) UnmarshalJSON(data []byte) error {
+func (e *BannedReason) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -417,102 +417,17 @@ func (e *ListPartnersBannedReason) UnmarshalJSON(data []byte) error {
 	case "spam":
 		fallthrough
 	case "brand_abuse":
-		*e = ListPartnersBannedReason(v)
+		*e = BannedReason(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for ListPartnersBannedReason: %v", v)
+		return fmt.Errorf("invalid value for BannedReason: %v", v)
 	}
-}
-
-type ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormData8Type string
-
-const (
-	ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormData8TypePhone ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormData8Type = "phone"
-)
-
-func (e ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormData8Type) ToPointer() *ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormData8Type {
-	return &e
-}
-func (e *ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormData8Type) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "phone":
-		*e = ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormData8Type(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormData8Type: %v", v)
-	}
-}
-
-type Fields8 struct {
-	Key      string                                                                                `json:"key"`
-	Label    string                                                                                `json:"label"`
-	Required bool                                                                                  `json:"required"`
-	Locked   bool                                                                                  `json:"locked"`
-	Position int64                                                                                 `json:"position"`
-	Type     ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormData8Type `json:"type"`
-}
-
-func (f Fields8) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(f, "", false)
-}
-
-func (f *Fields8) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"key", "label", "required", "locked", "position", "type"}); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (f *Fields8) GetKey() string {
-	if f == nil {
-		return ""
-	}
-	return f.Key
-}
-
-func (f *Fields8) GetLabel() string {
-	if f == nil {
-		return ""
-	}
-	return f.Label
-}
-
-func (f *Fields8) GetRequired() bool {
-	if f == nil {
-		return false
-	}
-	return f.Required
-}
-
-func (f *Fields8) GetLocked() bool {
-	if f == nil {
-		return false
-	}
-	return f.Locked
-}
-
-func (f *Fields8) GetPosition() int64 {
-	if f == nil {
-		return 0
-	}
-	return f.Position
-}
-
-func (f *Fields8) GetType() ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormData8Type {
-	if f == nil {
-		return ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormData8Type("")
-	}
-	return f.Type
 }
 
 type ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataType string
 
 const (
-	ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataTypeNumber ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataType = "number"
+	ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataTypePhone ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataType = "phone"
 )
 
 func (e ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataType) ToPointer() *ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataType {
@@ -524,7 +439,7 @@ func (e *ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferra
 		return err
 	}
 	switch v {
-	case "number":
+	case "phone":
 		*e = ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataType(v)
 		return nil
 	default:
@@ -532,7 +447,7 @@ func (e *ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferra
 	}
 }
 
-type Fields7 struct {
+type Eight struct {
 	Key      string                                                                               `json:"key"`
 	Label    string                                                                               `json:"label"`
 	Required bool                                                                                 `json:"required"`
@@ -541,63 +456,63 @@ type Fields7 struct {
 	Type     ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataType `json:"type"`
 }
 
-func (f Fields7) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(f, "", false)
+func (e Eight) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
 }
 
-func (f *Fields7) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"key", "label", "required", "locked", "position", "type"}); err != nil {
+func (e *Eight) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"key", "label", "required", "locked", "position", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (f *Fields7) GetKey() string {
-	if f == nil {
+func (e *Eight) GetKey() string {
+	if e == nil {
 		return ""
 	}
-	return f.Key
+	return e.Key
 }
 
-func (f *Fields7) GetLabel() string {
-	if f == nil {
+func (e *Eight) GetLabel() string {
+	if e == nil {
 		return ""
 	}
-	return f.Label
+	return e.Label
 }
 
-func (f *Fields7) GetRequired() bool {
-	if f == nil {
+func (e *Eight) GetRequired() bool {
+	if e == nil {
 		return false
 	}
-	return f.Required
+	return e.Required
 }
 
-func (f *Fields7) GetLocked() bool {
-	if f == nil {
+func (e *Eight) GetLocked() bool {
+	if e == nil {
 		return false
 	}
-	return f.Locked
+	return e.Locked
 }
 
-func (f *Fields7) GetPosition() int64 {
-	if f == nil {
+func (e *Eight) GetPosition() int64 {
+	if e == nil {
 		return 0
 	}
-	return f.Position
+	return e.Position
 }
 
-func (f *Fields7) GetType() ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataType {
-	if f == nil {
+func (e *Eight) GetType() ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataType {
+	if e == nil {
 		return ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyReferralFormDataType("")
 	}
-	return f.Type
+	return e.Type
 }
 
 type ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyType string
 
 const (
-	ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyTypeMultiSelect ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyType = "multiSelect"
+	ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyTypeNumber ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyType = "number"
 )
 
 func (e ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyType) ToPointer() *ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyType {
@@ -609,7 +524,7 @@ func (e *ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyType) U
 		return err
 	}
 	switch v {
-	case "multiSelect":
+	case "number":
 		*e = ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyType(v)
 		return nil
 	default:
@@ -617,110 +532,72 @@ func (e *ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyType) U
 	}
 }
 
-type ListPartnersFieldsPartnersOptions struct {
-	Label string `json:"label"`
-	Value string `json:"value"`
-}
-
-func (l ListPartnersFieldsPartnersOptions) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
-}
-
-func (l *ListPartnersFieldsPartnersOptions) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"label", "value"}); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (l *ListPartnersFieldsPartnersOptions) GetLabel() string {
-	if l == nil {
-		return ""
-	}
-	return l.Label
-}
-
-func (l *ListPartnersFieldsPartnersOptions) GetValue() string {
-	if l == nil {
-		return ""
-	}
-	return l.Value
-}
-
-type Fields6 struct {
+type Seven struct {
 	Key      string                                                               `json:"key"`
 	Label    string                                                               `json:"label"`
 	Required bool                                                                 `json:"required"`
 	Locked   bool                                                                 `json:"locked"`
 	Position int64                                                                `json:"position"`
 	Type     ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyType `json:"type"`
-	Options  []ListPartnersFieldsPartnersOptions                                  `json:"options"`
 }
 
-func (f Fields6) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(f, "", false)
+func (s Seven) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
 }
 
-func (f *Fields6) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"key", "label", "required", "locked", "position", "type", "options"}); err != nil {
+func (s *Seven) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"key", "label", "required", "locked", "position", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (f *Fields6) GetKey() string {
-	if f == nil {
+func (s *Seven) GetKey() string {
+	if s == nil {
 		return ""
 	}
-	return f.Key
+	return s.Key
 }
 
-func (f *Fields6) GetLabel() string {
-	if f == nil {
+func (s *Seven) GetLabel() string {
+	if s == nil {
 		return ""
 	}
-	return f.Label
+	return s.Label
 }
 
-func (f *Fields6) GetRequired() bool {
-	if f == nil {
+func (s *Seven) GetRequired() bool {
+	if s == nil {
 		return false
 	}
-	return f.Required
+	return s.Required
 }
 
-func (f *Fields6) GetLocked() bool {
-	if f == nil {
+func (s *Seven) GetLocked() bool {
+	if s == nil {
 		return false
 	}
-	return f.Locked
+	return s.Locked
 }
 
-func (f *Fields6) GetPosition() int64 {
-	if f == nil {
+func (s *Seven) GetPosition() int64 {
+	if s == nil {
 		return 0
 	}
-	return f.Position
+	return s.Position
 }
 
-func (f *Fields6) GetType() ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyType {
-	if f == nil {
+func (s *Seven) GetType() ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyType {
+	if s == nil {
 		return ListPartnersFieldsPartnersResponse200ApplicationJSONResponseBodyType("")
 	}
-	return f.Type
-}
-
-func (f *Fields6) GetOptions() []ListPartnersFieldsPartnersOptions {
-	if f == nil {
-		return []ListPartnersFieldsPartnersOptions{}
-	}
-	return f.Options
+	return s.Type
 }
 
 type ListPartnersFieldsPartnersResponse200ApplicationJSONType string
 
 const (
-	ListPartnersFieldsPartnersResponse200ApplicationJSONTypeDate ListPartnersFieldsPartnersResponse200ApplicationJSONType = "date"
+	ListPartnersFieldsPartnersResponse200ApplicationJSONTypeMultiSelect ListPartnersFieldsPartnersResponse200ApplicationJSONType = "multiSelect"
 )
 
 func (e ListPartnersFieldsPartnersResponse200ApplicationJSONType) ToPointer() *ListPartnersFieldsPartnersResponse200ApplicationJSONType {
@@ -732,7 +609,7 @@ func (e *ListPartnersFieldsPartnersResponse200ApplicationJSONType) UnmarshalJSON
 		return err
 	}
 	switch v {
-	case "date":
+	case "multiSelect":
 		*e = ListPartnersFieldsPartnersResponse200ApplicationJSONType(v)
 		return nil
 	default:
@@ -740,72 +617,110 @@ func (e *ListPartnersFieldsPartnersResponse200ApplicationJSONType) UnmarshalJSON
 	}
 }
 
-type Fields5 struct {
-	Key      string                                                   `json:"key"`
-	Label    string                                                   `json:"label"`
-	Required bool                                                     `json:"required"`
-	Locked   bool                                                     `json:"locked"`
-	Position int64                                                    `json:"position"`
-	Type     ListPartnersFieldsPartnersResponse200ApplicationJSONType `json:"type"`
+type FieldsOptions struct {
+	Label string `json:"label"`
+	Value string `json:"value"`
 }
 
-func (f Fields5) MarshalJSON() ([]byte, error) {
+func (f FieldsOptions) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(f, "", false)
 }
 
-func (f *Fields5) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"key", "label", "required", "locked", "position", "type"}); err != nil {
+func (f *FieldsOptions) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"label", "value"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (f *Fields5) GetKey() string {
-	if f == nil {
-		return ""
-	}
-	return f.Key
-}
-
-func (f *Fields5) GetLabel() string {
+func (f *FieldsOptions) GetLabel() string {
 	if f == nil {
 		return ""
 	}
 	return f.Label
 }
 
-func (f *Fields5) GetRequired() bool {
+func (f *FieldsOptions) GetValue() string {
 	if f == nil {
-		return false
+		return ""
 	}
-	return f.Required
+	return f.Value
 }
 
-func (f *Fields5) GetLocked() bool {
-	if f == nil {
-		return false
-	}
-	return f.Locked
+type Six struct {
+	Key      string                                                   `json:"key"`
+	Label    string                                                   `json:"label"`
+	Required bool                                                     `json:"required"`
+	Locked   bool                                                     `json:"locked"`
+	Position int64                                                    `json:"position"`
+	Type     ListPartnersFieldsPartnersResponse200ApplicationJSONType `json:"type"`
+	Options  []FieldsOptions                                          `json:"options"`
 }
 
-func (f *Fields5) GetPosition() int64 {
-	if f == nil {
+func (s Six) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *Six) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"key", "label", "required", "locked", "position", "type", "options"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *Six) GetKey() string {
+	if s == nil {
+		return ""
+	}
+	return s.Key
+}
+
+func (s *Six) GetLabel() string {
+	if s == nil {
+		return ""
+	}
+	return s.Label
+}
+
+func (s *Six) GetRequired() bool {
+	if s == nil {
+		return false
+	}
+	return s.Required
+}
+
+func (s *Six) GetLocked() bool {
+	if s == nil {
+		return false
+	}
+	return s.Locked
+}
+
+func (s *Six) GetPosition() int64 {
+	if s == nil {
 		return 0
 	}
-	return f.Position
+	return s.Position
 }
 
-func (f *Fields5) GetType() ListPartnersFieldsPartnersResponse200ApplicationJSONType {
-	if f == nil {
+func (s *Six) GetType() ListPartnersFieldsPartnersResponse200ApplicationJSONType {
+	if s == nil {
 		return ListPartnersFieldsPartnersResponse200ApplicationJSONType("")
 	}
-	return f.Type
+	return s.Type
+}
+
+func (s *Six) GetOptions() []FieldsOptions {
+	if s == nil {
+		return []FieldsOptions{}
+	}
+	return s.Options
 }
 
 type ListPartnersFieldsPartnersResponse200Type string
 
 const (
-	ListPartnersFieldsPartnersResponse200TypeCountry ListPartnersFieldsPartnersResponse200Type = "country"
+	ListPartnersFieldsPartnersResponse200TypeDate ListPartnersFieldsPartnersResponse200Type = "date"
 )
 
 func (e ListPartnersFieldsPartnersResponse200Type) ToPointer() *ListPartnersFieldsPartnersResponse200Type {
@@ -817,7 +732,7 @@ func (e *ListPartnersFieldsPartnersResponse200Type) UnmarshalJSON(data []byte) e
 		return err
 	}
 	switch v {
-	case "country":
+	case "date":
 		*e = ListPartnersFieldsPartnersResponse200Type(v)
 		return nil
 	default:
@@ -825,7 +740,7 @@ func (e *ListPartnersFieldsPartnersResponse200Type) UnmarshalJSON(data []byte) e
 	}
 }
 
-type ListPartnersFields4 struct {
+type Five struct {
 	Key      string                                    `json:"key"`
 	Label    string                                    `json:"label"`
 	Required bool                                      `json:"required"`
@@ -834,63 +749,63 @@ type ListPartnersFields4 struct {
 	Type     ListPartnersFieldsPartnersResponse200Type `json:"type"`
 }
 
-func (l ListPartnersFields4) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
+func (f Five) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
 }
 
-func (l *ListPartnersFields4) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"key", "label", "required", "locked", "position", "type"}); err != nil {
+func (f *Five) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"key", "label", "required", "locked", "position", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *ListPartnersFields4) GetKey() string {
-	if l == nil {
+func (f *Five) GetKey() string {
+	if f == nil {
 		return ""
 	}
-	return l.Key
+	return f.Key
 }
 
-func (l *ListPartnersFields4) GetLabel() string {
-	if l == nil {
+func (f *Five) GetLabel() string {
+	if f == nil {
 		return ""
 	}
-	return l.Label
+	return f.Label
 }
 
-func (l *ListPartnersFields4) GetRequired() bool {
-	if l == nil {
+func (f *Five) GetRequired() bool {
+	if f == nil {
 		return false
 	}
-	return l.Required
+	return f.Required
 }
 
-func (l *ListPartnersFields4) GetLocked() bool {
-	if l == nil {
+func (f *Five) GetLocked() bool {
+	if f == nil {
 		return false
 	}
-	return l.Locked
+	return f.Locked
 }
 
-func (l *ListPartnersFields4) GetPosition() int64 {
-	if l == nil {
+func (f *Five) GetPosition() int64 {
+	if f == nil {
 		return 0
 	}
-	return l.Position
+	return f.Position
 }
 
-func (l *ListPartnersFields4) GetType() ListPartnersFieldsPartnersResponse200Type {
-	if l == nil {
+func (f *Five) GetType() ListPartnersFieldsPartnersResponse200Type {
+	if f == nil {
 		return ListPartnersFieldsPartnersResponse200Type("")
 	}
-	return l.Type
+	return f.Type
 }
 
 type ListPartnersFieldsPartnersResponseType string
 
 const (
-	ListPartnersFieldsPartnersResponseTypeSelect ListPartnersFieldsPartnersResponseType = "select"
+	ListPartnersFieldsPartnersResponseTypeCountry ListPartnersFieldsPartnersResponseType = "country"
 )
 
 func (e ListPartnersFieldsPartnersResponseType) ToPointer() *ListPartnersFieldsPartnersResponseType {
@@ -902,7 +817,7 @@ func (e *ListPartnersFieldsPartnersResponseType) UnmarshalJSON(data []byte) erro
 		return err
 	}
 	switch v {
-	case "select":
+	case "country":
 		*e = ListPartnersFieldsPartnersResponseType(v)
 		return nil
 	default:
@@ -910,110 +825,72 @@ func (e *ListPartnersFieldsPartnersResponseType) UnmarshalJSON(data []byte) erro
 	}
 }
 
-type ListPartnersFieldsOptions struct {
-	Label string `json:"label"`
-	Value string `json:"value"`
-}
-
-func (l ListPartnersFieldsOptions) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
-}
-
-func (l *ListPartnersFieldsOptions) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"label", "value"}); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (l *ListPartnersFieldsOptions) GetLabel() string {
-	if l == nil {
-		return ""
-	}
-	return l.Label
-}
-
-func (l *ListPartnersFieldsOptions) GetValue() string {
-	if l == nil {
-		return ""
-	}
-	return l.Value
-}
-
-type ListPartnersFields3 struct {
+type Fields4 struct {
 	Key      string                                 `json:"key"`
 	Label    string                                 `json:"label"`
 	Required bool                                   `json:"required"`
 	Locked   bool                                   `json:"locked"`
 	Position int64                                  `json:"position"`
 	Type     ListPartnersFieldsPartnersResponseType `json:"type"`
-	Options  []ListPartnersFieldsOptions            `json:"options"`
 }
 
-func (l ListPartnersFields3) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
+func (f Fields4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
 }
 
-func (l *ListPartnersFields3) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"key", "label", "required", "locked", "position", "type", "options"}); err != nil {
+func (f *Fields4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"key", "label", "required", "locked", "position", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *ListPartnersFields3) GetKey() string {
-	if l == nil {
+func (f *Fields4) GetKey() string {
+	if f == nil {
 		return ""
 	}
-	return l.Key
+	return f.Key
 }
 
-func (l *ListPartnersFields3) GetLabel() string {
-	if l == nil {
+func (f *Fields4) GetLabel() string {
+	if f == nil {
 		return ""
 	}
-	return l.Label
+	return f.Label
 }
 
-func (l *ListPartnersFields3) GetRequired() bool {
-	if l == nil {
+func (f *Fields4) GetRequired() bool {
+	if f == nil {
 		return false
 	}
-	return l.Required
+	return f.Required
 }
 
-func (l *ListPartnersFields3) GetLocked() bool {
-	if l == nil {
+func (f *Fields4) GetLocked() bool {
+	if f == nil {
 		return false
 	}
-	return l.Locked
+	return f.Locked
 }
 
-func (l *ListPartnersFields3) GetPosition() int64 {
-	if l == nil {
+func (f *Fields4) GetPosition() int64 {
+	if f == nil {
 		return 0
 	}
-	return l.Position
+	return f.Position
 }
 
-func (l *ListPartnersFields3) GetType() ListPartnersFieldsPartnersResponseType {
-	if l == nil {
+func (f *Fields4) GetType() ListPartnersFieldsPartnersResponseType {
+	if f == nil {
 		return ListPartnersFieldsPartnersResponseType("")
 	}
-	return l.Type
-}
-
-func (l *ListPartnersFields3) GetOptions() []ListPartnersFieldsOptions {
-	if l == nil {
-		return []ListPartnersFieldsOptions{}
-	}
-	return l.Options
+	return f.Type
 }
 
 type ListPartnersFieldsPartnersType string
 
 const (
-	ListPartnersFieldsPartnersTypeTextarea ListPartnersFieldsPartnersType = "textarea"
+	ListPartnersFieldsPartnersTypeSelect ListPartnersFieldsPartnersType = "select"
 )
 
 func (e ListPartnersFieldsPartnersType) ToPointer() *ListPartnersFieldsPartnersType {
@@ -1025,7 +902,7 @@ func (e *ListPartnersFieldsPartnersType) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
-	case "textarea":
+	case "select":
 		*e = ListPartnersFieldsPartnersType(v)
 		return nil
 	default:
@@ -1033,102 +910,110 @@ func (e *ListPartnersFieldsPartnersType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type ListPartnersFieldsPartnersConstraints struct {
-	MaxLength *int64 `json:"maxLength,omitempty"`
+type OptionsObj struct {
+	Label string `json:"label"`
+	Value string `json:"value"`
 }
 
-func (l ListPartnersFieldsPartnersConstraints) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
+func (o OptionsObj) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
 }
 
-func (l *ListPartnersFieldsPartnersConstraints) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+func (o *OptionsObj) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"label", "value"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *ListPartnersFieldsPartnersConstraints) GetMaxLength() *int64 {
-	if l == nil {
-		return nil
+func (o *OptionsObj) GetLabel() string {
+	if o == nil {
+		return ""
 	}
-	return l.MaxLength
+	return o.Label
 }
 
-type ListPartnersFields2 struct {
-	Key         string                                 `json:"key"`
-	Label       string                                 `json:"label"`
-	Required    bool                                   `json:"required"`
-	Locked      bool                                   `json:"locked"`
-	Position    int64                                  `json:"position"`
-	Type        ListPartnersFieldsPartnersType         `json:"type"`
-	Constraints *ListPartnersFieldsPartnersConstraints `json:"constraints,omitempty"`
+func (o *OptionsObj) GetValue() string {
+	if o == nil {
+		return ""
+	}
+	return o.Value
 }
 
-func (l ListPartnersFields2) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
+type Fields3 struct {
+	Key      string                         `json:"key"`
+	Label    string                         `json:"label"`
+	Required bool                           `json:"required"`
+	Locked   bool                           `json:"locked"`
+	Position int64                          `json:"position"`
+	Type     ListPartnersFieldsPartnersType `json:"type"`
+	Options  []OptionsObj                   `json:"options"`
 }
 
-func (l *ListPartnersFields2) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"key", "label", "required", "locked", "position", "type"}); err != nil {
+func (f Fields3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *Fields3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"key", "label", "required", "locked", "position", "type", "options"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *ListPartnersFields2) GetKey() string {
-	if l == nil {
+func (f *Fields3) GetKey() string {
+	if f == nil {
 		return ""
 	}
-	return l.Key
+	return f.Key
 }
 
-func (l *ListPartnersFields2) GetLabel() string {
-	if l == nil {
+func (f *Fields3) GetLabel() string {
+	if f == nil {
 		return ""
 	}
-	return l.Label
+	return f.Label
 }
 
-func (l *ListPartnersFields2) GetRequired() bool {
-	if l == nil {
+func (f *Fields3) GetRequired() bool {
+	if f == nil {
 		return false
 	}
-	return l.Required
+	return f.Required
 }
 
-func (l *ListPartnersFields2) GetLocked() bool {
-	if l == nil {
+func (f *Fields3) GetLocked() bool {
+	if f == nil {
 		return false
 	}
-	return l.Locked
+	return f.Locked
 }
 
-func (l *ListPartnersFields2) GetPosition() int64 {
-	if l == nil {
+func (f *Fields3) GetPosition() int64 {
+	if f == nil {
 		return 0
 	}
-	return l.Position
+	return f.Position
 }
 
-func (l *ListPartnersFields2) GetType() ListPartnersFieldsPartnersType {
-	if l == nil {
+func (f *Fields3) GetType() ListPartnersFieldsPartnersType {
+	if f == nil {
 		return ListPartnersFieldsPartnersType("")
 	}
-	return l.Type
+	return f.Type
 }
 
-func (l *ListPartnersFields2) GetConstraints() *ListPartnersFieldsPartnersConstraints {
-	if l == nil {
-		return nil
+func (f *Fields3) GetOptions() []OptionsObj {
+	if f == nil {
+		return []OptionsObj{}
 	}
-	return l.Constraints
+	return f.Options
 }
 
 type ListPartnersFieldsType string
 
 const (
-	ListPartnersFieldsTypeText ListPartnersFieldsType = "text"
+	ListPartnersFieldsTypeTextarea ListPartnersFieldsType = "textarea"
 )
 
 func (e ListPartnersFieldsType) ToPointer() *ListPartnersFieldsType {
@@ -1140,7 +1025,7 @@ func (e *ListPartnersFieldsType) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
-	case "text":
+	case "textarea":
 		*e = ListPartnersFieldsType(v)
 		return nil
 	default:
@@ -1148,310 +1033,425 @@ func (e *ListPartnersFieldsType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type ListPartnersFieldsConstraints struct {
+type FieldsConstraints struct {
+	MaxLength *int64 `json:"maxLength,omitempty"`
+}
+
+func (f FieldsConstraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FieldsConstraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (f *FieldsConstraints) GetMaxLength() *int64 {
+	if f == nil {
+		return nil
+	}
+	return f.MaxLength
+}
+
+type Fields2 struct {
+	Key         string                 `json:"key"`
+	Label       string                 `json:"label"`
+	Required    bool                   `json:"required"`
+	Locked      bool                   `json:"locked"`
+	Position    int64                  `json:"position"`
+	Type        ListPartnersFieldsType `json:"type"`
+	Constraints *FieldsConstraints     `json:"constraints,omitempty"`
+}
+
+func (f Fields2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *Fields2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"key", "label", "required", "locked", "position", "type"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (f *Fields2) GetKey() string {
+	if f == nil {
+		return ""
+	}
+	return f.Key
+}
+
+func (f *Fields2) GetLabel() string {
+	if f == nil {
+		return ""
+	}
+	return f.Label
+}
+
+func (f *Fields2) GetRequired() bool {
+	if f == nil {
+		return false
+	}
+	return f.Required
+}
+
+func (f *Fields2) GetLocked() bool {
+	if f == nil {
+		return false
+	}
+	return f.Locked
+}
+
+func (f *Fields2) GetPosition() int64 {
+	if f == nil {
+		return 0
+	}
+	return f.Position
+}
+
+func (f *Fields2) GetType() ListPartnersFieldsType {
+	if f == nil {
+		return ListPartnersFieldsType("")
+	}
+	return f.Type
+}
+
+func (f *Fields2) GetConstraints() *FieldsConstraints {
+	if f == nil {
+		return nil
+	}
+	return f.Constraints
+}
+
+type FieldsType string
+
+const (
+	FieldsTypeText FieldsType = "text"
+)
+
+func (e FieldsType) ToPointer() *FieldsType {
+	return &e
+}
+func (e *FieldsType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "text":
+		*e = FieldsType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FieldsType: %v", v)
+	}
+}
+
+type Constraints struct {
 	MaxLength *int64  `json:"maxLength,omitempty"`
 	Pattern   *string `json:"pattern,omitempty"`
 }
 
-func (l ListPartnersFieldsConstraints) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
+func (c Constraints) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
 }
 
-func (l *ListPartnersFieldsConstraints) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+func (c *Constraints) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *ListPartnersFieldsConstraints) GetMaxLength() *int64 {
-	if l == nil {
+func (c *Constraints) GetMaxLength() *int64 {
+	if c == nil {
 		return nil
 	}
-	return l.MaxLength
+	return c.MaxLength
 }
 
-func (l *ListPartnersFieldsConstraints) GetPattern() *string {
-	if l == nil {
+func (c *Constraints) GetPattern() *string {
+	if c == nil {
 		return nil
 	}
-	return l.Pattern
+	return c.Pattern
 }
 
-type ListPartnersFields1 struct {
-	Key         string                         `json:"key"`
-	Label       string                         `json:"label"`
-	Required    bool                           `json:"required"`
-	Locked      bool                           `json:"locked"`
-	Position    int64                          `json:"position"`
-	Type        ListPartnersFieldsType         `json:"type"`
-	Constraints *ListPartnersFieldsConstraints `json:"constraints,omitempty"`
+type Fields1 struct {
+	Key         string       `json:"key"`
+	Label       string       `json:"label"`
+	Required    bool         `json:"required"`
+	Locked      bool         `json:"locked"`
+	Position    int64        `json:"position"`
+	Type        FieldsType   `json:"type"`
+	Constraints *Constraints `json:"constraints,omitempty"`
 }
 
-func (l ListPartnersFields1) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(l, "", false)
+func (f Fields1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
 }
 
-func (l *ListPartnersFields1) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"key", "label", "required", "locked", "position", "type"}); err != nil {
+func (f *Fields1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"key", "label", "required", "locked", "position", "type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (l *ListPartnersFields1) GetKey() string {
-	if l == nil {
+func (f *Fields1) GetKey() string {
+	if f == nil {
 		return ""
 	}
-	return l.Key
+	return f.Key
 }
 
-func (l *ListPartnersFields1) GetLabel() string {
-	if l == nil {
+func (f *Fields1) GetLabel() string {
+	if f == nil {
 		return ""
 	}
-	return l.Label
+	return f.Label
 }
 
-func (l *ListPartnersFields1) GetRequired() bool {
-	if l == nil {
+func (f *Fields1) GetRequired() bool {
+	if f == nil {
 		return false
 	}
-	return l.Required
+	return f.Required
 }
 
-func (l *ListPartnersFields1) GetLocked() bool {
-	if l == nil {
+func (f *Fields1) GetLocked() bool {
+	if f == nil {
 		return false
 	}
-	return l.Locked
+	return f.Locked
 }
 
-func (l *ListPartnersFields1) GetPosition() int64 {
-	if l == nil {
+func (f *Fields1) GetPosition() int64 {
+	if f == nil {
 		return 0
 	}
-	return l.Position
+	return f.Position
 }
 
-func (l *ListPartnersFields1) GetType() ListPartnersFieldsType {
-	if l == nil {
-		return ListPartnersFieldsType("")
+func (f *Fields1) GetType() FieldsType {
+	if f == nil {
+		return FieldsType("")
 	}
-	return l.Type
+	return f.Type
 }
 
-func (l *ListPartnersFields1) GetConstraints() *ListPartnersFieldsConstraints {
-	if l == nil {
+func (f *Fields1) GetConstraints() *Constraints {
+	if f == nil {
 		return nil
 	}
-	return l.Constraints
+	return f.Constraints
 }
 
-type ListPartnersFieldsUnionType string
+type FieldsUnionType string
 
 const (
-	ListPartnersFieldsUnionTypeListPartnersFields1 ListPartnersFieldsUnionType = "listPartners_fields_1"
-	ListPartnersFieldsUnionTypeListPartnersFields2 ListPartnersFieldsUnionType = "listPartners_fields_2"
-	ListPartnersFieldsUnionTypeListPartnersFields3 ListPartnersFieldsUnionType = "listPartners_fields_3"
-	ListPartnersFieldsUnionTypeListPartnersFields4 ListPartnersFieldsUnionType = "listPartners_fields_4"
-	ListPartnersFieldsUnionTypeFields5             ListPartnersFieldsUnionType = "fields_5"
-	ListPartnersFieldsUnionTypeFields6             ListPartnersFieldsUnionType = "fields_6"
-	ListPartnersFieldsUnionTypeFields7             ListPartnersFieldsUnionType = "fields_7"
-	ListPartnersFieldsUnionTypeFields8             ListPartnersFieldsUnionType = "fields_8"
+	FieldsUnionTypeFields1 FieldsUnionType = "fields_1"
+	FieldsUnionTypeFields2 FieldsUnionType = "fields_2"
+	FieldsUnionTypeFields3 FieldsUnionType = "fields_3"
+	FieldsUnionTypeFields4 FieldsUnionType = "fields_4"
+	FieldsUnionTypeFive    FieldsUnionType = "5"
+	FieldsUnionTypeSix     FieldsUnionType = "6"
+	FieldsUnionTypeSeven   FieldsUnionType = "7"
+	FieldsUnionTypeEight   FieldsUnionType = "8"
 )
 
-type ListPartnersFields struct {
-	ListPartnersFields1 *ListPartnersFields1 `queryParam:"inline" union:"member"`
-	ListPartnersFields2 *ListPartnersFields2 `queryParam:"inline" union:"member"`
-	ListPartnersFields3 *ListPartnersFields3 `queryParam:"inline" union:"member"`
-	ListPartnersFields4 *ListPartnersFields4 `queryParam:"inline" union:"member"`
-	Fields5             *Fields5             `queryParam:"inline" union:"member"`
-	Fields6             *Fields6             `queryParam:"inline" union:"member"`
-	Fields7             *Fields7             `queryParam:"inline" union:"member"`
-	Fields8             *Fields8             `queryParam:"inline" union:"member"`
+type Fields struct {
+	Fields1 *Fields1 `queryParam:"inline" union:"member"`
+	Fields2 *Fields2 `queryParam:"inline" union:"member"`
+	Fields3 *Fields3 `queryParam:"inline" union:"member"`
+	Fields4 *Fields4 `queryParam:"inline" union:"member"`
+	Five    *Five    `queryParam:"inline" union:"member"`
+	Six     *Six     `queryParam:"inline" union:"member"`
+	Seven   *Seven   `queryParam:"inline" union:"member"`
+	Eight   *Eight   `queryParam:"inline" union:"member"`
 
-	Type ListPartnersFieldsUnionType
+	Type FieldsUnionType
 }
 
-func CreateListPartnersFieldsListPartnersFields1(listPartnersFields1 ListPartnersFields1) ListPartnersFields {
-	typ := ListPartnersFieldsUnionTypeListPartnersFields1
+func CreateFieldsFields1(fields1 Fields1) Fields {
+	typ := FieldsUnionTypeFields1
 
-	return ListPartnersFields{
-		ListPartnersFields1: &listPartnersFields1,
-		Type:                typ,
-	}
-}
-
-func CreateListPartnersFieldsListPartnersFields2(listPartnersFields2 ListPartnersFields2) ListPartnersFields {
-	typ := ListPartnersFieldsUnionTypeListPartnersFields2
-
-	return ListPartnersFields{
-		ListPartnersFields2: &listPartnersFields2,
-		Type:                typ,
-	}
-}
-
-func CreateListPartnersFieldsListPartnersFields3(listPartnersFields3 ListPartnersFields3) ListPartnersFields {
-	typ := ListPartnersFieldsUnionTypeListPartnersFields3
-
-	return ListPartnersFields{
-		ListPartnersFields3: &listPartnersFields3,
-		Type:                typ,
-	}
-}
-
-func CreateListPartnersFieldsListPartnersFields4(listPartnersFields4 ListPartnersFields4) ListPartnersFields {
-	typ := ListPartnersFieldsUnionTypeListPartnersFields4
-
-	return ListPartnersFields{
-		ListPartnersFields4: &listPartnersFields4,
-		Type:                typ,
-	}
-}
-
-func CreateListPartnersFieldsFields5(fields5 Fields5) ListPartnersFields {
-	typ := ListPartnersFieldsUnionTypeFields5
-
-	return ListPartnersFields{
-		Fields5: &fields5,
+	return Fields{
+		Fields1: &fields1,
 		Type:    typ,
 	}
 }
 
-func CreateListPartnersFieldsFields6(fields6 Fields6) ListPartnersFields {
-	typ := ListPartnersFieldsUnionTypeFields6
+func CreateFieldsFields2(fields2 Fields2) Fields {
+	typ := FieldsUnionTypeFields2
 
-	return ListPartnersFields{
-		Fields6: &fields6,
+	return Fields{
+		Fields2: &fields2,
 		Type:    typ,
 	}
 }
 
-func CreateListPartnersFieldsFields7(fields7 Fields7) ListPartnersFields {
-	typ := ListPartnersFieldsUnionTypeFields7
+func CreateFieldsFields3(fields3 Fields3) Fields {
+	typ := FieldsUnionTypeFields3
 
-	return ListPartnersFields{
-		Fields7: &fields7,
+	return Fields{
+		Fields3: &fields3,
 		Type:    typ,
 	}
 }
 
-func CreateListPartnersFieldsFields8(fields8 Fields8) ListPartnersFields {
-	typ := ListPartnersFieldsUnionTypeFields8
+func CreateFieldsFields4(fields4 Fields4) Fields {
+	typ := FieldsUnionTypeFields4
 
-	return ListPartnersFields{
-		Fields8: &fields8,
+	return Fields{
+		Fields4: &fields4,
 		Type:    typ,
 	}
 }
 
-func (u *ListPartnersFields) UnmarshalJSON(data []byte) error {
+func CreateFieldsFive(five Five) Fields {
+	typ := FieldsUnionTypeFive
 
-	var listPartnersFields3 ListPartnersFields3 = ListPartnersFields3{}
-	if err := utils.UnmarshalJSON(data, &listPartnersFields3, "", true, nil); err == nil {
-		u.ListPartnersFields3 = &listPartnersFields3
-		u.Type = ListPartnersFieldsUnionTypeListPartnersFields3
-		return nil
+	return Fields{
+		Five: &five,
+		Type: typ,
 	}
-
-	var fields6 Fields6 = Fields6{}
-	if err := utils.UnmarshalJSON(data, &fields6, "", true, nil); err == nil {
-		u.Fields6 = &fields6
-		u.Type = ListPartnersFieldsUnionTypeFields6
-		return nil
-	}
-
-	var listPartnersFields1 ListPartnersFields1 = ListPartnersFields1{}
-	if err := utils.UnmarshalJSON(data, &listPartnersFields1, "", true, nil); err == nil {
-		u.ListPartnersFields1 = &listPartnersFields1
-		u.Type = ListPartnersFieldsUnionTypeListPartnersFields1
-		return nil
-	}
-
-	var listPartnersFields2 ListPartnersFields2 = ListPartnersFields2{}
-	if err := utils.UnmarshalJSON(data, &listPartnersFields2, "", true, nil); err == nil {
-		u.ListPartnersFields2 = &listPartnersFields2
-		u.Type = ListPartnersFieldsUnionTypeListPartnersFields2
-		return nil
-	}
-
-	var listPartnersFields4 ListPartnersFields4 = ListPartnersFields4{}
-	if err := utils.UnmarshalJSON(data, &listPartnersFields4, "", true, nil); err == nil {
-		u.ListPartnersFields4 = &listPartnersFields4
-		u.Type = ListPartnersFieldsUnionTypeListPartnersFields4
-		return nil
-	}
-
-	var fields5 Fields5 = Fields5{}
-	if err := utils.UnmarshalJSON(data, &fields5, "", true, nil); err == nil {
-		u.Fields5 = &fields5
-		u.Type = ListPartnersFieldsUnionTypeFields5
-		return nil
-	}
-
-	var fields7 Fields7 = Fields7{}
-	if err := utils.UnmarshalJSON(data, &fields7, "", true, nil); err == nil {
-		u.Fields7 = &fields7
-		u.Type = ListPartnersFieldsUnionTypeFields7
-		return nil
-	}
-
-	var fields8 Fields8 = Fields8{}
-	if err := utils.UnmarshalJSON(data, &fields8, "", true, nil); err == nil {
-		u.Fields8 = &fields8
-		u.Type = ListPartnersFieldsUnionTypeFields8
-		return nil
-	}
-
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for ListPartnersFields", string(data))
 }
 
-func (u ListPartnersFields) MarshalJSON() ([]byte, error) {
-	if u.ListPartnersFields1 != nil {
-		return utils.MarshalJSON(u.ListPartnersFields1, "", true)
-	}
+func CreateFieldsSix(six Six) Fields {
+	typ := FieldsUnionTypeSix
 
-	if u.ListPartnersFields2 != nil {
-		return utils.MarshalJSON(u.ListPartnersFields2, "", true)
+	return Fields{
+		Six:  &six,
+		Type: typ,
 	}
-
-	if u.ListPartnersFields3 != nil {
-		return utils.MarshalJSON(u.ListPartnersFields3, "", true)
-	}
-
-	if u.ListPartnersFields4 != nil {
-		return utils.MarshalJSON(u.ListPartnersFields4, "", true)
-	}
-
-	if u.Fields5 != nil {
-		return utils.MarshalJSON(u.Fields5, "", true)
-	}
-
-	if u.Fields6 != nil {
-		return utils.MarshalJSON(u.Fields6, "", true)
-	}
-
-	if u.Fields7 != nil {
-		return utils.MarshalJSON(u.Fields7, "", true)
-	}
-
-	if u.Fields8 != nil {
-		return utils.MarshalJSON(u.Fields8, "", true)
-	}
-
-	return nil, errors.New("could not marshal union type ListPartnersFields: all fields are null")
 }
 
-type ListPartnersReferralFormData struct {
-	Fields []ListPartnersFields `json:"fields"`
+func CreateFieldsSeven(seven Seven) Fields {
+	typ := FieldsUnionTypeSeven
+
+	return Fields{
+		Seven: &seven,
+		Type:  typ,
+	}
 }
 
-func (l *ListPartnersReferralFormData) GetFields() []ListPartnersFields {
-	if l == nil {
-		return []ListPartnersFields{}
+func CreateFieldsEight(eight Eight) Fields {
+	typ := FieldsUnionTypeEight
+
+	return Fields{
+		Eight: &eight,
+		Type:  typ,
 	}
-	return l.Fields
+}
+
+func (u *Fields) UnmarshalJSON(data []byte) error {
+
+	var fields3 Fields3 = Fields3{}
+	if err := utils.UnmarshalJSON(data, &fields3, "", true, nil); err == nil {
+		u.Fields3 = &fields3
+		u.Type = FieldsUnionTypeFields3
+		return nil
+	}
+
+	var six Six = Six{}
+	if err := utils.UnmarshalJSON(data, &six, "", true, nil); err == nil {
+		u.Six = &six
+		u.Type = FieldsUnionTypeSix
+		return nil
+	}
+
+	var fields1 Fields1 = Fields1{}
+	if err := utils.UnmarshalJSON(data, &fields1, "", true, nil); err == nil {
+		u.Fields1 = &fields1
+		u.Type = FieldsUnionTypeFields1
+		return nil
+	}
+
+	var fields2 Fields2 = Fields2{}
+	if err := utils.UnmarshalJSON(data, &fields2, "", true, nil); err == nil {
+		u.Fields2 = &fields2
+		u.Type = FieldsUnionTypeFields2
+		return nil
+	}
+
+	var fields4 Fields4 = Fields4{}
+	if err := utils.UnmarshalJSON(data, &fields4, "", true, nil); err == nil {
+		u.Fields4 = &fields4
+		u.Type = FieldsUnionTypeFields4
+		return nil
+	}
+
+	var five Five = Five{}
+	if err := utils.UnmarshalJSON(data, &five, "", true, nil); err == nil {
+		u.Five = &five
+		u.Type = FieldsUnionTypeFive
+		return nil
+	}
+
+	var seven Seven = Seven{}
+	if err := utils.UnmarshalJSON(data, &seven, "", true, nil); err == nil {
+		u.Seven = &seven
+		u.Type = FieldsUnionTypeSeven
+		return nil
+	}
+
+	var eight Eight = Eight{}
+	if err := utils.UnmarshalJSON(data, &eight, "", true, nil); err == nil {
+		u.Eight = &eight
+		u.Type = FieldsUnionTypeEight
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Fields", string(data))
+}
+
+func (u Fields) MarshalJSON() ([]byte, error) {
+	if u.Fields1 != nil {
+		return utils.MarshalJSON(u.Fields1, "", true)
+	}
+
+	if u.Fields2 != nil {
+		return utils.MarshalJSON(u.Fields2, "", true)
+	}
+
+	if u.Fields3 != nil {
+		return utils.MarshalJSON(u.Fields3, "", true)
+	}
+
+	if u.Fields4 != nil {
+		return utils.MarshalJSON(u.Fields4, "", true)
+	}
+
+	if u.Five != nil {
+		return utils.MarshalJSON(u.Five, "", true)
+	}
+
+	if u.Six != nil {
+		return utils.MarshalJSON(u.Six, "", true)
+	}
+
+	if u.Seven != nil {
+		return utils.MarshalJSON(u.Seven, "", true)
+	}
+
+	if u.Eight != nil {
+		return utils.MarshalJSON(u.Eight, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Fields: all fields are null")
+}
+
+type ReferralFormData struct {
+	Fields []Fields `json:"fields"`
+}
+
+func (r *ReferralFormData) GetFields() []Fields {
+	if r == nil {
+		return []Fields{}
+	}
+	return r.Fields
 }
 
 type ListPartnersResponseBody struct {
@@ -1489,7 +1489,7 @@ type ListPartnersResponseBody struct {
 	// The status of the partner's enrollment in the program.
 	Status ListPartnersStatus `json:"status"`
 	// The partner's referral links in this program.
-	Links []ListPartnersLinks `json:"links"`
+	Links []Links `json:"links"`
 	// The total commissions paid to the partner for their referrals
 	TotalCommissions *float64 `default:"0" json:"totalCommissions"`
 	ClickRewardID    *string  `json:"clickRewardId,omitempty"`
@@ -1501,8 +1501,8 @@ type ListPartnersResponseBody struct {
 	// If the partner was banned from the program, this is the date of the ban.
 	BannedAt *string `json:"bannedAt,omitempty"`
 	// If the partner was banned from the program, this is the reason for the ban.
-	BannedReason     *ListPartnersBannedReason     `json:"bannedReason,omitempty"`
-	ReferralFormData *ListPartnersReferralFormData `json:"referralFormData,omitempty"`
+	BannedReason     *BannedReason     `json:"bannedReason,omitempty"`
+	ReferralFormData *ReferralFormData `json:"referralFormData,omitempty"`
 	// The total number of clicks on the partner's links
 	TotalClicks *float64 `default:"0" json:"totalClicks"`
 	// The total number of leads generated by the partner's links
@@ -1671,7 +1671,7 @@ func (l *ListPartnersResponseBody) GetStatus() ListPartnersStatus {
 	return l.Status
 }
 
-func (l *ListPartnersResponseBody) GetLinks() []ListPartnersLinks {
+func (l *ListPartnersResponseBody) GetLinks() []Links {
 	if l == nil {
 		return nil
 	}
@@ -1727,14 +1727,14 @@ func (l *ListPartnersResponseBody) GetBannedAt() *string {
 	return l.BannedAt
 }
 
-func (l *ListPartnersResponseBody) GetBannedReason() *ListPartnersBannedReason {
+func (l *ListPartnersResponseBody) GetBannedReason() *BannedReason {
 	if l == nil {
 		return nil
 	}
 	return l.BannedReason
 }
 
-func (l *ListPartnersResponseBody) GetReferralFormData() *ListPartnersReferralFormData {
+func (l *ListPartnersResponseBody) GetReferralFormData() *ReferralFormData {
 	if l == nil {
 		return nil
 	}

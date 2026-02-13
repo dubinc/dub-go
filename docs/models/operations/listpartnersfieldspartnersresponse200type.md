@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                                               | Value                                              |
-| -------------------------------------------------- | -------------------------------------------------- |
-| `ListPartnersFieldsPartnersResponse200TypeCountry` | country                                            |
+| Name                                            | Value                                           |
+| ----------------------------------------------- | ----------------------------------------------- |
+| `ListPartnersFieldsPartnersResponse200TypeDate` | date                                            |

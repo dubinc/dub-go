@@ -4,78 +4,12 @@
 
 ### Available Operations
 
-* [Create](#create) - Create a domain
 * [List](#list) - Retrieve a list of domains
-* [Update](#update) - Update a domain
+* [Create](#create) - Create a domain
 * [Delete](#delete) - Delete a domain
+* [Update](#update) - Update a domain
 * [Register](#register) - Register a domain
 * [CheckStatus](#checkstatus) - Check the availability of one or more domains
-
-## Create
-
-Create a domain for the authenticated workspace.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="createDomain" method="post" path="/domains" -->
-```go
-package main
-
-import(
-	"context"
-	dubgo "github.com/dubinc/dub-go"
-	"github.com/dubinc/dub-go/models/operations"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := dubgo.New(
-        dubgo.WithSecurity("DUB_API_KEY"),
-    )
-
-    res, err := s.Domains.Create(ctx, &operations.CreateDomainRequestBody{
-        Slug: "acme.com",
-        ExpiredURL: dubgo.Pointer("https://acme.com/expired"),
-        NotFoundURL: dubgo.Pointer("https://acme.com/not-found"),
-        Placeholder: dubgo.Pointer("https://dub.co/help/article/what-is-dub"),
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [operations.CreateDomainRequestBody](../../models/operations/createdomainrequestbody.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
-
-### Response
-
-**[*components.DomainSchema](../../models/components/domainschema.md), error**
-
-### Errors
-
-| Error Type                    | Status Code                   | Content Type                  |
-| ----------------------------- | ----------------------------- | ----------------------------- |
-| sdkerrors.BadRequest          | 400                           | application/json              |
-| sdkerrors.Unauthorized        | 401                           | application/json              |
-| sdkerrors.Forbidden           | 403                           | application/json              |
-| sdkerrors.NotFound            | 404                           | application/json              |
-| sdkerrors.Conflict            | 409                           | application/json              |
-| sdkerrors.InviteExpired       | 410                           | application/json              |
-| sdkerrors.UnprocessableEntity | 422                           | application/json              |
-| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
-| sdkerrors.InternalServerError | 500                           | application/json              |
-| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
 ## List
 
@@ -150,13 +84,13 @@ func main() {
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
-## Update
+## Create
 
-Update a domain for the authenticated workspace.
+Create a domain for the authenticated workspace.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="updateDomain" method="patch" path="/domains/{slug}" -->
+<!-- UsageSnippet language="go" operationID="createDomain" method="post" path="/domains" -->
 ```go
 package main
 
@@ -174,8 +108,8 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.Domains.Update(ctx, "acme.com", &operations.UpdateDomainRequestBody{
-        Slug: dubgo.Pointer("acme.com"),
+    res, err := s.Domains.Create(ctx, &operations.CreateDomainRequestBody{
+        Slug: "acme.com",
         ExpiredURL: dubgo.Pointer("https://acme.com/expired"),
         NotFoundURL: dubgo.Pointer("https://acme.com/not-found"),
         Placeholder: dubgo.Pointer("https://dub.co/help/article/what-is-dub"),
@@ -191,12 +125,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
-| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `ctx`                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                     | :heavy_check_mark:                                                                        | The context to use for the request.                                                       |                                                                                           |
-| `slug`                                                                                    | *string*                                                                                  | :heavy_check_mark:                                                                        | The domain name.                                                                          | acme.com                                                                                  |
-| `requestBody`                                                                             | [*operations.UpdateDomainRequestBody](../../models/operations/updatedomainrequestbody.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |                                                                                           |
-| `opts`                                                                                    | [][operations.Option](../../models/operations/option.md)                                  | :heavy_minus_sign:                                                                        | The options for this request.                                                             |                                                                                           |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.CreateDomainRequestBody](../../models/operations/createdomainrequestbody.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../models/operations/option.md)                                 | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
 ### Response
 
@@ -261,6 +194,73 @@ func main() {
 ### Response
 
 **[*operations.DeleteDomainResponseBody](../../models/operations/deletedomainresponsebody.md), error**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+
+## Update
+
+Update a domain for the authenticated workspace.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="updateDomain" method="patch" path="/domains/{slug}" -->
+```go
+package main
+
+import(
+	"context"
+	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+
+    res, err := s.Domains.Update(ctx, "acme.com", &operations.UpdateDomainRequestBody{
+        Slug: dubgo.Pointer("acme.com"),
+        ExpiredURL: dubgo.Pointer("https://acme.com/expired"),
+        NotFoundURL: dubgo.Pointer("https://acme.com/not-found"),
+        Placeholder: dubgo.Pointer("https://dub.co/help/article/what-is-dub"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `ctx`                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                     | :heavy_check_mark:                                                                        | The context to use for the request.                                                       |                                                                                           |
+| `slug`                                                                                    | *string*                                                                                  | :heavy_check_mark:                                                                        | The domain name.                                                                          | acme.com                                                                                  |
+| `requestBody`                                                                             | [*operations.UpdateDomainRequestBody](../../models/operations/updatedomainrequestbody.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |                                                                                           |
+| `opts`                                                                                    | [][operations.Option](../../models/operations/option.md)                                  | :heavy_minus_sign:                                                                        | The options for this request.                                                             |                                                                                           |
+
+### Response
+
+**[*components.DomainSchema](../../models/components/domainschema.md), error**
 
 ### Errors
 

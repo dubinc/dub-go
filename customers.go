@@ -814,9 +814,13 @@ func (s *Customers) Get(ctx context.Context, request operations.GetCustomerReque
 
 }
 
-// Update a customer
-// Update a customer for the authenticated workspace.
-func (s *Customers) Update(ctx context.Context, request operations.UpdateCustomerRequest, opts ...operations.Option) (*operations.UpdateCustomerResponseBody, error) {
+// Delete a customer
+// Delete a customer from a workspace.
+func (s *Customers) Delete(ctx context.Context, id string, opts ...operations.Option) (*operations.DeleteCustomerResponseBody, error) {
+	request := operations.DeleteCustomerRequest{
+		ID: id,
+	}
+
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -845,13 +849,9 @@ func (s *Customers) Update(ctx context.Context, request operations.UpdateCustome
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "updateCustomer",
+		OperationID:      "deleteCustomer",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
-	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
-	if err != nil {
-		return nil, err
 	}
 
 	timeout := o.Timeout
@@ -865,19 +865,12 @@ func (s *Customers) Update(ctx context.Context, request operations.UpdateCustome
 		defer cancel()
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PATCH", opURL, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "DELETE", opURL, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
-	if reqContentType != "" {
-		req.Header.Set("Content-Type", reqContentType)
-	}
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -987,7 +980,7 @@ func (s *Customers) Update(ctx context.Context, request operations.UpdateCustome
 				return nil, err
 			}
 
-			var out operations.UpdateCustomerResponseBody
+			var out operations.DeleteCustomerResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1213,13 +1206,9 @@ func (s *Customers) Update(ctx context.Context, request operations.UpdateCustome
 
 }
 
-// Delete a customer
-// Delete a customer from a workspace.
-func (s *Customers) Delete(ctx context.Context, id string, opts ...operations.Option) (*operations.DeleteCustomerResponseBody, error) {
-	request := operations.DeleteCustomerRequest{
-		ID: id,
-	}
-
+// Update a customer
+// Update a customer for the authenticated workspace.
+func (s *Customers) Update(ctx context.Context, request operations.UpdateCustomerRequest, opts ...operations.Option) (*operations.UpdateCustomerResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -1248,9 +1237,13 @@ func (s *Customers) Delete(ctx context.Context, id string, opts ...operations.Op
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "deleteCustomer",
+		OperationID:      "updateCustomer",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
+	}
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
+	if err != nil {
+		return nil, err
 	}
 
 	timeout := o.Timeout
@@ -1264,12 +1257,19 @@ func (s *Customers) Delete(ctx context.Context, id string, opts ...operations.Op
 		defer cancel()
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "DELETE", opURL, nil)
+	req, err := http.NewRequestWithContext(ctx, "PATCH", opURL, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
@@ -1379,7 +1379,7 @@ func (s *Customers) Delete(ctx context.Context, id string, opts ...operations.Op
 				return nil, err
 			}
 
-			var out operations.DeleteCustomerResponseBody
+			var out operations.UpdateCustomerResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
