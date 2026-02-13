@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                                                           | Value                                                          |
-| -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `ListPartnersFieldsPartnersResponse200ApplicationJSONTypeDate` | date                                                           |
+| Name                                                                  | Value                                                                 |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `ListPartnersFieldsPartnersResponse200ApplicationJSONTypeMultiSelect` | multiSelect                                                           |

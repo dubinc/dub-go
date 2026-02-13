@@ -1,4 +1,4 @@
-# ListPartnersFieldsPartnersConstraints
+# CreatePartnerFieldsPartnersConstraints
 
 
 ## Fields

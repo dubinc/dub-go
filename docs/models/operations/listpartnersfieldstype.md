@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                         | Value                        |
-| ---------------------------- | ---------------------------- |
-| `ListPartnersFieldsTypeText` | text                         |
+| Name                             | Value                            |
+| -------------------------------- | -------------------------------- |
+| `ListPartnersFieldsTypeTextarea` | textarea                         |

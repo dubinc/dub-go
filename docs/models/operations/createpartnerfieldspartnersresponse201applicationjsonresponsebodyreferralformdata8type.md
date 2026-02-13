@@ -1,8 +1,8 @@
-# CreatePartnerFieldsPartnersResponse201ApplicationJSONResponseBodyReferralFormDataType
+# CreatePartnerFieldsPartnersResponse201ApplicationJSONResponseBodyReferralFormData8Type
 
 
 ## Values
 
 | Name                                                                                          | Value                                                                                         |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `CreatePartnerFieldsPartnersResponse201ApplicationJSONResponseBodyReferralFormDataTypeNumber` | number                                                                                        |
+| `CreatePartnerFieldsPartnersResponse201ApplicationJSONResponseBodyReferralFormData8TypePhone` | phone                                                                                         |

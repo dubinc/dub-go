@@ -1,4 +1,4 @@
-# ListPartnersLinks
+# CreatePartnerLinks
 
 
 ## Fields

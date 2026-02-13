@@ -165,15 +165,15 @@ func main() {
 
 * [List](docs/sdks/customers/README.md#list) - Retrieve a list of customers
 * [Get](docs/sdks/customers/README.md#get) - Retrieve a customer
-* [Update](docs/sdks/customers/README.md#update) - Update a customer
 * [Delete](docs/sdks/customers/README.md#delete) - Delete a customer
+* [Update](docs/sdks/customers/README.md#update) - Update a customer
 
 ### [Domains](docs/sdks/domains/README.md)
 
-* [Create](docs/sdks/domains/README.md#create) - Create a domain
 * [List](docs/sdks/domains/README.md#list) - Retrieve a list of domains
-* [Update](docs/sdks/domains/README.md#update) - Update a domain
+* [Create](docs/sdks/domains/README.md#create) - Create a domain
 * [Delete](docs/sdks/domains/README.md#delete) - Delete a domain
+* [Update](docs/sdks/domains/README.md#update) - Update a domain
 * [Register](docs/sdks/domains/README.md#register) - Register a domain
 * [CheckStatus](docs/sdks/domains/README.md#checkstatus) - Check the availability of one or more domains
 
@@ -187,30 +187,30 @@ func main() {
 
 ### [Folders](docs/sdks/folders/README.md)
 
-* [Create](docs/sdks/folders/README.md#create) - Create a folder
 * [List](docs/sdks/folders/README.md#list) - Retrieve a list of folders
-* [Update](docs/sdks/folders/README.md#update) - Update a folder
+* [Create](docs/sdks/folders/README.md#create) - Create a folder
 * [Delete](docs/sdks/folders/README.md#delete) - Delete a folder
+* [Update](docs/sdks/folders/README.md#update) - Update a folder
 
 ### [Links](docs/sdks/links/README.md)
 
-* [Create](docs/sdks/links/README.md#create) - Create a link
 * [List](docs/sdks/links/README.md#list) - Retrieve a list of links
+* [Create](docs/sdks/links/README.md#create) - Create a link
 * [Count](docs/sdks/links/README.md#count) - Retrieve links count
 * [Get](docs/sdks/links/README.md#get) - Retrieve a link
-* [Update](docs/sdks/links/README.md#update) - Update a link
 * [Delete](docs/sdks/links/README.md#delete) - Delete a link
+* [Update](docs/sdks/links/README.md#update) - Update a link
 * [CreateMany](docs/sdks/links/README.md#createmany) - Bulk create links
-* [UpdateMany](docs/sdks/links/README.md#updatemany) - Bulk update links
 * [DeleteMany](docs/sdks/links/README.md#deletemany) - Bulk delete links
+* [UpdateMany](docs/sdks/links/README.md#updatemany) - Bulk update links
 * [Upsert](docs/sdks/links/README.md#upsert) - Upsert a link
 
 ### [Partners](docs/sdks/partners/README.md)
 
-* [Create](docs/sdks/partners/README.md#create) - Create or update a partner
 * [List](docs/sdks/partners/README.md#list) - List all partners
-* [CreateLink](docs/sdks/partners/README.md#createlink) - Create a link for a partner
+* [Create](docs/sdks/partners/README.md#create) - Create or update a partner
 * [RetrieveLinks](docs/sdks/partners/README.md#retrievelinks) - Retrieve a partner's links.
+* [CreateLink](docs/sdks/partners/README.md#createlink) - Create a link for a partner
 * [UpsertLink](docs/sdks/partners/README.md#upsertlink) - Upsert a link for a partner
 * [Analytics](docs/sdks/partners/README.md#analytics) - Retrieve analytics for a partner
 * [Ban](docs/sdks/partners/README.md#ban) - Ban a partner
@@ -226,10 +226,10 @@ func main() {
 
 ### [Tags](docs/sdks/tags/README.md)
 
-* [Create](docs/sdks/tags/README.md#create) - Create a tag
 * [List](docs/sdks/tags/README.md#list) - Retrieve a list of tags
-* [Update](docs/sdks/tags/README.md#update) - Update a tag
+* [Create](docs/sdks/tags/README.md#create) - Create a tag
 * [Delete](docs/sdks/tags/README.md#delete) - Delete a tag
+* [Update](docs/sdks/tags/README.md#update) - Update a tag
 
 ### [Track](docs/sdks/track/README.md)
 
@@ -246,7 +246,7 @@ Handling errors in this SDK should largely match your expectations. All operatio
 
 By Default, an API error will return `sdkerrors.SDKError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
 
-For example, the `Create` function may return the following errors:
+For example, the `List` function may return the following errors:
 
 | Error Type                    | Status Code | Content Type     |
 | ----------------------------- | ----------- | ---------------- |
@@ -282,24 +282,8 @@ func main() {
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
 
-	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
-		URL:        "https://google.com",
-		ExternalID: dubgo.Pointer("123456"),
-		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
-		)),
-		TestVariants: []operations.TestVariants{
-			operations.TestVariants{
-				URL:        "https://example.com/variant-1",
-				Percentage: 50,
-			},
-			operations.TestVariants{
-				URL:        "https://example.com/variant-2",
-				Percentage: 50,
-			},
-		},
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
+		PageSize: dubgo.Pointer[float64](50),
 	})
 	if err != nil {
 
@@ -392,30 +376,26 @@ func main() {
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
 
-	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
-		URL:        "https://google.com",
-		ExternalID: dubgo.Pointer("123456"),
-		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
-		)),
-		TestVariants: []operations.TestVariants{
-			operations.TestVariants{
-				URL:        "https://example.com/variant-1",
-				Percentage: 50,
-			},
-			operations.TestVariants{
-				URL:        "https://example.com/variant-2",
-				Percentage: 50,
-			},
-		},
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
+		PageSize: dubgo.Pointer[float64](50),
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
 	}
 }
 
@@ -481,30 +461,26 @@ func main() {
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
 
-	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
-		URL:        "https://google.com",
-		ExternalID: dubgo.Pointer("123456"),
-		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
-		)),
-		TestVariants: []operations.TestVariants{
-			operations.TestVariants{
-				URL:        "https://example.com/variant-1",
-				Percentage: 50,
-			},
-			operations.TestVariants{
-				URL:        "https://example.com/variant-2",
-				Percentage: 50,
-			},
-		},
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
+		PageSize: dubgo.Pointer[float64](50),
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
 	}
 }
 
@@ -536,24 +512,8 @@ func main() {
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
 
-	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
-		URL:        "https://google.com",
-		ExternalID: dubgo.Pointer("123456"),
-		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
-		)),
-		TestVariants: []operations.TestVariants{
-			operations.TestVariants{
-				URL:        "https://example.com/variant-1",
-				Percentage: 50,
-			},
-			operations.TestVariants{
-				URL:        "https://example.com/variant-2",
-				Percentage: 50,
-			},
-		},
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
+		PageSize: dubgo.Pointer[float64](50),
 	}, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
@@ -569,7 +529,19 @@ func main() {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
 	}
 }
 
@@ -605,30 +577,26 @@ func main() {
 		dubgo.WithSecurity("DUB_API_KEY"),
 	)
 
-	res, err := s.Links.Create(ctx, &operations.CreateLinkRequestBody{
-		URL:        "https://google.com",
-		ExternalID: dubgo.Pointer("123456"),
-		TagIds: dubgo.Pointer(operations.CreateTagIdsArrayOfStr(
-			[]string{
-				"clux0rgak00011...",
-			},
-		)),
-		TestVariants: []operations.TestVariants{
-			operations.TestVariants{
-				URL:        "https://example.com/variant-1",
-				Percentage: 50,
-			},
-			operations.TestVariants{
-				URL:        "https://example.com/variant-2",
-				Percentage: 50,
-			},
-		},
+	res, err := s.Links.List(ctx, operations.GetLinksRequest{
+		PageSize: dubgo.Pointer[float64](50),
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
 	if res != nil {
-		// handle response
+		for {
+			// handle items
+
+			res, err = res.Next()
+
+			if err != nil {
+				// handle error
+			}
+
+			if res == nil {
+				break
+			}
+		}
 	}
 }
 

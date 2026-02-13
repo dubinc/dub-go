@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name                                                                          | Value                                                                         |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `CreatePartnerFieldsPartnersResponse201ApplicationJSONResponseBodyTypeNumber` | number                                                                        |
+| Name                                                                               | Value                                                                              |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `CreatePartnerFieldsPartnersResponse201ApplicationJSONResponseBodyTypeMultiSelect` | multiSelect                                                                        |
