@@ -101,7 +101,7 @@ type RetrievePartnerAnalyticsRequest struct {
 	End *string `queryParam:"style=form,explode=true,name=end"`
 	// The IANA time zone code for aligning timeseries granularity (e.g. America/New_York). Defaults to UTC.
 	Timezone *string `default:"UTC" queryParam:"style=form,explode=true,name=timezone"`
-	// Search the events by a custom metadata value. Only available for lead and sale events.
+	// Search the events by a custom metadata value. Only available for lead and sale events. Examples: `metadata['key']:'value'`
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 	// The parameter to group the analytics data points by. Defaults to `count` if undefined.
 	GroupBy *RetrievePartnerAnalyticsQueryParamGroupBy `default:"count" queryParam:"style=form,explode=true,name=groupBy"`

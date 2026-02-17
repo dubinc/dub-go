@@ -190,145 +190,6 @@ func (e *Interval) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// Continent - The continent to retrieve analytics for.
-type Continent string
-
-const (
-	ContinentAf Continent = "AF"
-	ContinentAn Continent = "AN"
-	ContinentAs Continent = "AS"
-	ContinentEu Continent = "EU"
-	ContinentNa Continent = "NA"
-	ContinentOc Continent = "OC"
-	ContinentSa Continent = "SA"
-)
-
-func (e Continent) ToPointer() *Continent {
-	return &e
-}
-func (e *Continent) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "AF":
-		fallthrough
-	case "AN":
-		fallthrough
-	case "AS":
-		fallthrough
-	case "EU":
-		fallthrough
-	case "NA":
-		fallthrough
-	case "OC":
-		fallthrough
-	case "SA":
-		*e = Continent(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Continent: %v", v)
-	}
-}
-
-// Trigger - The trigger to retrieve analytics for. If undefined, returns all trigger types.
-type Trigger string
-
-const (
-	TriggerQr       Trigger = "qr"
-	TriggerLink     Trigger = "link"
-	TriggerPageview Trigger = "pageview"
-	TriggerDeeplink Trigger = "deeplink"
-)
-
-func (e Trigger) ToPointer() *Trigger {
-	return &e
-}
-func (e *Trigger) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "qr":
-		fallthrough
-	case "link":
-		fallthrough
-	case "pageview":
-		fallthrough
-	case "deeplink":
-		*e = Trigger(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Trigger: %v", v)
-	}
-}
-
-type RetrieveAnalyticsQueryParamTagIdsType string
-
-const (
-	RetrieveAnalyticsQueryParamTagIdsTypeStr        RetrieveAnalyticsQueryParamTagIdsType = "str"
-	RetrieveAnalyticsQueryParamTagIdsTypeArrayOfStr RetrieveAnalyticsQueryParamTagIdsType = "arrayOfStr"
-)
-
-// RetrieveAnalyticsQueryParamTagIds - The tag IDs to retrieve analytics for.
-type RetrieveAnalyticsQueryParamTagIds struct {
-	Str        *string  `queryParam:"inline" union:"member"`
-	ArrayOfStr []string `queryParam:"inline" union:"member"`
-
-	Type RetrieveAnalyticsQueryParamTagIdsType
-}
-
-func CreateRetrieveAnalyticsQueryParamTagIdsStr(str string) RetrieveAnalyticsQueryParamTagIds {
-	typ := RetrieveAnalyticsQueryParamTagIdsTypeStr
-
-	return RetrieveAnalyticsQueryParamTagIds{
-		Str:  &str,
-		Type: typ,
-	}
-}
-
-func CreateRetrieveAnalyticsQueryParamTagIdsArrayOfStr(arrayOfStr []string) RetrieveAnalyticsQueryParamTagIds {
-	typ := RetrieveAnalyticsQueryParamTagIdsTypeArrayOfStr
-
-	return RetrieveAnalyticsQueryParamTagIds{
-		ArrayOfStr: arrayOfStr,
-		Type:       typ,
-	}
-}
-
-func (u *RetrieveAnalyticsQueryParamTagIds) UnmarshalJSON(data []byte) error {
-
-	var str string = ""
-	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = RetrieveAnalyticsQueryParamTagIdsTypeStr
-		return nil
-	}
-
-	var arrayOfStr []string = []string{}
-	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
-		u.ArrayOfStr = arrayOfStr
-		u.Type = RetrieveAnalyticsQueryParamTagIdsTypeArrayOfStr
-		return nil
-	}
-
-	return fmt.Errorf("could not unmarshal `%s` into any supported union types for RetrieveAnalyticsQueryParamTagIds", string(data))
-}
-
-func (u RetrieveAnalyticsQueryParamTagIds) MarshalJSON() ([]byte, error) {
-	if u.Str != nil {
-		return utils.MarshalJSON(u.Str, "", true)
-	}
-
-	if u.ArrayOfStr != nil {
-		return utils.MarshalJSON(u.ArrayOfStr, "", true)
-	}
-
-	return nil, errors.New("could not marshal union type RetrieveAnalyticsQueryParamTagIds: all fields are null")
-}
-
 // SaleType - Filter sales by type: 'new' for first-time purchases, 'recurring' for repeat purchases. If undefined, returns both.
 type SaleType string
 
@@ -361,19 +222,23 @@ type RetrieveAnalyticsRequest struct {
 	Event *Event `default:"clicks" queryParam:"style=form,explode=true,name=event"`
 	// The parameter to group the analytics data points by. Defaults to `count` if undefined.
 	GroupBy *QueryParamGroupBy `default:"count" queryParam:"style=form,explode=true,name=groupBy"`
-	// The domain to filter analytics for.
+	// The domain to filter analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `dub.co`, `dub.co,google.com`, `-spam.com`.
 	Domain *string `queryParam:"style=form,explode=true,name=domain"`
 	// The slug of the short link to retrieve analytics for. Must be used along with the corresponding `domain` of the short link to fetch analytics for a specific short link.
 	Key *string `queryParam:"style=form,explode=true,name=key"`
-	// The unique ID of the short link on Dub to retrieve analytics for.
+	// The unique ID of the link to retrieve analytics for.Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `link_123`, `link_123,link_456`, `-link_789`.
 	LinkID *string `queryParam:"style=form,explode=true,name=linkId"`
 	// The ID of the link in the your database. Must be prefixed with 'ext_' when passed as a query parameter.
 	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
-	// The ID of the tenant that created the link inside your system.
+	// The ID of the tenant that created the link inside your system. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `tenant_123`, `tenant_123,tenant_456`, `-tenant_789`.
 	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
-	// The ID of the program to retrieve analytics for.
-	ProgramID *string `queryParam:"style=form,explode=true,name=programId"`
-	// The ID of the partner to retrieve analytics for.
+	// The tag ID to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `tag_123`, `tag_123,tag_456`, `-tag_789`.
+	TagID *string `queryParam:"style=form,explode=true,name=tagId"`
+	// The folder ID to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `folder_123`, `folder_123,folder_456`, `-folder_789`. If not provided, return analytics for all links.
+	FolderID *string `queryParam:"style=form,explode=true,name=folderId"`
+	// The group ID to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `grp_123`, `grp_123,grp_456`, `-grp_789`.
+	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
+	// The ID of the partner to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `pn_123`, `pn_123,pn_456`, `-pn_789`.
 	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
 	// The ID of the customer to retrieve analytics for.
 	CustomerID *string `queryParam:"style=form,explode=true,name=customerId"`
@@ -385,56 +250,50 @@ type RetrieveAnalyticsRequest struct {
 	End *string `queryParam:"style=form,explode=true,name=end"`
 	// The IANA time zone code for aligning timeseries granularity (e.g. America/New_York). Defaults to UTC.
 	Timezone *string `default:"UTC" queryParam:"style=form,explode=true,name=timezone"`
-	// The country to retrieve analytics for. Must be passed as a 2-letter ISO 3166-1 country code. See https://d.to/geo for more information.
+	// The country to retrieve analytics for. Must be passed as a 2-letter ISO 3166-1 country code (see https://d.to/geo). Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `US`, `US,BR,FR`, `-US`.
 	Country *string `queryParam:"style=form,explode=true,name=country"`
-	// The city to retrieve analytics for.
+	// The city to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `New York`, `New York,London`, `-New York`.
 	City *string `queryParam:"style=form,explode=true,name=city"`
-	// The ISO 3166-2 region code to retrieve analytics for.
+	// The ISO 3166-2 region code to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `NY`, `NY,CA`, `-NY`.
 	Region *string `queryParam:"style=form,explode=true,name=region"`
-	// The continent to retrieve analytics for.
-	Continent *Continent `queryParam:"style=form,explode=true,name=continent"`
-	// The device to retrieve analytics for.
+	// The continent to retrieve analytics for. Valid values: AF, AN, AS, EU, NA, OC, SA. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `NA`, `NA,EU`, `-AS`.
+	Continent *string `queryParam:"style=form,explode=true,name=continent"`
+	// The device to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `Desktop`, `Mobile,Tablet`, `-Mobile`.
 	Device *string `queryParam:"style=form,explode=true,name=device"`
-	// The browser to retrieve analytics for.
+	// The browser to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `Chrome`, `Chrome,Firefox,Safari`, `-IE`.
 	Browser *string `queryParam:"style=form,explode=true,name=browser"`
-	// The OS to retrieve analytics for.
+	// The OS to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `Windows`, `Mac,Windows,Linux`, `-Windows`.
 	Os *string `queryParam:"style=form,explode=true,name=os"`
-	// The trigger to retrieve analytics for. If undefined, returns all trigger types.
-	Trigger *Trigger `queryParam:"style=form,explode=true,name=trigger"`
-	// The referer hostname to retrieve analytics for.
+	// The trigger to retrieve analytics for. Valid values: qr, link, pageview. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `qr`, `qr,link`, `-qr`. If undefined, returns all trigger types.
+	Trigger *string `queryParam:"style=form,explode=true,name=trigger"`
+	// The referer hostname to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `google.com`, `google.com,twitter.com`, `-facebook.com`.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`
-	// The full referer URL to retrieve analytics for.
+	// The full referer URL to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `https://google.com`, `https://google.com,https://twitter.com`, `-https://spam.com`.
 	RefererURL *string `queryParam:"style=form,explode=true,name=refererUrl"`
-	// The URL to retrieve analytics for.
+	// The destination URL to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `https://example.com`, `https://example.com,https://other.com`, `-https://spam.com`.
 	URL *string `queryParam:"style=form,explode=true,name=url"`
-	// The tag IDs to retrieve analytics for.
-	TagIds *RetrieveAnalyticsQueryParamTagIds `queryParam:"style=form,explode=true,name=tagIds"`
-	// The folder ID to retrieve analytics for. If not provided, return analytics for unsorted links.
-	FolderID *string `queryParam:"style=form,explode=true,name=folderId"`
-	// The group ID to retrieve analytics for.
-	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
+	// The UTM source to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `google`, `google,twitter`, `-spam`.
+	UtmSource *string `queryParam:"style=form,explode=true,name=utm_source"`
+	// The UTM medium to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `cpc`, `cpc,social`, `-email`.
+	UtmMedium *string `queryParam:"style=form,explode=true,name=utm_medium"`
+	// The UTM campaign to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `summer_sale`, `summer_sale,winter_sale`, `-old_campaign`.
+	UtmCampaign *string `queryParam:"style=form,explode=true,name=utm_campaign"`
+	// The UTM term to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`).
+	UtmTerm *string `queryParam:"style=form,explode=true,name=utm_term"`
+	// The UTM content to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`).
+	UtmContent *string `queryParam:"style=form,explode=true,name=utm_content"`
 	// Filter for root domains. If true, filter for domains only. If false, filter for links only. If undefined, return both.
 	Root *bool `queryParam:"style=form,explode=true,name=root"`
 	// Filter sales by type: 'new' for first-time purchases, 'recurring' for repeat purchases. If undefined, returns both.
 	SaleType *SaleType `queryParam:"style=form,explode=true,name=saleType"`
-	// Search the events by a custom metadata value. Only available for lead and sale events.
+	// Search the events by a custom metadata value. Only available for lead and sale events. Examples: `metadata['key']:'value'`
 	Query *string `queryParam:"style=form,explode=true,name=query"`
-	// Deprecated: Use `tagIds` instead. The tag ID to retrieve analytics for.
-	TagID *string `queryParam:"style=form,explode=true,name=tagId"`
+	// Deprecated: This is automatically inferred from your workspace's defaultProgramId. The ID of the program to retrieve analytics for.
+	ProgramID *string `queryParam:"style=form,explode=true,name=programId"`
+	// Deprecated: Use `tagId` instead. The tag IDs to retrieve analytics for.
+	TagIds *string `queryParam:"style=form,explode=true,name=tagIds"`
 	// Deprecated: Use the `trigger` field instead. Filter for QR code scans. If true, filter for QR codes only. If false, filter for links only. If undefined, return both.
 	Qr *bool `queryParam:"style=form,explode=true,name=qr"`
-	// The UTM source of the short link.
-	UtmSource *string `queryParam:"style=form,explode=true,name=utm_source"`
-	// The UTM medium of the short link.
-	UtmMedium *string `queryParam:"style=form,explode=true,name=utm_medium"`
-	// The UTM campaign of the short link.
-	UtmCampaign *string `queryParam:"style=form,explode=true,name=utm_campaign"`
-	// The UTM term of the short link.
-	UtmTerm *string `queryParam:"style=form,explode=true,name=utm_term"`
-	// The UTM content of the short link.
-	UtmContent *string `queryParam:"style=form,explode=true,name=utm_content"`
-	// The ref of the short link.
-	Ref *string `queryParam:"style=form,explode=true,name=ref"`
 }
 
 func (r RetrieveAnalyticsRequest) MarshalJSON() ([]byte, error) {
@@ -497,11 +356,25 @@ func (r *RetrieveAnalyticsRequest) GetTenantID() *string {
 	return r.TenantID
 }
 
-func (r *RetrieveAnalyticsRequest) GetProgramID() *string {
+func (r *RetrieveAnalyticsRequest) GetTagID() *string {
 	if r == nil {
 		return nil
 	}
-	return r.ProgramID
+	return r.TagID
+}
+
+func (r *RetrieveAnalyticsRequest) GetFolderID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.FolderID
+}
+
+func (r *RetrieveAnalyticsRequest) GetGroupID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.GroupID
 }
 
 func (r *RetrieveAnalyticsRequest) GetPartnerID() *string {
@@ -567,7 +440,7 @@ func (r *RetrieveAnalyticsRequest) GetRegion() *string {
 	return r.Region
 }
 
-func (r *RetrieveAnalyticsRequest) GetContinent() *Continent {
+func (r *RetrieveAnalyticsRequest) GetContinent() *string {
 	if r == nil {
 		return nil
 	}
@@ -595,7 +468,7 @@ func (r *RetrieveAnalyticsRequest) GetOs() *string {
 	return r.Os
 }
 
-func (r *RetrieveAnalyticsRequest) GetTrigger() *Trigger {
+func (r *RetrieveAnalyticsRequest) GetTrigger() *string {
 	if r == nil {
 		return nil
 	}
@@ -621,62 +494,6 @@ func (r *RetrieveAnalyticsRequest) GetURL() *string {
 		return nil
 	}
 	return r.URL
-}
-
-func (r *RetrieveAnalyticsRequest) GetTagIds() *RetrieveAnalyticsQueryParamTagIds {
-	if r == nil {
-		return nil
-	}
-	return r.TagIds
-}
-
-func (r *RetrieveAnalyticsRequest) GetFolderID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.FolderID
-}
-
-func (r *RetrieveAnalyticsRequest) GetGroupID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.GroupID
-}
-
-func (r *RetrieveAnalyticsRequest) GetRoot() *bool {
-	if r == nil {
-		return nil
-	}
-	return r.Root
-}
-
-func (r *RetrieveAnalyticsRequest) GetSaleType() *SaleType {
-	if r == nil {
-		return nil
-	}
-	return r.SaleType
-}
-
-func (r *RetrieveAnalyticsRequest) GetQuery() *string {
-	if r == nil {
-		return nil
-	}
-	return r.Query
-}
-
-func (r *RetrieveAnalyticsRequest) GetTagID() *string {
-	if r == nil {
-		return nil
-	}
-	return r.TagID
-}
-
-func (r *RetrieveAnalyticsRequest) GetQr() *bool {
-	if r == nil {
-		return nil
-	}
-	return r.Qr
 }
 
 func (r *RetrieveAnalyticsRequest) GetUtmSource() *string {
@@ -714,11 +531,46 @@ func (r *RetrieveAnalyticsRequest) GetUtmContent() *string {
 	return r.UtmContent
 }
 
-func (r *RetrieveAnalyticsRequest) GetRef() *string {
+func (r *RetrieveAnalyticsRequest) GetRoot() *bool {
 	if r == nil {
 		return nil
 	}
-	return r.Ref
+	return r.Root
+}
+
+func (r *RetrieveAnalyticsRequest) GetSaleType() *SaleType {
+	if r == nil {
+		return nil
+	}
+	return r.SaleType
+}
+
+func (r *RetrieveAnalyticsRequest) GetQuery() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Query
+}
+
+func (r *RetrieveAnalyticsRequest) GetProgramID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.ProgramID
+}
+
+func (r *RetrieveAnalyticsRequest) GetTagIds() *string {
+	if r == nil {
+		return nil
+	}
+	return r.TagIds
+}
+
+func (r *RetrieveAnalyticsRequest) GetQr() *bool {
+	if r == nil {
+		return nil
+	}
+	return r.Qr
 }
 
 type RetrieveAnalyticsResponseBodyType string
