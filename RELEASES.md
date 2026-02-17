@@ -1419,3 +1419,13 @@ Based on:
 - [go v0.23.5] .
 ### Releases
 - [Go v0.23.5] https://github.com/dubinc/dub-go/releases/tag/v0.23.5 - .
+
+## 2026-02-17 05:16:21
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.719.1 (2.824.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.23.6] .
+### Releases
+- [Go v0.23.6] https://github.com/dubinc/dub-go/releases/tag/v0.23.6 - .

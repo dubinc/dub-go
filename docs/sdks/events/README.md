@@ -31,6 +31,7 @@ func main() {
     )
 
     res, err := s.Events.List(ctx, operations.ListEventsRequest{
+        Domain: dubgo.Pointer("dub.co"),
         Timezone: dubgo.Pointer("America/New_York"),
         City: dubgo.Pointer("New York"),
         Device: dubgo.Pointer("Desktop"),
