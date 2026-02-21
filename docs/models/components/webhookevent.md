@@ -47,3 +47,25 @@ webhookEvent := components.CreateWebhookEventPartnerApplicationSubmittedEvent(co
 webhookEvent := components.CreateWebhookEventCommissionCreatedEvent(components.CommissionCreatedEvent{/* values here */})
 ```
 
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch webhookEvent.Type {
+	case components.WebhookEventTypeLinkWebhookEvent:
+		// webhookEvent.LinkWebhookEvent is populated
+	case components.WebhookEventTypeLinkClickedEvent:
+		// webhookEvent.LinkClickedEvent is populated
+	case components.WebhookEventTypeLeadCreatedEvent:
+		// webhookEvent.LeadCreatedEvent is populated
+	case components.WebhookEventTypeSaleCreatedEvent:
+		// webhookEvent.SaleCreatedEvent is populated
+	case components.WebhookEventTypePartnerEnrolledEvent:
+		// webhookEvent.PartnerEnrolledEvent is populated
+	case components.WebhookEventTypePartnerApplicationSubmittedEvent:
+		// webhookEvent.PartnerApplicationSubmittedEvent is populated
+	case components.WebhookEventTypeCommissionCreatedEvent:
+		// webhookEvent.CommissionCreatedEvent is populated
+}
+```

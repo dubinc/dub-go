@@ -13,4 +13,5 @@ The color of the tag.
 | `LinkTagSchemaColorBlue`   | blue                       |
 | `LinkTagSchemaColorPurple` | purple                     |
 | `LinkTagSchemaColorBrown`  | brown                      |
+| `LinkTagSchemaColorGray`   | gray                       |
 | `LinkTagSchemaColorPink`   | pink                       |

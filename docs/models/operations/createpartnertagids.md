@@ -17,3 +17,15 @@ createPartnerTagIds := operations.CreateCreatePartnerTagIdsStr(string{/* values 
 createPartnerTagIds := operations.CreateCreatePartnerTagIdsArrayOfStr([]string{/* values here */})
 ```
 
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch createPartnerTagIds.Type {
+	case operations.CreatePartnerTagIdsTypeStr:
+		// createPartnerTagIds.Str is populated
+	case operations.CreatePartnerTagIdsTypeArrayOfStr:
+		// createPartnerTagIds.ArrayOfStr is populated
+}
+```
