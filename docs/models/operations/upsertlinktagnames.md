@@ -17,3 +17,15 @@ upsertLinkTagNames := operations.CreateUpsertLinkTagNamesStr(string{/* values he
 upsertLinkTagNames := operations.CreateUpsertLinkTagNamesArrayOfStr([]string{/* values here */})
 ```
 
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch upsertLinkTagNames.Type {
+	case operations.UpsertLinkTagNamesTypeStr:
+		// upsertLinkTagNames.Str is populated
+	case operations.UpsertLinkTagNamesTypeArrayOfStr:
+		// upsertLinkTagNames.ArrayOfStr is populated
+}
+```

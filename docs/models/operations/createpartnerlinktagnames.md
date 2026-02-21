@@ -17,3 +17,15 @@ createPartnerLinkTagNames := operations.CreateCreatePartnerLinkTagNamesStr(strin
 createPartnerLinkTagNames := operations.CreateCreatePartnerLinkTagNamesArrayOfStr([]string{/* values here */})
 ```
 
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch createPartnerLinkTagNames.Type {
+	case operations.CreatePartnerLinkTagNamesTypeStr:
+		// createPartnerLinkTagNames.Str is populated
+	case operations.CreatePartnerLinkTagNamesTypeArrayOfStr:
+		// createPartnerLinkTagNames.ArrayOfStr is populated
+}
+```

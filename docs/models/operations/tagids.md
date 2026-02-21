@@ -17,3 +17,15 @@ tagIds := operations.CreateTagIdsStr(string{/* values here */})
 tagIds := operations.CreateTagIdsArrayOfStr([]string{/* values here */})
 ```
 
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch tagIds.Type {
+	case operations.TagIdsTypeStr:
+		// tagIds.Str is populated
+	case operations.TagIdsTypeArrayOfStr:
+		// tagIds.ArrayOfStr is populated
+}
+```
