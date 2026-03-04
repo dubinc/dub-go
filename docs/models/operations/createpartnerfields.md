@@ -51,3 +51,27 @@ createPartnerFields := operations.CreateCreatePartnerFieldsFields7(operations.Fi
 createPartnerFields := operations.CreateCreatePartnerFieldsFields8(operations.Fields8{/* values here */})
 ```
 
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch createPartnerFields.Type {
+	case operations.CreatePartnerFieldsUnionTypeCreatePartnerFields1:
+		// createPartnerFields.CreatePartnerFields1 is populated
+	case operations.CreatePartnerFieldsUnionTypeCreatePartnerFields2:
+		// createPartnerFields.CreatePartnerFields2 is populated
+	case operations.CreatePartnerFieldsUnionTypeCreatePartnerFields3:
+		// createPartnerFields.CreatePartnerFields3 is populated
+	case operations.CreatePartnerFieldsUnionTypeCreatePartnerFields4:
+		// createPartnerFields.CreatePartnerFields4 is populated
+	case operations.CreatePartnerFieldsUnionTypeFields5:
+		// createPartnerFields.Fields5 is populated
+	case operations.CreatePartnerFieldsUnionTypeFields6:
+		// createPartnerFields.Fields6 is populated
+	case operations.CreatePartnerFieldsUnionTypeFields7:
+		// createPartnerFields.Fields7 is populated
+	case operations.CreatePartnerFieldsUnionTypeFields8:
+		// createPartnerFields.Fields8 is populated
+}
+```

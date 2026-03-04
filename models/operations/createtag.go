@@ -7,7 +7,7 @@ import (
 	"fmt"
 )
 
-// Color - The color of the tag. If not provided, a random color will be used from the list: red, yellow, green, blue, purple, brown.
+// Color - The color of the tag. If not provided, a random color will be used from the list: red, yellow, green, blue, purple, brown, gray.
 type Color string
 
 const (
@@ -17,6 +17,7 @@ const (
 	ColorBlue   Color = "blue"
 	ColorPurple Color = "purple"
 	ColorBrown  Color = "brown"
+	ColorGray   Color = "gray"
 	ColorPink   Color = "pink"
 )
 
@@ -41,6 +42,8 @@ func (e *Color) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "brown":
 		fallthrough
+	case "gray":
+		fallthrough
 	case "pink":
 		*e = Color(v)
 		return nil
@@ -52,7 +55,7 @@ func (e *Color) UnmarshalJSON(data []byte) error {
 type CreateTagRequestBody struct {
 	// The name of the tag to create.
 	Name *string `json:"name,omitempty"`
-	// The color of the tag. If not provided, a random color will be used from the list: red, yellow, green, blue, purple, brown.
+	// The color of the tag. If not provided, a random color will be used from the list: red, yellow, green, blue, purple, brown, gray.
 	Color *Color `json:"color,omitempty"`
 	// The name of the tag to create.
 	//

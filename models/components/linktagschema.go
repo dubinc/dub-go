@@ -18,6 +18,7 @@ const (
 	LinkTagSchemaColorBlue   LinkTagSchemaColor = "blue"
 	LinkTagSchemaColorPurple LinkTagSchemaColor = "purple"
 	LinkTagSchemaColorBrown  LinkTagSchemaColor = "brown"
+	LinkTagSchemaColorGray   LinkTagSchemaColor = "gray"
 	LinkTagSchemaColorPink   LinkTagSchemaColor = "pink"
 )
 
@@ -41,6 +42,8 @@ func (e *LinkTagSchemaColor) UnmarshalJSON(data []byte) error {
 	case "purple":
 		fallthrough
 	case "brown":
+		fallthrough
+	case "gray":
 		fallthrough
 	case "pink":
 		*e = LinkTagSchemaColor(v)

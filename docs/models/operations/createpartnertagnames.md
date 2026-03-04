@@ -17,3 +17,15 @@ createPartnerTagNames := operations.CreateCreatePartnerTagNamesStr(string{/* val
 createPartnerTagNames := operations.CreateCreatePartnerTagNamesArrayOfStr([]string{/* values here */})
 ```
 
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch createPartnerTagNames.Type {
+	case operations.CreatePartnerTagNamesTypeStr:
+		// createPartnerTagNames.Str is populated
+	case operations.CreatePartnerTagNamesTypeArrayOfStr:
+		// createPartnerTagNames.ArrayOfStr is populated
+}
+```

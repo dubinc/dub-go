@@ -174,6 +174,10 @@ type RejectBountySubmissionResponseBody struct {
 	Status RejectBountySubmissionStatus `json:"status"`
 	// The performance count of the submission
 	PerformanceCount *float64 `json:"performanceCount"`
+	// The social metric count (views or likes) for the social content
+	SocialMetricCount *int64 `json:"socialMetricCount"`
+	// The date and time the submission's social metrics were last synced
+	SocialMetricsLastSyncedAt *string `json:"socialMetricsLastSyncedAt,omitempty"`
 	// The date and time the submission was created
 	CreatedAt string `json:"createdAt"`
 	// The date and time the submission was completed
@@ -240,6 +244,20 @@ func (r *RejectBountySubmissionResponseBody) GetPerformanceCount() *float64 {
 		return nil
 	}
 	return r.PerformanceCount
+}
+
+func (r *RejectBountySubmissionResponseBody) GetSocialMetricCount() *int64 {
+	if r == nil {
+		return nil
+	}
+	return r.SocialMetricCount
+}
+
+func (r *RejectBountySubmissionResponseBody) GetSocialMetricsLastSyncedAt() *string {
+	if r == nil {
+		return nil
+	}
+	return r.SocialMetricsLastSyncedAt
 }
 
 func (r *RejectBountySubmissionResponseBody) GetCreatedAt() string {

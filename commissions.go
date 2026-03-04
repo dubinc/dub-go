@@ -422,7 +422,7 @@ func (s *Commissions) List(ctx context.Context, request operations.ListCommissio
 
 }
 
-// Update a commission.
+// Update a commission
 // Update an existing commission amount. This is useful for handling refunds (partial or full) or fraudulent sales.
 func (s *Commissions) Update(ctx context.Context, request operations.UpdateCommissionRequest, opts ...operations.Option) (*operations.UpdateCommissionResponseBody, error) {
 	o := operations.Options{}

@@ -17,3 +17,15 @@ bulkUpdateLinksTagIds := operations.CreateBulkUpdateLinksTagIdsStr(string{/* val
 bulkUpdateLinksTagIds := operations.CreateBulkUpdateLinksTagIdsArrayOfStr([]string{/* values here */})
 ```
 
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch bulkUpdateLinksTagIds.Type {
+	case operations.BulkUpdateLinksTagIdsTypeStr:
+		// bulkUpdateLinksTagIds.Str is populated
+	case operations.BulkUpdateLinksTagIdsTypeArrayOfStr:
+		// bulkUpdateLinksTagIds.ArrayOfStr is populated
+}
+```

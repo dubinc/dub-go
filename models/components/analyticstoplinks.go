@@ -25,6 +25,8 @@ type AnalyticsTopLinks struct {
 	Title *string `json:"title,omitempty"`
 	// The comments of the short link
 	Comments *string `json:"comments,omitempty"`
+	// The ID of the folder that the link belongs to (if applicable)
+	FolderID *string `json:"folderId,omitempty"`
 	// The ID of the partner that the link belongs to (if applicable)
 	PartnerID *string `json:"partnerId,omitempty"`
 	// The creation timestamp of the short link
@@ -104,6 +106,13 @@ func (a *AnalyticsTopLinks) GetComments() *string {
 		return nil
 	}
 	return a.Comments
+}
+
+func (a *AnalyticsTopLinks) GetFolderID() *string {
+	if a == nil {
+		return nil
+	}
+	return a.FolderID
 }
 
 func (a *AnalyticsTopLinks) GetPartnerID() *string {
