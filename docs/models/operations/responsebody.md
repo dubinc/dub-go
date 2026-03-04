@@ -15,3 +15,15 @@ responseBody := operations.CreateResponseBodyLinkSchema(components.LinkSchema{/*
 responseBody := operations.CreateResponseBodyLinkErrorSchema(components.LinkErrorSchema{/* values here */})
 ```
 
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch responseBody.Type {
+	case operations.ResponseBodyTypeLinkSchema:
+		// responseBody.LinkSchema is populated
+	case operations.ResponseBodyTypeLinkErrorSchema:
+		// responseBody.LinkErrorSchema is populated
+}
+```

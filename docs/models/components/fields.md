@@ -51,3 +51,27 @@ fields := components.CreateFieldsSeven(components.Seven{/* values here */})
 fields := components.CreateFieldsEight(components.Eight{/* values here */})
 ```
 
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch fields.Type {
+	case components.FieldsUnionTypeFields1:
+		// fields.Fields1 is populated
+	case components.FieldsUnionTypeFields2:
+		// fields.Fields2 is populated
+	case components.FieldsUnionTypeFields3:
+		// fields.Fields3 is populated
+	case components.FieldsUnionTypeFour:
+		// fields.Four is populated
+	case components.FieldsUnionTypeFive:
+		// fields.Five is populated
+	case components.FieldsUnionTypeSix:
+		// fields.Six is populated
+	case components.FieldsUnionTypeSeven:
+		// fields.Seven is populated
+	case components.FieldsUnionTypeEight:
+		// fields.Eight is populated
+}
+```

@@ -46,7 +46,37 @@ func main() {
         log.Fatal(err)
     }
     if res != nil {
-        // handle response
+        switch res.Type {
+            case operations.RetrieveAnalyticsResponseBodyTypeAnalyticsCount:
+                // res.AnalyticsCount is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTimeseries:
+                // res.ArrayOfAnalyticsTimeseries is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsContinents:
+                // res.ArrayOfAnalyticsContinents is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCountries:
+                // res.ArrayOfAnalyticsCountries is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsRegions:
+                // res.ArrayOfAnalyticsRegions is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsCities:
+                // res.ArrayOfAnalyticsCities is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsDevices:
+                // res.ArrayOfAnalyticsDevices is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsBrowsers:
+                // res.ArrayOfAnalyticsBrowsers is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsOS:
+                // res.ArrayOfAnalyticsOS is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTriggers:
+                // res.ArrayOfAnalyticsTriggers is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsReferers:
+                // res.ArrayOfAnalyticsReferers is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsRefererUrls:
+                // res.ArrayOfAnalyticsRefererUrls is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopLinks:
+                // res.ArrayOfAnalyticsTopLinks is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopUrls:
+                // res.ArrayOfAnalyticsTopUrls is populated
+        }
+
     }
 }
 ```

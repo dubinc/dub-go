@@ -416,7 +416,15 @@ func main() {
         log.Fatal(err)
     }
     if res != nil {
-        // handle response
+        switch res.Type {
+            case operations.RetrievePartnerAnalyticsResponseBodyTypePartnerAnalyticsCount:
+                // res.PartnerAnalyticsCount is populated
+            case operations.RetrievePartnerAnalyticsResponseBodyTypeArrayOfPartnerAnalyticsTimeseries:
+                // res.ArrayOfPartnerAnalyticsTimeseries is populated
+            case operations.RetrievePartnerAnalyticsResponseBodyTypeArrayOfPartnerAnalyticsTopLinks:
+                // res.ArrayOfPartnerAnalyticsTopLinks is populated
+        }
+
     }
 }
 ```

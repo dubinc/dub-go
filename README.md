@@ -159,7 +159,7 @@ func main() {
 ### [Commissions](docs/sdks/commissions/README.md)
 
 * [List](docs/sdks/commissions/README.md#list) - List all commissions
-* [Update](docs/sdks/commissions/README.md#update) - Update a commission.
+* [Update](docs/sdks/commissions/README.md#update) - Update a commission
 
 ### [Customers](docs/sdks/customers/README.md)
 

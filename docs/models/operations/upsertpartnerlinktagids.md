@@ -17,3 +17,15 @@ upsertPartnerLinkTagIds := operations.CreateUpsertPartnerLinkTagIdsStr(string{/*
 upsertPartnerLinkTagIds := operations.CreateUpsertPartnerLinkTagIdsArrayOfStr([]string{/* values here */})
 ```
 
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch upsertPartnerLinkTagIds.Type {
+	case operations.UpsertPartnerLinkTagIdsTypeStr:
+		// upsertPartnerLinkTagIds.Str is populated
+	case operations.UpsertPartnerLinkTagIdsTypeArrayOfStr:
+		// upsertPartnerLinkTagIds.ArrayOfStr is populated
+}
+```

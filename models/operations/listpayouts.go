@@ -260,6 +260,35 @@ func (e *ListPayoutsMode) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type Method string
+
+const (
+	MethodConnect    Method = "connect"
+	MethodStablecoin Method = "stablecoin"
+	MethodPaypal     Method = "paypal"
+)
+
+func (e Method) ToPointer() *Method {
+	return &e
+}
+func (e *Method) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "connect":
+		fallthrough
+	case "stablecoin":
+		fallthrough
+	case "paypal":
+		*e = Method(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Method: %v", v)
+	}
+}
+
 type ListPayoutsPartner struct {
 	// The partner's unique ID on Dub.
 	ID string `json:"id"`
@@ -384,6 +413,8 @@ type ListPayoutsResponseBody struct {
 	PaidAt        *string            `json:"paidAt"`
 	FailureReason *string            `json:"failureReason,omitempty"`
 	Mode          *ListPayoutsMode   `json:"mode"`
+	Method        *Method            `json:"method"`
+	TraceID       *string            `json:"traceId,omitempty"`
 	Partner       ListPayoutsPartner `json:"partner"`
 	User          *User              `json:"user,omitempty"`
 }
@@ -477,6 +508,20 @@ func (l *ListPayoutsResponseBody) GetMode() *ListPayoutsMode {
 		return nil
 	}
 	return l.Mode
+}
+
+func (l *ListPayoutsResponseBody) GetMethod() *Method {
+	if l == nil {
+		return nil
+	}
+	return l.Method
+}
+
+func (l *ListPayoutsResponseBody) GetTraceID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.TraceID
 }
 
 func (l *ListPayoutsResponseBody) GetPartner() ListPayoutsPartner {

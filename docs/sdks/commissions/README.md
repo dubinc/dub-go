@@ -5,7 +5,7 @@
 ### Available Operations
 
 * [List](#list) - List all commissions
-* [Update](#update) - Update a commission.
+* [Update](#update) - Update a commission
 
 ## List
 

@@ -17,3 +17,15 @@ bulkUpdateLinksTagNames := operations.CreateBulkUpdateLinksTagNamesStr(string{/*
 bulkUpdateLinksTagNames := operations.CreateBulkUpdateLinksTagNamesArrayOfStr([]string{/* values here */})
 ```
 
+## Union Discrimination
+
+Use the `Type` field to determine which variant is active, then access the corresponding field:
+
+```go
+switch bulkUpdateLinksTagNames.Type {
+	case operations.BulkUpdateLinksTagNamesTypeStr:
+		// bulkUpdateLinksTagNames.Str is populated
+	case operations.BulkUpdateLinksTagNamesTypeArrayOfStr:
+		// bulkUpdateLinksTagNames.ArrayOfStr is populated
+}
+```

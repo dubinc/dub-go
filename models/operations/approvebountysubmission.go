@@ -129,6 +129,10 @@ type ApproveBountySubmissionResponseBody struct {
 	Status ApproveBountySubmissionStatus `json:"status"`
 	// The performance count of the submission
 	PerformanceCount *float64 `json:"performanceCount"`
+	// The social metric count (views or likes) for the social content
+	SocialMetricCount *int64 `json:"socialMetricCount"`
+	// The date and time the submission's social metrics were last synced
+	SocialMetricsLastSyncedAt *string `json:"socialMetricsLastSyncedAt,omitempty"`
 	// The date and time the submission was created
 	CreatedAt string `json:"createdAt"`
 	// The date and time the submission was completed
@@ -195,6 +199,20 @@ func (a *ApproveBountySubmissionResponseBody) GetPerformanceCount() *float64 {
 		return nil
 	}
 	return a.PerformanceCount
+}
+
+func (a *ApproveBountySubmissionResponseBody) GetSocialMetricCount() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.SocialMetricCount
+}
+
+func (a *ApproveBountySubmissionResponseBody) GetSocialMetricsLastSyncedAt() *string {
+	if a == nil {
+		return nil
+	}
+	return a.SocialMetricsLastSyncedAt
 }
 
 func (a *ApproveBountySubmissionResponseBody) GetCreatedAt() string {

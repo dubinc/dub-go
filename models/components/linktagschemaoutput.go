@@ -18,6 +18,7 @@ const (
 	ColorBlue   Color = "blue"
 	ColorPurple Color = "purple"
 	ColorBrown  Color = "brown"
+	ColorGray   Color = "gray"
 	ColorPink   Color = "pink"
 )
 
@@ -41,6 +42,8 @@ func (e *Color) UnmarshalJSON(data []byte) error {
 	case "purple":
 		fallthrough
 	case "brown":
+		fallthrough
+	case "gray":
 		fallthrough
 	case "pink":
 		*e = Color(v)

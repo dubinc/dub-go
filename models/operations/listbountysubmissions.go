@@ -45,8 +45,9 @@ func (e *ListBountySubmissionsQueryParamStatus) UnmarshalJSON(data []byte) error
 type ListBountySubmissionsQueryParamSortBy string
 
 const (
-	ListBountySubmissionsQueryParamSortByCompletedAt      ListBountySubmissionsQueryParamSortBy = "completedAt"
-	ListBountySubmissionsQueryParamSortByPerformanceCount ListBountySubmissionsQueryParamSortBy = "performanceCount"
+	ListBountySubmissionsQueryParamSortByCompletedAt       ListBountySubmissionsQueryParamSortBy = "completedAt"
+	ListBountySubmissionsQueryParamSortByPerformanceCount  ListBountySubmissionsQueryParamSortBy = "performanceCount"
+	ListBountySubmissionsQueryParamSortBySocialMetricCount ListBountySubmissionsQueryParamSortBy = "socialMetricCount"
 )
 
 func (e ListBountySubmissionsQueryParamSortBy) ToPointer() *ListBountySubmissionsQueryParamSortBy {
@@ -61,6 +62,8 @@ func (e *ListBountySubmissionsQueryParamSortBy) UnmarshalJSON(data []byte) error
 	case "completedAt":
 		fallthrough
 	case "performanceCount":
+		fallthrough
+	case "socialMetricCount":
 		*e = ListBountySubmissionsQueryParamSortBy(v)
 		return nil
 	default:
@@ -261,6 +264,10 @@ type ListBountySubmissionsResponseBody struct {
 	Status ListBountySubmissionsStatus `json:"status"`
 	// The performance count of the submission
 	PerformanceCount *float64 `json:"performanceCount"`
+	// The social metric count (views or likes) for the social content
+	SocialMetricCount *int64 `json:"socialMetricCount"`
+	// The date and time the submission's social metrics were last synced
+	SocialMetricsLastSyncedAt *string `json:"socialMetricsLastSyncedAt,omitempty"`
 	// The date and time the submission was created
 	CreatedAt string `json:"createdAt"`
 	// The date and time the submission was completed
@@ -327,6 +334,20 @@ func (l *ListBountySubmissionsResponseBody) GetPerformanceCount() *float64 {
 		return nil
 	}
 	return l.PerformanceCount
+}
+
+func (l *ListBountySubmissionsResponseBody) GetSocialMetricCount() *int64 {
+	if l == nil {
+		return nil
+	}
+	return l.SocialMetricCount
+}
+
+func (l *ListBountySubmissionsResponseBody) GetSocialMetricsLastSyncedAt() *string {
+	if l == nil {
+		return nil
+	}
+	return l.SocialMetricsLastSyncedAt
 }
 
 func (l *ListBountySubmissionsResponseBody) GetCreatedAt() string {
