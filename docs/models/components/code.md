@@ -2,6 +2,16 @@
 
 The error code.
 
+## Example Usage
+
+```go
+import (
+	"github.com/dubinc/dub-go/models/components"
+)
+
+value := components.CodeBadRequest
+```
+
 
 ## Values
 

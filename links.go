@@ -227,26 +227,11 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest, op
 		if len(arr) < l {
 			return nil, nil
 		}
+		request.Page = &nP
 
 		return s.List(
 			ctx,
-			operations.GetLinksRequest{
-				Domain:       request.Domain,
-				TagID:        request.TagID,
-				TagIds:       request.TagIds,
-				TagNames:     request.TagNames,
-				FolderID:     request.FolderID,
-				Search:       request.Search,
-				UserID:       request.UserID,
-				TenantID:     request.TenantID,
-				ShowArchived: request.ShowArchived,
-				WithTags:     request.WithTags,
-				SortBy:       request.SortBy,
-				SortOrder:    request.SortOrder,
-				Sort:         request.Sort,
-				Page:         &nP,
-				PageSize:     request.PageSize,
-			},
+			request,
 			opts...,
 		)
 	}

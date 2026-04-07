@@ -260,8 +260,12 @@ type GetLinksRequest struct {
 	SortOrder *SortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
 	// DEPRECATED. Use `sortBy` instead.
 	Sort *Sort `default:"createdAt" queryParam:"style=form,explode=true,name=sort"`
-	// The page number for pagination.
-	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	// If specified, the query only searches for results before this cursor. Mutually exclusive with `startingAfter`.
+	EndingBefore *string `queryParam:"style=form,explode=true,name=endingBefore"`
+	// If specified, the query only searches for results after this cursor. Mutually exclusive with `endingBefore`.
+	StartingAfter *string `queryParam:"style=form,explode=true,name=startingAfter"`
+	// DEPRECATED. Use `startingAfter` instead.
+	Page *float64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
 	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
@@ -366,6 +370,20 @@ func (g *GetLinksRequest) GetSort() *Sort {
 		return nil
 	}
 	return g.Sort
+}
+
+func (g *GetLinksRequest) GetEndingBefore() *string {
+	if g == nil {
+		return nil
+	}
+	return g.EndingBefore
+}
+
+func (g *GetLinksRequest) GetStartingAfter() *string {
+	if g == nil {
+		return nil
+	}
+	return g.StartingAfter
 }
 
 func (g *GetLinksRequest) GetPage() *float64 {

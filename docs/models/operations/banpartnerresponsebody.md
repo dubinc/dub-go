@@ -7,4 +7,4 @@ The banned partner
 
 | Field                         | Type                          | Required                      | Description                   |
 | ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
-| `PartnerID`                   | *string*                      | :heavy_check_mark:            | The ID of the banned partner. |
+| `PartnerID`                   | `string`                      | :heavy_check_mark:            | The ID of the banned partner. |

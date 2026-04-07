@@ -227,15 +227,11 @@ func (s *Domains) List(ctx context.Context, request operations.ListDomainsReques
 		if len(arr) < l {
 			return nil, nil
 		}
+		request.Page = &nP
 
 		return s.List(
 			ctx,
-			operations.ListDomainsRequest{
-				Archived: request.Archived,
-				Search:   request.Search,
-				Page:     &nP,
-				PageSize: request.PageSize,
-			},
+			request,
 			opts...,
 		)
 	}

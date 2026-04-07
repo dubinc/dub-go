@@ -27,11 +27,11 @@ func main() {
 		TestVariants: []operations.TestVariants{
 			operations.TestVariants{
 				URL:        "https://example.com/variant-1",
-				Percentage: 50,
+				Percentage: 50.0,
 			},
 			operations.TestVariants{
 				URL:        "https://example.com/variant-2",
-				Percentage: 50,
+				Percentage: 50.0,
 			},
 		},
 	})
@@ -73,11 +73,11 @@ func main() {
 		TestVariants: []operations.UpsertLinkTestVariants{
 			operations.UpsertLinkTestVariants{
 				URL:        "https://example.com/variant-1",
-				Percentage: 50,
+				Percentage: 50.0,
 			},
 			operations.UpsertLinkTestVariants{
 				URL:        "https://example.com/variant-2",
-				Percentage: 50,
+				Percentage: 50.0,
 			},
 		},
 	})

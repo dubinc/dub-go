@@ -7,4 +7,4 @@ The deleted link ID.
 
 | Field               | Type                | Required            | Description         |
 | ------------------- | ------------------- | ------------------- | ------------------- |
-| `ID`                | *string*            | :heavy_check_mark:  | The ID of the link. |
+| `ID`                | `string`            | :heavy_check_mark:  | The ID of the link. |

@@ -6,6 +6,7 @@
 
 * [List](#list) - List all commissions
 * [Update](#update) - Update a commission
+* [UpdateMany](#updatemany) - Bulk update commissions
 
 ## List
 
@@ -32,13 +33,28 @@ func main() {
     )
 
     res, err := s.Commissions.List(ctx, operations.ListCommissionsRequest{
-        PageSize: dubgo.Pointer[float64](50),
+        EndingBefore: dubgo.Pointer("cm_1KAP4CGN2Z5TPYYQ1W4JEYD56"),
+        StartingAfter: dubgo.Pointer("cm_1KAP4CGN2Z5TPYYQ1W4JEYD56"),
+        Page: dubgo.Pointer[float64](1.0),
+        PageSize: dubgo.Pointer[float64](50.0),
     })
     if err != nil {
         log.Fatal(err)
     }
     if res != nil {
-        // handle response
+        for {
+            // handle items
+
+            res, err = res.Next()
+
+            if err != nil {
+                // handle error
+            }
+
+            if res == nil {
+                break
+            }
+        }
     }
 }
 ```
@@ -53,7 +69,7 @@ func main() {
 
 ### Response
 
-**[[]operations.ListCommissionsResponseBody](../../.md), error**
+**[*operations.ListCommissionsResponse](../../models/operations/listcommissionsresponse.md), error**
 
 ### Errors
 
@@ -117,6 +133,66 @@ func main() {
 ### Response
 
 **[*operations.UpdateCommissionResponseBody](../../models/operations/updatecommissionresponsebody.md), error**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+
+## UpdateMany
+
+Bulk update up to 100 commissions with the same status.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="bulkUpdateCommissions" method="patch" path="/commissions/bulk" -->
+```go
+package main
+
+import(
+	"context"
+	dubgo "github.com/dubinc/dub-go"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+
+    res, err := s.Commissions.UpdateMany(ctx, nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
+| `request`                                                                                                  | [operations.BulkUpdateCommissionsRequestBody](../../models/operations/bulkupdatecommissionsrequestbody.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+| `opts`                                                                                                     | [][operations.Option](../../models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
+
+### Response
+
+**[[]operations.BulkUpdateCommissionsResponseBody](../../.md), error**
 
 ### Errors
 

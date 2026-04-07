@@ -2,6 +2,16 @@
 
 The interval to retrieve commissions for.
 
+## Example Usage
+
+```go
+import (
+	"github.com/dubinc/dub-go/models/operations"
+)
+
+value := operations.ListCommissionsQueryParamIntervalTwentyFourh
+```
+
 
 ## Values
 

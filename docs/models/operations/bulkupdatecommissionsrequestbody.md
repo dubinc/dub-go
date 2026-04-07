@@ -1,0 +1,9 @@
+# BulkUpdateCommissionsRequestBody
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `CommissionIds`                                                                                  | []`string`                                                                                       | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `Status`                                                                                         | [operations.BulkUpdateCommissionsStatus](../../models/operations/bulkupdatecommissionsstatus.md) | :heavy_check_mark:                                                                               | The status to apply to every commission in the batch.                                            |

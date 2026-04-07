@@ -2,6 +2,16 @@
 
 If the partner was banned from the program, this is the reason for the ban.
 
+## Example Usage
+
+```go
+import (
+	"github.com/dubinc/dub-go/models/components"
+)
+
+value := components.BannedReasonTosViolation
+```
+
 
 ## Values
 

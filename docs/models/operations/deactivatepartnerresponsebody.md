@@ -7,4 +7,4 @@ The deactivated partner
 
 | Field                              | Type                               | Required                           | Description                        |
 | ---------------------------------- | ---------------------------------- | ---------------------------------- | ---------------------------------- |
-| `PartnerID`                        | *string*                           | :heavy_check_mark:                 | The ID of the deactivated partner. |
+| `PartnerID`                        | `string`                           | :heavy_check_mark:                 | The ID of the deactivated partner. |

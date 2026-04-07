@@ -89,8 +89,12 @@ type GetCustomersRequest struct {
 	SortBy *GetCustomersQueryParamSortBy `default:"createdAt" queryParam:"style=form,explode=true,name=sortBy"`
 	// The sort order. The default is `desc`.
 	SortOrder *GetCustomersQueryParamSortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
-	// The page number for pagination.
-	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	// If specified, the query only searches for results before this cursor. Mutually exclusive with `startingAfter`.
+	EndingBefore *string `queryParam:"style=form,explode=true,name=endingBefore"`
+	// If specified, the query only searches for results after this cursor. Mutually exclusive with `endingBefore`.
+	StartingAfter *string `queryParam:"style=form,explode=true,name=startingAfter"`
+	// DEPRECATED. Use `startingAfter` instead.
+	Page *float64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
 	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
@@ -174,6 +178,20 @@ func (g *GetCustomersRequest) GetSortOrder() *GetCustomersQueryParamSortOrder {
 		return nil
 	}
 	return g.SortOrder
+}
+
+func (g *GetCustomersRequest) GetEndingBefore() *string {
+	if g == nil {
+		return nil
+	}
+	return g.EndingBefore
+}
+
+func (g *GetCustomersRequest) GetStartingAfter() *string {
+	if g == nil {
+		return nil
+	}
+	return g.StartingAfter
 }
 
 func (g *GetCustomersRequest) GetPage() *float64 {
@@ -520,4 +538,17 @@ func (g *GetCustomersResponseBody) GetDiscount() *Discount {
 		return nil
 	}
 	return g.Discount
+}
+
+type GetCustomersResponse struct {
+	Result []GetCustomersResponseBody
+
+	Next func() (*GetCustomersResponse, error)
+}
+
+func (g *GetCustomersResponse) GetResult() []GetCustomersResponseBody {
+	if g == nil {
+		return []GetCustomersResponseBody{}
+	}
+	return g.Result
 }

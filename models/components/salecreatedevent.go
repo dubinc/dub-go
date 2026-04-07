@@ -955,7 +955,7 @@ type SaleCreatedEventData struct {
 	Link      SaleCreatedEventLink     `json:"link"`
 	Sale      Sale                     `json:"sale"`
 	Partner   *SaleCreatedEventPartner `json:"partner,omitempty"`
-	Metadata  map[string]any           `json:"metadata,omitempty"`
+	Metadata  map[string]any           `json:"metadata"`
 }
 
 func (s SaleCreatedEventData) MarshalJSON() ([]byte, error) {

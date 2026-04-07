@@ -33,7 +33,9 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.Folders.List(ctx, operations.ListFoldersRequest{})
+    res, err := s.Folders.List(ctx, operations.ListFoldersRequest{
+        Page: dubgo.Pointer[float64](1.0),
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -168,7 +170,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `id`                                                     | *string*                                                 | :heavy_check_mark:                                       | The ID of the folder to delete.                          |
+| `id`                                                     | `string`                                                 | :heavy_check_mark:                                       | The ID of the folder to delete.                          |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
@@ -228,7 +230,7 @@ func main() {
 | Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `ctx`                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                     | :heavy_check_mark:                                                                        | The context to use for the request.                                                       |
-| `id`                                                                                      | *string*                                                                                  | :heavy_check_mark:                                                                        | The ID of the folder to update.                                                           |
+| `id`                                                                                      | `string`                                                                                  | :heavy_check_mark:                                                                        | The ID of the folder to update.                                                           |
 | `requestBody`                                                                             | [*operations.UpdateFolderRequestBody](../../models/operations/updatefolderrequestbody.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
 | `opts`                                                                                    | [][operations.Option](../../models/operations/option.md)                                  | :heavy_minus_sign:                                                                        | The options for this request.                                                             |
 

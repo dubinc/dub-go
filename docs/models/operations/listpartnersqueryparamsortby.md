@@ -2,6 +2,16 @@
 
 The field to sort the partners by. The default is `totalSaleAmount`.
 
+## Example Usage
+
+```go
+import (
+	"github.com/dubinc/dub-go/models/operations"
+)
+
+value := operations.ListPartnersQueryParamSortByCreatedAt
+```
+
 
 ## Values
 

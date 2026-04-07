@@ -2,6 +2,16 @@
 
 The interval to retrieve analytics for. If undefined, defaults to 24h.
 
+## Example Usage
+
+```go
+import (
+	"github.com/dubinc/dub-go/models/operations"
+)
+
+value := operations.QueryParamIntervalTwentyFourh
+```
+
 
 ## Values
 

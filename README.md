@@ -73,11 +73,11 @@ func main() {
 		TestVariants: []operations.TestVariants{
 			operations.TestVariants{
 				URL:        "https://example.com/variant-1",
-				Percentage: 50,
+				Percentage: 50.0,
 			},
 			operations.TestVariants{
 				URL:        "https://example.com/variant-2",
-				Percentage: 50,
+				Percentage: 50.0,
 			},
 		},
 	})
@@ -121,11 +121,11 @@ func main() {
 		TestVariants: []operations.UpsertLinkTestVariants{
 			operations.UpsertLinkTestVariants{
 				URL:        "https://example.com/variant-1",
-				Percentage: 50,
+				Percentage: 50.0,
 			},
 			operations.UpsertLinkTestVariants{
 				URL:        "https://example.com/variant-2",
-				Percentage: 50,
+				Percentage: 50.0,
 			},
 		},
 	})
@@ -160,6 +160,7 @@ func main() {
 
 * [List](docs/sdks/commissions/README.md#list) - List all commissions
 * [Update](docs/sdks/commissions/README.md#update) - Update a commission
+* [UpdateMany](docs/sdks/commissions/README.md#updatemany) - Bulk update commissions
 
 ### [Customers](docs/sdks/customers/README.md)
 
@@ -283,7 +284,10 @@ func main() {
 	)
 
 	res, err := s.Links.List(ctx, operations.GetLinksRequest{
-		PageSize: dubgo.Pointer[float64](50),
+		EndingBefore:  dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+		StartingAfter: dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+		Page:          dubgo.Pointer[float64](1.0),
+		PageSize:      dubgo.Pointer[float64](50.0),
 	})
 	if err != nil {
 
@@ -377,7 +381,10 @@ func main() {
 	)
 
 	res, err := s.Links.List(ctx, operations.GetLinksRequest{
-		PageSize: dubgo.Pointer[float64](50),
+		EndingBefore:  dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+		StartingAfter: dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+		Page:          dubgo.Pointer[float64](1.0),
+		PageSize:      dubgo.Pointer[float64](50.0),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -462,7 +469,10 @@ func main() {
 	)
 
 	res, err := s.Links.List(ctx, operations.GetLinksRequest{
-		PageSize: dubgo.Pointer[float64](50),
+		EndingBefore:  dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+		StartingAfter: dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+		Page:          dubgo.Pointer[float64](1.0),
+		PageSize:      dubgo.Pointer[float64](50.0),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -513,7 +523,10 @@ func main() {
 	)
 
 	res, err := s.Links.List(ctx, operations.GetLinksRequest{
-		PageSize: dubgo.Pointer[float64](50),
+		EndingBefore:  dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+		StartingAfter: dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+		Page:          dubgo.Pointer[float64](1.0),
+		PageSize:      dubgo.Pointer[float64](50.0),
 	}, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
@@ -578,7 +591,10 @@ func main() {
 	)
 
 	res, err := s.Links.List(ctx, operations.GetLinksRequest{
-		PageSize: dubgo.Pointer[float64](50),
+		EndingBefore:  dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+		StartingAfter: dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+		Page:          dubgo.Pointer[float64](1.0),
+		PageSize:      dubgo.Pointer[float64](50.0),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -629,7 +645,10 @@ func main() {
 	)
 
 	res, err := s.Links.List(ctx, operations.GetLinksRequest{
-		PageSize: dubgo.Pointer[float64](50),
+		EndingBefore:  dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+		StartingAfter: dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+		Page:          dubgo.Pointer[float64](1.0),
+		PageSize:      dubgo.Pointer[float64](50.0),
 	})
 	if err != nil {
 		log.Fatal(err)
