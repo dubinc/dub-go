@@ -8,7 +8,7 @@
 
 ## Referrals
 
-Create a referrals embed token for the given partner/tenant.
+Create a referrals embed token for the given partner/tenant. The endpoint first attempts to locate an existing enrollment using the provided tenantId. If no enrollment is found, it resolves the partner by email and creates a new enrollment as needed. This results in an upsert-style flow that guarantees a valid enrollment and returns a usable embed token.
 
 ### Example Usage
 
@@ -43,11 +43,11 @@ func main() {
                 TestVariants: []operations.CreateReferralsEmbedTokenTestVariants{
                     operations.CreateReferralsEmbedTokenTestVariants{
                         URL: "https://example.com/variant-1",
-                        Percentage: 50,
+                        Percentage: 50.0,
                     },
                     operations.CreateReferralsEmbedTokenTestVariants{
                         URL: "https://example.com/variant-2",
-                        Percentage: 50,
+                        Percentage: 50.0,
                     },
                 },
             },

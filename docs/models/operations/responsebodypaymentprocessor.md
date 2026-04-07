@@ -2,6 +2,16 @@
 
 The payment processor via which the sale was made.
 
+## Example Usage
+
+```go
+import (
+	"github.com/dubinc/dub-go/models/operations"
+)
+
+value := operations.ResponseBodyPaymentProcessorStripe
+```
+
 
 ## Values
 

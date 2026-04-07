@@ -34,13 +34,28 @@ func main() {
     )
 
     res, err := s.Customers.List(ctx, operations.GetCustomersRequest{
-        PageSize: dubgo.Pointer[float64](50),
+        EndingBefore: dubgo.Pointer("cus_1KAP4CDPBSVMMBMH9XX3YZZ0Z"),
+        StartingAfter: dubgo.Pointer("cus_1KAP4CDPBSVMMBMH9XX3YZZ0Z"),
+        Page: dubgo.Pointer[float64](1.0),
+        PageSize: dubgo.Pointer[float64](50.0),
     })
     if err != nil {
         log.Fatal(err)
     }
     if res != nil {
-        // handle response
+        for {
+            // handle items
+
+            res, err = res.Next()
+
+            if err != nil {
+                // handle error
+            }
+
+            if res == nil {
+                break
+            }
+        }
     }
 }
 ```
@@ -55,7 +70,7 @@ func main() {
 
 ### Response
 
-**[[]operations.GetCustomersResponseBody](../../.md), error**
+**[*operations.GetCustomersResponse](../../models/operations/getcustomersresponse.md), error**
 
 ### Errors
 
@@ -173,7 +188,7 @@ func main() {
 | Parameter                                                                                                                                                                                                     | Type                                                                                                                                                                                                          | Required                                                                                                                                                                                                      | Description                                                                                                                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                                                                                         | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                                                         | :heavy_check_mark:                                                                                                                                                                                            | The context to use for the request.                                                                                                                                                                           |
-| `id`                                                                                                                                                                                                          | *string*                                                                                                                                                                                                      | :heavy_check_mark:                                                                                                                                                                                            | The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`). |
+| `id`                                                                                                                                                                                                          | `string`                                                                                                                                                                                                      | :heavy_check_mark:                                                                                                                                                                                            | The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`). |
 | `opts`                                                                                                                                                                                                        | [][operations.Option](../../models/operations/option.md)                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                            | The options for this request.                                                                                                                                                                                 |
 
 ### Response

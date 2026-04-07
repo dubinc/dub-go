@@ -121,7 +121,7 @@ type ListPayoutsRequest struct {
 	// The sort order for the list of payouts.
 	SortOrder *ListPayoutsQueryParamSortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
 	// The page number for pagination.
-	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	Page *float64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
 	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
@@ -289,6 +289,36 @@ func (e *Method) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// ListPayoutsDefaultPayoutMethod - The partner's default payout method. Connect: Bank account payouts via Stripe Connect; Stablecoin: USDC payouts directly to a crypto wallet; PayPal: Payouts via PayPal
+type ListPayoutsDefaultPayoutMethod string
+
+const (
+	ListPayoutsDefaultPayoutMethodConnect    ListPayoutsDefaultPayoutMethod = "connect"
+	ListPayoutsDefaultPayoutMethodStablecoin ListPayoutsDefaultPayoutMethod = "stablecoin"
+	ListPayoutsDefaultPayoutMethodPaypal     ListPayoutsDefaultPayoutMethod = "paypal"
+)
+
+func (e ListPayoutsDefaultPayoutMethod) ToPointer() *ListPayoutsDefaultPayoutMethod {
+	return &e
+}
+func (e *ListPayoutsDefaultPayoutMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "connect":
+		fallthrough
+	case "stablecoin":
+		fallthrough
+	case "paypal":
+		*e = ListPayoutsDefaultPayoutMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListPayoutsDefaultPayoutMethod: %v", v)
+	}
+}
+
 type ListPayoutsPartner struct {
 	// The partner's unique ID on Dub.
 	ID string `json:"id"`
@@ -298,6 +328,8 @@ type ListPayoutsPartner struct {
 	Email *string `json:"email"`
 	// The partner's avatar image.
 	Image *string `json:"image"`
+	// The partner's default payout method. Connect: Bank account payouts via Stripe Connect; Stablecoin: USDC payouts directly to a crypto wallet; PayPal: Payouts via PayPal
+	DefaultPayoutMethod *ListPayoutsDefaultPayoutMethod `json:"defaultPayoutMethod"`
 	// The date when the partner enabled payouts.
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
 	// The partner's country (required for tax purposes).
@@ -334,6 +366,13 @@ func (l *ListPayoutsPartner) GetImage() *string {
 		return nil
 	}
 	return l.Image
+}
+
+func (l *ListPayoutsPartner) GetDefaultPayoutMethod() *ListPayoutsDefaultPayoutMethod {
+	if l == nil {
+		return nil
+	}
+	return l.DefaultPayoutMethod
 }
 
 func (l *ListPayoutsPartner) GetPayoutsEnabledAt() *string {
@@ -409,6 +448,7 @@ type ListPayoutsResponseBody struct {
 	PeriodStart   *string            `json:"periodStart"`
 	PeriodEnd     *string            `json:"periodEnd"`
 	CreatedAt     string             `json:"createdAt"`
+	UpdatedAt     *string            `json:"updatedAt,omitempty"`
 	InitiatedAt   *string            `json:"initiatedAt"`
 	PaidAt        *string            `json:"paidAt"`
 	FailureReason *string            `json:"failureReason,omitempty"`
@@ -480,6 +520,13 @@ func (l *ListPayoutsResponseBody) GetCreatedAt() string {
 		return ""
 	}
 	return l.CreatedAt
+}
+
+func (l *ListPayoutsResponseBody) GetUpdatedAt() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UpdatedAt
 }
 
 func (l *ListPayoutsResponseBody) GetInitiatedAt() *string {

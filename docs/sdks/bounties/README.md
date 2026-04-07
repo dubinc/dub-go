@@ -34,7 +34,8 @@ func main() {
 
     res, err := s.Bounties.ListSubmissions(ctx, operations.ListBountySubmissionsRequest{
         BountyID: "<id>",
-        PageSize: dubgo.Pointer[float64](50),
+        Page: dubgo.Pointer[float64](1.0),
+        PageSize: dubgo.Pointer[float64](50.0),
     })
     if err != nil {
         log.Fatal(err)

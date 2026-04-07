@@ -10,7 +10,7 @@ type ListFoldersRequest struct {
 	// The search term to filter the folders by.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// The page number for pagination.
-	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	Page *float64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
 	PageSize *float64 `default:"50" queryParam:"style=form,explode=true,name=pageSize"`
 }

@@ -8,10 +8,11 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
-// Status - Useful for marking a commission as refunded, duplicate, canceled, or fraudulent. Takes precedence over `amount` and `modifyAmount`. When a commission is marked as refunded, duplicate, canceled, or fraudulent, it will be omitted from the payout, and the payout amount will be recalculated accordingly. Paid commissions cannot be updated.
+// Status - Useful for marking a commission as pending, refunded, duplicate, canceled, or fraudulent. Takes precedence over `saleAmount` and `modifySaleAmount`. When a commission is marked as pending, refunded, duplicate, canceled, or fraudulent, it will be omitted from the payout, and the payout amount will be recalculated accordingly. Paid commissions cannot be updated.
 type Status string
 
 const (
+	StatusPending   Status = "pending"
 	StatusRefunded  Status = "refunded"
 	StatusDuplicate Status = "duplicate"
 	StatusCanceled  Status = "canceled"
@@ -27,6 +28,8 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	switch v {
+	case "pending":
+		fallthrough
 	case "refunded":
 		fallthrough
 	case "duplicate":
@@ -43,13 +46,23 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 
 type UpdateCommissionRequestBody struct {
 	// The new absolute amount for the sale. Paid commissions cannot be updated.
-	Amount *float64 `json:"amount,omitempty"`
-	// Modify the current sale amount: use positive values to increase the amount, negative values to decrease it. Takes precedence over `amount`. Paid commissions cannot be updated.
-	ModifyAmount *float64 `json:"modifyAmount,omitempty"`
+	SaleAmount *float64 `json:"saleAmount,omitempty"`
+	// Modify the current sale amount: use positive values to increase the amount, negative values to decrease it. Takes precedence over `saleAmount`. Paid commissions cannot be updated.
+	ModifySaleAmount *float64 `json:"modifySaleAmount,omitempty"`
+	// The new absolute earnings for the custom commission. Paid commissions cannot be updated.
+	Earnings *float64 `json:"earnings,omitempty"`
 	// The currency of the sale amount to update. Accepts ISO 4217 currency codes.
 	Currency *string `default:"usd" json:"currency"`
-	// Useful for marking a commission as refunded, duplicate, canceled, or fraudulent. Takes precedence over `amount` and `modifyAmount`. When a commission is marked as refunded, duplicate, canceled, or fraudulent, it will be omitted from the payout, and the payout amount will be recalculated accordingly. Paid commissions cannot be updated.
+	// Useful for marking a commission as pending, refunded, duplicate, canceled, or fraudulent. Takes precedence over `saleAmount` and `modifySaleAmount`. When a commission is marked as pending, refunded, duplicate, canceled, or fraudulent, it will be omitted from the payout, and the payout amount will be recalculated accordingly. Paid commissions cannot be updated.
 	Status *Status `json:"status,omitempty"`
+	// Deprecated. Use `saleAmount` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Amount *float64 `json:"amount,omitempty"`
+	// Deprecated. Use `modifySaleAmount` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	ModifyAmount *float64 `json:"modifyAmount,omitempty"`
 }
 
 func (u UpdateCommissionRequestBody) MarshalJSON() ([]byte, error) {
@@ -63,18 +76,25 @@ func (u *UpdateCommissionRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (u *UpdateCommissionRequestBody) GetAmount() *float64 {
+func (u *UpdateCommissionRequestBody) GetSaleAmount() *float64 {
 	if u == nil {
 		return nil
 	}
-	return u.Amount
+	return u.SaleAmount
 }
 
-func (u *UpdateCommissionRequestBody) GetModifyAmount() *float64 {
+func (u *UpdateCommissionRequestBody) GetModifySaleAmount() *float64 {
 	if u == nil {
 		return nil
 	}
-	return u.ModifyAmount
+	return u.ModifySaleAmount
+}
+
+func (u *UpdateCommissionRequestBody) GetEarnings() *float64 {
+	if u == nil {
+		return nil
+	}
+	return u.Earnings
 }
 
 func (u *UpdateCommissionRequestBody) GetCurrency() *string {
@@ -89,6 +109,20 @@ func (u *UpdateCommissionRequestBody) GetStatus() *Status {
 		return nil
 	}
 	return u.Status
+}
+
+func (u *UpdateCommissionRequestBody) GetAmount() *float64 {
+	if u == nil {
+		return nil
+	}
+	return u.Amount
+}
+
+func (u *UpdateCommissionRequestBody) GetModifyAmount() *float64 {
+	if u == nil {
+		return nil
+	}
+	return u.ModifyAmount
 }
 
 type UpdateCommissionRequest struct {

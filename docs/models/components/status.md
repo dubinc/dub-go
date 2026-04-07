@@ -2,6 +2,16 @@
 
 The status of the partner's enrollment in the program.
 
+## Example Usage
+
+```go
+import (
+	"github.com/dubinc/dub-go/models/components"
+)
+
+value := components.StatusPending
+```
+
 
 ## Values
 

@@ -7,4 +7,4 @@ The deleted folder ID.
 
 | Field                         | Type                          | Required                      | Description                   |
 | ----------------------------- | ----------------------------- | ----------------------------- | ----------------------------- |
-| `ID`                          | *string*                      | :heavy_check_mark:            | The ID of the deleted folder. |
+| `ID`                          | `string`                      | :heavy_check_mark:            | The ID of the deleted folder. |

@@ -12,8 +12,11 @@ import (
 	"github.com/dubinc/dub-go/models/operations"
 	"github.com/dubinc/dub-go/models/sdkerrors"
 	"github.com/dubinc/dub-go/retry"
+	"github.com/spyzhov/ajson"
 	"net/http"
 	"net/url"
+	"strconv"
+	"strings"
 )
 
 type Customers struct {
@@ -32,7 +35,7 @@ func newCustomers(rootSDK *Dub, sdkConfig config.SDKConfiguration, hooks *hooks.
 
 // List - Retrieve a list of customers
 // Retrieve a list of customers for the authenticated workspace.
-func (s *Customers) List(ctx context.Context, request operations.GetCustomersRequest, opts ...operations.Option) ([]operations.GetCustomersResponseBody, error) {
+func (s *Customers) List(ctx context.Context, request operations.GetCustomersRequest, opts ...operations.Option) (*operations.GetCustomersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -187,6 +190,52 @@ func (s *Customers) List(ctx context.Context, request operations.GetCustomersReq
 		}
 	}
 
+	res := &operations.GetCustomersResponse{}
+	res.Next = func() (*operations.GetCustomersResponse, error) {
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+
+		b, err := ajson.Unmarshal(rawBody)
+		if err != nil {
+			return nil, err
+		}
+		nC, err := ajson.Eval(b, "$[-1].id")
+		if err != nil {
+			return nil, err
+		}
+		var nCVal string
+
+		if nC.IsNumeric() {
+			numVal, err := nC.GetNumeric()
+			if err != nil {
+				return nil, err
+			}
+			// GetNumeric returns as float64 so convert to the appropriate type.
+			nCVal = strconv.FormatFloat(numVal, 'f', 0, 64)
+		} else {
+			val, err := nC.Value()
+			if err != nil {
+				return nil, err
+			}
+			if val == nil {
+				return nil, nil
+			}
+			nCVal = val.(string)
+			if strings.TrimSpace(nCVal) == "" {
+				return nil, nil
+			}
+		}
+		request.StartingAfter = &nCVal
+
+		return s.List(
+			ctx,
+			request,
+			opts...,
+		)
+	}
+
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
@@ -201,7 +250,7 @@ func (s *Customers) List(ctx context.Context, request operations.GetCustomersReq
 				return nil, err
 			}
 
-			return out, nil
+			res.Result = out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -418,7 +467,7 @@ func (s *Customers) List(ctx context.Context, request operations.GetCustomersReq
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return nil, nil
+	return res, nil
 
 }
 

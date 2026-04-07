@@ -188,6 +188,8 @@ type RejectBountySubmissionResponseBody struct {
 	RejectionReason *string `json:"rejectionReason"`
 	// The note for rejecting the submission
 	RejectionNote *string `json:"rejectionNote"`
+	// The period number for this submission (1-indexed)
+	PeriodNumber int64 `json:"periodNumber"`
 }
 
 func (r *RejectBountySubmissionResponseBody) GetID() string {
@@ -293,4 +295,11 @@ func (r *RejectBountySubmissionResponseBody) GetRejectionNote() *string {
 		return nil
 	}
 	return r.RejectionNote
+}
+
+func (r *RejectBountySubmissionResponseBody) GetPeriodNumber() int64 {
+	if r == nil {
+		return 0
+	}
+	return r.PeriodNumber
 }

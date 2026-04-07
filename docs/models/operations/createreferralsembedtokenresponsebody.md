@@ -7,5 +7,5 @@ The created public embed token.
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `PublicToken`      | *string*           | :heavy_check_mark: | N/A                |
-| `Expires`          | *string*           | :heavy_check_mark: | N/A                |
+| `PublicToken`      | `string`           | :heavy_check_mark: | N/A                |
+| `Expires`          | `string`           | :heavy_check_mark: | N/A                |

@@ -158,13 +158,11 @@ func (c *CreatePartnerTestVariants) GetPercentage() float64 {
 
 // LinkProps - Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
 type LinkProps struct {
-	// The length of the short link slug. Defaults to 7 if not provided. When used with `prefix`, the total length of the key will be `prefix.length + keyLength`.
-	KeyLength *float64 `json:"keyLength,omitempty"`
 	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
 	ExternalID *string `json:"externalId,omitempty"`
 	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
 	TenantID *string `json:"tenantId,omitempty"`
-	// The prefix of the short link slug for randomly-generated keys (e.g. if prefix is `/c/`, generated keys will be in the `/c/:key` format). Will be ignored if `key` is provided.
+	// Path prefix for each default referral link slug (e.g. `/c/` → `https://{domain}/c/{identity}`). If the group has multiple default links, a short random suffix is appended to the identity segment for uniqueness (e.g. `c/jane-a7f2`).
 	Prefix *string `json:"prefix,omitempty"`
 	// Whether the short link is archived. Defaults to `false` if not provided.
 	Archived *bool `json:"archived,omitempty"`
@@ -204,13 +202,6 @@ type LinkProps struct {
 	TestStartedAt *string `json:"testStartedAt,omitempty"`
 	// The date and time when the tests were or will be completed.
 	TestCompletedAt *string `json:"testCompletedAt,omitempty"`
-}
-
-func (l *LinkProps) GetKeyLength() *float64 {
-	if l == nil {
-		return nil
-	}
-	return l.KeyLength
 }
 
 func (l *LinkProps) GetExternalID() *string {
@@ -449,6 +440,36 @@ func (c *CreatePartnerRequestBody) GetLinkProps() *LinkProps {
 		return nil
 	}
 	return c.LinkProps
+}
+
+// CreatePartnerDefaultPayoutMethod - The partner's default payout method. Connect: Bank account payouts via Stripe Connect; Stablecoin: USDC payouts directly to a crypto wallet; PayPal: Payouts via PayPal
+type CreatePartnerDefaultPayoutMethod string
+
+const (
+	CreatePartnerDefaultPayoutMethodConnect    CreatePartnerDefaultPayoutMethod = "connect"
+	CreatePartnerDefaultPayoutMethodStablecoin CreatePartnerDefaultPayoutMethod = "stablecoin"
+	CreatePartnerDefaultPayoutMethodPaypal     CreatePartnerDefaultPayoutMethod = "paypal"
+)
+
+func (e CreatePartnerDefaultPayoutMethod) ToPointer() *CreatePartnerDefaultPayoutMethod {
+	return &e
+}
+func (e *CreatePartnerDefaultPayoutMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "connect":
+		fallthrough
+	case "stablecoin":
+		fallthrough
+	case "paypal":
+		*e = CreatePartnerDefaultPayoutMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePartnerDefaultPayoutMethod: %v", v)
+	}
 }
 
 // CreatePartnerStatus - The status of the partner's enrollment in the program.
@@ -724,6 +745,9 @@ func (f *Fields8) GetType() CreatePartnerFieldsPartnersResponse201ApplicationJSO
 	return f.Type
 }
 
+// #region class-body-fields8
+// #endregion class-body-fields8
+
 type CreatePartnerFieldsPartnersResponse201ApplicationJSONResponseBodyReferralFormDataType string
 
 const (
@@ -808,6 +832,9 @@ func (f *Fields7) GetType() CreatePartnerFieldsPartnersResponse201ApplicationJSO
 	}
 	return f.Type
 }
+
+// #region class-body-fields7
+// #endregion class-body-fields7
 
 type CreatePartnerFieldsPartnersResponse201ApplicationJSONResponseBodyType string
 
@@ -932,6 +959,9 @@ func (f *Fields6) GetOptions() []CreatePartnerFieldsPartnersOptions {
 	return f.Options
 }
 
+// #region class-body-fields6
+// #endregion class-body-fields6
+
 type CreatePartnerFieldsPartnersResponse201ApplicationJSONType string
 
 const (
@@ -1017,6 +1047,9 @@ func (f *Fields5) GetType() CreatePartnerFieldsPartnersResponse201ApplicationJSO
 	return f.Type
 }
 
+// #region class-body-fields5
+// #endregion class-body-fields5
+
 type CreatePartnerFieldsPartnersResponse201Type string
 
 const (
@@ -1101,6 +1134,9 @@ func (c *CreatePartnerFields4) GetType() CreatePartnerFieldsPartnersResponse201T
 	}
 	return c.Type
 }
+
+// #region class-body-createpartnerfields4
+// #endregion class-body-createpartnerfields4
 
 type CreatePartnerFieldsPartnersResponseType string
 
@@ -1225,6 +1261,9 @@ func (c *CreatePartnerFields3) GetOptions() []CreatePartnerFieldsOptions {
 	return c.Options
 }
 
+// #region class-body-createpartnerfields3
+// #endregion class-body-createpartnerfields3
+
 type CreatePartnerFieldsPartnersType string
 
 const (
@@ -1339,6 +1378,9 @@ func (c *CreatePartnerFields2) GetConstraints() *CreatePartnerFieldsPartnersCons
 	}
 	return c.Constraints
 }
+
+// #region class-body-createpartnerfields2
+// #endregion class-body-createpartnerfields2
 
 type CreatePartnerFieldsType string
 
@@ -1462,6 +1504,9 @@ func (c *CreatePartnerFields1) GetConstraints() *CreatePartnerFieldsConstraints 
 	}
 	return c.Constraints
 }
+
+// #region class-body-createpartnerfields1
+// #endregion class-body-createpartnerfields1
 
 type CreatePartnerFieldsUnionType string
 
@@ -1669,6 +1714,70 @@ func (c *CreatePartnerReferralFormData) GetFields() []CreatePartnerFields {
 	return c.Fields
 }
 
+// CreatePartnerRejectionReason - Preset reason when the application was rejected.
+type CreatePartnerRejectionReason string
+
+const (
+	CreatePartnerRejectionReasonNeedsMoreDetail         CreatePartnerRejectionReason = "needsMoreDetail"
+	CreatePartnerRejectionReasonDoesNotMeetRequirements CreatePartnerRejectionReason = "doesNotMeetRequirements"
+	CreatePartnerRejectionReasonNotTheRightFit          CreatePartnerRejectionReason = "notTheRightFit"
+	CreatePartnerRejectionReasonOther                   CreatePartnerRejectionReason = "other"
+)
+
+func (e CreatePartnerRejectionReason) ToPointer() *CreatePartnerRejectionReason {
+	return &e
+}
+func (e *CreatePartnerRejectionReason) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "needsMoreDetail":
+		fallthrough
+	case "doesNotMeetRequirements":
+		fallthrough
+	case "notTheRightFit":
+		fallthrough
+	case "other":
+		*e = CreatePartnerRejectionReason(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreatePartnerRejectionReason: %v", v)
+	}
+}
+
+// CreatePartnerApplication - Linked program application, including review outcome when applicable.
+type CreatePartnerApplication struct {
+	// Preset reason when the application was rejected.
+	RejectionReason *CreatePartnerRejectionReason `json:"rejectionReason"`
+	// Free-form note when the application was rejected.
+	RejectionNote *string `json:"rejectionNote"`
+	// When the application was approved or rejected.
+	ReviewedAt *string `json:"reviewedAt"`
+}
+
+func (c *CreatePartnerApplication) GetRejectionReason() *CreatePartnerRejectionReason {
+	if c == nil {
+		return nil
+	}
+	return c.RejectionReason
+}
+
+func (c *CreatePartnerApplication) GetRejectionNote() *string {
+	if c == nil {
+		return nil
+	}
+	return c.RejectionNote
+}
+
+func (c *CreatePartnerApplication) GetReviewedAt() *string {
+	if c == nil {
+		return nil
+	}
+	return c.ReviewedAt
+}
+
 // CreatePartnerResponseBody - The created or updated partner
 type CreatePartnerResponseBody struct {
 	// The partner's unique ID on Dub.
@@ -1685,6 +1794,8 @@ type CreatePartnerResponseBody struct {
 	Description *string `json:"description,omitempty"`
 	// The partner's country (required for tax purposes).
 	Country *string `json:"country"`
+	// The partner's default payout method. Connect: Bank account payouts via Stripe Connect; Stablecoin: USDC payouts directly to a crypto wallet; PayPal: Payouts via PayPal
+	DefaultPayoutMethod *CreatePartnerDefaultPayoutMethod `json:"defaultPayoutMethod"`
 	// The partner's PayPal email (for receiving payouts via PayPal).
 	PaypalEmail *string `json:"paypalEmail"`
 	// The partner's Stripe Connect ID (for receiving payouts via Stripe).
@@ -1719,6 +1830,8 @@ type CreatePartnerResponseBody struct {
 	// If the partner was banned from the program, this is the reason for the ban.
 	BannedReason     *CreatePartnerBannedReason     `json:"bannedReason,omitempty"`
 	ReferralFormData *CreatePartnerReferralFormData `json:"referralFormData,omitempty"`
+	// Linked program application, including review outcome when applicable.
+	Application *CreatePartnerApplication `json:"application,omitempty"`
 	// The total number of clicks on the partner's links
 	TotalClicks *float64 `default:"0" json:"totalClicks"`
 	// The total number of leads generated by the partner's links
@@ -1815,6 +1928,13 @@ func (c *CreatePartnerResponseBody) GetCountry() *string {
 		return nil
 	}
 	return c.Country
+}
+
+func (c *CreatePartnerResponseBody) GetDefaultPayoutMethod() *CreatePartnerDefaultPayoutMethod {
+	if c == nil {
+		return nil
+	}
+	return c.DefaultPayoutMethod
 }
 
 func (c *CreatePartnerResponseBody) GetPaypalEmail() *string {
@@ -1955,6 +2075,13 @@ func (c *CreatePartnerResponseBody) GetReferralFormData() *CreatePartnerReferral
 		return nil
 	}
 	return c.ReferralFormData
+}
+
+func (c *CreatePartnerResponseBody) GetApplication() *CreatePartnerApplication {
+	if c == nil {
+		return nil
+	}
+	return c.Application
 }
 
 func (c *CreatePartnerResponseBody) GetTotalClicks() *float64 {

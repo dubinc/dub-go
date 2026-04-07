@@ -7,4 +7,4 @@ The deleted tag ID.
 
 | Field                      | Type                       | Required                   | Description                |
 | -------------------------- | -------------------------- | -------------------------- | -------------------------- |
-| `ID`                       | *string*                   | :heavy_check_mark:         | The ID of the deleted tag. |
+| `ID`                       | `string`                   | :heavy_check_mark:         | The ID of the deleted tag. |

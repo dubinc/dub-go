@@ -7,4 +7,4 @@ The deleted links count.
 
 | Field                        | Type                         | Required                     | Description                  |
 | ---------------------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| `DeletedCount`               | *float64*                    | :heavy_check_mark:           | The number of links deleted. |
+| `DeletedCount`               | `float64`                    | :heavy_check_mark:           | The number of links deleted. |

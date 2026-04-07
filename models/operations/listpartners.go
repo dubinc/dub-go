@@ -142,6 +142,8 @@ func (e *ListPartnersQueryParamSortOrder) UnmarshalJSON(data []byte) error {
 }
 
 type ListPartnersRequest struct {
+	// A filter on the list based on the partner's `groupId` field.
+	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
 	// A filter on the list based on the partner's `status` field.
 	Status *ListPartnersQueryParamStatus `queryParam:"style=form,explode=true,name=status"`
 	// A filter on the list based on the partner's `country` field.
@@ -157,7 +159,7 @@ type ListPartnersRequest struct {
 	// A search query to filter partners by ID, name, email, or link.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// The page number for pagination.
-	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	Page *float64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
 	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
@@ -171,6 +173,13 @@ func (l *ListPartnersRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (l *ListPartnersRequest) GetGroupID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.GroupID
 }
 
 func (l *ListPartnersRequest) GetStatus() *ListPartnersQueryParamStatus {
@@ -234,6 +243,36 @@ func (l *ListPartnersRequest) GetPageSize() *float64 {
 		return nil
 	}
 	return l.PageSize
+}
+
+// DefaultPayoutMethod - The partner's default payout method. Connect: Bank account payouts via Stripe Connect; Stablecoin: USDC payouts directly to a crypto wallet; PayPal: Payouts via PayPal
+type DefaultPayoutMethod string
+
+const (
+	DefaultPayoutMethodConnect    DefaultPayoutMethod = "connect"
+	DefaultPayoutMethodStablecoin DefaultPayoutMethod = "stablecoin"
+	DefaultPayoutMethodPaypal     DefaultPayoutMethod = "paypal"
+)
+
+func (e DefaultPayoutMethod) ToPointer() *DefaultPayoutMethod {
+	return &e
+}
+func (e *DefaultPayoutMethod) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "connect":
+		fallthrough
+	case "stablecoin":
+		fallthrough
+	case "paypal":
+		*e = DefaultPayoutMethod(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for DefaultPayoutMethod: %v", v)
+	}
 }
 
 // ListPartnersStatus - The status of the partner's enrollment in the program.
@@ -887,6 +926,9 @@ func (f *Fields4) GetType() ListPartnersFieldsPartnersResponseType {
 	return f.Type
 }
 
+// #region class-body-fields4
+// #endregion class-body-fields4
+
 type ListPartnersFieldsPartnersType string
 
 const (
@@ -1010,6 +1052,9 @@ func (f *Fields3) GetOptions() []OptionsObj {
 	return f.Options
 }
 
+// #region class-body-fields3
+// #endregion class-body-fields3
+
 type ListPartnersFieldsType string
 
 const (
@@ -1124,6 +1169,9 @@ func (f *Fields2) GetConstraints() *FieldsConstraints {
 	}
 	return f.Constraints
 }
+
+// #region class-body-fields2
+// #endregion class-body-fields2
 
 type FieldsType string
 
@@ -1247,6 +1295,9 @@ func (f *Fields1) GetConstraints() *Constraints {
 	}
 	return f.Constraints
 }
+
+// #region class-body-fields1
+// #endregion class-body-fields1
 
 type FieldsUnionType string
 
@@ -1454,6 +1505,70 @@ func (r *ReferralFormData) GetFields() []Fields {
 	return r.Fields
 }
 
+// ListPartnersRejectionReason - Preset reason when the application was rejected.
+type ListPartnersRejectionReason string
+
+const (
+	ListPartnersRejectionReasonNeedsMoreDetail         ListPartnersRejectionReason = "needsMoreDetail"
+	ListPartnersRejectionReasonDoesNotMeetRequirements ListPartnersRejectionReason = "doesNotMeetRequirements"
+	ListPartnersRejectionReasonNotTheRightFit          ListPartnersRejectionReason = "notTheRightFit"
+	ListPartnersRejectionReasonOther                   ListPartnersRejectionReason = "other"
+)
+
+func (e ListPartnersRejectionReason) ToPointer() *ListPartnersRejectionReason {
+	return &e
+}
+func (e *ListPartnersRejectionReason) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "needsMoreDetail":
+		fallthrough
+	case "doesNotMeetRequirements":
+		fallthrough
+	case "notTheRightFit":
+		fallthrough
+	case "other":
+		*e = ListPartnersRejectionReason(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListPartnersRejectionReason: %v", v)
+	}
+}
+
+// Application - Linked program application, including review outcome when applicable.
+type Application struct {
+	// Preset reason when the application was rejected.
+	RejectionReason *ListPartnersRejectionReason `json:"rejectionReason"`
+	// Free-form note when the application was rejected.
+	RejectionNote *string `json:"rejectionNote"`
+	// When the application was approved or rejected.
+	ReviewedAt *string `json:"reviewedAt"`
+}
+
+func (a *Application) GetRejectionReason() *ListPartnersRejectionReason {
+	if a == nil {
+		return nil
+	}
+	return a.RejectionReason
+}
+
+func (a *Application) GetRejectionNote() *string {
+	if a == nil {
+		return nil
+	}
+	return a.RejectionNote
+}
+
+func (a *Application) GetReviewedAt() *string {
+	if a == nil {
+		return nil
+	}
+	return a.ReviewedAt
+}
+
 type ListPartnersResponseBody struct {
 	// The partner's unique ID on Dub.
 	ID string `json:"id"`
@@ -1469,6 +1584,8 @@ type ListPartnersResponseBody struct {
 	Description *string `json:"description,omitempty"`
 	// The partner's country (required for tax purposes).
 	Country *string `json:"country"`
+	// The partner's default payout method. Connect: Bank account payouts via Stripe Connect; Stablecoin: USDC payouts directly to a crypto wallet; PayPal: Payouts via PayPal
+	DefaultPayoutMethod *DefaultPayoutMethod `json:"defaultPayoutMethod"`
 	// The partner's PayPal email (for receiving payouts via PayPal).
 	PaypalEmail *string `json:"paypalEmail"`
 	// The partner's Stripe Connect ID (for receiving payouts via Stripe).
@@ -1503,6 +1620,8 @@ type ListPartnersResponseBody struct {
 	// If the partner was banned from the program, this is the reason for the ban.
 	BannedReason     *BannedReason     `json:"bannedReason,omitempty"`
 	ReferralFormData *ReferralFormData `json:"referralFormData,omitempty"`
+	// Linked program application, including review outcome when applicable.
+	Application *Application `json:"application,omitempty"`
 	// The total number of clicks on the partner's links
 	TotalClicks *float64 `default:"0" json:"totalClicks"`
 	// The total number of leads generated by the partner's links
@@ -1599,6 +1718,13 @@ func (l *ListPartnersResponseBody) GetCountry() *string {
 		return nil
 	}
 	return l.Country
+}
+
+func (l *ListPartnersResponseBody) GetDefaultPayoutMethod() *DefaultPayoutMethod {
+	if l == nil {
+		return nil
+	}
+	return l.DefaultPayoutMethod
 }
 
 func (l *ListPartnersResponseBody) GetPaypalEmail() *string {
@@ -1739,6 +1865,13 @@ func (l *ListPartnersResponseBody) GetReferralFormData() *ReferralFormData {
 		return nil
 	}
 	return l.ReferralFormData
+}
+
+func (l *ListPartnersResponseBody) GetApplication() *Application {
+	if l == nil {
+		return nil
+	}
+	return l.Application
 }
 
 func (l *ListPartnersResponseBody) GetTotalClicks() *float64 {

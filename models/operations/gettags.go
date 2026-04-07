@@ -137,7 +137,7 @@ type GetTagsRequest struct {
 	// IDs of tags to filter by.
 	Ids *Ids `queryParam:"style=form,explode=true,name=ids"`
 	// The page number for pagination.
-	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	Page *float64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
 	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }

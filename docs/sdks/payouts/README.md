@@ -31,7 +31,8 @@ func main() {
     )
 
     res, err := s.Payouts.List(ctx, operations.ListPayoutsRequest{
-        PageSize: dubgo.Pointer[float64](50),
+        Page: dubgo.Pointer[float64](1.0),
+        PageSize: dubgo.Pointer[float64](50.0),
     })
     if err != nil {
         log.Fatal(err)

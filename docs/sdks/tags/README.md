@@ -34,7 +34,8 @@ func main() {
     )
 
     res, err := s.Tags.List(ctx, operations.GetTagsRequest{
-        PageSize: dubgo.Pointer[float64](50),
+        Page: dubgo.Pointer[float64](1.0),
+        PageSize: dubgo.Pointer[float64](50.0),
     })
     if err != nil {
         log.Fatal(err)
@@ -170,7 +171,7 @@ func main() {
 | Parameter                                                | Type                                                     | Required                                                 | Description                                              |
 | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
 | `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `id`                                                     | *string*                                                 | :heavy_check_mark:                                       | The ID of the tag to delete.                             |
+| `id`                                                     | `string`                                                 | :heavy_check_mark:                                       | The ID of the tag to delete.                             |
 | `opts`                                                   | [][operations.Option](../../models/operations/option.md) | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
@@ -230,7 +231,7 @@ func main() {
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `ctx`                                                                               | [context.Context](https://pkg.go.dev/context#Context)                               | :heavy_check_mark:                                                                  | The context to use for the request.                                                 |
-| `id`                                                                                | *string*                                                                            | :heavy_check_mark:                                                                  | The ID of the tag to update.                                                        |
+| `id`                                                                                | `string`                                                                            | :heavy_check_mark:                                                                  | The ID of the tag to update.                                                        |
 | `requestBody`                                                                       | [*operations.UpdateTagRequestBody](../../models/operations/updatetagrequestbody.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
 | `opts`                                                                              | [][operations.Option](../../models/operations/option.md)                            | :heavy_minus_sign:                                                                  | The options for this request.                                                       |
 

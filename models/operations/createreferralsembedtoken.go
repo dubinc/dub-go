@@ -157,13 +157,11 @@ func (c *CreateReferralsEmbedTokenTestVariants) GetPercentage() float64 {
 
 // CreateReferralsEmbedTokenLinkProps - Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
 type CreateReferralsEmbedTokenLinkProps struct {
-	// The length of the short link slug. Defaults to 7 if not provided. When used with `prefix`, the total length of the key will be `prefix.length + keyLength`.
-	KeyLength *float64 `json:"keyLength,omitempty"`
 	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
 	ExternalID *string `json:"externalId,omitempty"`
 	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
 	TenantID *string `json:"tenantId,omitempty"`
-	// The prefix of the short link slug for randomly-generated keys (e.g. if prefix is `/c/`, generated keys will be in the `/c/:key` format). Will be ignored if `key` is provided.
+	// Path prefix for each default referral link slug (e.g. `/c/` → `https://{domain}/c/{identity}`). If the group has multiple default links, a short random suffix is appended to the identity segment for uniqueness (e.g. `c/jane-a7f2`).
 	Prefix *string `json:"prefix,omitempty"`
 	// Whether the short link is archived. Defaults to `false` if not provided.
 	Archived *bool `json:"archived,omitempty"`
@@ -203,13 +201,6 @@ type CreateReferralsEmbedTokenLinkProps struct {
 	TestStartedAt *string `json:"testStartedAt,omitempty"`
 	// The date and time when the tests were or will be completed.
 	TestCompletedAt *string `json:"testCompletedAt,omitempty"`
-}
-
-func (c *CreateReferralsEmbedTokenLinkProps) GetKeyLength() *float64 {
-	if c == nil {
-		return nil
-	}
-	return c.KeyLength
 }
 
 func (c *CreateReferralsEmbedTokenLinkProps) GetExternalID() *string {

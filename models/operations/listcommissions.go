@@ -211,8 +211,12 @@ type ListCommissionsRequest struct {
 	// The end date of the date range to filter the commissions by.
 	End      *string `queryParam:"style=form,explode=true,name=end"`
 	Timezone *string `queryParam:"style=form,explode=true,name=timezone"`
-	// The page number for pagination.
-	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	// If specified, the query only searches for results before this cursor. Mutually exclusive with `startingAfter`.
+	EndingBefore *string `queryParam:"style=form,explode=true,name=endingBefore"`
+	// If specified, the query only searches for results after this cursor. Mutually exclusive with `endingBefore`.
+	StartingAfter *string `queryParam:"style=form,explode=true,name=startingAfter"`
+	// DEPRECATED. Use `startingAfter` instead.
+	Page *float64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
 	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
@@ -324,6 +328,20 @@ func (l *ListCommissionsRequest) GetTimezone() *string {
 		return nil
 	}
 	return l.Timezone
+}
+
+func (l *ListCommissionsRequest) GetEndingBefore() *string {
+	if l == nil {
+		return nil
+	}
+	return l.EndingBefore
+}
+
+func (l *ListCommissionsRequest) GetStartingAfter() *string {
+	if l == nil {
+		return nil
+	}
+	return l.StartingAfter
 }
 
 func (l *ListCommissionsRequest) GetPage() *float64 {
@@ -705,4 +723,17 @@ func (l *ListCommissionsResponseBody) GetCustomer() *ListCommissionsCustomer {
 		return nil
 	}
 	return l.Customer
+}
+
+type ListCommissionsResponse struct {
+	Result []ListCommissionsResponseBody
+
+	Next func() (*ListCommissionsResponse, error)
+}
+
+func (l *ListCommissionsResponse) GetResult() []ListCommissionsResponseBody {
+	if l == nil {
+		return []ListCommissionsResponseBody{}
+	}
+	return l.Result
 }

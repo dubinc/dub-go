@@ -2,6 +2,16 @@
 
 The type of trigger method: link click or QR scan
 
+## Example Usage
+
+```go
+import (
+	"github.com/dubinc/dub-go/models/components"
+)
+
+value := components.TriggerQr
+```
+
 
 ## Values
 

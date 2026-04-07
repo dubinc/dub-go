@@ -908,7 +908,7 @@ type LeadCreatedEventData struct {
 	Click     LeadCreatedEventClick `json:"click"`
 	Link      LeadCreatedEventLink  `json:"link"`
 	Partner   *Partner              `json:"partner,omitempty"`
-	Metadata  map[string]any        `json:"metadata,omitempty"`
+	Metadata  map[string]any        `json:"metadata"`
 }
 
 func (l LeadCreatedEventData) MarshalJSON() ([]byte, error) {

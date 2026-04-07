@@ -40,7 +40,10 @@ func main() {
     )
 
     res, err := s.Links.List(ctx, operations.GetLinksRequest{
-        PageSize: dubgo.Pointer[float64](50),
+        EndingBefore: dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+        StartingAfter: dubgo.Pointer("link_1KAP4CDPBSVMMBMH9XX3YZZ0Z..."),
+        Page: dubgo.Pointer[float64](1.0),
+        PageSize: dubgo.Pointer[float64](50.0),
     })
     if err != nil {
         log.Fatal(err)
@@ -125,11 +128,11 @@ func main() {
         TestVariants: []operations.TestVariants{
             operations.TestVariants{
                 URL: "https://example.com/variant-1",
-                Percentage: 50,
+                Percentage: 50.0,
             },
             operations.TestVariants{
                 URL: "https://example.com/variant-2",
-                Percentage: 50,
+                Percentage: 50.0,
             },
         },
     })
@@ -332,7 +335,7 @@ func main() {
 | Parameter                                                                                                                             | Type                                                                                                                                  | Required                                                                                                                              | Description                                                                                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                 | :heavy_check_mark:                                                                                                                    | The context to use for the request.                                                                                                   |
-| `linkID`                                                                                                                              | *string*                                                                                                                              | :heavy_check_mark:                                                                                                                    | The id of the link to delete. You may use either `linkId` (obtained via `/links/info` endpoint) or `externalId` prefixed with `ext_`. |
+| `linkID`                                                                                                                              | `string`                                                                                                                              | :heavy_check_mark:                                                                                                                    | The id of the link to delete. You may use either `linkId` (obtained via `/links/info` endpoint) or `externalId` prefixed with `ext_`. |
 | `opts`                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                              | :heavy_minus_sign:                                                                                                                    | The options for this request.                                                                                                         |
 
 ### Response
@@ -389,11 +392,11 @@ func main() {
         TestVariants: []operations.UpdateLinkTestVariants{
             operations.UpdateLinkTestVariants{
                 URL: "https://example.com/variant-1",
-                Percentage: 50,
+                Percentage: 50.0,
             },
             operations.UpdateLinkTestVariants{
                 URL: "https://example.com/variant-2",
-                Percentage: 50,
+                Percentage: 50.0,
             },
         },
     })
@@ -411,7 +414,7 @@ func main() {
 | Parameter                                                                                                                             | Type                                                                                                                                  | Required                                                                                                                              | Description                                                                                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                 | :heavy_check_mark:                                                                                                                    | The context to use for the request.                                                                                                   |
-| `linkID`                                                                                                                              | *string*                                                                                                                              | :heavy_check_mark:                                                                                                                    | The id of the link to update. You may use either `linkId` (obtained via `/links/info` endpoint) or `externalId` prefixed with `ext_`. |
+| `linkID`                                                                                                                              | `string`                                                                                                                              | :heavy_check_mark:                                                                                                                    | The id of the link to update. You may use either `linkId` (obtained via `/links/info` endpoint) or `externalId` prefixed with `ext_`. |
 | `requestBody`                                                                                                                         | [*operations.UpdateLinkRequestBody](../../models/operations/updatelinkrequestbody.md)                                                 | :heavy_minus_sign:                                                                                                                    | N/A                                                                                                                                   |
 | `opts`                                                                                                                                | [][operations.Option](../../models/operations/option.md)                                                                              | :heavy_minus_sign:                                                                                                                    | The options for this request.                                                                                                         |
 
@@ -470,11 +473,11 @@ func main() {
             TestVariants: []operations.BulkCreateLinksTestVariants{
                 operations.BulkCreateLinksTestVariants{
                     URL: "https://example.com/variant-1",
-                    Percentage: 50,
+                    Percentage: 50.0,
                 },
                 operations.BulkCreateLinksTestVariants{
                     URL: "https://example.com/variant-2",
-                    Percentage: 50,
+                    Percentage: 50.0,
                 },
             },
         },
@@ -489,11 +492,11 @@ func main() {
             TestVariants: []operations.BulkCreateLinksTestVariants{
                 operations.BulkCreateLinksTestVariants{
                     URL: "https://example.com/variant-1",
-                    Percentage: 50,
+                    Percentage: 50.0,
                 },
                 operations.BulkCreateLinksTestVariants{
                     URL: "https://example.com/variant-2",
-                    Percentage: 50,
+                    Percentage: 50.0,
                 },
             },
         },
@@ -635,11 +638,11 @@ func main() {
             TestVariants: []operations.BulkUpdateLinksTestVariants{
                 operations.BulkUpdateLinksTestVariants{
                     URL: "https://example.com/variant-1",
-                    Percentage: 50,
+                    Percentage: 50.0,
                 },
                 operations.BulkUpdateLinksTestVariants{
                     URL: "https://example.com/variant-2",
-                    Percentage: 50,
+                    Percentage: 50.0,
                 },
             },
         },
@@ -715,11 +718,11 @@ func main() {
         TestVariants: []operations.UpsertLinkTestVariants{
             operations.UpsertLinkTestVariants{
                 URL: "https://example.com/variant-1",
-                Percentage: 50,
+                Percentage: 50.0,
             },
             operations.UpsertLinkTestVariants{
                 URL: "https://example.com/variant-2",
-                Percentage: 50,
+                Percentage: 50.0,
             },
         },
     })

@@ -38,12 +38,14 @@ func main() {
     )
 
     res, err := s.Partners.List(ctx, operations.ListPartnersRequest{
+        GroupID: dubgo.Pointer("grp_123"),
         Status: operations.ListPartnersQueryParamStatusApproved.ToPointer(),
         Country: dubgo.Pointer("US"),
         Email: dubgo.Pointer("panic@thedis.co"),
         TenantID: dubgo.Pointer("1K0NM7HCN944PEMZ3CQPH43H8"),
         Search: dubgo.Pointer("john"),
-        PageSize: dubgo.Pointer[float64](50),
+        Page: dubgo.Pointer[float64](1.0),
+        PageSize: dubgo.Pointer[float64](50.0),
     })
     if err != nil {
         log.Fatal(err)
@@ -117,11 +119,11 @@ func main() {
             TestVariants: []operations.CreatePartnerTestVariants{
                 operations.CreatePartnerTestVariants{
                     URL: "https://example.com/variant-1",
-                    Percentage: 50,
+                    Percentage: 50.0,
                 },
                 operations.CreatePartnerTestVariants{
                     URL: "https://example.com/variant-2",
-                    Percentage: 50,
+                    Percentage: 50.0,
                 },
             },
         },
@@ -258,11 +260,11 @@ func main() {
             TestVariants: []operations.CreatePartnerLinkTestVariants{
                 operations.CreatePartnerLinkTestVariants{
                     URL: "https://example.com/variant-1",
-                    Percentage: 50,
+                    Percentage: 50.0,
                 },
                 operations.CreatePartnerLinkTestVariants{
                     URL: "https://example.com/variant-2",
-                    Percentage: 50,
+                    Percentage: 50.0,
                 },
             },
         },
@@ -339,11 +341,11 @@ func main() {
             TestVariants: []operations.UpsertPartnerLinkTestVariants{
                 operations.UpsertPartnerLinkTestVariants{
                     URL: "https://example.com/variant-1",
-                    Percentage: 50,
+                    Percentage: 50.0,
                 },
                 operations.UpsertPartnerLinkTestVariants{
                     URL: "https://example.com/variant-2",
-                    Percentage: 50,
+                    Percentage: 50.0,
                 },
             },
         },

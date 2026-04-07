@@ -112,7 +112,7 @@ type ListBountySubmissionsRequest struct {
 	// The order to sort the submissions by.
 	SortOrder *ListBountySubmissionsQueryParamSortOrder `default:"asc" queryParam:"style=form,explode=true,name=sortOrder"`
 	// The page number for pagination.
-	Page *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
+	Page *float64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
 	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
@@ -278,6 +278,8 @@ type ListBountySubmissionsResponseBody struct {
 	RejectionReason *string `json:"rejectionReason"`
 	// The note for rejecting the submission
 	RejectionNote *string `json:"rejectionNote"`
+	// The period number for this submission (1-indexed)
+	PeriodNumber int64 `json:"periodNumber"`
 }
 
 func (l *ListBountySubmissionsResponseBody) GetID() string {
@@ -383,4 +385,11 @@ func (l *ListBountySubmissionsResponseBody) GetRejectionNote() *string {
 		return nil
 	}
 	return l.RejectionNote
+}
+
+func (l *ListBountySubmissionsResponseBody) GetPeriodNumber() int64 {
+	if l == nil {
+		return 0
+	}
+	return l.PeriodNumber
 }
