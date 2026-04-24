@@ -31,7 +31,7 @@ func newPayouts(rootSDK *Dub, sdkConfig config.SDKConfiguration, hooks *hooks.Ho
 }
 
 // List all payouts
-// Retrieve a list of payouts for your partner program.
+// Retrieve a paginated list of payouts for your partner program.
 func (s *Payouts) List(ctx context.Context, request operations.ListPayoutsRequest, opts ...operations.Option) ([]operations.ListPayoutsResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -172,7 +172,7 @@ func (s *Payouts) List(ctx context.Context, request operations.ListPayoutsReques
 
 			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "401", "403", "404", "409", "410", "422", "429", "4XX", "500", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err

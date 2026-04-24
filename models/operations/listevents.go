@@ -654,6 +654,8 @@ type ResponseBodySale struct {
 	InvoiceID *string `default:"null" json:"invoiceId"`
 	// The payment processor via which the sale was made.
 	PaymentProcessor *ResponseBodyPaymentProcessor `default:"custom" json:"paymentProcessor"`
+	// The currency of the sale. Accepts ISO 4217 currency codes. Sales will be automatically converted and stored as USD at the latest exchange rates. Learn more: https://d.to/currency
+	Currency any `json:"currency"`
 }
 
 func (r ResponseBodySale) MarshalJSON() ([]byte, error) {
@@ -661,7 +663,7 @@ func (r ResponseBodySale) MarshalJSON() ([]byte, error) {
 }
 
 func (r *ResponseBodySale) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"amount"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"amount", "currency"}); err != nil {
 		return err
 	}
 	return nil
@@ -686,6 +688,13 @@ func (r *ResponseBodySale) GetPaymentProcessor() *ResponseBodyPaymentProcessor {
 		return nil
 	}
 	return r.PaymentProcessor
+}
+
+func (r *ResponseBodySale) GetCurrency() any {
+	if r == nil {
+		return nil
+	}
+	return r.Currency
 }
 
 type ListEventsResponseBodyEventsTestVariants struct {

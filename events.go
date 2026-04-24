@@ -30,7 +30,7 @@ func newEvents(rootSDK *Dub, sdkConfig config.SDKConfiguration, hooks *hooks.Hoo
 	}
 }
 
-// List - Retrieve a list of events
+// List all events
 // Retrieve a paginated list of events for the authenticated workspace.
 func (s *Events) List(ctx context.Context, request operations.ListEventsRequest, opts ...operations.Option) ([]operations.ListEventsResponseBody, error) {
 	o := operations.Options{}
@@ -172,7 +172,7 @@ func (s *Events) List(ctx context.Context, request operations.ListEventsRequest,
 
 			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "401", "403", "404", "409", "410", "422", "429", "4XX", "500", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err

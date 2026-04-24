@@ -7,6 +7,7 @@ import (
 	"fmt"
 )
 
+// Reason - The reason for banning the partner.
 type Reason string
 
 const (
@@ -50,7 +51,8 @@ type BanPartnerRequestBody struct {
 	PartnerID *string `json:"partnerId,omitempty"`
 	// The ID of the partner in your system. If both `partnerId` and `tenantId` are not provided, an error will be thrown.
 	TenantID *string `json:"tenantId,omitempty"`
-	Reason   Reason  `json:"reason"`
+	// The reason for banning the partner.
+	Reason Reason `json:"reason"`
 }
 
 func (b *BanPartnerRequestBody) GetPartnerID() *string {

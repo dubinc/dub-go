@@ -2,7 +2,7 @@
 
 package dubgo
 
-// Generated from OpenAPI doc version 0.0.1 and generator version 2.879.6
+// Generated from OpenAPI doc version 0.0.1 and generator version 2.881.4
 
 import (
 	"context"
@@ -50,23 +50,22 @@ func Pointer[T any](v T) *T { return &v }
 
 // Dub API: Dub is the modern link attribution platform for short links, conversion tracking, and affiliate programs.
 type Dub struct {
-	SDKVersion string
-	Links      *Links
-	// Retrieve analytics for a partner
-	// Retrieve analytics for a partner within a program. The response type vary based on the `groupBy` query parameter.
-	Analytics   *Analytics
-	Events      *Events
-	Tags        *Tags
-	Folders     *Folders
-	Domains     *Domains
-	Track       *Track
-	Customers   *Customers
-	Partners    *Partners
-	Commissions *Commissions
-	Payouts     *Payouts
-	EmbedTokens *EmbedTokens
-	QRCodes     *QRCodes
-	Bounties    *Bounties
+	SDKVersion          string
+	Links               *Links
+	Analytics           *Analytics
+	Events              *Events
+	Tags                *Tags
+	Folders             *Folders
+	Domains             *Domains
+	Track               *Track
+	Customers           *Customers
+	Partners            *Partners
+	PartnerApplications *PartnerApplications
+	Commissions         *Commissions
+	Payouts             *Payouts
+	EmbedTokens         *EmbedTokens
+	QRCodes             *QRCodes
+	Bounties            *Bounties
 
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
@@ -143,9 +142,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Dub {
 	sdk := &Dub{
-		SDKVersion: "0.23.8",
+		SDKVersion: "0.23.9",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.23.8 2.879.6 0.0.1 github.com/dubinc/dub-go",
+			UserAgent:  "speakeasy-sdk/go 0.23.9 2.881.4 0.0.1 github.com/dubinc/dub-go",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -175,6 +174,7 @@ func New(opts ...SDKOption) *Dub {
 	sdk.Track = newTrack(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Customers = newCustomers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Partners = newPartners(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PartnerApplications = newPartnerApplications(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Commissions = newCommissions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Payouts = newPayouts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.EmbedTokens = newEmbedTokens(sdk, sdk.sdkConfiguration, sdk.hooks)

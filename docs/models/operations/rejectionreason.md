@@ -1,6 +1,6 @@
 # RejectionReason
 
-The reason for rejecting the submission.
+The reason for rejecting the partner application. This will be shared with the partner via email.
 
 ## Example Usage
 
@@ -9,16 +9,15 @@ import (
 	"github.com/dubinc/dub-go/models/operations"
 )
 
-value := operations.RejectionReasonInvalidProof
+value := operations.RejectionReasonNeedsMoreDetail
 ```
 
 
 ## Values
 
-| Name                                 | Value                                |
-| ------------------------------------ | ------------------------------------ |
-| `RejectionReasonInvalidProof`        | invalidProof                         |
-| `RejectionReasonDuplicateSubmission` | duplicateSubmission                  |
-| `RejectionReasonOutOfTimeWindow`     | outOfTimeWindow                      |
-| `RejectionReasonDidNotMeetCriteria`  | didNotMeetCriteria                   |
-| `RejectionReasonOther`               | other                                |
+| Name                                     | Value                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| `RejectionReasonNeedsMoreDetail`         | needsMoreDetail                          |
+| `RejectionReasonDoesNotMeetRequirements` | doesNotMeetRequirements                  |
+| `RejectionReasonNotTheRightFit`          | notTheRightFit                           |
+| `RejectionReasonOther`                   | other                                    |

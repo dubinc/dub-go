@@ -33,8 +33,8 @@ func newCustomers(rootSDK *Dub, sdkConfig config.SDKConfiguration, hooks *hooks.
 	}
 }
 
-// List - Retrieve a list of customers
-// Retrieve a list of customers for the authenticated workspace.
+// List all customers
+// Retrieve a paginated list of customers for the authenticated workspace.
 func (s *Customers) List(ctx context.Context, request operations.GetCustomersRequest, opts ...operations.Option) (*operations.GetCustomersResponse, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -175,7 +175,7 @@ func (s *Customers) List(ctx context.Context, request operations.GetCustomersReq
 
 			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "401", "403", "404", "409", "410", "422", "429", "4XX", "500", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -472,7 +472,7 @@ func (s *Customers) List(ctx context.Context, request operations.GetCustomersReq
 }
 
 // Get - Retrieve a customer
-// Retrieve a customer by ID for the authenticated workspace.
+// Retrieve a customer by ID for the authenticated workspace. To retrieve a customer by external ID, prefix the ID with `ext_`.
 func (s *Customers) Get(ctx context.Context, request operations.GetCustomerRequest, opts ...operations.Option) (*operations.GetCustomerResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
@@ -613,7 +613,7 @@ func (s *Customers) Get(ctx context.Context, request operations.GetCustomerReque
 
 			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "401", "403", "404", "409", "410", "422", "429", "4XX", "500", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -1005,7 +1005,7 @@ func (s *Customers) Delete(ctx context.Context, id string, opts ...operations.Op
 
 			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "401", "403", "404", "409", "410", "422", "429", "4XX", "500", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
@@ -1404,7 +1404,7 @@ func (s *Customers) Update(ctx context.Context, request operations.UpdateCustome
 
 			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
 			return nil, err
-		} else if utils.MatchStatusCodes([]string{"400", "401", "403", "404", "409", "410", "422", "429", "4XX", "500", "5XX"}, httpRes.StatusCode) {
+		} else if utils.MatchStatusCodes([]string{"4XX", "5XX"}, httpRes.StatusCode) {
 			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
 			if err != nil {
 				return nil, err
