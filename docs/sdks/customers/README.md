@@ -4,14 +4,14 @@
 
 ### Available Operations
 
-* [List](#list) - Retrieve a list of customers
+* [List](#list) - List all customers
 * [Get](#get) - Retrieve a customer
 * [Delete](#delete) - Delete a customer
 * [Update](#update) - Update a customer
 
 ## List
 
-Retrieve a list of customers for the authenticated workspace.
+Retrieve a paginated list of customers for the authenticated workspace.
 
 ### Example Usage
 
@@ -89,7 +89,7 @@ func main() {
 
 ## Get
 
-Retrieve a customer by ID for the authenticated workspace.
+Retrieve a customer by ID for the authenticated workspace. To retrieve a customer by external ID, prefix the ID with `ext_`.
 
 ### Example Usage
 

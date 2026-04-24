@@ -1804,6 +1804,8 @@ type CreatePartnerResponseBody struct {
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
 	// The date when the partner received the trusted badge in the partner network.
 	TrustedAt *string `json:"trustedAt"`
+	// The date when the partner's identity was verified.
+	IdentityVerifiedAt *string `json:"identityVerifiedAt"`
 	// The program's unique ID on Dub.
 	ProgramID string `json:"programId"`
 	// The partner's group ID on Dub.
@@ -1963,6 +1965,13 @@ func (c *CreatePartnerResponseBody) GetTrustedAt() *string {
 		return nil
 	}
 	return c.TrustedAt
+}
+
+func (c *CreatePartnerResponseBody) GetIdentityVerifiedAt() *string {
+	if c == nil {
+		return nil
+	}
+	return c.IdentityVerifiedAt
 }
 
 func (c *CreatePartnerResponseBody) GetProgramID() string {

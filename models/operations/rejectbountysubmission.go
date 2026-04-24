@@ -7,21 +7,21 @@ import (
 	"fmt"
 )
 
-// RejectionReason - The reason for rejecting the submission.
-type RejectionReason string
+// RejectBountySubmissionRejectionReason - The reason for rejecting the submission.
+type RejectBountySubmissionRejectionReason string
 
 const (
-	RejectionReasonInvalidProof        RejectionReason = "invalidProof"
-	RejectionReasonDuplicateSubmission RejectionReason = "duplicateSubmission"
-	RejectionReasonOutOfTimeWindow     RejectionReason = "outOfTimeWindow"
-	RejectionReasonDidNotMeetCriteria  RejectionReason = "didNotMeetCriteria"
-	RejectionReasonOther               RejectionReason = "other"
+	RejectBountySubmissionRejectionReasonInvalidProof        RejectBountySubmissionRejectionReason = "invalidProof"
+	RejectBountySubmissionRejectionReasonDuplicateSubmission RejectBountySubmissionRejectionReason = "duplicateSubmission"
+	RejectBountySubmissionRejectionReasonOutOfTimeWindow     RejectBountySubmissionRejectionReason = "outOfTimeWindow"
+	RejectBountySubmissionRejectionReasonDidNotMeetCriteria  RejectBountySubmissionRejectionReason = "didNotMeetCriteria"
+	RejectBountySubmissionRejectionReasonOther               RejectBountySubmissionRejectionReason = "other"
 )
 
-func (e RejectionReason) ToPointer() *RejectionReason {
+func (e RejectBountySubmissionRejectionReason) ToPointer() *RejectBountySubmissionRejectionReason {
 	return &e
 }
-func (e *RejectionReason) UnmarshalJSON(data []byte) error {
+func (e *RejectBountySubmissionRejectionReason) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -36,21 +36,21 @@ func (e *RejectionReason) UnmarshalJSON(data []byte) error {
 	case "didNotMeetCriteria":
 		fallthrough
 	case "other":
-		*e = RejectionReason(v)
+		*e = RejectBountySubmissionRejectionReason(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for RejectionReason: %v", v)
+		return fmt.Errorf("invalid value for RejectBountySubmissionRejectionReason: %v", v)
 	}
 }
 
 type RejectBountySubmissionRequestBody struct {
 	// The reason for rejecting the submission.
-	RejectionReason *RejectionReason `json:"rejectionReason,omitempty"`
+	RejectionReason *RejectBountySubmissionRejectionReason `json:"rejectionReason,omitempty"`
 	// The note for rejecting the submission.
 	RejectionNote *string `json:"rejectionNote,omitempty"`
 }
 
-func (r *RejectBountySubmissionRequestBody) GetRejectionReason() *RejectionReason {
+func (r *RejectBountySubmissionRequestBody) GetRejectionReason() *RejectBountySubmissionRejectionReason {
 	if r == nil {
 		return nil
 	}

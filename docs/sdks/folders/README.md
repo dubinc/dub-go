@@ -4,14 +4,14 @@
 
 ### Available Operations
 
-* [List](#list) - Retrieve a list of folders
+* [List](#list) - List all folders
 * [Create](#create) - Create a folder
 * [Delete](#delete) - Delete a folder
 * [Update](#update) - Update a folder
 
 ## List
 
-Retrieve a list of folders for the authenticated workspace.
+Retrieve a paginated list of folders for the authenticated workspace.
 
 ### Example Usage
 

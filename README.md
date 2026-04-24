@@ -164,14 +164,14 @@ func main() {
 
 ### [Customers](docs/sdks/customers/README.md)
 
-* [List](docs/sdks/customers/README.md#list) - Retrieve a list of customers
+* [List](docs/sdks/customers/README.md#list) - List all customers
 * [Get](docs/sdks/customers/README.md#get) - Retrieve a customer
 * [Delete](docs/sdks/customers/README.md#delete) - Delete a customer
 * [Update](docs/sdks/customers/README.md#update) - Update a customer
 
 ### [Domains](docs/sdks/domains/README.md)
 
-* [List](docs/sdks/domains/README.md#list) - Retrieve a list of domains
+* [List](docs/sdks/domains/README.md#list) - List all domains
 * [Create](docs/sdks/domains/README.md#create) - Create a domain
 * [Delete](docs/sdks/domains/README.md#delete) - Delete a domain
 * [Update](docs/sdks/domains/README.md#update) - Update a domain
@@ -184,18 +184,18 @@ func main() {
 
 ### [Events](docs/sdks/events/README.md)
 
-* [List](docs/sdks/events/README.md#list) - Retrieve a list of events
+* [List](docs/sdks/events/README.md#list) - List all events
 
 ### [Folders](docs/sdks/folders/README.md)
 
-* [List](docs/sdks/folders/README.md#list) - Retrieve a list of folders
+* [List](docs/sdks/folders/README.md#list) - List all folders
 * [Create](docs/sdks/folders/README.md#create) - Create a folder
 * [Delete](docs/sdks/folders/README.md#delete) - Delete a folder
 * [Update](docs/sdks/folders/README.md#update) - Update a folder
 
 ### [Links](docs/sdks/links/README.md)
 
-* [List](docs/sdks/links/README.md#list) - Retrieve a list of links
+* [List](docs/sdks/links/README.md#list) - List all links
 * [Create](docs/sdks/links/README.md#create) - Create a link
 * [Count](docs/sdks/links/README.md#count) - Retrieve links count
 * [Get](docs/sdks/links/README.md#get) - Retrieve a link
@@ -205,6 +205,12 @@ func main() {
 * [DeleteMany](docs/sdks/links/README.md#deletemany) - Bulk delete links
 * [UpdateMany](docs/sdks/links/README.md#updatemany) - Bulk update links
 * [Upsert](docs/sdks/links/README.md#upsert) - Upsert a link
+
+### [PartnerApplications](docs/sdks/partnerapplications/README.md)
+
+* [List](docs/sdks/partnerapplications/README.md#list) - List all pending partner applications
+* [Approve](docs/sdks/partnerapplications/README.md#approve) - Approve a partner application
+* [Reject](docs/sdks/partnerapplications/README.md#reject) - Reject a partner application
 
 ### [Partners](docs/sdks/partners/README.md)
 
@@ -227,7 +233,7 @@ func main() {
 
 ### [Tags](docs/sdks/tags/README.md)
 
-* [List](docs/sdks/tags/README.md#list) - Retrieve a list of tags
+* [List](docs/sdks/tags/README.md#list) - List all tags
 * [Create](docs/sdks/tags/README.md#create) - Create a tag
 * [Delete](docs/sdks/tags/README.md#delete) - Delete a tag
 * [Update](docs/sdks/tags/README.md#update) - Update a tag

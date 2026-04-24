@@ -10,7 +10,7 @@
 
 ## List
 
-Retrieve a list of commissions for your partner program.
+Retrieve a paginated list of commissions for your partner program.
 
 ### Example Usage
 

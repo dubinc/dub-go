@@ -12,30 +12,27 @@ import (
 	"github.com/dubinc/dub-go/models/operations"
 	"github.com/dubinc/dub-go/models/sdkerrors"
 	"github.com/dubinc/dub-go/retry"
-	"github.com/spyzhov/ajson"
 	"net/http"
 	"net/url"
-	"strconv"
-	"strings"
 )
 
-type Commissions struct {
+type PartnerApplications struct {
 	rootSDK          *Dub
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
 }
 
-func newCommissions(rootSDK *Dub, sdkConfig config.SDKConfiguration, hooks *hooks.Hooks) *Commissions {
-	return &Commissions{
+func newPartnerApplications(rootSDK *Dub, sdkConfig config.SDKConfiguration, hooks *hooks.Hooks) *PartnerApplications {
+	return &PartnerApplications{
 		rootSDK:          rootSDK,
 		sdkConfiguration: sdkConfig,
 		hooks:            hooks,
 	}
 }
 
-// List all commissions
-// Retrieve a paginated list of commissions for your partner program.
-func (s *Commissions) List(ctx context.Context, request operations.ListCommissionsRequest, opts ...operations.Option) (*operations.ListCommissionsResponse, error) {
+// List all pending partner applications
+// Retrieve a paginated list of pending applications for your partner program.
+func (s *PartnerApplications) List(ctx context.Context, request operations.ListPartnerApplicationsRequest, opts ...operations.Option) ([]operations.ListPartnerApplicationsResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -54,7 +51,7 @@ func (s *Commissions) List(ctx context.Context, request operations.ListCommissio
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/commissions")
+	opURL, err := url.JoinPath(baseURL, "/partners/applications")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -64,7 +61,7 @@ func (s *Commissions) List(ctx context.Context, request operations.ListCommissio
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "listCommissions",
+		OperationID:      "listPartnerApplications",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
@@ -190,52 +187,6 @@ func (s *Commissions) List(ctx context.Context, request operations.ListCommissio
 		}
 	}
 
-	res := &operations.ListCommissionsResponse{}
-	res.Next = func() (*operations.ListCommissionsResponse, error) {
-		rawBody, err := utils.ConsumeRawBody(httpRes)
-		if err != nil {
-			return nil, err
-		}
-
-		b, err := ajson.Unmarshal(rawBody)
-		if err != nil {
-			return nil, err
-		}
-		nC, err := ajson.Eval(b, "$[-1].id")
-		if err != nil {
-			return nil, err
-		}
-		var nCVal string
-
-		if nC.IsNumeric() {
-			numVal, err := nC.GetNumeric()
-			if err != nil {
-				return nil, err
-			}
-			// GetNumeric returns as float64 so convert to the appropriate type.
-			nCVal = strconv.FormatFloat(numVal, 'f', 0, 64)
-		} else {
-			val, err := nC.Value()
-			if err != nil {
-				return nil, err
-			}
-			if val == nil {
-				return nil, nil
-			}
-			nCVal = val.(string)
-			if strings.TrimSpace(nCVal) == "" {
-				return nil, nil
-			}
-		}
-		request.StartingAfter = &nCVal
-
-		return s.List(
-			ctx,
-			request,
-			opts...,
-		)
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
@@ -245,12 +196,12 @@ func (s *Commissions) List(ctx context.Context, request operations.ListCommissio
 				return nil, err
 			}
 
-			var out []operations.ListCommissionsResponseBody
+			var out []operations.ListPartnerApplicationsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Result = out
+			return out, nil
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -467,13 +418,13 @@ func (s *Commissions) List(ctx context.Context, request operations.ListCommissio
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
-	return res, nil
+	return nil, nil
 
 }
 
-// Update a commission
-// Update an existing commission amount. This is useful for handling refunds (partial or full) or fraudulent sales.
-func (s *Commissions) Update(ctx context.Context, request operations.UpdateCommissionRequest, opts ...operations.Option) (*operations.UpdateCommissionResponseBody, error) {
+// Approve a partner application
+// Approve a pending partner application to your program. The partner will be enrolled in the specified group and notified of the approval.
+func (s *PartnerApplications) Approve(ctx context.Context, request operations.ApprovePartnerRequestBody, opts ...operations.Option) (*operations.ApprovePartnerResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -492,7 +443,7 @@ func (s *Commissions) Update(ctx context.Context, request operations.UpdateCommi
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/commissions/{id}", request, nil)
+	opURL, err := url.JoinPath(baseURL, "/partners/applications/approve")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -502,11 +453,11 @@ func (s *Commissions) Update(ctx context.Context, request operations.UpdateCommi
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "updateCommission",
+		OperationID:      "approvePartner",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "RequestBody", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -522,7 +473,7 @@ func (s *Commissions) Update(ctx context.Context, request operations.UpdateCommi
 		defer cancel()
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PATCH", opURL, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "POST", opURL, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -640,7 +591,7 @@ func (s *Commissions) Update(ctx context.Context, request operations.UpdateCommi
 				return nil, err
 			}
 
-			var out operations.UpdateCommissionResponseBody
+			var out operations.ApprovePartnerResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -866,9 +817,9 @@ func (s *Commissions) Update(ctx context.Context, request operations.UpdateCommi
 
 }
 
-// UpdateMany - Bulk update commissions
-// Bulk update up to 100 commissions with the same status.
-func (s *Commissions) UpdateMany(ctx context.Context, request *operations.BulkUpdateCommissionsRequestBody, opts ...operations.Option) ([]operations.BulkUpdateCommissionsResponseBody, error) {
+// Reject a partner application
+// Reject a pending partner application to your program. The partner will be notified via email that their application was not approved.
+func (s *PartnerApplications) Reject(ctx context.Context, request operations.RejectPartnerRequestBody, opts ...operations.Option) (*operations.RejectPartnerResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -887,7 +838,7 @@ func (s *Commissions) UpdateMany(ctx context.Context, request *operations.BulkUp
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/commissions/bulk")
+	opURL, err := url.JoinPath(baseURL, "/partners/applications/reject")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -897,11 +848,11 @@ func (s *Commissions) UpdateMany(ctx context.Context, request *operations.BulkUp
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "bulkUpdateCommissions",
+		OperationID:      "rejectPartner",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -917,7 +868,7 @@ func (s *Commissions) UpdateMany(ctx context.Context, request *operations.BulkUp
 		defer cancel()
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PATCH", opURL, bodyReader)
+	req, err := http.NewRequestWithContext(ctx, "POST", opURL, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -1035,12 +986,12 @@ func (s *Commissions) UpdateMany(ctx context.Context, request *operations.BulkUp
 				return nil, err
 			}
 
-			var out []operations.BulkUpdateCommissionsResponseBody
+			var out operations.RejectPartnerResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			return out, nil
+			return &out, nil
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

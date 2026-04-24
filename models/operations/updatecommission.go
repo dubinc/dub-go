@@ -45,12 +45,12 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 }
 
 type UpdateCommissionRequestBody struct {
+	// The new earnings amount for the commission. Paid commissions cannot be updated. If provided, will override the earnings calculated based on the sale amount and currency.
+	Earnings *float64 `json:"earnings,omitempty"`
 	// The new absolute amount for the sale. Paid commissions cannot be updated.
 	SaleAmount *float64 `json:"saleAmount,omitempty"`
 	// Modify the current sale amount: use positive values to increase the amount, negative values to decrease it. Takes precedence over `saleAmount`. Paid commissions cannot be updated.
 	ModifySaleAmount *float64 `json:"modifySaleAmount,omitempty"`
-	// The new absolute earnings for the custom commission. Paid commissions cannot be updated.
-	Earnings *float64 `json:"earnings,omitempty"`
 	// The currency of the sale amount to update. Accepts ISO 4217 currency codes.
 	Currency *string `default:"usd" json:"currency"`
 	// Useful for marking a commission as pending, refunded, duplicate, canceled, or fraudulent. Takes precedence over `saleAmount` and `modifySaleAmount`. When a commission is marked as pending, refunded, duplicate, canceled, or fraudulent, it will be omitted from the payout, and the payout amount will be recalculated accordingly. Paid commissions cannot be updated.
@@ -76,6 +76,13 @@ func (u *UpdateCommissionRequestBody) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (u *UpdateCommissionRequestBody) GetEarnings() *float64 {
+	if u == nil {
+		return nil
+	}
+	return u.Earnings
+}
+
 func (u *UpdateCommissionRequestBody) GetSaleAmount() *float64 {
 	if u == nil {
 		return nil
@@ -88,13 +95,6 @@ func (u *UpdateCommissionRequestBody) GetModifySaleAmount() *float64 {
 		return nil
 	}
 	return u.ModifySaleAmount
-}
-
-func (u *UpdateCommissionRequestBody) GetEarnings() *float64 {
-	if u == nil {
-		return nil
-	}
-	return u.Earnings
 }
 
 func (u *UpdateCommissionRequestBody) GetCurrency() *string {

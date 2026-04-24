@@ -4,7 +4,7 @@
 
 ### Available Operations
 
-* [List](#list) - Retrieve a list of links
+* [List](#list) - List all links
 * [Create](#create) - Create a link
 * [Count](#count) - Retrieve links count
 * [Get](#get) - Retrieve a link

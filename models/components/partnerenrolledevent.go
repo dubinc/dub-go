@@ -1400,6 +1400,8 @@ type PartnerEnrolledEventData struct {
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
 	// The date when the partner received the trusted badge in the partner network.
 	TrustedAt *string `json:"trustedAt"`
+	// The date when the partner's identity was verified.
+	IdentityVerifiedAt *string `json:"identityVerifiedAt"`
 	// The program's unique ID on Dub.
 	ProgramID string `json:"programId"`
 	// The partner's group ID on Dub.
@@ -1559,6 +1561,13 @@ func (p *PartnerEnrolledEventData) GetTrustedAt() *string {
 		return nil
 	}
 	return p.TrustedAt
+}
+
+func (p *PartnerEnrolledEventData) GetIdentityVerifiedAt() *string {
+	if p == nil {
+		return nil
+	}
+	return p.IdentityVerifiedAt
 }
 
 func (p *PartnerEnrolledEventData) GetProgramID() string {
