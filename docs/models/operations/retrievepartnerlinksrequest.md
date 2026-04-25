@@ -1,4 +1,4 @@
-# RetrieveLinksRequest
+# RetrievePartnerLinksRequest
 
 
 ## Fields

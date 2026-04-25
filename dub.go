@@ -50,8 +50,10 @@ func Pointer[T any](v T) *T { return &v }
 
 // Dub API: Dub is the modern link attribution platform for short links, conversion tracking, and affiliate programs.
 type Dub struct {
-	SDKVersion          string
-	Links               *Links
+	SDKVersion string
+	Links      *Links
+	// Retrieve analytics for a partner
+	// Retrieve analytics for a partner within a program. The response type vary based on the `groupBy` query parameter.
 	Analytics           *Analytics
 	Events              *Events
 	Tags                *Tags
@@ -142,9 +144,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Dub {
 	sdk := &Dub{
-		SDKVersion: "0.23.9",
+		SDKVersion: "0.23.10",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.23.9 2.881.4 0.0.1 github.com/dubinc/dub-go",
+			UserAgent:  "speakeasy-sdk/go 0.23.10 2.881.4 0.0.1 github.com/dubinc/dub-go",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),

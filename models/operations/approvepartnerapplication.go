@@ -2,34 +2,34 @@
 
 package operations
 
-type ApprovePartnerRequestBody struct {
+type ApprovePartnerApplicationRequestBody struct {
 	// The ID of the partner to approve.
 	PartnerID string `json:"partnerId"`
 	// The ID of the group to assign the partner to. If not provided, the partner will be assigned to the group they applied to, or the program's default group if no application group is set.
 	GroupID *string `json:"groupId,omitempty"`
 }
 
-func (a *ApprovePartnerRequestBody) GetPartnerID() string {
+func (a *ApprovePartnerApplicationRequestBody) GetPartnerID() string {
 	if a == nil {
 		return ""
 	}
 	return a.PartnerID
 }
 
-func (a *ApprovePartnerRequestBody) GetGroupID() *string {
+func (a *ApprovePartnerApplicationRequestBody) GetGroupID() *string {
 	if a == nil {
 		return nil
 	}
 	return a.GroupID
 }
 
-// ApprovePartnerResponseBody - The approved partner
-type ApprovePartnerResponseBody struct {
+// ApprovePartnerApplicationResponseBody - The approved partner
+type ApprovePartnerApplicationResponseBody struct {
 	// The ID of the approved partner.
 	PartnerID string `json:"partnerId"`
 }
 
-func (a *ApprovePartnerResponseBody) GetPartnerID() string {
+func (a *ApprovePartnerApplicationResponseBody) GetPartnerID() string {
 	if a == nil {
 		return ""
 	}

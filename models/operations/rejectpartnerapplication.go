@@ -41,7 +41,7 @@ func (e *RejectionReason) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type RejectPartnerRequestBody struct {
+type RejectPartnerApplicationRequestBody struct {
 	// The ID of the partner to reject.
 	PartnerID string `json:"partnerId"`
 	// The reason for rejecting the partner application. This will be shared with the partner via email.
@@ -52,52 +52,52 @@ type RejectPartnerRequestBody struct {
 	AllowImmediateReapply *bool `default:"false" json:"allowImmediateReapply"`
 }
 
-func (r RejectPartnerRequestBody) MarshalJSON() ([]byte, error) {
+func (r RejectPartnerApplicationRequestBody) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(r, "", false)
 }
 
-func (r *RejectPartnerRequestBody) UnmarshalJSON(data []byte) error {
+func (r *RejectPartnerApplicationRequestBody) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (r *RejectPartnerRequestBody) GetPartnerID() string {
+func (r *RejectPartnerApplicationRequestBody) GetPartnerID() string {
 	if r == nil {
 		return ""
 	}
 	return r.PartnerID
 }
 
-func (r *RejectPartnerRequestBody) GetRejectionReason() *RejectionReason {
+func (r *RejectPartnerApplicationRequestBody) GetRejectionReason() *RejectionReason {
 	if r == nil {
 		return nil
 	}
 	return r.RejectionReason
 }
 
-func (r *RejectPartnerRequestBody) GetRejectionNote() *string {
+func (r *RejectPartnerApplicationRequestBody) GetRejectionNote() *string {
 	if r == nil {
 		return nil
 	}
 	return r.RejectionNote
 }
 
-func (r *RejectPartnerRequestBody) GetAllowImmediateReapply() *bool {
+func (r *RejectPartnerApplicationRequestBody) GetAllowImmediateReapply() *bool {
 	if r == nil {
 		return nil
 	}
 	return r.AllowImmediateReapply
 }
 
-// RejectPartnerResponseBody - The rejected partner
-type RejectPartnerResponseBody struct {
+// RejectPartnerApplicationResponseBody - The rejected partner
+type RejectPartnerApplicationResponseBody struct {
 	// The ID of the rejected partner.
 	PartnerID string `json:"partnerId"`
 }
 
-func (r *RejectPartnerResponseBody) GetPartnerID() string {
+func (r *RejectPartnerApplicationResponseBody) GetPartnerID() string {
 	if r == nil {
 		return ""
 	}
