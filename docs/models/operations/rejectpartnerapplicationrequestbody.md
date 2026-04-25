@@ -1,4 +1,4 @@
-# RejectPartnerRequestBody
+# RejectPartnerApplicationRequestBody
 
 
 ## Fields

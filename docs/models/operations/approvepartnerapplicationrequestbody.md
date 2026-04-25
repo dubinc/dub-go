@@ -1,4 +1,4 @@
-# ApprovePartnerRequestBody
+# ApprovePartnerApplicationRequestBody
 
 
 ## Fields
