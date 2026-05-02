@@ -8,6 +8,7 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
+// Type - Filter the list of commissions by type. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `sale`, `sale,lead`, `-click`.
 type Type string
 
 const (
@@ -185,16 +186,17 @@ func (e *ListCommissionsQueryParamInterval) UnmarshalJSON(data []byte) error {
 }
 
 type ListCommissionsRequest struct {
+	// Filter the list of commissions by type. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `sale`, `sale,lead`, `-click`.
 	Type *Type `queryParam:"style=form,explode=true,name=type"`
 	// Filter the list of commissions by the associated customer.
 	CustomerID *string `queryParam:"style=form,explode=true,name=customerId"`
 	// Filter the list of commissions by the associated payout.
 	PayoutID *string `queryParam:"style=form,explode=true,name=payoutId"`
-	// Filter the list of commissions by the associated partner. When specified, takes precedence over `tenantId`.
+	// Filter the list of commissions by the associated partner. When specified, takes precedence over `tenantId`. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `partner_abc`, `partner_abc,partner_xyz`, `-partner_abc`.
 	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
 	// Filter the list of commissions by the associated partner's `tenantId` (their unique ID within your database).
 	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
-	// Filter the list of commissions by the associated partner group.
+	// Filter the list of commissions by the associated partner group. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `group_abc`, `group_abc,group_xyz`, `-group_abc`.
 	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
 	// Filter the list of commissions by the associated invoice. Since invoiceId is unique on a per-program basis, this will only return one commission per invoice.
 	InvoiceID *string `queryParam:"style=form,explode=true,name=invoiceId"`
