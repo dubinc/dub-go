@@ -115,18 +115,18 @@ func (e *QueryParamSaleType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// QueryParamSortOrder - The sort order. The default is `desc`.
-type QueryParamSortOrder string
+// SortOrder - The sort order. The default is `desc`.
+type SortOrder string
 
 const (
-	QueryParamSortOrderAsc  QueryParamSortOrder = "asc"
-	QueryParamSortOrderDesc QueryParamSortOrder = "desc"
+	SortOrderAsc  SortOrder = "asc"
+	SortOrderDesc SortOrder = "desc"
 )
 
-func (e QueryParamSortOrder) ToPointer() *QueryParamSortOrder {
+func (e SortOrder) ToPointer() *SortOrder {
 	return &e
 }
-func (e *QueryParamSortOrder) UnmarshalJSON(data []byte) error {
+func (e *SortOrder) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -135,34 +135,34 @@ func (e *QueryParamSortOrder) UnmarshalJSON(data []byte) error {
 	case "asc":
 		fallthrough
 	case "desc":
-		*e = QueryParamSortOrder(v)
+		*e = SortOrder(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for QueryParamSortOrder: %v", v)
+		return fmt.Errorf("invalid value for SortOrder: %v", v)
 	}
 }
 
-// QueryParamSortBy - The field to sort the events by. The default is `timestamp`.
-type QueryParamSortBy string
+// SortBy - The field to sort the events by. The default is `timestamp`.
+type SortBy string
 
 const (
-	QueryParamSortByTimestamp QueryParamSortBy = "timestamp"
+	SortByTimestamp SortBy = "timestamp"
 )
 
-func (e QueryParamSortBy) ToPointer() *QueryParamSortBy {
+func (e SortBy) ToPointer() *SortBy {
 	return &e
 }
-func (e *QueryParamSortBy) UnmarshalJSON(data []byte) error {
+func (e *SortBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "timestamp":
-		*e = QueryParamSortBy(v)
+		*e = SortBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for QueryParamSortBy: %v", v)
+		return fmt.Errorf("invalid value for SortBy: %v", v)
 	}
 }
 
@@ -212,6 +212,8 @@ type ListEventsRequest struct {
 	TagID *string `queryParam:"style=form,explode=true,name=tagId"`
 	// The folder ID to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `folder_123`, `folder_123,folder_456`, `-folder_789`. If not provided, return analytics for all links.
 	FolderID *string `queryParam:"style=form,explode=true,name=folderId"`
+	// The partner tag ID(s) to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `ptag_123`, `ptag_123,ptag_456`, `-ptag_789`.
+	PartnerTagID *string `queryParam:"style=form,explode=true,name=partnerTagId"`
 	// The group ID to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `grp_123`, `grp_123,grp_456`, `-grp_789`.
 	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
 	// The ID of the partner to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `pn_123`, `pn_123,pn_456`, `-pn_789`.
@@ -273,9 +275,9 @@ type ListEventsRequest struct {
 	Page  *float64 `default:"1" queryParam:"style=form,explode=true,name=page"`
 	Limit *float64 `default:"100" queryParam:"style=form,explode=true,name=limit"`
 	// The sort order. The default is `desc`.
-	SortOrder *QueryParamSortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
+	SortOrder *SortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
 	// The field to sort the events by. The default is `timestamp`.
-	SortBy *QueryParamSortBy `default:"timestamp" queryParam:"style=form,explode=true,name=sortBy"`
+	SortBy *SortBy `default:"timestamp" queryParam:"style=form,explode=true,name=sortBy"`
 	// DEPRECATED. Use `sortOrder` instead.
 	Order *Order `default:"desc" queryParam:"style=form,explode=true,name=order"`
 }
@@ -345,6 +347,13 @@ func (l *ListEventsRequest) GetFolderID() *string {
 		return nil
 	}
 	return l.FolderID
+}
+
+func (l *ListEventsRequest) GetPartnerTagID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.PartnerTagID
 }
 
 func (l *ListEventsRequest) GetGroupID() *string {
@@ -564,14 +573,14 @@ func (l *ListEventsRequest) GetLimit() *float64 {
 	return l.Limit
 }
 
-func (l *ListEventsRequest) GetSortOrder() *QueryParamSortOrder {
+func (l *ListEventsRequest) GetSortOrder() *SortOrder {
 	if l == nil {
 		return nil
 	}
 	return l.SortOrder
 }
 
-func (l *ListEventsRequest) GetSortBy() *QueryParamSortBy {
+func (l *ListEventsRequest) GetSortBy() *SortBy {
 	if l == nil {
 		return nil
 	}
@@ -616,7 +625,9 @@ const (
 	ResponseBodyPaymentProcessorShopify    ResponseBodyPaymentProcessor = "shopify"
 	ResponseBodyPaymentProcessorPolar      ResponseBodyPaymentProcessor = "polar"
 	ResponseBodyPaymentProcessorPaddle     ResponseBodyPaymentProcessor = "paddle"
+	ResponseBodyPaymentProcessorApple      ResponseBodyPaymentProcessor = "apple"
 	ResponseBodyPaymentProcessorRevenuecat ResponseBodyPaymentProcessor = "revenuecat"
+	ResponseBodyPaymentProcessorDub        ResponseBodyPaymentProcessor = "dub"
 	ResponseBodyPaymentProcessorCustom     ResponseBodyPaymentProcessor = "custom"
 )
 
@@ -637,7 +648,11 @@ func (e *ResponseBodyPaymentProcessor) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "paddle":
 		fallthrough
+	case "apple":
+		fallthrough
 	case "revenuecat":
+		fallthrough
+	case "dub":
 		fallthrough
 	case "custom":
 		*e = ResponseBodyPaymentProcessor(v)
@@ -1326,7 +1341,7 @@ type ResponseBodyCustomer struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
 	// Name of the customer.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
@@ -1354,7 +1369,7 @@ func (r ResponseBodyCustomer) MarshalJSON() ([]byte, error) {
 }
 
 func (r *ResponseBodyCustomer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"id", "name", "externalId", "createdAt"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"id", "externalId", "createdAt"}); err != nil {
 		return err
 	}
 	return nil
@@ -1367,9 +1382,9 @@ func (r *ResponseBodyCustomer) GetID() string {
 	return r.ID
 }
 
-func (r *ResponseBodyCustomer) GetName() string {
+func (r *ResponseBodyCustomer) GetName() *string {
 	if r == nil {
-		return ""
+		return nil
 	}
 	return r.Name
 }
@@ -2358,7 +2373,7 @@ type ListEventsResponseBodyCustomer struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
 	// Name of the customer.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
@@ -2386,7 +2401,7 @@ func (l ListEventsResponseBodyCustomer) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListEventsResponseBodyCustomer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "name", "externalId", "createdAt"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "externalId", "createdAt"}); err != nil {
 		return err
 	}
 	return nil
@@ -2399,9 +2414,9 @@ func (l *ListEventsResponseBodyCustomer) GetID() string {
 	return l.ID
 }
 
-func (l *ListEventsResponseBodyCustomer) GetName() string {
+func (l *ListEventsResponseBodyCustomer) GetName() *string {
 	if l == nil {
-		return ""
+		return nil
 	}
 	return l.Name
 }

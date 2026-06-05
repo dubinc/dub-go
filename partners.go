@@ -820,7 +820,7 @@ func (s *Partners) Create(ctx context.Context, request *operations.CreatePartner
 
 // RetrieveLinks - Retrieve a partner's links.
 // Retrieve a partner's links by their partner ID or tenant ID.
-func (s *Partners) RetrieveLinks(ctx context.Context, request operations.RetrieveLinksRequest, opts ...operations.Option) ([]operations.RetrieveLinksResponseBody, error) {
+func (s *Partners) RetrieveLinks(ctx context.Context, request operations.RetrievePartnerLinksRequest, opts ...operations.Option) ([]operations.RetrievePartnerLinksResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -849,7 +849,7 @@ func (s *Partners) RetrieveLinks(ctx context.Context, request operations.Retriev
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "retrieveLinks",
+		OperationID:      "retrievePartnerLinks",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
@@ -984,7 +984,7 @@ func (s *Partners) RetrieveLinks(ctx context.Context, request operations.Retriev
 				return nil, err
 			}
 
-			var out []operations.RetrieveLinksResponseBody
+			var out []operations.RetrievePartnerLinksResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

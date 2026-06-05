@@ -9,18 +9,18 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
-// GetTagsQueryParamSortBy - The field to sort the tags by.
-type GetTagsQueryParamSortBy string
+// QueryParamSortBy - The field to sort the tags by.
+type QueryParamSortBy string
 
 const (
-	GetTagsQueryParamSortByName      GetTagsQueryParamSortBy = "name"
-	GetTagsQueryParamSortByCreatedAt GetTagsQueryParamSortBy = "createdAt"
+	QueryParamSortByName      QueryParamSortBy = "name"
+	QueryParamSortByCreatedAt QueryParamSortBy = "createdAt"
 )
 
-func (e GetTagsQueryParamSortBy) ToPointer() *GetTagsQueryParamSortBy {
+func (e QueryParamSortBy) ToPointer() *QueryParamSortBy {
 	return &e
 }
-func (e *GetTagsQueryParamSortBy) UnmarshalJSON(data []byte) error {
+func (e *QueryParamSortBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -29,25 +29,25 @@ func (e *GetTagsQueryParamSortBy) UnmarshalJSON(data []byte) error {
 	case "name":
 		fallthrough
 	case "createdAt":
-		*e = GetTagsQueryParamSortBy(v)
+		*e = QueryParamSortBy(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetTagsQueryParamSortBy: %v", v)
+		return fmt.Errorf("invalid value for QueryParamSortBy: %v", v)
 	}
 }
 
-// GetTagsQueryParamSortOrder - The order to sort the tags by.
-type GetTagsQueryParamSortOrder string
+// QueryParamSortOrder - The order to sort the tags by.
+type QueryParamSortOrder string
 
 const (
-	GetTagsQueryParamSortOrderAsc  GetTagsQueryParamSortOrder = "asc"
-	GetTagsQueryParamSortOrderDesc GetTagsQueryParamSortOrder = "desc"
+	QueryParamSortOrderAsc  QueryParamSortOrder = "asc"
+	QueryParamSortOrderDesc QueryParamSortOrder = "desc"
 )
 
-func (e GetTagsQueryParamSortOrder) ToPointer() *GetTagsQueryParamSortOrder {
+func (e QueryParamSortOrder) ToPointer() *QueryParamSortOrder {
 	return &e
 }
-func (e *GetTagsQueryParamSortOrder) UnmarshalJSON(data []byte) error {
+func (e *QueryParamSortOrder) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -56,10 +56,10 @@ func (e *GetTagsQueryParamSortOrder) UnmarshalJSON(data []byte) error {
 	case "asc":
 		fallthrough
 	case "desc":
-		*e = GetTagsQueryParamSortOrder(v)
+		*e = QueryParamSortOrder(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for GetTagsQueryParamSortOrder: %v", v)
+		return fmt.Errorf("invalid value for QueryParamSortOrder: %v", v)
 	}
 }
 
@@ -129,9 +129,9 @@ func (u Ids) MarshalJSON() ([]byte, error) {
 
 type GetTagsRequest struct {
 	// The field to sort the tags by.
-	SortBy *GetTagsQueryParamSortBy `default:"name" queryParam:"style=form,explode=true,name=sortBy"`
+	SortBy *QueryParamSortBy `default:"name" queryParam:"style=form,explode=true,name=sortBy"`
 	// The order to sort the tags by.
-	SortOrder *GetTagsQueryParamSortOrder `default:"asc" queryParam:"style=form,explode=true,name=sortOrder"`
+	SortOrder *QueryParamSortOrder `default:"asc" queryParam:"style=form,explode=true,name=sortOrder"`
 	// The search term to filter the tags by.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// IDs of tags to filter by.
@@ -153,14 +153,14 @@ func (g *GetTagsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (g *GetTagsRequest) GetSortBy() *GetTagsQueryParamSortBy {
+func (g *GetTagsRequest) GetSortBy() *QueryParamSortBy {
 	if g == nil {
 		return nil
 	}
 	return g.SortBy
 }
 
-func (g *GetTagsRequest) GetSortOrder() *GetTagsQueryParamSortOrder {
+func (g *GetTagsRequest) GetSortOrder() *QueryParamSortOrder {
 	if g == nil {
 		return nil
 	}

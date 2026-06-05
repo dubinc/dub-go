@@ -287,7 +287,7 @@ type UpdateCustomerResponseBody struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
 	// Name of the customer.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
@@ -321,9 +321,9 @@ func (u *UpdateCustomerResponseBody) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateCustomerResponseBody) GetName() string {
+func (u *UpdateCustomerResponseBody) GetName() *string {
 	if u == nil {
-		return ""
+		return nil
 	}
 	return u.Name
 }

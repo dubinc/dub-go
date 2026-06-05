@@ -47,32 +47,33 @@ func (e *Event) UnmarshalJSON(data []byte) error {
 type QueryParamGroupBy string
 
 const (
-	QueryParamGroupByCount        QueryParamGroupBy = "count"
-	QueryParamGroupByTimeseries   QueryParamGroupBy = "timeseries"
-	QueryParamGroupByContinents   QueryParamGroupBy = "continents"
-	QueryParamGroupByRegions      QueryParamGroupBy = "regions"
-	QueryParamGroupByCountries    QueryParamGroupBy = "countries"
-	QueryParamGroupByCities       QueryParamGroupBy = "cities"
-	QueryParamGroupByDevices      QueryParamGroupBy = "devices"
-	QueryParamGroupByBrowsers     QueryParamGroupBy = "browsers"
-	QueryParamGroupByOs           QueryParamGroupBy = "os"
-	QueryParamGroupByTrigger      QueryParamGroupBy = "trigger"
-	QueryParamGroupByTriggers     QueryParamGroupBy = "triggers"
-	QueryParamGroupByReferers     QueryParamGroupBy = "referers"
-	QueryParamGroupByRefererUrls  QueryParamGroupBy = "referer_urls"
-	QueryParamGroupByTopFolders   QueryParamGroupBy = "top_folders"
-	QueryParamGroupByTopLinkTags  QueryParamGroupBy = "top_link_tags"
-	QueryParamGroupByTopDomains   QueryParamGroupBy = "top_domains"
-	QueryParamGroupByTopLinks     QueryParamGroupBy = "top_links"
-	QueryParamGroupByTopUrls      QueryParamGroupBy = "top_urls"
-	QueryParamGroupByTopBaseUrls  QueryParamGroupBy = "top_base_urls"
-	QueryParamGroupByTopPartners  QueryParamGroupBy = "top_partners"
-	QueryParamGroupByTopGroups    QueryParamGroupBy = "top_groups"
-	QueryParamGroupByUtmSources   QueryParamGroupBy = "utm_sources"
-	QueryParamGroupByUtmMediums   QueryParamGroupBy = "utm_mediums"
-	QueryParamGroupByUtmCampaigns QueryParamGroupBy = "utm_campaigns"
-	QueryParamGroupByUtmTerms     QueryParamGroupBy = "utm_terms"
-	QueryParamGroupByUtmContents  QueryParamGroupBy = "utm_contents"
+	QueryParamGroupByCount          QueryParamGroupBy = "count"
+	QueryParamGroupByTimeseries     QueryParamGroupBy = "timeseries"
+	QueryParamGroupByContinents     QueryParamGroupBy = "continents"
+	QueryParamGroupByRegions        QueryParamGroupBy = "regions"
+	QueryParamGroupByCountries      QueryParamGroupBy = "countries"
+	QueryParamGroupByCities         QueryParamGroupBy = "cities"
+	QueryParamGroupByDevices        QueryParamGroupBy = "devices"
+	QueryParamGroupByBrowsers       QueryParamGroupBy = "browsers"
+	QueryParamGroupByOs             QueryParamGroupBy = "os"
+	QueryParamGroupByTrigger        QueryParamGroupBy = "trigger"
+	QueryParamGroupByTriggers       QueryParamGroupBy = "triggers"
+	QueryParamGroupByReferers       QueryParamGroupBy = "referers"
+	QueryParamGroupByRefererUrls    QueryParamGroupBy = "referer_urls"
+	QueryParamGroupByTopFolders     QueryParamGroupBy = "top_folders"
+	QueryParamGroupByTopLinkTags    QueryParamGroupBy = "top_link_tags"
+	QueryParamGroupByTopDomains     QueryParamGroupBy = "top_domains"
+	QueryParamGroupByTopLinks       QueryParamGroupBy = "top_links"
+	QueryParamGroupByTopUrls        QueryParamGroupBy = "top_urls"
+	QueryParamGroupByTopBaseUrls    QueryParamGroupBy = "top_base_urls"
+	QueryParamGroupByTopPartners    QueryParamGroupBy = "top_partners"
+	QueryParamGroupByTopGroups      QueryParamGroupBy = "top_groups"
+	QueryParamGroupByTopPartnerTags QueryParamGroupBy = "top_partner_tags"
+	QueryParamGroupByUtmSources     QueryParamGroupBy = "utm_sources"
+	QueryParamGroupByUtmMediums     QueryParamGroupBy = "utm_mediums"
+	QueryParamGroupByUtmCampaigns   QueryParamGroupBy = "utm_campaigns"
+	QueryParamGroupByUtmTerms       QueryParamGroupBy = "utm_terms"
+	QueryParamGroupByUtmContents    QueryParamGroupBy = "utm_contents"
 )
 
 func (e QueryParamGroupBy) ToPointer() *QueryParamGroupBy {
@@ -125,6 +126,8 @@ func (e *QueryParamGroupBy) UnmarshalJSON(data []byte) error {
 	case "top_partners":
 		fallthrough
 	case "top_groups":
+		fallthrough
+	case "top_partner_tags":
 		fallthrough
 	case "utm_sources":
 		fallthrough
@@ -236,6 +239,8 @@ type RetrieveAnalyticsRequest struct {
 	TagID *string `queryParam:"style=form,explode=true,name=tagId"`
 	// The folder ID to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `folder_123`, `folder_123,folder_456`, `-folder_789`. If not provided, return analytics for all links.
 	FolderID *string `queryParam:"style=form,explode=true,name=folderId"`
+	// The partner tag ID(s) to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `ptag_123`, `ptag_123,ptag_456`, `-ptag_789`.
+	PartnerTagID *string `queryParam:"style=form,explode=true,name=partnerTagId"`
 	// The group ID to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `grp_123`, `grp_123,grp_456`, `-grp_789`.
 	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
 	// The ID of the partner to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `pn_123`, `pn_123,pn_456`, `-pn_789`.
@@ -368,6 +373,13 @@ func (r *RetrieveAnalyticsRequest) GetFolderID() *string {
 		return nil
 	}
 	return r.FolderID
+}
+
+func (r *RetrieveAnalyticsRequest) GetPartnerTagID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.PartnerTagID
 }
 
 func (r *RetrieveAnalyticsRequest) GetGroupID() *string {

@@ -16,7 +16,9 @@ const (
 	PaymentProcessorShopify    PaymentProcessor = "shopify"
 	PaymentProcessorPolar      PaymentProcessor = "polar"
 	PaymentProcessorPaddle     PaymentProcessor = "paddle"
+	PaymentProcessorApple      PaymentProcessor = "apple"
 	PaymentProcessorRevenuecat PaymentProcessor = "revenuecat"
+	PaymentProcessorDub        PaymentProcessor = "dub"
 	PaymentProcessorCustom     PaymentProcessor = "custom"
 )
 
@@ -37,7 +39,11 @@ func (e *PaymentProcessor) UnmarshalJSON(data []byte) error {
 		fallthrough
 	case "paddle":
 		fallthrough
+	case "apple":
+		fallthrough
 	case "revenuecat":
+		fallthrough
+	case "dub":
 		fallthrough
 	case "custom":
 		*e = PaymentProcessor(v)

@@ -5,7 +5,6 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/dubinc/dub-go/internal/utils"
 )
 
 // UpdateFolderAccessLevel - The access level of the folder within the workspace.
@@ -41,18 +40,7 @@ type UpdateFolderRequestBody struct {
 	// The description of the folder.
 	Description *string `json:"description,omitempty"`
 	// The access level of the folder within the workspace.
-	AccessLevel *UpdateFolderAccessLevel `default:"null" json:"accessLevel"`
-}
-
-func (u UpdateFolderRequestBody) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(u, "", false)
-}
-
-func (u *UpdateFolderRequestBody) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
-		return err
-	}
-	return nil
+	AccessLevel *UpdateFolderAccessLevel `json:"accessLevel,omitempty"`
 }
 
 func (u *UpdateFolderRequestBody) GetName() *string {

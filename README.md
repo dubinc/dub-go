@@ -159,6 +159,7 @@ func main() {
 ### [Commissions](docs/sdks/commissions/README.md)
 
 * [List](docs/sdks/commissions/README.md#list) - List all commissions
+* [Create](docs/sdks/commissions/README.md#create) - Create commission
 * [Update](docs/sdks/commissions/README.md#update) - Update a commission
 * [UpdateMany](docs/sdks/commissions/README.md#updatemany) - Bulk update commissions
 

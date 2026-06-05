@@ -228,46 +228,46 @@ func (l *Link) GetExternalID() *string {
 	return l.ExternalID
 }
 
-type Customer struct {
+type TrackLeadCustomer struct {
 	Name       *string `json:"name"`
 	Email      *string `json:"email"`
 	Avatar     *string `json:"avatar"`
 	ExternalID *string `json:"externalId"`
 }
 
-func (c *Customer) GetName() *string {
-	if c == nil {
+func (t *TrackLeadCustomer) GetName() *string {
+	if t == nil {
 		return nil
 	}
-	return c.Name
+	return t.Name
 }
 
-func (c *Customer) GetEmail() *string {
-	if c == nil {
+func (t *TrackLeadCustomer) GetEmail() *string {
+	if t == nil {
 		return nil
 	}
-	return c.Email
+	return t.Email
 }
 
-func (c *Customer) GetAvatar() *string {
-	if c == nil {
+func (t *TrackLeadCustomer) GetAvatar() *string {
+	if t == nil {
 		return nil
 	}
-	return c.Avatar
+	return t.Avatar
 }
 
-func (c *Customer) GetExternalID() *string {
-	if c == nil {
+func (t *TrackLeadCustomer) GetExternalID() *string {
+	if t == nil {
 		return nil
 	}
-	return c.ExternalID
+	return t.ExternalID
 }
 
 // TrackLeadResponseBody - A lead was tracked.
 type TrackLeadResponseBody struct {
-	Click    Click    `json:"click"`
-	Link     *Link    `json:"link"`
-	Customer Customer `json:"customer"`
+	Click    Click             `json:"click"`
+	Link     *Link             `json:"link"`
+	Customer TrackLeadCustomer `json:"customer"`
 }
 
 func (t *TrackLeadResponseBody) GetClick() Click {
@@ -284,9 +284,9 @@ func (t *TrackLeadResponseBody) GetLink() *Link {
 	return t.Link
 }
 
-func (t *TrackLeadResponseBody) GetCustomer() Customer {
+func (t *TrackLeadResponseBody) GetCustomer() TrackLeadCustomer {
 	if t == nil {
-		return Customer{}
+		return TrackLeadCustomer{}
 	}
 	return t.Customer
 }

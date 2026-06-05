@@ -424,7 +424,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 
 // Approve a partner application
 // Approve a pending partner application to your program. The partner will be enrolled in the specified group and notified of the approval.
-func (s *PartnerApplications) Approve(ctx context.Context, request operations.ApprovePartnerRequestBody, opts ...operations.Option) (*operations.ApprovePartnerResponseBody, error) {
+func (s *PartnerApplications) Approve(ctx context.Context, request operations.ApprovePartnerApplicationRequestBody, opts ...operations.Option) (*operations.ApprovePartnerApplicationResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -453,7 +453,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "approvePartner",
+		OperationID:      "approvePartnerApplication",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
@@ -591,7 +591,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 				return nil, err
 			}
 
-			var out operations.ApprovePartnerResponseBody
+			var out operations.ApprovePartnerApplicationResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -819,7 +819,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 
 // Reject a partner application
 // Reject a pending partner application to your program. The partner will be notified via email that their application was not approved.
-func (s *PartnerApplications) Reject(ctx context.Context, request operations.RejectPartnerRequestBody, opts ...operations.Option) (*operations.RejectPartnerResponseBody, error) {
+func (s *PartnerApplications) Reject(ctx context.Context, request operations.RejectPartnerApplicationRequestBody, opts ...operations.Option) (*operations.RejectPartnerApplicationResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -848,7 +848,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "rejectPartner",
+		OperationID:      "rejectPartnerApplication",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
@@ -986,7 +986,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 				return nil, err
 			}
 
-			var out operations.RejectPartnerResponseBody
+			var out operations.RejectPartnerApplicationResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

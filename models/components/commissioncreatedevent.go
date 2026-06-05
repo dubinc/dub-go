@@ -34,10 +34,11 @@ func (e *CommissionCreatedEventEvent) UnmarshalJSON(data []byte) error {
 type CommissionCreatedEventType string
 
 const (
-	CommissionCreatedEventTypeClick  CommissionCreatedEventType = "click"
-	CommissionCreatedEventTypeLead   CommissionCreatedEventType = "lead"
-	CommissionCreatedEventTypeSale   CommissionCreatedEventType = "sale"
-	CommissionCreatedEventTypeCustom CommissionCreatedEventType = "custom"
+	CommissionCreatedEventTypeClick    CommissionCreatedEventType = "click"
+	CommissionCreatedEventTypeLead     CommissionCreatedEventType = "lead"
+	CommissionCreatedEventTypeSale     CommissionCreatedEventType = "sale"
+	CommissionCreatedEventTypeReferral CommissionCreatedEventType = "referral"
+	CommissionCreatedEventTypeCustom   CommissionCreatedEventType = "custom"
 )
 
 func (e CommissionCreatedEventType) ToPointer() *CommissionCreatedEventType {
@@ -54,6 +55,8 @@ func (e *CommissionCreatedEventType) UnmarshalJSON(data []byte) error {
 	case "lead":
 		fallthrough
 	case "sale":
+		fallthrough
+	case "referral":
 		fallthrough
 	case "custom":
 		*e = CommissionCreatedEventType(v)
@@ -232,7 +235,7 @@ type CommissionCreatedEventCustomer struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
 	// Name of the customer.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
@@ -260,7 +263,7 @@ func (c CommissionCreatedEventCustomer) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CommissionCreatedEventCustomer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "name", "externalId", "createdAt"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "externalId", "createdAt"}); err != nil {
 		return err
 	}
 	return nil
@@ -273,9 +276,9 @@ func (c *CommissionCreatedEventCustomer) GetID() string {
 	return c.ID
 }
 
-func (c *CommissionCreatedEventCustomer) GetName() string {
+func (c *CommissionCreatedEventCustomer) GetName() *string {
 	if c == nil {
-		return ""
+		return nil
 	}
 	return c.Name
 }

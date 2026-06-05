@@ -1,10 +1,10 @@
-# ApprovePartnerResponseBody
+# RejectPartnerApplicationResponseBody
 
-The approved partner
+The rejected partner
 
 
 ## Fields
 
 | Field                           | Type                            | Required                        | Description                     |
 | ------------------------------- | ------------------------------- | ------------------------------- | ------------------------------- |
-| `PartnerID`                     | `string`                        | :heavy_check_mark:              | The ID of the approved partner. |
+| `PartnerID`                     | `string`                        | :heavy_check_mark:              | The ID of the rejected partner. |

@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/dubinc/dub-go/internal/utils"
@@ -138,101 +137,6 @@ func (u QueryParamTagNames) MarshalJSON() ([]byte, error) {
 	return nil, errors.New("could not marshal union type QueryParamTagNames: all fields are null")
 }
 
-// SortBy - The field to sort the links by. The default is `createdAt`.
-type SortBy string
-
-const (
-	SortByCreatedAt   SortBy = "createdAt"
-	SortByClicks      SortBy = "clicks"
-	SortBySaleAmount  SortBy = "saleAmount"
-	SortByLastClicked SortBy = "lastClicked"
-)
-
-func (e SortBy) ToPointer() *SortBy {
-	return &e
-}
-func (e *SortBy) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "createdAt":
-		fallthrough
-	case "clicks":
-		fallthrough
-	case "saleAmount":
-		fallthrough
-	case "lastClicked":
-		*e = SortBy(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SortBy: %v", v)
-	}
-}
-
-// SortOrder - The sort order. The default is `desc`.
-type SortOrder string
-
-const (
-	SortOrderAsc  SortOrder = "asc"
-	SortOrderDesc SortOrder = "desc"
-)
-
-func (e SortOrder) ToPointer() *SortOrder {
-	return &e
-}
-func (e *SortOrder) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "asc":
-		fallthrough
-	case "desc":
-		*e = SortOrder(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SortOrder: %v", v)
-	}
-}
-
-// Sort - DEPRECATED. Use `sortBy` instead.
-//
-// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-type Sort string
-
-const (
-	SortCreatedAt   Sort = "createdAt"
-	SortClicks      Sort = "clicks"
-	SortSaleAmount  Sort = "saleAmount"
-	SortLastClicked Sort = "lastClicked"
-)
-
-func (e Sort) ToPointer() *Sort {
-	return &e
-}
-func (e *Sort) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "createdAt":
-		fallthrough
-	case "clicks":
-		fallthrough
-	case "saleAmount":
-		fallthrough
-	case "lastClicked":
-		*e = Sort(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for Sort: %v", v)
-	}
-}
-
 type GetLinksRequest struct {
 	// The domain to filter the links by. E.g. `ac.me`. If not provided, all links for the workspace will be returned.
 	Domain *string `queryParam:"style=form,explode=true,name=domain"`
@@ -254,12 +158,6 @@ type GetLinksRequest struct {
 	ShowArchived *bool `default:"false" queryParam:"style=form,explode=true,name=showArchived"`
 	// DEPRECATED. Filter for links that have at least one tag assigned to them.
 	WithTags *bool `default:"false" queryParam:"style=form,explode=true,name=withTags"`
-	// The field to sort the links by. The default is `createdAt`.
-	SortBy *SortBy `default:"createdAt" queryParam:"style=form,explode=true,name=sortBy"`
-	// The sort order. The default is `desc`.
-	SortOrder *SortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
-	// DEPRECATED. Use `sortBy` instead.
-	Sort *Sort `default:"createdAt" queryParam:"style=form,explode=true,name=sort"`
 	// If specified, the query only searches for results before this cursor. Mutually exclusive with `startingAfter`.
 	EndingBefore *string `queryParam:"style=form,explode=true,name=endingBefore"`
 	// If specified, the query only searches for results after this cursor. Mutually exclusive with `endingBefore`.
@@ -349,27 +247,6 @@ func (g *GetLinksRequest) GetWithTags() *bool {
 		return nil
 	}
 	return g.WithTags
-}
-
-func (g *GetLinksRequest) GetSortBy() *SortBy {
-	if g == nil {
-		return nil
-	}
-	return g.SortBy
-}
-
-func (g *GetLinksRequest) GetSortOrder() *SortOrder {
-	if g == nil {
-		return nil
-	}
-	return g.SortOrder
-}
-
-func (g *GetLinksRequest) GetSort() *Sort {
-	if g == nil {
-		return nil
-	}
-	return g.Sort
 }
 
 func (g *GetLinksRequest) GetEndingBefore() *string {

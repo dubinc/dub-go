@@ -80,7 +80,7 @@ Approve a pending partner application to your program. The partner will be enrol
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="approvePartner" method="post" path="/partners/applications/approve" -->
+<!-- UsageSnippet language="go" operationID="approvePartnerApplication" method="post" path="/partners/applications/approve" -->
 ```go
 package main
 
@@ -98,7 +98,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.PartnerApplications.Approve(ctx, operations.ApprovePartnerRequestBody{
+    res, err := s.PartnerApplications.Approve(ctx, operations.ApprovePartnerApplicationRequestBody{
         PartnerID: "<id>",
     })
     if err != nil {
@@ -112,15 +112,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [operations.ApprovePartnerRequestBody](../../models/operations/approvepartnerrequestbody.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `opts`                                                                                       | [][operations.Option](../../models/operations/option.md)                                     | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |
+| `request`                                                                                                          | [operations.ApprovePartnerApplicationRequestBody](../../models/operations/approvepartnerapplicationrequestbody.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
+| `opts`                                                                                                             | [][operations.Option](../../models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |
 
 ### Response
 
-**[*operations.ApprovePartnerResponseBody](../../models/operations/approvepartnerresponsebody.md), error**
+**[*operations.ApprovePartnerApplicationResponseBody](../../models/operations/approvepartnerapplicationresponsebody.md), error**
 
 ### Errors
 
@@ -143,7 +143,7 @@ Reject a pending partner application to your program. The partner will be notifi
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="rejectPartner" method="post" path="/partners/applications/reject" -->
+<!-- UsageSnippet language="go" operationID="rejectPartnerApplication" method="post" path="/partners/applications/reject" -->
 ```go
 package main
 
@@ -161,7 +161,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.PartnerApplications.Reject(ctx, operations.RejectPartnerRequestBody{
+    res, err := s.PartnerApplications.Reject(ctx, operations.RejectPartnerApplicationRequestBody{
         PartnerID: "<id>",
     })
     if err != nil {
@@ -175,15 +175,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [operations.RejectPartnerRequestBody](../../models/operations/rejectpartnerrequestbody.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-| `opts`                                                                                     | [][operations.Option](../../models/operations/option.md)                                   | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
+| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
+| `request`                                                                                                        | [operations.RejectPartnerApplicationRequestBody](../../models/operations/rejectpartnerapplicationrequestbody.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
+| `opts`                                                                                                           | [][operations.Option](../../models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
 
 ### Response
 
-**[*operations.RejectPartnerResponseBody](../../models/operations/rejectpartnerresponsebody.md), error**
+**[*operations.RejectPartnerApplicationResponseBody](../../models/operations/rejectpartnerapplicationresponsebody.md), error**
 
 ### Errors
 

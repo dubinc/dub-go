@@ -21,5 +21,7 @@ value := operations.ResponseBodyPaymentProcessorStripe
 | `ResponseBodyPaymentProcessorShopify`    | shopify                                  |
 | `ResponseBodyPaymentProcessorPolar`      | polar                                    |
 | `ResponseBodyPaymentProcessorPaddle`     | paddle                                   |
+| `ResponseBodyPaymentProcessorApple`      | apple                                    |
 | `ResponseBodyPaymentProcessorRevenuecat` | revenuecat                               |
+| `ResponseBodyPaymentProcessorDub`        | dub                                      |
 | `ResponseBodyPaymentProcessorCustom`     | custom                                   |

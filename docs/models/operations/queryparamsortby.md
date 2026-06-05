@@ -1,6 +1,6 @@
 # QueryParamSortBy
 
-The field to sort the events by. The default is `timestamp`.
+The field to sort the tags by.
 
 ## Example Usage
 
@@ -9,7 +9,7 @@ import (
 	"github.com/dubinc/dub-go/models/operations"
 )
 
-value := operations.QueryParamSortByTimestamp
+value := operations.QueryParamSortByName
 ```
 
 
@@ -17,4 +17,5 @@ value := operations.QueryParamSortByTimestamp
 
 | Name                        | Value                       |
 | --------------------------- | --------------------------- |
-| `QueryParamSortByTimestamp` | timestamp                   |
+| `QueryParamSortByName`      | name                        |
+| `QueryParamSortByCreatedAt` | createdAt                   |

@@ -148,10 +148,11 @@ func (u *UpdateCommissionRequest) GetRequestBody() *UpdateCommissionRequestBody 
 type UpdateCommissionType string
 
 const (
-	UpdateCommissionTypeClick  UpdateCommissionType = "click"
-	UpdateCommissionTypeLead   UpdateCommissionType = "lead"
-	UpdateCommissionTypeSale   UpdateCommissionType = "sale"
-	UpdateCommissionTypeCustom UpdateCommissionType = "custom"
+	UpdateCommissionTypeClick    UpdateCommissionType = "click"
+	UpdateCommissionTypeLead     UpdateCommissionType = "lead"
+	UpdateCommissionTypeSale     UpdateCommissionType = "sale"
+	UpdateCommissionTypeReferral UpdateCommissionType = "referral"
+	UpdateCommissionTypeCustom   UpdateCommissionType = "custom"
 )
 
 func (e UpdateCommissionType) ToPointer() *UpdateCommissionType {
@@ -168,6 +169,8 @@ func (e *UpdateCommissionType) UnmarshalJSON(data []byte) error {
 	case "lead":
 		fallthrough
 	case "sale":
+		fallthrough
+	case "referral":
 		fallthrough
 	case "custom":
 		*e = UpdateCommissionType(v)
@@ -288,7 +291,7 @@ type UpdateCommissionCustomer struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
 	// Name of the customer.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
@@ -318,9 +321,9 @@ func (u *UpdateCommissionCustomer) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateCommissionCustomer) GetName() string {
+func (u *UpdateCommissionCustomer) GetName() *string {
 	if u == nil {
-		return ""
+		return nil
 	}
 	return u.Name
 }

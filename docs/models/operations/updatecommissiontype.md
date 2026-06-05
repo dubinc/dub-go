@@ -13,9 +13,10 @@ value := operations.UpdateCommissionTypeClick
 
 ## Values
 
-| Name                         | Value                        |
-| ---------------------------- | ---------------------------- |
-| `UpdateCommissionTypeClick`  | click                        |
-| `UpdateCommissionTypeLead`   | lead                         |
-| `UpdateCommissionTypeSale`   | sale                         |
-| `UpdateCommissionTypeCustom` | custom                       |
+| Name                           | Value                          |
+| ------------------------------ | ------------------------------ |
+| `UpdateCommissionTypeClick`    | click                          |
+| `UpdateCommissionTypeLead`     | lead                           |
+| `UpdateCommissionTypeSale`     | sale                           |
+| `UpdateCommissionTypeReferral` | referral                       |
+| `UpdateCommissionTypeCustom`   | custom                         |
