@@ -8,13 +8,15 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
+// Type - Filter the list of commissions by type. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `sale`, `sale,lead`, `-click`.
 type Type string
 
 const (
-	TypeClick  Type = "click"
-	TypeLead   Type = "lead"
-	TypeSale   Type = "sale"
-	TypeCustom Type = "custom"
+	TypeClick    Type = "click"
+	TypeLead     Type = "lead"
+	TypeSale     Type = "sale"
+	TypeReferral Type = "referral"
+	TypeCustom   Type = "custom"
 )
 
 func (e Type) ToPointer() *Type {
@@ -31,6 +33,8 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	case "lead":
 		fallthrough
 	case "sale":
+		fallthrough
+	case "referral":
 		fallthrough
 	case "custom":
 		*e = Type(v)
@@ -185,17 +189,20 @@ func (e *ListCommissionsQueryParamInterval) UnmarshalJSON(data []byte) error {
 }
 
 type ListCommissionsRequest struct {
+	// Filter the list of commissions by type. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `sale`, `sale,lead`, `-click`.
 	Type *Type `queryParam:"style=form,explode=true,name=type"`
 	// Filter the list of commissions by the associated customer.
 	CustomerID *string `queryParam:"style=form,explode=true,name=customerId"`
 	// Filter the list of commissions by the associated payout.
 	PayoutID *string `queryParam:"style=form,explode=true,name=payoutId"`
-	// Filter the list of commissions by the associated partner. When specified, takes precedence over `tenantId`.
+	// Filter the list of commissions by the associated partner. When specified, takes precedence over `tenantId`. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `partner_abc`, `partner_abc,partner_xyz`, `-partner_abc`.
 	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
 	// Filter the list of commissions by the associated partner's `tenantId` (their unique ID within your database).
 	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
-	// Filter the list of commissions by the associated partner group.
+	// Filter the list of commissions by the associated partner group. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `group_abc`, `group_abc,group_xyz`, `-group_abc`.
 	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
+	// Filter the list of commissions by the associated partner tag. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `ptag_abc`, `ptag_abc,ptag_xyz`, `-ptag_abc`.
+	PartnerTagID *string `queryParam:"style=form,explode=true,name=partnerTagId"`
 	// Filter the list of commissions by the associated invoice. Since invoiceId is unique on a per-program basis, this will only return one commission per invoice.
 	InvoiceID *string `queryParam:"style=form,explode=true,name=invoiceId"`
 	// Filter the list of commissions by their corresponding status.
@@ -272,6 +279,13 @@ func (l *ListCommissionsRequest) GetGroupID() *string {
 		return nil
 	}
 	return l.GroupID
+}
+
+func (l *ListCommissionsRequest) GetPartnerTagID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.PartnerTagID
 }
 
 func (l *ListCommissionsRequest) GetInvoiceID() *string {
@@ -361,10 +375,11 @@ func (l *ListCommissionsRequest) GetPageSize() *float64 {
 type ListCommissionsType string
 
 const (
-	ListCommissionsTypeClick  ListCommissionsType = "click"
-	ListCommissionsTypeLead   ListCommissionsType = "lead"
-	ListCommissionsTypeSale   ListCommissionsType = "sale"
-	ListCommissionsTypeCustom ListCommissionsType = "custom"
+	ListCommissionsTypeClick    ListCommissionsType = "click"
+	ListCommissionsTypeLead     ListCommissionsType = "lead"
+	ListCommissionsTypeSale     ListCommissionsType = "sale"
+	ListCommissionsTypeReferral ListCommissionsType = "referral"
+	ListCommissionsTypeCustom   ListCommissionsType = "custom"
 )
 
 func (e ListCommissionsType) ToPointer() *ListCommissionsType {
@@ -381,6 +396,8 @@ func (e *ListCommissionsType) UnmarshalJSON(data []byte) error {
 	case "lead":
 		fallthrough
 	case "sale":
+		fallthrough
+	case "referral":
 		fallthrough
 	case "custom":
 		*e = ListCommissionsType(v)
@@ -501,7 +518,7 @@ type ListCommissionsCustomer struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
 	// Name of the customer.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
@@ -531,9 +548,9 @@ func (l *ListCommissionsCustomer) GetID() string {
 	return l.ID
 }
 
-func (l *ListCommissionsCustomer) GetName() string {
+func (l *ListCommissionsCustomer) GetName() *string {
 	if l == nil {
-		return ""
+		return nil
 	}
 	return l.Name
 }

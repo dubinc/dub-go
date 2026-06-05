@@ -35,7 +35,7 @@ type Customer struct {
 	// The unique ID of the customer. You may use either the customer's `id` on Dub (obtained via `/customers` endpoint) or their `externalId` (unique ID within your system, prefixed with `ext_`, e.g. `ext_123`).
 	ID string `json:"id"`
 	// Name of the customer.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// Email of the customer.
 	Email *string `json:"email,omitempty"`
 	// Avatar URL of the customer.
@@ -63,7 +63,7 @@ func (c Customer) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Customer) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "name", "externalId", "createdAt"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "externalId", "createdAt"}); err != nil {
 		return err
 	}
 	return nil
@@ -76,9 +76,9 @@ func (c *Customer) GetID() string {
 	return c.ID
 }
 
-func (c *Customer) GetName() string {
+func (c *Customer) GetName() *string {
 	if c == nil {
-		return ""
+		return nil
 	}
 	return c.Name
 }

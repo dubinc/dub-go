@@ -170,7 +170,7 @@ Retrieve a partner's links by their partner ID or tenant ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="retrieveLinks" method="get" path="/partners/links" -->
+<!-- UsageSnippet language="go" operationID="retrievePartnerLinks" method="get" path="/partners/links" -->
 ```go
 package main
 
@@ -188,7 +188,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.Partners.RetrieveLinks(ctx, operations.RetrieveLinksRequest{})
+    res, err := s.Partners.RetrieveLinks(ctx, operations.RetrievePartnerLinksRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -200,15 +200,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.RetrieveLinksRequest](../../models/operations/retrievelinksrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [operations.RetrievePartnerLinksRequest](../../models/operations/retrievepartnerlinksrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][operations.Option](../../models/operations/option.md)                                         | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 ### Response
 
-**[[]operations.RetrieveLinksResponseBody](../../.md), error**
+**[[]operations.RetrievePartnerLinksResponseBody](../../.md), error**
 
 ### Errors
 

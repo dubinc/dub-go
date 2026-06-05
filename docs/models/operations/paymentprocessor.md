@@ -21,5 +21,7 @@ value := operations.PaymentProcessorStripe
 | `PaymentProcessorShopify`    | shopify                      |
 | `PaymentProcessorPolar`      | polar                        |
 | `PaymentProcessorPaddle`     | paddle                       |
+| `PaymentProcessorApple`      | apple                        |
 | `PaymentProcessorRevenuecat` | revenuecat                   |
+| `PaymentProcessorDub`        | dub                          |
 | `PaymentProcessorCustom`     | custom                       |

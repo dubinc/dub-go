@@ -13,9 +13,10 @@ value := components.CommissionCreatedEventTypeClick
 
 ## Values
 
-| Name                               | Value                              |
-| ---------------------------------- | ---------------------------------- |
-| `CommissionCreatedEventTypeClick`  | click                              |
-| `CommissionCreatedEventTypeLead`   | lead                               |
-| `CommissionCreatedEventTypeSale`   | sale                               |
-| `CommissionCreatedEventTypeCustom` | custom                             |
+| Name                                 | Value                                |
+| ------------------------------------ | ------------------------------------ |
+| `CommissionCreatedEventTypeClick`    | click                                |
+| `CommissionCreatedEventTypeLead`     | lead                                 |
+| `CommissionCreatedEventTypeSale`     | sale                                 |
+| `CommissionCreatedEventTypeReferral` | referral                             |
+| `CommissionCreatedEventTypeCustom`   | custom                               |

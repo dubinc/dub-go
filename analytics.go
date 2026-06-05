@@ -16,8 +16,6 @@ import (
 	"net/url"
 )
 
-// Analytics - Retrieve analytics for a partner
-// Retrieve analytics for a partner within a program. The response type vary based on the `groupBy` query parameter.
 type Analytics struct {
 	rootSDK          *Dub
 	sdkConfiguration config.SDKConfiguration

@@ -6,28 +6,28 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
-type RetrieveLinksRequest struct {
+type RetrievePartnerLinksRequest struct {
 	// The ID of the partner to create a link for. Will take precedence over `tenantId` if provided.
 	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
 	// The ID of the partner in your system. If both `partnerId` and `tenantId` are not provided, an error will be thrown.
 	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
 }
 
-func (r *RetrieveLinksRequest) GetPartnerID() *string {
+func (r *RetrievePartnerLinksRequest) GetPartnerID() *string {
 	if r == nil {
 		return nil
 	}
 	return r.PartnerID
 }
 
-func (r *RetrieveLinksRequest) GetTenantID() *string {
+func (r *RetrievePartnerLinksRequest) GetTenantID() *string {
 	if r == nil {
 		return nil
 	}
 	return r.TenantID
 }
 
-type RetrieveLinksResponseBody struct {
+type RetrievePartnerLinksResponseBody struct {
 	// The unique ID of the short link.
 	ID string `json:"id"`
 	// The domain of the short link. If not provided, the primary domain for the workspace will be used (or `dub.sh` if the workspace has no domains).
@@ -50,81 +50,81 @@ type RetrieveLinksResponseBody struct {
 	SaleAmount *float64 `default:"0" json:"saleAmount"`
 }
 
-func (r RetrieveLinksResponseBody) MarshalJSON() ([]byte, error) {
+func (r RetrievePartnerLinksResponseBody) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(r, "", false)
 }
 
-func (r *RetrieveLinksResponseBody) UnmarshalJSON(data []byte) error {
+func (r *RetrievePartnerLinksResponseBody) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (r *RetrieveLinksResponseBody) GetID() string {
+func (r *RetrievePartnerLinksResponseBody) GetID() string {
 	if r == nil {
 		return ""
 	}
 	return r.ID
 }
 
-func (r *RetrieveLinksResponseBody) GetDomain() string {
+func (r *RetrievePartnerLinksResponseBody) GetDomain() string {
 	if r == nil {
 		return ""
 	}
 	return r.Domain
 }
 
-func (r *RetrieveLinksResponseBody) GetKey() string {
+func (r *RetrievePartnerLinksResponseBody) GetKey() string {
 	if r == nil {
 		return ""
 	}
 	return r.Key
 }
 
-func (r *RetrieveLinksResponseBody) GetShortLink() string {
+func (r *RetrievePartnerLinksResponseBody) GetShortLink() string {
 	if r == nil {
 		return ""
 	}
 	return r.ShortLink
 }
 
-func (r *RetrieveLinksResponseBody) GetURL() string {
+func (r *RetrievePartnerLinksResponseBody) GetURL() string {
 	if r == nil {
 		return ""
 	}
 	return r.URL
 }
 
-func (r *RetrieveLinksResponseBody) GetClicks() *float64 {
+func (r *RetrievePartnerLinksResponseBody) GetClicks() *float64 {
 	if r == nil {
 		return nil
 	}
 	return r.Clicks
 }
 
-func (r *RetrieveLinksResponseBody) GetLeads() *float64 {
+func (r *RetrievePartnerLinksResponseBody) GetLeads() *float64 {
 	if r == nil {
 		return nil
 	}
 	return r.Leads
 }
 
-func (r *RetrieveLinksResponseBody) GetConversions() *float64 {
+func (r *RetrievePartnerLinksResponseBody) GetConversions() *float64 {
 	if r == nil {
 		return nil
 	}
 	return r.Conversions
 }
 
-func (r *RetrieveLinksResponseBody) GetSales() *float64 {
+func (r *RetrievePartnerLinksResponseBody) GetSales() *float64 {
 	if r == nil {
 		return nil
 	}
 	return r.Sales
 }
 
-func (r *RetrieveLinksResponseBody) GetSaleAmount() *float64 {
+func (r *RetrievePartnerLinksResponseBody) GetSaleAmount() *float64 {
 	if r == nil {
 		return nil
 	}

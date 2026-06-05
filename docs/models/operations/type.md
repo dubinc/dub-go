@@ -1,5 +1,7 @@
 # Type
 
+Filter the list of commissions by type. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `sale`, `sale,lead`, `-click`.
+
 ## Example Usage
 
 ```go
@@ -13,9 +15,10 @@ value := operations.TypeClick
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `TypeClick`  | click        |
-| `TypeLead`   | lead         |
-| `TypeSale`   | sale         |
-| `TypeCustom` | custom       |
+| Name           | Value          |
+| -------------- | -------------- |
+| `TypeClick`    | click          |
+| `TypeLead`     | lead           |
+| `TypeSale`     | sale           |
+| `TypeReferral` | referral       |
+| `TypeCustom`   | custom         |

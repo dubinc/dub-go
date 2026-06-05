@@ -33,6 +33,12 @@ actions:
         - "lang": "go"
           "label": "listCommissions"
           "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Commissions.List(ctx, operations.ListCommissionsRequest{\n        EndingBefore: dubgo.Pointer(\"cm_1KAP4CGN2Z5TPYYQ1W4JEYD56\"),\n        StartingAfter: dubgo.Pointer(\"cm_1KAP4CGN2Z5TPYYQ1W4JEYD56\"),\n        Page: dubgo.Pointer[float64](1.0),\n        PageSize: dubgo.Pointer[float64](50.0),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        for {\n            // handle items\n\n            res, err = res.Next()\n\n            if err != nil {\n                // handle error\n            }\n\n            if res == nil {\n                break\n            }\n        }\n    }\n}"
+  - target: $["paths"]["/commissions"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "createCommission"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Commissions.Create(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/commissions/bulk"]["patch"]
     update:
       "x-codeSamples":
@@ -223,14 +229,14 @@ actions:
     update:
       "x-codeSamples":
         - "lang": "go"
-          "label": "approvePartner"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.PartnerApplications.Approve(ctx, operations.ApprovePartnerRequestBody{\n        PartnerID: \"<id>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "label": "approvePartnerApplication"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.PartnerApplications.Approve(ctx, operations.ApprovePartnerApplicationRequestBody{\n        PartnerID: \"<id>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/partners/applications/reject"]["post"]
     update:
       "x-codeSamples":
         - "lang": "go"
-          "label": "rejectPartner"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.PartnerApplications.Reject(ctx, operations.RejectPartnerRequestBody{\n        PartnerID: \"<id>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "label": "rejectPartnerApplication"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.PartnerApplications.Reject(ctx, operations.RejectPartnerApplicationRequestBody{\n        PartnerID: \"<id>\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/partners/ban"]["post"]
     update:
       "x-codeSamples":
@@ -247,8 +253,8 @@ actions:
     update:
       "x-codeSamples":
         - "lang": "go"
-          "label": "retrieveLinks"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.RetrieveLinks(ctx, operations.RetrieveLinksRequest{})\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "label": "retrievePartnerLinks"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.RetrieveLinks(ctx, operations.RetrievePartnerLinksRequest{})\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/partners/links"]["post"]
     update:
       "x-codeSamples":
