@@ -116,6 +116,8 @@ type ListPayoutsRequest struct {
 	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
 	// Filter the list of payouts by invoice ID (the unique ID of the invoice you receive for each batch payout you process on Dub). Pending payouts will not have an invoice ID.
 	InvoiceID *string `queryParam:"style=form,explode=true,name=invoiceId"`
+	// Filter the list of payouts by the associated partner group. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `group_abc`, `group_abc,group_xyz`, `-group_abc`.
+	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
 	// The field to sort the list of payouts by.
 	SortBy *ListPayoutsQueryParamSortBy `default:"amount" queryParam:"style=form,explode=true,name=sortBy"`
 	// The sort order for the list of payouts.
@@ -163,6 +165,13 @@ func (l *ListPayoutsRequest) GetInvoiceID() *string {
 		return nil
 	}
 	return l.InvoiceID
+}
+
+func (l *ListPayoutsRequest) GetGroupID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.GroupID
 }
 
 func (l *ListPayoutsRequest) GetSortBy() *ListPayoutsQueryParamSortBy {
@@ -266,6 +275,7 @@ const (
 	MethodConnect    Method = "connect"
 	MethodStablecoin Method = "stablecoin"
 	MethodPaypal     Method = "paypal"
+	MethodTremendous Method = "tremendous"
 )
 
 func (e Method) ToPointer() *Method {
@@ -282,6 +292,8 @@ func (e *Method) UnmarshalJSON(data []byte) error {
 	case "stablecoin":
 		fallthrough
 	case "paypal":
+		fallthrough
+	case "tremendous":
 		*e = Method(v)
 		return nil
 	default:
@@ -296,6 +308,7 @@ const (
 	ListPayoutsDefaultPayoutMethodConnect    ListPayoutsDefaultPayoutMethod = "connect"
 	ListPayoutsDefaultPayoutMethodStablecoin ListPayoutsDefaultPayoutMethod = "stablecoin"
 	ListPayoutsDefaultPayoutMethodPaypal     ListPayoutsDefaultPayoutMethod = "paypal"
+	ListPayoutsDefaultPayoutMethodTremendous ListPayoutsDefaultPayoutMethod = "tremendous"
 )
 
 func (e ListPayoutsDefaultPayoutMethod) ToPointer() *ListPayoutsDefaultPayoutMethod {
@@ -312,6 +325,8 @@ func (e *ListPayoutsDefaultPayoutMethod) UnmarshalJSON(data []byte) error {
 	case "stablecoin":
 		fallthrough
 	case "paypal":
+		fallthrough
+	case "tremendous":
 		*e = ListPayoutsDefaultPayoutMethod(v)
 		return nil
 	default:

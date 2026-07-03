@@ -42,6 +42,7 @@ type Click struct {
 	Device     string  `json:"device"`
 	Browser    string  `json:"browser"`
 	Os         string  `json:"os"`
+	Ua         *string `json:"ua,omitempty"`
 	Trigger    *string `json:"trigger,omitempty"`
 	Referer    string  `json:"referer"`
 	RefererURL string  `json:"refererUrl"`
@@ -128,6 +129,13 @@ func (c *Click) GetOs() string {
 		return ""
 	}
 	return c.Os
+}
+
+func (c *Click) GetUa() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Ua
 }
 
 func (c *Click) GetTrigger() *string {

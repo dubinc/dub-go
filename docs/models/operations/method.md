@@ -18,3 +18,4 @@ value := operations.MethodConnect
 | `MethodConnect`    | connect            |
 | `MethodStablecoin` | stablecoin         |
 | `MethodPaypal`     | paypal             |
+| `MethodTremendous` | tremendous         |
