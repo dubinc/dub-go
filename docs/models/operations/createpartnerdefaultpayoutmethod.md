@@ -20,3 +20,4 @@ value := operations.CreatePartnerDefaultPayoutMethodConnect
 | `CreatePartnerDefaultPayoutMethodConnect`    | connect                                      |
 | `CreatePartnerDefaultPayoutMethodStablecoin` | stablecoin                                   |
 | `CreatePartnerDefaultPayoutMethodPaypal`     | paypal                                       |
+| `CreatePartnerDefaultPayoutMethodTremendous` | tremendous                                   |

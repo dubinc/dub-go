@@ -20,3 +20,4 @@ value := components.DefaultPayoutMethodConnect
 | `DefaultPayoutMethodConnect`    | connect                         |
 | `DefaultPayoutMethodStablecoin` | stablecoin                      |
 | `DefaultPayoutMethodPaypal`     | paypal                          |
+| `DefaultPayoutMethodTremendous` | tremendous                      |

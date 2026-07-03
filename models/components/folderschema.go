@@ -34,7 +34,7 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// AccessLevel - The access level of the folder within the workspace.
+// AccessLevel - The workspace-level access level settings for the folder. Default is `write` which allows full access to the folder for all team members. The other options are `read` (view-only access) and `null` (no access) and are only available on Business plans and above.
 type AccessLevel string
 
 const (
@@ -69,8 +69,8 @@ type FolderSchema struct {
 	// The description of the folder.
 	Description *string `json:"description"`
 	Type        Type    `json:"type"`
-	// The access level of the folder within the workspace.
-	AccessLevel *AccessLevel `default:"null" json:"accessLevel"`
+	// The workspace-level access level settings for the folder. Default is `write` which allows full access to the folder for all team members. The other options are `read` (view-only access) and `null` (no access) and are only available on Business plans and above.
+	AccessLevel *AccessLevel `default:"write" json:"accessLevel"`
 	// The date the folder was created.
 	CreatedAt string `json:"createdAt"`
 	// The date the folder was updated.

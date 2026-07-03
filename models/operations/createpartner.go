@@ -485,6 +485,7 @@ const (
 	CreatePartnerDefaultPayoutMethodConnect    CreatePartnerDefaultPayoutMethod = "connect"
 	CreatePartnerDefaultPayoutMethodStablecoin CreatePartnerDefaultPayoutMethod = "stablecoin"
 	CreatePartnerDefaultPayoutMethodPaypal     CreatePartnerDefaultPayoutMethod = "paypal"
+	CreatePartnerDefaultPayoutMethodTremendous CreatePartnerDefaultPayoutMethod = "tremendous"
 )
 
 func (e CreatePartnerDefaultPayoutMethod) ToPointer() *CreatePartnerDefaultPayoutMethod {
@@ -501,6 +502,8 @@ func (e *CreatePartnerDefaultPayoutMethod) UnmarshalJSON(data []byte) error {
 	case "stablecoin":
 		fallthrough
 	case "paypal":
+		fallthrough
+	case "tremendous":
 		*e = CreatePartnerDefaultPayoutMethod(v)
 		return nil
 	default:

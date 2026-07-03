@@ -164,6 +164,7 @@ type SaleCreatedEventClick struct {
 	Device     string  `json:"device"`
 	Browser    string  `json:"browser"`
 	Os         string  `json:"os"`
+	Ua         *string `json:"ua,omitempty"`
 	Trigger    *string `json:"trigger,omitempty"`
 	Referer    string  `json:"referer"`
 	RefererURL string  `json:"refererUrl"`
@@ -250,6 +251,13 @@ func (s *SaleCreatedEventClick) GetOs() string {
 		return ""
 	}
 	return s.Os
+}
+
+func (s *SaleCreatedEventClick) GetUa() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Ua
 }
 
 func (s *SaleCreatedEventClick) GetTrigger() *string {

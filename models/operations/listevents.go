@@ -1214,6 +1214,7 @@ type ListEventsResponseBodyClick struct {
 	Device     string  `json:"device"`
 	Browser    string  `json:"browser"`
 	Os         string  `json:"os"`
+	Ua         *string `json:"ua,omitempty"`
 	Trigger    *string `json:"trigger,omitempty"`
 	Referer    string  `json:"referer"`
 	RefererURL string  `json:"refererUrl"`
@@ -1300,6 +1301,13 @@ func (l *ListEventsResponseBodyClick) GetOs() string {
 		return ""
 	}
 	return l.Os
+}
+
+func (l *ListEventsResponseBodyClick) GetUa() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Ua
 }
 
 func (l *ListEventsResponseBodyClick) GetTrigger() *string {
@@ -1755,6 +1763,7 @@ type ResponseBodyClick struct {
 	Device     string  `json:"device"`
 	Browser    string  `json:"browser"`
 	Os         string  `json:"os"`
+	Ua         *string `json:"ua,omitempty"`
 	Trigger    *string `json:"trigger,omitempty"`
 	Referer    string  `json:"referer"`
 	RefererURL string  `json:"refererUrl"`
@@ -1841,6 +1850,13 @@ func (r *ResponseBodyClick) GetOs() string {
 		return ""
 	}
 	return r.Os
+}
+
+func (r *ResponseBodyClick) GetUa() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Ua
 }
 
 func (r *ResponseBodyClick) GetTrigger() *string {
@@ -2746,6 +2762,7 @@ type ListEventsResponseBodyEventsClick struct {
 	Device     string  `json:"device"`
 	Browser    string  `json:"browser"`
 	Os         string  `json:"os"`
+	Ua         *string `json:"ua,omitempty"`
 	Trigger    *string `json:"trigger,omitempty"`
 	Referer    string  `json:"referer"`
 	RefererURL string  `json:"refererUrl"`
@@ -2832,6 +2849,13 @@ func (l *ListEventsResponseBodyEventsClick) GetOs() string {
 		return ""
 	}
 	return l.Os
+}
+
+func (l *ListEventsResponseBodyEventsClick) GetUa() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Ua
 }
 
 func (l *ListEventsResponseBodyEventsClick) GetTrigger() *string {

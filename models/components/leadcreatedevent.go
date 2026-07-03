@@ -164,6 +164,7 @@ type LeadCreatedEventClick struct {
 	Device     string  `json:"device"`
 	Browser    string  `json:"browser"`
 	Os         string  `json:"os"`
+	Ua         *string `json:"ua,omitempty"`
 	Trigger    *string `json:"trigger,omitempty"`
 	Referer    string  `json:"referer"`
 	RefererURL string  `json:"refererUrl"`
@@ -250,6 +251,13 @@ func (l *LeadCreatedEventClick) GetOs() string {
 		return ""
 	}
 	return l.Os
+}
+
+func (l *LeadCreatedEventClick) GetUa() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Ua
 }
 
 func (l *LeadCreatedEventClick) GetTrigger() *string {

@@ -8,7 +8,7 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
-// AccessLevel - The access level of the folder within the workspace.
+// AccessLevel - The workspace-level access level settings for the folder. Default is `write` which allows full access to the folder for all team members. The other options are `read` (view-only access) and `null` (no access) and are only available on Business plans and above.
 type AccessLevel string
 
 const (
@@ -40,8 +40,8 @@ type CreateFolderRequestBody struct {
 	Name string `json:"name"`
 	// The description of the folder.
 	Description *string `json:"description,omitempty"`
-	// The access level of the folder within the workspace.
-	AccessLevel *AccessLevel `default:"null" json:"accessLevel"`
+	// The workspace-level access level settings for the folder. Default is `write` which allows full access to the folder for all team members. The other options are `read` (view-only access) and `null` (no access) and are only available on Business plans and above.
+	AccessLevel *AccessLevel `default:"write" json:"accessLevel"`
 }
 
 func (c CreateFolderRequestBody) MarshalJSON() ([]byte, error) {

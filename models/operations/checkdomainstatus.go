@@ -84,15 +84,41 @@ func (c *CheckDomainStatusRequest) GetDomains() Domains {
 	return c.Domains
 }
 
+// Prices - Price details for the domain. Will be null if the domain is not available.
+type Prices struct {
+	// The domain's registration price in USD cents.
+	Registration *float64 `json:"registration"`
+	// The domain's renewal price in USD cents.
+	Renewal *float64 `json:"renewal"`
+}
+
+func (p *Prices) GetRegistration() *float64 {
+	if p == nil {
+		return nil
+	}
+	return p.Registration
+}
+
+func (p *Prices) GetRenewal() *float64 {
+	if p == nil {
+		return nil
+	}
+	return p.Renewal
+}
+
 type CheckDomainStatusResponseBody struct {
 	// The domain name.
 	Domain string `json:"domain"`
 	// Whether the domain is available.
 	Available bool `json:"available"`
-	// The price description.
-	Price *string `json:"price"`
 	// Whether the domain is a premium domain.
 	Premium *bool `json:"premium"`
+	// Price details for the domain. Will be null if the domain is not available.
+	Prices *Prices `json:"prices"`
+	// Deprecated: Use `prices` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Price *string `json:"price"`
 }
 
 func (c *CheckDomainStatusResponseBody) GetDomain() string {
@@ -109,16 +135,23 @@ func (c *CheckDomainStatusResponseBody) GetAvailable() bool {
 	return c.Available
 }
 
-func (c *CheckDomainStatusResponseBody) GetPrice() *string {
-	if c == nil {
-		return nil
-	}
-	return c.Price
-}
-
 func (c *CheckDomainStatusResponseBody) GetPremium() *bool {
 	if c == nil {
 		return nil
 	}
 	return c.Premium
+}
+
+func (c *CheckDomainStatusResponseBody) GetPrices() *Prices {
+	if c == nil {
+		return nil
+	}
+	return c.Prices
+}
+
+func (c *CheckDomainStatusResponseBody) GetPrice() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Price
 }

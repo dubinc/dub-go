@@ -20,3 +20,4 @@ value := operations.ListPayoutsDefaultPayoutMethodConnect
 | `ListPayoutsDefaultPayoutMethodConnect`    | connect                                    |
 | `ListPayoutsDefaultPayoutMethodStablecoin` | stablecoin                                 |
 | `ListPayoutsDefaultPayoutMethodPaypal`     | paypal                                     |
+| `ListPayoutsDefaultPayoutMethodTremendous` | tremendous                                 |
