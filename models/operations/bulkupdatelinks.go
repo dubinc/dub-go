@@ -214,8 +214,6 @@ type Data struct {
 	UtmContent *string `json:"utm_content,omitempty"`
 	// The referral tag of the short link. If set, this will populate or override the `ref` query parameter in the destination URL.
 	Ref *string `json:"ref,omitempty"`
-	// An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
-	WebhookIds []string `json:"webhookIds,omitempty"`
 	// An array of A/B test URLs and the percentage of traffic to send to each URL.
 	TestVariants []BulkUpdateLinksTestVariants `json:"testVariants,omitempty"`
 	// The date and time when the tests started.
@@ -230,6 +228,10 @@ type Data struct {
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	TagID *string `json:"tagId,omitempty"`
+	// Deprecated: You can now enable link.clicked webhooks for all links in a workspace or folder without passing this field manually. An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	WebhookIds []string `json:"webhookIds,omitempty"`
 }
 
 func (d *Data) GetURL() *string {
@@ -435,13 +437,6 @@ func (d *Data) GetRef() *string {
 	return d.Ref
 }
 
-func (d *Data) GetWebhookIds() []string {
-	if d == nil {
-		return nil
-	}
-	return d.WebhookIds
-}
-
 func (d *Data) GetTestVariants() []BulkUpdateLinksTestVariants {
 	if d == nil {
 		return nil
@@ -475,6 +470,13 @@ func (d *Data) GetTagID() *string {
 		return nil
 	}
 	return d.TagID
+}
+
+func (d *Data) GetWebhookIds() []string {
+	if d == nil {
+		return nil
+	}
+	return d.WebhookIds
 }
 
 type BulkUpdateLinksRequestBody struct {

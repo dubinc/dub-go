@@ -238,8 +238,6 @@ type Data struct {
 	Tags []LinkTagSchema `json:"tags"`
 	// The unique ID of the folder assigned to the short link.
 	FolderID *string `json:"folderId"`
-	// The IDs of the webhooks that the short link is associated with.
-	WebhookIds []string `json:"webhookIds"`
 	// The comments for the short link.
 	Comments *string `json:"comments"`
 	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
@@ -284,6 +282,10 @@ type Data struct {
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	ProjectID string `json:"projectId"`
+	// Deprecated: You can now enable link.clicked webhooks for all links in a workspace or folder without passing this field manually. An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	WebhookIds []string `json:"webhookIds"`
 }
 
 func (d Data) MarshalJSON() ([]byte, error) {
@@ -291,7 +293,7 @@ func (d Data) MarshalJSON() ([]byte, error) {
 }
 
 func (d *Data) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId", "webhookIds"}); err != nil {
 		return err
 	}
 	return nil
@@ -486,13 +488,6 @@ func (d *Data) GetFolderID() *string {
 	return d.FolderID
 }
 
-func (d *Data) GetWebhookIds() []string {
-	if d == nil {
-		return []string{}
-	}
-	return d.WebhookIds
-}
-
 func (d *Data) GetComments() *string {
 	if d == nil {
 		return nil
@@ -652,6 +647,13 @@ func (d *Data) GetProjectID() string {
 		return ""
 	}
 	return d.ProjectID
+}
+
+func (d *Data) GetWebhookIds() []string {
+	if d == nil {
+		return []string{}
+	}
+	return d.WebhookIds
 }
 
 // LinkWebhookEvent - Triggered when a link is created, updated, or deleted.
