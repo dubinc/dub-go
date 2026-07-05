@@ -787,8 +787,6 @@ type ListEventsResponseBodyLink struct {
 	Tags []components.LinkTagSchemaOutput `json:"tags"`
 	// The unique ID of the folder assigned to the short link.
 	FolderID *string `json:"folderId"`
-	// The IDs of the webhooks that the short link is associated with.
-	WebhookIds []string `json:"webhookIds"`
 	// The comments for the short link.
 	Comments *string `json:"comments"`
 	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
@@ -833,6 +831,10 @@ type ListEventsResponseBodyLink struct {
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	ProjectID string `json:"projectId"`
+	// Deprecated: You can now enable link.clicked webhooks for all links in a workspace or folder without passing this field manually. An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	WebhookIds []string `json:"webhookIds"`
 }
 
 func (l ListEventsResponseBodyLink) MarshalJSON() ([]byte, error) {
@@ -840,7 +842,7 @@ func (l ListEventsResponseBodyLink) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListEventsResponseBodyLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId", "webhookIds"}); err != nil {
 		return err
 	}
 	return nil
@@ -1035,13 +1037,6 @@ func (l *ListEventsResponseBodyLink) GetFolderID() *string {
 	return l.FolderID
 }
 
-func (l *ListEventsResponseBodyLink) GetWebhookIds() []string {
-	if l == nil {
-		return []string{}
-	}
-	return l.WebhookIds
-}
-
 func (l *ListEventsResponseBodyLink) GetComments() *string {
 	if l == nil {
 		return nil
@@ -1201,6 +1196,13 @@ func (l *ListEventsResponseBodyLink) GetProjectID() string {
 		return ""
 	}
 	return l.ProjectID
+}
+
+func (l *ListEventsResponseBodyLink) GetWebhookIds() []string {
+	if l == nil {
+		return []string{}
+	}
+	return l.WebhookIds
 }
 
 type ListEventsResponseBodyClick struct {
@@ -1969,8 +1971,6 @@ type ResponseBodyLink struct {
 	Tags []components.LinkTagSchemaOutput `json:"tags"`
 	// The unique ID of the folder assigned to the short link.
 	FolderID *string `json:"folderId"`
-	// The IDs of the webhooks that the short link is associated with.
-	WebhookIds []string `json:"webhookIds"`
 	// The comments for the short link.
 	Comments *string `json:"comments"`
 	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
@@ -2015,6 +2015,10 @@ type ResponseBodyLink struct {
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	ProjectID string `json:"projectId"`
+	// Deprecated: You can now enable link.clicked webhooks for all links in a workspace or folder without passing this field manually. An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	WebhookIds []string `json:"webhookIds"`
 }
 
 func (r ResponseBodyLink) MarshalJSON() ([]byte, error) {
@@ -2022,7 +2026,7 @@ func (r ResponseBodyLink) MarshalJSON() ([]byte, error) {
 }
 
 func (r *ResponseBodyLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId", "webhookIds"}); err != nil {
 		return err
 	}
 	return nil
@@ -2217,13 +2221,6 @@ func (r *ResponseBodyLink) GetFolderID() *string {
 	return r.FolderID
 }
 
-func (r *ResponseBodyLink) GetWebhookIds() []string {
-	if r == nil {
-		return []string{}
-	}
-	return r.WebhookIds
-}
-
 func (r *ResponseBodyLink) GetComments() *string {
 	if r == nil {
 		return nil
@@ -2383,6 +2380,13 @@ func (r *ResponseBodyLink) GetProjectID() string {
 		return ""
 	}
 	return r.ProjectID
+}
+
+func (r *ResponseBodyLink) GetWebhookIds() []string {
+	if r == nil {
+		return []string{}
+	}
+	return r.WebhookIds
 }
 
 type ListEventsResponseBodyCustomer struct {
@@ -2968,8 +2972,6 @@ type ListEventsResponseBodyEventsLink struct {
 	Tags []components.LinkTagSchemaOutput `json:"tags"`
 	// The unique ID of the folder assigned to the short link.
 	FolderID *string `json:"folderId"`
-	// The IDs of the webhooks that the short link is associated with.
-	WebhookIds []string `json:"webhookIds"`
 	// The comments for the short link.
 	Comments *string `json:"comments"`
 	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
@@ -3014,6 +3016,10 @@ type ListEventsResponseBodyEventsLink struct {
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	ProjectID string `json:"projectId"`
+	// Deprecated: You can now enable link.clicked webhooks for all links in a workspace or folder without passing this field manually. An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	WebhookIds []string `json:"webhookIds"`
 }
 
 func (l ListEventsResponseBodyEventsLink) MarshalJSON() ([]byte, error) {
@@ -3021,7 +3027,7 @@ func (l ListEventsResponseBodyEventsLink) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListEventsResponseBodyEventsLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId", "webhookIds"}); err != nil {
 		return err
 	}
 	return nil
@@ -3216,13 +3222,6 @@ func (l *ListEventsResponseBodyEventsLink) GetFolderID() *string {
 	return l.FolderID
 }
 
-func (l *ListEventsResponseBodyEventsLink) GetWebhookIds() []string {
-	if l == nil {
-		return []string{}
-	}
-	return l.WebhookIds
-}
-
 func (l *ListEventsResponseBodyEventsLink) GetComments() *string {
 	if l == nil {
 		return nil
@@ -3382,6 +3381,13 @@ func (l *ListEventsResponseBodyEventsLink) GetProjectID() string {
 		return ""
 	}
 	return l.ProjectID
+}
+
+func (l *ListEventsResponseBodyEventsLink) GetWebhookIds() []string {
+	if l == nil {
+		return []string{}
+	}
+	return l.WebhookIds
 }
 
 type ClickEvent struct {

@@ -54,7 +54,7 @@ type TrackLeadRequestBody struct {
 	// The mode to use for tracking the lead event. `async` will not block the request; `wait` will block the request until the lead event is fully recorded in Dub; `deferred` will defer the lead event creation to a subsequent request.
 	Mode *Mode `default:"async" json:"mode"`
 	// The numerical value associated with this lead event (e.g., number of provisioned seats in a free trial). If defined as N, the lead event will be tracked N times.
-	EventQuantity *float64 `json:"eventQuantity,omitempty"`
+	EventQuantity *int64 `json:"eventQuantity,omitempty"`
 	// Additional metadata to be stored with the lead event. Max 10,000 characters.
 	Metadata map[string]any `json:"metadata,omitempty"`
 }
@@ -119,7 +119,7 @@ func (t *TrackLeadRequestBody) GetMode() *Mode {
 	return t.Mode
 }
 
-func (t *TrackLeadRequestBody) GetEventQuantity() *float64 {
+func (t *TrackLeadRequestBody) GetEventQuantity() *int64 {
 	if t == nil {
 		return nil
 	}

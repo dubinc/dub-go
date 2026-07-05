@@ -370,8 +370,6 @@ type SaleCreatedEventLink struct {
 	Tags []LinkTagSchema `json:"tags"`
 	// The unique ID of the folder assigned to the short link.
 	FolderID *string `json:"folderId"`
-	// The IDs of the webhooks that the short link is associated with.
-	WebhookIds []string `json:"webhookIds"`
 	// The comments for the short link.
 	Comments *string `json:"comments"`
 	// The full URL of the short link, including the https protocol (e.g. `https://dub.sh/try`).
@@ -416,6 +414,10 @@ type SaleCreatedEventLink struct {
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	ProjectID string `json:"projectId"`
+	// Deprecated: You can now enable link.clicked webhooks for all links in a workspace or folder without passing this field manually. An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	WebhookIds []string `json:"webhookIds"`
 }
 
 func (s SaleCreatedEventLink) MarshalJSON() ([]byte, error) {
@@ -423,7 +425,7 @@ func (s SaleCreatedEventLink) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SaleCreatedEventLink) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "webhookIds", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id", "domain", "key", "url", "trackConversion", "archived", "expiresAt", "disabledAt", "proxy", "rewrite", "doIndex", "publicStats", "shortLink", "qrCode", "testStartedAt", "testCompletedAt", "workspaceId", "lastClicked", "createdAt", "updatedAt", "projectId", "webhookIds"}); err != nil {
 		return err
 	}
 	return nil
@@ -618,13 +620,6 @@ func (s *SaleCreatedEventLink) GetFolderID() *string {
 	return s.FolderID
 }
 
-func (s *SaleCreatedEventLink) GetWebhookIds() []string {
-	if s == nil {
-		return []string{}
-	}
-	return s.WebhookIds
-}
-
 func (s *SaleCreatedEventLink) GetComments() *string {
 	if s == nil {
 		return nil
@@ -784,6 +779,13 @@ func (s *SaleCreatedEventLink) GetProjectID() string {
 		return ""
 	}
 	return s.ProjectID
+}
+
+func (s *SaleCreatedEventLink) GetWebhookIds() []string {
+	if s == nil {
+		return []string{}
+	}
+	return s.WebhookIds
 }
 
 type Sale struct {

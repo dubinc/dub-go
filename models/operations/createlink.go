@@ -224,8 +224,6 @@ type CreateLinkRequestBody struct {
 	UtmContent *string `json:"utm_content,omitempty"`
 	// The referral tag of the short link. If set, this will populate or override the `ref` query parameter in the destination URL.
 	Ref *string `json:"ref,omitempty"`
-	// An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
-	WebhookIds []string `json:"webhookIds,omitempty"`
 	// An array of A/B test URLs and the percentage of traffic to send to each URL.
 	TestVariants []TestVariants `json:"testVariants,omitempty"`
 	// The date and time when the tests started.
@@ -240,6 +238,10 @@ type CreateLinkRequestBody struct {
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	TagID *string `json:"tagId,omitempty"`
+	// Deprecated: You can now enable link.clicked webhooks for all links in a workspace or folder without passing this field manually. An array of webhook IDs to trigger when the link is clicked. These webhooks will receive click event data.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	WebhookIds []string `json:"webhookIds,omitempty"`
 }
 
 func (c *CreateLinkRequestBody) GetURL() string {
@@ -480,13 +482,6 @@ func (c *CreateLinkRequestBody) GetRef() *string {
 	return c.Ref
 }
 
-func (c *CreateLinkRequestBody) GetWebhookIds() []string {
-	if c == nil {
-		return nil
-	}
-	return c.WebhookIds
-}
-
 func (c *CreateLinkRequestBody) GetTestVariants() []TestVariants {
 	if c == nil {
 		return nil
@@ -520,4 +515,11 @@ func (c *CreateLinkRequestBody) GetTagID() *string {
 		return nil
 	}
 	return c.TagID
+}
+
+func (c *CreateLinkRequestBody) GetWebhookIds() []string {
+	if c == nil {
+		return nil
+	}
+	return c.WebhookIds
 }
