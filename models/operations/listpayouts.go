@@ -123,9 +123,9 @@ type ListPayoutsRequest struct {
 	// The sort order for the list of payouts.
 	SortOrder *ListPayoutsQueryParamSortOrder `default:"desc" queryParam:"style=form,explode=true,name=sortOrder"`
 	// The page number for pagination.
-	Page *float64 `queryParam:"style=form,explode=true,name=page"`
+	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
-	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
+	PageSize *int64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
 
 func (l ListPayoutsRequest) MarshalJSON() ([]byte, error) {
@@ -188,14 +188,14 @@ func (l *ListPayoutsRequest) GetSortOrder() *ListPayoutsQueryParamSortOrder {
 	return l.SortOrder
 }
 
-func (l *ListPayoutsRequest) GetPage() *float64 {
+func (l *ListPayoutsRequest) GetPage() *int64 {
 	if l == nil {
 		return nil
 	}
 	return l.Page
 }
 
-func (l *ListPayoutsRequest) GetPageSize() *float64 {
+func (l *ListPayoutsRequest) GetPageSize() *int64 {
 	if l == nil {
 		return nil
 	}

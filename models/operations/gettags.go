@@ -137,9 +137,9 @@ type GetTagsRequest struct {
 	// IDs of tags to filter by.
 	Ids *Ids `queryParam:"style=form,explode=true,name=ids"`
 	// The page number for pagination.
-	Page *float64 `queryParam:"style=form,explode=true,name=page"`
+	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
-	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
+	PageSize *int64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
 
 func (g GetTagsRequest) MarshalJSON() ([]byte, error) {
@@ -181,14 +181,14 @@ func (g *GetTagsRequest) GetIds() *Ids {
 	return g.Ids
 }
 
-func (g *GetTagsRequest) GetPage() *float64 {
+func (g *GetTagsRequest) GetPage() *int64 {
 	if g == nil {
 		return nil
 	}
 	return g.Page
 }
 
-func (g *GetTagsRequest) GetPageSize() *float64 {
+func (g *GetTagsRequest) GetPageSize() *int64 {
 	if g == nil {
 		return nil
 	}

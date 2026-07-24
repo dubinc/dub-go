@@ -22,3 +22,4 @@ value := operations.ListCommissionsStatusPending
 | `ListCommissionsStatusDuplicate` | duplicate                        |
 | `ListCommissionsStatusFraud`     | fraud                            |
 | `ListCommissionsStatusCanceled`  | canceled                         |
+| `ListCommissionsStatusHold`      | hold                             |

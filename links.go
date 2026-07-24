@@ -200,11 +200,11 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest, op
 		if err != nil {
 			return nil, err
 		}
-		var p float64 = 1
+		var p int64 = 1
 		if request.Page != nil {
 			p = *request.Page
 		}
-		nP := float64(p + 1)
+		nP := int64(p + 1)
 		r, err := ajson.Eval(b, "$")
 		if err != nil {
 			return nil, err

@@ -14,7 +14,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "listBountySubmissions"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Bounties.ListSubmissions(ctx, operations.ListBountySubmissionsRequest{\n        BountyID: \"<id>\",\n        Page: dubgo.Pointer[float64](1.0),\n        PageSize: dubgo.Pointer[float64](50.0),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Bounties.ListSubmissions(ctx, operations.ListBountySubmissionsRequest{\n        BountyID: \"<id>\",\n        Page: dubgo.Pointer[int64](1),\n        PageSize: dubgo.Pointer[int64](50),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/bounties/{bountyId}/submissions/{submissionId}/approve"]["post"]
     update:
       "x-codeSamples":
@@ -32,7 +32,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "listCommissions"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Commissions.List(ctx, operations.ListCommissionsRequest{\n        EndingBefore: dubgo.Pointer(\"cm_1KAP4CGN2Z5TPYYQ1W4JEYD56\"),\n        StartingAfter: dubgo.Pointer(\"cm_1KAP4CGN2Z5TPYYQ1W4JEYD56\"),\n        Page: dubgo.Pointer[float64](1.0),\n        PageSize: dubgo.Pointer[float64](50.0),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        for {\n            // handle items\n\n            res, err = res.Next()\n\n            if err != nil {\n                // handle error\n            }\n\n            if res == nil {\n                break\n            }\n        }\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Commissions.List(ctx, operations.ListCommissionsRequest{\n        EndingBefore: dubgo.Pointer(\"cm_1KAP4CGN2Z5TPYYQ1W4JEYD56\"),\n        StartingAfter: dubgo.Pointer(\"cm_1KAP4CGN2Z5TPYYQ1W4JEYD56\"),\n        Page: dubgo.Pointer[int64](1),\n        PageSize: dubgo.Pointer[int64](50),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        for {\n            // handle items\n\n            res, err = res.Next()\n\n            if err != nil {\n                // handle error\n            }\n\n            if res == nil {\n                break\n            }\n        }\n    }\n}"
   - target: $["paths"]["/commissions"]["post"]
     update:
       "x-codeSamples":
@@ -56,7 +56,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "getCustomers"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Customers.List(ctx, operations.GetCustomersRequest{\n        EndingBefore: dubgo.Pointer(\"cus_1KAP4CDPBSVMMBMH9XX3YZZ0Z\"),\n        StartingAfter: dubgo.Pointer(\"cus_1KAP4CDPBSVMMBMH9XX3YZZ0Z\"),\n        Page: dubgo.Pointer[float64](1.0),\n        PageSize: dubgo.Pointer[float64](50.0),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        for {\n            // handle items\n\n            res, err = res.Next()\n\n            if err != nil {\n                // handle error\n            }\n\n            if res == nil {\n                break\n            }\n        }\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Customers.List(ctx, operations.GetCustomersRequest{\n        EndingBefore: dubgo.Pointer(\"cus_1KAP4CDPBSVMMBMH9XX3YZZ0Z\"),\n        StartingAfter: dubgo.Pointer(\"cus_1KAP4CDPBSVMMBMH9XX3YZZ0Z\"),\n        Page: dubgo.Pointer[int64](1),\n        PageSize: dubgo.Pointer[int64](50),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        for {\n            // handle items\n\n            res, err = res.Next()\n\n            if err != nil {\n                // handle error\n            }\n\n            if res == nil {\n                break\n            }\n        }\n    }\n}"
   - target: $["paths"]["/customers/{id}"]["delete"]
     update:
       "x-codeSamples":
@@ -80,7 +80,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "listDomains"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Domains.List(ctx, operations.ListDomainsRequest{\n        Page: dubgo.Pointer[float64](1.0),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        for {\n            // handle items\n\n            res, err = res.Next()\n\n            if err != nil {\n                // handle error\n            }\n\n            if res == nil {\n                break\n            }\n        }\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Domains.List(ctx, operations.ListDomainsRequest{\n        Page: dubgo.Pointer[int64](1),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        for {\n            // handle items\n\n            res, err = res.Next()\n\n            if err != nil {\n                // handle error\n            }\n\n            if res == nil {\n                break\n            }\n        }\n    }\n}"
   - target: $["paths"]["/domains"]["post"]
     update:
       "x-codeSamples":
@@ -122,7 +122,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "listFolders"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Folders.List(ctx, operations.ListFoldersRequest{\n        Page: dubgo.Pointer[float64](1.0),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Folders.List(ctx, operations.ListFoldersRequest{\n        Page: dubgo.Pointer[int64](1),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/folders"]["post"]
     update:
       "x-codeSamples":
@@ -146,7 +146,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "getLinks"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Links.List(ctx, operations.GetLinksRequest{\n        EndingBefore: dubgo.Pointer(\"link_1KAP4CDPBSVMMBMH9XX3YZZ0Z...\"),\n        StartingAfter: dubgo.Pointer(\"link_1KAP4CDPBSVMMBMH9XX3YZZ0Z...\"),\n        Page: dubgo.Pointer[float64](1.0),\n        PageSize: dubgo.Pointer[float64](50.0),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        for {\n            // handle items\n\n            res, err = res.Next()\n\n            if err != nil {\n                // handle error\n            }\n\n            if res == nil {\n                break\n            }\n        }\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Links.List(ctx, operations.GetLinksRequest{\n        EndingBefore: dubgo.Pointer(\"link_1KAP4CDPBSVMMBMH9XX3YZZ0Z...\"),\n        StartingAfter: dubgo.Pointer(\"link_1KAP4CDPBSVMMBMH9XX3YZZ0Z...\"),\n        Page: dubgo.Pointer[int64](1),\n        PageSize: dubgo.Pointer[int64](50),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        for {\n            // handle items\n\n            res, err = res.Next()\n\n            if err != nil {\n                // handle error\n            }\n\n            if res == nil {\n                break\n            }\n        }\n    }\n}"
   - target: $["paths"]["/links"]["post"]
     update:
       "x-codeSamples":
@@ -206,7 +206,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "listPartners"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.List(ctx, operations.ListPartnersRequest{\n        GroupID: dubgo.Pointer(\"grp_123\"),\n        Status: operations.ListPartnersQueryParamStatusApproved.ToPointer(),\n        Country: dubgo.Pointer(\"US\"),\n        Email: dubgo.Pointer(\"panic@thedis.co\"),\n        TenantID: dubgo.Pointer(\"1K0NM7HCN944PEMZ3CQPH43H8\"),\n        Search: dubgo.Pointer(\"john\"),\n        Page: dubgo.Pointer[float64](1.0),\n        PageSize: dubgo.Pointer[float64](50.0),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Partners.List(ctx, operations.ListPartnersRequest{\n        GroupID: dubgo.Pointer(\"grp_123\"),\n        Status: operations.ListPartnersQueryParamStatusApproved.ToPointer(),\n        Country: dubgo.Pointer(\"US\"),\n        Email: dubgo.Pointer(\"panic@thedis.co\"),\n        TenantID: dubgo.Pointer(\"1K0NM7HCN944PEMZ3CQPH43H8\"),\n        Search: dubgo.Pointer(\"john\"),\n        Page: dubgo.Pointer[int64](1),\n        PageSize: dubgo.Pointer[int64](50),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/partners"]["post"]
     update:
       "x-codeSamples":
@@ -224,7 +224,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "listPartnerApplications"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.PartnerApplications.List(ctx, operations.ListPartnerApplicationsRequest{\n        Country: dubgo.Pointer(\"US\"),\n        GroupID: dubgo.Pointer(\"grp_123\"),\n        Page: dubgo.Pointer[float64](1.0),\n        PageSize: dubgo.Pointer[float64](50.0),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.PartnerApplications.List(ctx, operations.ListPartnerApplicationsRequest{\n        Country: dubgo.Pointer(\"US\"),\n        GroupID: dubgo.Pointer(\"grp_123\"),\n        Page: dubgo.Pointer[int64](1),\n        PageSize: dubgo.Pointer[int64](50),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/partners/applications/approve"]["post"]
     update:
       "x-codeSamples":
@@ -272,7 +272,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "listPayouts"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Payouts.List(ctx, operations.ListPayoutsRequest{\n        Page: dubgo.Pointer[float64](1.0),\n        PageSize: dubgo.Pointer[float64](50.0),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Payouts.List(ctx, operations.ListPayoutsRequest{\n        Page: dubgo.Pointer[int64](1),\n        PageSize: dubgo.Pointer[int64](50),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/qr"]["get"]
     update:
       "x-codeSamples":
@@ -284,7 +284,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "getTags"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Tags.List(ctx, operations.GetTagsRequest{\n        Page: dubgo.Pointer[float64](1.0),\n        PageSize: dubgo.Pointer[float64](50.0),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Tags.List(ctx, operations.GetTagsRequest{\n        Page: dubgo.Pointer[int64](1),\n        PageSize: dubgo.Pointer[int64](50),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/tags"]["post"]
     update:
       "x-codeSamples":

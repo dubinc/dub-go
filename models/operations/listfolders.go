@@ -10,9 +10,9 @@ type ListFoldersRequest struct {
 	// The search term to filter the folders by.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// The page number for pagination.
-	Page *float64 `queryParam:"style=form,explode=true,name=page"`
+	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
-	PageSize *float64 `default:"50" queryParam:"style=form,explode=true,name=pageSize"`
+	PageSize *int64 `default:"50" queryParam:"style=form,explode=true,name=pageSize"`
 }
 
 func (l ListFoldersRequest) MarshalJSON() ([]byte, error) {
@@ -33,14 +33,14 @@ func (l *ListFoldersRequest) GetSearch() *string {
 	return l.Search
 }
 
-func (l *ListFoldersRequest) GetPage() *float64 {
+func (l *ListFoldersRequest) GetPage() *int64 {
 	if l == nil {
 		return nil
 	}
 	return l.Page
 }
 
-func (l *ListFoldersRequest) GetPageSize() *float64 {
+func (l *ListFoldersRequest) GetPageSize() *int64 {
 	if l == nil {
 		return nil
 	}

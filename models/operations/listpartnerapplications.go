@@ -14,9 +14,9 @@ type ListPartnerApplicationsRequest struct {
 	// A filter on the list based on the partner's `groupId` field.
 	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
 	// The page number for pagination.
-	Page *float64 `queryParam:"style=form,explode=true,name=page"`
+	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
-	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
+	PageSize *int64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
 
 func (l ListPartnerApplicationsRequest) MarshalJSON() ([]byte, error) {
@@ -44,14 +44,14 @@ func (l *ListPartnerApplicationsRequest) GetGroupID() *string {
 	return l.GroupID
 }
 
-func (l *ListPartnerApplicationsRequest) GetPage() *float64 {
+func (l *ListPartnerApplicationsRequest) GetPage() *int64 {
 	if l == nil {
 		return nil
 	}
 	return l.Page
 }
 
-func (l *ListPartnerApplicationsRequest) GetPageSize() *float64 {
+func (l *ListPartnerApplicationsRequest) GetPageSize() *int64 {
 	if l == nil {
 		return nil
 	}

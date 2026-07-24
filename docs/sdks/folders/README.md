@@ -34,7 +34,7 @@ func main() {
     )
 
     res, err := s.Folders.List(ctx, operations.ListFoldersRequest{
-        Page: dubgo.Pointer[float64](1.0),
+        Page: dubgo.Pointer[int64](1),
     })
     if err != nil {
         log.Fatal(err)

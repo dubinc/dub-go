@@ -55,6 +55,7 @@ const (
 	QueryParamStatusDuplicate QueryParamStatus = "duplicate"
 	QueryParamStatusFraud     QueryParamStatus = "fraud"
 	QueryParamStatusCanceled  QueryParamStatus = "canceled"
+	QueryParamStatusHold      QueryParamStatus = "hold"
 )
 
 func (e QueryParamStatus) ToPointer() *QueryParamStatus {
@@ -79,6 +80,8 @@ func (e *QueryParamStatus) UnmarshalJSON(data []byte) error {
 	case "fraud":
 		fallthrough
 	case "canceled":
+		fallthrough
+	case "hold":
 		*e = QueryParamStatus(v)
 		return nil
 	default:
@@ -223,9 +226,9 @@ type ListCommissionsRequest struct {
 	// If specified, the query only searches for results after this cursor. Mutually exclusive with `endingBefore`.
 	StartingAfter *string `queryParam:"style=form,explode=true,name=startingAfter"`
 	// DEPRECATED. Use `startingAfter` instead.
-	Page *float64 `queryParam:"style=form,explode=true,name=page"`
+	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
-	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
+	PageSize *int64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
 
 func (l ListCommissionsRequest) MarshalJSON() ([]byte, error) {
@@ -358,14 +361,14 @@ func (l *ListCommissionsRequest) GetStartingAfter() *string {
 	return l.StartingAfter
 }
 
-func (l *ListCommissionsRequest) GetPage() *float64 {
+func (l *ListCommissionsRequest) GetPage() *int64 {
 	if l == nil {
 		return nil
 	}
 	return l.Page
 }
 
-func (l *ListCommissionsRequest) GetPageSize() *float64 {
+func (l *ListCommissionsRequest) GetPageSize() *int64 {
 	if l == nil {
 		return nil
 	}
@@ -417,6 +420,7 @@ const (
 	ListCommissionsStatusDuplicate ListCommissionsStatus = "duplicate"
 	ListCommissionsStatusFraud     ListCommissionsStatus = "fraud"
 	ListCommissionsStatusCanceled  ListCommissionsStatus = "canceled"
+	ListCommissionsStatusHold      ListCommissionsStatus = "hold"
 )
 
 func (e ListCommissionsStatus) ToPointer() *ListCommissionsStatus {
@@ -441,6 +445,8 @@ func (e *ListCommissionsStatus) UnmarshalJSON(data []byte) error {
 	case "fraud":
 		fallthrough
 	case "canceled":
+		fallthrough
+	case "hold":
 		*e = ListCommissionsStatus(v)
 		return nil
 	default:
@@ -637,11 +643,13 @@ type ListCommissionsResponseBody struct {
 	Description *string               `json:"description"`
 	Quantity    float64               `json:"quantity"`
 	// The user who created the manual commission.
-	UserID    *string                  `json:"userId,omitempty"`
-	CreatedAt string                   `json:"createdAt"`
-	UpdatedAt string                   `json:"updatedAt"`
-	Partner   ListCommissionsPartner   `json:"partner"`
-	Customer  *ListCommissionsCustomer `json:"customer,omitempty"`
+	UserID    *string `json:"userId,omitempty"`
+	CreatedAt string  `json:"createdAt"`
+	UpdatedAt string  `json:"updatedAt"`
+	// The date the commission was paid out to the partner. Null if not paid yet.
+	PaidAt   *string                  `json:"paidAt"`
+	Partner  ListCommissionsPartner   `json:"partner"`
+	Customer *ListCommissionsCustomer `json:"customer,omitempty"`
 }
 
 func (l *ListCommissionsResponseBody) GetID() string {
@@ -726,6 +734,13 @@ func (l *ListCommissionsResponseBody) GetUpdatedAt() string {
 		return ""
 	}
 	return l.UpdatedAt
+}
+
+func (l *ListCommissionsResponseBody) GetPaidAt() *string {
+	if l == nil {
+		return nil
+	}
+	return l.PaidAt
 }
 
 func (l *ListCommissionsResponseBody) GetPartner() ListCommissionsPartner {

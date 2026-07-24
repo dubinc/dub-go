@@ -36,8 +36,8 @@ func main() {
     res, err := s.Customers.List(ctx, operations.GetCustomersRequest{
         EndingBefore: dubgo.Pointer("cus_1KAP4CDPBSVMMBMH9XX3YZZ0Z"),
         StartingAfter: dubgo.Pointer("cus_1KAP4CDPBSVMMBMH9XX3YZZ0Z"),
-        Page: dubgo.Pointer[float64](1.0),
-        PageSize: dubgo.Pointer[float64](50.0),
+        Page: dubgo.Pointer[int64](1),
+        PageSize: dubgo.Pointer[int64](50),
     })
     if err != nil {
         log.Fatal(err)
