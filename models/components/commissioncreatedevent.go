@@ -76,6 +76,7 @@ const (
 	CommissionCreatedEventStatusDuplicate CommissionCreatedEventStatus = "duplicate"
 	CommissionCreatedEventStatusFraud     CommissionCreatedEventStatus = "fraud"
 	CommissionCreatedEventStatusCanceled  CommissionCreatedEventStatus = "canceled"
+	CommissionCreatedEventStatusHold      CommissionCreatedEventStatus = "hold"
 )
 
 func (e CommissionCreatedEventStatus) ToPointer() *CommissionCreatedEventStatus {
@@ -100,6 +101,8 @@ func (e *CommissionCreatedEventStatus) UnmarshalJSON(data []byte) error {
 	case "fraud":
 		fallthrough
 	case "canceled":
+		fallthrough
+	case "hold":
 		*e = CommissionCreatedEventStatus(v)
 		return nil
 	default:

@@ -44,8 +44,8 @@ func main() {
         Email: dubgo.Pointer("panic@thedis.co"),
         TenantID: dubgo.Pointer("1K0NM7HCN944PEMZ3CQPH43H8"),
         Search: dubgo.Pointer("john"),
-        Page: dubgo.Pointer[float64](1.0),
-        PageSize: dubgo.Pointer[float64](50.0),
+        Page: dubgo.Pointer[int64](1),
+        PageSize: dubgo.Pointer[int64](50),
     })
     if err != nil {
         log.Fatal(err)

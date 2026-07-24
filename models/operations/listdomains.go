@@ -13,9 +13,9 @@ type ListDomainsRequest struct {
 	// The search term to filter the domains by.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// The page number for pagination.
-	Page *float64 `queryParam:"style=form,explode=true,name=page"`
+	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
-	PageSize *float64 `default:"50" queryParam:"style=form,explode=true,name=pageSize"`
+	PageSize *int64 `default:"50" queryParam:"style=form,explode=true,name=pageSize"`
 }
 
 func (l ListDomainsRequest) MarshalJSON() ([]byte, error) {
@@ -43,14 +43,14 @@ func (l *ListDomainsRequest) GetSearch() *string {
 	return l.Search
 }
 
-func (l *ListDomainsRequest) GetPage() *float64 {
+func (l *ListDomainsRequest) GetPage() *int64 {
 	if l == nil {
 		return nil
 	}
 	return l.Page
 }
 
-func (l *ListDomainsRequest) GetPageSize() *float64 {
+func (l *ListDomainsRequest) GetPageSize() *int64 {
 	if l == nil {
 		return nil
 	}

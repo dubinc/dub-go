@@ -94,9 +94,9 @@ type GetCustomersRequest struct {
 	// If specified, the query only searches for results after this cursor. Mutually exclusive with `endingBefore`.
 	StartingAfter *string `queryParam:"style=form,explode=true,name=startingAfter"`
 	// DEPRECATED. Use `startingAfter` instead.
-	Page *float64 `queryParam:"style=form,explode=true,name=page"`
+	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
-	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
+	PageSize *int64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
 
 func (g GetCustomersRequest) MarshalJSON() ([]byte, error) {
@@ -194,14 +194,14 @@ func (g *GetCustomersRequest) GetStartingAfter() *string {
 	return g.StartingAfter
 }
 
-func (g *GetCustomersRequest) GetPage() *float64 {
+func (g *GetCustomersRequest) GetPage() *int64 {
 	if g == nil {
 		return nil
 	}
 	return g.Page
 }
 
-func (g *GetCustomersRequest) GetPageSize() *float64 {
+func (g *GetCustomersRequest) GetPageSize() *int64 {
 	if g == nil {
 		return nil
 	}

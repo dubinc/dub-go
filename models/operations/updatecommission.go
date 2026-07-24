@@ -190,6 +190,7 @@ const (
 	UpdateCommissionStatusDuplicate UpdateCommissionStatus = "duplicate"
 	UpdateCommissionStatusFraud     UpdateCommissionStatus = "fraud"
 	UpdateCommissionStatusCanceled  UpdateCommissionStatus = "canceled"
+	UpdateCommissionStatusHold      UpdateCommissionStatus = "hold"
 )
 
 func (e UpdateCommissionStatus) ToPointer() *UpdateCommissionStatus {
@@ -214,6 +215,8 @@ func (e *UpdateCommissionStatus) UnmarshalJSON(data []byte) error {
 	case "fraud":
 		fallthrough
 	case "canceled":
+		fallthrough
+	case "hold":
 		*e = UpdateCommissionStatus(v)
 		return nil
 	default:
@@ -411,11 +414,13 @@ type UpdateCommissionResponseBody struct {
 	Description *string                `json:"description"`
 	Quantity    float64                `json:"quantity"`
 	// The user who created the manual commission.
-	UserID    *string                   `json:"userId,omitempty"`
-	CreatedAt string                    `json:"createdAt"`
-	UpdatedAt string                    `json:"updatedAt"`
-	Partner   UpdateCommissionPartner   `json:"partner"`
-	Customer  *UpdateCommissionCustomer `json:"customer,omitempty"`
+	UserID    *string `json:"userId,omitempty"`
+	CreatedAt string  `json:"createdAt"`
+	UpdatedAt string  `json:"updatedAt"`
+	// The date the commission was paid out to the partner. Null if not paid yet.
+	PaidAt   *string                   `json:"paidAt"`
+	Partner  UpdateCommissionPartner   `json:"partner"`
+	Customer *UpdateCommissionCustomer `json:"customer,omitempty"`
 }
 
 func (u *UpdateCommissionResponseBody) GetID() string {
@@ -500,6 +505,13 @@ func (u *UpdateCommissionResponseBody) GetUpdatedAt() string {
 		return ""
 	}
 	return u.UpdatedAt
+}
+
+func (u *UpdateCommissionResponseBody) GetPaidAt() *string {
+	if u == nil {
+		return nil
+	}
+	return u.PaidAt
 }
 
 func (u *UpdateCommissionResponseBody) GetPartner() UpdateCommissionPartner {

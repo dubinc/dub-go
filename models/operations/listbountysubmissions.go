@@ -112,9 +112,9 @@ type ListBountySubmissionsRequest struct {
 	// The order to sort the submissions by.
 	SortOrder *ListBountySubmissionsQueryParamSortOrder `default:"asc" queryParam:"style=form,explode=true,name=sortOrder"`
 	// The page number for pagination.
-	Page *float64 `queryParam:"style=form,explode=true,name=page"`
+	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
-	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
+	PageSize *int64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
 
 func (l ListBountySubmissionsRequest) MarshalJSON() ([]byte, error) {
@@ -170,14 +170,14 @@ func (l *ListBountySubmissionsRequest) GetSortOrder() *ListBountySubmissionsQuer
 	return l.SortOrder
 }
 
-func (l *ListBountySubmissionsRequest) GetPage() *float64 {
+func (l *ListBountySubmissionsRequest) GetPage() *int64 {
 	if l == nil {
 		return nil
 	}
 	return l.Page
 }
 
-func (l *ListBountySubmissionsRequest) GetPageSize() *float64 {
+func (l *ListBountySubmissionsRequest) GetPageSize() *int64 {
 	if l == nil {
 		return nil
 	}

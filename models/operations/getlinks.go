@@ -163,9 +163,9 @@ type GetLinksRequest struct {
 	// If specified, the query only searches for results after this cursor. Mutually exclusive with `endingBefore`.
 	StartingAfter *string `queryParam:"style=form,explode=true,name=startingAfter"`
 	// DEPRECATED. Use `startingAfter` instead.
-	Page *float64 `queryParam:"style=form,explode=true,name=page"`
+	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
-	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
+	PageSize *int64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
 
 func (g GetLinksRequest) MarshalJSON() ([]byte, error) {
@@ -263,14 +263,14 @@ func (g *GetLinksRequest) GetStartingAfter() *string {
 	return g.StartingAfter
 }
 
-func (g *GetLinksRequest) GetPage() *float64 {
+func (g *GetLinksRequest) GetPage() *int64 {
 	if g == nil {
 		return nil
 	}
 	return g.Page
 }
 
-func (g *GetLinksRequest) GetPageSize() *float64 {
+func (g *GetLinksRequest) GetPageSize() *int64 {
 	if g == nil {
 		return nil
 	}

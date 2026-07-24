@@ -156,12 +156,12 @@ type ListPartnersRequest struct {
 	Email *string `queryParam:"style=form,explode=true,name=email"`
 	// Filter the partner list based on the partner's `tenantId`. The value must be a string. Takes precedence over `email` and `search`.
 	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
-	// A search query to filter partners by ID, name, email, or link.
+	// A search query to filter partners by ID, name, email, or company name.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// The page number for pagination.
-	Page *float64 `queryParam:"style=form,explode=true,name=page"`
+	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
-	PageSize *float64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
+	PageSize *int64 `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 }
 
 func (l ListPartnersRequest) MarshalJSON() ([]byte, error) {
@@ -231,14 +231,14 @@ func (l *ListPartnersRequest) GetSearch() *string {
 	return l.Search
 }
 
-func (l *ListPartnersRequest) GetPage() *float64 {
+func (l *ListPartnersRequest) GetPage() *int64 {
 	if l == nil {
 		return nil
 	}
 	return l.Page
 }
 
-func (l *ListPartnersRequest) GetPageSize() *float64 {
+func (l *ListPartnersRequest) GetPageSize() *int64 {
 	if l == nil {
 		return nil
 	}
