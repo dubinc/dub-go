@@ -22,3 +22,4 @@ value := components.CommissionCreatedEventStatusPending
 | `CommissionCreatedEventStatusDuplicate` | duplicate                               |
 | `CommissionCreatedEventStatusFraud`     | fraud                                   |
 | `CommissionCreatedEventStatusCanceled`  | canceled                                |
+| `CommissionCreatedEventStatusHold`      | hold                                    |

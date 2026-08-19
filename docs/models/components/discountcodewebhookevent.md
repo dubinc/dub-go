@@ -1,0 +1,13 @@
+# DiscountCodeWebhookEvent
+
+Triggered when a discount code is created or deleted.
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `ID`                                                                                                 | `string`                                                                                             | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
+| `Event`                                                                                              | [components.DiscountCodeWebhookEventEvent](../../models/components/discountcodewebhookeventevent.md) | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
+| `CreatedAt`                                                                                          | `string`                                                                                             | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
+| `Data`                                                                                               | [components.DiscountCodeWebhookEventData](../../models/components/discountcodewebhookeventdata.md)   | :heavy_check_mark:                                                                                   | N/A                                                                                                  |
