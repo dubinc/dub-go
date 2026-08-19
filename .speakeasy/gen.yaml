@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 go:
-  version: 0.23.12
+  version: 0.23.13
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: true
   baseErrorName: DubError
@@ -40,6 +40,7 @@ go:
   flattenGlobalSecurity: true
   forwardCompatibleEnumsByDefault: false
   forwardCompatibleUnionsByDefault: "false"
+  idiomaticMethodCollisionNames: false
   imports:
     option: openapi
     paths:
@@ -56,10 +57,12 @@ go:
   modulePath: ""
   multipartArrayFormat: legacy
   nullableOptionalWrapper: false
+  optionalMethodArguments: pointers
   outputModelSuffix: output
   packageName: github.com/dubinc/dub-go
   respectRequiredFields: false
   respectTitlesForPrimitiveUnionMembers: false
   responseFormat: flat
   sdkPackageName: ""
+  unionGenerics: false
   unionStrategy: left-to-right

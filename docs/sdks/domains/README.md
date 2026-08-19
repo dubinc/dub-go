@@ -36,7 +36,7 @@ func main() {
     )
 
     res, err := s.Domains.List(ctx, operations.ListDomainsRequest{
-        Page: dubgo.Pointer[float64](1.0),
+        Page: dubgo.Pointer[int64](1),
     })
     if err != nil {
         log.Fatal(err)

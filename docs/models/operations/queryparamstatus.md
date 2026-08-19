@@ -24,3 +24,4 @@ value := operations.QueryParamStatusPending
 | `QueryParamStatusDuplicate` | duplicate                   |
 | `QueryParamStatusFraud`     | fraud                       |
 | `QueryParamStatusCanceled`  | canceled                    |
+| `QueryParamStatusHold`      | hold                        |

@@ -36,8 +36,8 @@ func main() {
     res, err := s.Commissions.List(ctx, operations.ListCommissionsRequest{
         EndingBefore: dubgo.Pointer("cm_1KAP4CGN2Z5TPYYQ1W4JEYD56"),
         StartingAfter: dubgo.Pointer("cm_1KAP4CGN2Z5TPYYQ1W4JEYD56"),
-        Page: dubgo.Pointer[float64](1.0),
-        PageSize: dubgo.Pointer[float64](50.0),
+        Page: dubgo.Pointer[int64](1),
+        PageSize: dubgo.Pointer[int64](50),
     })
     if err != nil {
         log.Fatal(err)
