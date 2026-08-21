@@ -19,6 +19,7 @@ const (
 	WebhookEventTypeSaleCreatedEvent                 WebhookEventType = "SaleCreatedEvent"
 	WebhookEventTypePartnerEnrolledEvent             WebhookEventType = "PartnerEnrolledEvent"
 	WebhookEventTypePartnerApplicationSubmittedEvent WebhookEventType = "PartnerApplicationSubmittedEvent"
+	WebhookEventTypePartnerMergedEvent               WebhookEventType = "PartnerMergedEvent"
 	WebhookEventTypeCommissionCreatedEvent           WebhookEventType = "CommissionCreatedEvent"
 	WebhookEventTypeDiscountCodeWebhookEvent         WebhookEventType = "DiscountCodeWebhookEvent"
 )
@@ -31,6 +32,7 @@ type WebhookEvent struct {
 	SaleCreatedEvent                 *SaleCreatedEvent                 `queryParam:"inline" union:"member"`
 	PartnerEnrolledEvent             *PartnerEnrolledEvent             `queryParam:"inline" union:"member"`
 	PartnerApplicationSubmittedEvent *PartnerApplicationSubmittedEvent `queryParam:"inline" union:"member"`
+	PartnerMergedEvent               *PartnerMergedEvent               `queryParam:"inline" union:"member"`
 	CommissionCreatedEvent           *CommissionCreatedEvent           `queryParam:"inline" union:"member"`
 	DiscountCodeWebhookEvent         *DiscountCodeWebhookEvent         `queryParam:"inline" union:"member"`
 
@@ -88,6 +90,15 @@ func CreateWebhookEventPartnerApplicationSubmittedEvent(partnerApplicationSubmit
 	return WebhookEvent{
 		PartnerApplicationSubmittedEvent: &partnerApplicationSubmittedEvent,
 		Type:                             typ,
+	}
+}
+
+func CreateWebhookEventPartnerMergedEvent(partnerMergedEvent PartnerMergedEvent) WebhookEvent {
+	typ := WebhookEventTypePartnerMergedEvent
+
+	return WebhookEvent{
+		PartnerMergedEvent: &partnerMergedEvent,
+		Type:               typ,
 	}
 }
 
@@ -153,6 +164,13 @@ func (u *WebhookEvent) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var partnerMergedEvent PartnerMergedEvent = PartnerMergedEvent{}
+	if err := utils.UnmarshalJSON(data, &partnerMergedEvent, "", true, nil); err == nil {
+		u.PartnerMergedEvent = &partnerMergedEvent
+		u.Type = WebhookEventTypePartnerMergedEvent
+		return nil
+	}
+
 	var commissionCreatedEvent CommissionCreatedEvent = CommissionCreatedEvent{}
 	if err := utils.UnmarshalJSON(data, &commissionCreatedEvent, "", true, nil); err == nil {
 		u.CommissionCreatedEvent = &commissionCreatedEvent
@@ -193,6 +211,10 @@ func (u WebhookEvent) MarshalJSON() ([]byte, error) {
 
 	if u.PartnerApplicationSubmittedEvent != nil {
 		return utils.MarshalJSON(u.PartnerApplicationSubmittedEvent, "", true)
+	}
+
+	if u.PartnerMergedEvent != nil {
+		return utils.MarshalJSON(u.PartnerMergedEvent, "", true)
 	}
 
 	if u.CommissionCreatedEvent != nil {

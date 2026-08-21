@@ -41,6 +41,12 @@ webhookEvent := components.CreateWebhookEventPartnerEnrolledEvent(components.Par
 webhookEvent := components.CreateWebhookEventPartnerApplicationSubmittedEvent(components.PartnerApplicationSubmittedEvent{/* values here */})
 ```
 
+### PartnerMergedEvent
+
+```go
+webhookEvent := components.CreateWebhookEventPartnerMergedEvent(components.PartnerMergedEvent{/* values here */})
+```
+
 ### CommissionCreatedEvent
 
 ```go
@@ -71,6 +77,8 @@ switch webhookEvent.Type {
 		// webhookEvent.PartnerEnrolledEvent is populated
 	case components.WebhookEventTypePartnerApplicationSubmittedEvent:
 		// webhookEvent.PartnerApplicationSubmittedEvent is populated
+	case components.WebhookEventTypePartnerMergedEvent:
+		// webhookEvent.PartnerMergedEvent is populated
 	case components.WebhookEventTypeCommissionCreatedEvent:
 		// webhookEvent.CommissionCreatedEvent is populated
 	case components.WebhookEventTypeDiscountCodeWebhookEvent:
