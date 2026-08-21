@@ -474,7 +474,7 @@ func (s *Commissions) List(ctx context.Context, request operations.ListCommissio
 }
 
 // Create commission
-// Create one or more commissions (custom, lead or sale) for a partner. Commission creation is processed asynchronously. Use the List Commissions endpoint or webhooks to be notified when the commission is created.
+// Create one or more commissions (custom, lead or sale) for a partner. Custom commissions accept a negative `amount` to create a clawback; in that case `description` is required and may be a known clawback reason or any other string. Commission creation is processed asynchronously. Use the List Commissions endpoint or webhooks to be notified when the commission is created.
 func (s *Commissions) Create(ctx context.Context, request *operations.CreateCommissionRequestBody, opts ...operations.Option) (*operations.CreateCommissionResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

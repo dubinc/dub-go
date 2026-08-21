@@ -407,11 +407,12 @@ type RequestBody1 struct {
 	Type RequestBodyType `json:"type"`
 	// The ID of the partner to create the commission for.
 	PartnerID string `json:"partnerId"`
-	// The commission amount in cents.
+	// The commission amount in cents. Use a negative amount to create a clawback.
 	Amount float64 `json:"amount"`
 	// If not provided, the current date will be used.
 	Date *string `json:"date,omitempty"`
-	// The description of the commission.
+	// The description of the commission. Required for clawbacks (negative `amount`).
+	// May be a known clawback reason (`order_canceled`, `fraud`, `terms_violation`, `tracking_error`, `payment_failed`, `ineligible_partner`, `duplicate_commission`) or an arbitrary string (max 190 characters).
 	Description *string `json:"description,omitempty"`
 }
 
