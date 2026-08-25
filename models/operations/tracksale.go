@@ -220,7 +220,7 @@ func (t *TrackSaleCustomer) GetExternalID() *string {
 	return t.ExternalID
 }
 
-type Sale struct {
+type TrackSaleSale struct {
 	Amount           float64        `json:"amount"`
 	Currency         string         `json:"currency"`
 	PaymentProcessor string         `json:"paymentProcessor"`
@@ -228,46 +228,46 @@ type Sale struct {
 	Metadata         map[string]any `json:"metadata"`
 }
 
-func (s *Sale) GetAmount() float64 {
-	if s == nil {
+func (t *TrackSaleSale) GetAmount() float64 {
+	if t == nil {
 		return 0.0
 	}
-	return s.Amount
+	return t.Amount
 }
 
-func (s *Sale) GetCurrency() string {
-	if s == nil {
+func (t *TrackSaleSale) GetCurrency() string {
+	if t == nil {
 		return ""
 	}
-	return s.Currency
+	return t.Currency
 }
 
-func (s *Sale) GetPaymentProcessor() string {
-	if s == nil {
+func (t *TrackSaleSale) GetPaymentProcessor() string {
+	if t == nil {
 		return ""
 	}
-	return s.PaymentProcessor
+	return t.PaymentProcessor
 }
 
-func (s *Sale) GetInvoiceID() *string {
-	if s == nil {
+func (t *TrackSaleSale) GetInvoiceID() *string {
+	if t == nil {
 		return nil
 	}
-	return s.InvoiceID
+	return t.InvoiceID
 }
 
-func (s *Sale) GetMetadata() map[string]any {
-	if s == nil {
+func (t *TrackSaleSale) GetMetadata() map[string]any {
+	if t == nil {
 		return nil
 	}
-	return s.Metadata
+	return t.Metadata
 }
 
 // TrackSaleResponseBody - A sale was tracked.
 type TrackSaleResponseBody struct {
 	EventName string             `json:"eventName"`
 	Customer  *TrackSaleCustomer `json:"customer"`
-	Sale      *Sale              `json:"sale"`
+	Sale      *TrackSaleSale     `json:"sale"`
 }
 
 func (t *TrackSaleResponseBody) GetEventName() string {
@@ -284,7 +284,7 @@ func (t *TrackSaleResponseBody) GetCustomer() *TrackSaleCustomer {
 	return t.Customer
 }
 
-func (t *TrackSaleResponseBody) GetSale() *Sale {
+func (t *TrackSaleResponseBody) GetSale() *TrackSaleSale {
 	if t == nil {
 		return nil
 	}

@@ -145,9 +145,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Dub {
 	sdk := &Dub{
-		SDKVersion: "0.23.14",
+		SDKVersion: "0.23.15",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 0.23.14 2.932.9 0.0.1 github.com/dubinc/dub-go",
+			UserAgent:  "speakeasy-sdk/go 0.23.15 2.932.9 0.0.1 github.com/dubinc/dub-go",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),

@@ -103,6 +103,120 @@ func (r *RequestBodyCustomer) GetCountry() string {
 	return r.Country
 }
 
+// RequestBodyPaymentProcessor - The payment processor via which the sale was made.
+type RequestBodyPaymentProcessor string
+
+const (
+	RequestBodyPaymentProcessorStripe     RequestBodyPaymentProcessor = "stripe"
+	RequestBodyPaymentProcessorShopify    RequestBodyPaymentProcessor = "shopify"
+	RequestBodyPaymentProcessorPolar      RequestBodyPaymentProcessor = "polar"
+	RequestBodyPaymentProcessorPaddle     RequestBodyPaymentProcessor = "paddle"
+	RequestBodyPaymentProcessorApple      RequestBodyPaymentProcessor = "apple"
+	RequestBodyPaymentProcessorRevenuecat RequestBodyPaymentProcessor = "revenuecat"
+	RequestBodyPaymentProcessorDub        RequestBodyPaymentProcessor = "dub"
+	RequestBodyPaymentProcessorCustom     RequestBodyPaymentProcessor = "custom"
+)
+
+func (e RequestBodyPaymentProcessor) ToPointer() *RequestBodyPaymentProcessor {
+	return &e
+}
+func (e *RequestBodyPaymentProcessor) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "stripe":
+		fallthrough
+	case "shopify":
+		fallthrough
+	case "polar":
+		fallthrough
+	case "paddle":
+		fallthrough
+	case "apple":
+		fallthrough
+	case "revenuecat":
+		fallthrough
+	case "dub":
+		fallthrough
+	case "custom":
+		*e = RequestBodyPaymentProcessor(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for RequestBodyPaymentProcessor: %v", v)
+	}
+}
+
+// Sale - The sale event object to associate the commission with.
+type Sale struct {
+	// The amount of the sale in cents (for all two-decimal currencies). If the sale is in a zero-decimal currency, pass the full integer value (e.g. `1580` JPY). Learn more: https://d.to/currency
+	Amount *float64 `json:"amount,omitempty"`
+	// The currency of the sale. Accepts ISO 4217 currency codes. Sales will be automatically converted and stored as USD at the latest exchange rates. Learn more: https://d.to/currency
+	Currency *string `default:"usd" json:"currency"`
+	// The name of the sale event. Recommended format: `Invoice paid` or `Subscription created`.
+	EventName *string `default:"Purchase" json:"eventName"`
+	// The payment processor via which the sale was made.
+	PaymentProcessor *RequestBodyPaymentProcessor `default:"custom" json:"paymentProcessor"`
+	// The invoice ID of the sale. Can be used as a idempotency key – only one sale event can be recorded for a given invoice ID.
+	InvoiceID *string `default:"null" json:"invoiceId"`
+	// Additional metadata to be stored with the sale event. Max 10,000 characters when stringified.
+	Metadata map[string]any `json:"metadata,omitempty"`
+}
+
+func (s Sale) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *Sale) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *Sale) GetAmount() *float64 {
+	if s == nil {
+		return nil
+	}
+	return s.Amount
+}
+
+func (s *Sale) GetCurrency() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Currency
+}
+
+func (s *Sale) GetEventName() *string {
+	if s == nil {
+		return nil
+	}
+	return s.EventName
+}
+
+func (s *Sale) GetPaymentProcessor() *RequestBodyPaymentProcessor {
+	if s == nil {
+		return nil
+	}
+	return s.PaymentProcessor
+}
+
+func (s *Sale) GetInvoiceID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.InvoiceID
+}
+
+func (s *Sale) GetMetadata() map[string]any {
+	if s == nil {
+		return nil
+	}
+	return s.Metadata
+}
+
 type RequestBody3 struct {
 	Type CreateCommissionRequestBodyCommissionsType `json:"type"`
 	// The ID of the partner to create the commission for.
@@ -113,15 +227,27 @@ type RequestBody3 struct {
 	Customer *RequestBodyCustomer `json:"customer,omitempty"`
 	// The partner link ID to associate the commission with. If not provided, default to the link with the most revenue.
 	LinkID *string `json:"linkId,omitempty"`
-	// When `true`, import all unimported paid Stripe invoices for the customer and create a commission for each. When `false`, create a single manual sale event using `saleAmount`.
+	// When `true`, import all unimported paid Stripe invoices for the customer and create a commission for each. When `false`, create a single manual sale event using `sale.amount` (or deprecated `saleAmount`).
 	ImportStripeInvoices *bool `default:"false" json:"importStripeInvoices"`
-	// Required when `importStripeInvoices` is `false`. The sale amount in cents for the manual sale event. Ignored when importing from Stripe.
-	SaleAmount *float64 `json:"saleAmount,omitempty"`
 	// Only used when `importStripeInvoices` is `false`. The date of the manual sale event. Defaults to the current date and time if not provided.
+	Date *string `json:"date,omitempty"`
+	// The sale event object to associate the commission with.
+	Sale *Sale `json:"sale,omitempty"`
+	// Deprecated: Use `date` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	SaleEventDate *string `json:"saleEventDate,omitempty"`
-	// Only used when `importStripeInvoices` is `false`. An optional invoice ID to attach to the generated sale event and commission entry for deduplication.
+	// Deprecated: Use `sale.amount` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	SaleAmount *float64 `json:"saleAmount,omitempty"`
+	// Deprecated: Use `sale.invoiceId` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	InvoiceID *string `json:"invoiceId,omitempty"`
-	// Only used when `importStripeInvoices` is `false`. An optional product ID stored on the sale event metadata – will also impact commission earnings calculation (if a `Sale` `Product ID` modifier is set).
+	// Deprecated: Use `sale.metadata.productId` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	ProductID *string `json:"productId,omitempty"`
 }
 
@@ -178,11 +304,18 @@ func (r *RequestBody3) GetImportStripeInvoices() *bool {
 	return r.ImportStripeInvoices
 }
 
-func (r *RequestBody3) GetSaleAmount() *float64 {
+func (r *RequestBody3) GetDate() *string {
 	if r == nil {
 		return nil
 	}
-	return r.SaleAmount
+	return r.Date
+}
+
+func (r *RequestBody3) GetSale() *Sale {
+	if r == nil {
+		return nil
+	}
+	return r.Sale
 }
 
 func (r *RequestBody3) GetSaleEventDate() *string {
@@ -190,6 +323,13 @@ func (r *RequestBody3) GetSaleEventDate() *string {
 		return nil
 	}
 	return r.SaleEventDate
+}
+
+func (r *RequestBody3) GetSaleAmount() *float64 {
+	if r == nil {
+		return nil
+	}
+	return r.SaleAmount
 }
 
 func (r *RequestBody3) GetInvoiceID() *string {
@@ -301,6 +441,39 @@ func (c *Customer) GetCountry() string {
 	return c.Country
 }
 
+// Lead - The lead event object to associate the commission with.
+type Lead struct {
+	// The name of the lead event to track. If not provided, defaults to 'Sign up'.
+	EventName *string `json:"eventName,omitempty"`
+	// Additional metadata to be stored with the lead event. Max 10,000 characters.
+	Metadata map[string]any `json:"metadata,omitempty"`
+}
+
+func (l Lead) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *Lead) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *Lead) GetEventName() *string {
+	if l == nil {
+		return nil
+	}
+	return l.EventName
+}
+
+func (l *Lead) GetMetadata() map[string]any {
+	if l == nil {
+		return nil
+	}
+	return l.Metadata
+}
+
 type RequestBody2 struct {
 	Type CreateCommissionRequestBodyType `json:"type"`
 	// The ID of the partner to create the commission for.
@@ -312,8 +485,16 @@ type RequestBody2 struct {
 	// The partner link ID to associate the commission with. If not provided, default to the link with the most revenue.
 	LinkID *string `json:"linkId,omitempty"`
 	// The date and time of the lead event. If not provided, defaults to the current date and time.
+	Date *string `json:"date,omitempty"`
+	// The lead event object to associate the commission with.
+	Lead *Lead `json:"lead,omitempty"`
+	// Deprecated: Use `date` instead. The date and time of the lead event. If not provided, defaults to the current date and time.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	LeadEventDate *string `json:"leadEventDate,omitempty"`
-	// The name of the lead event. If not provided, defaults to 'Sign up'.
+	// Deprecated: Use `lead.eventName` instead. The name of the lead event. If not provided, defaults to 'Sign up'.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	LeadEventName *string `default:"Sign up" json:"leadEventName"`
 }
 
@@ -363,6 +544,20 @@ func (r *RequestBody2) GetLinkID() *string {
 	return r.LinkID
 }
 
+func (r *RequestBody2) GetDate() *string {
+	if r == nil {
+		return nil
+	}
+	return r.Date
+}
+
+func (r *RequestBody2) GetLead() *Lead {
+	if r == nil {
+		return nil
+	}
+	return r.Lead
+}
+
 func (r *RequestBody2) GetLeadEventDate() *string {
 	if r == nil {
 		return nil
@@ -407,12 +602,11 @@ type RequestBody1 struct {
 	Type RequestBodyType `json:"type"`
 	// The ID of the partner to create the commission for.
 	PartnerID string `json:"partnerId"`
-	// The commission amount in cents. Use a negative amount to create a clawback.
+	// The commission earnings amount in cents. Use a negative amount to create a clawback.
 	Amount float64 `json:"amount"`
 	// If not provided, the current date will be used.
 	Date *string `json:"date,omitempty"`
-	// The description of the commission. Required for clawbacks (negative `amount`).
-	// May be a known clawback reason (`order_canceled`, `fraud`, `terms_violation`, `tracking_error`, `payment_failed`, `ineligible_partner`, `duplicate_commission`) or an arbitrary string (max 190 characters).
+	// The description of the commission. Required for clawbacks (negative `amount`). May be a known clawback reason (`order_canceled`, `fraud`, `terms_violation`, `tracking_error`, `payment_failed`, `ineligible_partner`, `duplicate_commission`) or an arbitrary string (max 190 characters).
 	Description *string `json:"description,omitempty"`
 }
 

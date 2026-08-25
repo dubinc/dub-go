@@ -65,6 +65,7 @@ func (b *BulkUpdateCommissionsRequestBody) GetStatus() BulkUpdateCommissionsStat
 	return b.Status
 }
 
+// BulkUpdateCommissionsCommissionsStatus - The current status of the commission.
 type BulkUpdateCommissionsCommissionsStatus string
 
 const (
@@ -111,7 +112,8 @@ func (e *BulkUpdateCommissionsCommissionsStatus) UnmarshalJSON(data []byte) erro
 
 type BulkUpdateCommissionsResponseBody struct {
 	// The commission's unique ID on Dub.
-	ID     string                                 `json:"id"`
+	ID string `json:"id"`
+	// The current status of the commission.
 	Status BulkUpdateCommissionsCommissionsStatus `json:"status"`
 }
 
