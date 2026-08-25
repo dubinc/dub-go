@@ -89,7 +89,7 @@ func main() {
 
 ## Create
 
-Create one or more commissions (custom, lead or sale) for a partner. Custom commissions accept a negative `amount` to create a clawback; in that case `description` is required and may be a known clawback reason or any other string. Commission creation is processed asynchronously. Use the List Commissions endpoint or webhooks to be notified when the commission is created.
+Create one or more commissions (custom, lead or sale) for a partner. Custom commissions accept a negative `amount` to create a clawback. Commission creation is processed asynchronously – use the GET /commissions endpoint or webhooks to be notified when the commission is created.
 
 ### Example Usage
 
@@ -100,6 +100,7 @@ package main
 import(
 	"context"
 	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
 	"log"
 )
 
@@ -110,7 +111,15 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.Commissions.Create(ctx, nil)
+    res, err := s.Commissions.Create(ctx, dubgo.Pointer(operations.CreateCreateCommissionRequestBodyRequestBody2(
+        operations.RequestBody2{
+            Type: operations.CreateCommissionRequestBodyTypeLead,
+            PartnerID: "<id>",
+            Lead: &operations.Lead{
+                EventName: dubgo.Pointer("Sign up"),
+            },
+        },
+    )))
     if err != nil {
         log.Fatal(err)
     }

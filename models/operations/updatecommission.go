@@ -147,6 +147,7 @@ func (u *UpdateCommissionRequest) GetRequestBody() *UpdateCommissionRequestBody 
 	return u.RequestBody
 }
 
+// UpdateCommissionType - The type of commission. Can be `click`, `lead`, `sale`, `referral`, or `custom`.
 type UpdateCommissionType string
 
 const (
@@ -182,6 +183,7 @@ func (e *UpdateCommissionType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// UpdateCommissionStatus - The current status of the commission.
 type UpdateCommissionStatus string
 
 const (
@@ -406,19 +408,31 @@ func (u *UpdateCommissionCustomer) GetSubscriptionCanceledAt() *string {
 // UpdateCommissionResponseBody - The updated commission.
 type UpdateCommissionResponseBody struct {
 	// The commission's unique ID on Dub.
-	ID          string                 `json:"id"`
-	Type        *UpdateCommissionType  `json:"type,omitempty"`
-	Amount      float64                `json:"amount"`
-	Earnings    float64                `json:"earnings"`
-	Currency    string                 `json:"currency"`
-	Status      UpdateCommissionStatus `json:"status"`
-	InvoiceID   *string                `json:"invoiceId"`
-	Description *string                `json:"description"`
-	Quantity    float64                `json:"quantity"`
+	ID string `json:"id"`
+	// The type of commission. Can be `click`, `lead`, `sale`, `referral`, or `custom`.
+	Type UpdateCommissionType `json:"type"`
+	// The associated event amount in cents. For sale commissions, this is the sale amount.
+	Amount float64 `json:"amount"`
+	// The amount earned by the partner, in cents.
+	Earnings float64 `json:"earnings"`
+	// The currency of the commission, as an ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// The current status of the commission.
+	Status UpdateCommissionStatus `json:"status"`
+	// The associated invoice ID. Only set for sale commissions.
+	InvoiceID *string `json:"invoiceId"`
+	// An optional description of the commission.
+	Description *string `json:"description"`
+	// The event quantity. Used for click and lead commissions; typically `1` for sale and custom commissions.
+	Quantity float64 `json:"quantity"`
 	// The user who created the manual commission.
-	UserID    *string `json:"userId,omitempty"`
-	CreatedAt string  `json:"createdAt"`
-	UpdatedAt string  `json:"updatedAt"`
+	UserID *string `json:"userId,omitempty"`
+	// User-provided metadata from the associated lead or sale event (`lead.metadata` / `sale.metadata`).
+	Metadata map[string]any `json:"metadata"`
+	// The date and time when the commission was created.
+	CreatedAt string `json:"createdAt"`
+	// The date and time when the commission was last updated.
+	UpdatedAt string `json:"updatedAt"`
 	// The date the commission was paid out to the partner. Null if not paid yet.
 	PaidAt   *string                   `json:"paidAt"`
 	Partner  UpdateCommissionPartner   `json:"partner"`
@@ -432,9 +446,9 @@ func (u *UpdateCommissionResponseBody) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateCommissionResponseBody) GetType() *UpdateCommissionType {
+func (u *UpdateCommissionResponseBody) GetType() UpdateCommissionType {
 	if u == nil {
-		return nil
+		return UpdateCommissionType("")
 	}
 	return u.Type
 }
@@ -493,6 +507,13 @@ func (u *UpdateCommissionResponseBody) GetUserID() *string {
 		return nil
 	}
 	return u.UserID
+}
+
+func (u *UpdateCommissionResponseBody) GetMetadata() map[string]any {
+	if u == nil {
+		return nil
+	}
+	return u.Metadata
 }
 
 func (u *UpdateCommissionResponseBody) GetCreatedAt() string {

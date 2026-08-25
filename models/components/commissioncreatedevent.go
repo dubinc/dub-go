@@ -33,6 +33,7 @@ func (e *CommissionCreatedEventEvent) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// CommissionCreatedEventType - The type of commission. Can be `click`, `lead`, `sale`, `referral`, or `custom`.
 type CommissionCreatedEventType string
 
 const (
@@ -68,6 +69,7 @@ func (e *CommissionCreatedEventType) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// CommissionCreatedEventStatus - The current status of the commission.
 type CommissionCreatedEventStatus string
 
 const (
@@ -410,18 +412,30 @@ func (c *CommissionCreatedEventLink) GetKey() string {
 
 type CommissionCreatedEventData struct {
 	// The commission's unique ID on Dub.
-	ID          string                       `json:"id"`
-	Type        *CommissionCreatedEventType  `json:"type,omitempty"`
-	Amount      float64                      `json:"amount"`
-	Earnings    float64                      `json:"earnings"`
-	Currency    string                       `json:"currency"`
-	Status      CommissionCreatedEventStatus `json:"status"`
-	InvoiceID   *string                      `json:"invoiceId"`
-	Description *string                      `json:"description"`
-	Quantity    float64                      `json:"quantity"`
+	ID string `json:"id"`
+	// The type of commission. Can be `click`, `lead`, `sale`, `referral`, or `custom`.
+	Type CommissionCreatedEventType `json:"type"`
+	// The associated event amount in cents. For sale commissions, this is the sale amount.
+	Amount float64 `json:"amount"`
+	// The amount earned by the partner, in cents.
+	Earnings float64 `json:"earnings"`
+	// The currency of the commission, as an ISO 4217 currency code.
+	Currency string `json:"currency"`
+	// The current status of the commission.
+	Status CommissionCreatedEventStatus `json:"status"`
+	// The associated invoice ID. Only set for sale commissions.
+	InvoiceID *string `json:"invoiceId"`
+	// An optional description of the commission.
+	Description *string `json:"description"`
+	// The event quantity. Used for click and lead commissions; typically `1` for sale and custom commissions.
+	Quantity float64 `json:"quantity"`
 	// The user who created the manual commission.
-	UserID    *string                         `json:"userId,omitempty"`
-	CreatedAt string                          `json:"createdAt"`
+	UserID *string `json:"userId,omitempty"`
+	// User-provided metadata from the associated lead or sale event (`lead.metadata` / `sale.metadata`).
+	Metadata map[string]any `json:"metadata"`
+	// The date and time when the commission was created.
+	CreatedAt string `json:"createdAt"`
+	// The date and time when the commission was last updated.
 	UpdatedAt string                          `json:"updatedAt"`
 	Partner   CommissionCreatedEventPartner   `json:"partner"`
 	Customer  *CommissionCreatedEventCustomer `json:"customer,omitempty"`
@@ -433,7 +447,7 @@ func (c CommissionCreatedEventData) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CommissionCreatedEventData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "amount", "earnings", "currency", "status", "quantity", "createdAt", "updatedAt", "partner"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "type", "amount", "earnings", "currency", "status", "quantity", "createdAt", "updatedAt", "partner"}); err != nil {
 		return err
 	}
 	return nil
@@ -446,9 +460,9 @@ func (c *CommissionCreatedEventData) GetID() string {
 	return c.ID
 }
 
-func (c *CommissionCreatedEventData) GetType() *CommissionCreatedEventType {
+func (c *CommissionCreatedEventData) GetType() CommissionCreatedEventType {
 	if c == nil {
-		return nil
+		return CommissionCreatedEventType("")
 	}
 	return c.Type
 }
@@ -507,6 +521,13 @@ func (c *CommissionCreatedEventData) GetUserID() *string {
 		return nil
 	}
 	return c.UserID
+}
+
+func (c *CommissionCreatedEventData) GetMetadata() map[string]any {
+	if c == nil {
+		return nil
+	}
+	return c.Metadata
 }
 
 func (c *CommissionCreatedEventData) GetCreatedAt() string {
