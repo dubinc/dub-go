@@ -624,14 +624,15 @@ func (e *ListEventsResponseBodyEventsEvent) UnmarshalJSON(data []byte) error {
 type ResponseBodyPaymentProcessor string
 
 const (
-	ResponseBodyPaymentProcessorStripe     ResponseBodyPaymentProcessor = "stripe"
-	ResponseBodyPaymentProcessorShopify    ResponseBodyPaymentProcessor = "shopify"
-	ResponseBodyPaymentProcessorPolar      ResponseBodyPaymentProcessor = "polar"
-	ResponseBodyPaymentProcessorPaddle     ResponseBodyPaymentProcessor = "paddle"
-	ResponseBodyPaymentProcessorApple      ResponseBodyPaymentProcessor = "apple"
-	ResponseBodyPaymentProcessorRevenuecat ResponseBodyPaymentProcessor = "revenuecat"
-	ResponseBodyPaymentProcessorDub        ResponseBodyPaymentProcessor = "dub"
-	ResponseBodyPaymentProcessorCustom     ResponseBodyPaymentProcessor = "custom"
+	ResponseBodyPaymentProcessorStripe       ResponseBodyPaymentProcessor = "stripe"
+	ResponseBodyPaymentProcessorShopify      ResponseBodyPaymentProcessor = "shopify"
+	ResponseBodyPaymentProcessorPolar        ResponseBodyPaymentProcessor = "polar"
+	ResponseBodyPaymentProcessorPaddle       ResponseBodyPaymentProcessor = "paddle"
+	ResponseBodyPaymentProcessorApple        ResponseBodyPaymentProcessor = "apple"
+	ResponseBodyPaymentProcessorRevenuecat   ResponseBodyPaymentProcessor = "revenuecat"
+	ResponseBodyPaymentProcessorLemonsqueezy ResponseBodyPaymentProcessor = "lemonsqueezy"
+	ResponseBodyPaymentProcessorDub          ResponseBodyPaymentProcessor = "dub"
+	ResponseBodyPaymentProcessorCustom       ResponseBodyPaymentProcessor = "custom"
 )
 
 func (e ResponseBodyPaymentProcessor) ToPointer() *ResponseBodyPaymentProcessor {
@@ -654,6 +655,8 @@ func (e *ResponseBodyPaymentProcessor) UnmarshalJSON(data []byte) error {
 	case "apple":
 		fallthrough
 	case "revenuecat":
+		fallthrough
+	case "lemonsqueezy":
 		fallthrough
 	case "dub":
 		fallthrough

@@ -223,6 +223,8 @@ type ListCommissionsRequest struct {
 	// The end date of the date range to filter the commissions by.
 	End      *string `queryParam:"style=form,explode=true,name=end"`
 	Timezone *string `queryParam:"style=form,explode=true,name=timezone"`
+	// Filter by lead or sale event metadata. Top-level keys only. Compares string values only — numeric and boolean metadata values are not matched.
+	Query *string `queryParam:"style=form,explode=true,name=query"`
 	// If specified, the query only searches for results before this cursor. Mutually exclusive with `startingAfter`.
 	EndingBefore *string `queryParam:"style=form,explode=true,name=endingBefore"`
 	// If specified, the query only searches for results after this cursor. Mutually exclusive with `endingBefore`.
@@ -347,6 +349,13 @@ func (l *ListCommissionsRequest) GetTimezone() *string {
 		return nil
 	}
 	return l.Timezone
+}
+
+func (l *ListCommissionsRequest) GetQuery() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Query
 }
 
 func (l *ListCommissionsRequest) GetEndingBefore() *string {

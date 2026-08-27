@@ -107,14 +107,15 @@ func (r *RequestBodyCustomer) GetCountry() string {
 type RequestBodyPaymentProcessor string
 
 const (
-	RequestBodyPaymentProcessorStripe     RequestBodyPaymentProcessor = "stripe"
-	RequestBodyPaymentProcessorShopify    RequestBodyPaymentProcessor = "shopify"
-	RequestBodyPaymentProcessorPolar      RequestBodyPaymentProcessor = "polar"
-	RequestBodyPaymentProcessorPaddle     RequestBodyPaymentProcessor = "paddle"
-	RequestBodyPaymentProcessorApple      RequestBodyPaymentProcessor = "apple"
-	RequestBodyPaymentProcessorRevenuecat RequestBodyPaymentProcessor = "revenuecat"
-	RequestBodyPaymentProcessorDub        RequestBodyPaymentProcessor = "dub"
-	RequestBodyPaymentProcessorCustom     RequestBodyPaymentProcessor = "custom"
+	RequestBodyPaymentProcessorStripe       RequestBodyPaymentProcessor = "stripe"
+	RequestBodyPaymentProcessorShopify      RequestBodyPaymentProcessor = "shopify"
+	RequestBodyPaymentProcessorPolar        RequestBodyPaymentProcessor = "polar"
+	RequestBodyPaymentProcessorPaddle       RequestBodyPaymentProcessor = "paddle"
+	RequestBodyPaymentProcessorApple        RequestBodyPaymentProcessor = "apple"
+	RequestBodyPaymentProcessorRevenuecat   RequestBodyPaymentProcessor = "revenuecat"
+	RequestBodyPaymentProcessorLemonsqueezy RequestBodyPaymentProcessor = "lemonsqueezy"
+	RequestBodyPaymentProcessorDub          RequestBodyPaymentProcessor = "dub"
+	RequestBodyPaymentProcessorCustom       RequestBodyPaymentProcessor = "custom"
 )
 
 func (e RequestBodyPaymentProcessor) ToPointer() *RequestBodyPaymentProcessor {
@@ -137,6 +138,8 @@ func (e *RequestBodyPaymentProcessor) UnmarshalJSON(data []byte) error {
 	case "apple":
 		fallthrough
 	case "revenuecat":
+		fallthrough
+	case "lemonsqueezy":
 		fallthrough
 	case "dub":
 		fallthrough

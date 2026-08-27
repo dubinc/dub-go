@@ -15,13 +15,14 @@ value := operations.PaymentProcessorStripe
 
 ## Values
 
-| Name                         | Value                        |
-| ---------------------------- | ---------------------------- |
-| `PaymentProcessorStripe`     | stripe                       |
-| `PaymentProcessorShopify`    | shopify                      |
-| `PaymentProcessorPolar`      | polar                        |
-| `PaymentProcessorPaddle`     | paddle                       |
-| `PaymentProcessorApple`      | apple                        |
-| `PaymentProcessorRevenuecat` | revenuecat                   |
-| `PaymentProcessorDub`        | dub                          |
-| `PaymentProcessorCustom`     | custom                       |
+| Name                           | Value                          |
+| ------------------------------ | ------------------------------ |
+| `PaymentProcessorStripe`       | stripe                         |
+| `PaymentProcessorShopify`      | shopify                        |
+| `PaymentProcessorPolar`        | polar                          |
+| `PaymentProcessorPaddle`       | paddle                         |
+| `PaymentProcessorApple`        | apple                          |
+| `PaymentProcessorRevenuecat`   | revenuecat                     |
+| `PaymentProcessorLemonsqueezy` | lemonsqueezy                   |
+| `PaymentProcessorDub`          | dub                            |
+| `PaymentProcessorCustom`       | custom                         |

@@ -15,13 +15,14 @@ value := operations.RequestBodyPaymentProcessorStripe
 
 ## Values
 
-| Name                                    | Value                                   |
-| --------------------------------------- | --------------------------------------- |
-| `RequestBodyPaymentProcessorStripe`     | stripe                                  |
-| `RequestBodyPaymentProcessorShopify`    | shopify                                 |
-| `RequestBodyPaymentProcessorPolar`      | polar                                   |
-| `RequestBodyPaymentProcessorPaddle`     | paddle                                  |
-| `RequestBodyPaymentProcessorApple`      | apple                                   |
-| `RequestBodyPaymentProcessorRevenuecat` | revenuecat                              |
-| `RequestBodyPaymentProcessorDub`        | dub                                     |
-| `RequestBodyPaymentProcessorCustom`     | custom                                  |
+| Name                                      | Value                                     |
+| ----------------------------------------- | ----------------------------------------- |
+| `RequestBodyPaymentProcessorStripe`       | stripe                                    |
+| `RequestBodyPaymentProcessorShopify`      | shopify                                   |
+| `RequestBodyPaymentProcessorPolar`        | polar                                     |
+| `RequestBodyPaymentProcessorPaddle`       | paddle                                    |
+| `RequestBodyPaymentProcessorApple`        | apple                                     |
+| `RequestBodyPaymentProcessorRevenuecat`   | revenuecat                                |
+| `RequestBodyPaymentProcessorLemonsqueezy` | lemonsqueezy                              |
+| `RequestBodyPaymentProcessorDub`          | dub                                       |
+| `RequestBodyPaymentProcessorCustom`       | custom                                    |

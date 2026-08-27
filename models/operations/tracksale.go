@@ -14,14 +14,15 @@ import (
 type PaymentProcessor string
 
 const (
-	PaymentProcessorStripe     PaymentProcessor = "stripe"
-	PaymentProcessorShopify    PaymentProcessor = "shopify"
-	PaymentProcessorPolar      PaymentProcessor = "polar"
-	PaymentProcessorPaddle     PaymentProcessor = "paddle"
-	PaymentProcessorApple      PaymentProcessor = "apple"
-	PaymentProcessorRevenuecat PaymentProcessor = "revenuecat"
-	PaymentProcessorDub        PaymentProcessor = "dub"
-	PaymentProcessorCustom     PaymentProcessor = "custom"
+	PaymentProcessorStripe       PaymentProcessor = "stripe"
+	PaymentProcessorShopify      PaymentProcessor = "shopify"
+	PaymentProcessorPolar        PaymentProcessor = "polar"
+	PaymentProcessorPaddle       PaymentProcessor = "paddle"
+	PaymentProcessorApple        PaymentProcessor = "apple"
+	PaymentProcessorRevenuecat   PaymentProcessor = "revenuecat"
+	PaymentProcessorLemonsqueezy PaymentProcessor = "lemonsqueezy"
+	PaymentProcessorDub          PaymentProcessor = "dub"
+	PaymentProcessorCustom       PaymentProcessor = "custom"
 )
 
 func (e PaymentProcessor) ToPointer() *PaymentProcessor {
@@ -44,6 +45,8 @@ func (e *PaymentProcessor) UnmarshalJSON(data []byte) error {
 	case "apple":
 		fallthrough
 	case "revenuecat":
+		fallthrough
+	case "lemonsqueezy":
 		fallthrough
 	case "dub":
 		fallthrough
