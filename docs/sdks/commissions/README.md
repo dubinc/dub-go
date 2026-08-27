@@ -34,6 +34,7 @@ func main() {
     )
 
     res, err := s.Commissions.List(ctx, operations.ListCommissionsRequest{
+        Query: dubgo.Pointer("metadata['key']='value'"),
         EndingBefore: dubgo.Pointer("cm_1KAP4CGN2Z5TPYYQ1W4JEYD56"),
         StartingAfter: dubgo.Pointer("cm_1KAP4CGN2Z5TPYYQ1W4JEYD56"),
         Page: dubgo.Pointer[int64](1),
