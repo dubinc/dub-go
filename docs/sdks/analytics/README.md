@@ -67,6 +67,8 @@ func main() {
                 // res.ArrayOfAnalyticsOS is populated
             case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTriggers:
                 // res.ArrayOfAnalyticsTriggers is populated
+            case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsEventNames:
+                // res.ArrayOfAnalyticsEventNames is populated
             case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsReferers:
                 // res.ArrayOfAnalyticsReferers is populated
             case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsRefererUrls:

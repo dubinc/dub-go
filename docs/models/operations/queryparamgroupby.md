@@ -28,6 +28,7 @@ value := operations.QueryParamGroupByCount
 | `QueryParamGroupByOs`             | os                                |
 | `QueryParamGroupByTrigger`        | trigger                           |
 | `QueryParamGroupByTriggers`       | triggers                          |
+| `QueryParamGroupByEventNames`     | event_names                       |
 | `QueryParamGroupByReferers`       | referers                          |
 | `QueryParamGroupByRefererUrls`    | referer_urls                      |
 | `QueryParamGroupByTopFolders`     | top_folders                       |

@@ -60,6 +60,7 @@ const (
 	QueryParamGroupByOs             QueryParamGroupBy = "os"
 	QueryParamGroupByTrigger        QueryParamGroupBy = "trigger"
 	QueryParamGroupByTriggers       QueryParamGroupBy = "triggers"
+	QueryParamGroupByEventNames     QueryParamGroupBy = "event_names"
 	QueryParamGroupByReferers       QueryParamGroupBy = "referers"
 	QueryParamGroupByRefererUrls    QueryParamGroupBy = "referer_urls"
 	QueryParamGroupByTopFolders     QueryParamGroupBy = "top_folders"
@@ -108,6 +109,8 @@ func (e *QueryParamGroupBy) UnmarshalJSON(data []byte) error {
 	case "trigger":
 		fallthrough
 	case "triggers":
+		fallthrough
+	case "event_names":
 		fallthrough
 	case "referers":
 		fallthrough
@@ -273,6 +276,8 @@ type RetrieveAnalyticsRequest struct {
 	Os *string `queryParam:"style=form,explode=true,name=os"`
 	// The trigger to retrieve analytics for. Valid values: qr, link, pageview. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `qr`, `qr,link`, `-qr`. If undefined, returns all trigger types.
 	Trigger *string `queryParam:"style=form,explode=true,name=trigger"`
+	// The conversion event name to retrieve analytics for. Only available for lead and sale events. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `Sign up`, `Sign up,Purchase`, `-Sign up`.
+	EventName *string `queryParam:"style=form,explode=true,name=eventName"`
 	// The referer hostname to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `google.com`, `google.com,twitter.com`, `-facebook.com`.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`
 	// The full referer URL to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `https://google.com`, `https://google.com,https://twitter.com`, `-https://spam.com`.
@@ -489,6 +494,13 @@ func (r *RetrieveAnalyticsRequest) GetTrigger() *string {
 	return r.Trigger
 }
 
+func (r *RetrieveAnalyticsRequest) GetEventName() *string {
+	if r == nil {
+		return nil
+	}
+	return r.EventName
+}
+
 func (r *RetrieveAnalyticsRequest) GetReferer() *string {
 	if r == nil {
 		return nil
@@ -600,6 +612,7 @@ const (
 	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsBrowsers    RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsBrowsers"
 	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsOS          RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsOS"
 	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTriggers    RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsTriggers"
+	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsEventNames  RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsEventNames"
 	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsReferers    RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsReferers"
 	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsRefererUrls RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsRefererUrls"
 	RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTopLinks    RetrieveAnalyticsResponseBodyType = "arrayOfAnalyticsTopLinks"
@@ -618,6 +631,7 @@ type RetrieveAnalyticsResponseBody struct {
 	ArrayOfAnalyticsBrowsers    []components.AnalyticsBrowsers    `queryParam:"inline" union:"member"`
 	ArrayOfAnalyticsOS          []components.AnalyticsOS          `queryParam:"inline" union:"member"`
 	ArrayOfAnalyticsTriggers    []components.AnalyticsTriggers    `queryParam:"inline" union:"member"`
+	ArrayOfAnalyticsEventNames  []components.AnalyticsEventNames  `queryParam:"inline" union:"member"`
 	ArrayOfAnalyticsReferers    []components.AnalyticsReferers    `queryParam:"inline" union:"member"`
 	ArrayOfAnalyticsRefererUrls []components.AnalyticsRefererUrls `queryParam:"inline" union:"member"`
 	ArrayOfAnalyticsTopLinks    []components.AnalyticsTopLinks    `queryParam:"inline" union:"member"`
@@ -713,6 +727,15 @@ func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsTriggers(arrayOfAnalytic
 	return RetrieveAnalyticsResponseBody{
 		ArrayOfAnalyticsTriggers: arrayOfAnalyticsTriggers,
 		Type:                     typ,
+	}
+}
+
+func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsEventNames(arrayOfAnalyticsEventNames []components.AnalyticsEventNames) RetrieveAnalyticsResponseBody {
+	typ := RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsEventNames
+
+	return RetrieveAnalyticsResponseBody{
+		ArrayOfAnalyticsEventNames: arrayOfAnalyticsEventNames,
+		Type:                       typ,
 	}
 }
 
@@ -824,6 +847,13 @@ func (u *RetrieveAnalyticsResponseBody) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
+	var arrayOfAnalyticsEventNames []components.AnalyticsEventNames = []components.AnalyticsEventNames{}
+	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsEventNames, "", true, nil); err == nil {
+		u.ArrayOfAnalyticsEventNames = arrayOfAnalyticsEventNames
+		u.Type = RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsEventNames
+		return nil
+	}
+
 	var arrayOfAnalyticsReferers []components.AnalyticsReferers = []components.AnalyticsReferers{}
 	if err := utils.UnmarshalJSON(data, &arrayOfAnalyticsReferers, "", true, nil); err == nil {
 		u.ArrayOfAnalyticsReferers = arrayOfAnalyticsReferers
@@ -894,6 +924,10 @@ func (u RetrieveAnalyticsResponseBody) MarshalJSON() ([]byte, error) {
 
 	if u.ArrayOfAnalyticsTriggers != nil {
 		return utils.MarshalJSON(u.ArrayOfAnalyticsTriggers, "", true)
+	}
+
+	if u.ArrayOfAnalyticsEventNames != nil {
+		return utils.MarshalJSON(u.ArrayOfAnalyticsEventNames, "", true)
 	}
 
 	if u.ArrayOfAnalyticsReferers != nil {

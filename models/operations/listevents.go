@@ -246,6 +246,8 @@ type ListEventsRequest struct {
 	Os *string `queryParam:"style=form,explode=true,name=os"`
 	// The trigger to retrieve analytics for. Valid values: qr, link, pageview. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `qr`, `qr,link`, `-qr`. If undefined, returns all trigger types.
 	Trigger *string `queryParam:"style=form,explode=true,name=trigger"`
+	// The conversion event name to retrieve analytics for. Only available for lead and sale events. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `Sign up`, `Sign up,Purchase`, `-Sign up`.
+	EventName *string `queryParam:"style=form,explode=true,name=eventName"`
 	// The referer hostname to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `google.com`, `google.com,twitter.com`, `-facebook.com`.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`
 	// The full referer URL to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `https://google.com`, `https://google.com,https://twitter.com`, `-https://spam.com`.
@@ -462,6 +464,13 @@ func (l *ListEventsRequest) GetTrigger() *string {
 		return nil
 	}
 	return l.Trigger
+}
+
+func (l *ListEventsRequest) GetEventName() *string {
+	if l == nil {
+		return nil
+	}
+	return l.EventName
 }
 
 func (l *ListEventsRequest) GetReferer() *string {
