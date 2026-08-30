@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1773e9c7-1931-4663-8ac8-4deaf8db76f5
 management:
-  docChecksum: 7dc89d725e13a575f09e0bbe2c501f53
+  docChecksum: 052da4959733457f8d8107004470863b
   docVersion: 0.0.1
   speakeasyVersion: 1.796.2
   generationVersion: 2.933.0
-  releaseVersion: 0.23.17
-  configChecksum: 2dac5caa759036c4a4366cf6a78ebe83
+  releaseVersion: 0.23.18
+  configChecksum: 7688955c0ef8565b88f86a20d14b4d8e
   repoURL: https://github.com/dubinc/dub-go.git
   installationURL: https://github.com/dubinc/dub-go
 persistentEdits:
-  generation_id: 59e8be4f-4114-48b1-bf8e-37b59bf70fae
-  pristine_commit_hash: 21bf4bf12a3533d15ac171c53f73291ad71c15ff
-  pristine_tree_hash: e3d5f32093f82634041e95e551f44c1a0b883181
+  generation_id: 31a26381-89fe-40a4-b364-65e1636f7c98
+  pristine_commit_hash: c0d10316ece423d2d9603404146f55588f758565
+  pristine_tree_hash: 63cd6abb15cdfe2787cab25abb2d142102fd46e0
 features:
   go:
     additionalDependencies: 0.1.0
@@ -1237,8 +1237,8 @@ trackedFiles:
     pristine_git_object: 55a84d606812fac6ada18c57ecb9238877259f71
   docs/models/operations/listcommissionsrequest.md:
     id: 3db2f1c49f34
-    last_write_checksum: sha1:a17a834474b8bd3c410bbaa466e0bd1f2f117ac0
-    pristine_git_object: 0541485b64b1991bb989d7b48eecb111007e5106
+    last_write_checksum: sha1:22406c71c95627e15d7ae99406982c98facba718
+    pristine_git_object: 3a26d571ebe1c8735bf382287ee39995b4f661bb
   docs/models/operations/listcommissionsresponse.md:
     id: 6de464f720eb
     last_write_checksum: sha1:ed37462ddfe2c07b206d8549dbf127c8fa0555a0
@@ -1733,8 +1733,8 @@ trackedFiles:
     pristine_git_object: 5ce626a09259941f5c2e9a4f96c93dd75619fc00
   docs/models/operations/type.md:
     id: 8e39682ca85e
-    last_write_checksum: sha1:8e3f8bcecdfb47253f4ad0248a78ecce570fb76e
-    pristine_git_object: 915c7941714fcd510d8ee89b6da57c69cdd7a0ba
+    last_write_checksum: sha1:2c2c7a3d96229e9938f52dffe923c45915761399
+    pristine_git_object: bf42218bca00b7421298824321caa6b216b416f2
   docs/models/operations/updatecommissioncustomer.md:
     id: 19d4c8993860
     last_write_checksum: sha1:3935b2a88aa10aee447c43b3b6abef30aaf9446e
@@ -2061,8 +2061,8 @@ trackedFiles:
     pristine_git_object: ba2c7056e2cfd2221c3e66b2baead899825c3a38
   dub.go:
     id: 9bba8aa9ce0f
-    last_write_checksum: sha1:7fead9080a54f6340ea5d3996ca4113d609505e3
-    pristine_git_object: 0894f98b7b62d9c21f339f2e9364f87765ed661d
+    last_write_checksum: sha1:365bcf88d9b465e88d758d5b2bf703f934549e1a
+    pristine_git_object: f5de48e9f9218cdb7be5dfe8a4a63e391d542992
   embedtokens.go:
     id: 0fc16a550ef5
     last_write_checksum: sha1:1cb8720c1d462a86b40fb95e5c89c947f765d625
@@ -2417,8 +2417,8 @@ trackedFiles:
     pristine_git_object: 37d4bdd23941c61376075c69f3ec0481042f6cd3
   models/operations/listcommissions.go:
     id: 4ddaec57f8c7
-    last_write_checksum: sha1:5d700b49c2efde3faa78efa957d152fa84dcbf8f
-    pristine_git_object: ff7635bbff316a557b52e4f0ac22af077ae678d3
+    last_write_checksum: sha1:1d839525d021a6b2b2f1afbcaf281c5e88656aed
+    pristine_git_object: e6ff53b4f4d9ce8241ce3cf64ff822cf31d80807
   models/operations/listdiscountcodes.go:
     id: 67c4e75bb041
     last_write_checksum: sha1:9df975e1962765ac0ccde78bb0f079559f61dac5
@@ -4296,7 +4296,6 @@ examples:
           application/json: {"error": {"code": "internal_server_error", "message": "The requested resource was not found.", "doc_url": "https://dub.co/docs/api-reference/errors#internal-server_error"}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Go SDK Changes:\n* `Dub.Analytics.Retrieve()`: \n  *  `request.Request` **Changed**\n  *  `response.union(Array<AnalyticsEventNames>)` **Added** (Breaking ⚠️)\n* `Dub.Events.List()`: \n  *  `request.Request.EventName` **Added**\n"
 generatedFiles:
   - .gitattributes
   - /models/components/analyticsbrowsers.go
