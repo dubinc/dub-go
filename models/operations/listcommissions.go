@@ -10,7 +10,11 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
-// Type - Filter the list of commissions by type. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `sale`, `sale,lead`, `-click`.
+// Type - Filter the list of commissions by type.
+// Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples:
+// - "sale"
+// - "sale,lead"
+// - "-click"
 type Type string
 
 const (
@@ -194,19 +198,37 @@ func (e *ListCommissionsQueryParamInterval) UnmarshalJSON(data []byte) error {
 }
 
 type ListCommissionsRequest struct {
-	// Filter the list of commissions by type. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `sale`, `sale,lead`, `-click`.
+	// Filter the list of commissions by type.
+	// Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples:
+	// - "sale"
+	// - "sale,lead"
+	// - "-click"
 	Type *Type `queryParam:"style=form,explode=true,name=type"`
 	// Filter the list of commissions by the associated customer.
 	CustomerID *string `queryParam:"style=form,explode=true,name=customerId"`
 	// Filter the list of commissions by the associated payout.
 	PayoutID *string `queryParam:"style=form,explode=true,name=payoutId"`
-	// Filter the list of commissions by the associated partner. When specified, takes precedence over `tenantId`. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `partner_abc`, `partner_abc,partner_xyz`, `-partner_abc`.
+	// Filter the list of commissions by the associated partner. When specified, takes precedence over `tenantId`.
+	// Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`).
+	// Examples:
+	// - "partner_abc"
+	// - "partner_abc,partner_xyz"
+	// - "-partner_abc"
 	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
 	// Filter the list of commissions by the associated partner's `tenantId` (their unique ID within your database).
 	TenantID *string `queryParam:"style=form,explode=true,name=tenantId"`
-	// Filter the list of commissions by the associated partner group. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `group_abc`, `group_abc,group_xyz`, `-group_abc`.
+	// Filter the list of commissions by the associated partner group.
+	// Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples:
+	// - "group_abc"
+	// - "group_abc,group_xyz"
+	// - "-group_abc"
 	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
-	// Filter the list of commissions by the associated partner tag. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `ptag_abc`, `ptag_abc,ptag_xyz`, `-ptag_abc`.
+	// Filter the list of commissions by the associated partner tag.
+	// Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`).
+	// Examples:
+	// - "ptag_abc"
+	// - "ptag_abc,ptag_xyz"
+	// - "-ptag_abc"
 	PartnerTagID *string `queryParam:"style=form,explode=true,name=partnerTagId"`
 	// Filter the list of commissions by the associated invoice. Since invoiceId is unique on a per-program basis, this will only return one commission per invoice.
 	InvoiceID *string `queryParam:"style=form,explode=true,name=invoiceId"`
@@ -224,6 +246,9 @@ type ListCommissionsRequest struct {
 	End      *string `queryParam:"style=form,explode=true,name=end"`
 	Timezone *string `queryParam:"style=form,explode=true,name=timezone"`
 	// Filter by lead or sale event metadata. Top-level keys only. Compares string values only — numeric and boolean metadata values are not matched.
+	// Examples:
+	// - "metadata['key']='value'"
+	// - "metadata['key']!='value'"
 	Query *string `queryParam:"style=form,explode=true,name=query"`
 	// If specified, the query only searches for results before this cursor. Mutually exclusive with `startingAfter`.
 	EndingBefore *string `queryParam:"style=form,explode=true,name=endingBefore"`
