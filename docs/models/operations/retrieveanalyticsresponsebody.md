@@ -68,6 +68,12 @@ retrieveAnalyticsResponseBody := operations.CreateRetrieveAnalyticsResponseBodyA
 ### 
 
 ```go
+retrieveAnalyticsResponseBody := operations.CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsEventNames([]components.AnalyticsEventNames{/* values here */})
+```
+
+### 
+
+```go
 retrieveAnalyticsResponseBody := operations.CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsReferers([]components.AnalyticsReferers{/* values here */})
 ```
 
@@ -115,6 +121,8 @@ switch retrieveAnalyticsResponseBody.Type {
 		// retrieveAnalyticsResponseBody.ArrayOfAnalyticsOS is populated
 	case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsTriggers:
 		// retrieveAnalyticsResponseBody.ArrayOfAnalyticsTriggers is populated
+	case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsEventNames:
+		// retrieveAnalyticsResponseBody.ArrayOfAnalyticsEventNames is populated
 	case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsReferers:
 		// retrieveAnalyticsResponseBody.ArrayOfAnalyticsReferers is populated
 	case operations.RetrieveAnalyticsResponseBodyTypeArrayOfAnalyticsRefererUrls:
