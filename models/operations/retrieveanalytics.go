@@ -773,7 +773,14 @@ func CreateRetrieveAnalyticsResponseBodyArrayOfAnalyticsTopUrls(arrayOfAnalytics
 	}
 }
 
-func (u *RetrieveAnalyticsResponseBody) UnmarshalJSON(data []byte) error {
+func (u *RetrieveAnalyticsResponseBody) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = RetrieveAnalyticsResponseBody{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var analyticsCount components.AnalyticsCount = components.AnalyticsCount{}
 	if err := utils.UnmarshalJSON(data, &analyticsCount, "", true, nil); err == nil {

@@ -42,7 +42,14 @@ func CreateGetLinksCountQueryParamTagIdsArrayOfStr(arrayOfStr []string) GetLinks
 	}
 }
 
-func (u *GetLinksCountQueryParamTagIds) UnmarshalJSON(data []byte) error {
+func (u *GetLinksCountQueryParamTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = GetLinksCountQueryParamTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -106,7 +113,14 @@ func CreateGetLinksCountQueryParamTagNamesArrayOfStr(arrayOfStr []string) GetLin
 	}
 }
 
-func (u *GetLinksCountQueryParamTagNames) UnmarshalJSON(data []byte) error {
+func (u *GetLinksCountQueryParamTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = GetLinksCountQueryParamTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -284,7 +298,14 @@ func CreateGroupByFour(four Four) GroupBy {
 	}
 }
 
-func (u *GroupBy) UnmarshalJSON(data []byte) error {
+func (u *GroupBy) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = GroupBy{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var one One = One("")
 	if err := utils.UnmarshalJSON(data, &one, "", true, nil); err == nil {

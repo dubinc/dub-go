@@ -72,6 +72,7 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest, op
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -230,7 +231,7 @@ func (s *Links) List(ctx context.Context, request operations.GetLinksRequest, op
 		request.Page = &nP
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)

@@ -1220,7 +1220,14 @@ func CreateFieldsEight(eight Eight) Fields {
 	}
 }
 
-func (u *Fields) UnmarshalJSON(data []byte) error {
+func (u *Fields) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Fields{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var fields3 Fields3 = Fields3{}
 	if err := utils.UnmarshalJSON(data, &fields3, "", true, nil); err == nil {

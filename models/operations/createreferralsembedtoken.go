@@ -41,7 +41,14 @@ func CreateCreateReferralsEmbedTokenTagIdsArrayOfStr(arrayOfStr []string) Create
 	}
 }
 
-func (u *CreateReferralsEmbedTokenTagIds) UnmarshalJSON(data []byte) error {
+func (u *CreateReferralsEmbedTokenTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreateReferralsEmbedTokenTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -105,7 +112,14 @@ func CreateCreateReferralsEmbedTokenTagNamesArrayOfStr(arrayOfStr []string) Crea
 	}
 }
 
-func (u *CreateReferralsEmbedTokenTagNames) UnmarshalJSON(data []byte) error {
+func (u *CreateReferralsEmbedTokenTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreateReferralsEmbedTokenTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {

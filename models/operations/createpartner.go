@@ -42,7 +42,14 @@ func CreateCreatePartnerTagIdsArrayOfStr(arrayOfStr []string) CreatePartnerTagId
 	}
 }
 
-func (u *CreatePartnerTagIds) UnmarshalJSON(data []byte) error {
+func (u *CreatePartnerTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreatePartnerTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -106,7 +113,14 @@ func CreateCreatePartnerTagNamesArrayOfStr(arrayOfStr []string) CreatePartnerTag
 	}
 }
 
-func (u *CreatePartnerTagNames) UnmarshalJSON(data []byte) error {
+func (u *CreatePartnerTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreatePartnerTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -1645,7 +1659,14 @@ func CreateCreatePartnerFieldsFields8(fields8 Fields8) CreatePartnerFields {
 	}
 }
 
-func (u *CreatePartnerFields) UnmarshalJSON(data []byte) error {
+func (u *CreatePartnerFields) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreatePartnerFields{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var createPartnerFields3 CreatePartnerFields3 = CreatePartnerFields3{}
 	if err := utils.UnmarshalJSON(data, &createPartnerFields3, "", true, nil); err == nil {
