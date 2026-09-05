@@ -73,6 +73,7 @@ func (s *Commissions) List(ctx context.Context, request operations.ListCommissio
 	if timeout == nil {
 		timeout = s.sdkConfiguration.Timeout
 	}
+	paginationCtx := ctx
 
 	if timeout != nil {
 		var cancel context.CancelFunc
@@ -230,7 +231,7 @@ func (s *Commissions) List(ctx context.Context, request operations.ListCommissio
 		request.StartingAfter = &nCVal
 
 		return s.List(
-			ctx,
+			paginationCtx,
 			request,
 			opts...,
 		)

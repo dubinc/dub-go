@@ -218,7 +218,14 @@ func CreateRetrievePartnerAnalyticsResponseBodyArrayOfPartnerAnalyticsTopLinks(a
 	}
 }
 
-func (u *RetrievePartnerAnalyticsResponseBody) UnmarshalJSON(data []byte) error {
+func (u *RetrievePartnerAnalyticsResponseBody) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = RetrievePartnerAnalyticsResponseBody{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var partnerAnalyticsCount components.PartnerAnalyticsCount = components.PartnerAnalyticsCount{}
 	if err := utils.UnmarshalJSON(data, &partnerAnalyticsCount, "", true, nil); err == nil {
