@@ -87,7 +87,14 @@ func CreateDiscountCodeWebhookEventEventEvent2(event2 Event2) DiscountCodeWebhoo
 	}
 }
 
-func (u *DiscountCodeWebhookEventEvent) UnmarshalJSON(data []byte) error {
+func (u *DiscountCodeWebhookEventEvent) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = DiscountCodeWebhookEventEvent{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var event1 Event1 = Event1("")
 	if err := utils.UnmarshalJSON(data, &event1, "", true, nil); err == nil {

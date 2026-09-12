@@ -42,7 +42,14 @@ func CreateBulkCreateLinksTagIdsArrayOfStr(arrayOfStr []string) BulkCreateLinksT
 	}
 }
 
-func (u *BulkCreateLinksTagIds) UnmarshalJSON(data []byte) error {
+func (u *BulkCreateLinksTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = BulkCreateLinksTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -106,7 +113,14 @@ func CreateBulkCreateLinksTagNamesArrayOfStr(arrayOfStr []string) BulkCreateLink
 	}
 }
 
-func (u *BulkCreateLinksTagNames) UnmarshalJSON(data []byte) error {
+func (u *BulkCreateLinksTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = BulkCreateLinksTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -557,7 +571,14 @@ func CreateResponseBodyLinkErrorSchema(linkErrorSchema components.LinkErrorSchem
 	}
 }
 
-func (u *ResponseBody) UnmarshalJSON(data []byte) error {
+func (u *ResponseBody) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = ResponseBody{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var linkSchema components.LinkSchema = components.LinkSchema{}
 	if err := utils.UnmarshalJSON(data, &linkSchema, "", true, nil); err == nil {

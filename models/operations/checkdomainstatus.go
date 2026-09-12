@@ -41,7 +41,14 @@ func CreateDomainsArrayOfStr(arrayOfStr []string) Domains {
 	}
 }
 
-func (u *Domains) UnmarshalJSON(data []byte) error {
+func (u *Domains) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Domains{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
