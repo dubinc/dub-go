@@ -1436,7 +1436,14 @@ func CreateFieldsEight(eight Eight) Fields {
 	}
 }
 
-func (u *Fields) UnmarshalJSON(data []byte) error {
+func (u *Fields) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Fields{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var fields3 Fields3 = Fields3{}
 	if err := utils.UnmarshalJSON(data, &fields3, "", true, nil); err == nil {
@@ -1675,6 +1682,7 @@ type ListPartnersResponseBody struct {
 	LeadRewardID     *string  `json:"leadRewardId,omitempty"`
 	SaleRewardID     *string  `json:"saleRewardId,omitempty"`
 	ReferralRewardID *string  `json:"referralRewardId,omitempty"`
+	CustomRewardID   *string  `json:"customRewardId,omitempty"`
 	DiscountID       *string  `json:"discountId,omitempty"`
 	// If the partner submitted an application to join the program, this is the ID of the application.
 	ApplicationID *string `json:"applicationId,omitempty"`
@@ -1920,6 +1928,13 @@ func (l *ListPartnersResponseBody) GetReferralRewardID() *string {
 		return nil
 	}
 	return l.ReferralRewardID
+}
+
+func (l *ListPartnersResponseBody) GetCustomRewardID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.CustomRewardID
 }
 
 func (l *ListPartnersResponseBody) GetDiscountID() *string {

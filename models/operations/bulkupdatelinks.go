@@ -41,7 +41,14 @@ func CreateBulkUpdateLinksTagIdsArrayOfStr(arrayOfStr []string) BulkUpdateLinksT
 	}
 }
 
-func (u *BulkUpdateLinksTagIds) UnmarshalJSON(data []byte) error {
+func (u *BulkUpdateLinksTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = BulkUpdateLinksTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -105,7 +112,14 @@ func CreateBulkUpdateLinksTagNamesArrayOfStr(arrayOfStr []string) BulkUpdateLink
 	}
 }
 
-func (u *BulkUpdateLinksTagNames) UnmarshalJSON(data []byte) error {
+func (u *BulkUpdateLinksTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = BulkUpdateLinksTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {

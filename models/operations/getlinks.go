@@ -42,7 +42,14 @@ func CreateQueryParamTagIdsArrayOfStr(arrayOfStr []string) QueryParamTagIds {
 	}
 }
 
-func (u *QueryParamTagIds) UnmarshalJSON(data []byte) error {
+func (u *QueryParamTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = QueryParamTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -106,7 +113,14 @@ func CreateQueryParamTagNamesArrayOfStr(arrayOfStr []string) QueryParamTagNames 
 	}
 }
 
-func (u *QueryParamTagNames) UnmarshalJSON(data []byte) error {
+func (u *QueryParamTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = QueryParamTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {

@@ -121,7 +121,14 @@ func CreateEventThree(three Three) Event {
 	}
 }
 
-func (u *Event) UnmarshalJSON(data []byte) error {
+func (u *Event) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Event{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var one One = One("")
 	if err := utils.UnmarshalJSON(data, &one, "", true, nil); err == nil {

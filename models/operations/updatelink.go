@@ -41,7 +41,14 @@ func CreateUpdateLinkTagIdsArrayOfStr(arrayOfStr []string) UpdateLinkTagIds {
 	}
 }
 
-func (u *UpdateLinkTagIds) UnmarshalJSON(data []byte) error {
+func (u *UpdateLinkTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = UpdateLinkTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -105,7 +112,14 @@ func CreateUpdateLinkTagNamesArrayOfStr(arrayOfStr []string) UpdateLinkTagNames 
 	}
 }
 
-func (u *UpdateLinkTagNames) UnmarshalJSON(data []byte) error {
+func (u *UpdateLinkTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = UpdateLinkTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {

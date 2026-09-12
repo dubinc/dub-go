@@ -429,7 +429,7 @@ type CommissionCreatedEventData struct {
 	Quantity float64 `json:"quantity"`
 	// The user who created the manual commission.
 	UserID *string `json:"userId,omitempty"`
-	// User-provided metadata from the associated lead or sale event (`lead.metadata` / `sale.metadata`).
+	// Metadata from the associated lead or sale event (`lead.metadata` / `sale.metadata`), or from Stripe webhook metadata.
 	Metadata map[string]any `json:"metadata"`
 	// The date and time when the commission was created.
 	CreatedAt string `json:"createdAt"`
