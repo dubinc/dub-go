@@ -712,7 +712,14 @@ func CreateCreateCommissionRequestBodyRequestBody3(requestBody3 RequestBody3) Cr
 	}
 }
 
-func (u *CreateCommissionRequestBody) UnmarshalJSON(data []byte) error {
+func (u *CreateCommissionRequestBody) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreateCommissionRequestBody{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var requestBody1 RequestBody1 = RequestBody1{}
 	if err := utils.UnmarshalJSON(data, &requestBody1, "", true, nil); err == nil {
