@@ -41,7 +41,14 @@ func CreateUpsertPartnerLinkTagIdsArrayOfStr(arrayOfStr []string) UpsertPartnerL
 	}
 }
 
-func (u *UpsertPartnerLinkTagIds) UnmarshalJSON(data []byte) error {
+func (u *UpsertPartnerLinkTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = UpsertPartnerLinkTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -105,7 +112,14 @@ func CreateUpsertPartnerLinkTagNamesArrayOfStr(arrayOfStr []string) UpsertPartne
 	}
 }
 
-func (u *UpsertPartnerLinkTagNames) UnmarshalJSON(data []byte) error {
+func (u *UpsertPartnerLinkTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = UpsertPartnerLinkTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -362,7 +376,7 @@ type UpsertPartnerLinkRequestBody struct {
 	PartnerID *string `json:"partnerId,omitempty"`
 	// The ID of the partner in your system. If both `partnerId` and `tenantId` are not provided, an error will be thrown.
 	TenantID *string `json:"tenantId,omitempty"`
-	// The URL to upsert for. Will throw an error if the domain doesn't match the program's default URL domain.
+	// The URL to upsert for.
 	URL string `json:"url"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key *string `json:"key,omitempty"`

@@ -96,7 +96,14 @@ func CreateIdsArrayOfStr(arrayOfStr []string) Ids {
 	}
 }
 
-func (u *Ids) UnmarshalJSON(data []byte) error {
+func (u *Ids) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = Ids{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
