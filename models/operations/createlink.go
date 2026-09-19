@@ -41,7 +41,14 @@ func CreateTagIdsArrayOfStr(arrayOfStr []string) TagIds {
 	}
 }
 
-func (u *TagIds) UnmarshalJSON(data []byte) error {
+func (u *TagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = TagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -105,7 +112,14 @@ func CreateTagNamesArrayOfStr(arrayOfStr []string) TagNames {
 	}
 }
 
-func (u *TagNames) UnmarshalJSON(data []byte) error {
+func (u *TagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = TagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
