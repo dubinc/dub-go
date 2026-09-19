@@ -41,7 +41,14 @@ func CreateCreatePartnerLinkTagIdsArrayOfStr(arrayOfStr []string) CreatePartnerL
 	}
 }
 
-func (u *CreatePartnerLinkTagIds) UnmarshalJSON(data []byte) error {
+func (u *CreatePartnerLinkTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreatePartnerLinkTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -105,7 +112,14 @@ func CreateCreatePartnerLinkTagNamesArrayOfStr(arrayOfStr []string) CreatePartne
 	}
 }
 
-func (u *CreatePartnerLinkTagNames) UnmarshalJSON(data []byte) error {
+func (u *CreatePartnerLinkTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreatePartnerLinkTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -362,7 +376,7 @@ type CreatePartnerLinkRequestBody struct {
 	PartnerID *string `json:"partnerId,omitempty"`
 	// The ID of the partner in your system. If both `partnerId` and `tenantId` are not provided, an error will be thrown.
 	TenantID *string `json:"tenantId,omitempty"`
-	// The URL to shorten (if not provided, the program's default URL will be used). Will throw an error if the domain doesn't match the program's default URL domain.
+	// The URL to shorten (if not provided, the program's default URL will be used).
 	URL *string `json:"url,omitempty"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key *string `json:"key,omitempty"`
