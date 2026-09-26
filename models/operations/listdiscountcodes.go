@@ -11,6 +11,8 @@ type ListDiscountCodesRequest struct {
 	PartnerID *string `queryParam:"style=form,explode=true,name=partnerId"`
 	// Filter discount codes by discount ID.
 	DiscountID *string `queryParam:"style=form,explode=true,name=discountId"`
+	// Filter discount codes by the alphanumeric code (e.g. `PARTNER10OFF`).
+	Code *string `queryParam:"style=form,explode=true,name=code"`
 	// The page number for pagination. The first page is `1`.
 	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
@@ -40,6 +42,13 @@ func (l *ListDiscountCodesRequest) GetDiscountID() *string {
 		return nil
 	}
 	return l.DiscountID
+}
+
+func (l *ListDiscountCodesRequest) GetCode() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Code
 }
 
 func (l *ListDiscountCodesRequest) GetPage() *int64 {
