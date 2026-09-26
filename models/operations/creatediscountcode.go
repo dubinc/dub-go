@@ -3,7 +3,7 @@
 package operations
 
 type CreateDiscountCodeRequestBody struct {
-	// The discount code to create. If omitted, a unique code will be generated automatically from the partner's name.
+	// The discount code to create. If omitted, a unique code will be generated automatically from the partner's name. Stripe and Shopify codes can only contain letters, numbers, dashes, and underscores. Custom provider codes can contain any characters.
 	Code *string `json:"code,omitempty"`
 	// The ID of the partner to create a discount code for.
 	PartnerID string `json:"partnerId"`

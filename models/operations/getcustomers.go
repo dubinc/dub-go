@@ -73,7 +73,7 @@ type GetCustomersRequest struct {
 	Email *string `queryParam:"style=form,explode=true,name=email"`
 	// A case-sensitive filter on the list based on the customer's `externalId` field. The value must be a string. Takes precedence over `search`.
 	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
-	// A search query to filter customers by email, externalId, or name. If `email` or `externalId` is provided, this will be ignored.
+	// A search query to filter customers by email, name, or customer ID (`cus_...`). If `email` or `externalId` is provided, this will be ignored.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// A filter on the list based on the customer's `country` field.
 	Country *string `queryParam:"style=form,explode=true,name=country"`
