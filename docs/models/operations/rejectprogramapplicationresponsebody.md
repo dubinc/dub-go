@@ -1,4 +1,4 @@
-# RejectPartnerApplicationResponseBody
+# RejectProgramApplicationResponseBody
 
 The rejected partner
 

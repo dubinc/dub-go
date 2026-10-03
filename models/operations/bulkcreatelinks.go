@@ -42,7 +42,14 @@ func CreateBulkCreateLinksTagIdsArrayOfStr(arrayOfStr []string) BulkCreateLinksT
 	}
 }
 
-func (u *BulkCreateLinksTagIds) UnmarshalJSON(data []byte) error {
+func (u *BulkCreateLinksTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = BulkCreateLinksTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -106,7 +113,14 @@ func CreateBulkCreateLinksTagNamesArrayOfStr(arrayOfStr []string) BulkCreateLink
 	}
 }
 
-func (u *BulkCreateLinksTagNames) UnmarshalJSON(data []byte) error {
+func (u *BulkCreateLinksTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = BulkCreateLinksTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -165,9 +179,9 @@ type RequestBody struct {
 	Key *string `json:"key,omitempty"`
 	// The length of the short link slug. Defaults to 7 if not provided. When used with `prefix`, the total length of the key will be `prefix.length + keyLength`.
 	KeyLength *float64 `json:"keyLength,omitempty"`
-	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace. Pass `null` or an empty string to remove it.
 	ExternalID *string `json:"externalId,omitempty"`
-	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant. Pass `null` or an empty string to remove it.
 	TenantID *string `json:"tenantId,omitempty"`
 	// The ID of the program the short link is associated with.
 	ProgramID *string `json:"programId,omitempty"`
@@ -557,7 +571,14 @@ func CreateResponseBodyLinkErrorSchema(linkErrorSchema components.LinkErrorSchem
 	}
 }
 
-func (u *ResponseBody) UnmarshalJSON(data []byte) error {
+func (u *ResponseBody) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = ResponseBody{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var linkSchema components.LinkSchema = components.LinkSchema{}
 	if err := utils.UnmarshalJSON(data, &linkSchema, "", true, nil); err == nil {

@@ -16,7 +16,7 @@ const (
 	WebhookEventTypeLeadCreatedEvent                 WebhookEventType = "LeadCreatedEvent"
 	WebhookEventTypeSaleCreatedEvent                 WebhookEventType = "SaleCreatedEvent"
 	WebhookEventTypePartnerEnrolledEvent             WebhookEventType = "PartnerEnrolledEvent"
-	WebhookEventTypePartnerApplicationSubmittedEvent WebhookEventType = "PartnerApplicationSubmittedEvent"
+	WebhookEventTypeProgramApplicationSubmittedEvent WebhookEventType = "ProgramApplicationSubmittedEvent"
 	WebhookEventTypePartnerMergedEvent               WebhookEventType = "PartnerMergedEvent"
 	WebhookEventTypeCommissionCreatedEvent           WebhookEventType = "CommissionCreatedEvent"
 	WebhookEventTypeDiscountCodeWebhookEvent         WebhookEventType = "DiscountCodeWebhookEvent"
@@ -29,7 +29,7 @@ type WebhookEvent struct {
 	LeadCreatedEvent                 *LeadCreatedEvent                 `queryParam:"inline" union:"member"`
 	SaleCreatedEvent                 *SaleCreatedEvent                 `queryParam:"inline" union:"member"`
 	PartnerEnrolledEvent             *PartnerEnrolledEvent             `queryParam:"inline" union:"member"`
-	PartnerApplicationSubmittedEvent *PartnerApplicationSubmittedEvent `queryParam:"inline" union:"member"`
+	ProgramApplicationSubmittedEvent *ProgramApplicationSubmittedEvent `queryParam:"inline" union:"member"`
 	PartnerMergedEvent               *PartnerMergedEvent               `queryParam:"inline" union:"member"`
 	CommissionCreatedEvent           *CommissionCreatedEvent           `queryParam:"inline" union:"member"`
 	DiscountCodeWebhookEvent         *DiscountCodeWebhookEvent         `queryParam:"inline" union:"member"`
@@ -82,11 +82,11 @@ func CreateWebhookEventPartnerEnrolledEvent(partnerEnrolledEvent PartnerEnrolled
 	}
 }
 
-func CreateWebhookEventPartnerApplicationSubmittedEvent(partnerApplicationSubmittedEvent PartnerApplicationSubmittedEvent) WebhookEvent {
-	typ := WebhookEventTypePartnerApplicationSubmittedEvent
+func CreateWebhookEventProgramApplicationSubmittedEvent(programApplicationSubmittedEvent ProgramApplicationSubmittedEvent) WebhookEvent {
+	typ := WebhookEventTypeProgramApplicationSubmittedEvent
 
 	return WebhookEvent{
-		PartnerApplicationSubmittedEvent: &partnerApplicationSubmittedEvent,
+		ProgramApplicationSubmittedEvent: &programApplicationSubmittedEvent,
 		Type:                             typ,
 	}
 }
@@ -118,7 +118,14 @@ func CreateWebhookEventDiscountCodeWebhookEvent(discountCodeWebhookEvent Discoun
 	}
 }
 
-func (u *WebhookEvent) UnmarshalJSON(data []byte) error {
+func (u *WebhookEvent) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = WebhookEvent{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var linkWebhookEvent LinkWebhookEvent = LinkWebhookEvent{}
 	if err := utils.UnmarshalJSON(data, &linkWebhookEvent, "", true, nil); err == nil {
@@ -155,10 +162,10 @@ func (u *WebhookEvent) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var partnerApplicationSubmittedEvent PartnerApplicationSubmittedEvent = PartnerApplicationSubmittedEvent{}
-	if err := utils.UnmarshalJSON(data, &partnerApplicationSubmittedEvent, "", true, nil); err == nil {
-		u.PartnerApplicationSubmittedEvent = &partnerApplicationSubmittedEvent
-		u.Type = WebhookEventTypePartnerApplicationSubmittedEvent
+	var programApplicationSubmittedEvent ProgramApplicationSubmittedEvent = ProgramApplicationSubmittedEvent{}
+	if err := utils.UnmarshalJSON(data, &programApplicationSubmittedEvent, "", true, nil); err == nil {
+		u.ProgramApplicationSubmittedEvent = &programApplicationSubmittedEvent
+		u.Type = WebhookEventTypeProgramApplicationSubmittedEvent
 		return nil
 	}
 
@@ -207,8 +214,8 @@ func (u WebhookEvent) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.PartnerEnrolledEvent, "", true)
 	}
 
-	if u.PartnerApplicationSubmittedEvent != nil {
-		return utils.MarshalJSON(u.PartnerApplicationSubmittedEvent, "", true)
+	if u.ProgramApplicationSubmittedEvent != nil {
+		return utils.MarshalJSON(u.ProgramApplicationSubmittedEvent, "", true)
 	}
 
 	if u.PartnerMergedEvent != nil {

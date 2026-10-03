@@ -41,7 +41,14 @@ func CreateUpsertPartnerLinkTagIdsArrayOfStr(arrayOfStr []string) UpsertPartnerL
 	}
 }
 
-func (u *UpsertPartnerLinkTagIds) UnmarshalJSON(data []byte) error {
+func (u *UpsertPartnerLinkTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = UpsertPartnerLinkTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -105,7 +112,14 @@ func CreateUpsertPartnerLinkTagNamesArrayOfStr(arrayOfStr []string) UpsertPartne
 	}
 }
 
-func (u *UpsertPartnerLinkTagNames) UnmarshalJSON(data []byte) error {
+func (u *UpsertPartnerLinkTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = UpsertPartnerLinkTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -157,9 +171,9 @@ func (u *UpsertPartnerLinkTestVariants) GetPercentage() float64 {
 
 // UpsertPartnerLinkLinkProps - Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
 type UpsertPartnerLinkLinkProps struct {
-	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace. Pass `null` or an empty string to remove it.
 	ExternalID *string `json:"externalId,omitempty"`
-	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant. Pass `null` or an empty string to remove it.
 	TenantID *string `json:"tenantId,omitempty"`
 	// Path prefix for each default referral link slug (e.g. `/c/` → `https://{domain}/c/{identity}`). If the group has multiple default links, a short random suffix is appended to the identity segment for uniqueness (e.g. `c/jane-a7f2`).
 	Prefix *string `json:"prefix,omitempty"`
@@ -362,7 +376,7 @@ type UpsertPartnerLinkRequestBody struct {
 	PartnerID *string `json:"partnerId,omitempty"`
 	// The ID of the partner in your system. If both `partnerId` and `tenantId` are not provided, an error will be thrown.
 	TenantID *string `json:"tenantId,omitempty"`
-	// The URL to upsert for. Will throw an error if the domain doesn't match the program's default URL domain.
+	// The URL to upsert for.
 	URL string `json:"url"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key *string `json:"key,omitempty"`

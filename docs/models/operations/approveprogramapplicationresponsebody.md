@@ -1,4 +1,4 @@
-# ApprovePartnerApplicationResponseBody
+# ApproveProgramApplicationResponseBody
 
 The approved partner
 

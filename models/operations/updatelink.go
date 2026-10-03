@@ -41,7 +41,14 @@ func CreateUpdateLinkTagIdsArrayOfStr(arrayOfStr []string) UpdateLinkTagIds {
 	}
 }
 
-func (u *UpdateLinkTagIds) UnmarshalJSON(data []byte) error {
+func (u *UpdateLinkTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = UpdateLinkTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -105,7 +112,14 @@ func CreateUpdateLinkTagNamesArrayOfStr(arrayOfStr []string) UpdateLinkTagNames 
 	}
 }
 
-func (u *UpdateLinkTagNames) UnmarshalJSON(data []byte) error {
+func (u *UpdateLinkTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = UpdateLinkTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -162,9 +176,9 @@ type UpdateLinkRequestBody struct {
 	Domain *string `json:"domain,omitempty"`
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key *string `json:"key,omitempty"`
-	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace. Pass `null` or an empty string to remove it.
 	ExternalID *string `json:"externalId,omitempty"`
-	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant. Pass `null` or an empty string to remove it.
 	TenantID *string `json:"tenantId,omitempty"`
 	// The ID of the program the short link is associated with.
 	ProgramID *string `json:"programId,omitempty"`

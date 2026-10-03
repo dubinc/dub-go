@@ -213,12 +213,6 @@ func main() {
 * [UpdateMany](docs/sdks/links/README.md#updatemany) - Bulk update links
 * [Upsert](docs/sdks/links/README.md#upsert) - Upsert a link
 
-### [PartnerApplications](docs/sdks/partnerapplications/README.md)
-
-* [List](docs/sdks/partnerapplications/README.md#list) - List all pending partner applications
-* [Approve](docs/sdks/partnerapplications/README.md#approve) - Approve a partner application
-* [Reject](docs/sdks/partnerapplications/README.md#reject) - Reject a partner application
-
 ### [Partners](docs/sdks/partners/README.md)
 
 * [List](docs/sdks/partners/README.md#list) - List all partners
@@ -233,6 +227,12 @@ func main() {
 ### [Payouts](docs/sdks/payouts/README.md)
 
 * [List](docs/sdks/payouts/README.md#list) - List all payouts
+
+### [ProgramApplications](docs/sdks/programapplications/README.md)
+
+* [List](docs/sdks/programapplications/README.md#list) - List all program applications
+* [Approve](docs/sdks/programapplications/README.md#approve) - Approve a partner application
+* [Reject](docs/sdks/programapplications/README.md#reject) - Reject a partner application
 
 ### [QRCodes](docs/sdks/qrcodes/README.md)
 
