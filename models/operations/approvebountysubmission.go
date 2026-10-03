@@ -133,6 +133,8 @@ type ApproveBountySubmissionResponseBody struct {
 	SocialMetricCount *int64 `json:"socialMetricCount"`
 	// The date and time the submission's social metrics were last synced
 	SocialMetricsLastSyncedAt *string `json:"socialMetricsLastSyncedAt,omitempty"`
+	// The highest social metric milestone that has been approved and paid out for this submission
+	ApprovedSocialMetricThreshold *int64 `json:"approvedSocialMetricThreshold,omitempty"`
 	// The date and time the submission was created
 	CreatedAt string `json:"createdAt"`
 	// The date and time the submission was completed
@@ -215,6 +217,13 @@ func (a *ApproveBountySubmissionResponseBody) GetSocialMetricsLastSyncedAt() *st
 		return nil
 	}
 	return a.SocialMetricsLastSyncedAt
+}
+
+func (a *ApproveBountySubmissionResponseBody) GetApprovedSocialMetricThreshold() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.ApprovedSocialMetricThreshold
 }
 
 func (a *ApproveBountySubmissionResponseBody) GetCreatedAt() string {

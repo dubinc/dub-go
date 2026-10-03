@@ -42,7 +42,14 @@ func CreateCreatePartnerTagIdsArrayOfStr(arrayOfStr []string) CreatePartnerTagId
 	}
 }
 
-func (u *CreatePartnerTagIds) UnmarshalJSON(data []byte) error {
+func (u *CreatePartnerTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreatePartnerTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -106,7 +113,14 @@ func CreateCreatePartnerTagNamesArrayOfStr(arrayOfStr []string) CreatePartnerTag
 	}
 }
 
-func (u *CreatePartnerTagNames) UnmarshalJSON(data []byte) error {
+func (u *CreatePartnerTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreatePartnerTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -158,9 +172,9 @@ func (c *CreatePartnerTestVariants) GetPercentage() float64 {
 
 // LinkProps - Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
 type LinkProps struct {
-	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace. Pass `null` or an empty string to remove it.
 	ExternalID *string `json:"externalId,omitempty"`
-	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant. Pass `null` or an empty string to remove it.
 	TenantID *string `json:"tenantId,omitempty"`
 	// Path prefix for each default referral link slug (e.g. `/c/` → `https://{domain}/c/{identity}`). If the group has multiple default links, a short random suffix is appended to the identity segment for uniqueness (e.g. `c/jane-a7f2`).
 	Prefix *string `json:"prefix,omitempty"`
@@ -1645,7 +1659,14 @@ func CreateCreatePartnerFieldsFields8(fields8 Fields8) CreatePartnerFields {
 	}
 }
 
-func (u *CreatePartnerFields) UnmarshalJSON(data []byte) error {
+func (u *CreatePartnerFields) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreatePartnerFields{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var createPartnerFields3 CreatePartnerFields3 = CreatePartnerFields3{}
 	if err := utils.UnmarshalJSON(data, &createPartnerFields3, "", true, nil); err == nil {
@@ -1885,6 +1906,7 @@ type CreatePartnerResponseBody struct {
 	LeadRewardID     *string  `json:"leadRewardId,omitempty"`
 	SaleRewardID     *string  `json:"saleRewardId,omitempty"`
 	ReferralRewardID *string  `json:"referralRewardId,omitempty"`
+	CustomRewardID   *string  `json:"customRewardId,omitempty"`
 	DiscountID       *string  `json:"discountId,omitempty"`
 	// If the partner submitted an application to join the program, this is the ID of the application.
 	ApplicationID *string `json:"applicationId,omitempty"`
@@ -2130,6 +2152,13 @@ func (c *CreatePartnerResponseBody) GetReferralRewardID() *string {
 		return nil
 	}
 	return c.ReferralRewardID
+}
+
+func (c *CreatePartnerResponseBody) GetCustomRewardID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.CustomRewardID
 }
 
 func (c *CreatePartnerResponseBody) GetDiscountID() *string {

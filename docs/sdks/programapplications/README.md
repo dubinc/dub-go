@@ -1,20 +1,20 @@
-# PartnerApplications
+# ProgramApplications
 
 ## Overview
 
 ### Available Operations
 
-* [List](#list) - List all pending partner applications
+* [List](#list) - List all program applications
 * [Approve](#approve) - Approve a partner application
 * [Reject](#reject) - Reject a partner application
 
 ## List
 
-Retrieve a paginated list of pending applications for your partner program.
+Retrieve a paginated list of applications for your partner program. Filter by `status` to list pending, approved, or rejected applications.
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="listPartnerApplications" method="get" path="/partners/applications" -->
+<!-- UsageSnippet language="go" operationID="listProgramApplications" method="get" path="/program-applications" -->
 ```go
 package main
 
@@ -32,7 +32,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.PartnerApplications.List(ctx, operations.ListPartnerApplicationsRequest{
+    res, err := s.ProgramApplications.List(ctx, operations.ListProgramApplicationsRequest{
         Country: dubgo.Pointer("US"),
         GroupID: dubgo.Pointer("grp_123"),
         Page: dubgo.Pointer[int64](1),
@@ -52,12 +52,12 @@ func main() {
 | Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
 | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
-| `request`                                                                                              | [operations.ListPartnerApplicationsRequest](../../models/operations/listpartnerapplicationsrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `request`                                                                                              | [operations.ListProgramApplicationsRequest](../../models/operations/listprogramapplicationsrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
 ### Response
 
-**[[]operations.ListPartnerApplicationsResponseBody](../../.md), error**
+**[[]operations.ListProgramApplicationsResponseBody](../../.md), error**
 
 ### Errors
 
@@ -80,7 +80,7 @@ Approve a pending partner application to your program. The partner will be enrol
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="approvePartnerApplication" method="post" path="/partners/applications/approve" -->
+<!-- UsageSnippet language="go" operationID="approveProgramApplication" method="post" path="/program-applications/approve" -->
 ```go
 package main
 
@@ -98,7 +98,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.PartnerApplications.Approve(ctx, operations.ApprovePartnerApplicationRequestBody{
+    res, err := s.ProgramApplications.Approve(ctx, operations.ApproveProgramApplicationRequestBody{
         PartnerID: "<id>",
     })
     if err != nil {
@@ -115,12 +115,12 @@ func main() {
 | Parameter                                                                                                          | Type                                                                                                               | Required                                                                                                           | Description                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                                              | :heavy_check_mark:                                                                                                 | The context to use for the request.                                                                                |
-| `request`                                                                                                          | [operations.ApprovePartnerApplicationRequestBody](../../models/operations/approvepartnerapplicationrequestbody.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
+| `request`                                                                                                          | [operations.ApproveProgramApplicationRequestBody](../../models/operations/approveprogramapplicationrequestbody.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
 | `opts`                                                                                                             | [][operations.Option](../../models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |
 
 ### Response
 
-**[*operations.ApprovePartnerApplicationResponseBody](../../models/operations/approvepartnerapplicationresponsebody.md), error**
+**[*operations.ApproveProgramApplicationResponseBody](../../models/operations/approveprogramapplicationresponsebody.md), error**
 
 ### Errors
 
@@ -143,7 +143,7 @@ Reject a pending partner application to your program. The partner will be notifi
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="rejectPartnerApplication" method="post" path="/partners/applications/reject" -->
+<!-- UsageSnippet language="go" operationID="rejectProgramApplication" method="post" path="/program-applications/reject" -->
 ```go
 package main
 
@@ -161,7 +161,7 @@ func main() {
         dubgo.WithSecurity("DUB_API_KEY"),
     )
 
-    res, err := s.PartnerApplications.Reject(ctx, operations.RejectPartnerApplicationRequestBody{
+    res, err := s.ProgramApplications.Reject(ctx, operations.RejectProgramApplicationRequestBody{
         PartnerID: "<id>",
     })
     if err != nil {
@@ -178,12 +178,12 @@ func main() {
 | Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
 | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
-| `request`                                                                                                        | [operations.RejectPartnerApplicationRequestBody](../../models/operations/rejectpartnerapplicationrequestbody.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
+| `request`                                                                                                        | [operations.RejectProgramApplicationRequestBody](../../models/operations/rejectprogramapplicationrequestbody.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
 | `opts`                                                                                                           | [][operations.Option](../../models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
 
 ### Response
 
-**[*operations.RejectPartnerApplicationResponseBody](../../models/operations/rejectpartnerapplicationresponsebody.md), error**
+**[*operations.RejectProgramApplicationResponseBody](../../models/operations/rejectprogramapplicationresponsebody.md), error**
 
 ### Errors
 

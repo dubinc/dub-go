@@ -1,6 +1,6 @@
 # QueryParamStatus
 
-Filter the list of commissions by their corresponding status.
+Filter applications by status. One of `pending`, `approved`, or `rejected`. Defaults to `pending`.
 
 ## Example Usage
 
@@ -15,13 +15,8 @@ value := operations.QueryParamStatusPending
 
 ## Values
 
-| Name                        | Value                       |
-| --------------------------- | --------------------------- |
-| `QueryParamStatusPending`   | pending                     |
-| `QueryParamStatusProcessed` | processed                   |
-| `QueryParamStatusPaid`      | paid                        |
-| `QueryParamStatusRefunded`  | refunded                    |
-| `QueryParamStatusDuplicate` | duplicate                   |
-| `QueryParamStatusFraud`     | fraud                       |
-| `QueryParamStatusCanceled`  | canceled                    |
-| `QueryParamStatusHold`      | hold                        |
+| Name                       | Value                      |
+| -------------------------- | -------------------------- |
+| `QueryParamStatusPending`  | pending                    |
+| `QueryParamStatusApproved` | approved                   |
+| `QueryParamStatusRejected` | rejected                   |
