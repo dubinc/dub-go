@@ -82,10 +82,11 @@ func (a *ApproveBountySubmissionFiles) GetSize() float64 {
 type ApproveBountySubmissionStatus string
 
 const (
-	ApproveBountySubmissionStatusDraft     ApproveBountySubmissionStatus = "draft"
-	ApproveBountySubmissionStatusSubmitted ApproveBountySubmissionStatus = "submitted"
-	ApproveBountySubmissionStatusApproved  ApproveBountySubmissionStatus = "approved"
-	ApproveBountySubmissionStatusRejected  ApproveBountySubmissionStatus = "rejected"
+	ApproveBountySubmissionStatusDraft             ApproveBountySubmissionStatus = "draft"
+	ApproveBountySubmissionStatusSubmitted         ApproveBountySubmissionStatus = "submitted"
+	ApproveBountySubmissionStatusApproved          ApproveBountySubmissionStatus = "approved"
+	ApproveBountySubmissionStatusRejected          ApproveBountySubmissionStatus = "rejected"
+	ApproveBountySubmissionStatusPartiallyApproved ApproveBountySubmissionStatus = "partiallyApproved"
 )
 
 func (e ApproveBountySubmissionStatus) ToPointer() *ApproveBountySubmissionStatus {
@@ -104,6 +105,8 @@ func (e *ApproveBountySubmissionStatus) UnmarshalJSON(data []byte) error {
 	case "approved":
 		fallthrough
 	case "rejected":
+		fallthrough
+	case "partiallyApproved":
 		*e = ApproveBountySubmissionStatus(v)
 		return nil
 	default:
@@ -133,6 +136,8 @@ type ApproveBountySubmissionResponseBody struct {
 	SocialMetricCount *int64 `json:"socialMetricCount"`
 	// The date and time the submission's social metrics were last synced
 	SocialMetricsLastSyncedAt *string `json:"socialMetricsLastSyncedAt,omitempty"`
+	// The highest social metric milestone that has been approved and paid out for this submission
+	ApprovedSocialMetricThreshold *int64 `json:"approvedSocialMetricThreshold,omitempty"`
 	// The date and time the submission was created
 	CreatedAt string `json:"createdAt"`
 	// The date and time the submission was completed
@@ -215,6 +220,13 @@ func (a *ApproveBountySubmissionResponseBody) GetSocialMetricsLastSyncedAt() *st
 		return nil
 	}
 	return a.SocialMetricsLastSyncedAt
+}
+
+func (a *ApproveBountySubmissionResponseBody) GetApprovedSocialMetricThreshold() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.ApprovedSocialMetricThreshold
 }
 
 func (a *ApproveBountySubmissionResponseBody) GetCreatedAt() string {

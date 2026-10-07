@@ -71,7 +71,7 @@ func (e *ReapplicationTimeframe) UnmarshalJSON(data []byte) error {
 	}
 }
 
-type RejectPartnerApplicationRequestBody struct {
+type RejectProgramApplicationRequestBody struct {
 	// The ID of the partner to reject.
 	PartnerID string `json:"partnerId"`
 	// The reason for rejecting the partner application. This will be shared with the partner via email.
@@ -86,66 +86,66 @@ type RejectPartnerApplicationRequestBody struct {
 	FlagForFraudReason *string `json:"flagForFraudReason,omitempty"`
 }
 
-func (r RejectPartnerApplicationRequestBody) MarshalJSON() ([]byte, error) {
+func (r RejectProgramApplicationRequestBody) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(r, "", false)
 }
 
-func (r *RejectPartnerApplicationRequestBody) UnmarshalJSON(data []byte) error {
+func (r *RejectProgramApplicationRequestBody) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (r *RejectPartnerApplicationRequestBody) GetPartnerID() string {
+func (r *RejectProgramApplicationRequestBody) GetPartnerID() string {
 	if r == nil {
 		return ""
 	}
 	return r.PartnerID
 }
 
-func (r *RejectPartnerApplicationRequestBody) GetRejectionReason() *RejectionReason {
+func (r *RejectProgramApplicationRequestBody) GetRejectionReason() *RejectionReason {
 	if r == nil {
 		return nil
 	}
 	return r.RejectionReason
 }
 
-func (r *RejectPartnerApplicationRequestBody) GetRejectionNote() *string {
+func (r *RejectProgramApplicationRequestBody) GetRejectionNote() *string {
 	if r == nil {
 		return nil
 	}
 	return r.RejectionNote
 }
 
-func (r *RejectPartnerApplicationRequestBody) GetReapplicationTimeframe() *ReapplicationTimeframe {
+func (r *RejectProgramApplicationRequestBody) GetReapplicationTimeframe() *ReapplicationTimeframe {
 	if r == nil {
 		return nil
 	}
 	return r.ReapplicationTimeframe
 }
 
-func (r *RejectPartnerApplicationRequestBody) GetFlagForFraud() *bool {
+func (r *RejectProgramApplicationRequestBody) GetFlagForFraud() *bool {
 	if r == nil {
 		return nil
 	}
 	return r.FlagForFraud
 }
 
-func (r *RejectPartnerApplicationRequestBody) GetFlagForFraudReason() *string {
+func (r *RejectProgramApplicationRequestBody) GetFlagForFraudReason() *string {
 	if r == nil {
 		return nil
 	}
 	return r.FlagForFraudReason
 }
 
-// RejectPartnerApplicationResponseBody - The rejected partner
-type RejectPartnerApplicationResponseBody struct {
+// RejectProgramApplicationResponseBody - The rejected partner
+type RejectProgramApplicationResponseBody struct {
 	// The ID of the rejected partner.
 	PartnerID string `json:"partnerId"`
 }
 
-func (r *RejectPartnerApplicationResponseBody) GetPartnerID() string {
+func (r *RejectProgramApplicationResponseBody) GetPartnerID() string {
 	if r == nil {
 		return ""
 	}

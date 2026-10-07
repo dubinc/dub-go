@@ -48,24 +48,24 @@ func (e *Type) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// QueryParamStatus - Filter the list of commissions by their corresponding status.
-type QueryParamStatus string
+// ListCommissionsQueryParamStatus - Filter the list of commissions by their corresponding status.
+type ListCommissionsQueryParamStatus string
 
 const (
-	QueryParamStatusPending   QueryParamStatus = "pending"
-	QueryParamStatusProcessed QueryParamStatus = "processed"
-	QueryParamStatusPaid      QueryParamStatus = "paid"
-	QueryParamStatusRefunded  QueryParamStatus = "refunded"
-	QueryParamStatusDuplicate QueryParamStatus = "duplicate"
-	QueryParamStatusFraud     QueryParamStatus = "fraud"
-	QueryParamStatusCanceled  QueryParamStatus = "canceled"
-	QueryParamStatusHold      QueryParamStatus = "hold"
+	ListCommissionsQueryParamStatusPending   ListCommissionsQueryParamStatus = "pending"
+	ListCommissionsQueryParamStatusProcessed ListCommissionsQueryParamStatus = "processed"
+	ListCommissionsQueryParamStatusPaid      ListCommissionsQueryParamStatus = "paid"
+	ListCommissionsQueryParamStatusRefunded  ListCommissionsQueryParamStatus = "refunded"
+	ListCommissionsQueryParamStatusDuplicate ListCommissionsQueryParamStatus = "duplicate"
+	ListCommissionsQueryParamStatusFraud     ListCommissionsQueryParamStatus = "fraud"
+	ListCommissionsQueryParamStatusCanceled  ListCommissionsQueryParamStatus = "canceled"
+	ListCommissionsQueryParamStatusHold      ListCommissionsQueryParamStatus = "hold"
 )
 
-func (e QueryParamStatus) ToPointer() *QueryParamStatus {
+func (e ListCommissionsQueryParamStatus) ToPointer() *ListCommissionsQueryParamStatus {
 	return &e
 }
-func (e *QueryParamStatus) UnmarshalJSON(data []byte) error {
+func (e *ListCommissionsQueryParamStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -86,10 +86,10 @@ func (e *QueryParamStatus) UnmarshalJSON(data []byte) error {
 	case "canceled":
 		fallthrough
 	case "hold":
-		*e = QueryParamStatus(v)
+		*e = ListCommissionsQueryParamStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for QueryParamStatus: %v", v)
+		return fmt.Errorf("invalid value for ListCommissionsQueryParamStatus: %v", v)
 	}
 }
 
@@ -206,6 +206,8 @@ type ListCommissionsRequest struct {
 	CustomerID *string `queryParam:"style=form,explode=true,name=customerId"`
 	// Filter the list of commissions by the associated payout.
 	PayoutID *string `queryParam:"style=form,explode=true,name=payoutId"`
+	// Filter the list of commissions by the associated bounty submission.
+	BountySubmissionID *string `queryParam:"style=form,explode=true,name=bountySubmissionId"`
 	// Filter the list of commissions by the associated partner. When specified, takes precedence over `tenantId`.
 	// Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`).
 	// Examples:
@@ -231,7 +233,7 @@ type ListCommissionsRequest struct {
 	// Filter the list of commissions by the associated invoice. Since invoiceId is unique on a per-program basis, this will only return one commission per invoice.
 	InvoiceID *string `queryParam:"style=form,explode=true,name=invoiceId"`
 	// Filter the list of commissions by their corresponding status.
-	Status *QueryParamStatus `queryParam:"style=form,explode=true,name=status"`
+	Status *ListCommissionsQueryParamStatus `queryParam:"style=form,explode=true,name=status"`
 	// The field to sort the list of commissions by.
 	SortBy *ListCommissionsQueryParamSortBy `default:"createdAt" queryParam:"style=form,explode=true,name=sortBy"`
 	// The sort order for the list of commissions.
@@ -290,6 +292,13 @@ func (l *ListCommissionsRequest) GetPayoutID() *string {
 	return l.PayoutID
 }
 
+func (l *ListCommissionsRequest) GetBountySubmissionID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.BountySubmissionID
+}
+
 func (l *ListCommissionsRequest) GetPartnerID() *string {
 	if l == nil {
 		return nil
@@ -325,7 +334,7 @@ func (l *ListCommissionsRequest) GetInvoiceID() *string {
 	return l.InvoiceID
 }
 
-func (l *ListCommissionsRequest) GetStatus() *QueryParamStatus {
+func (l *ListCommissionsRequest) GetStatus() *ListCommissionsQueryParamStatus {
 	if l == nil {
 		return nil
 	}
@@ -688,7 +697,7 @@ type ListCommissionsResponseBody struct {
 	Quantity float64 `json:"quantity"`
 	// The user who created the manual commission.
 	UserID *string `json:"userId,omitempty"`
-	// User-provided metadata from the associated lead or sale event (`lead.metadata` / `sale.metadata`).
+	// Metadata from the associated lead or sale event (`lead.metadata` / `sale.metadata`), or from Stripe webhook metadata.
 	Metadata map[string]any `json:"metadata"`
 	// The date and time when the commission was created.
 	CreatedAt string `json:"createdAt"`

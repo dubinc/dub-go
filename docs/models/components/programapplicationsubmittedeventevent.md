@@ -1,4 +1,4 @@
-# PartnerApplicationSubmittedEventEvent
+# ProgramApplicationSubmittedEventEvent
 
 ## Example Usage
 
@@ -7,7 +7,7 @@ import (
 	"github.com/dubinc/dub-go/models/components"
 )
 
-value := components.PartnerApplicationSubmittedEventEventPartnerApplicationSubmitted
+value := components.ProgramApplicationSubmittedEventEventPartnerApplicationSubmitted
 ```
 
 
@@ -15,4 +15,4 @@ value := components.PartnerApplicationSubmittedEventEventPartnerApplicationSubmi
 
 | Name                                                               | Value                                                              |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `PartnerApplicationSubmittedEventEventPartnerApplicationSubmitted` | partner.application_submitted                                      |
+| `ProgramApplicationSubmittedEventEventPartnerApplicationSubmitted` | partner.application_submitted                                      |

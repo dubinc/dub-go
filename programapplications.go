@@ -16,23 +16,23 @@ import (
 	"net/url"
 )
 
-type PartnerApplications struct {
+type ProgramApplications struct {
 	rootSDK          *Dub
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
 }
 
-func newPartnerApplications(rootSDK *Dub, sdkConfig config.SDKConfiguration, hooks *hooks.Hooks) *PartnerApplications {
-	return &PartnerApplications{
+func newProgramApplications(rootSDK *Dub, sdkConfig config.SDKConfiguration, hooks *hooks.Hooks) *ProgramApplications {
+	return &ProgramApplications{
 		rootSDK:          rootSDK,
 		sdkConfiguration: sdkConfig,
 		hooks:            hooks,
 	}
 }
 
-// List all pending partner applications
-// Retrieve a paginated list of pending applications for your partner program.
-func (s *PartnerApplications) List(ctx context.Context, request operations.ListPartnerApplicationsRequest, opts ...operations.Option) ([]operations.ListPartnerApplicationsResponseBody, error) {
+// List all program applications
+// Retrieve a paginated list of applications for your partner program. Filter by `status` to list pending, approved, or rejected applications.
+func (s *ProgramApplications) List(ctx context.Context, request operations.ListProgramApplicationsRequest, opts ...operations.Option) ([]operations.ListProgramApplicationsResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -51,7 +51,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/partners/applications")
+	opURL, err := url.JoinPath(baseURL, "/program-applications")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -61,7 +61,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "listPartnerApplications",
+		OperationID:      "listProgramApplications",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
@@ -196,7 +196,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 				return nil, err
 			}
 
-			var out []operations.ListPartnerApplicationsResponseBody
+			var out []operations.ListProgramApplicationsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -219,7 +219,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 
 			var out sdkerrors.BadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -240,7 +240,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 
 			var out sdkerrors.Unauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -261,7 +261,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 
 			var out sdkerrors.Forbidden
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -282,7 +282,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 
 			var out sdkerrors.NotFound
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -303,7 +303,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 
 			var out sdkerrors.Conflict
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -324,7 +324,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 
 			var out sdkerrors.InviteExpired
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -345,7 +345,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 
 			var out sdkerrors.UnprocessableEntity
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -366,7 +366,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 
 			var out sdkerrors.RateLimitExceeded
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -387,7 +387,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 
 			var out sdkerrors.InternalServerError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -424,7 +424,7 @@ func (s *PartnerApplications) List(ctx context.Context, request operations.ListP
 
 // Approve a partner application
 // Approve a pending partner application to your program. The partner will be enrolled in the specified group and notified of the approval.
-func (s *PartnerApplications) Approve(ctx context.Context, request operations.ApprovePartnerApplicationRequestBody, opts ...operations.Option) (*operations.ApprovePartnerApplicationResponseBody, error) {
+func (s *ProgramApplications) Approve(ctx context.Context, request operations.ApproveProgramApplicationRequestBody, opts ...operations.Option) (*operations.ApproveProgramApplicationResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -443,7 +443,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/partners/applications/approve")
+	opURL, err := url.JoinPath(baseURL, "/program-applications/approve")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -453,7 +453,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "approvePartnerApplication",
+		OperationID:      "approveProgramApplication",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
@@ -591,7 +591,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 				return nil, err
 			}
 
-			var out operations.ApprovePartnerApplicationResponseBody
+			var out operations.ApproveProgramApplicationResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -614,7 +614,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 
 			var out sdkerrors.BadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -635,7 +635,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 
 			var out sdkerrors.Unauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -656,7 +656,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 
 			var out sdkerrors.Forbidden
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -677,7 +677,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 
 			var out sdkerrors.NotFound
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -698,7 +698,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 
 			var out sdkerrors.Conflict
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -719,7 +719,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 
 			var out sdkerrors.InviteExpired
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -740,7 +740,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 
 			var out sdkerrors.UnprocessableEntity
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -761,7 +761,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 
 			var out sdkerrors.RateLimitExceeded
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -782,7 +782,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 
 			var out sdkerrors.InternalServerError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -819,7 +819,7 @@ func (s *PartnerApplications) Approve(ctx context.Context, request operations.Ap
 
 // Reject a partner application
 // Reject a pending partner application to your program. The partner will be notified via email that their application was not approved.
-func (s *PartnerApplications) Reject(ctx context.Context, request operations.RejectPartnerApplicationRequestBody, opts ...operations.Option) (*operations.RejectPartnerApplicationResponseBody, error) {
+func (s *ProgramApplications) Reject(ctx context.Context, request operations.RejectProgramApplicationRequestBody, opts ...operations.Option) (*operations.RejectProgramApplicationResponseBody, error) {
 	o := operations.Options{}
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
@@ -838,7 +838,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/partners/applications/reject")
+	opURL, err := url.JoinPath(baseURL, "/program-applications/reject")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -848,7 +848,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "rejectPartnerApplication",
+		OperationID:      "rejectProgramApplication",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
@@ -986,7 +986,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 				return nil, err
 			}
 
-			var out operations.RejectPartnerApplicationResponseBody
+			var out operations.RejectProgramApplicationResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1009,7 +1009,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 
 			var out sdkerrors.BadRequest
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1030,7 +1030,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 
 			var out sdkerrors.Unauthorized
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1051,7 +1051,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 
 			var out sdkerrors.Forbidden
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1072,7 +1072,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 
 			var out sdkerrors.NotFound
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1093,7 +1093,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 
 			var out sdkerrors.Conflict
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1114,7 +1114,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 
 			var out sdkerrors.InviteExpired
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1135,7 +1135,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 
 			var out sdkerrors.UnprocessableEntity
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1156,7 +1156,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 
 			var out sdkerrors.RateLimitExceeded
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out
@@ -1177,7 +1177,7 @@ func (s *PartnerApplications) Reject(ctx context.Context, request operations.Rej
 
 			var out sdkerrors.InternalServerError
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, sdkerrors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			return nil, &out

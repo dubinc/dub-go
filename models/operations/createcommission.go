@@ -101,6 +101,100 @@ func (r *RequestBodyCustomer) GetCountry() string {
 	return r.Country
 }
 
+type StripeInvoicesToImport1 string
+
+const (
+	StripeInvoicesToImport1All StripeInvoicesToImport1 = "all"
+)
+
+func (e StripeInvoicesToImport1) ToPointer() *StripeInvoicesToImport1 {
+	return &e
+}
+func (e *StripeInvoicesToImport1) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "all":
+		*e = StripeInvoicesToImport1(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for StripeInvoicesToImport1: %v", v)
+	}
+}
+
+type StripeInvoicesToImportType string
+
+const (
+	StripeInvoicesToImportTypeStripeInvoicesToImport1 StripeInvoicesToImportType = "stripeInvoicesToImport_1"
+	StripeInvoicesToImportTypeArrayOfStr              StripeInvoicesToImportType = "arrayOfStr"
+)
+
+// StripeInvoicesToImport - Import paid Stripe invoices for the customer and create a commission for each. Pass `all` to import every unimported, paid invoice, or an array of Stripe invoice IDs to import only those invoices. Refunded invoices are not imported. When not provided, create a single manual sale event using `sale.amount`
+type StripeInvoicesToImport struct {
+	StripeInvoicesToImport1 *StripeInvoicesToImport1 `queryParam:"inline" union:"member"`
+	ArrayOfStr              []string                 `queryParam:"inline" union:"member"`
+
+	Type StripeInvoicesToImportType
+}
+
+func CreateStripeInvoicesToImportStripeInvoicesToImport1(stripeInvoicesToImport1 StripeInvoicesToImport1) StripeInvoicesToImport {
+	typ := StripeInvoicesToImportTypeStripeInvoicesToImport1
+
+	return StripeInvoicesToImport{
+		StripeInvoicesToImport1: &stripeInvoicesToImport1,
+		Type:                    typ,
+	}
+}
+
+func CreateStripeInvoicesToImportArrayOfStr(arrayOfStr []string) StripeInvoicesToImport {
+	typ := StripeInvoicesToImportTypeArrayOfStr
+
+	return StripeInvoicesToImport{
+		ArrayOfStr: arrayOfStr,
+		Type:       typ,
+	}
+}
+
+func (u *StripeInvoicesToImport) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = StripeInvoicesToImport{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
+
+	var stripeInvoicesToImport1 StripeInvoicesToImport1 = StripeInvoicesToImport1("")
+	if err := utils.UnmarshalJSON(data, &stripeInvoicesToImport1, "", true, nil); err == nil {
+		u.StripeInvoicesToImport1 = &stripeInvoicesToImport1
+		u.Type = StripeInvoicesToImportTypeStripeInvoicesToImport1
+		return nil
+	}
+
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
+		u.ArrayOfStr = arrayOfStr
+		u.Type = StripeInvoicesToImportTypeArrayOfStr
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for StripeInvoicesToImport", string(data))
+}
+
+func (u StripeInvoicesToImport) MarshalJSON() ([]byte, error) {
+	if u.StripeInvoicesToImport1 != nil {
+		return utils.MarshalJSON(u.StripeInvoicesToImport1, "", true)
+	}
+
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type StripeInvoicesToImport: all fields are null")
+}
+
 // RequestBodyPaymentProcessor - The payment processor via which the sale was made.
 type RequestBodyPaymentProcessor string
 
@@ -230,12 +324,16 @@ type RequestBody3 struct {
 	LinkID *string `json:"linkId,omitempty"`
 	// The partner discount code to resolve the associated link. Use this when the link ID is unknown. Cannot be provided together with `linkId`.
 	DiscountCode *string `json:"discountCode,omitempty"`
-	// When `true`, import all unimported paid Stripe invoices for the customer and create a commission for each. When `false`, create a single manual sale event using `sale.amount` (or deprecated `saleAmount`).
-	ImportStripeInvoices *bool `default:"false" json:"importStripeInvoices"`
-	// Only used when `importStripeInvoices` is `false`. The date of the manual sale event. Defaults to the current date and time if not provided.
+	// Import paid Stripe invoices for the customer and create a commission for each. Pass `all` to import every unimported, paid invoice, or an array of Stripe invoice IDs to import only those invoices. Refunded invoices are not imported. When not provided, create a single manual sale event using `sale.amount`
+	StripeInvoicesToImport *StripeInvoicesToImport `json:"stripeInvoicesToImport,omitempty"`
+	// Only used when `stripeInvoicesToImport` is not provided. The date of the manual sale event. Defaults to the current date and time if not provided.
 	Date *string `json:"date,omitempty"`
 	// The sale event object to associate the commission with.
 	Sale *Sale `json:"sale,omitempty"`
+	// Deprecated: Use `stripeInvoicesToImport: all` instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	ImportStripeInvoices *bool `json:"importStripeInvoices,omitempty"`
 	// Deprecated: Use `date` instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -307,11 +405,11 @@ func (r *RequestBody3) GetDiscountCode() *string {
 	return r.DiscountCode
 }
 
-func (r *RequestBody3) GetImportStripeInvoices() *bool {
+func (r *RequestBody3) GetStripeInvoicesToImport() *StripeInvoicesToImport {
 	if r == nil {
 		return nil
 	}
-	return r.ImportStripeInvoices
+	return r.StripeInvoicesToImport
 }
 
 func (r *RequestBody3) GetDate() *string {
@@ -326,6 +424,13 @@ func (r *RequestBody3) GetSale() *Sale {
 		return nil
 	}
 	return r.Sale
+}
+
+func (r *RequestBody3) GetImportStripeInvoices() *bool {
+	if r == nil {
+		return nil
+	}
+	return r.ImportStripeInvoices
 }
 
 func (r *RequestBody3) GetSaleEventDate() *string {
@@ -712,7 +817,14 @@ func CreateCreateCommissionRequestBodyRequestBody3(requestBody3 RequestBody3) Cr
 	}
 }
 
-func (u *CreateCommissionRequestBody) UnmarshalJSON(data []byte) error {
+func (u *CreateCommissionRequestBody) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreateCommissionRequestBody{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var requestBody1 RequestBody1 = RequestBody1{}
 	if err := utils.UnmarshalJSON(data, &requestBody1, "", true, nil); err == nil {

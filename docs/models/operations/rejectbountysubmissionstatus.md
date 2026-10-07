@@ -15,9 +15,10 @@ value := operations.RejectBountySubmissionStatusDraft
 
 ## Values
 
-| Name                                    | Value                                   |
-| --------------------------------------- | --------------------------------------- |
-| `RejectBountySubmissionStatusDraft`     | draft                                   |
-| `RejectBountySubmissionStatusSubmitted` | submitted                               |
-| `RejectBountySubmissionStatusApproved`  | approved                                |
-| `RejectBountySubmissionStatusRejected`  | rejected                                |
+| Name                                            | Value                                           |
+| ----------------------------------------------- | ----------------------------------------------- |
+| `RejectBountySubmissionStatusDraft`             | draft                                           |
+| `RejectBountySubmissionStatusSubmitted`         | submitted                                       |
+| `RejectBountySubmissionStatusApproved`          | approved                                        |
+| `RejectBountySubmissionStatusRejected`          | rejected                                        |
+| `RejectBountySubmissionStatusPartiallyApproved` | partiallyApproved                               |

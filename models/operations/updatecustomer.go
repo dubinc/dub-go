@@ -20,6 +20,8 @@ type UpdateCustomerRequestBody struct {
 	StripeCustomerID *string `json:"stripeCustomerId,omitempty"`
 	// The customer's country in ISO 3166-1 alpha-2 format. Updating this field will only affect the customer's country in Dub's system (and has no effect on existing conversion events).
 	Country *string `json:"country,omitempty"`
+	// The date the customer canceled their subscription. Set to a timestamp to mark the subscription as canceled, or `null` to clear it (e.g. if they resubscribe).
+	SubscriptionCanceledAt *string `json:"subscriptionCanceledAt,omitempty"`
 }
 
 func (u *UpdateCustomerRequestBody) GetEmail() *string {
@@ -62,6 +64,13 @@ func (u *UpdateCustomerRequestBody) GetCountry() *string {
 		return nil
 	}
 	return u.Country
+}
+
+func (u *UpdateCustomerRequestBody) GetSubscriptionCanceledAt() *string {
+	if u == nil {
+		return nil
+	}
+	return u.SubscriptionCanceledAt
 }
 
 type UpdateCustomerRequest struct {

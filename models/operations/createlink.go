@@ -41,7 +41,14 @@ func CreateTagIdsArrayOfStr(arrayOfStr []string) TagIds {
 	}
 }
 
-func (u *TagIds) UnmarshalJSON(data []byte) error {
+func (u *TagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = TagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -105,7 +112,14 @@ func CreateTagNamesArrayOfStr(arrayOfStr []string) TagNames {
 	}
 }
 
-func (u *TagNames) UnmarshalJSON(data []byte) error {
+func (u *TagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = TagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -164,9 +178,9 @@ type CreateLinkRequestBody struct {
 	Key *string `json:"key,omitempty"`
 	// The length of the short link slug. Defaults to 7 if not provided. When used with `prefix`, the total length of the key will be `prefix.length + keyLength`.
 	KeyLength *float64 `json:"keyLength,omitempty"`
-	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace. Pass `null` or an empty string to remove it.
 	ExternalID *string `json:"externalId,omitempty"`
-	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant. Pass `null` or an empty string to remove it.
 	TenantID *string `json:"tenantId,omitempty"`
 	// The ID of the program the short link is associated with.
 	ProgramID *string `json:"programId,omitempty"`
