@@ -15,9 +15,10 @@ value := operations.ListBountySubmissionsQueryParamStatusDraft
 
 ## Values
 
-| Name                                             | Value                                            |
-| ------------------------------------------------ | ------------------------------------------------ |
-| `ListBountySubmissionsQueryParamStatusDraft`     | draft                                            |
-| `ListBountySubmissionsQueryParamStatusSubmitted` | submitted                                        |
-| `ListBountySubmissionsQueryParamStatusApproved`  | approved                                         |
-| `ListBountySubmissionsQueryParamStatusRejected`  | rejected                                         |
+| Name                                                     | Value                                                    |
+| -------------------------------------------------------- | -------------------------------------------------------- |
+| `ListBountySubmissionsQueryParamStatusDraft`             | draft                                                    |
+| `ListBountySubmissionsQueryParamStatusSubmitted`         | submitted                                                |
+| `ListBountySubmissionsQueryParamStatusApproved`          | approved                                                 |
+| `ListBountySubmissionsQueryParamStatusRejected`          | rejected                                                 |
+| `ListBountySubmissionsQueryParamStatusPartiallyApproved` | partiallyApproved                                        |

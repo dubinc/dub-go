@@ -12,10 +12,11 @@ import (
 type ListBountySubmissionsQueryParamStatus string
 
 const (
-	ListBountySubmissionsQueryParamStatusDraft     ListBountySubmissionsQueryParamStatus = "draft"
-	ListBountySubmissionsQueryParamStatusSubmitted ListBountySubmissionsQueryParamStatus = "submitted"
-	ListBountySubmissionsQueryParamStatusApproved  ListBountySubmissionsQueryParamStatus = "approved"
-	ListBountySubmissionsQueryParamStatusRejected  ListBountySubmissionsQueryParamStatus = "rejected"
+	ListBountySubmissionsQueryParamStatusDraft             ListBountySubmissionsQueryParamStatus = "draft"
+	ListBountySubmissionsQueryParamStatusSubmitted         ListBountySubmissionsQueryParamStatus = "submitted"
+	ListBountySubmissionsQueryParamStatusApproved          ListBountySubmissionsQueryParamStatus = "approved"
+	ListBountySubmissionsQueryParamStatusRejected          ListBountySubmissionsQueryParamStatus = "rejected"
+	ListBountySubmissionsQueryParamStatusPartiallyApproved ListBountySubmissionsQueryParamStatus = "partiallyApproved"
 )
 
 func (e ListBountySubmissionsQueryParamStatus) ToPointer() *ListBountySubmissionsQueryParamStatus {
@@ -34,6 +35,8 @@ func (e *ListBountySubmissionsQueryParamStatus) UnmarshalJSON(data []byte) error
 	case "approved":
 		fallthrough
 	case "rejected":
+		fallthrough
+	case "partiallyApproved":
 		*e = ListBountySubmissionsQueryParamStatus(v)
 		return nil
 	default:
@@ -218,10 +221,11 @@ func (f *Files) GetSize() float64 {
 type ListBountySubmissionsStatus string
 
 const (
-	ListBountySubmissionsStatusDraft     ListBountySubmissionsStatus = "draft"
-	ListBountySubmissionsStatusSubmitted ListBountySubmissionsStatus = "submitted"
-	ListBountySubmissionsStatusApproved  ListBountySubmissionsStatus = "approved"
-	ListBountySubmissionsStatusRejected  ListBountySubmissionsStatus = "rejected"
+	ListBountySubmissionsStatusDraft             ListBountySubmissionsStatus = "draft"
+	ListBountySubmissionsStatusSubmitted         ListBountySubmissionsStatus = "submitted"
+	ListBountySubmissionsStatusApproved          ListBountySubmissionsStatus = "approved"
+	ListBountySubmissionsStatusRejected          ListBountySubmissionsStatus = "rejected"
+	ListBountySubmissionsStatusPartiallyApproved ListBountySubmissionsStatus = "partiallyApproved"
 )
 
 func (e ListBountySubmissionsStatus) ToPointer() *ListBountySubmissionsStatus {
@@ -240,6 +244,8 @@ func (e *ListBountySubmissionsStatus) UnmarshalJSON(data []byte) error {
 	case "approved":
 		fallthrough
 	case "rejected":
+		fallthrough
+	case "partiallyApproved":
 		*e = ListBountySubmissionsStatus(v)
 		return nil
 	default:
@@ -268,6 +274,8 @@ type ListBountySubmissionsResponseBody struct {
 	SocialMetricCount *int64 `json:"socialMetricCount"`
 	// The date and time the submission's social metrics were last synced
 	SocialMetricsLastSyncedAt *string `json:"socialMetricsLastSyncedAt,omitempty"`
+	// The highest social metric milestone that has been approved and paid out for this submission
+	ApprovedSocialMetricThreshold *int64 `json:"approvedSocialMetricThreshold,omitempty"`
 	// The date and time the submission was created
 	CreatedAt string `json:"createdAt"`
 	// The date and time the submission was completed
@@ -350,6 +358,13 @@ func (l *ListBountySubmissionsResponseBody) GetSocialMetricsLastSyncedAt() *stri
 		return nil
 	}
 	return l.SocialMetricsLastSyncedAt
+}
+
+func (l *ListBountySubmissionsResponseBody) GetApprovedSocialMetricThreshold() *int64 {
+	if l == nil {
+		return nil
+	}
+	return l.ApprovedSocialMetricThreshold
 }
 
 func (l *ListBountySubmissionsResponseBody) GetCreatedAt() string {

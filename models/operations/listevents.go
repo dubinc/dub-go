@@ -3635,7 +3635,14 @@ func CreateListEventsResponseBodySaleEvent(saleEvent SaleEvent) ListEventsRespon
 	}
 }
 
-func (u *ListEventsResponseBody) UnmarshalJSON(data []byte) error {
+func (u *ListEventsResponseBody) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = ListEventsResponseBody{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var saleEvent SaleEvent = SaleEvent{}
 	if err := utils.UnmarshalJSON(data, &saleEvent, "", true, nil); err == nil {

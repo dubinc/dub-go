@@ -41,7 +41,14 @@ func CreateCreateReferralsEmbedTokenTagIdsArrayOfStr(arrayOfStr []string) Create
 	}
 }
 
-func (u *CreateReferralsEmbedTokenTagIds) UnmarshalJSON(data []byte) error {
+func (u *CreateReferralsEmbedTokenTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreateReferralsEmbedTokenTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -105,7 +112,14 @@ func CreateCreateReferralsEmbedTokenTagNamesArrayOfStr(arrayOfStr []string) Crea
 	}
 }
 
-func (u *CreateReferralsEmbedTokenTagNames) UnmarshalJSON(data []byte) error {
+func (u *CreateReferralsEmbedTokenTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = CreateReferralsEmbedTokenTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -157,9 +171,9 @@ func (c *CreateReferralsEmbedTokenTestVariants) GetPercentage() float64 {
 
 // CreateReferralsEmbedTokenLinkProps - Additional properties that you can pass to the partner's short link. Will be used to override the default link properties for this partner.
 type CreateReferralsEmbedTokenLinkProps struct {
-	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace.
+	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace. Pass `null` or an empty string to remove it.
 	ExternalID *string `json:"externalId,omitempty"`
-	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant. Pass `null` or an empty string to remove it.
 	TenantID *string `json:"tenantId,omitempty"`
 	// Path prefix for each default referral link slug (e.g. `/c/` → `https://{domain}/c/{identity}`). If the group has multiple default links, a short random suffix is appended to the identity segment for uniqueness (e.g. `c/jane-a7f2`).
 	Prefix *string `json:"prefix,omitempty"`

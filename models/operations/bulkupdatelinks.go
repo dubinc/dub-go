@@ -41,7 +41,14 @@ func CreateBulkUpdateLinksTagIdsArrayOfStr(arrayOfStr []string) BulkUpdateLinksT
 	}
 }
 
-func (u *BulkUpdateLinksTagIds) UnmarshalJSON(data []byte) error {
+func (u *BulkUpdateLinksTagIds) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = BulkUpdateLinksTagIds{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -105,7 +112,14 @@ func CreateBulkUpdateLinksTagNamesArrayOfStr(arrayOfStr []string) BulkUpdateLink
 	}
 }
 
-func (u *BulkUpdateLinksTagNames) UnmarshalJSON(data []byte) error {
+func (u *BulkUpdateLinksTagNames) UnmarshalJSON(data []byte) (err error) {
+	previous := *u
+	*u = BulkUpdateLinksTagNames{}
+	defer func() {
+		if err != nil {
+			*u = previous
+		}
+	}()
 
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
@@ -158,7 +172,7 @@ func (b *BulkUpdateLinksTestVariants) GetPercentage() float64 {
 type Data struct {
 	// The destination URL of the short link.
 	URL *string `json:"url,omitempty"`
-	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant.
+	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant. Pass `null` or an empty string to remove it.
 	TenantID *string `json:"tenantId,omitempty"`
 	// The ID of the program the short link is associated with.
 	ProgramID *string `json:"programId,omitempty"`
