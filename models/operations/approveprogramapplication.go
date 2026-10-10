@@ -9,6 +9,10 @@ type ApproveProgramApplicationRequestBody struct {
 	ApplicationID *string `json:"applicationId,omitempty"`
 	// The ID of the group to assign the partner to. If not provided, the partner will be assigned to the group they applied to, or the program's default group if no application group is set.
 	GroupID *string `json:"groupId,omitempty"`
+	// The IDs of the partner tags to assign as part of approval. Existing tags are kept. Takes priority over `tagNames` only when it contains at least one ID.
+	TagIds []string `json:"tagIds,omitempty"`
+	// The names of the partner tags to assign as part of approval. Existing tags are kept. Ignored only when `tagIds` contains at least one ID.
+	TagNames []string `json:"tagNames,omitempty"`
 }
 
 func (a *ApproveProgramApplicationRequestBody) GetPartnerID() string {
@@ -30,6 +34,20 @@ func (a *ApproveProgramApplicationRequestBody) GetGroupID() *string {
 		return nil
 	}
 	return a.GroupID
+}
+
+func (a *ApproveProgramApplicationRequestBody) GetTagIds() []string {
+	if a == nil {
+		return nil
+	}
+	return a.TagIds
+}
+
+func (a *ApproveProgramApplicationRequestBody) GetTagNames() []string {
+	if a == nil {
+		return nil
+	}
+	return a.TagNames
 }
 
 // ApproveProgramApplicationResponseBody - The approved partner

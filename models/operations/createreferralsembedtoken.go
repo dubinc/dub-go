@@ -384,6 +384,10 @@ type Partner struct {
 	TenantID *string `json:"tenantId,omitempty"`
 	// The group ID to add the partner to. If not provided, the partner will be added to the default group.
 	GroupID *string `json:"groupId,omitempty"`
+	// The IDs of the partner tags to assign when creating the partner. Existing tags are kept. Takes priority over `tagNames` only when it contains at least one ID.
+	TagIds []string `json:"tagIds,omitempty"`
+	// The names of the partner tags to assign when creating the partner. Existing tags are kept. Ignored only when `tagIds` contains at least one ID.
+	TagNames []string `json:"tagNames,omitempty"`
 	// The partner's country of residence. Must be passed as a 2-letter ISO 3166-1 country code. See https://d.to/geo for more information.
 	Country *string `json:"country,omitempty"`
 	// A brief description of the partner and their background. Max 5,000 characters.
@@ -432,6 +436,20 @@ func (p *Partner) GetGroupID() *string {
 		return nil
 	}
 	return p.GroupID
+}
+
+func (p *Partner) GetTagIds() []string {
+	if p == nil {
+		return nil
+	}
+	return p.TagIds
+}
+
+func (p *Partner) GetTagNames() []string {
+	if p == nil {
+		return nil
+	}
+	return p.TagNames
 }
 
 func (p *Partner) GetCountry() *string {
