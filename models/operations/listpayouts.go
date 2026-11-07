@@ -118,6 +118,8 @@ type ListPayoutsRequest struct {
 	InvoiceID *string `queryParam:"style=form,explode=true,name=invoiceId"`
 	// Filter the list of payouts by the associated partner group. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `group_abc`, `group_abc,group_xyz`, `-group_abc`.
 	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
+	// Filter the list of payouts by the associated partner tag. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `ptag_abc`, `ptag_abc,ptag_xyz`, `-ptag_abc`.
+	PartnerTagID *string `queryParam:"style=form,explode=true,name=partnerTagId"`
 	// The field to sort the list of payouts by.
 	SortBy *ListPayoutsQueryParamSortBy `default:"amount" queryParam:"style=form,explode=true,name=sortBy"`
 	// The sort order for the list of payouts.
@@ -172,6 +174,13 @@ func (l *ListPayoutsRequest) GetGroupID() *string {
 		return nil
 	}
 	return l.GroupID
+}
+
+func (l *ListPayoutsRequest) GetPartnerTagID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.PartnerTagID
 }
 
 func (l *ListPayoutsRequest) GetSortBy() *ListPayoutsQueryParamSortBy {
@@ -334,6 +343,45 @@ func (e *ListPayoutsDefaultPayoutMethod) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// ListPayoutsNetworkStatus - The partner's network status on Dub.
+type ListPayoutsNetworkStatus string
+
+const (
+	ListPayoutsNetworkStatusDraft     ListPayoutsNetworkStatus = "draft"
+	ListPayoutsNetworkStatusSubmitted ListPayoutsNetworkStatus = "submitted"
+	ListPayoutsNetworkStatusApproved  ListPayoutsNetworkStatus = "approved"
+	ListPayoutsNetworkStatusRejected  ListPayoutsNetworkStatus = "rejected"
+	ListPayoutsNetworkStatusTrusted   ListPayoutsNetworkStatus = "trusted"
+	ListPayoutsNetworkStatusBanned    ListPayoutsNetworkStatus = "banned"
+)
+
+func (e ListPayoutsNetworkStatus) ToPointer() *ListPayoutsNetworkStatus {
+	return &e
+}
+func (e *ListPayoutsNetworkStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "draft":
+		fallthrough
+	case "submitted":
+		fallthrough
+	case "approved":
+		fallthrough
+	case "rejected":
+		fallthrough
+	case "trusted":
+		fallthrough
+	case "banned":
+		*e = ListPayoutsNetworkStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListPayoutsNetworkStatus: %v", v)
+	}
+}
+
 type ListPayoutsPartner struct {
 	// The partner's unique ID on Dub.
 	ID string `json:"id"`
@@ -349,6 +397,8 @@ type ListPayoutsPartner struct {
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
 	// The partner's country (required for tax purposes).
 	Country *string `json:"country"`
+	// The partner's network status on Dub.
+	NetworkStatus ListPayoutsNetworkStatus `json:"networkStatus"`
 	// The partner's group ID on Dub.
 	GroupID *string `json:"groupId,omitempty"`
 	// The partner's unique ID within your database. Can be useful for associating the partner with a user in your database and retrieving/update their data in the future.
@@ -402,6 +452,13 @@ func (l *ListPayoutsPartner) GetCountry() *string {
 		return nil
 	}
 	return l.Country
+}
+
+func (l *ListPayoutsPartner) GetNetworkStatus() ListPayoutsNetworkStatus {
+	if l == nil {
+		return ListPayoutsNetworkStatus("")
+	}
+	return l.NetworkStatus
 }
 
 func (l *ListPayoutsPartner) GetGroupID() *string {

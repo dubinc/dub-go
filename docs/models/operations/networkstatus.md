@@ -22,3 +22,4 @@ value := operations.NetworkStatusDraft
 | `NetworkStatusApproved`  | approved                 |
 | `NetworkStatusRejected`  | rejected                 |
 | `NetworkStatusTrusted`   | trusted                  |
+| `NetworkStatusBanned`    | banned                   |

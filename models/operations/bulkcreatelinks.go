@@ -178,14 +178,14 @@ type RequestBody struct {
 	// The short link slug. If not provided, a random 7-character slug will be generated.
 	Key *string `json:"key,omitempty"`
 	// The length of the short link slug. Defaults to 7 if not provided. When used with `prefix`, the total length of the key will be `prefix.length + keyLength`.
-	KeyLength *float64 `json:"keyLength,omitempty"`
+	KeyLength *int64 `json:"keyLength,omitempty"`
 	// The ID of the link in your database. If set, it can be used to identify the link in future API requests (must be prefixed with 'ext_' when passed as a query parameter). This key is unique across your workspace. Pass `null` or an empty string to remove it.
 	ExternalID *string `json:"externalId,omitempty"`
 	// The ID of the tenant that created the link inside your system. If set, it can be used to fetch all links for a tenant. Pass `null` or an empty string to remove it.
 	TenantID *string `json:"tenantId,omitempty"`
 	// The ID of the program the short link is associated with.
 	ProgramID *string `json:"programId,omitempty"`
-	// The ID of the partner the short link is associated with.
+	// The ID of the partner the short link is associated with. Pass `null` or an empty string to remove the partner. Removing the partner also removes the program association.
 	PartnerID *string `json:"partnerId,omitempty"`
 	// The prefix of the short link slug for randomly-generated keys (e.g. if prefix is `/c/`, generated keys will be in the `/c/:key` format). Will be ignored if `key` is provided.
 	Prefix *string `json:"prefix,omitempty"`
@@ -280,7 +280,7 @@ func (r *RequestBody) GetKey() *string {
 	return r.Key
 }
 
-func (r *RequestBody) GetKeyLength() *float64 {
+func (r *RequestBody) GetKeyLength() *int64 {
 	if r == nil {
 		return nil
 	}

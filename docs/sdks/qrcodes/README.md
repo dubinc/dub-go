@@ -32,6 +32,7 @@ func main() {
 
     res, err := s.QRCodes.Get(ctx, operations.GetQRCodeRequest{
         URL: "https://needy-newsstand.biz/",
+        BgColor: dubgo.Pointer("#FFFFFF"),
     })
     if err != nil {
         log.Fatal(err)
