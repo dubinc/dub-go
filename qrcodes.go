@@ -37,6 +37,7 @@ func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest, 
 	supportedOptions := []string{
 		operations.SupportedOptionRetries,
 		operations.SupportedOptionTimeout,
+		operations.SupportedOptionAcceptHeaderOverride,
 	}
 
 	for _, opt := range opts {
@@ -81,7 +82,12 @@ func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest, 
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
-	req.Header.Set("Accept", "image/png")
+	if o.AcceptHeaderOverride != nil {
+		req.Header.Set("Accept", string(*o.AcceptHeaderOverride))
+	} else {
+		req.Header.Set("Accept", "image/png;q=1, image/svg+xml;q=0")
+	}
+
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
 	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
@@ -191,6 +197,14 @@ func (s *QRCodes) Get(ctx context.Context, request operations.GetQRCodeRequest, 
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `image/png`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			res := string(rawBody)
+			return &res, nil
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `image/svg+xml`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err

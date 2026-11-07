@@ -85,6 +85,7 @@ const (
 	ProgramApplicationCreatedEventNetworkStatusApproved  ProgramApplicationCreatedEventNetworkStatus = "approved"
 	ProgramApplicationCreatedEventNetworkStatusRejected  ProgramApplicationCreatedEventNetworkStatus = "rejected"
 	ProgramApplicationCreatedEventNetworkStatusTrusted   ProgramApplicationCreatedEventNetworkStatus = "trusted"
+	ProgramApplicationCreatedEventNetworkStatusBanned    ProgramApplicationCreatedEventNetworkStatus = "banned"
 )
 
 func (e ProgramApplicationCreatedEventNetworkStatus) ToPointer() *ProgramApplicationCreatedEventNetworkStatus {
@@ -105,6 +106,8 @@ func (e *ProgramApplicationCreatedEventNetworkStatus) UnmarshalJSON(data []byte)
 	case "rejected":
 		fallthrough
 	case "trusted":
+		fallthrough
+	case "banned":
 		*e = ProgramApplicationCreatedEventNetworkStatus(v)
 		return nil
 	default:
@@ -187,6 +190,12 @@ type Platforms struct {
 	Type       ProgramApplicationCreatedEventType `json:"type"`
 	Identifier string                             `json:"identifier"`
 	VerifiedAt *string                            `json:"verifiedAt"`
+	// Subscribers or followers for social profiles, or domain rating for websites.
+	Subscribers *int64 `default:"0" json:"subscribers"`
+	// Number of posts on the profile.
+	Posts *int64 `default:"0" json:"posts"`
+	// Video views for YouTube, or impressions for other social profiles.
+	Views *int64 `default:"0" json:"views"`
 }
 
 func (p Platforms) MarshalJSON() ([]byte, error) {
@@ -219,6 +228,27 @@ func (p *Platforms) GetVerifiedAt() *string {
 		return nil
 	}
 	return p.VerifiedAt
+}
+
+func (p *Platforms) GetSubscribers() *int64 {
+	if p == nil {
+		return nil
+	}
+	return p.Subscribers
+}
+
+func (p *Platforms) GetPosts() *int64 {
+	if p == nil {
+		return nil
+	}
+	return p.Posts
+}
+
+func (p *Platforms) GetViews() *int64 {
+	if p == nil {
+		return nil
+	}
+	return p.Views
 }
 
 type ProgramApplicationCreatedEventPartner struct {
@@ -258,7 +288,7 @@ type ProgramApplicationCreatedEventPartner struct {
 	DefaultPayoutMethod *ProgramApplicationCreatedEventDefaultPayoutMethod `json:"defaultPayoutMethod"`
 	// The date when the partner enabled payouts.
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
-	// The partner's website and social profiles, including when each was verified.
+	// The partner's website and social profiles, including when each was verified and audience stats (subscribers, views, and posts).
 	Platforms []Platforms `json:"platforms,omitempty"`
 }
 

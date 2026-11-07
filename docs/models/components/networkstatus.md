@@ -22,3 +22,4 @@ value := components.NetworkStatusDraft
 | `NetworkStatusApproved`  | approved                 |
 | `NetworkStatusRejected`  | rejected                 |
 | `NetworkStatusTrusted`   | trusted                  |
+| `NetworkStatusBanned`    | banned                   |
