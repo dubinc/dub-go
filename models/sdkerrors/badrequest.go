@@ -69,6 +69,10 @@ type BadRequest struct {
 var _ error = &BadRequest{}
 
 func (e *BadRequest) Error() string {
+	if e != nil {
+		return e.Error_.Message
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

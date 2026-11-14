@@ -41,6 +41,33 @@ func (e *Level) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// Format - The format of the QR code. Defaults to `png` if not provided.
+type Format string
+
+const (
+	FormatPng Format = "png"
+	FormatSvg Format = "svg"
+)
+
+func (e Format) ToPointer() *Format {
+	return &e
+}
+func (e *Format) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "png":
+		fallthrough
+	case "svg":
+		*e = Format(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Format: %v", v)
+	}
+}
+
 type GetQRCodeRequest struct {
 	// The URL to generate a QR code for.
 	URL string `queryParam:"style=form,explode=true,name=url"`
@@ -52,14 +79,16 @@ type GetQRCodeRequest struct {
 	Level *Level `default:"L" queryParam:"style=form,explode=true,name=level"`
 	// The foreground color of the QR code in hex format. Defaults to `#000000` if not provided.
 	FgColor *string `default:"#000000" queryParam:"style=form,explode=true,name=fgColor"`
-	// The background color of the QR code in hex format. Defaults to `#ffffff` if not provided.
-	BgColor *string `default:"#FFFFFF" queryParam:"style=form,explode=true,name=bgColor"`
+	// The background color of the QR code in hex format. Defaults to `#ffffff` for `png`. When omitted for `svg`, the background is transparent.
+	BgColor *string `queryParam:"style=form,explode=true,name=bgColor"`
 	// Whether to hide the logo in the QR code. Can only be used with a paid plan on Dub.
 	HideLogo *bool `default:"false" queryParam:"style=form,explode=true,name=hideLogo"`
 	// The size of the margin around the QR code. Defaults to 2 if not provided.
 	Margin *float64 `default:"2" queryParam:"style=form,explode=true,name=margin"`
 	// DEPRECATED: Margin is included by default. Use the `margin` prop to customize the margin size.
 	IncludeMargin *bool `default:"true" queryParam:"style=form,explode=true,name=includeMargin"`
+	// The format of the QR code. Defaults to `png` if not provided.
+	Format *Format `default:"png" queryParam:"style=form,explode=true,name=format"`
 }
 
 func (g GetQRCodeRequest) MarshalJSON() ([]byte, error) {
@@ -134,4 +163,11 @@ func (g *GetQRCodeRequest) GetIncludeMargin() *bool {
 		return nil
 	}
 	return g.IncludeMargin
+}
+
+func (g *GetQRCodeRequest) GetFormat() *Format {
+	if g == nil {
+		return nil
+	}
+	return g.Format
 }

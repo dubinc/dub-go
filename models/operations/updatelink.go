@@ -182,7 +182,7 @@ type UpdateLinkRequestBody struct {
 	TenantID *string `json:"tenantId,omitempty"`
 	// The ID of the program the short link is associated with.
 	ProgramID *string `json:"programId,omitempty"`
-	// The ID of the partner the short link is associated with.
+	// The ID of the partner the short link is associated with. Pass `null` or an empty string to remove the partner. Removing the partner also removes the program association.
 	PartnerID *string `json:"partnerId,omitempty"`
 	// Whether to track conversions for the short link. Defaults to `false` if not provided.
 	TrackConversion *bool `json:"trackConversion,omitempty"`

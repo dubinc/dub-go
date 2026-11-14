@@ -69,6 +69,10 @@ type RateLimitExceeded struct {
 var _ error = &RateLimitExceeded{}
 
 func (e *RateLimitExceeded) Error() string {
+	if e != nil {
+		return e.Error_.Message
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

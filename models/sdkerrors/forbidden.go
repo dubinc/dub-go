@@ -69,6 +69,10 @@ type Forbidden struct {
 var _ error = &Forbidden{}
 
 func (e *Forbidden) Error() string {
+	if e != nil {
+		return e.Error_.Message
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -23,6 +23,7 @@ const (
 	CodeUnprocessableEntity Code = "unprocessable_entity"
 	CodeRateLimitExceeded   Code = "rate_limit_exceeded"
 	CodeInternalServerError Code = "internal_server_error"
+	CodeServiceUnavailable  Code = "service_unavailable"
 )
 
 func (e Code) ToPointer() *Code {
@@ -55,6 +56,8 @@ func (e *Code) UnmarshalJSON(data []byte) error {
 	case "rate_limit_exceeded":
 		fallthrough
 	case "internal_server_error":
+		fallthrough
+	case "service_unavailable":
 		*e = Code(v)
 		return nil
 	default:
