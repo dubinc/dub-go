@@ -69,6 +69,10 @@ type InviteExpired struct {
 var _ error = &InviteExpired{}
 
 func (e *InviteExpired) Error() string {
+	if e != nil {
+		return e.Error_.Message
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

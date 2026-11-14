@@ -53,6 +53,10 @@ type BanPartnerRequestBody struct {
 	TenantID *string `json:"tenantId,omitempty"`
 	// The reason for banning the partner.
 	Reason Reason `json:"reason"`
+	// Whether to flag the partner for fraud review by the Dub team.
+	FlagForFraud *bool `json:"flagForFraud,omitempty"`
+	// The reason for flagging the partner for fraud. Required when flagForFraud is true.
+	FlagForFraudReason *string `json:"flagForFraudReason,omitempty"`
 }
 
 func (b *BanPartnerRequestBody) GetPartnerID() *string {
@@ -74,6 +78,20 @@ func (b *BanPartnerRequestBody) GetReason() Reason {
 		return Reason("")
 	}
 	return b.Reason
+}
+
+func (b *BanPartnerRequestBody) GetFlagForFraud() *bool {
+	if b == nil {
+		return nil
+	}
+	return b.FlagForFraud
+}
+
+func (b *BanPartnerRequestBody) GetFlagForFraudReason() *string {
+	if b == nil {
+		return nil
+	}
+	return b.FlagForFraudReason
 }
 
 // BanPartnerResponseBody - The banned partner

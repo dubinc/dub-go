@@ -213,6 +213,11 @@ func main() {
 * [UpdateMany](docs/sdks/links/README.md#updatemany) - Bulk update links
 * [Upsert](docs/sdks/links/README.md#upsert) - Upsert a link
 
+### [Messages](docs/sdks/messages/README.md)
+
+* [List](docs/sdks/messages/README.md#list) - List all messages
+* [Create](docs/sdks/messages/README.md#create) - Send a message to a partner
+
 ### [Partners](docs/sdks/partners/README.md)
 
 * [List](docs/sdks/partners/README.md#list) - List all partners

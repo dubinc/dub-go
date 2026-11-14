@@ -219,6 +219,18 @@ actions:
         - "lang": "go"
           "label": "updateLink"
           "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Links.Update(ctx, \"<id>\", &operations.UpdateLinkRequestBody{\n        URL: dubgo.Pointer(\"https://google.com\"),\n        ExternalID: dubgo.Pointer(\"123456\"),\n        TagIds: dubgo.Pointer(operations.CreateUpdateLinkTagIdsArrayOfStr(\n            []string{\n                \"clux0rgak00011...\",\n            },\n        )),\n        TestVariants: []operations.UpdateLinkTestVariants{\n            operations.UpdateLinkTestVariants{\n                URL: \"https://example.com/variant-1\",\n                Percentage: 50.0,\n            },\n            operations.UpdateLinkTestVariants{\n                URL: \"https://example.com/variant-2\",\n                Percentage: 50.0,\n            },\n        },\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/messages"]["get"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "listMessages"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Messages.List(ctx, operations.ListMessagesRequest{\n        EndingBefore: dubgo.Pointer(\"msg_1KAP4CDPBSVMMBMH9XX3YZZ0Z\"),\n        StartingAfter: dubgo.Pointer(\"msg_1KAP4CDPBSVMMBMH9XX3YZZ0Z\"),\n        PageSize: dubgo.Pointer[int64](50),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+  - target: $["paths"]["/messages"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "go"
+          "label": "createMessage"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.Messages.Create(ctx, nil)\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/partners"]["get"]
     update:
       "x-codeSamples":
@@ -296,7 +308,7 @@ actions:
       "x-codeSamples":
         - "lang": "go"
           "label": "getQRCode"
-          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.QRCodes.Get(ctx, operations.GetQRCodeRequest{\n        URL: \"https://needy-newsstand.biz/\",\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
+          "source": "package main\n\nimport(\n\t\"context\"\n\tdubgo \"github.com/dubinc/dub-go\"\n\t\"github.com/dubinc/dub-go/models/operations\"\n\t\"log\"\n)\n\nfunc main() {\n    ctx := context.Background()\n\n    s := dubgo.New(\n        dubgo.WithSecurity(\"DUB_API_KEY\"),\n    )\n\n    res, err := s.QRCodes.Get(ctx, operations.GetQRCodeRequest{\n        URL: \"https://needy-newsstand.biz/\",\n        BgColor: dubgo.Pointer(\"#FFFFFF\"),\n    })\n    if err != nil {\n        log.Fatal(err)\n    }\n    if res != nil {\n        // handle response\n    }\n}"
   - target: $["paths"]["/tags"]["get"]
     update:
       "x-codeSamples":

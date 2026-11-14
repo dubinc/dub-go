@@ -69,6 +69,10 @@ type InternalServerError struct {
 var _ error = &InternalServerError{}
 
 func (e *InternalServerError) Error() string {
+	if e != nil {
+		return e.Error_.Message
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

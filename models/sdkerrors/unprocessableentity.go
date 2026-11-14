@@ -69,6 +69,10 @@ type UnprocessableEntity struct {
 var _ error = &UnprocessableEntity{}
 
 func (e *UnprocessableEntity) Error() string {
+	if e != nil {
+		return e.Error_.Message
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }
