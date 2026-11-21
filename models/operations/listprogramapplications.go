@@ -35,19 +35,19 @@ func (e *ListProgramApplicationsQueryParamSortOrder) UnmarshalJSON(data []byte) 
 	}
 }
 
-// QueryParamStatus - Filter applications by status. One of `pending`, `approved`, or `rejected`. Defaults to `pending`.
-type QueryParamStatus string
+// ListProgramApplicationsQueryParamStatus - Filter applications by status. One of `pending`, `approved`, or `rejected`. Defaults to `pending`.
+type ListProgramApplicationsQueryParamStatus string
 
 const (
-	QueryParamStatusPending  QueryParamStatus = "pending"
-	QueryParamStatusApproved QueryParamStatus = "approved"
-	QueryParamStatusRejected QueryParamStatus = "rejected"
+	ListProgramApplicationsQueryParamStatusPending  ListProgramApplicationsQueryParamStatus = "pending"
+	ListProgramApplicationsQueryParamStatusApproved ListProgramApplicationsQueryParamStatus = "approved"
+	ListProgramApplicationsQueryParamStatusRejected ListProgramApplicationsQueryParamStatus = "rejected"
 )
 
-func (e QueryParamStatus) ToPointer() *QueryParamStatus {
+func (e ListProgramApplicationsQueryParamStatus) ToPointer() *ListProgramApplicationsQueryParamStatus {
 	return &e
 }
-func (e *QueryParamStatus) UnmarshalJSON(data []byte) error {
+func (e *ListProgramApplicationsQueryParamStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -58,10 +58,10 @@ func (e *QueryParamStatus) UnmarshalJSON(data []byte) error {
 	case "approved":
 		fallthrough
 	case "rejected":
-		*e = QueryParamStatus(v)
+		*e = ListProgramApplicationsQueryParamStatus(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for QueryParamStatus: %v", v)
+		return fmt.Errorf("invalid value for ListProgramApplicationsQueryParamStatus: %v", v)
 	}
 }
 
@@ -75,7 +75,7 @@ type ListProgramApplicationsRequest struct {
 	// Filter applications by name, email, or company name. Partial matches are supported. An exact partner ID is also matched.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// Filter applications by status. One of `pending`, `approved`, or `rejected`. Defaults to `pending`.
-	Status *QueryParamStatus `default:"pending" queryParam:"style=form,explode=true,name=status"`
+	Status *ListProgramApplicationsQueryParamStatus `default:"pending" queryParam:"style=form,explode=true,name=status"`
 	// The page number for pagination. The first page is `1`.
 	Page *int64 `queryParam:"style=form,explode=true,name=page"`
 	// The number of items per page.
@@ -121,7 +121,7 @@ func (l *ListProgramApplicationsRequest) GetSearch() *string {
 	return l.Search
 }
 
-func (l *ListProgramApplicationsRequest) GetStatus() *QueryParamStatus {
+func (l *ListProgramApplicationsRequest) GetStatus() *ListProgramApplicationsQueryParamStatus {
 	if l == nil {
 		return nil
 	}
@@ -196,6 +196,7 @@ const (
 	ListProgramApplicationsNetworkStatusApproved  ListProgramApplicationsNetworkStatus = "approved"
 	ListProgramApplicationsNetworkStatusRejected  ListProgramApplicationsNetworkStatus = "rejected"
 	ListProgramApplicationsNetworkStatusTrusted   ListProgramApplicationsNetworkStatus = "trusted"
+	ListProgramApplicationsNetworkStatusBanned    ListProgramApplicationsNetworkStatus = "banned"
 )
 
 func (e ListProgramApplicationsNetworkStatus) ToPointer() *ListProgramApplicationsNetworkStatus {
@@ -216,6 +217,8 @@ func (e *ListProgramApplicationsNetworkStatus) UnmarshalJSON(data []byte) error 
 	case "rejected":
 		fallthrough
 	case "trusted":
+		fallthrough
+	case "banned":
 		*e = ListProgramApplicationsNetworkStatus(v)
 		return nil
 	default:
@@ -298,6 +301,23 @@ type Platforms struct {
 	Type       ListProgramApplicationsType `json:"type"`
 	Identifier string                      `json:"identifier"`
 	VerifiedAt *string                     `json:"verifiedAt"`
+	// Subscribers or followers for social profiles, or domain rating for websites.
+	Subscribers *int64 `default:"0" json:"subscribers"`
+	// Number of posts on the profile.
+	Posts *int64 `default:"0" json:"posts"`
+	// Video views for YouTube, or impressions for other social profiles.
+	Views *int64 `default:"0" json:"views"`
+}
+
+func (p Platforms) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *Platforms) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *Platforms) GetType() ListProgramApplicationsType {
@@ -319,6 +339,27 @@ func (p *Platforms) GetVerifiedAt() *string {
 		return nil
 	}
 	return p.VerifiedAt
+}
+
+func (p *Platforms) GetSubscribers() *int64 {
+	if p == nil {
+		return nil
+	}
+	return p.Subscribers
+}
+
+func (p *Platforms) GetPosts() *int64 {
+	if p == nil {
+		return nil
+	}
+	return p.Posts
+}
+
+func (p *Platforms) GetViews() *int64 {
+	if p == nil {
+		return nil
+	}
+	return p.Views
 }
 
 type ListProgramApplicationsPartner struct {
@@ -358,7 +399,7 @@ type ListProgramApplicationsPartner struct {
 	DefaultPayoutMethod *ListProgramApplicationsDefaultPayoutMethod `json:"defaultPayoutMethod"`
 	// The date when the partner enabled payouts.
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
-	// The partner's website and social profiles, including when each was verified.
+	// The partner's website and social profiles, including when each was verified and audience stats (subscribers, views, and posts).
 	Platforms []Platforms `json:"platforms,omitempty"`
 }
 

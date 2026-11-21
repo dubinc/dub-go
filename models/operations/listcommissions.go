@@ -499,6 +499,45 @@ func (e *ListCommissionsStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// ListCommissionsNetworkStatus - The partner's network status on Dub.
+type ListCommissionsNetworkStatus string
+
+const (
+	ListCommissionsNetworkStatusDraft     ListCommissionsNetworkStatus = "draft"
+	ListCommissionsNetworkStatusSubmitted ListCommissionsNetworkStatus = "submitted"
+	ListCommissionsNetworkStatusApproved  ListCommissionsNetworkStatus = "approved"
+	ListCommissionsNetworkStatusRejected  ListCommissionsNetworkStatus = "rejected"
+	ListCommissionsNetworkStatusTrusted   ListCommissionsNetworkStatus = "trusted"
+	ListCommissionsNetworkStatusBanned    ListCommissionsNetworkStatus = "banned"
+)
+
+func (e ListCommissionsNetworkStatus) ToPointer() *ListCommissionsNetworkStatus {
+	return &e
+}
+func (e *ListCommissionsNetworkStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "draft":
+		fallthrough
+	case "submitted":
+		fallthrough
+	case "approved":
+		fallthrough
+	case "rejected":
+		fallthrough
+	case "trusted":
+		fallthrough
+	case "banned":
+		*e = ListCommissionsNetworkStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListCommissionsNetworkStatus: %v", v)
+	}
+}
+
 type ListCommissionsPartner struct {
 	// The partner's unique ID on Dub.
 	ID string `json:"id"`
@@ -510,6 +549,8 @@ type ListCommissionsPartner struct {
 	Image *string `json:"image"`
 	// The date when the partner enabled payouts.
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
+	// The partner's network status on Dub.
+	NetworkStatus ListCommissionsNetworkStatus `json:"networkStatus"`
 	// The partner's country (required for tax purposes).
 	Country *string `json:"country"`
 	// The partner's group ID on Dub.
@@ -549,6 +590,13 @@ func (l *ListCommissionsPartner) GetPayoutsEnabledAt() *string {
 		return nil
 	}
 	return l.PayoutsEnabledAt
+}
+
+func (l *ListCommissionsPartner) GetNetworkStatus() ListCommissionsNetworkStatus {
+	if l == nil {
+		return ListCommissionsNetworkStatus("")
+	}
+	return l.NetworkStatus
 }
 
 func (l *ListCommissionsPartner) GetCountry() *string {

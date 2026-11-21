@@ -69,6 +69,12 @@ type Unauthorized struct {
 var _ error = &Unauthorized{}
 
 func (e *Unauthorized) Error() string {
+	if e != nil {
+		if e.Error_.Message != "" {
+			return e.Error_.Message
+		}
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

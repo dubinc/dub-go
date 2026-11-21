@@ -9,9 +9,12 @@
 * [RetrieveLinks](#retrievelinks) - Retrieve a partner's links.
 * [CreateLink](#createlink) - Create a link for a partner
 * [UpsertLink](#upsertlink) - Upsert a link for a partner
+* [ListNetwork](#listnetwork) - List all partners in the network
 * [Analytics](#analytics) - Retrieve analytics for a partner
 * [Ban](#ban) - Ban a partner
 * [Deactivate](#deactivate) - Deactivate a partner
+* [UpdateTags](#updatetags) - Update the tags of partners
+* [UpdateGroup](#updategroup) - Update the group of partners
 
 ## List
 
@@ -85,7 +88,7 @@ func main() {
 
 ## Create
 
-Creates or updates a partner record (upsert behavior). If a partner with the same email already exists, their program enrollment will be updated with the provided tenantId. If no existing partner is found, a new partner will be created using the supplied information.
+Creates a partner and enrolls them in the program. If that email is already enrolled, the enrollment is returned unchanged, except a different `tenantId` replaces the current one when it is not already associated with another partner in the program.
 
 ### Example Usage
 
@@ -386,6 +389,70 @@ func main() {
 | sdkerrors.InternalServerError | 500                           | application/json              |
 | sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
 
+## ListNetwork
+
+List the partners in the Dub partner network for your program. The partner network must be enabled for the program.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="listNetworkPartners" method="get" path="/partners/network" -->
+```go
+package main
+
+import(
+	"context"
+	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+
+    res, err := s.Partners.ListNetwork(ctx, operations.ListNetworkPartnersRequest{
+        Page: dubgo.Pointer[int64](1),
+        PageSize: dubgo.Pointer[int64](50),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
+| `request`                                                                                      | [operations.ListNetworkPartnersRequest](../../models/operations/listnetworkpartnersrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
+| `opts`                                                                                         | [][operations.Option](../../models/operations/option.md)                                       | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
+
+### Response
+
+**[[]components.NetworkPartner](../../.md), error**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+
 ## Analytics
 
 Retrieve analytics for a partner within a program. The response type vary based on the `groupBy` query parameter.
@@ -562,6 +629,140 @@ func main() {
 ### Response
 
 **[*operations.DeactivatePartnerResponseBody](../../models/operations/deactivatepartnerresponsebody.md), error**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+
+## UpdateTags
+
+Add and remove partner tags on up to 100 partners enrolled in your program. Tags that a partner already has are not added again, and tags a partner does not have are skipped on removal. The call fails without changes if any partner is not enrolled in your program or any tag is not in your program.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="updatePartnerTags" method="post" path="/partners/update-tags" -->
+```go
+package main
+
+import(
+	"context"
+	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+
+    res, err := s.Partners.UpdateTags(ctx, operations.UpdatePartnerTagsRequestBody{
+        PartnerIds: []string{
+            "pn_1JRQ9DY1X0PDS2G0WGZ7EYTXD",
+        },
+        AddTagIds: []string{
+            "ptag_1JRQ9DY1X0PDS2G0WGZ7EYTXD",
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [operations.UpdatePartnerTagsRequestBody](../../models/operations/updatepartnertagsrequestbody.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `opts`                                                                                             | [][operations.Option](../../models/operations/option.md)                                           | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
+
+### Response
+
+**[*operations.UpdatePartnerTagsResponseBody](../../models/operations/updatepartnertagsresponsebody.md), error**
+
+### Errors
+
+| Error Type                    | Status Code                   | Content Type                  |
+| ----------------------------- | ----------------------------- | ----------------------------- |
+| sdkerrors.BadRequest          | 400                           | application/json              |
+| sdkerrors.Unauthorized        | 401                           | application/json              |
+| sdkerrors.Forbidden           | 403                           | application/json              |
+| sdkerrors.NotFound            | 404                           | application/json              |
+| sdkerrors.Conflict            | 409                           | application/json              |
+| sdkerrors.InviteExpired       | 410                           | application/json              |
+| sdkerrors.UnprocessableEntity | 422                           | application/json              |
+| sdkerrors.RateLimitExceeded   | 429                           | application/json              |
+| sdkerrors.InternalServerError | 500                           | application/json              |
+| sdkerrors.SDKError            | 4XX, 5XX                      | \*/\*                         |
+
+## UpdateGroup
+
+Move up to 100 partners enrolled in your program into a group. They get the group's rewards and discount. Partners already in the group are skipped, unless `disableGroupMove` is set, in which case their setting is updated and they're counted. The call fails without changes if any partner is not enrolled in your program.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="updatePartnersGroup" method="post" path="/partners/update-group" -->
+```go
+package main
+
+import(
+	"context"
+	dubgo "github.com/dubinc/dub-go"
+	"github.com/dubinc/dub-go/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := dubgo.New(
+        dubgo.WithSecurity("DUB_API_KEY"),
+    )
+
+    res, err := s.Partners.UpdateGroup(ctx, operations.UpdatePartnersGroupRequestBody{
+        PartnerIds: []string{
+            "pn_1JRQ9DY1X0PDS2G0WGZ7EYTXD",
+        },
+        GroupID: "grp_1JRQ9DY1X0PDS2G0WGZ7EYTXD",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `request`                                                                                              | [operations.UpdatePartnersGroupRequestBody](../../models/operations/updatepartnersgrouprequestbody.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `opts`                                                                                                 | [][operations.Option](../../models/operations/option.md)                                               | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
+
+### Response
+
+**[*operations.UpdatePartnersGroupResponseBody](../../models/operations/updatepartnersgroupresponsebody.md), error**
 
 ### Errors
 
