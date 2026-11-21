@@ -213,6 +213,11 @@ func main() {
 * [UpdateMany](docs/sdks/links/README.md#updatemany) - Bulk update links
 * [Upsert](docs/sdks/links/README.md#upsert) - Upsert a link
 
+### [Messages](docs/sdks/messages/README.md)
+
+* [List](docs/sdks/messages/README.md#list) - List all messages
+* [Create](docs/sdks/messages/README.md#create) - Send a message to a partner
+
 ### [Partners](docs/sdks/partners/README.md)
 
 * [List](docs/sdks/partners/README.md#list) - List all partners
@@ -220,9 +225,12 @@ func main() {
 * [RetrieveLinks](docs/sdks/partners/README.md#retrievelinks) - Retrieve a partner's links.
 * [CreateLink](docs/sdks/partners/README.md#createlink) - Create a link for a partner
 * [UpsertLink](docs/sdks/partners/README.md#upsertlink) - Upsert a link for a partner
+* [ListNetwork](docs/sdks/partners/README.md#listnetwork) - List all partners in the network
 * [Analytics](docs/sdks/partners/README.md#analytics) - Retrieve analytics for a partner
 * [Ban](docs/sdks/partners/README.md#ban) - Ban a partner
 * [Deactivate](docs/sdks/partners/README.md#deactivate) - Deactivate a partner
+* [UpdateTags](docs/sdks/partners/README.md#updatetags) - Update the tags of partners
+* [UpdateGroup](docs/sdks/partners/README.md#updategroup) - Update the group of partners
 
 ### [Payouts](docs/sdks/payouts/README.md)
 

@@ -16,6 +16,7 @@ const (
 	BulkUpdateCommissionsStatusDuplicate BulkUpdateCommissionsStatus = "duplicate"
 	BulkUpdateCommissionsStatusCanceled  BulkUpdateCommissionsStatus = "canceled"
 	BulkUpdateCommissionsStatusFraud     BulkUpdateCommissionsStatus = "fraud"
+	BulkUpdateCommissionsStatusHold      BulkUpdateCommissionsStatus = "hold"
 )
 
 func (e BulkUpdateCommissionsStatus) ToPointer() *BulkUpdateCommissionsStatus {
@@ -36,6 +37,8 @@ func (e *BulkUpdateCommissionsStatus) UnmarshalJSON(data []byte) error {
 	case "canceled":
 		fallthrough
 	case "fraud":
+		fallthrough
+	case "hold":
 		*e = BulkUpdateCommissionsStatus(v)
 		return nil
 	default:

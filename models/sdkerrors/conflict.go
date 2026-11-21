@@ -69,6 +69,12 @@ type Conflict struct {
 var _ error = &Conflict{}
 
 func (e *Conflict) Error() string {
+	if e != nil {
+		if e.Error_.Message != "" {
+			return e.Error_.Message
+		}
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

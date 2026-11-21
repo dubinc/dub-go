@@ -22,3 +22,4 @@ value := operations.ListProgramApplicationsNetworkStatusDraft
 | `ListProgramApplicationsNetworkStatusApproved`  | approved                                        |
 | `ListProgramApplicationsNetworkStatusRejected`  | rejected                                        |
 | `ListProgramApplicationsNetworkStatusTrusted`   | trusted                                         |
+| `ListProgramApplicationsNetworkStatusBanned`    | banned                                          |
