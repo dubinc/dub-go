@@ -24,6 +24,20 @@ const (
 func (e UpdateTagColor) ToPointer() *UpdateTagColor {
 	return &e
 }
+
+// UpdateTagColorValues returns every known UpdateTagColor value in schema order.
+func UpdateTagColorValues() []UpdateTagColor {
+	return []UpdateTagColor{
+		UpdateTagColorRed,
+		UpdateTagColorYellow,
+		UpdateTagColorGreen,
+		UpdateTagColorBlue,
+		UpdateTagColorPurple,
+		UpdateTagColorBrown,
+		UpdateTagColorGray,
+		UpdateTagColorPink,
+	}
+}
 func (e *UpdateTagColor) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

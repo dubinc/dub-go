@@ -8,7 +8,7 @@ import (
 	"github.com/dubinc/dub-go/internal/utils"
 )
 
-// Status - Useful for marking a commission as pending, refunded, duplicate, canceled, or fraudulent. Takes precedence over `saleAmount` and `modifySaleAmount`. When a commission is marked as pending, refunded, duplicate, canceled, or fraudulent, it will be omitted from the payout, and the payout amount will be recalculated accordingly. Paid commissions cannot be updated.
+// Status - Useful for marking a commission as pending, refunded, duplicate, canceled, fraudulent, or on hold. Takes precedence over `saleAmount` and `modifySaleAmount`. When a commission is marked as pending, refunded, duplicate, canceled, fraudulent, or on hold, it will be omitted from the payout, and the payout amount will be recalculated accordingly. To release a commission on hold, mark it as pending. Marking a commission as on hold is only available on Advanced and Enterprise plans. Paid commissions cannot be updated.
 type Status string
 
 const (
@@ -17,10 +17,23 @@ const (
 	StatusDuplicate Status = "duplicate"
 	StatusCanceled  Status = "canceled"
 	StatusFraud     Status = "fraud"
+	StatusHold      Status = "hold"
 )
 
 func (e Status) ToPointer() *Status {
 	return &e
+}
+
+// StatusValues returns every known Status value in schema order.
+func StatusValues() []Status {
+	return []Status{
+		StatusPending,
+		StatusRefunded,
+		StatusDuplicate,
+		StatusCanceled,
+		StatusFraud,
+		StatusHold,
+	}
 }
 func (e *Status) UnmarshalJSON(data []byte) error {
 	var v string
@@ -37,6 +50,8 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 	case "canceled":
 		fallthrough
 	case "fraud":
+		fallthrough
+	case "hold":
 		*e = Status(v)
 		return nil
 	default:
@@ -53,7 +68,7 @@ type UpdateCommissionRequestBody struct {
 	ModifySaleAmount *float64 `json:"modifySaleAmount,omitempty"`
 	// The currency of the sale amount to update. Accepts ISO 4217 currency codes.
 	Currency *string `default:"usd" json:"currency"`
-	// Useful for marking a commission as pending, refunded, duplicate, canceled, or fraudulent. Takes precedence over `saleAmount` and `modifySaleAmount`. When a commission is marked as pending, refunded, duplicate, canceled, or fraudulent, it will be omitted from the payout, and the payout amount will be recalculated accordingly. Paid commissions cannot be updated.
+	// Useful for marking a commission as pending, refunded, duplicate, canceled, fraudulent, or on hold. Takes precedence over `saleAmount` and `modifySaleAmount`. When a commission is marked as pending, refunded, duplicate, canceled, fraudulent, or on hold, it will be omitted from the payout, and the payout amount will be recalculated accordingly. To release a commission on hold, mark it as pending. Marking a commission as on hold is only available on Advanced and Enterprise plans. Paid commissions cannot be updated.
 	Status *Status `json:"status,omitempty"`
 	// Deprecated. Use `saleAmount` instead.
 	//
@@ -159,6 +174,17 @@ const (
 func (e UpdateCommissionType) ToPointer() *UpdateCommissionType {
 	return &e
 }
+
+// UpdateCommissionTypeValues returns every known UpdateCommissionType value in schema order.
+func UpdateCommissionTypeValues() []UpdateCommissionType {
+	return []UpdateCommissionType{
+		UpdateCommissionTypeClick,
+		UpdateCommissionTypeLead,
+		UpdateCommissionTypeSale,
+		UpdateCommissionTypeReferral,
+		UpdateCommissionTypeCustom,
+	}
+}
 func (e *UpdateCommissionType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -198,6 +224,20 @@ const (
 func (e UpdateCommissionStatus) ToPointer() *UpdateCommissionStatus {
 	return &e
 }
+
+// UpdateCommissionStatusValues returns every known UpdateCommissionStatus value in schema order.
+func UpdateCommissionStatusValues() []UpdateCommissionStatus {
+	return []UpdateCommissionStatus{
+		UpdateCommissionStatusPending,
+		UpdateCommissionStatusProcessed,
+		UpdateCommissionStatusPaid,
+		UpdateCommissionStatusRefunded,
+		UpdateCommissionStatusDuplicate,
+		UpdateCommissionStatusFraud,
+		UpdateCommissionStatusCanceled,
+		UpdateCommissionStatusHold,
+	}
+}
 func (e *UpdateCommissionStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -226,6 +266,57 @@ func (e *UpdateCommissionStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// UpdateCommissionNetworkStatus - The partner's network status on Dub.
+type UpdateCommissionNetworkStatus string
+
+const (
+	UpdateCommissionNetworkStatusDraft     UpdateCommissionNetworkStatus = "draft"
+	UpdateCommissionNetworkStatusSubmitted UpdateCommissionNetworkStatus = "submitted"
+	UpdateCommissionNetworkStatusApproved  UpdateCommissionNetworkStatus = "approved"
+	UpdateCommissionNetworkStatusRejected  UpdateCommissionNetworkStatus = "rejected"
+	UpdateCommissionNetworkStatusTrusted   UpdateCommissionNetworkStatus = "trusted"
+	UpdateCommissionNetworkStatusBanned    UpdateCommissionNetworkStatus = "banned"
+)
+
+func (e UpdateCommissionNetworkStatus) ToPointer() *UpdateCommissionNetworkStatus {
+	return &e
+}
+
+// UpdateCommissionNetworkStatusValues returns every known UpdateCommissionNetworkStatus value in schema order.
+func UpdateCommissionNetworkStatusValues() []UpdateCommissionNetworkStatus {
+	return []UpdateCommissionNetworkStatus{
+		UpdateCommissionNetworkStatusDraft,
+		UpdateCommissionNetworkStatusSubmitted,
+		UpdateCommissionNetworkStatusApproved,
+		UpdateCommissionNetworkStatusRejected,
+		UpdateCommissionNetworkStatusTrusted,
+		UpdateCommissionNetworkStatusBanned,
+	}
+}
+func (e *UpdateCommissionNetworkStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "draft":
+		fallthrough
+	case "submitted":
+		fallthrough
+	case "approved":
+		fallthrough
+	case "rejected":
+		fallthrough
+	case "trusted":
+		fallthrough
+	case "banned":
+		*e = UpdateCommissionNetworkStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UpdateCommissionNetworkStatus: %v", v)
+	}
+}
+
 type UpdateCommissionPartner struct {
 	// The partner's unique ID on Dub.
 	ID string `json:"id"`
@@ -237,6 +328,8 @@ type UpdateCommissionPartner struct {
 	Image *string `json:"image"`
 	// The date when the partner enabled payouts.
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
+	// The partner's network status on Dub.
+	NetworkStatus UpdateCommissionNetworkStatus `json:"networkStatus"`
 	// The partner's country (required for tax purposes).
 	Country *string `json:"country"`
 	// The partner's group ID on Dub.
@@ -276,6 +369,13 @@ func (u *UpdateCommissionPartner) GetPayoutsEnabledAt() *string {
 		return nil
 	}
 	return u.PayoutsEnabledAt
+}
+
+func (u *UpdateCommissionPartner) GetNetworkStatus() UpdateCommissionNetworkStatus {
+	if u == nil {
+		return UpdateCommissionNetworkStatus("")
+	}
+	return u.NetworkStatus
 }
 
 func (u *UpdateCommissionPartner) GetCountry() *string {

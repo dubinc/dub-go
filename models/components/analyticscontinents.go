@@ -24,6 +24,19 @@ const (
 func (e Continent) ToPointer() *Continent {
 	return &e
 }
+
+// ContinentValues returns every known Continent value in schema order.
+func ContinentValues() []Continent {
+	return []Continent{
+		ContinentAf,
+		ContinentAn,
+		ContinentAs,
+		ContinentEu,
+		ContinentNa,
+		ContinentOc,
+		ContinentSa,
+	}
+}
 func (e *Continent) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

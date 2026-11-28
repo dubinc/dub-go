@@ -17,6 +17,13 @@ const (
 func (e LeadCreatedEventEvent) ToPointer() *LeadCreatedEventEvent {
 	return &e
 }
+
+// LeadCreatedEventEventValues returns every known LeadCreatedEventEvent value in schema order.
+func LeadCreatedEventEventValues() []LeadCreatedEventEvent {
+	return []LeadCreatedEventEvent{
+		LeadCreatedEventEventLeadCreated,
+	}
+}
 func (e *LeadCreatedEventEvent) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

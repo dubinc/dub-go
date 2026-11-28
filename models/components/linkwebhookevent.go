@@ -18,6 +18,13 @@ const (
 func (e Three) ToPointer() *Three {
 	return &e
 }
+
+// ThreeValues returns every known Three value in schema order.
+func ThreeValues() []Three {
+	return []Three{
+		ThreeLinkDeleted,
+	}
+}
 func (e *Three) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -41,6 +48,13 @@ const (
 func (e Two) ToPointer() *Two {
 	return &e
 }
+
+// TwoValues returns every known Two value in schema order.
+func TwoValues() []Two {
+	return []Two{
+		TwoLinkUpdated,
+	}
+}
 func (e *Two) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -63,6 +77,13 @@ const (
 
 func (e One) ToPointer() *One {
 	return &e
+}
+
+// OneValues returns every known One value in schema order.
+func OneValues() []One {
+	return []One{
+		OneLinkCreated,
+	}
 }
 func (e *One) UnmarshalJSON(data []byte) error {
 	var v string

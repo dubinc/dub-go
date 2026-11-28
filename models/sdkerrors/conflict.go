@@ -17,6 +17,13 @@ const (
 func (e ConflictCode) ToPointer() *ConflictCode {
 	return &e
 }
+
+// ConflictCodeValues returns every known ConflictCode value in schema order.
+func ConflictCodeValues() []ConflictCode {
+	return []ConflictCode{
+		ConflictCodeConflict,
+	}
+}
 func (e *ConflictCode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -69,6 +76,12 @@ type Conflict struct {
 var _ error = &Conflict{}
 
 func (e *Conflict) Error() string {
+	if e != nil {
+		if e.Error_.Message != "" {
+			return e.Error_.Message
+		}
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

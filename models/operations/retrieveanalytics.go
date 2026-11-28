@@ -23,6 +23,16 @@ const (
 func (e Event) ToPointer() *Event {
 	return &e
 }
+
+// EventValues returns every known Event value in schema order.
+func EventValues() []Event {
+	return []Event{
+		EventClicks,
+		EventLeads,
+		EventSales,
+		EventComposite,
+	}
+}
 func (e *Event) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -79,6 +89,40 @@ const (
 
 func (e QueryParamGroupBy) ToPointer() *QueryParamGroupBy {
 	return &e
+}
+
+// QueryParamGroupByValues returns every known QueryParamGroupBy value in schema order.
+func QueryParamGroupByValues() []QueryParamGroupBy {
+	return []QueryParamGroupBy{
+		QueryParamGroupByCount,
+		QueryParamGroupByTimeseries,
+		QueryParamGroupByContinents,
+		QueryParamGroupByRegions,
+		QueryParamGroupByCountries,
+		QueryParamGroupByCities,
+		QueryParamGroupByDevices,
+		QueryParamGroupByBrowsers,
+		QueryParamGroupByOs,
+		QueryParamGroupByTrigger,
+		QueryParamGroupByTriggers,
+		QueryParamGroupByEventNames,
+		QueryParamGroupByReferers,
+		QueryParamGroupByRefererUrls,
+		QueryParamGroupByTopFolders,
+		QueryParamGroupByTopLinkTags,
+		QueryParamGroupByTopDomains,
+		QueryParamGroupByTopLinks,
+		QueryParamGroupByTopUrls,
+		QueryParamGroupByTopBaseUrls,
+		QueryParamGroupByTopPartners,
+		QueryParamGroupByTopGroups,
+		QueryParamGroupByTopPartnerTags,
+		QueryParamGroupByUtmSources,
+		QueryParamGroupByUtmMediums,
+		QueryParamGroupByUtmCampaigns,
+		QueryParamGroupByUtmTerms,
+		QueryParamGroupByUtmContents,
+	}
 }
 func (e *QueryParamGroupBy) UnmarshalJSON(data []byte) error {
 	var v string
@@ -166,6 +210,21 @@ const (
 func (e Interval) ToPointer() *Interval {
 	return &e
 }
+
+// IntervalValues returns every known Interval value in schema order.
+func IntervalValues() []Interval {
+	return []Interval{
+		IntervalTwentyFourh,
+		IntervalSevend,
+		IntervalThirtyd,
+		IntervalNinetyd,
+		IntervalOney,
+		IntervalMtd,
+		IntervalQtd,
+		IntervalYtd,
+		IntervalAll,
+	}
+}
 func (e *Interval) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -206,6 +265,14 @@ const (
 
 func (e SaleType) ToPointer() *SaleType {
 	return &e
+}
+
+// SaleTypeValues returns every known SaleType value in schema order.
+func SaleTypeValues() []SaleType {
+	return []SaleType{
+		SaleTypeNew,
+		SaleTypeRecurring,
+	}
 }
 func (e *SaleType) UnmarshalJSON(data []byte) error {
 	var v string
@@ -274,7 +341,7 @@ type RetrieveAnalyticsRequest struct {
 	Os *string `queryParam:"style=form,explode=true,name=os"`
 	// The trigger to retrieve analytics for. Valid values: qr, link, pageview. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `qr`, `qr,link`, `-qr`. If undefined, returns all trigger types.
 	Trigger *string `queryParam:"style=form,explode=true,name=trigger"`
-	// The conversion event name to retrieve analytics for. Only available for lead and sale events. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `Sign up`, `Sign up,Purchase`, `-Sign up`.
+	// The conversion event name to retrieve analytics for. Only available for lead and sale events. Supports advanced filtering: single value, multiple values (comma-separated), exclusion (prefix with `-`), or case-insensitive substring match (prefix with `~`, combine with `-` to exclude). Examples: `Sign up`, `Sign up,Purchase`, `-Sign up`, `~deposit`, `-~test`.
 	EventName *string `queryParam:"style=form,explode=true,name=eventName"`
 	// The referer hostname to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `google.com`, `google.com,twitter.com`, `-facebook.com`.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`

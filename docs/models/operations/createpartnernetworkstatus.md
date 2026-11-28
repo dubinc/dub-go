@@ -22,3 +22,4 @@ value := operations.CreatePartnerNetworkStatusDraft
 | `CreatePartnerNetworkStatusApproved`  | approved                              |
 | `CreatePartnerNetworkStatusRejected`  | rejected                              |
 | `CreatePartnerNetworkStatusTrusted`   | trusted                               |
+| `CreatePartnerNetworkStatusBanned`    | banned                                |

@@ -92,6 +92,17 @@ const (
 func (e ApproveBountySubmissionStatus) ToPointer() *ApproveBountySubmissionStatus {
 	return &e
 }
+
+// ApproveBountySubmissionStatusValues returns every known ApproveBountySubmissionStatus value in schema order.
+func ApproveBountySubmissionStatusValues() []ApproveBountySubmissionStatus {
+	return []ApproveBountySubmissionStatus{
+		ApproveBountySubmissionStatusDraft,
+		ApproveBountySubmissionStatusSubmitted,
+		ApproveBountySubmissionStatusApproved,
+		ApproveBountySubmissionStatusRejected,
+		ApproveBountySubmissionStatusPartiallyApproved,
+	}
+}
 func (e *ApproveBountySubmissionStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

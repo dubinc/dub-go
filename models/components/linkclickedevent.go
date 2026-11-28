@@ -17,6 +17,13 @@ const (
 func (e LinkClickedEventEvent) ToPointer() *LinkClickedEventEvent {
 	return &e
 }
+
+// LinkClickedEventEventValues returns every known LinkClickedEventEvent value in schema order.
+func LinkClickedEventEventValues() []LinkClickedEventEvent {
+	return []LinkClickedEventEvent{
+		LinkClickedEventEventLinkClicked,
+	}
+}
 func (e *LinkClickedEventEvent) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

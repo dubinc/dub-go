@@ -7,10 +7,12 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"math/big"
 	"reflect"
 	"strconv"
 	"strings"
+	"sync/atomic"
 	"time"
 	"unsafe"
 
@@ -143,6 +145,39 @@ func MarshalJSON(v interface{}, tag reflect.StructTag, topLevel bool) ([]byte, e
 	}
 }
 
+var preservedNumbers atomic.Int32
+
+// PreserveJSONNumbers makes UnmarshalJSON decode numbers held by untyped
+// values (interface{} fields, maps and slices) as json.Number instead of
+// float64 until the returned function is called. The setting is process-wide.
+func PreserveJSONNumbers() (restore func()) {
+	preservedNumbers.Add(1)
+	var released atomic.Bool
+	return func() {
+		if released.CompareAndSwap(false, true) {
+			preservedNumbers.Add(-1)
+		}
+	}
+}
+
+func decodeJSON(b []byte, v interface{}) error {
+	if preservedNumbers.Load() == 0 {
+		return json.Unmarshal(b, v)
+	}
+	dec := json.NewDecoder(bytes.NewReader(b))
+	dec.UseNumber()
+	if err := dec.Decode(v); err != nil {
+		return err
+	}
+	if _, err := dec.Token(); err != io.EOF {
+		if err == nil {
+			err = errors.New("invalid character after top-level value")
+		}
+		return err
+	}
+	return nil
+}
+
 func UnmarshalJSON(b []byte, v interface{}, tag reflect.StructTag, topLevel bool, requiredFields []string) error {
 	if reflect.TypeOf(v).Kind() != reflect.Ptr {
 		return errors.New("v must be a pointer")
@@ -158,7 +193,7 @@ func UnmarshalJSON(b []byte, v interface{}, tag reflect.StructTag, topLevel bool
 		// When topLevel=true, only use json.Unmarshal if the type has a custom UnmarshalJSON
 		// to ensure nested structs with custom tags (like integer:"string") are handled correctly
 		if topLevel && implementsJSONUnmarshaler(reflect.TypeOf(v)) {
-			return json.Unmarshal(b, v)
+			return decodeJSON(b, v)
 		}
 
 		var unmarshaled map[string]json.RawMessage
@@ -204,6 +239,10 @@ func UnmarshalJSON(b []byte, v interface{}, tag reflect.StructTag, topLevel bool
 			// If we receive a value for a const field ignore it but mark it as unmarshaled
 			if field.Tag.Get("const") != "" {
 				if r, ok := unmarshaled[fieldName]; ok {
+					if isContainerKind(field.Type) && bytes.Equal(bytes.TrimSpace(r), []byte("null")) {
+						delete(unmarshaled, fieldName)
+						continue
+					}
 					val := string(r)
 
 					if strings.HasPrefix(val, `"`) && strings.HasSuffix(val, `"`) {
@@ -214,7 +253,11 @@ func UnmarshalJSON(b []byte, v interface{}, tag reflect.StructTag, topLevel bool
 						}
 					}
 					constValue := field.Tag.Get("const")
-					if val != constValue {
+					matches := val == constValue
+					if isContainerKind(field.Type) {
+						matches = constJSONValuesEqual(r, constValue)
+					}
+					if !matches {
 						return fmt.Errorf("const field `%s` does not match expected value `%s` got `%s`", fieldName, constValue, val)
 					}
 
@@ -433,6 +476,79 @@ func implementsJSONMarshaler(v interface{}) bool {
 	return reflect.PtrTo(vType).Implements(marshalerType)
 }
 
+func isContainerKind(typ reflect.Type) bool {
+	typ = dereferenceTypePointer(typ)
+	if optionalnullable.IsOptionalNullableType(typ) {
+		typ = dereferenceTypePointer(typ.Elem())
+	}
+	switch typ.Kind() {
+	case reflect.Slice, reflect.Map:
+		return true
+	default:
+		return false
+	}
+}
+
+func constJSONValuesEqual(received json.RawMessage, constValue string) bool {
+	got, err := decodeJSONWithNumbers(received)
+	if err != nil {
+		return false
+	}
+	want, err := decodeJSONWithNumbers([]byte(constValue))
+	if err != nil {
+		return false
+	}
+	return jsonValuesEqual(got, want)
+}
+
+func decodeJSONWithNumbers(data []byte) (interface{}, error) {
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.UseNumber()
+	var value interface{}
+	if err := decoder.Decode(&value); err != nil {
+		return nil, err
+	}
+	return value, nil
+}
+
+func jsonValuesEqual(a, b interface{}) bool {
+	switch av := a.(type) {
+	case json.Number:
+		bv, ok := b.(json.Number)
+		if !ok {
+			return false
+		}
+		ar, aok := new(big.Rat).SetString(av.String())
+		br, bok := new(big.Rat).SetString(bv.String())
+		return aok && bok && ar.Cmp(br) == 0
+	case map[string]interface{}:
+		bv, ok := b.(map[string]interface{})
+		if !ok || len(av) != len(bv) {
+			return false
+		}
+		for key, value := range av {
+			other, ok := bv[key]
+			if !ok || !jsonValuesEqual(value, other) {
+				return false
+			}
+		}
+		return true
+	case []interface{}:
+		bv, ok := b.([]interface{})
+		if !ok || len(av) != len(bv) {
+			return false
+		}
+		for i := range av {
+			if !jsonValuesEqual(av[i], bv[i]) {
+				return false
+			}
+		}
+		return true
+	default:
+		return reflect.DeepEqual(a, b)
+	}
+}
+
 func handleDefaultConstValue(tagValue string, val interface{}, tag reflect.StructTag) json.RawMessage {
 	if tagValue == "null" {
 		return []byte("null")
@@ -558,16 +674,16 @@ func unmarshalValue(value json.RawMessage, v reflect.Value, tag reflect.StructTa
 
 		if implementsJSONUnmarshaler(v.Type()) {
 			if v.CanAddr() {
-				return json.Unmarshal(value, v.Addr().Interface())
+				return decodeJSON(value, v.Addr().Interface())
 			}
-			return json.Unmarshal(value, v.Interface())
+			return decodeJSON(value, v.Interface())
 		}
 
 		if bytes.Equal(value, []byte("null")) || !isComplexValueType(dereferenceTypePointer(typ.Elem())) {
 			if v.CanAddr() {
-				return json.Unmarshal(value, v.Addr().Interface())
+				return decodeJSON(value, v.Addr().Interface())
 			} else {
-				return json.Unmarshal(value, v.Interface())
+				return decodeJSON(value, v.Interface())
 			}
 		}
 
@@ -739,7 +855,7 @@ func unmarshalValue(value json.RawMessage, v reflect.Value, tag reflect.StructTa
 		val = v.Interface()
 	}
 
-	return json.Unmarshal(value, val)
+	return decodeJSON(value, val)
 }
 
 func implementsJSONUnmarshaler(typ reflect.Type) bool {

@@ -17,6 +17,13 @@ const (
 func (e InternalServerErrorCode) ToPointer() *InternalServerErrorCode {
 	return &e
 }
+
+// InternalServerErrorCodeValues returns every known InternalServerErrorCode value in schema order.
+func InternalServerErrorCodeValues() []InternalServerErrorCode {
+	return []InternalServerErrorCode{
+		InternalServerErrorCodeInternalServerError,
+	}
+}
 func (e *InternalServerErrorCode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -69,6 +76,12 @@ type InternalServerError struct {
 var _ error = &InternalServerError{}
 
 func (e *InternalServerError) Error() string {
+	if e != nil {
+		if e.Error_.Message != "" {
+			return e.Error_.Message
+		}
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

@@ -22,6 +22,15 @@ const (
 func (e QueryParamEvent) ToPointer() *QueryParamEvent {
 	return &e
 }
+
+// QueryParamEventValues returns every known QueryParamEvent value in schema order.
+func QueryParamEventValues() []QueryParamEvent {
+	return []QueryParamEvent{
+		QueryParamEventClicks,
+		QueryParamEventLeads,
+		QueryParamEventSales,
+	}
+}
 func (e *QueryParamEvent) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -57,6 +66,21 @@ const (
 
 func (e QueryParamInterval) ToPointer() *QueryParamInterval {
 	return &e
+}
+
+// QueryParamIntervalValues returns every known QueryParamInterval value in schema order.
+func QueryParamIntervalValues() []QueryParamInterval {
+	return []QueryParamInterval{
+		QueryParamIntervalTwentyFourh,
+		QueryParamIntervalSevend,
+		QueryParamIntervalThirtyd,
+		QueryParamIntervalNinetyd,
+		QueryParamIntervalOney,
+		QueryParamIntervalMtd,
+		QueryParamIntervalQtd,
+		QueryParamIntervalYtd,
+		QueryParamIntervalAll,
+	}
 }
 func (e *QueryParamInterval) UnmarshalJSON(data []byte) error {
 	var v string
@@ -99,6 +123,14 @@ const (
 func (e QueryParamSaleType) ToPointer() *QueryParamSaleType {
 	return &e
 }
+
+// QueryParamSaleTypeValues returns every known QueryParamSaleType value in schema order.
+func QueryParamSaleTypeValues() []QueryParamSaleType {
+	return []QueryParamSaleType{
+		QueryParamSaleTypeNew,
+		QueryParamSaleTypeRecurring,
+	}
+}
 func (e *QueryParamSaleType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -126,6 +158,14 @@ const (
 func (e SortOrder) ToPointer() *SortOrder {
 	return &e
 }
+
+// SortOrderValues returns every known SortOrder value in schema order.
+func SortOrderValues() []SortOrder {
+	return []SortOrder{
+		SortOrderAsc,
+		SortOrderDesc,
+	}
+}
 func (e *SortOrder) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -151,6 +191,13 @@ const (
 
 func (e SortBy) ToPointer() *SortBy {
 	return &e
+}
+
+// SortByValues returns every known SortBy value in schema order.
+func SortByValues() []SortBy {
+	return []SortBy{
+		SortByTimestamp,
+	}
 }
 func (e *SortBy) UnmarshalJSON(data []byte) error {
 	var v string
@@ -178,6 +225,14 @@ const (
 
 func (e Order) ToPointer() *Order {
 	return &e
+}
+
+// OrderValues returns every known Order value in schema order.
+func OrderValues() []Order {
+	return []Order{
+		OrderAsc,
+		OrderDesc,
+	}
 }
 func (e *Order) UnmarshalJSON(data []byte) error {
 	var v string
@@ -244,7 +299,7 @@ type ListEventsRequest struct {
 	Os *string `queryParam:"style=form,explode=true,name=os"`
 	// The trigger to retrieve analytics for. Valid values: qr, link, pageview. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `qr`, `qr,link`, `-qr`. If undefined, returns all trigger types.
 	Trigger *string `queryParam:"style=form,explode=true,name=trigger"`
-	// The conversion event name to retrieve analytics for. Only available for lead and sale events. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `Sign up`, `Sign up,Purchase`, `-Sign up`.
+	// The conversion event name to retrieve analytics for. Only available for lead and sale events. Supports advanced filtering: single value, multiple values (comma-separated), exclusion (prefix with `-`), or case-insensitive substring match (prefix with `~`, combine with `-` to exclude). Examples: `Sign up`, `Sign up,Purchase`, `-Sign up`, `~deposit`, `-~test`.
 	EventName *string `queryParam:"style=form,explode=true,name=eventName"`
 	// The referer hostname to retrieve analytics for. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `google.com`, `google.com,twitter.com`, `-facebook.com`.
 	Referer *string `queryParam:"style=form,explode=true,name=referer"`
@@ -613,6 +668,13 @@ const (
 func (e ListEventsResponseBodyEventsEvent) ToPointer() *ListEventsResponseBodyEventsEvent {
 	return &e
 }
+
+// ListEventsResponseBodyEventsEventValues returns every known ListEventsResponseBodyEventsEvent value in schema order.
+func ListEventsResponseBodyEventsEventValues() []ListEventsResponseBodyEventsEvent {
+	return []ListEventsResponseBodyEventsEvent{
+		ListEventsResponseBodyEventsEventSale,
+	}
+}
 func (e *ListEventsResponseBodyEventsEvent) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -644,6 +706,21 @@ const (
 
 func (e ResponseBodyPaymentProcessor) ToPointer() *ResponseBodyPaymentProcessor {
 	return &e
+}
+
+// ResponseBodyPaymentProcessorValues returns every known ResponseBodyPaymentProcessor value in schema order.
+func ResponseBodyPaymentProcessorValues() []ResponseBodyPaymentProcessor {
+	return []ResponseBodyPaymentProcessor{
+		ResponseBodyPaymentProcessorStripe,
+		ResponseBodyPaymentProcessorShopify,
+		ResponseBodyPaymentProcessorPolar,
+		ResponseBodyPaymentProcessorPaddle,
+		ResponseBodyPaymentProcessorApple,
+		ResponseBodyPaymentProcessorRevenuecat,
+		ResponseBodyPaymentProcessorLemonsqueezy,
+		ResponseBodyPaymentProcessorDub,
+		ResponseBodyPaymentProcessorCustom,
+	}
 }
 func (e *ResponseBodyPaymentProcessor) UnmarshalJSON(data []byte) error {
 	var v string
@@ -1753,6 +1830,13 @@ const (
 func (e ListEventsResponseBodyEvent) ToPointer() *ListEventsResponseBodyEvent {
 	return &e
 }
+
+// ListEventsResponseBodyEventValues returns every known ListEventsResponseBodyEvent value in schema order.
+func ListEventsResponseBodyEventValues() []ListEventsResponseBodyEvent {
+	return []ListEventsResponseBodyEvent{
+		ListEventsResponseBodyEventLead,
+	}
+}
 func (e *ListEventsResponseBodyEvent) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -2753,6 +2837,13 @@ const (
 
 func (e ResponseBodyEvent) ToPointer() *ResponseBodyEvent {
 	return &e
+}
+
+// ResponseBodyEventValues returns every known ResponseBodyEvent value in schema order.
+func ResponseBodyEventValues() []ResponseBodyEvent {
+	return []ResponseBodyEvent{
+		ResponseBodyEventClick,
+	}
 }
 func (e *ResponseBodyEvent) UnmarshalJSON(data []byte) error {
 	var v string

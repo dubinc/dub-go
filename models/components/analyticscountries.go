@@ -17,6 +17,13 @@ const (
 func (e Region) ToPointer() *Region {
 	return &e
 }
+
+// RegionValues returns every known Region value in schema order.
+func RegionValues() []Region {
+	return []Region{
+		RegionWildcard,
+	}
+}
 func (e *Region) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -39,6 +46,13 @@ const (
 
 func (e City) ToPointer() *City {
 	return &e
+}
+
+// CityValues returns every known City value in schema order.
+func CityValues() []City {
+	return []City{
+		CityWildcard,
+	}
 }
 func (e *City) UnmarshalJSON(data []byte) error {
 	var v string

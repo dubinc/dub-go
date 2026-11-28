@@ -21,6 +21,16 @@ const (
 func (e GetCustomersQueryParamSortBy) ToPointer() *GetCustomersQueryParamSortBy {
 	return &e
 }
+
+// GetCustomersQueryParamSortByValues returns every known GetCustomersQueryParamSortBy value in schema order.
+func GetCustomersQueryParamSortByValues() []GetCustomersQueryParamSortBy {
+	return []GetCustomersQueryParamSortBy{
+		GetCustomersQueryParamSortByCreatedAt,
+		GetCustomersQueryParamSortBySaleAmount,
+		GetCustomersQueryParamSortByFirstSaleAt,
+		GetCustomersQueryParamSortBySubscriptionCanceledAt,
+	}
+}
 func (e *GetCustomersQueryParamSortBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -52,6 +62,14 @@ const (
 func (e GetCustomersQueryParamSortOrder) ToPointer() *GetCustomersQueryParamSortOrder {
 	return &e
 }
+
+// GetCustomersQueryParamSortOrderValues returns every known GetCustomersQueryParamSortOrder value in schema order.
+func GetCustomersQueryParamSortOrderValues() []GetCustomersQueryParamSortOrder {
+	return []GetCustomersQueryParamSortOrder{
+		GetCustomersQueryParamSortOrderAsc,
+		GetCustomersQueryParamSortOrderDesc,
+	}
+}
 func (e *GetCustomersQueryParamSortOrder) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -73,7 +91,7 @@ type GetCustomersRequest struct {
 	Email *string `queryParam:"style=form,explode=true,name=email"`
 	// A case-sensitive filter on the list based on the customer's `externalId` field. The value must be a string. Takes precedence over `search`.
 	ExternalID *string `queryParam:"style=form,explode=true,name=externalId"`
-	// A search query to filter customers by email, name, or customer ID (`cus_...`). If `email` or `externalId` is provided, this will be ignored.
+	// A search query to filter customers by email, name, external ID, or customer ID. A query that equals a customer's `externalId` returns only that customer. Queries starting with `cus_` exact-match the customer's Dub ID or Stripe customer ID. If `email` or `externalId` is provided, this will be ignored.
 	Search *string `queryParam:"style=form,explode=true,name=search"`
 	// A filter on the list based on the customer's `country` field.
 	Country *string `queryParam:"style=form,explode=true,name=country"`
@@ -313,6 +331,14 @@ const (
 
 func (e GetCustomersType) ToPointer() *GetCustomersType {
 	return &e
+}
+
+// GetCustomersTypeValues returns every known GetCustomersType value in schema order.
+func GetCustomersTypeValues() []GetCustomersType {
+	return []GetCustomersType{
+		GetCustomersTypePercentage,
+		GetCustomersTypeFlat,
+	}
 }
 func (e *GetCustomersType) UnmarshalJSON(data []byte) error {
 	var v string

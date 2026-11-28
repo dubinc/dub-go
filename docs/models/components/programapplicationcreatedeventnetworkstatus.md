@@ -22,3 +22,4 @@ value := components.ProgramApplicationCreatedEventNetworkStatusDraft
 | `ProgramApplicationCreatedEventNetworkStatusApproved`  | approved                                               |
 | `ProgramApplicationCreatedEventNetworkStatusRejected`  | rejected                                               |
 | `ProgramApplicationCreatedEventNetworkStatusTrusted`   | trusted                                                |
+| `ProgramApplicationCreatedEventNetworkStatusBanned`    | banned                                                 |

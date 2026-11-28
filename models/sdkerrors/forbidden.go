@@ -17,6 +17,13 @@ const (
 func (e ForbiddenCode) ToPointer() *ForbiddenCode {
 	return &e
 }
+
+// ForbiddenCodeValues returns every known ForbiddenCode value in schema order.
+func ForbiddenCodeValues() []ForbiddenCode {
+	return []ForbiddenCode{
+		ForbiddenCodeForbidden,
+	}
+}
 func (e *ForbiddenCode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -69,6 +76,12 @@ type Forbidden struct {
 var _ error = &Forbidden{}
 
 func (e *Forbidden) Error() string {
+	if e != nil {
+		if e.Error_.Message != "" {
+			return e.Error_.Message
+		}
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

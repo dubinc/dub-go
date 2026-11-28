@@ -26,6 +26,17 @@ const (
 func (e Type) ToPointer() *Type {
 	return &e
 }
+
+// TypeValues returns every known Type value in schema order.
+func TypeValues() []Type {
+	return []Type{
+		TypeClick,
+		TypeLead,
+		TypeSale,
+		TypeReferral,
+		TypeCustom,
+	}
+}
 func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -64,6 +75,20 @@ const (
 
 func (e ListCommissionsQueryParamStatus) ToPointer() *ListCommissionsQueryParamStatus {
 	return &e
+}
+
+// ListCommissionsQueryParamStatusValues returns every known ListCommissionsQueryParamStatus value in schema order.
+func ListCommissionsQueryParamStatusValues() []ListCommissionsQueryParamStatus {
+	return []ListCommissionsQueryParamStatus{
+		ListCommissionsQueryParamStatusPending,
+		ListCommissionsQueryParamStatusProcessed,
+		ListCommissionsQueryParamStatusPaid,
+		ListCommissionsQueryParamStatusRefunded,
+		ListCommissionsQueryParamStatusDuplicate,
+		ListCommissionsQueryParamStatusFraud,
+		ListCommissionsQueryParamStatusCanceled,
+		ListCommissionsQueryParamStatusHold,
+	}
 }
 func (e *ListCommissionsQueryParamStatus) UnmarshalJSON(data []byte) error {
 	var v string
@@ -104,6 +129,14 @@ const (
 func (e ListCommissionsQueryParamSortBy) ToPointer() *ListCommissionsQueryParamSortBy {
 	return &e
 }
+
+// ListCommissionsQueryParamSortByValues returns every known ListCommissionsQueryParamSortBy value in schema order.
+func ListCommissionsQueryParamSortByValues() []ListCommissionsQueryParamSortBy {
+	return []ListCommissionsQueryParamSortBy{
+		ListCommissionsQueryParamSortByCreatedAt,
+		ListCommissionsQueryParamSortByAmount,
+	}
+}
 func (e *ListCommissionsQueryParamSortBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -130,6 +163,14 @@ const (
 
 func (e ListCommissionsQueryParamSortOrder) ToPointer() *ListCommissionsQueryParamSortOrder {
 	return &e
+}
+
+// ListCommissionsQueryParamSortOrderValues returns every known ListCommissionsQueryParamSortOrder value in schema order.
+func ListCommissionsQueryParamSortOrderValues() []ListCommissionsQueryParamSortOrder {
+	return []ListCommissionsQueryParamSortOrder{
+		ListCommissionsQueryParamSortOrderAsc,
+		ListCommissionsQueryParamSortOrderDesc,
+	}
 }
 func (e *ListCommissionsQueryParamSortOrder) UnmarshalJSON(data []byte) error {
 	var v string
@@ -164,6 +205,21 @@ const (
 
 func (e ListCommissionsQueryParamInterval) ToPointer() *ListCommissionsQueryParamInterval {
 	return &e
+}
+
+// ListCommissionsQueryParamIntervalValues returns every known ListCommissionsQueryParamInterval value in schema order.
+func ListCommissionsQueryParamIntervalValues() []ListCommissionsQueryParamInterval {
+	return []ListCommissionsQueryParamInterval{
+		ListCommissionsQueryParamIntervalTwentyFourh,
+		ListCommissionsQueryParamIntervalSevend,
+		ListCommissionsQueryParamIntervalThirtyd,
+		ListCommissionsQueryParamIntervalNinetyd,
+		ListCommissionsQueryParamIntervalOney,
+		ListCommissionsQueryParamIntervalMtd,
+		ListCommissionsQueryParamIntervalQtd,
+		ListCommissionsQueryParamIntervalYtd,
+		ListCommissionsQueryParamIntervalAll,
+	}
 }
 func (e *ListCommissionsQueryParamInterval) UnmarshalJSON(data []byte) error {
 	var v string
@@ -432,6 +488,17 @@ const (
 func (e ListCommissionsType) ToPointer() *ListCommissionsType {
 	return &e
 }
+
+// ListCommissionsTypeValues returns every known ListCommissionsType value in schema order.
+func ListCommissionsTypeValues() []ListCommissionsType {
+	return []ListCommissionsType{
+		ListCommissionsTypeClick,
+		ListCommissionsTypeLead,
+		ListCommissionsTypeSale,
+		ListCommissionsTypeReferral,
+		ListCommissionsTypeCustom,
+	}
+}
 func (e *ListCommissionsType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -471,6 +538,20 @@ const (
 func (e ListCommissionsStatus) ToPointer() *ListCommissionsStatus {
 	return &e
 }
+
+// ListCommissionsStatusValues returns every known ListCommissionsStatus value in schema order.
+func ListCommissionsStatusValues() []ListCommissionsStatus {
+	return []ListCommissionsStatus{
+		ListCommissionsStatusPending,
+		ListCommissionsStatusProcessed,
+		ListCommissionsStatusPaid,
+		ListCommissionsStatusRefunded,
+		ListCommissionsStatusDuplicate,
+		ListCommissionsStatusFraud,
+		ListCommissionsStatusCanceled,
+		ListCommissionsStatusHold,
+	}
+}
 func (e *ListCommissionsStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -499,6 +580,57 @@ func (e *ListCommissionsStatus) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// ListCommissionsNetworkStatus - The partner's network status on Dub.
+type ListCommissionsNetworkStatus string
+
+const (
+	ListCommissionsNetworkStatusDraft     ListCommissionsNetworkStatus = "draft"
+	ListCommissionsNetworkStatusSubmitted ListCommissionsNetworkStatus = "submitted"
+	ListCommissionsNetworkStatusApproved  ListCommissionsNetworkStatus = "approved"
+	ListCommissionsNetworkStatusRejected  ListCommissionsNetworkStatus = "rejected"
+	ListCommissionsNetworkStatusTrusted   ListCommissionsNetworkStatus = "trusted"
+	ListCommissionsNetworkStatusBanned    ListCommissionsNetworkStatus = "banned"
+)
+
+func (e ListCommissionsNetworkStatus) ToPointer() *ListCommissionsNetworkStatus {
+	return &e
+}
+
+// ListCommissionsNetworkStatusValues returns every known ListCommissionsNetworkStatus value in schema order.
+func ListCommissionsNetworkStatusValues() []ListCommissionsNetworkStatus {
+	return []ListCommissionsNetworkStatus{
+		ListCommissionsNetworkStatusDraft,
+		ListCommissionsNetworkStatusSubmitted,
+		ListCommissionsNetworkStatusApproved,
+		ListCommissionsNetworkStatusRejected,
+		ListCommissionsNetworkStatusTrusted,
+		ListCommissionsNetworkStatusBanned,
+	}
+}
+func (e *ListCommissionsNetworkStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "draft":
+		fallthrough
+	case "submitted":
+		fallthrough
+	case "approved":
+		fallthrough
+	case "rejected":
+		fallthrough
+	case "trusted":
+		fallthrough
+	case "banned":
+		*e = ListCommissionsNetworkStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListCommissionsNetworkStatus: %v", v)
+	}
+}
+
 type ListCommissionsPartner struct {
 	// The partner's unique ID on Dub.
 	ID string `json:"id"`
@@ -510,6 +642,8 @@ type ListCommissionsPartner struct {
 	Image *string `json:"image"`
 	// The date when the partner enabled payouts.
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
+	// The partner's network status on Dub.
+	NetworkStatus ListCommissionsNetworkStatus `json:"networkStatus"`
 	// The partner's country (required for tax purposes).
 	Country *string `json:"country"`
 	// The partner's group ID on Dub.
@@ -549,6 +683,13 @@ func (l *ListCommissionsPartner) GetPayoutsEnabledAt() *string {
 		return nil
 	}
 	return l.PayoutsEnabledAt
+}
+
+func (l *ListCommissionsPartner) GetNetworkStatus() ListCommissionsNetworkStatus {
+	if l == nil {
+		return ListCommissionsNetworkStatus("")
+	}
+	return l.NetworkStatus
 }
 
 func (l *ListCommissionsPartner) GetCountry() *string {

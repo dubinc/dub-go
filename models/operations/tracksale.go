@@ -26,6 +26,21 @@ const (
 func (e PaymentProcessor) ToPointer() *PaymentProcessor {
 	return &e
 }
+
+// PaymentProcessorValues returns every known PaymentProcessor value in schema order.
+func PaymentProcessorValues() []PaymentProcessor {
+	return []PaymentProcessor{
+		PaymentProcessorStripe,
+		PaymentProcessorShopify,
+		PaymentProcessorPolar,
+		PaymentProcessorPaddle,
+		PaymentProcessorApple,
+		PaymentProcessorRevenuecat,
+		PaymentProcessorLemonsqueezy,
+		PaymentProcessorDub,
+		PaymentProcessorCustom,
+	}
+}
 func (e *PaymentProcessor) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

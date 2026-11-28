@@ -17,6 +17,13 @@ const (
 func (e UnauthorizedCode) ToPointer() *UnauthorizedCode {
 	return &e
 }
+
+// UnauthorizedCodeValues returns every known UnauthorizedCode value in schema order.
+func UnauthorizedCodeValues() []UnauthorizedCode {
+	return []UnauthorizedCode{
+		UnauthorizedCodeUnauthorized,
+	}
+}
 func (e *UnauthorizedCode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -69,6 +76,12 @@ type Unauthorized struct {
 var _ error = &Unauthorized{}
 
 func (e *Unauthorized) Error() string {
+	if e != nil {
+		if e.Error_.Message != "" {
+			return e.Error_.Message
+		}
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

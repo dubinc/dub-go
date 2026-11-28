@@ -16,10 +16,23 @@ const (
 	BulkUpdateCommissionsStatusDuplicate BulkUpdateCommissionsStatus = "duplicate"
 	BulkUpdateCommissionsStatusCanceled  BulkUpdateCommissionsStatus = "canceled"
 	BulkUpdateCommissionsStatusFraud     BulkUpdateCommissionsStatus = "fraud"
+	BulkUpdateCommissionsStatusHold      BulkUpdateCommissionsStatus = "hold"
 )
 
 func (e BulkUpdateCommissionsStatus) ToPointer() *BulkUpdateCommissionsStatus {
 	return &e
+}
+
+// BulkUpdateCommissionsStatusValues returns every known BulkUpdateCommissionsStatus value in schema order.
+func BulkUpdateCommissionsStatusValues() []BulkUpdateCommissionsStatus {
+	return []BulkUpdateCommissionsStatus{
+		BulkUpdateCommissionsStatusPending,
+		BulkUpdateCommissionsStatusRefunded,
+		BulkUpdateCommissionsStatusDuplicate,
+		BulkUpdateCommissionsStatusCanceled,
+		BulkUpdateCommissionsStatusFraud,
+		BulkUpdateCommissionsStatusHold,
+	}
 }
 func (e *BulkUpdateCommissionsStatus) UnmarshalJSON(data []byte) error {
 	var v string
@@ -36,6 +49,8 @@ func (e *BulkUpdateCommissionsStatus) UnmarshalJSON(data []byte) error {
 	case "canceled":
 		fallthrough
 	case "fraud":
+		fallthrough
+	case "hold":
 		*e = BulkUpdateCommissionsStatus(v)
 		return nil
 	default:
@@ -79,6 +94,20 @@ const (
 
 func (e BulkUpdateCommissionsCommissionsStatus) ToPointer() *BulkUpdateCommissionsCommissionsStatus {
 	return &e
+}
+
+// BulkUpdateCommissionsCommissionsStatusValues returns every known BulkUpdateCommissionsCommissionsStatus value in schema order.
+func BulkUpdateCommissionsCommissionsStatusValues() []BulkUpdateCommissionsCommissionsStatus {
+	return []BulkUpdateCommissionsCommissionsStatus{
+		BulkUpdateCommissionsCommissionsStatusPending,
+		BulkUpdateCommissionsCommissionsStatusProcessed,
+		BulkUpdateCommissionsCommissionsStatusPaid,
+		BulkUpdateCommissionsCommissionsStatusRefunded,
+		BulkUpdateCommissionsCommissionsStatusDuplicate,
+		BulkUpdateCommissionsCommissionsStatusFraud,
+		BulkUpdateCommissionsCommissionsStatusCanceled,
+		BulkUpdateCommissionsCommissionsStatusHold,
+	}
 }
 func (e *BulkUpdateCommissionsCommissionsStatus) UnmarshalJSON(data []byte) error {
 	var v string

@@ -28,3 +28,4 @@ value := components.CodeBadRequest
 | `CodeUnprocessableEntity` | unprocessable_entity      |
 | `CodeRateLimitExceeded`   | rate_limit_exceeded       |
 | `CodeInternalServerError` | internal_server_error     |
+| `CodeServiceUnavailable`  | service_unavailable       |

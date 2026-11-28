@@ -28,6 +28,21 @@ const (
 func (e RetrievePartnerAnalyticsQueryParamInterval) ToPointer() *RetrievePartnerAnalyticsQueryParamInterval {
 	return &e
 }
+
+// RetrievePartnerAnalyticsQueryParamIntervalValues returns every known RetrievePartnerAnalyticsQueryParamInterval value in schema order.
+func RetrievePartnerAnalyticsQueryParamIntervalValues() []RetrievePartnerAnalyticsQueryParamInterval {
+	return []RetrievePartnerAnalyticsQueryParamInterval{
+		RetrievePartnerAnalyticsQueryParamIntervalTwentyFourh,
+		RetrievePartnerAnalyticsQueryParamIntervalSevend,
+		RetrievePartnerAnalyticsQueryParamIntervalThirtyd,
+		RetrievePartnerAnalyticsQueryParamIntervalNinetyd,
+		RetrievePartnerAnalyticsQueryParamIntervalOney,
+		RetrievePartnerAnalyticsQueryParamIntervalMtd,
+		RetrievePartnerAnalyticsQueryParamIntervalQtd,
+		RetrievePartnerAnalyticsQueryParamIntervalYtd,
+		RetrievePartnerAnalyticsQueryParamIntervalAll,
+	}
+}
 func (e *RetrievePartnerAnalyticsQueryParamInterval) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -69,6 +84,15 @@ const (
 
 func (e RetrievePartnerAnalyticsQueryParamGroupBy) ToPointer() *RetrievePartnerAnalyticsQueryParamGroupBy {
 	return &e
+}
+
+// RetrievePartnerAnalyticsQueryParamGroupByValues returns every known RetrievePartnerAnalyticsQueryParamGroupBy value in schema order.
+func RetrievePartnerAnalyticsQueryParamGroupByValues() []RetrievePartnerAnalyticsQueryParamGroupBy {
+	return []RetrievePartnerAnalyticsQueryParamGroupBy{
+		RetrievePartnerAnalyticsQueryParamGroupByTopLinks,
+		RetrievePartnerAnalyticsQueryParamGroupByTimeseries,
+		RetrievePartnerAnalyticsQueryParamGroupByCount,
+	}
 }
 func (e *RetrievePartnerAnalyticsQueryParamGroupBy) UnmarshalJSON(data []byte) error {
 	var v string

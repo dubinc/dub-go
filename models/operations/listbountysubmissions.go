@@ -22,6 +22,17 @@ const (
 func (e ListBountySubmissionsQueryParamStatus) ToPointer() *ListBountySubmissionsQueryParamStatus {
 	return &e
 }
+
+// ListBountySubmissionsQueryParamStatusValues returns every known ListBountySubmissionsQueryParamStatus value in schema order.
+func ListBountySubmissionsQueryParamStatusValues() []ListBountySubmissionsQueryParamStatus {
+	return []ListBountySubmissionsQueryParamStatus{
+		ListBountySubmissionsQueryParamStatusDraft,
+		ListBountySubmissionsQueryParamStatusSubmitted,
+		ListBountySubmissionsQueryParamStatusApproved,
+		ListBountySubmissionsQueryParamStatusRejected,
+		ListBountySubmissionsQueryParamStatusPartiallyApproved,
+	}
+}
 func (e *ListBountySubmissionsQueryParamStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -56,6 +67,15 @@ const (
 func (e ListBountySubmissionsQueryParamSortBy) ToPointer() *ListBountySubmissionsQueryParamSortBy {
 	return &e
 }
+
+// ListBountySubmissionsQueryParamSortByValues returns every known ListBountySubmissionsQueryParamSortBy value in schema order.
+func ListBountySubmissionsQueryParamSortByValues() []ListBountySubmissionsQueryParamSortBy {
+	return []ListBountySubmissionsQueryParamSortBy{
+		ListBountySubmissionsQueryParamSortByCompletedAt,
+		ListBountySubmissionsQueryParamSortByPerformanceCount,
+		ListBountySubmissionsQueryParamSortBySocialMetricCount,
+	}
+}
 func (e *ListBountySubmissionsQueryParamSortBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -84,6 +104,14 @@ const (
 
 func (e ListBountySubmissionsQueryParamSortOrder) ToPointer() *ListBountySubmissionsQueryParamSortOrder {
 	return &e
+}
+
+// ListBountySubmissionsQueryParamSortOrderValues returns every known ListBountySubmissionsQueryParamSortOrder value in schema order.
+func ListBountySubmissionsQueryParamSortOrderValues() []ListBountySubmissionsQueryParamSortOrder {
+	return []ListBountySubmissionsQueryParamSortOrder{
+		ListBountySubmissionsQueryParamSortOrderAsc,
+		ListBountySubmissionsQueryParamSortOrderDesc,
+	}
 }
 func (e *ListBountySubmissionsQueryParamSortOrder) UnmarshalJSON(data []byte) error {
 	var v string
@@ -230,6 +258,17 @@ const (
 
 func (e ListBountySubmissionsStatus) ToPointer() *ListBountySubmissionsStatus {
 	return &e
+}
+
+// ListBountySubmissionsStatusValues returns every known ListBountySubmissionsStatus value in schema order.
+func ListBountySubmissionsStatusValues() []ListBountySubmissionsStatus {
+	return []ListBountySubmissionsStatus{
+		ListBountySubmissionsStatusDraft,
+		ListBountySubmissionsStatusSubmitted,
+		ListBountySubmissionsStatusApproved,
+		ListBountySubmissionsStatusRejected,
+		ListBountySubmissionsStatusPartiallyApproved,
+	}
 }
 func (e *ListBountySubmissionsStatus) UnmarshalJSON(data []byte) error {
 	var v string
