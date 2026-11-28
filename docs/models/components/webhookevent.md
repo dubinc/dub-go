@@ -65,6 +65,12 @@ webhookEvent := components.CreateWebhookEventCommissionCreatedEvent(components.C
 webhookEvent := components.CreateWebhookEventDiscountCodeWebhookEvent(components.DiscountCodeWebhookEvent{/* values here */})
 ```
 
+### MessageReceivedEvent
+
+```go
+webhookEvent := components.CreateWebhookEventMessageReceivedEvent(components.MessageReceivedEvent{/* values here */})
+```
+
 ## Union Discrimination
 
 Use the `Type` field to determine which variant is active, then access the corresponding field:
@@ -91,5 +97,7 @@ switch webhookEvent.Type {
 		// webhookEvent.CommissionCreatedEvent is populated
 	case components.WebhookEventTypeDiscountCodeWebhookEvent:
 		// webhookEvent.DiscountCodeWebhookEvent is populated
+	case components.WebhookEventTypeMessageReceivedEvent:
+		// webhookEvent.MessageReceivedEvent is populated
 }
 ```

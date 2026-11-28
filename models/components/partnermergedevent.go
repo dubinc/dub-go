@@ -17,6 +17,13 @@ const (
 func (e PartnerMergedEventEvent) ToPointer() *PartnerMergedEventEvent {
 	return &e
 }
+
+// PartnerMergedEventEventValues returns every known PartnerMergedEventEvent value in schema order.
+func PartnerMergedEventEventValues() []PartnerMergedEventEvent {
+	return []PartnerMergedEventEvent{
+		PartnerMergedEventEventPartnerMerged,
+	}
+}
 func (e *PartnerMergedEventEvent) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

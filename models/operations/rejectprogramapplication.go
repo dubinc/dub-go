@@ -21,6 +21,16 @@ const (
 func (e RejectionReason) ToPointer() *RejectionReason {
 	return &e
 }
+
+// RejectionReasonValues returns every known RejectionReason value in schema order.
+func RejectionReasonValues() []RejectionReason {
+	return []RejectionReason{
+		RejectionReasonNeedsMoreDetail,
+		RejectionReasonDoesNotMeetRequirements,
+		RejectionReasonNotTheRightFit,
+		RejectionReasonOther,
+	}
+}
 func (e *RejectionReason) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -52,6 +62,15 @@ const (
 
 func (e ReapplicationTimeframe) ToPointer() *ReapplicationTimeframe {
 	return &e
+}
+
+// ReapplicationTimeframeValues returns every known ReapplicationTimeframe value in schema order.
+func ReapplicationTimeframeValues() []ReapplicationTimeframe {
+	return []ReapplicationTimeframe{
+		ReapplicationTimeframeInstant,
+		ReapplicationTimeframeStandard,
+		ReapplicationTimeframeNever,
+	}
 }
 func (e *ReapplicationTimeframe) UnmarshalJSON(data []byte) error {
 	var v string

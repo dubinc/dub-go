@@ -17,6 +17,13 @@ const (
 func (e ProgramApplicationSubmittedEventEvent) ToPointer() *ProgramApplicationSubmittedEventEvent {
 	return &e
 }
+
+// ProgramApplicationSubmittedEventEventValues returns every known ProgramApplicationSubmittedEventEvent value in schema order.
+func ProgramApplicationSubmittedEventEventValues() []ProgramApplicationSubmittedEventEvent {
+	return []ProgramApplicationSubmittedEventEvent{
+		ProgramApplicationSubmittedEventEventPartnerApplicationSubmitted,
+	}
+}
 func (e *ProgramApplicationSubmittedEventEvent) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -47,6 +54,20 @@ const (
 
 func (e ProgramApplicationSubmittedEventStatus) ToPointer() *ProgramApplicationSubmittedEventStatus {
 	return &e
+}
+
+// ProgramApplicationSubmittedEventStatusValues returns every known ProgramApplicationSubmittedEventStatus value in schema order.
+func ProgramApplicationSubmittedEventStatusValues() []ProgramApplicationSubmittedEventStatus {
+	return []ProgramApplicationSubmittedEventStatus{
+		ProgramApplicationSubmittedEventStatusPending,
+		ProgramApplicationSubmittedEventStatusApproved,
+		ProgramApplicationSubmittedEventStatusRejected,
+		ProgramApplicationSubmittedEventStatusInvited,
+		ProgramApplicationSubmittedEventStatusDeclined,
+		ProgramApplicationSubmittedEventStatusDeactivated,
+		ProgramApplicationSubmittedEventStatusBanned,
+		ProgramApplicationSubmittedEventStatusArchived,
+	}
 }
 func (e *ProgramApplicationSubmittedEventStatus) UnmarshalJSON(data []byte) error {
 	var v string

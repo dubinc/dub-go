@@ -18,6 +18,13 @@ const (
 func (e Event2) ToPointer() *Event2 {
 	return &e
 }
+
+// Event2Values returns every known Event2 value in schema order.
+func Event2Values() []Event2 {
+	return []Event2{
+		Event2DiscountCodeDeleted,
+	}
+}
 func (e *Event2) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -40,6 +47,13 @@ const (
 
 func (e Event1) ToPointer() *Event1 {
 	return &e
+}
+
+// Event1Values returns every known Event1 value in schema order.
+func Event1Values() []Event1 {
+	return []Event1{
+		Event1DiscountCodeCreated,
+	}
 }
 func (e *Event1) UnmarshalJSON(data []byte) error {
 	var v string
@@ -135,6 +149,14 @@ const (
 func (e DiscountCodeWebhookEventType) ToPointer() *DiscountCodeWebhookEventType {
 	return &e
 }
+
+// DiscountCodeWebhookEventTypeValues returns every known DiscountCodeWebhookEventType value in schema order.
+func DiscountCodeWebhookEventTypeValues() []DiscountCodeWebhookEventType {
+	return []DiscountCodeWebhookEventType{
+		DiscountCodeWebhookEventTypePercentage,
+		DiscountCodeWebhookEventTypeFlat,
+	}
+}
 func (e *DiscountCodeWebhookEventType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -161,6 +183,15 @@ const (
 
 func (e Provider) ToPointer() *Provider {
 	return &e
+}
+
+// ProviderValues returns every known Provider value in schema order.
+func ProviderValues() []Provider {
+	return []Provider{
+		ProviderStripe,
+		ProviderShopify,
+		ProviderCustom,
+	}
 }
 func (e *Provider) UnmarshalJSON(data []byte) error {
 	var v string

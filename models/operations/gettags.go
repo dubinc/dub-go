@@ -20,6 +20,14 @@ const (
 func (e QueryParamSortBy) ToPointer() *QueryParamSortBy {
 	return &e
 }
+
+// QueryParamSortByValues returns every known QueryParamSortBy value in schema order.
+func QueryParamSortByValues() []QueryParamSortBy {
+	return []QueryParamSortBy{
+		QueryParamSortByName,
+		QueryParamSortByCreatedAt,
+	}
+}
 func (e *QueryParamSortBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -46,6 +54,14 @@ const (
 
 func (e QueryParamSortOrder) ToPointer() *QueryParamSortOrder {
 	return &e
+}
+
+// QueryParamSortOrderValues returns every known QueryParamSortOrder value in schema order.
+func QueryParamSortOrderValues() []QueryParamSortOrder {
+	return []QueryParamSortOrder{
+		QueryParamSortOrderAsc,
+		QueryParamSortOrderDesc,
+	}
 }
 func (e *QueryParamSortOrder) UnmarshalJSON(data []byte) error {
 	var v string

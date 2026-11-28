@@ -23,10 +23,29 @@ const (
 	CodeUnprocessableEntity Code = "unprocessable_entity"
 	CodeRateLimitExceeded   Code = "rate_limit_exceeded"
 	CodeInternalServerError Code = "internal_server_error"
+	CodeServiceUnavailable  Code = "service_unavailable"
 )
 
 func (e Code) ToPointer() *Code {
 	return &e
+}
+
+// CodeValues returns every known Code value in schema order.
+func CodeValues() []Code {
+	return []Code{
+		CodeBadRequest,
+		CodeUnauthorized,
+		CodeForbidden,
+		CodeExceededLimit,
+		CodeNotFound,
+		CodeConflict,
+		CodeInvitePending,
+		CodeInviteExpired,
+		CodeUnprocessableEntity,
+		CodeRateLimitExceeded,
+		CodeInternalServerError,
+		CodeServiceUnavailable,
+	}
 }
 func (e *Code) UnmarshalJSON(data []byte) error {
 	var v string
@@ -55,6 +74,8 @@ func (e *Code) UnmarshalJSON(data []byte) error {
 	case "rate_limit_exceeded":
 		fallthrough
 	case "internal_server_error":
+		fallthrough
+	case "service_unavailable":
 		*e = Code(v)
 		return nil
 	default:

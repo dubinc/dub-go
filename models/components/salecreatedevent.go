@@ -17,6 +17,13 @@ const (
 func (e SaleCreatedEventEvent) ToPointer() *SaleCreatedEventEvent {
 	return &e
 }
+
+// SaleCreatedEventEventValues returns every known SaleCreatedEventEvent value in schema order.
+func SaleCreatedEventEventValues() []SaleCreatedEventEvent {
+	return []SaleCreatedEventEvent{
+		SaleCreatedEventEventSaleCreated,
+	}
+}
 func (e *SaleCreatedEventEvent) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

@@ -19,6 +19,14 @@ const (
 func (e AccessLevel) ToPointer() *AccessLevel {
 	return &e
 }
+
+// AccessLevelValues returns every known AccessLevel value in schema order.
+func AccessLevelValues() []AccessLevel {
+	return []AccessLevel{
+		AccessLevelWrite,
+		AccessLevelRead,
+	}
+}
 func (e *AccessLevel) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

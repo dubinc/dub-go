@@ -24,6 +24,20 @@ const (
 func (e Color) ToPointer() *Color {
 	return &e
 }
+
+// ColorValues returns every known Color value in schema order.
+func ColorValues() []Color {
+	return []Color{
+		ColorRed,
+		ColorYellow,
+		ColorGreen,
+		ColorBlue,
+		ColorPurple,
+		ColorBrown,
+		ColorGray,
+		ColorPink,
+	}
+}
 func (e *Color) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

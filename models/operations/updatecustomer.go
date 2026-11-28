@@ -208,6 +208,14 @@ const (
 func (e UpdateCustomerType) ToPointer() *UpdateCustomerType {
 	return &e
 }
+
+// UpdateCustomerTypeValues returns every known UpdateCustomerType value in schema order.
+func UpdateCustomerTypeValues() []UpdateCustomerType {
+	return []UpdateCustomerType{
+		UpdateCustomerTypePercentage,
+		UpdateCustomerTypeFlat,
+	}
+}
 func (e *UpdateCustomerType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

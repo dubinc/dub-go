@@ -18,6 +18,14 @@ const (
 func (e UpdateFolderAccessLevel) ToPointer() *UpdateFolderAccessLevel {
 	return &e
 }
+
+// UpdateFolderAccessLevelValues returns every known UpdateFolderAccessLevel value in schema order.
+func UpdateFolderAccessLevelValues() []UpdateFolderAccessLevel {
+	return []UpdateFolderAccessLevel{
+		UpdateFolderAccessLevelWrite,
+		UpdateFolderAccessLevelRead,
+	}
+}
 func (e *UpdateFolderAccessLevel) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

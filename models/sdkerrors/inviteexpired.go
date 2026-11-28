@@ -17,6 +17,13 @@ const (
 func (e InviteExpiredCode) ToPointer() *InviteExpiredCode {
 	return &e
 }
+
+// InviteExpiredCodeValues returns every known InviteExpiredCode value in schema order.
+func InviteExpiredCodeValues() []InviteExpiredCode {
+	return []InviteExpiredCode{
+		InviteExpiredCodeInviteExpired,
+	}
+}
 func (e *InviteExpiredCode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -69,6 +76,12 @@ type InviteExpired struct {
 var _ error = &InviteExpired{}
 
 func (e *InviteExpired) Error() string {
+	if e != nil {
+		if e.Error_.Message != "" {
+			return e.Error_.Message
+		}
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

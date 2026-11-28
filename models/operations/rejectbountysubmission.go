@@ -21,6 +21,17 @@ const (
 func (e RejectBountySubmissionRejectionReason) ToPointer() *RejectBountySubmissionRejectionReason {
 	return &e
 }
+
+// RejectBountySubmissionRejectionReasonValues returns every known RejectBountySubmissionRejectionReason value in schema order.
+func RejectBountySubmissionRejectionReasonValues() []RejectBountySubmissionRejectionReason {
+	return []RejectBountySubmissionRejectionReason{
+		RejectBountySubmissionRejectionReasonInvalidProof,
+		RejectBountySubmissionRejectionReasonDuplicateSubmission,
+		RejectBountySubmissionRejectionReasonOutOfTimeWindow,
+		RejectBountySubmissionRejectionReasonDidNotMeetCriteria,
+		RejectBountySubmissionRejectionReasonOther,
+	}
+}
 func (e *RejectBountySubmissionRejectionReason) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -136,6 +147,17 @@ const (
 
 func (e RejectBountySubmissionStatus) ToPointer() *RejectBountySubmissionStatus {
 	return &e
+}
+
+// RejectBountySubmissionStatusValues returns every known RejectBountySubmissionStatus value in schema order.
+func RejectBountySubmissionStatusValues() []RejectBountySubmissionStatus {
+	return []RejectBountySubmissionStatus{
+		RejectBountySubmissionStatusDraft,
+		RejectBountySubmissionStatusSubmitted,
+		RejectBountySubmissionStatusApproved,
+		RejectBountySubmissionStatusRejected,
+		RejectBountySubmissionStatusPartiallyApproved,
+	}
 }
 func (e *RejectBountySubmissionStatus) UnmarshalJSON(data []byte) error {
 	var v string

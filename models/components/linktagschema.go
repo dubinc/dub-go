@@ -25,6 +25,20 @@ const (
 func (e LinkTagSchemaColor) ToPointer() *LinkTagSchemaColor {
 	return &e
 }
+
+// LinkTagSchemaColorValues returns every known LinkTagSchemaColor value in schema order.
+func LinkTagSchemaColorValues() []LinkTagSchemaColor {
+	return []LinkTagSchemaColor{
+		LinkTagSchemaColorRed,
+		LinkTagSchemaColorYellow,
+		LinkTagSchemaColorGreen,
+		LinkTagSchemaColorBlue,
+		LinkTagSchemaColorPurple,
+		LinkTagSchemaColorBrown,
+		LinkTagSchemaColorGray,
+		LinkTagSchemaColorPink,
+	}
+}
 func (e *LinkTagSchemaColor) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

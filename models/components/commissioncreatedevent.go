@@ -17,6 +17,13 @@ const (
 func (e CommissionCreatedEventEvent) ToPointer() *CommissionCreatedEventEvent {
 	return &e
 }
+
+// CommissionCreatedEventEventValues returns every known CommissionCreatedEventEvent value in schema order.
+func CommissionCreatedEventEventValues() []CommissionCreatedEventEvent {
+	return []CommissionCreatedEventEvent{
+		CommissionCreatedEventEventCommissionCreated,
+	}
+}
 func (e *CommissionCreatedEventEvent) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -44,6 +51,17 @@ const (
 
 func (e CommissionCreatedEventType) ToPointer() *CommissionCreatedEventType {
 	return &e
+}
+
+// CommissionCreatedEventTypeValues returns every known CommissionCreatedEventType value in schema order.
+func CommissionCreatedEventTypeValues() []CommissionCreatedEventType {
+	return []CommissionCreatedEventType{
+		CommissionCreatedEventTypeClick,
+		CommissionCreatedEventTypeLead,
+		CommissionCreatedEventTypeSale,
+		CommissionCreatedEventTypeReferral,
+		CommissionCreatedEventTypeCustom,
+	}
 }
 func (e *CommissionCreatedEventType) UnmarshalJSON(data []byte) error {
 	var v string
@@ -83,6 +101,20 @@ const (
 
 func (e CommissionCreatedEventStatus) ToPointer() *CommissionCreatedEventStatus {
 	return &e
+}
+
+// CommissionCreatedEventStatusValues returns every known CommissionCreatedEventStatus value in schema order.
+func CommissionCreatedEventStatusValues() []CommissionCreatedEventStatus {
+	return []CommissionCreatedEventStatus{
+		CommissionCreatedEventStatusPending,
+		CommissionCreatedEventStatusProcessed,
+		CommissionCreatedEventStatusPaid,
+		CommissionCreatedEventStatusRefunded,
+		CommissionCreatedEventStatusDuplicate,
+		CommissionCreatedEventStatusFraud,
+		CommissionCreatedEventStatusCanceled,
+		CommissionCreatedEventStatusHold,
+	}
 }
 func (e *CommissionCreatedEventStatus) UnmarshalJSON(data []byte) error {
 	var v string

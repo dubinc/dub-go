@@ -18,6 +18,13 @@ const (
 func (e CreateCommissionRequestBodyCommissionsType) ToPointer() *CreateCommissionRequestBodyCommissionsType {
 	return &e
 }
+
+// CreateCommissionRequestBodyCommissionsTypeValues returns every known CreateCommissionRequestBodyCommissionsType value in schema order.
+func CreateCommissionRequestBodyCommissionsTypeValues() []CreateCommissionRequestBodyCommissionsType {
+	return []CreateCommissionRequestBodyCommissionsType{
+		CreateCommissionRequestBodyCommissionsTypeSale,
+	}
+}
 func (e *CreateCommissionRequestBodyCommissionsType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -110,6 +117,13 @@ const (
 func (e StripeInvoicesToImport1) ToPointer() *StripeInvoicesToImport1 {
 	return &e
 }
+
+// StripeInvoicesToImport1Values returns every known StripeInvoicesToImport1 value in schema order.
+func StripeInvoicesToImport1Values() []StripeInvoicesToImport1 {
+	return []StripeInvoicesToImport1{
+		StripeInvoicesToImport1All,
+	}
+}
 func (e *StripeInvoicesToImport1) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -131,7 +145,7 @@ const (
 	StripeInvoicesToImportTypeArrayOfStr              StripeInvoicesToImportType = "arrayOfStr"
 )
 
-// StripeInvoicesToImport - Import paid Stripe invoices for the customer and create a commission for each. Pass `all` to import every unimported, paid invoice, or an array of Stripe invoice IDs to import only those invoices. Refunded invoices are not imported. When not provided, create a single manual sale event using `sale.amount`
+// StripeInvoicesToImport - Import paid Stripe invoices for the customer and create a commission for each. Pass `all` to import every unimported, paid invoice, or an array of Stripe invoice IDs to import only those invoices. Refunded invoices are not imported. When not provided, create a single manual sale event using `sale.amount`. Omitted `customer.email` and `customer.name` are taken from the customer's latest paid Stripe invoice that has them.
 type StripeInvoicesToImport struct {
 	StripeInvoicesToImport1 *StripeInvoicesToImport1 `queryParam:"inline" union:"member"`
 	ArrayOfStr              []string                 `queryParam:"inline" union:"member"`
@@ -212,6 +226,21 @@ const (
 
 func (e RequestBodyPaymentProcessor) ToPointer() *RequestBodyPaymentProcessor {
 	return &e
+}
+
+// RequestBodyPaymentProcessorValues returns every known RequestBodyPaymentProcessor value in schema order.
+func RequestBodyPaymentProcessorValues() []RequestBodyPaymentProcessor {
+	return []RequestBodyPaymentProcessor{
+		RequestBodyPaymentProcessorStripe,
+		RequestBodyPaymentProcessorShopify,
+		RequestBodyPaymentProcessorPolar,
+		RequestBodyPaymentProcessorPaddle,
+		RequestBodyPaymentProcessorApple,
+		RequestBodyPaymentProcessorRevenuecat,
+		RequestBodyPaymentProcessorLemonsqueezy,
+		RequestBodyPaymentProcessorDub,
+		RequestBodyPaymentProcessorCustom,
+	}
 }
 func (e *RequestBodyPaymentProcessor) UnmarshalJSON(data []byte) error {
 	var v string
@@ -324,7 +353,7 @@ type RequestBody3 struct {
 	LinkID *string `json:"linkId,omitempty"`
 	// The partner discount code to resolve the associated link. Use this when the link ID is unknown. Cannot be provided together with `linkId`.
 	DiscountCode *string `json:"discountCode,omitempty"`
-	// Import paid Stripe invoices for the customer and create a commission for each. Pass `all` to import every unimported, paid invoice, or an array of Stripe invoice IDs to import only those invoices. Refunded invoices are not imported. When not provided, create a single manual sale event using `sale.amount`
+	// Import paid Stripe invoices for the customer and create a commission for each. Pass `all` to import every unimported, paid invoice, or an array of Stripe invoice IDs to import only those invoices. Refunded invoices are not imported. When not provided, create a single manual sale event using `sale.amount`. Omitted `customer.email` and `customer.name` are taken from the customer's latest paid Stripe invoice that has them.
 	StripeInvoicesToImport *StripeInvoicesToImport `json:"stripeInvoicesToImport,omitempty"`
 	// Only used when `stripeInvoicesToImport` is not provided. The date of the manual sale event. Defaults to the current date and time if not provided.
 	Date *string `json:"date,omitempty"`
@@ -472,6 +501,13 @@ const (
 
 func (e CreateCommissionRequestBodyType) ToPointer() *CreateCommissionRequestBodyType {
 	return &e
+}
+
+// CreateCommissionRequestBodyTypeValues returns every known CreateCommissionRequestBodyType value in schema order.
+func CreateCommissionRequestBodyTypeValues() []CreateCommissionRequestBodyType {
+	return []CreateCommissionRequestBodyType{
+		CreateCommissionRequestBodyTypeLead,
+	}
 }
 func (e *CreateCommissionRequestBodyType) UnmarshalJSON(data []byte) error {
 	var v string
@@ -698,6 +734,13 @@ const (
 
 func (e RequestBodyType) ToPointer() *RequestBodyType {
 	return &e
+}
+
+// RequestBodyTypeValues returns every known RequestBodyType value in schema order.
+func RequestBodyTypeValues() []RequestBodyType {
+	return []RequestBodyType{
+		RequestBodyTypeCustom,
+	}
 }
 func (e *RequestBodyType) UnmarshalJSON(data []byte) error {
 	var v string

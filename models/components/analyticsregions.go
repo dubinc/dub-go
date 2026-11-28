@@ -17,6 +17,13 @@ const (
 func (e AnalyticsRegionsCity) ToPointer() *AnalyticsRegionsCity {
 	return &e
 }
+
+// AnalyticsRegionsCityValues returns every known AnalyticsRegionsCity value in schema order.
+func AnalyticsRegionsCityValues() []AnalyticsRegionsCity {
+	return []AnalyticsRegionsCity{
+		AnalyticsRegionsCityWildcard,
+	}
+}
 func (e *AnalyticsRegionsCity) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

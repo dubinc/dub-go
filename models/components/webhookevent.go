@@ -21,6 +21,7 @@ const (
 	WebhookEventTypePartnerMergedEvent               WebhookEventType = "PartnerMergedEvent"
 	WebhookEventTypeCommissionCreatedEvent           WebhookEventType = "CommissionCreatedEvent"
 	WebhookEventTypeDiscountCodeWebhookEvent         WebhookEventType = "DiscountCodeWebhookEvent"
+	WebhookEventTypeMessageReceivedEvent             WebhookEventType = "MessageReceivedEvent"
 )
 
 // WebhookEvent - Webhook event schema
@@ -35,6 +36,7 @@ type WebhookEvent struct {
 	PartnerMergedEvent               *PartnerMergedEvent               `queryParam:"inline" union:"member"`
 	CommissionCreatedEvent           *CommissionCreatedEvent           `queryParam:"inline" union:"member"`
 	DiscountCodeWebhookEvent         *DiscountCodeWebhookEvent         `queryParam:"inline" union:"member"`
+	MessageReceivedEvent             *MessageReceivedEvent             `queryParam:"inline" union:"member"`
 
 	Type WebhookEventType
 }
@@ -129,6 +131,15 @@ func CreateWebhookEventDiscountCodeWebhookEvent(discountCodeWebhookEvent Discoun
 	}
 }
 
+func CreateWebhookEventMessageReceivedEvent(messageReceivedEvent MessageReceivedEvent) WebhookEvent {
+	typ := WebhookEventTypeMessageReceivedEvent
+
+	return WebhookEvent{
+		MessageReceivedEvent: &messageReceivedEvent,
+		Type:                 typ,
+	}
+}
+
 func (u *WebhookEvent) UnmarshalJSON(data []byte) (err error) {
 	previous := *u
 	*u = WebhookEvent{}
@@ -208,6 +219,13 @@ func (u *WebhookEvent) UnmarshalJSON(data []byte) (err error) {
 		return nil
 	}
 
+	var messageReceivedEvent MessageReceivedEvent = MessageReceivedEvent{}
+	if err := utils.UnmarshalJSON(data, &messageReceivedEvent, "", true, nil); err == nil {
+		u.MessageReceivedEvent = &messageReceivedEvent
+		u.Type = WebhookEventTypeMessageReceivedEvent
+		return nil
+	}
+
 	return fmt.Errorf("could not unmarshal `%s` into any supported union types for WebhookEvent", string(data))
 }
 
@@ -250,6 +268,10 @@ func (u WebhookEvent) MarshalJSON() ([]byte, error) {
 
 	if u.DiscountCodeWebhookEvent != nil {
 		return utils.MarshalJSON(u.DiscountCodeWebhookEvent, "", true)
+	}
+
+	if u.MessageReceivedEvent != nil {
+		return utils.MarshalJSON(u.MessageReceivedEvent, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type WebhookEvent: all fields are null")

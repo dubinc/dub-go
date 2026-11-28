@@ -17,6 +17,13 @@ const (
 func (e Code) ToPointer() *Code {
 	return &e
 }
+
+// CodeValues returns every known Code value in schema order.
+func CodeValues() []Code {
+	return []Code{
+		CodeBadRequest,
+	}
+}
 func (e *Code) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -69,6 +76,12 @@ type BadRequest struct {
 var _ error = &BadRequest{}
 
 func (e *BadRequest) Error() string {
+	if e != nil {
+		if e.Error_.Message != "" {
+			return e.Error_.Message
+		}
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

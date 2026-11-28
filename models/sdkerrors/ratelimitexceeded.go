@@ -17,6 +17,13 @@ const (
 func (e RateLimitExceededCode) ToPointer() *RateLimitExceededCode {
 	return &e
 }
+
+// RateLimitExceededCodeValues returns every known RateLimitExceededCode value in schema order.
+func RateLimitExceededCodeValues() []RateLimitExceededCode {
+	return []RateLimitExceededCode{
+		RateLimitExceededCodeRateLimitExceeded,
+	}
+}
 func (e *RateLimitExceededCode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -69,6 +76,12 @@ type RateLimitExceeded struct {
 var _ error = &RateLimitExceeded{}
 
 func (e *RateLimitExceeded) Error() string {
+	if e != nil {
+		if e.Error_.Message != "" {
+			return e.Error_.Message
+		}
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

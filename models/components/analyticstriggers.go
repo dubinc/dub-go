@@ -21,6 +21,16 @@ const (
 func (e Trigger) ToPointer() *Trigger {
 	return &e
 }
+
+// TriggerValues returns every known Trigger value in schema order.
+func TriggerValues() []Trigger {
+	return []Trigger{
+		TriggerQr,
+		TriggerLink,
+		TriggerPageview,
+		TriggerDeeplink,
+	}
+}
 func (e *Trigger) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

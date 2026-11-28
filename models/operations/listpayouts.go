@@ -24,6 +24,19 @@ const (
 func (e ListPayoutsQueryParamStatus) ToPointer() *ListPayoutsQueryParamStatus {
 	return &e
 }
+
+// ListPayoutsQueryParamStatusValues returns every known ListPayoutsQueryParamStatus value in schema order.
+func ListPayoutsQueryParamStatusValues() []ListPayoutsQueryParamStatus {
+	return []ListPayoutsQueryParamStatus{
+		ListPayoutsQueryParamStatusPending,
+		ListPayoutsQueryParamStatusProcessing,
+		ListPayoutsQueryParamStatusProcessed,
+		ListPayoutsQueryParamStatusSent,
+		ListPayoutsQueryParamStatusCompleted,
+		ListPayoutsQueryParamStatusFailed,
+		ListPayoutsQueryParamStatusCanceled,
+	}
+}
 func (e *ListPayoutsQueryParamStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -62,6 +75,15 @@ const (
 func (e ListPayoutsQueryParamSortBy) ToPointer() *ListPayoutsQueryParamSortBy {
 	return &e
 }
+
+// ListPayoutsQueryParamSortByValues returns every known ListPayoutsQueryParamSortBy value in schema order.
+func ListPayoutsQueryParamSortByValues() []ListPayoutsQueryParamSortBy {
+	return []ListPayoutsQueryParamSortBy{
+		ListPayoutsQueryParamSortByAmount,
+		ListPayoutsQueryParamSortByInitiatedAt,
+		ListPayoutsQueryParamSortByPaidAt,
+	}
+}
 func (e *ListPayoutsQueryParamSortBy) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -91,6 +113,14 @@ const (
 func (e ListPayoutsQueryParamSortOrder) ToPointer() *ListPayoutsQueryParamSortOrder {
 	return &e
 }
+
+// ListPayoutsQueryParamSortOrderValues returns every known ListPayoutsQueryParamSortOrder value in schema order.
+func ListPayoutsQueryParamSortOrderValues() []ListPayoutsQueryParamSortOrder {
+	return []ListPayoutsQueryParamSortOrder{
+		ListPayoutsQueryParamSortOrderAsc,
+		ListPayoutsQueryParamSortOrderDesc,
+	}
+}
 func (e *ListPayoutsQueryParamSortOrder) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -118,6 +148,8 @@ type ListPayoutsRequest struct {
 	InvoiceID *string `queryParam:"style=form,explode=true,name=invoiceId"`
 	// Filter the list of payouts by the associated partner group. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `group_abc`, `group_abc,group_xyz`, `-group_abc`.
 	GroupID *string `queryParam:"style=form,explode=true,name=groupId"`
+	// Filter the list of payouts by the associated partner tag. Supports advanced filtering: single value, multiple values (comma-separated), or exclusion (prefix with `-`). Examples: `ptag_abc`, `ptag_abc,ptag_xyz`, `-ptag_abc`.
+	PartnerTagID *string `queryParam:"style=form,explode=true,name=partnerTagId"`
 	// The field to sort the list of payouts by.
 	SortBy *ListPayoutsQueryParamSortBy `default:"amount" queryParam:"style=form,explode=true,name=sortBy"`
 	// The sort order for the list of payouts.
@@ -174,6 +206,13 @@ func (l *ListPayoutsRequest) GetGroupID() *string {
 	return l.GroupID
 }
 
+func (l *ListPayoutsRequest) GetPartnerTagID() *string {
+	if l == nil {
+		return nil
+	}
+	return l.PartnerTagID
+}
+
 func (l *ListPayoutsRequest) GetSortBy() *ListPayoutsQueryParamSortBy {
 	if l == nil {
 		return nil
@@ -217,6 +256,19 @@ const (
 func (e ListPayoutsStatus) ToPointer() *ListPayoutsStatus {
 	return &e
 }
+
+// ListPayoutsStatusValues returns every known ListPayoutsStatus value in schema order.
+func ListPayoutsStatusValues() []ListPayoutsStatus {
+	return []ListPayoutsStatus{
+		ListPayoutsStatusPending,
+		ListPayoutsStatusProcessing,
+		ListPayoutsStatusProcessed,
+		ListPayoutsStatusSent,
+		ListPayoutsStatusCompleted,
+		ListPayoutsStatusFailed,
+		ListPayoutsStatusCanceled,
+	}
+}
 func (e *ListPayoutsStatus) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -253,6 +305,14 @@ const (
 func (e ListPayoutsMode) ToPointer() *ListPayoutsMode {
 	return &e
 }
+
+// ListPayoutsModeValues returns every known ListPayoutsMode value in schema order.
+func ListPayoutsModeValues() []ListPayoutsMode {
+	return []ListPayoutsMode{
+		ListPayoutsModeInternal,
+		ListPayoutsModeExternal,
+	}
+}
 func (e *ListPayoutsMode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -280,6 +340,16 @@ const (
 
 func (e Method) ToPointer() *Method {
 	return &e
+}
+
+// MethodValues returns every known Method value in schema order.
+func MethodValues() []Method {
+	return []Method{
+		MethodConnect,
+		MethodStablecoin,
+		MethodPaypal,
+		MethodTremendous,
+	}
 }
 func (e *Method) UnmarshalJSON(data []byte) error {
 	var v string
@@ -314,6 +384,16 @@ const (
 func (e ListPayoutsDefaultPayoutMethod) ToPointer() *ListPayoutsDefaultPayoutMethod {
 	return &e
 }
+
+// ListPayoutsDefaultPayoutMethodValues returns every known ListPayoutsDefaultPayoutMethod value in schema order.
+func ListPayoutsDefaultPayoutMethodValues() []ListPayoutsDefaultPayoutMethod {
+	return []ListPayoutsDefaultPayoutMethod{
+		ListPayoutsDefaultPayoutMethodConnect,
+		ListPayoutsDefaultPayoutMethodStablecoin,
+		ListPayoutsDefaultPayoutMethodPaypal,
+		ListPayoutsDefaultPayoutMethodTremendous,
+	}
+}
 func (e *ListPayoutsDefaultPayoutMethod) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -334,6 +414,57 @@ func (e *ListPayoutsDefaultPayoutMethod) UnmarshalJSON(data []byte) error {
 	}
 }
 
+// ListPayoutsNetworkStatus - The partner's network status on Dub.
+type ListPayoutsNetworkStatus string
+
+const (
+	ListPayoutsNetworkStatusDraft     ListPayoutsNetworkStatus = "draft"
+	ListPayoutsNetworkStatusSubmitted ListPayoutsNetworkStatus = "submitted"
+	ListPayoutsNetworkStatusApproved  ListPayoutsNetworkStatus = "approved"
+	ListPayoutsNetworkStatusRejected  ListPayoutsNetworkStatus = "rejected"
+	ListPayoutsNetworkStatusTrusted   ListPayoutsNetworkStatus = "trusted"
+	ListPayoutsNetworkStatusBanned    ListPayoutsNetworkStatus = "banned"
+)
+
+func (e ListPayoutsNetworkStatus) ToPointer() *ListPayoutsNetworkStatus {
+	return &e
+}
+
+// ListPayoutsNetworkStatusValues returns every known ListPayoutsNetworkStatus value in schema order.
+func ListPayoutsNetworkStatusValues() []ListPayoutsNetworkStatus {
+	return []ListPayoutsNetworkStatus{
+		ListPayoutsNetworkStatusDraft,
+		ListPayoutsNetworkStatusSubmitted,
+		ListPayoutsNetworkStatusApproved,
+		ListPayoutsNetworkStatusRejected,
+		ListPayoutsNetworkStatusTrusted,
+		ListPayoutsNetworkStatusBanned,
+	}
+}
+func (e *ListPayoutsNetworkStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "draft":
+		fallthrough
+	case "submitted":
+		fallthrough
+	case "approved":
+		fallthrough
+	case "rejected":
+		fallthrough
+	case "trusted":
+		fallthrough
+	case "banned":
+		*e = ListPayoutsNetworkStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ListPayoutsNetworkStatus: %v", v)
+	}
+}
+
 type ListPayoutsPartner struct {
 	// The partner's unique ID on Dub.
 	ID string `json:"id"`
@@ -349,6 +480,8 @@ type ListPayoutsPartner struct {
 	PayoutsEnabledAt *string `json:"payoutsEnabledAt"`
 	// The partner's country (required for tax purposes).
 	Country *string `json:"country"`
+	// The partner's network status on Dub.
+	NetworkStatus ListPayoutsNetworkStatus `json:"networkStatus"`
 	// The partner's group ID on Dub.
 	GroupID *string `json:"groupId,omitempty"`
 	// The partner's unique ID within your database. Can be useful for associating the partner with a user in your database and retrieving/update their data in the future.
@@ -402,6 +535,13 @@ func (l *ListPayoutsPartner) GetCountry() *string {
 		return nil
 	}
 	return l.Country
+}
+
+func (l *ListPayoutsPartner) GetNetworkStatus() ListPayoutsNetworkStatus {
+	if l == nil {
+		return ListPayoutsNetworkStatus("")
+	}
+	return l.NetworkStatus
 }
 
 func (l *ListPayoutsPartner) GetGroupID() *string {

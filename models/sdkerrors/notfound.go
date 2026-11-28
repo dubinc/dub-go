@@ -17,6 +17,13 @@ const (
 func (e NotFoundCode) ToPointer() *NotFoundCode {
 	return &e
 }
+
+// NotFoundCodeValues returns every known NotFoundCode value in schema order.
+func NotFoundCodeValues() []NotFoundCode {
+	return []NotFoundCode{
+		NotFoundCodeNotFound,
+	}
+}
 func (e *NotFoundCode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -69,6 +76,12 @@ type NotFound struct {
 var _ error = &NotFound{}
 
 func (e *NotFound) Error() string {
+	if e != nil {
+		if e.Error_.Message != "" {
+			return e.Error_.Message
+		}
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

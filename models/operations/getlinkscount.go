@@ -160,6 +160,13 @@ const (
 func (e Four) ToPointer() *Four {
 	return &e
 }
+
+// FourValues returns every known Four value in schema order.
+func FourValues() []Four {
+	return []Four{
+		FourFolderID,
+	}
+}
 func (e *Four) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -182,6 +189,13 @@ const (
 
 func (e Three) ToPointer() *Three {
 	return &e
+}
+
+// ThreeValues returns every known Three value in schema order.
+func ThreeValues() []Three {
+	return []Three{
+		ThreeUserID,
+	}
 }
 func (e *Three) UnmarshalJSON(data []byte) error {
 	var v string
@@ -206,6 +220,13 @@ const (
 func (e Two) ToPointer() *Two {
 	return &e
 }
+
+// TwoValues returns every known Two value in schema order.
+func TwoValues() []Two {
+	return []Two{
+		TwoTagID,
+	}
+}
 func (e *Two) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -228,6 +249,13 @@ const (
 
 func (e One) ToPointer() *One {
 	return &e
+}
+
+// OneValues returns every known One value in schema order.
+func OneValues() []One {
+	return []One{
+		OneDomain,
+	}
 }
 func (e *One) UnmarshalJSON(data []byte) error {
 	var v string

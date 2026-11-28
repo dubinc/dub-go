@@ -134,6 +134,14 @@ const (
 func (e GetCustomerType) ToPointer() *GetCustomerType {
 	return &e
 }
+
+// GetCustomerTypeValues returns every known GetCustomerType value in schema order.
+func GetCustomerTypeValues() []GetCustomerType {
+	return []GetCustomerType{
+		GetCustomerTypePercentage,
+		GetCustomerTypeFlat,
+	}
+}
 func (e *GetCustomerType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {

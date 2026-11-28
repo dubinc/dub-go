@@ -17,6 +17,13 @@ const (
 func (e UnprocessableEntityCode) ToPointer() *UnprocessableEntityCode {
 	return &e
 }
+
+// UnprocessableEntityCodeValues returns every known UnprocessableEntityCode value in schema order.
+func UnprocessableEntityCodeValues() []UnprocessableEntityCode {
+	return []UnprocessableEntityCode{
+		UnprocessableEntityCodeUnprocessableEntity,
+	}
+}
 func (e *UnprocessableEntityCode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -69,6 +76,12 @@ type UnprocessableEntity struct {
 var _ error = &UnprocessableEntity{}
 
 func (e *UnprocessableEntity) Error() string {
+	if e != nil {
+		if e.Error_.Message != "" {
+			return e.Error_.Message
+		}
+	}
+
 	data, _ := json.Marshal(e)
 	return string(data)
 }

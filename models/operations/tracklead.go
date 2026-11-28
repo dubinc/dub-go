@@ -20,6 +20,15 @@ const (
 func (e Mode) ToPointer() *Mode {
 	return &e
 }
+
+// ModeValues returns every known Mode value in schema order.
+func ModeValues() []Mode {
+	return []Mode{
+		ModeAsync,
+		ModeWait,
+		ModeDeferred,
+	}
+}
 func (e *Mode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
